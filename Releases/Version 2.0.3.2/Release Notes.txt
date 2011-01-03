@@ -7,80 +7,13 @@
 # [-]: Removal                                        #
 #######################################################
 
-Version 2.2.0.0
-  OscarBrouwer.Framework (3.0.0.0)
-  [-] Removed the abstract Disposable class.
-      Date:    2010-11-23
-	  Comment: After looking into the dispose-issue in the .NET framework, the discision was made to remove the abstract Dispose class since
-	           it does not provide any real improvements for the Dispose-functionality.
-
-  [+] Added the Capitalize-extension method.
-      Date:    2010-12-13
-	  Comment: Added an extension method that capitalizes each word in a string.
-
-  [*] Added additional overloads for the CsvSerializer Serialize and Deserialize methods.
-      Date:    2010-12-12
-	  Comment: Added overloads for the CsvSerializer Serialize and Deserialize methods that take an additional Encoding parameter.
-	           The default encoding is set to UTF-32.
-
-  OscarBrouwer.Framework.Entities (4.0.0.0)
-  [*] Changed the returntype of the AddEntity and UpdateEntity methods of the SubDomainModel and Repository class.
-      Date:    2010-11-16
-	  Comment: The AddEntity and UpdateEntity methods of the SubDomainModel and Repository class now return the updated version of entity.
-
-  [*] Added a protected proprty to SubDomainModel<T> that gives access to the overall domainmodel.
-      Date:    2010-11-18
-	  Comment: The SubDomainMode<T> now contains a property that gives access to the overaal domainmodel.
-
-  OscarBrouwer.Framework.Entities.EntityFramework (3.0.0.0)
-  [*] API update as a result of changed in OscarBrouwer.Framework.Entities
-      Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
-
-  OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (2.0.0.0)
-  [*] API update as a result of changed in OscarBrouwer.Framework.Entities
-      Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
-
-  OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (2.0.0.0)
-  [*] API update as a result of changed in OscarBrouwer.Framework.Entities
-      Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
-
-Version 2.1.0.0
-  OscarBrouwer.Framework (2.3.0.0)
-  [+] Added the ConfigurationException class.
-      Date:    2010-10-05
-      Comment: Added the ConfigurationException class that can be used to throw exceptions when a problem with the application's 
-               configuration is detected.
-
-  [+] Added classes to support serialization and deserialization to and from a CSV file.
-      Date:    2010-10-05
-      Comment: Added three classes to support serialization and deserialization of objects to and from CSV files.
-
-  OscarBrouwer.Framework.Entities (3.0.0.0)
-  [*] Changed the IEntity type to a generic type.
-      Date:    2010-11-03
-	  Comment: Changed the IEntity type to a generic type. It now expects the actual entity type to be passed as a type-parameter.
-  
-  OscarBrouwer.Framework.Entities.EntityFramework (2.0.0.0)
-  [*] The repositories no longer work with a Contract/Implementation pair.
-      Date:    2010-11-03
-	  Comment: The repositories no longer work with a contract/implementation pair, but simply use one entity-type as type-parameter.
-	           This improves the usability of the library.
-
-  [*] The library now uses the EF CTP4 Feature.
-      Date:    2010-11-03
-	  Comment: The library now uses the Entity Framework (EF) CTP4 Feature which allows for code-first development in combination
-	           with EF. This means that is now uses the types from the System.Data.Entity namespace.
-
 Version 2.0.3.2
   OscarBrouwer.Framework (2.2.1.0)
   [*] Rewrote the Comparer class to use LINQ-Expressions instead of reflection.
       Date:    2010-04-05
-      Author:  Oscar Brouwer
-      Comment: The Comparer class has been re-written to use LINQ Expressions instead of reflection to retrieve the properties and call
-               the 'CompareTo' method. The execution time has been reduced to approximately 8% in comparison to the previous version.
+	  Author:  Oscar Brouwer
+	  Comment: The Comparer class has been re-written to use LINQ Expressions instead of reflection to retrieve the properties and call
+	           the 'CompareTo' method. The execution time has been reduced to approximately 8% in comparison to the previous version.
 
 Version 2.0.3.1
   OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (1.3.1.0)

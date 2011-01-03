@@ -1,0 +1,21 @@
+#######################################################
+# Release Notes for OscarBrouwer.Framework assemblies #
+#                                                     #
+# Legend:                                             #
+# [*]: Change                                         #
+# [+]: Addition                                       #
+# [-]: Removal                                        #
+#######################################################
+
+Version 2.0.1.0
+  OscarBrouwer.Framework (2.1.0.0)
+  [+] Added the LambdaEqualityComparer<T, TField> class
+      Date:    2010-03-17
+      Author:  Oscar Brouwer
+      Comment: The LambdaEqualityComparer<T, TField> class can be used to compare objects using a public field in the object.
+               
+Version 2.0.0.0
+  [+] Startpoint for the release notes
+
+=============================================================
+

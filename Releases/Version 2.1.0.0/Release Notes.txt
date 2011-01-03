@@ -7,46 +7,6 @@
 # [-]: Removal                                        #
 #######################################################
 
-Version 2.2.0.0
-  OscarBrouwer.Framework (3.0.0.0)
-  [-] Removed the abstract Disposable class.
-      Date:    2010-11-23
-	  Comment: After looking into the dispose-issue in the .NET framework, the discision was made to remove the abstract Dispose class since
-	           it does not provide any real improvements for the Dispose-functionality.
-
-  [+] Added the Capitalize-extension method.
-      Date:    2010-12-13
-	  Comment: Added an extension method that capitalizes each word in a string.
-
-  [*] Added additional overloads for the CsvSerializer Serialize and Deserialize methods.
-      Date:    2010-12-12
-	  Comment: Added overloads for the CsvSerializer Serialize and Deserialize methods that take an additional Encoding parameter.
-	           The default encoding is set to UTF-32.
-
-  OscarBrouwer.Framework.Entities (4.0.0.0)
-  [*] Changed the returntype of the AddEntity and UpdateEntity methods of the SubDomainModel and Repository class.
-      Date:    2010-11-16
-	  Comment: The AddEntity and UpdateEntity methods of the SubDomainModel and Repository class now return the updated version of entity.
-
-  [*] Added a protected proprty to SubDomainModel<T> that gives access to the overall domainmodel.
-      Date:    2010-11-18
-	  Comment: The SubDomainMode<T> now contains a property that gives access to the overaal domainmodel.
-
-  OscarBrouwer.Framework.Entities.EntityFramework (3.0.0.0)
-  [*] API update as a result of changed in OscarBrouwer.Framework.Entities
-      Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
-
-  OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (2.0.0.0)
-  [*] API update as a result of changed in OscarBrouwer.Framework.Entities
-      Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
-
-  OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (2.0.0.0)
-  [*] API update as a result of changed in OscarBrouwer.Framework.Entities
-      Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
-
 Version 2.1.0.0
   OscarBrouwer.Framework (2.3.0.0)
   [+] Added the ConfigurationException class.

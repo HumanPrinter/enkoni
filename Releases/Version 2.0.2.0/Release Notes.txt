@@ -1,0 +1,54 @@
+#######################################################
+# Release Notes for OscarBrouwer.Framework assemblies #
+#                                                     #
+# Legend:                                             #
+# [*]: Change                                         #
+# [+]: Addition                                       #
+# [-]: Removal                                        #
+#######################################################
+
+Version 2.0.2.0
+  OscarBrouwer.Framework (2.2.0.0)
+  [+] Added the IWorkflow interface
+      Date:    2010-03-19
+	  Author:  Oscar Brouwer
+	  Comment: Added the IWorkflow interface that describes the API of a workflow-like class.
+
+  [*] Workflow now implements the new IWorkflow interface
+      Date:    2010-03-19
+	  Author:  Oscar Brouwer
+	  Comment: The abstract class Workflow now implements the new IWorkflow interface. The public API has not changed.
+
+  OscarBrouwer.Framework.Entities (2.1.0.0)
+  [+] Added overloads for the FindSingle and FindFirst methods of the Repository class
+      Date:    2010-03-19
+	  Author:  Oscar Brouwer
+	  Comment: Added overloads for the FindSingle and FindFirst methods of the Repository class that return a default value 
+	           if there were no results.
+
+  OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (1.2.0.0)
+  [*] Added support for the new FindSingle and FindFirst overloads in the Repository class.
+      Date:    2010-03-19
+	  Author:  Oscar Brouwer
+	  Comment: Added support for the overloads of the FindSingle and FindFirst methods of the Repository class that were 
+	           introduced in version 2.1.0.0 of the OscarBrouwer.Framework.Entities library.
+
+  OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (1.2.0.0)
+  [*] Added support for the new FindSingle and FindFirst overloads in the Repository class.
+      Date:    2010-03-19
+	  Author:  Oscar Brouwer
+	  Comment: Added support for the overloads of the FindSingle and FindFirst methods of the Repository class that were 
+	           introduced in version 2.1.0.0 of the OscarBrouwer.Framework.Entities library.
+
+Version 2.0.1.0
+  OscarBrouwer.Framework (2.1.0.0)
+  [+] Added the LambdaEqualityComparer<T, TField> class
+      Date:    2010-03-17
+      Author:  Oscar Brouwer
+      Comment: The LambdaEqualityComparer<T, TField> class can be used to compare objects using a public field in the object.
+               
+Version 2.0.0.0
+  [+] Startpoint for the release notes
+
+=============================================================
+

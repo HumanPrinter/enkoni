@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OscarBrouwer.Framework.Entities.LinqToSql.v3.5</name>
+    </assembly>
+    <members>
+        <member name="T:OscarBrouwer.Framework.Entities.LinqToSql.ILinqRepository">
+            <summary>This interface is used as a marker by the RepositoryFactory.</summary>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.ILinqRepository.ReloadDataContext(System.Data.Linq.DataContext)">
+            <summary>Replaces the current DataContext with the specified one. The current DataContext is first disposed.
+            </summary>
+            <param name="dataContext">The new DataContext that must be used.</param>
+        </member>
+        <member name="T:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2">
+            <summary>This abstract class extends the abstract <see cref="T:OscarBrouwer.Framework.Entities.Repository`1"/> class and implements some of the 
+            functionality using LINQ-to-SQL.</summary>
+            <typeparam name="TContract">The contract-type of the entity that is handled by this repository.</typeparam>
+            <typeparam name="TActual">The actual-type of the entity that is handled by this repository.</typeparam>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.#ctor(System.Data.Linq.DataContext)">
+            <summary>Initializes a new instance of the <see cref="T:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2"/> class using the 
+            specified <see cref="P:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.DataContext"/>.</summary>
+            <param name="dataContext">The datacontext that must be used to access the database.</param>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.ReloadDataContext(System.Data.Linq.DataContext)">
+            <summary>Replaces the current DataContext with the specified one. The current DataContext is first disposed.
+            </summary>
+            <param name="dataContext">The new DataContext that must be used.</param>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.SaveChangesCore">
+            <summary>Submits all the changes to the database.</summary>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.CreateEntityCore">
+            <summary>Creates a new entity of type <typeparamref name="TContract"/>. This is done by calling the default
+            constructor of <typeparamref name="TActual"/>.</summary>
+            <returns>The created entity.</returns>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.AddEntityCore(`0)">
+            <summary>Inserts a new entity to the repository.</summary>
+            <param name="entity">The entity that must be added.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.UpdateEntityCore(`0)">
+            <summary>Updates the repository with the changes made to <paramref name="entity"/>. Since LINQ-to-SQL already
+            monitors the state of entities, no additional functionality is required. This method is therefore empty.
+            </summary>
+            <param name="entity">The entity that was updated.</param>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.DeleteEntityCore(`0)">
+            <summary>Deletes an entity from the repository.</summary>
+            <param name="entity">The entity that must be deleted.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.CreateLikeExpressionCore">
+            <summary>Creates an expression that can be used to perform a 'Like' operation.</summary>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.FindAllCore">
+            <summary>Finds all the entities of type <typeparamref name="TContract"/>.</summary>
+            <returns>All the available entities.</returns>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.FindAllCore(System.Func{`0,System.Boolean})">
+            <summary>Finds all the available entities that match the specified expression.</summary>
+            <param name="expression">The expression to which the entities must match.</param>
+            <returns>The entities that match the specified expression.</returns>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.FindSingleCore(System.Func{`0,System.Boolean})">
+            <summary>Finds a single entity that matches the expression.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <returns>The found entity.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.FindFirstCore(System.Func{`0,System.Boolean})">
+            <summary>Finds the first entity that matches the expression.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <returns>The found entity.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="P:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.DataContext">
+            <summary>Gets the DataContext that is used to access the database.</summary>
+        </member>
+        <member name="P:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.SinglePositionWildcard">
+            <summary>Gets the wildcard that is used to match a single character.</summary>
+        </member>
+        <member name="P:OscarBrouwer.Framework.Entities.LinqToSql.LinqRepository`2.MultiplePositionWildcard">
+            <summary>Gets the wildcard that is used to match zero or more character.</summary>
+        </member>
+    </members>
+</doc>
