@@ -30,3 +30,24 @@ Source/OscarBrouwer.Framework.Validation/bin/
 Source/OscarBrouwer.Framework.Validation/obj/
 Source/Test/FrameworkTestApp/bin/
 Source/Test/FrameworkTestApp/obj/
+/Releases/Microsoft.Practices.EnterpriseLibrary.Validation.dll
+/Releases/Microsoft.Practices.EnterpriseLibrary.Validation.xml
+/Releases/OscarBrouwer.Framework.Entities.EntityFramework.dll
+/Releases/OscarBrouwer.Framework.Entities.EntityFramework.xml
+/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v3.5.dll
+/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v3.5.xml
+/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v4.0.dll
+/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v4.0.xml
+/Releases/OscarBrouwer.Framework.Entities.dll
+/Releases/OscarBrouwer.Framework.Entities.xml
+/Releases/OscarBrouwer.Framework.ServiceModel.dll
+/Releases/OscarBrouwer.Framework.ServiceModel.xml
+/Releases/OscarBrouwer.Framework.Testing.dll
+/Releases/OscarBrouwer.Framework.Testing.xml
+/Releases/OscarBrouwer.Framework.Validation.dll
+/Releases/OscarBrouwer.Framework.Validation.xml
+/Releases/OscarBrouwer.Framework.dll
+/Releases/OscarBrouwer.Framework.xml
+/Releases/Release Notes.txt
+Source/Release Notes.txt
+Release.bat
