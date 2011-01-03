@@ -11,41 +11,41 @@ Version 2.2.0.0
   OscarBrouwer.Framework (3.0.0.0)
   [-] Removed the abstract Disposable class.
       Date:    2010-11-23
-	  Comment: After looking into the dispose-issue in the .NET framework, the discision was made to remove the abstract Dispose class since
-	           it does not provide any real improvements for the Dispose-functionality.
+      Comment: After looking into the dispose-issue in the .NET framework, the discision was made to remove the abstract Dispose class since
+               it does not provide any real improvements for the Dispose-functionality.
 
   [+] Added the Capitalize-extension method.
       Date:    2010-12-13
-	  Comment: Added an extension method that capitalizes each word in a string.
+      Comment: Added an extension method that capitalizes each word in a string.
 
   [*] Added additional overloads for the CsvSerializer Serialize and Deserialize methods.
       Date:    2010-12-12
-	  Comment: Added overloads for the CsvSerializer Serialize and Deserialize methods that take an additional Encoding parameter.
-	           The default encoding is set to UTF-32.
+      Comment: Added overloads for the CsvSerializer Serialize and Deserialize methods that take an additional Encoding parameter.
+             The default encoding is set to UTF-32.
 
   OscarBrouwer.Framework.Entities (4.0.0.0)
   [*] Changed the returntype of the AddEntity and UpdateEntity methods of the SubDomainModel and Repository class.
       Date:    2010-11-16
-	  Comment: The AddEntity and UpdateEntity methods of the SubDomainModel and Repository class now return the updated version of entity.
+      Comment: The AddEntity and UpdateEntity methods of the SubDomainModel and Repository class now return the updated version of entity.
 
   [*] Added a protected proprty to SubDomainModel<T> that gives access to the overall domainmodel.
       Date:    2010-11-18
-	  Comment: The SubDomainMode<T> now contains a property that gives access to the overaal domainmodel.
+      Comment: The SubDomainMode<T> now contains a property that gives access to the overaal domainmodel.
 
   OscarBrouwer.Framework.Entities.EntityFramework (3.0.0.0)
   [*] API update as a result of changed in OscarBrouwer.Framework.Entities
       Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
+      Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
 
   OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (2.0.0.0)
   [*] API update as a result of changed in OscarBrouwer.Framework.Entities
       Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
+      Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
 
   OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (2.0.0.0)
   [*] API update as a result of changed in OscarBrouwer.Framework.Entities
       Date:    2010-11-16
-	  Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
+      Comment: Updated the API due to changes in the OscarBrouwer.Framework.Entities library.
 
 Version 2.1.0.0
   OscarBrouwer.Framework (2.3.0.0)
@@ -61,18 +61,18 @@ Version 2.1.0.0
   OscarBrouwer.Framework.Entities (3.0.0.0)
   [*] Changed the IEntity type to a generic type.
       Date:    2010-11-03
-	  Comment: Changed the IEntity type to a generic type. It now expects the actual entity type to be passed as a type-parameter.
+      Comment: Changed the IEntity type to a generic type. It now expects the actual entity type to be passed as a type-parameter.
   
   OscarBrouwer.Framework.Entities.EntityFramework (2.0.0.0)
   [*] The repositories no longer work with a Contract/Implementation pair.
       Date:    2010-11-03
-	  Comment: The repositories no longer work with a contract/implementation pair, but simply use one entity-type as type-parameter.
-	           This improves the usability of the library.
+      Comment: The repositories no longer work with a contract/implementation pair, but simply use one entity-type as type-parameter.
+               This improves the usability of the library.
 
   [*] The library now uses the EF CTP4 Feature.
       Date:    2010-11-03
-	  Comment: The library now uses the Entity Framework (EF) CTP4 Feature which allows for code-first development in combination
-	           with EF. This means that is now uses the types from the System.Data.Entity namespace.
+      Comment: The library now uses the Entity Framework (EF) CTP4 Feature which allows for code-first development in combination
+               with EF. This means that is now uses the types from the System.Data.Entity namespace.
 
 Version 2.0.3.2
   OscarBrouwer.Framework (2.2.1.0)
@@ -86,66 +86,66 @@ Version 2.0.3.1
   OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (1.3.1.0)
   [*] Removed the [abstract] keyword from the LinqRepository<TContract,TActual> class.
       Date:    2010-03-24
-	  Author:  Oscar Brouwer
-	  Comment: The LinqRepository<TContract,TActual> is no longer abstract. It can now be used directly without the need to create a 
-	           subclass. In addition, the protected constructor has been made public.
+      Author:  Oscar Brouwer
+      Comment: The LinqRepository<TContract,TActual> is no longer abstract. It can now be used directly without the need to create a 
+               subclass. In addition, the protected constructor has been made public.
   
   OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (1.3.1.0)
   [*] Removed the [abstract] keyword from the LinqRepository<TContract,TActual> class.
       Date:    2010-03-24
-	  Author:  Oscar Brouwer
-	  Comment: The LinqRepository<TContract,TActual> is no longer abstract. It can now be used directly without the need to create a 
-	           subclass. In addition, the protected constructor has been made public.
+      Author:  Oscar Brouwer
+      Comment: The LinqRepository<TContract,TActual> is no longer abstract. It can now be used directly without the need to create a 
+               subclass. In addition, the protected constructor has been made public.
 
 Version 2.0.3.0
   OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (1.3.0.0)
   [+] Added the ShallowLinqRepository class
       Date:    2010-03-23
-	  Author:  Oscar Brouwer
-	  Comment: Added the ShallowLinqRepository<TContract, TActual> class that can be used for handling entities that are 
-	           fully dependant on a parent entity. Any changes to and retrieval of the entities must be handled by the 
-			   parent entity's repository.
+      Author:  Oscar Brouwer
+      Comment: Added the ShallowLinqRepository<TContract, TActual> class that can be used for handling entities that are 
+               fully dependant on a parent entity. Any changes to and retrieval of the entities must be handled by the 
+               parent entity's repository.
 
   OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (1.3.0.0)
   [+] Added the ShallowLinqRepository class
       Date:    2010-03-23
-	  Author:  Oscar Brouwer
-	  Comment: Added the ShallowLinqRepository<TContract, TActual> class that can be used for handling entities that are 
-	           fully dependant on a parent entity. Any changes to and retrieval of the entities must be handled by the 
-			   parent entity's repository.
+      Author:  Oscar Brouwer
+      Comment: Added the ShallowLinqRepository<TContract, TActual> class that can be used for handling entities that are 
+               fully dependant on a parent entity. Any changes to and retrieval of the entities must be handled by the 
+               parent entity's repository.
 
 Version 2.0.2.0
   OscarBrouwer.Framework (2.2.0.0)
   [+] Added the IWorkflow interface
       Date:    2010-03-19
-	  Author:  Oscar Brouwer
-	  Comment: Added the IWorkflow interface that describes the API of a workflow-like class.
+      Author:  Oscar Brouwer
+      Comment: Added the IWorkflow interface that describes the API of a workflow-like class.
 
   [*] Workflow now implements the new IWorkflow interface
       Date:    2010-03-19
-	  Author:  Oscar Brouwer
-	  Comment: The abstract class Workflow now implements the new IWorkflow interface. The public API has not changed.
+      Author:  Oscar Brouwer
+      Comment: The abstract class Workflow now implements the new IWorkflow interface. The public API has not changed.
 
   OscarBrouwer.Framework.Entities (2.1.0.0)
   [+] Added overloads for the FindSingle and FindFirst methods of the Repository class
       Date:    2010-03-19
-	  Author:  Oscar Brouwer
-	  Comment: Added overloads for the FindSingle and FindFirst methods of the Repository class that return a default value 
-	           if there were no results.
+      Author:  Oscar Brouwer
+      Comment: Added overloads for the FindSingle and FindFirst methods of the Repository class that return a default value 
+               if there were no results.
 
   OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (1.2.0.0)
   [*] Added support for the new FindSingle and FindFirst overloads in the Repository class.
       Date:    2010-03-19
-	  Author:  Oscar Brouwer
-	  Comment: Added support for the overloads of the FindSingle and FindFirst methods of the Repository class that were 
-	           introduced in version 2.1.0.0 of the OscarBrouwer.Framework.Entities library.
+      Author:  Oscar Brouwer
+      Comment: Added support for the overloads of the FindSingle and FindFirst methods of the Repository class that were 
+               introduced in version 2.1.0.0 of the OscarBrouwer.Framework.Entities library.
 
   OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (1.2.0.0)
   [*] Added support for the new FindSingle and FindFirst overloads in the Repository class.
       Date:    2010-03-19
-	  Author:  Oscar Brouwer
-	  Comment: Added support for the overloads of the FindSingle and FindFirst methods of the Repository class that were 
-	           introduced in version 2.1.0.0 of the OscarBrouwer.Framework.Entities library.
+      Author:  Oscar Brouwer
+      Comment: Added support for the overloads of the FindSingle and FindFirst methods of the Repository class that were 
+               introduced in version 2.1.0.0 of the OscarBrouwer.Framework.Entities library.
 
 Version 2.0.1.0
   OscarBrouwer.Framework (2.1.0.0)
@@ -158,4 +158,3 @@ Version 2.0.0.0
   [+] Startpoint for the release notes
 
 =============================================================
-
