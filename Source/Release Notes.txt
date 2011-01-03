@@ -7,6 +7,57 @@
 # [-]: Removal                                        #
 #######################################################
 
+Version X.X.X.X
+  OscarBrouwer.Framework.Entities (X.X.X.X)
+  [*] Upgraded the required .NET Frameworkversion
+      Date:    2011-01-03
+      Comment: The 'OscarBrouwer.Framework.Entities' project now requires the use of .NET Framework version 4, since it references the Entity
+               Framework Code-First CTP version 5.
+
+  [+] Added the IDatabaseRepository interface and DatabaseRepository & ShallowDatabaseRepository classes
+      Date:    2011-01-03
+      Comment: Added the 'IDatabaseRepository' interface and the 'DatabaseRepository' and the 'ShallowDatabaseRepository' classes, that implement 
+               a repository that uses a database as its datasource. The classes are renamed versions of the 'IEntityFrameworkRepository' interface
+               and 'EntityFrameworkRepository' and 'ShallowEntityFrameworkRepository' classes from the 'OscarBrouwer.Framework.Entities.EntityFramework'
+               project. These classes are now renamed and added to the global 'OscarBrouwer.Framework.Entities' project since from this point forward
+               only one ORM-technique will be supported. This will be the EntityFramework Code First. The project currently uses version CTP5 of
+               this technology.
+
+  [+] Added the abstract FileRepository class
+      Date:    2011-01-03
+      Comment: Added the abstract FileRepository class that can be used as a base class for any repository that uses a file as datasource.
+
+  [+] Added the abstract ServiceRepository class
+      Date:    2011-01-03
+      Comment: Added the abstract ServiceRepository class that can be used as a base class for any repository that uses a WCF-service as datasource.
+
+  OscarBrouwer.Framework.Entities.EntityFramework (3.0.0.0)
+  [-] Removed the EntityFramework project
+      Date:    2011-01-03
+      Comment: Removed the EntityFramework project, since the framework from this point forward only supports one ORM technique which will be the
+               Entity Framework. The contents of this project have been renamed from '*EntityFrameworkRepository' to '*DatabaseRepository' and added
+               to the global 'OscarBrouwer.Framework.Entities' project.
+
+  OscarBrouwer.Framework.Entities.LinqToSql.v3.5 (2.0.0.0)
+  [-] Removed the LinqToSql.v3.5 project
+      Date:    2011-01-03
+      Comment: Completely removed the LinqToSql.v3.5 project. It is very unpracticle the maintain two different ORM-technologies especially 
+               since LinqToSql is about to become obsolete in favor of the Entity Framework. Therefore, this framework will no longer support
+               LinqToSql but only EntityFramework for database communication.
+  
+  OscarBrouwer.Framework.Entities.LinqToSql.v4.0 (2.0.0.0)
+  [-] Removed the LinqToSql.v4.0 project
+      Date:    2011-01-03
+      Comment: Completely removed the LinqToSql.v4.0 project. It is very unpracticle the maintain two different ORM-technologies especially 
+               since LinqToSql is about to become obsolete in favor of the Entity Framework. Therefore, this framework will no longer support
+               LinqToSql but only EntityFramework for database communication.
+
+  OscarBrouwer.Framework.Testing (X.X.X.X)
+  [*] Upgraded the required .NET Frameworkversion
+      Date:    2011-01-03
+      Comment: The 'OscarBrouwer.Framework.Testing' project now requires the use of .NET Framework version 4, since it references the 
+               'OscarBrouwer.Framework.Entities' project which also requires .NET Framework 4.0.
+
 Version 2.2.0.0
   OscarBrouwer.Framework (3.0.0.0)
   [-] Removed the abstract Disposable class.
@@ -21,7 +72,7 @@ Version 2.2.0.0
   [*] Added additional overloads for the CsvSerializer Serialize and Deserialize methods.
       Date:    2010-12-12
       Comment: Added overloads for the CsvSerializer Serialize and Deserialize methods that take an additional Encoding parameter.
-             The default encoding is set to UTF-32.
+               The default encoding is set to UTF-32.
 
   OscarBrouwer.Framework.Entities (4.0.0.0)
   [*] Changed the returntype of the AddEntity and UpdateEntity methods of the SubDomainModel and Repository class.

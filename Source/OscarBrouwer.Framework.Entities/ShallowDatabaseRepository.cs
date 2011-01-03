@@ -1,5 +1,5 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ShallowEntityFrameworkRepository.cs" company="Oscar Brouwer">
+// <copyright file="ShallowDatabaseRepository.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2010. All rights reserved.
 // </copyright>
 // <summary>
@@ -11,23 +11,23 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace OscarBrouwer.Framework.Entities.EntityFramework {
-  /// <summary>This class extends the abstract <see cref="EntityFrameworkRepository{TEntity}"/> class and implements some of
-  /// the functionality using the Entity Framework. The repository can be used for types that only need to be created, but
-  /// not saved or retrieved as this is done by the parent-type's repository.</summary>
+namespace OscarBrouwer.Framework.Entities {
+  /// <summary>This class extends the <see cref="DatabaseRepository{TEntity}"/> class and implements some of the 
+  /// functionality using the Entity Framework. The repository can be used for types that only need to be created, but not
+  /// saved or retrieved as this is done by the parent-type's repository.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
-  public class ShallowEntityFrameworkRepository<TEntity> : EntityFrameworkRepository<TEntity>
+  public class ShallowDatabaseRepository<TEntity> : DatabaseRepository<TEntity>
     where TEntity : class, new() {
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="ShallowEntityFrameworkRepository{TEntity}"/> class using the
-    /// specified <see cref="DbContext"/>.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ShallowDatabaseRepository{TEntity}"/> class using the
+    /// <see cref="DbContext"/>.</summary>
     /// <param name="dbContext">The DbContext that must be used to access the database.</param>
-    public ShallowEntityFrameworkRepository(DbContext dbContext)
+    public ShallowDatabaseRepository(DbContext dbContext)
       : base(dbContext) {
     }
     #endregion
 
-    #region EntityFrameworkRepository overrides
+    #region ShallowDatabaseRepository overrides
     /// <summary>Since addition of entities will be handled by the parent entity's repository, nothing is done here.
     /// </summary>
     /// <param name="entity">The entity that is to be added.</param>

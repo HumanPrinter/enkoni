@@ -1,9 +1,9 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EntityFrameworkRepository.cs" company="Oscar Brouwer">
+// <copyright file="DatabaseRepository.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2010. All rights reserved.
 // </copyright>
 // <summary>
-//     Holds the default implementation of a repository that uses the Entity Framework.
+//     Holds the default implementation of a repository that uses the Entity Framework to communicate with a database.
 // </summary>
 //--------------------------------------------------------------------------------------------------------------------------
 
@@ -14,24 +14,24 @@ using System.Linq;
 
 using OscarBrouwer.Framework.Linq;
 
-namespace OscarBrouwer.Framework.Entities.EntityFramework {
+namespace OscarBrouwer.Framework.Entities {
   /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the 
   /// functionality using the Entity Framework.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
-  public class EntityFrameworkRepository<TEntity> : Repository<TEntity>, IEntityFrameworkRepository
+  public class DatabaseRepository<TEntity> : Repository<TEntity>, IDatabaseRepository
     where TEntity : class, new() {
     #region Constructor
-    /// <summary>Initializes a new instance of the <see cref="EntityFrameworkRepository{TEntity}"/> class 
-    /// using the specified <see cref="DbContext"/>.</summary>
+    /// <summary>Initializes a new instance of the <see cref="DatabaseRepository{TEntity}"/> class using the specified
+    /// <see cref="DbContext"/>.</summary>
     /// <param name="dbContext">The dbcontext that must be used to access the database.</param>
-    public EntityFrameworkRepository(DbContext dbContext)
+    public DatabaseRepository(DbContext dbContext)
       : base() {
       this.DbContext = dbContext;
     }
     #endregion
 
     #region Protected properties
-    /// <summary>Gets the ObjectContext that is used to access the database.</summary>
+    /// <summary>Gets the DbContext that is used to access the database.</summary>
     protected DbContext DbContext { get; private set; }
 
     /// <summary>Gets the wildcard that is used to match a single character.</summary>
@@ -45,7 +45,7 @@ namespace OscarBrouwer.Framework.Entities.EntityFramework {
     }
     #endregion
 
-    #region IEntityFrameworkRepository methods
+    #region IDatabaseRepository methods
     /// <summary>Replaces the current DbContext with the specified one. The current DbContext is first disposed.
     /// </summary>
     /// <param name="dbContext">The new DbContext that must be used.</param>

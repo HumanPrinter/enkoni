@@ -15,12 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities", "OscarBrouwer.Framework.Entities\OscarBrouwer.Framework.Entities.csproj", "{26D1BDC7-B2E8-4351-AD6B-5441F292320A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities.LinqToSql.v4.0", "OscarBrouwer.Framework.Entities.LinqToSql\OscarBrouwer.Framework.Entities.LinqToSql.v4.0.csproj", "{12D018EE-778A-4576-B0C0-361F59429503}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities.LinqToSql.v3.5", "OscarBrouwer.Framework.Entities.LinqToSql\OscarBrouwer.Framework.Entities.LinqToSql.v3.5.csproj", "{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "External Libraries", "{C81ED175-3CEA-4396-9774-A255353474A0}"
 	ProjectSection(SolutionItems) = preProject
+		External Libraries\EntityFramework.dll = External Libraries\EntityFramework.dll
+		External Libraries\EntityFramework.xml = External Libraries\EntityFramework.xml
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll
@@ -28,8 +26,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "Exter
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Validation", "OscarBrouwer.Framework.Validation\OscarBrouwer.Framework.Validation.csproj", "{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities.EntityFramework", "OscarBrouwer.Framework.Entities.EntityFramework\OscarBrouwer.Framework.Entities.EntityFramework.csproj", "{489940CA-524C-4806-8AE2-F513668C44ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkTestApp", "Test\FrameworkTestApp\FrameworkTestApp.csproj", "{AD3570BD-24DE-4626-A7C6-AEBD6001B203}"
 EndProject
@@ -92,34 +88,6 @@ Global
 		{26D1BDC7-B2E8-4351-AD6B-5441F292320A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{26D1BDC7-B2E8-4351-AD6B-5441F292320A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{26D1BDC7-B2E8-4351-AD6B-5441F292320A}.Release|x86.ActiveCfg = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Public Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Public Release|x86.ActiveCfg = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{12D018EE-778A-4576-B0C0-361F59429503}.Release|x86.ActiveCfg = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Public Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Public Release|x86.ActiveCfg = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{30B3B88C-838B-4F9E-8F8E-7641C486D7D0}.Release|x86.ActiveCfg = Release|Any CPU
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -134,20 +102,6 @@ Global
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Release|x86.ActiveCfg = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Public Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Public Release|x86.ActiveCfg = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{489940CA-524C-4806-8AE2-F513668C44ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|Mixed Platforms.Build.0 = Debug|x86
