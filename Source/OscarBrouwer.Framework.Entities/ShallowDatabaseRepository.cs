@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 
 namespace OscarBrouwer.Framework.Entities {
   /// <summary>This class extends the <see cref="DatabaseRepository{TEntity}"/> class and implements some of the 
@@ -19,11 +18,11 @@ namespace OscarBrouwer.Framework.Entities {
   public class ShallowDatabaseRepository<TEntity> : DatabaseRepository<TEntity>
     where TEntity : class, new() {
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="ShallowDatabaseRepository{TEntity}"/> class using the
-    /// <see cref="DbContext"/>.</summary>
-    /// <param name="dbContext">The DbContext that must be used to access the database.</param>
-    public ShallowDatabaseRepository(DbContext dbContext)
-      : base(dbContext) {
+    /// <summary>Initializes a new instance of the <see cref="ShallowDatabaseRepository{TEntity}"/> class using the specified
+    /// <see cref="DataSourceInfo"/>.</summary>
+    /// <param name="dataSourceInfo">The datasource information that must be used to access the database.</param>
+    public ShallowDatabaseRepository(DataSourceInfo dataSourceInfo)
+      : base(dataSourceInfo) {
     }
     #endregion
 
@@ -31,8 +30,9 @@ namespace OscarBrouwer.Framework.Entities {
     /// <summary>Since addition of entities will be handled by the parent entity's repository, nothing is done here.
     /// </summary>
     /// <param name="entity">The entity that is to be added.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
-    protected override TEntity AddEntityCore(TEntity entity) {
+    protected override TEntity AddEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       /* Adding will be done by the parent-entity's repository */
       return entity;
     }
@@ -40,8 +40,9 @@ namespace OscarBrouwer.Framework.Entities {
     /// <summary>Since updating of entities will be handled by the parent entity's repository, nothing is done here.
     /// </summary>
     /// <param name="entity">The entity that is to be updated.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
-    protected override TEntity UpdateEntityCore(TEntity entity) {
+    protected override TEntity UpdateEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       /* Updating will be done by the parent-entity's repository */
       return entity;
     }
@@ -49,68 +50,76 @@ namespace OscarBrouwer.Framework.Entities {
     /// <summary>Since deletion of entities will be handled by the parent entity's repository, nothing is done here.
     /// </summary>
     /// <param name="entity">The entity that is to be deleted.</param>
-    protected override void DeleteEntityCore(TEntity entity) {
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    protected override void DeleteEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       /* Deleting will be done by the parent-entity's repository */
     }
 
     /// <summary>Since any changes to these entities will be handled by the parent entity's repository, nothing is done 
     /// here.</summary>
-    protected override void SaveChangesCore() {
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {
       /* Saving will be done by the parent-entity's repository */
     }
 
     /// <summary>Since retrieval of these entities is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always.</exception>
-    protected override IEnumerable<TEntity> FindAllCore() {
+    protected override IEnumerable<TEntity> FindAllCore(DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }
 
     /// <summary>Since retrieval of these entities is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always.</exception>
-    protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression) {
+    protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }
 
     /// <summary>Since retrieval of the entity is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always.</exception>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression) {
+    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }
 
     /// <summary>Since retrieval of the entity is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The parameter is not used.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always.</exception>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, TEntity defaultValue) {
+    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }
 
     /// <summary>Since retrieval of the entity is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always.</exception>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression) {
+    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }
 
     /// <summary>Since retrieval of the entity is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The parameter is not used.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always.</exception>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, TEntity defaultValue) {
+    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }
     #endregion

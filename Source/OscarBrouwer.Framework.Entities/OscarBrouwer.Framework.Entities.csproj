@@ -46,6 +46,19 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="MemorySourceInfo.cs" />
+    <Compile Include="MemoryRepository.cs" />
+    <Compile Include="HttpSessionMemoryStore.cs" />
+    <Compile Include="StaticMemoryStore.cs" />
+    <Compile Include="MemoryStore.cs" />
+    <Compile Include="XmlFileRepository.cs" />
+    <Compile Include="CsvFileSourceInfo.cs" />
+    <Compile Include="CsvFileRepository.cs" />
+    <Compile Include="ServiceSourceInfo.cs" />
+    <Compile Include="EntityEqualityComparer.cs" />
+    <Compile Include="DatabaseSourceInfo.cs" />
+    <Compile Include="FileSourceInfo.cs" />
+    <Compile Include="DataSourceInfo.cs" />
     <Compile Include="ServiceRepository.cs" />
     <Compile Include="FileRepository.cs" />
     <Compile Include="DomainModel.cs" />
@@ -88,6 +101,9 @@
       <HintPath>..\External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\MSBuildExtensions\Common\Common.Targets" />

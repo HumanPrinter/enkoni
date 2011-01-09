@@ -67,13 +67,8 @@ namespace OscarBrouwer.Framework.Serialization {
       }
 
       /* Make sure the field-indexes are correct */
-      /* These two checks could be combined, this allows for more describing errormessages */
-      if(this.ColumnNameMappings.Keys.Min() != 0) {
-        throw new InvalidOperationException("The specified field index values must start at '0'");
-      }
-
-      if(this.ColumnNameMappings.Count != this.ColumnNameMappings.Keys.Max() + 1) {
-        throw new InvalidOperationException("The specified field index values must be sequential");
+      if(this.ColumnNameMappings.Keys.Min() < 0) {
+        throw new InvalidOperationException("The specified field index values cannot be smaller than '0'");
       }
     }
     #endregion
@@ -268,7 +263,8 @@ namespace OscarBrouwer.Framework.Serialization {
       if(this.EmitHeader) {
         firstObject = false;
         bool firstField = true;
-        foreach(string propertyName in this.ColumnNameMappings.OrderBy(kvp => kvp.Key).Select(kvp => kvp.Value)) {
+        for(int columnIndex = 0; columnIndex <= this.ColumnNameMappings.Max(kvp => kvp.Key); ++columnIndex) {
+          string propertyName = this.ColumnNameMappings.ContainsKey(columnIndex) ? this.ColumnNameMappings[columnIndex] : "Placeholder";
           if(firstField) {
             lines.AppendFormat("{0}", propertyName);
             firstField = false;
@@ -288,10 +284,15 @@ namespace OscarBrouwer.Framework.Serialization {
         }
 
         bool firstField = true;
-        foreach(Delegate retrievePropertyFunc in this.PropertyDelegates.OrderBy(kvp => kvp.Key).Select(kvp => kvp.Value)) {
-          object propertyValue = retrievePropertyFunc.DynamicInvoke(obj);
+        for(int columnIndex = 0; columnIndex <= this.ColumnNameMappings.Max(kvp => kvp.Key); ++columnIndex) {
+          Delegate retrievePropertyFunc = this.PropertyDelegates.ContainsKey(columnIndex) ? this.PropertyDelegates[columnIndex] : null;
+          object propertyValue = null;
+          if(retrievePropertyFunc != null) {
+            propertyValue = retrievePropertyFunc.DynamicInvoke(obj);
+          }
+          
           if(propertyValue == null) {
-            propertyValue = "null";
+            propertyValue = string.Empty;
           }
 
           if(firstField) {
@@ -319,9 +320,10 @@ namespace OscarBrouwer.Framework.Serialization {
 
         string[] columns = lines.ElementAt(lineIndex).Split(this.Separator);
         for(int colIndex = 0; colIndex < columns.Count(); colIndex++) {
-          PropertyInfo propertyInfo = obj.GetType().GetProperty(this.ColumnNameMappings[colIndex]);
-
-          SetPropertyValue(propertyInfo, obj, columns[colIndex]);
+          if(this.ColumnNameMappings.ContainsKey(colIndex)) {
+            PropertyInfo propertyInfo = obj.GetType().GetProperty(this.ColumnNameMappings[colIndex]);
+            SetPropertyValue(propertyInfo, obj, columns[colIndex]);
+          }
         }
 
         objList.Add(obj);

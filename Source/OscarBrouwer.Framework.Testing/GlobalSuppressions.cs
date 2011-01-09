@@ -18,9 +18,4 @@
 // You do not need to add suppressions to this file manually.
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Scope = "member", Target = "OscarBrouwer.Framework.Testing.TestRepository`1.#Dispose()", Justification = "The Microsoft reference implementation is wrong.")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Scope = "type", Target = "OscarBrouwer.Framework.Testing.TestRepository`1", Justification = "The Microsoft reference implementation is wrong.")]
-
-[assembly: SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Scope = "member", Target = "OscarBrouwer.Framework.Testing.TestRepository`1.#SaveChangesCore()", Justification = "The code is well documented and therefore fine.")]
-
-[assembly: SuppressMessage("Microsoft.Usage", "CA1816:CallGCSuppressFinalizeCorrectly", Scope = "member", Target = "OscarBrouwer.Framework.Testing.TestRepository`1.#Dispose()", Justification = "The Microsoft reference implementation is wrong.")]
+[assembly: SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Scope = "member", Target = "OscarBrouwer.Framework.Testing.TestRepository`1.#SaveChangesCore(OscarBrouwer.Framework.Entities.DataSourceInfo)", Justification = "The code is well documented and therefore fine.")]

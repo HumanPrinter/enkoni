@@ -8,6 +8,22 @@
 #######################################################
 
 Version X.X.X.X
+  OscarBrouwer.Framework (X.X.X.X)
+  [*] CsvSerializer now also supports (de)serializing of partial CSV-records
+      Date:    2011-01-04
+      Comment: The CsvSerializer now is also able to (de)serialize objects that only map to some of the CSV-records. This way it is possible to
+               create a type that only contains some of the fields that are available in the CSV-file and to use that type to (de)serialize the 
+               information.
+  
+  [+] Added a new extension method to remove an item from an ICollection<T>
+      Date:    2011-01-07
+      Comment: Added a new extension method that can be used to remove an item from an ICollection<T> using an IEqualityComparer<T> to look for
+               the correct item that must be removed.
+
+  [+] Added three new extension methods to find the index of an item in a (I)List<T>
+      Date:    2011-01-07
+      Comment: Added three new extension methods that can be used to find the index of an item in a (I)List<T> using an IEqualityComparer<T>.
+
   OscarBrouwer.Framework.Entities (X.X.X.X)
   [*] Upgraded the required .NET Frameworkversion
       Date:    2011-01-03
@@ -22,14 +38,31 @@ Version X.X.X.X
                project. These classes are now renamed and added to the global 'OscarBrouwer.Framework.Entities' project since from this point forward
                only one ORM-technique will be supported. This will be the EntityFramework Code First. The project currently uses version CTP5 of
                this technology.
-
-  [+] Added the abstract FileRepository class
-      Date:    2011-01-03
-      Comment: Added the abstract FileRepository class that can be used as a base class for any repository that uses a file as datasource.
-
+  
   [+] Added the abstract ServiceRepository class
       Date:    2011-01-03
       Comment: Added the abstract ServiceRepository class that can be used as a base class for any repository that uses a WCF-service as datasource.
+  
+  [+] Added the EntityEqualityComparer<T> class
+      Date:    2011-01-07
+      Comment: Added the EntityEqualityComparer<T> class which is a subclass of LambdaEqualityComparer<T, U> and provides a default equality-comparer
+               that uses the RecordId to compare entities.
+                                                           
+  [+] Added the abstract FileRepository class and the concrete CsvFileRepository and XmlFileRepository classes
+      Date:    2011-01-08
+      Comment: Added the abstract FileRepository class that can be used as a base class for any repository that uses a file as datasource. The added concrete 
+               classes CsvFileRepository and XmlFileRepository implement the FileRepository so that it can be used to read or write CSV or XML files.
+
+  [+] Added the MemoryRepository class
+      Date:    2011-01-08
+      Comment: Added the MemoryRepository class that can be used to retrieve entities from and store entities in memory. It uses an instance of the new 
+               MemoryStore class to determine where the entities must be stored in memory. Currently, there are two pre-configured options, using a static
+               collection (through the StaticMemoryStore class) or using an HttpSession (using the HttpSessionMemoryStore class).
+
+  [+] Added the DataSourceInfo and various helpfull descendants
+      Date:    2011-01-08
+      Comment: Added the DataSourceInfo class and some helpfull descendants that are used to pass datasource-specific information to the various 
+      repositories.
 
   OscarBrouwer.Framework.Entities.EntityFramework (3.0.0.0)
   [-] Removed the EntityFramework project
