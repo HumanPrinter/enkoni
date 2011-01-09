@@ -30,6 +30,11 @@ Source/OscarBrouwer.Framework.Validation/bin/
 Source/OscarBrouwer.Framework.Validation/obj/
 Source/Test/FrameworkTestApp/bin/
 Source/Test/FrameworkTestApp/obj/
+Source/Test/OscarBrouwer.Framework.Tests/bin/
+Source/Test/OscarBrouwer.Framework.Tests/*.user
+Source/Test/OscarBrouwer.Framework.Tests/*.Cache
+Source/Test/OscarBrouwer.Framework.Tests/bin/
+Source/Test/OscarBrouwer.Framework.Tests/obj/
 /Releases/Microsoft.Practices.EnterpriseLibrary.Validation.dll
 /Releases/Microsoft.Practices.EnterpriseLibrary.Validation.xml
 /Releases/OscarBrouwer.Framework.Entities.EntityFramework.dll
@@ -49,5 +54,5 @@ Source/Test/FrameworkTestApp/obj/
 /Releases/OscarBrouwer.Framework.dll
 /Releases/OscarBrouwer.Framework.xml
 /Releases/Release Notes.txt
-Source/Release Notes.txt
 Release.bat
+Source/TestResults/

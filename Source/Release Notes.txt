@@ -15,6 +15,11 @@ Version X.X.X.X
                create a type that only contains some of the fields that are available in the CSV-file and to use that type to (de)serialize the 
                information.
   
+  [*] Fixed a bug in LambdaEqualityComparer when comparing objects on a multi-level property
+      Date:    2011-01-09
+      Comment: Fixed a bug that caused the LambdaEqualityComparer to return 'true' instead of 'false' when comparing two objects based on a multi-level
+               property and one (not both) object has a null-value for that property.
+
   [+] Added a new extension method to remove an item from an ICollection<T>
       Date:    2011-01-07
       Comment: Added a new extension method that can be used to remove an item from an ICollection<T> using an IEqualityComparer<T> to look for

@@ -41,6 +41,10 @@ namespace OscarBrouwer.Framework.Serialization {
     /// </summary>
     [DefaultValue(false)]
     public bool WriteHeader { get; set; }
+
+    /// <summary>Gets or sets the name of the culture that must be used to parse the field values.</summary>
+    [DefaultValue(null)]
+    public string CultureName { get; set; }
     #endregion
   }
 }

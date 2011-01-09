@@ -5,10 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework", "O
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF418619-7942-4E44-A625-192FEA532693}"
 	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
 		OscarBrouwer.Framework.pfx = OscarBrouwer.Framework.pfx
+		OscarBrouwer.Framework.vsmdi = OscarBrouwer.Framework.vsmdi
 		Release Notes.txt = Release Notes.txt
 		Settings.StyleCop = Settings.StyleCop
 		SolutionInfo.cs = SolutionInfo.cs
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.ServiceModel", "OscarBrouwer.Framework.ServiceModel\OscarBrouwer.Framework.ServiceModel.csproj", "{364CAFCC-BB2B-4F31-AA7E-26562918664D}"
@@ -27,13 +30,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "Exter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Validation", "OscarBrouwer.Framework.Validation\OscarBrouwer.Framework.Validation.csproj", "{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkTestApp", "Test\FrameworkTestApp\FrameworkTestApp.csproj", "{AD3570BD-24DE-4626-A7C6-AEBD6001B203}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CA8AB7FC-D23A-4461-88CA-657C417AD4E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Testing", "OscarBrouwer.Framework.Testing\OscarBrouwer.Framework.Testing.csproj", "{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Tests", "Test\OscarBrouwer.Framework.Tests\OscarBrouwer.Framework.Tests.csproj", "{62E779EB-4AC3-4210-8E34-3C45B6FA0329}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = OscarBrouwer.Framework.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -102,21 +108,6 @@ Global
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}.Release|x86.ActiveCfg = Release|Any CPU
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|x86.ActiveCfg = Debug|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Debug|x86.Build.0 = Debug|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Public Release|Any CPU.ActiveCfg = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Public Release|Mixed Platforms.ActiveCfg = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Public Release|Mixed Platforms.Build.0 = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Public Release|x86.ActiveCfg = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Public Release|x86.Build.0 = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Release|Any CPU.ActiveCfg = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Release|Mixed Platforms.Build.0 = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Release|x86.ActiveCfg = Release|x86
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203}.Release|x86.Build.0 = Release|x86
 		{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -132,12 +123,27 @@ Global
 		{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}.Release|x86.ActiveCfg = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C81ED175-3CEA-4396-9774-A255353474A0} = {CF418619-7942-4E44-A625-192FEA532693}
-		{AD3570BD-24DE-4626-A7C6-AEBD6001B203} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{62E779EB-4AC3-4210-8E34-3C45B6FA0329} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 	EndGlobalSection
 EndGlobal
