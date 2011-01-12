@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using OscarBrouwer.Framework.Linq;
 
@@ -138,29 +137,6 @@ namespace OscarBrouwer.Framework.Entities {
       return entity;
     }
 
-    /// <summary>Creates an expression that can be used to perform a 'Like' operation.</summary>
-    /// <returns>The created expression.</returns>
-    protected override Func<string, string, bool> CreateLikeExpressionCore() {
-      Func<string, string, bool> expression = (field, pattern) => Regex.IsMatch(field, pattern, RegexOptions.None);
-      return expression;
-    }
-
-    /// <summary>Finds all the entities of type <typeparamref name="TEntity"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This
-    /// parameter is not used.<br/>
-    /// If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache.
-    /// Otherwise, the concatenated cache is simply returned.</param>
-    /// <returns>All the available entities.</returns>
-    protected override IEnumerable<TEntity> FindAllCore(DataSourceInfo dataSourceInfo) {
-      if(this.internalCache.Count == 0 && this.SourceFile.Exists) {
-        IEnumerable<TEntity> readEntities = this.ReadAllRecordsFromFile(this.SourceFile, dataSourceInfo);
-        this.ApplyIdentifiers(readEntities);
-        this.RefreshCache(readEntities);
-      }
-
-      return this.ConcatCache();
-    }
-
     /// <summary>Finds all the entities of type <typeparamref name="TEntity"/> that match the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This
@@ -184,23 +160,6 @@ namespace OscarBrouwer.Framework.Entities {
     /// parameter is not used.<br/>
     /// If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache.
     /// Otherwise, the concatenated cache is simply returned.</param>
-    /// <returns>The first entity that matches the expression or <see langword="null"/> if there were no results.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
-      if(this.internalCache.Count == 0 && this.SourceFile.Exists) {
-        IEnumerable<TEntity> readEntities = this.ReadAllRecordsFromFile(this.SourceFile, dataSourceInfo);
-        this.ApplyIdentifiers(readEntities);
-        this.RefreshCache(readEntities);
-      }
-
-      return this.ConcatCache().FirstOrDefault(expression, null);
-    }
-
-    /// <summary>Finds the first entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
-    /// <param name="expression">The expression that is used as a filter.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This
-    /// parameter is not used.<br/>
-    /// If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache.
-    /// Otherwise, the concatenated cache is simply returned.</param>
     /// <param name="defaultValue">The value that must be returned if the query yielded no results.</param>
     /// <returns>The first entity that matches the expression or the defaultvalue if there were no results.</returns>
     protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
@@ -211,23 +170,6 @@ namespace OscarBrouwer.Framework.Entities {
       }
 
       return this.ConcatCache().FirstOrDefault(expression, defaultValue);
-    }
-
-    /// <summary>Finds the single entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
-    /// <param name="expression">The expression that is used as a filter.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This
-    /// parameter is not used.<br/>
-    /// If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache.
-    /// Otherwise, the concatenated cache is simply returned.</param>
-    /// <returns>The single entity that matches the expression or <see langword="null"/> if there were no results.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
-      if(this.internalCache.Count == 0 && this.SourceFile.Exists) {
-        IEnumerable<TEntity> readEntities = this.ReadAllRecordsFromFile(this.SourceFile, dataSourceInfo);
-        this.ApplyIdentifiers(readEntities);
-        this.RefreshCache(readEntities);
-      }
-
-      return this.ConcatCache().SingleOrDefault(expression, null);
     }
 
     /// <summary>Finds the single entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>

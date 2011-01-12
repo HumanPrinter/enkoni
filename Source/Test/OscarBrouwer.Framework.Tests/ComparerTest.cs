@@ -1,5 +1,5 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ComparerTests.cs" company="Oscar Brouwer">
+// <copyright file="ComparerTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2010. All rights reserved.
 // </copyright>
 // <summary>

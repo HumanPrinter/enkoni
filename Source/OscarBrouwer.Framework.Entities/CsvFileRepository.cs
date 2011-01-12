@@ -14,10 +14,10 @@ using System.Text;
 using OscarBrouwer.Framework.Serialization;
 
 namespace OscarBrouwer.Framework.Entities {
-  /// <summary>This abstract class extends the abstract <see cref="FileRepository{TEntity}"/> class and implements the 
+  /// <summary>This class extends the abstract <see cref="FileRepository{TEntity}"/> class and implements the 
   /// functionality to read and write from or to a CSV-file.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
-  public abstract class CsvFileRepository<TEntity> : FileRepository<TEntity>
+  public class CsvFileRepository<TEntity> : FileRepository<TEntity>
     where TEntity : class, IEntity<TEntity>, new() {
     #region Instance variables
     /// <summary>The instance that is used to (de)serialize the entities.</summary>
@@ -28,7 +28,7 @@ namespace OscarBrouwer.Framework.Entities {
     /// <summary>Initializes a new instance of the <see cref="CsvFileRepository{TEntity}"/> class using the specified
     /// <see cref="DataSourceInfo"/>.</summary>
     /// <param name="dataSourceInfo">The datasource information that must be used to access the sourcefile.</param>
-    protected CsvFileRepository(DataSourceInfo dataSourceInfo)
+    public CsvFileRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
       this.serializer = new CsvSerializer<TEntity>();
 

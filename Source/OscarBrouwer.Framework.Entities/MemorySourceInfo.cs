@@ -53,7 +53,7 @@ namespace OscarBrouwer.Framework.Entities {
   /// the MemoryRepository.</summary>
   /// <typeparam name="T">The type of object that is stored in memory.</typeparam>
   [SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass",
-      Justification = "Since the static class is merely a container for the static members of the non-static class, the can be in the same file")]
+      Justification = "Since the static class is merely a container for the static members of the non-static class, they can be in the same file")]
   public class MemorySourceInfo<T> : DataSourceInfo where T : class {
     #region Constructors
     /// <summary>Initializes a new instance of the <see cref="MemorySourceInfo{T}"/> class using a default value of

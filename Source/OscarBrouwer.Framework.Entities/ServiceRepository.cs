@@ -7,7 +7,6 @@
 // </summary>
 //--------------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
@@ -58,13 +57,6 @@ namespace OscarBrouwer.Framework.Entities {
     protected override TEntity CreateEntityCore(DataSourceInfo dataSourceInfo) {
       TEntity entity = new TEntity();
       return entity;
-    }
-
-    /// <summary>Creates an expression that can be used to perform a 'Like' operation.</summary>
-    /// <returns>The created expression.</returns>
-    protected override Func<string, string, bool> CreateLikeExpressionCore() {
-      Func<string, string, bool> expression = (field, pattern) => field.Contains(pattern);
-      return expression;
     }
     #endregion
   }

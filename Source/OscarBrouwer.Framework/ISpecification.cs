@@ -12,11 +12,8 @@ using System;
 namespace OscarBrouwer.Framework {
   /// <summary>This interface describes the public API of the classes that make up the specification subsystem that is
   /// implemented using the Specification Pattern.</summary>
-  /// <typeparam name="T">The type of object to which the specification applies.</typeparam>
+  /// <typeparam name="T">The type of object that is ultimatilly selected by the specification.</typeparam>
   public interface ISpecification<T> {
-    /// <summary>Gets the function that equals the search-pattern that is implemented by this type.</summary>
-    Func<T, bool> IsSatisfiedBy { get; }
-
     /// <summary>Creates an 'And' specification that can be used to combine two specifications and compare them using
     /// the '&amp;&amp;' operation.</summary>
     /// <param name="specification">The specification that must be combined.</param>
@@ -29,8 +26,10 @@ namespace OscarBrouwer.Framework {
     /// <returns>The combined specification.</returns>
     ISpecification<T> Or(ISpecification<T> specification);
 
-    /// <summary>Creates a 'Not' specification that can be used to inverse the result of the specification.</summary>
-    /// <returns>The combined specification.</returns>
-    ISpecification<T> Not();
+    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into
+    /// an expression that can be used to perform the actual filtering/selection.</summary>
+    /// <param name="visitor">The instance that will perform the conversion.</param>
+    /// <returns>The expression that was created using this specification.</returns>
+    Func<T, bool> Visit(ISpecificationVisitor<T> visitor);
   }
 }

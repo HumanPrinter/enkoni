@@ -108,13 +108,6 @@ namespace OscarBrouwer.Framework.Testing {
       return new T();
     }
 
-    /// <summary>Creates an expression that can be used to search for string that contain a specific substring.</summary>
-    /// <returns>The created expression.</returns>
-    protected override Func<string, string, bool> CreateLikeExpressionCore() {
-      Func<string, string, bool> expression = (field, pattern) => field.Contains(pattern);
-      return expression;
-    }
-
     /// <summary>Deletes the entity from the storage.</summary>
     /// <param name="entity">The entity that must be removed.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>

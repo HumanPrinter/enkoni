@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Linq.SqlClient;
 using System.Linq;
 
 using OscarBrouwer.Framework.Linq;
@@ -35,16 +36,6 @@ namespace OscarBrouwer.Framework.Entities {
     #region Protected properties
     /// <summary>Gets the DbContext that is used to access the database.</summary>
     protected DbContext DbContext { get; private set; }
-
-    /// <summary>Gets the wildcard that is used to match a single character.</summary>
-    protected override string SinglePositionWildcard {
-      get { return "_"; }
-    }
-
-    /// <summary>Gets the wildcard that is used to match zero or more character.</summary>
-    protected override string MultiplePositionWildcard {
-      get { return "%"; }
-    }
     #endregion
 
     #region IDatabaseRepository methods
@@ -110,34 +101,12 @@ namespace OscarBrouwer.Framework.Entities {
       this.SelectDbContext(dataSourceInfo).Set<TEntity>().Remove(entity);
     }
 
-    /// <summary>Creates an expression that can be used to perform a 'Like' operation.</summary>
-    /// <returns>The created expression.</returns>
-    protected override Func<string, string, bool> CreateLikeExpressionCore() {
-      Func<string, string, bool> expression = (field, pattern) => field.Contains(pattern);
-      return expression;
-    }
-
-    /// <summary>Finds all the entities of type <typeparamref name="TEntity"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
-    /// <returns>All the available entities.</returns>
-    protected override IEnumerable<TEntity> FindAllCore(DataSourceInfo dataSourceInfo) {
-      return this.SelectDbContext(dataSourceInfo).Set<TEntity>();
-    }
-
     /// <summary>Finds all the available entities that match the specified expression.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
       return this.SelectDbContext(dataSourceInfo).Set<TEntity>().Where(expression);
-    }
-
-    /// <summary>Finds a single entity that matches the expression.</summary>
-    /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
-    /// <returns>The found entity.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
-      return this.SelectDbContext(dataSourceInfo).Set<TEntity>().Single(expression);
     }
 
     /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value
@@ -150,14 +119,6 @@ namespace OscarBrouwer.Framework.Entities {
       return this.SelectDbContext(dataSourceInfo).Set<TEntity>().SingleOrDefault(expression, defaultValue);
     }
 
-    /// <summary>Finds the first entity that matches the expression.</summary>
-    /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
-    /// <returns>The found entity.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
-      return this.SelectDbContext(dataSourceInfo).Set<TEntity>().First(expression);
-    }
-
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value
     /// is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
@@ -166,6 +127,16 @@ namespace OscarBrouwer.Framework.Entities {
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       return this.SelectDbContext(dataSourceInfo).Set<TEntity>().FirstOrDefault(expression, defaultValue);
+    }
+
+    /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+    /// <param name="field">The field of type <c>T</c> that must match the pattern.</param>
+    /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.
+    /// </param>
+    /// <returns>The created expression.</returns>
+    protected override Func<TEntity, bool> CreateLikeExpressionCore(Func<TEntity, string> field, string pattern) {
+      pattern = pattern.Replace("*", "%").Replace("?", "_");
+      return t => SqlMethods.Like(field(t), pattern);
     }
     #endregion
 

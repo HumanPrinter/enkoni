@@ -48,6 +48,13 @@
     <Compile Include="AsyncResultVoid.cs" />
     <Compile Include="Comparer.cs" />
     <Compile Include="ConfigurationException.cs" />
+    <Compile Include="CombinedSpecification.cs" />
+    <Compile Include="AndSpecification.cs" />
+    <Compile Include="ISpecificationVisitor.cs" />
+    <Compile Include="LikeSpecification.cs" />
+    <Compile Include="NotSpecification.cs" />
+    <Compile Include="OrSpecification.cs" />
+    <Compile Include="Specification.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -62,8 +69,7 @@
     <Compile Include="Serialization\CsvColumnAttribute.cs" />
     <Compile Include="Serialization\CsvRecordAttribute.cs" />
     <Compile Include="Serialization\CsvSerializer.cs" />
-    <Compile Include="Specification.cs" />
-    <Compile Include="SpecificationFactory.cs" />
+    <Compile Include="LambdaSpecification.cs" />
     <Compile Include="Workflow.cs" />
   </ItemGroup>
   <ItemGroup>

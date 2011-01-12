@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Tests", "Test\OscarBrouwer.Framework.Tests\OscarBrouwer.Framework.Tests.csproj", "{62E779EB-4AC3-4210-8E34-3C45B6FA0329}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities.Tests", "Test\OscarBrouwer.Framework.Entities.Tests\OscarBrouwer.Framework.Entities.Tests.csproj", "{AC6B8CF0-972F-4F08-AA20-6490D18955F9}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = OscarBrouwer.Framework.vsmdi
@@ -138,6 +140,21 @@ Global
 		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{62E779EB-4AC3-4210-8E34-3C45B6FA0329}.Release|x86.ActiveCfg = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,5 +162,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C81ED175-3CEA-4396-9774-A255353474A0} = {CF418619-7942-4E44-A625-192FEA532693}
 		{62E779EB-4AC3-4210-8E34-3C45B6FA0329} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{AC6B8CF0-972F-4F08-AA20-6490D18955F9} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 	EndGlobalSection
 EndGlobal

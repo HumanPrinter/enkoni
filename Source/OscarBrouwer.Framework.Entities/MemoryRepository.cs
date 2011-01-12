@@ -123,13 +123,6 @@ namespace OscarBrouwer.Framework.Entities {
       return new TEntity();
     }
 
-    /// <summary>Creates an expression that can be used to search for string that contain a specific substring.</summary>
-    /// <returns>The created expression.</returns>
-    protected override Func<string, string, bool> CreateLikeExpressionCore() {
-      Func<string, string, bool> expression = (field, pattern) => field.Contains(pattern);
-      return expression;
-    }
-
     /// <summary>Deletes the entity from the storage.</summary>
     /// <param name="entity">The entity that must be removed.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
@@ -192,13 +185,6 @@ namespace OscarBrouwer.Framework.Entities {
       }
     }
 
-    /// <summary>Finds all the entities that where added to the storage.</summary>
-    /// <param name="dataSourceInfo">The parameter is not used.</param>
-    /// <returns>All the items in the storage.</returns>
-    protected override IEnumerable<TEntity> FindAllCore(DataSourceInfo dataSourceInfo) {
-      return this.FindAllCore(TEntity => true, dataSourceInfo);
-    }
-
     /// <summary>Finds the first entity that matches the expression or returns the defaultvalue if there were no matches.
     /// </summary>
     /// <param name="expression">The search-specification.</param>
@@ -231,14 +217,6 @@ namespace OscarBrouwer.Framework.Entities {
       }
     }
 
-    /// <summary>Finds the first entity that matches the expression.</summary>
-    /// <param name="expression">The search-specification.</param>
-    /// <param name="dataSourceInfo">The parameter is not used.</param>
-    /// <returns>The first result.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
-      return this.FindFirstCore(expression, dataSourceInfo, null);
-    }
-
     /// <summary>Finds the single entity that matches the expression or returns the defaultvalue if there were no matches.
     /// </summary>
     /// <param name="expression">The search-specification.</param>
@@ -269,14 +247,6 @@ namespace OscarBrouwer.Framework.Entities {
           this.temporaryStorageLock.ExitReadLock();
         }
       }
-    }
-
-    /// <summary>Finds the single entity that matches the expression.</summary>
-    /// <param name="expression">The search-specification.</param>
-    /// <param name="dataSourceInfo">The parameter is not used.</param>
-    /// <returns>The single result.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
-      return this.FindSingleCore(expression, dataSourceInfo, null);
     }
 
     /// <summary>Merges the temporary storage with the global storage.</summary>
