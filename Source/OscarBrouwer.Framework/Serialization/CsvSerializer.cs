@@ -413,6 +413,10 @@ namespace OscarBrouwer.Framework.Serialization {
         value = string.IsNullOrEmpty(value) ? default(double).ToString(culture) : value;
         propertyInfo.SetValue(obj, double.Parse(value, culture), null);
       }
+      else if(propertyInfo.PropertyType == typeof(bool)) {
+        value = string.IsNullOrEmpty(value) ? default(bool).ToString(culture) : value;
+        propertyInfo.SetValue(obj, bool.Parse(value), null);
+      }
       else if(propertyInfo.PropertyType == typeof(DateTime)) {
         value = string.IsNullOrEmpty(value) ? default(DateTime).ToString(culture) : value;
         if(formatString != null) {

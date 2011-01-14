@@ -74,6 +74,11 @@
       <Name>OscarBrouwer.Framework</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\ReposTest_DataSourceFile.csv" />
+    <None Include="TestData\ReposTest_EmptyInputFile.csv" />
+    <None Include="TestData\ReposTest_InputFile.csv" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

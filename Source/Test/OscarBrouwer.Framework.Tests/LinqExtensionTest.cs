@@ -21,7 +21,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> 
     /// extension method.</summary>
     [TestMethod]
-    public void TestCase1_SingleOrDefault() {
+    public void TestCase01_SingleOrDefault() {
       List<TestDummy> collection = new List<TestDummy>();
 
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -49,7 +49,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
     /// extension method.</summary>
     [TestMethod]
-    public void TestCase2_ElementAtOrDefault() {
+    public void TestCase02_ElementAtOrDefault() {
       List<TestDummy> collection = new List<TestDummy>();
 
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -78,7 +78,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// and <see cref="OscarBrouwer.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
-    public void TestCase3_FirstOrDefault() {
+    public void TestCase03_FirstOrDefault() {
       List<TestDummy> collection = new List<TestDummy>();
 
       TestDummy defaultDummy = new TestDummy { TextValue = "DefaultDummy" };
@@ -116,7 +116,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// and <see cref="OscarBrouwer.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
-    public void TestCase4_LastOrDefault() {
+    public void TestCase04_LastOrDefault() {
       List<TestDummy> collection = new List<TestDummy>();
 
       TestDummy defaultDummy = new TestDummy { TextValue = "DefaultDummy" };
@@ -153,7 +153,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.ForEach{T}(IEnumerable{T}, System.Action{T})"/>  
     /// extension method.</summary>
     [TestMethod]
-    public void TestCase5_ForEach() {
+    public void TestCase05_ForEach() {
       List<TestDummy> collection = new List<TestDummy>();
 
       TestDummy dummyA = new TestDummy { NumericValue = 1 };

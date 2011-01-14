@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Timers;
 
 using OscarBrouwer.Framework.Linq;
 
@@ -48,6 +49,10 @@ namespace OscarBrouwer.Framework.Entities {
 
     /// <summary>A lock that is used to synchronize access to the deletion-cache.</summary>
     private object deletionCacheLock = new object();
+
+    /// <summary>The timer that is used to determine if a file-change has finished.</summary>
+    private Timer changeEventTimer;
+    
     #endregion
 
     #region Constructor
@@ -61,6 +66,8 @@ namespace OscarBrouwer.Framework.Entities {
       this.additionCache = new List<TEntity>();
       this.updateCache = new List<TEntity>();
       this.deletionCache = new List<TEntity>();
+      
+      this.ChangeCompleteTimeout = FileSourceInfo.SelectChangeCompleteTimeout(dataSourceInfo);
 
       /* Determine if the sourcefile has been specified */
       if(FileSourceInfo.IsSourceFileInfoSpecified(dataSourceInfo)) {
@@ -87,7 +94,10 @@ namespace OscarBrouwer.Framework.Entities {
 
     /// <summary>Gets a value indicating whether the filemonitor is currently running.</summary>
     protected bool SourceFileMonitorIsRunning { get; private set; }
-
+    
+    /// <summary>Gets the timeout value that is used to determine if a filechange has finished or not.</summary>
+    protected int ChangeCompleteTimeout { get; private set; }
+    
     /// <summary>Gets the entities that are available through the caching mechanism.</summary>
     protected IEnumerable<TEntity> Cache {
       get { return this.internalCache; }
@@ -113,8 +123,15 @@ namespace OscarBrouwer.Framework.Entities {
         newContent = this.WriteAllRecordsToFile(FileSourceInfo.SelectSourceFileInfo(dataSourceInfo), dataSourceInfo, newContent);
       }
       else {
+        bool useFileMonitor = this.SourceFileMonitorIsRunning;
+        this.PauseSourceFileMonitor();
+
         /* Otherwise, write the changes back to the sourcefile and refresh the cache. */
         newContent = this.WriteAllRecordsToFile(this.SourceFile, dataSourceInfo, newContent);
+
+        if(useFileMonitor) {
+          this.ResumeSourceFileMonitor();
+        }
 
         /* Re-apply the identifiers (since most entities read from file don't have an identifier) */
         this.ApplyIdentifiers(newContent);
@@ -348,6 +365,7 @@ namespace OscarBrouwer.Framework.Entities {
     protected override void DisposeManagedResources() {
       try {
         this.sourceFileMonitor.Dispose();
+        this.changeEventTimer.Dispose();
       }
       finally {
         base.DisposeManagedResources();
@@ -437,6 +455,7 @@ namespace OscarBrouwer.Framework.Entities {
 
       if(!this.sourceFileMonitor.EnableRaisingEvents) {
         this.sourceFileMonitor.EnableRaisingEvents = true;
+        this.SourceFileMonitorIsRunning = true;
       }
     }
 
@@ -444,6 +463,7 @@ namespace OscarBrouwer.Framework.Entities {
     protected void StopSourceFileMonitor() {
       if(this.sourceFileMonitor != null && this.sourceFileMonitor.EnableRaisingEvents) {
         this.sourceFileMonitor.EnableRaisingEvents = false;
+        this.SourceFileMonitorIsRunning = false;
       }
     }
 
@@ -485,6 +505,10 @@ namespace OscarBrouwer.Framework.Entities {
       this.sourceFileMonitor.Created += this.HandleSourceFileCreated;
       this.sourceFileMonitor.Deleted += this.HandleSourceFileDeleted;
       this.sourceFileMonitor.Renamed += this.HandleSourceFileRenamed;
+
+      this.changeEventTimer = new Timer();
+      this.changeEventTimer.AutoReset = false;
+      this.changeEventTimer.Elapsed += this.HandleChangeEventTimeout;
     }
 
     /// <summary>Concatenates the internal caches into one complete and up-to-date cache.</summary>
@@ -499,7 +523,7 @@ namespace OscarBrouwer.Framework.Entities {
       /* ...finally, remove the deleted entities */
       totalCache = totalCache.Except(this.deletionCache, entityComparer);
 
-      return totalCache;
+      return totalCache.OrderBy(t => t.RecordId);
     }
     #endregion
 
@@ -536,6 +560,17 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="sender">The instance that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     private void HandleSourceFileChanged(object sender, FileSystemEventArgs args) {
+      if(args.ChangeType == WatcherChangeTypes.Changed) {
+        this.changeEventTimer.Interval = this.ChangeCompleteTimeout;
+        this.changeEventTimer.Enabled = true;
+      }
+    }
+
+    /// <summary>Handles the elapsed event of the change-eventtimer. If the timer elapsed, the assumption is made that the 
+    /// filechange has finished and it is safe to call the <see cref="OnSourceFileChanged()"/> method.</summary>
+    /// <param name="sender">The instance that raised the event.</param>
+    /// <param name="args">Some additional information regarding the event.</param>
+    private void HandleChangeEventTimeout(object sender, ElapsedEventArgs args) {
       this.OnSourceFileChanged();
     }
     #endregion

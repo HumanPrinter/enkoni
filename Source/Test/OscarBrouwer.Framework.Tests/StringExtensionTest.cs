@@ -19,7 +19,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.
     /// </summary>
     [TestMethod]
-    public void TestCase1_CapitalizeNoCultureKeepCapitals() {
+    public void TestCase01_CapitalizeNoCultureKeepCapitals() {
       string startValue = "hello world and goodmorning";
       string result = startValue.Capitalize(true);
       Assert.AreEqual("Hello World And Goodmorning", result, false);
@@ -36,7 +36,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.
     /// </summary>
     [TestMethod]
-    public void TestCase2_CapitalizeNoCultureResetCapitals() {
+    public void TestCase02_CapitalizeNoCultureResetCapitals() {
       string startValue = "hello world and goodmorning";
       string result = startValue.Capitalize();
       Assert.AreEqual("Hello World And Goodmorning", result, false);
@@ -53,7 +53,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool, CultureInfo)"/> extension 
     /// method.</summary>
     [TestMethod]
-    public void TestCase3_CapitalizeWithCultureKeepCapitals() {
+    public void TestCase03_CapitalizeWithCultureKeepCapitals() {
       CultureInfo culture = new CultureInfo("nl-NL");
 
       string startValue = "hello world and goodmorning";
@@ -72,7 +72,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, CultureInfo)"/> extension method.
     /// </summary>
     [TestMethod]
-    public void TestCase4_CapitalizeWithCultureResetCapitals() {
+    public void TestCase04_CapitalizeWithCultureResetCapitals() {
       CultureInfo culture = new CultureInfo("nl-NL");
 
       string startValue = "hello world and goodmorning";

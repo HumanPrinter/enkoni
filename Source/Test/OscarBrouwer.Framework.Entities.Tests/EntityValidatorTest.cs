@@ -21,7 +21,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="EntityValidator{T}.PerformShallowValidation(T)"/> method using
     /// an object that should pass the shallow validation, but not the deep validation.</summary>
     [TestMethod]
-    public void TestCase1_ShallowValidation_ValidEntity() {
+    public void TestCase01_ShallowValidation_ValidEntity() {
       TestDummy dummy = new TestDummy { TextValue = "xxyyyzzzz", NumericValue = 11, BooleanValue = false };
 
       EntityValidator<TestDummy> validator = new EntityValidator<TestDummy>();
@@ -35,7 +35,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="EntityValidator{T}.PerformShallowValidation(T)"/> method using
     /// an object that should not pass the shallow validation.</summary>
     [TestMethod]
-    public void TestCase2_ShallowValidation_InvalidEntity() {
+    public void TestCase02_ShallowValidation_InvalidEntity() {
       TestDummy dummy = new TestDummy { TextValue = "xxyyyzzzz", NumericValue = 16, BooleanValue = null };
 
       EntityValidator<TestDummy> validator = new EntityValidator<TestDummy>();
@@ -53,7 +53,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="EntityValidator{T}.PerformDeepValidation(T)"/> method using
     /// an object that should pass the shallow validation and the deep validation.</summary>
     [TestMethod]
-    public void TestCase3_DeepValidation_ValidEntity() {
+    public void TestCase03_DeepValidation_ValidEntity() {
       TestDummy dummy = new TestDummy { TextValue = "xxabc1234", NumericValue = 9, BooleanValue = true };
 
       EntityValidator<TestDummy> validator = new EntityValidator<TestDummy>();
@@ -67,7 +67,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="EntityValidator{T}.PerformDeepValidation(T)"/> method using
     /// an object that should not pass the shallow validation.</summary>
     [TestMethod]
-    public void TestCase4_DeepValidation_ShallowInvalidEntity() {
+    public void TestCase04_DeepValidation_ShallowInvalidEntity() {
       TestDummy dummy = new TestDummy { TextValue = "xxyyyzzzz", NumericValue = 16, BooleanValue = null };
 
       EntityValidator<TestDummy> validator = new EntityValidator<TestDummy>();
@@ -85,7 +85,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="EntityValidator{T}.PerformDeepValidation(T)"/> method using
     /// an object that should pass the shallow validation, but not the deep validation.</summary>
     [TestMethod]
-    public void TestCase5_DeepValidation_DeepInvalidEntity() {
+    public void TestCase05_DeepValidation_DeepInvalidEntity() {
       TestDummy dummy = new TestDummy { TextValue = "xxyyyzzzz", NumericValue = 9, BooleanValue = false };
 
       EntityValidator<TestDummy> validator = new EntityValidator<TestDummy>();

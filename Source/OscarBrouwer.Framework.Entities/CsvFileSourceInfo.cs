@@ -40,17 +40,22 @@ namespace OscarBrouwer.Framework.Entities {
     /// </summary>
     /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
     /// <param name="monitorSourceFile">Indicates if the monitor that watches the sourcefile must be started.</param>
-    public CsvFileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile)
-      : this(sourceFileInfo, monitorSourceFile, Encoding.UTF32) {
+    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.
+    /// </param>
+    public CsvFileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, int changeCompleteTimeout)
+      : this(sourceFileInfo, monitorSourceFile, changeCompleteTimeout, Encoding.UTF32) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="CsvFileSourceInfo"/> class using the specified values.
     /// </summary>
     /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
     /// <param name="monitorSourceFile">Indicates if the monitor that watches the sourcefile must be started.</param>
+    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.
+    /// </param>
     /// <param name="sourceFileEncoding">The encoding of the sourcefile.</param>
-    public CsvFileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, Encoding sourceFileEncoding)
-      : base(sourceFileInfo, monitorSourceFile) {
+    public CsvFileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, int changeCompleteTimeout, 
+      Encoding sourceFileEncoding)
+      : base(sourceFileInfo, monitorSourceFile, changeCompleteTimeout) {
       this.SourceFileEncoding = sourceFileEncoding;
     }
 

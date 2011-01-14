@@ -17,7 +17,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
     /// objects based on a first-level property.</summary>
     [TestMethod]
-    public void TestCase1_DirectPropertyAccess() {
+    public void TestCase01_DirectPropertyAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.TextValue);
 
       /* Situation 1: TextValue is equal, numeric value is not equal */
@@ -54,7 +54,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
     /// objects based on a second-level property.</summary>
     [TestMethod]
-    public void TestCase2_TreePropertyAccess() {
+    public void TestCase02_TreePropertyAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.Leaf.TextValue);
 
       /* Situation 1: TextValue is equal, leaf.TextValue is equal */
@@ -91,7 +91,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
     /// objects based on a first-level method.</summary>
     [TestMethod]
-    public void TestCase3_MethodAccess() {
+    public void TestCase03_MethodAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.RetrieveTestValue());
 
       /* Situation 1: TextValue is equal, therefore result of RetrieveTestValue is equal */
@@ -110,7 +110,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
     /// objects based on a second-level method.</summary>
     [TestMethod]
-    public void TestCase4_TreeMethodAccess() {
+    public void TestCase04_TreeMethodAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.Leaf.RetrieveTestValue());
 
       /* Situation 1: leaf.TextValue is equal, therefore result of leaf.RetrieveTestValue is equal */

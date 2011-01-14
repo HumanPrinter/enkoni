@@ -25,8 +25,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    public void TestCase1_Deserialize_Complete_DefaultEncoding() {
-      string inputPath = "CsvTestInputFileWithHeaderUTF8.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase01")]
+    public void TestCase01_Deserialize_Complete_DefaultEncoding() {
+      string inputPath = @"CsvSerializerTest\TestCase01\CsvTestInputFileWithHeaderUTF8.csv";
 
       CsvSerializer<TestDummyWithHeader> serializer = new CsvSerializer<TestDummyWithHeader>();
       IEnumerable<TestDummyWithHeader> result = serializer.Deserialize(inputPath);
@@ -43,8 +44,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    public void TestCase2_Deserialize_Complete_DefaultEncoding_NoHeader() {
-      string inputPath = "CsvTestInputFileNoHeaderUTF8.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase02")]
+    public void TestCase02_Deserialize_Complete_DefaultEncoding_NoHeader() {
+      string inputPath = @"CsvSerializerTest\TestCase02\CsvTestInputFileNoHeaderUTF8.csv";
 
       CsvSerializer<TestDummyNoHeader> serializer = new CsvSerializer<TestDummyNoHeader>();
       IEnumerable<TestDummyNoHeader> result = serializer.Deserialize(inputPath);
@@ -61,8 +63,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    public void TestCase3_Deserialize_Complete_CustomEncoding() {
-      string inputPath = "CsvTestInputFileWithHeaderASCII.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase03")]
+    public void TestCase03_Deserialize_Complete_CustomEncoding() {
+      string inputPath = @"CsvSerializerTest\TestCase03\CsvTestInputFileWithHeaderASCII.csv";
 
       CsvSerializer<TestDummyWithHeader> serializer = new CsvSerializer<TestDummyWithHeader>();
       IEnumerable<TestDummyWithHeader> result = serializer.Deserialize(inputPath, Encoding.ASCII);
@@ -79,8 +82,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    public void TestCase4_Deserialize_Complete_CustomEncoding_NoHeader() {
-      string inputPath = "CsvTestInputFileNoHeaderASCII.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase04")]
+    public void TestCase04_Deserialize_Complete_CustomEncoding_NoHeader() {
+      string inputPath = @"CsvSerializerTest\TestCase04\CsvTestInputFileNoHeaderASCII.csv";
 
       CsvSerializer<TestDummyNoHeader> serializer = new CsvSerializer<TestDummyNoHeader>();
       IEnumerable<TestDummyNoHeader> result = serializer.Deserialize(inputPath, Encoding.ASCII);
@@ -97,8 +101,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    public void TestCase5_Deserialize_Partial_DefaultEncoding() {
-      string inputPath = "CsvTestInputFileWithHeaderUTF8.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase05")]
+    public void TestCase05_Deserialize_Partial_DefaultEncoding() {
+      string inputPath = @"CsvSerializerTest\TestCase05\CsvTestInputFileWithHeaderUTF8.csv";
 
       CsvSerializer<PartialTestDummyWithHeader> serializer = new CsvSerializer<PartialTestDummyWithHeader>();
       IEnumerable<PartialTestDummyWithHeader> result = serializer.Deserialize(inputPath);
@@ -115,8 +120,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    public void TestCase6_Deserialize_Partial_DefaultEncoding_NoHeader() {
-      string inputPath = "CsvTestInputFileNoHeaderUTF8.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase06")]
+    public void TestCase06_Deserialize_Partial_DefaultEncoding_NoHeader() {
+      string inputPath = @"CsvSerializerTest\TestCase06\CsvTestInputFileNoHeaderUTF8.csv";
 
       CsvSerializer<PartialTestDummyNoHeader> serializer = new CsvSerializer<PartialTestDummyNoHeader>();
       IEnumerable<PartialTestDummyNoHeader> result = serializer.Deserialize(inputPath);
@@ -133,8 +139,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    public void TestCase7_Deserialize_Partial_CustomEncoding() {
-      string inputPath = "CsvTestInputFileWithHeaderASCII.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase07")]
+    public void TestCase07_Deserialize_Partial_CustomEncoding() {
+      string inputPath = @"CsvSerializerTest\TestCase07\CsvTestInputFileWithHeaderASCII.csv";
 
       CsvSerializer<PartialTestDummyWithHeader> serializer = new CsvSerializer<PartialTestDummyWithHeader>();
       IEnumerable<PartialTestDummyWithHeader> result = serializer.Deserialize(inputPath, Encoding.ASCII);
@@ -151,8 +158,9 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    public void TestCase8_Deserialize_Partial_CustomEncoding_NoHeader() {
-      string inputPath = "CsvTestInputFileNoHeaderASCII.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase08")]
+    public void TestCase08_Deserialize_Partial_CustomEncoding_NoHeader() {
+      string inputPath = @"CsvSerializerTest\TestCase08\CsvTestInputFileNoHeaderASCII.csv";
 
       CsvSerializer<PartialTestDummyNoHeader> serializer = new CsvSerializer<PartialTestDummyNoHeader>();
       IEnumerable<PartialTestDummyNoHeader> result = serializer.Deserialize(inputPath, Encoding.ASCII);
@@ -171,9 +179,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    public void TestCase9_Serialize_Complete_DefaultEncoding() {
-      string templatePath = "CsvTestOutputFileWithHeaderUTF8.csv";
-      string outputPath = @"TestCase9\CsvTestOutputFile.csv";
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase09")]
+    public void TestCase09_Serialize_Complete_DefaultEncoding() {
+      string templatePath = @"CsvSerializerTest\TestCase09\CsvTestOutputFileWithHeaderUTF8.csv";
+      string outputPath = @"CsvSerializerTest\TestCase09\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
@@ -205,9 +214,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase10")]
     public void TestCase10_Serialize_Complete_DefaultEncoding_NoHeader() {
-      string templatePath = "CsvTestOutputFileNoHeaderUTF8.csv";
-      string outputPath = @"TestCase10\CsvTestOutputFile.csv";
+      string templatePath = @"CsvSerializerTest\TestCase10\CsvTestOutputFileNoHeaderUTF8.csv";
+      string outputPath = @"CsvSerializerTest\TestCase10\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
@@ -239,9 +249,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase11")]
     public void TestCase11_Serialize_Complete_CustomEncoding() {
-      string templatePath = "CsvTestOutputFileWithHeaderASCII.csv";
-      string outputPath = @"TestCase11\CsvTestOutputFile.csv";
+      string templatePath = @"CsvSerializerTest\TestCase11\CsvTestOutputFileWithHeaderASCII.csv";
+      string outputPath = @"CsvSerializerTest\TestCase11\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
@@ -273,9 +284,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase12")]
     public void TestCase12_Serialize_Complete_CustomEncoding_NoHeader() {
-      string templatePath = "CsvTestOutputFileNoHeaderASCII.csv";
-      string outputPath = @"TestCase12\CsvTestOutputFile.csv";
+      string templatePath = @"CsvSerializerTest\TestCase12\CsvTestOutputFileNoHeaderASCII.csv";
+      string outputPath = @"CsvSerializerTest\TestCase12\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
@@ -307,9 +319,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase13")]
     public void TestCase13_Serialize_Partial_DefaultEncoding() {
-      string templatePath = "CsvTestOutputFilePartialWithHeaderUTF8.csv";
-      string outputPath = @"TestCase13\CsvTestOutputFile.csv";
+      string templatePath = @"CsvSerializerTest\TestCase13\CsvTestOutputFilePartialWithHeaderUTF8.csv";
+      string outputPath = @"CsvSerializerTest\TestCase13\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyWithHeader> collection = new List<PartialTestDummyWithHeader>();
@@ -341,9 +354,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase14")]
     public void TestCase14_Serialize_Partial_DefaultEncoding_NoHeader() {
-      string templatePath = "CsvTestOutputFilePartialNoHeaderUTF8.csv";
-      string outputPath = @"TestCase14\CsvTestOutputFile.csv";
+      string templatePath = @"CsvSerializerTest\TestCase14\CsvTestOutputFilePartialNoHeaderUTF8.csv";
+      string outputPath = @"CsvSerializerTest\TestCase14\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyNoHeader> collection = new List<PartialTestDummyNoHeader>();
@@ -375,9 +389,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderASCII.csv", @"CsvSerializerTest\TestCase15")]
     public void TestCase15_Serialize_Partial_CustomEncoding() {
-      string templatePath = "CsvTestOutputFilePartialWithHeaderASCII.csv";
-      string outputPath = @"TestCase15\CsvTestOutputFile.csv";
+      string templatePath = @"CsvSerializerTest\TestCase15\CsvTestOutputFilePartialWithHeaderASCII.csv";
+      string outputPath = @"CsvSerializerTest\TestCase15\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyWithHeader> collection = new List<PartialTestDummyWithHeader>();
@@ -409,9 +424,10 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderASCII.csv", @"CsvSerializerTest\TestCase16")]
     public void TestCase16_Serialize_Partial_CustomEncoding_NoHeader() {
-      string templatePath = "CsvTestOutputFilePartialNoHeaderASCII.csv";
-      string outputPath = @"TestCase16\CsvTestOutputFile.csv";
+      string templatePath = @"CsvSerializerTest\TestCase16\CsvTestOutputFilePartialNoHeaderASCII.csv";
+      string outputPath = @"CsvSerializerTest\TestCase16\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyNoHeader> collection = new List<PartialTestDummyNoHeader>();

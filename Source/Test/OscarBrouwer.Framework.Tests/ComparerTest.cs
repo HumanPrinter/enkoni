@@ -17,7 +17,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a 
     /// first-level property.</summary>
     [TestMethod]
-    public void TestCase1_FirstLevelPropertyAccess() {
+    public void TestCase01_FirstLevelPropertyAccess() {
       Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("TextValue");
       Comparer<TestDummy> descendingComparer = new Comparer<TestDummy>("TextValue", SortOrder.Descending);
 
@@ -53,7 +53,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a 
     /// second-level property.</summary>
     [TestMethod]
-    public void TestCase2_SecondLevelPropertyAccess() {
+    public void TestCase02_SecondLevelPropertyAccess() {
       Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("Leaf.TextValue");
       Comparer<TestDummy> descendingComparer = new Comparer<TestDummy>("Leaf.TextValue", SortOrder.Descending);
 
@@ -89,7 +89,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a 
     /// third-level property.</summary>
     [TestMethod]
-    public void TestCase3_ThirdLevelPropertyAccess() {
+    public void TestCase03_ThirdLevelPropertyAccess() {
       Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("Leaf.Leaf.TextValue");
       Comparer<TestDummy> descendingComparer = new Comparer<TestDummy>("Leaf.Leaf.TextValue", SortOrder.Descending);
 

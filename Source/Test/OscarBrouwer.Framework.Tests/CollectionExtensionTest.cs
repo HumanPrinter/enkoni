@@ -20,7 +20,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.Remove{T}(ICollection{T}, T, IEqualityComparer{T})"/> 
     /// extension method.</summary>
     [TestMethod]
-    public void TestCase1_ICollection_Remove() {
+    public void TestCase01_ICollection_Remove() {
       ICollection<TestDummy> collection = new List<TestDummy>();
 
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -58,7 +58,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.IndexOf{T}(IList{T}, T, IEqualityComparer{T})"/> 
     /// extension method.</summary>
     [TestMethod]
-    public void TestCase2_IList_IndexOf() {
+    public void TestCase02_IList_IndexOf() {
       IList<TestDummy> collection = new List<TestDummy>();
 
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -88,7 +88,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.IndexOf{T}(List{T}, T, int, IEqualityComparer{T})"/> 
     /// extension method.</summary>
     [TestMethod]
-    public void TestCase3_List_IndexOfWithStartIndex() {
+    public void TestCase03_List_IndexOfWithStartIndex() {
       List<TestDummy> collection = new List<TestDummy>();
 
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -122,7 +122,7 @@ namespace OscarBrouwer.Framework.Tests {
     /// <summary>Tests the functionality of the 
     /// <see cref="Extensions.IndexOf{T}(List{T}, T, int, int, IEqualityComparer{T})"/> extension method.</summary>
     [TestMethod]
-    public void TestCase4_List_IndexOfWithStartIndexAndCount() {
+    public void TestCase04_List_IndexOfWithStartIndexAndCount() {
       List<TestDummy> collection = new List<TestDummy>();
 
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
