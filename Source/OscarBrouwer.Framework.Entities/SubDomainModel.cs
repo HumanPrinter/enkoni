@@ -47,7 +47,7 @@ namespace OscarBrouwer.Framework.Entities {
         throw new ArgumentNullException("searchSpecification");
       }
 
-      return this.FindEntitiesCore(searchSpecification.IsSatisfiedBy);
+      return this.FindEntitiesCore(searchSpecification);
     }
 
     /// <summary>Finds one entities that matches the specified specification.</summary>
@@ -58,14 +58,14 @@ namespace OscarBrouwer.Framework.Entities {
         throw new ArgumentNullException("searchSpecification");
       }
 
-      return this.FindEntityCore(searchSpecification.IsSatisfiedBy);
+      return this.FindEntityCore(searchSpecification);
     }
 
     /// <summary>Finds one entities with the specified entity-ID.</summary>
     /// <param name="entityId">The ID of the entity that must be found.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     public T FindEntityById(int entityId) {
-      return this.FindEntityCore(new Func<T, bool>(t => t.RecordId == entityId));
+      return this.FindEntityCore(Specification.Lambda<T>(t => t.RecordId == entityId));
     }
 
     /// <summary>Adds the specified entity to the domain. Before it is added, the entity is validated to ensure that 
@@ -133,14 +133,14 @@ namespace OscarBrouwer.Framework.Entities {
     protected abstract T CreateEmptyEntityCore();
 
     /// <summary>Finds all the entities that match the specified specification.</summary>
-    /// <param name="query">The specification that desribes the query that must be performed.</param>
+    /// <param name="specification">The specification that desribes the query that must be performed.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
-    protected abstract IList<T> FindEntitiesCore(Func<T, bool> query);
+    protected abstract IList<T> FindEntitiesCore(ISpecification<T> specification);
 
     /// <summary>Finds one entities that matches the specified specification.</summary>
-    /// <param name="query">The specification that desribes the query that must be performed.</param>
+    /// <param name="specification">The specification that desribes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
-    protected abstract T FindEntityCore(Func<T, bool> query);
+    protected abstract T FindEntityCore(ISpecification<T> specification);
 
     /// <summary>Validates the entity.</summary>
     /// <param name="entity">The entity that must be validated.</param>

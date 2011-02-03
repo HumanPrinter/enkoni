@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<ArrayOfTestDummy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TestDummy>
+    <TextValue>"Row1"</TextValue>
+    <NumericValue>3</NumericValue>
+    <BooleanValue>false</BooleanValue>
+  </TestDummy>
+  <TestDummy>
+    <TextValue>"Row2"</TextValue>
+    <NumericValue>3</NumericValue>
+    <BooleanValue>true</BooleanValue>
+  </TestDummy>
+</ArrayOfTestDummy>

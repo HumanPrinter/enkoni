@@ -49,14 +49,6 @@ namespace OscarBrouwer.Framework.Entities {
     public SubDomainModel<T> GetSubDomain<T>() where T : IEntity<T> {
       return this.GetSubDomainCore<T>();
     }
-
-    /// <summary>Retrieves the <see cref="SpecificationFactory{T}"/> that can be used to build specifications to search
-    /// for entities.</summary>
-    /// <typeparam name="T">The type of entity that must be handled by the specification.</typeparam>
-    /// <returns>The specification-factory.</returns>
-    public virtual SpecificationFactory<T> RetrieveDomainSpecificationFactory<T>() where T : IEntity<T> {
-      return new SpecificationFactory<T>();
-    }
     #endregion
 
     #region Extensibility methods

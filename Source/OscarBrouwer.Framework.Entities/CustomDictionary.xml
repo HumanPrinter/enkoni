@@ -3,6 +3,15 @@
   <Words>
     <Recognized>
       <Word>Brouwer</Word>
+      <Word>FileRepository</Word>
     </Recognized>
+    <Compound>
+      <Term CompoundAlternate="FileRepository">Filerepository</Term>
+    </Compound>
   </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>Db</Acronym>
+    </CasingExceptions>
+  </Acronyms>
 </Dictionary>

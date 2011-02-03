@@ -29,6 +29,8 @@ namespace OscarBrouwer.Framework.Serialization {
     public CsvSerializer() {
       this.ColumnNameMappings = new Dictionary<int, string>();
       this.PropertyDelegates = new Dictionary<int, Delegate>();
+      this.FormatMappings = new Dictionary<int, string>();
+      this.CultureMappings = new Dictionary<int, string>();
 
       MemberInfo info = typeof(T);
 
@@ -43,6 +45,8 @@ namespace OscarBrouwer.Framework.Serialization {
       this.IgnoreHeaderOnRead = recordAttr.IgnoreHeaderOnRead;
       this.EmitHeader = recordAttr.WriteHeader;
 
+      string defaultCultureName = recordAttr.CultureName;
+
       /* Get the property attributes and map them */
       Type typeOfT = typeof(T);
       PropertyInfo[] properties = typeOfT.GetProperties();
@@ -56,6 +60,16 @@ namespace OscarBrouwer.Framework.Serialization {
           }
           else {
             this.ColumnNameMappings.Add(colAttr.FieldIndex, property.Name);
+            if(colAttr.FormatString != null) {
+              this.FormatMappings.Add(colAttr.FieldIndex, colAttr.FormatString);
+            }
+
+            if(colAttr.CultureName != null) {
+              this.CultureMappings.Add(colAttr.FieldIndex, colAttr.CultureName);
+            }
+            else if(defaultCultureName != null) {
+              this.CultureMappings.Add(colAttr.FieldIndex, defaultCultureName);
+            }
 
             ParameterExpression objExpression = Expression.Parameter(typeof(T), "obj");
             Expression propertyExpression = Expression.Property(objExpression, property.Name);
@@ -67,13 +81,8 @@ namespace OscarBrouwer.Framework.Serialization {
       }
 
       /* Make sure the field-indexes are correct */
-      /* These two checks could be combined, this allows for more describing errormessages */
-      if(this.ColumnNameMappings.Keys.Min() != 0) {
-        throw new InvalidOperationException("The specified field index values must start at '0'");
-      }
-
-      if(this.ColumnNameMappings.Count != this.ColumnNameMappings.Keys.Max() + 1) {
-        throw new InvalidOperationException("The specified field index values must be sequential");
+      if(this.ColumnNameMappings.Keys.Min() < 0) {
+        throw new InvalidOperationException("The specified field index values cannot be smaller than '0'");
       }
     }
     #endregion
@@ -87,6 +96,14 @@ namespace OscarBrouwer.Framework.Serialization {
     /// deserialized.</summary>
     protected Dictionary<int, Delegate> PropertyDelegates { get; private set; }
 
+    /// <summary>Gets the mappings of the formatstrings. The dictionary uses the columnindex as key and formatstring as value.
+    /// </summary>
+    protected Dictionary<int, string> FormatMappings { get; private set; }
+
+    /// <summary>Gets the mappings of the cultures. The dictionary uses the columnindex as key and culturename as value.
+    /// </summary>
+    protected Dictionary<int, string> CultureMappings { get; private set; }
+
     /// <summary>Gets or sets a value indicating whether a header-line must be included when serializing the objects.</summary>
     protected bool EmitHeader { get; set; }
 
@@ -98,12 +115,12 @@ namespace OscarBrouwer.Framework.Serialization {
     #endregion
 
     #region Public methods
-    /// <summary>Serializes a list of objects to a CSV file using a default encoding of UTF-32.</summary>
+    /// <summary>Serializes a list of objects to a CSV file using a default encoding of UTF-8.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="filePath">The name of the outputfile.</param>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
     public void Serialize(IEnumerable<T> objects, string filePath) {
-      this.Serialize(objects, filePath, Encoding.UTF32);
+      this.Serialize(objects, filePath, Encoding.UTF8);
     }
 
     /// <summary>Serializes a list of objects to a CSV file.</summary>
@@ -142,12 +159,12 @@ namespace OscarBrouwer.Framework.Serialization {
     }
 
     /// <summary>Serializes a list of objects to a CSV format and writes the data to a stream using a default encoding of
-    /// UTF-32.</summary>
+    /// UTF-8.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="stream">The name of the outputfile.</param>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
     public void Serialize(IEnumerable<T> objects, Stream stream) {
-      this.Serialize(objects, stream, Encoding.UTF32);
+      this.Serialize(objects, stream, Encoding.UTF8);
     }
 
     /// <summary>Serializes a list of objects to a CSV format and writes the data to a stream.</summary>
@@ -175,18 +192,16 @@ namespace OscarBrouwer.Framework.Serialization {
 
       string output = this.Serialize(objects);
 
-      byte[] outputBytes = encoding.GetBytes(output);
-      stream.Write(outputBytes, 0, outputBytes.Length);
-      if(stream.CanSeek) {
-        stream.Seek(outputBytes.LongLength * -1L, SeekOrigin.Current);
-      }
+      StreamWriter writer = new StreamWriter(stream, encoding);
+      writer.Write(output);
+      /* The writer is not closed here, because that would also close the underlying stream */  
     }
 
-    /// <summary>Deserializes a CSV to a list of objects using a default encoding of UTF-32.</summary>
+    /// <summary>Deserializes a CSV to a list of objects using a default encoding of UTF-8.</summary>
     /// <param name="filePath">Filepath to csv file.</param>
     /// <returns>List with objects.</returns>
     public ICollection<T> Deserialize(string filePath) {
-      return this.Deserialize(filePath, Encoding.UTF32);
+      return this.Deserialize(filePath, Encoding.UTF8);
     }
 
     /// <summary>Deserializes a CSV to a list of objects.</summary>
@@ -220,11 +235,11 @@ namespace OscarBrouwer.Framework.Serialization {
       return this.Deserialize(lines);
     }
 
-    /// <summary>Deserializes CSV data to a list of objects using a default encoding of UTF-32.</summary>
+    /// <summary>Deserializes CSV data to a list of objects using a default encoding of UTF-8.</summary>
     /// <param name="stream">The stream that contains the csv data.</param>
     /// <returns>List with objects.</returns>
     public ICollection<T> Deserialize(Stream stream) {
-      return this.Deserialize(stream, Encoding.UTF32);
+      return this.Deserialize(stream, Encoding.UTF8);
     }
 
     /// <summary>Deserializes a CSV to a list of objects.</summary>
@@ -247,11 +262,12 @@ namespace OscarBrouwer.Framework.Serialization {
 
       /* Deserialize the data */
       List<string> lines = new List<string>();
-      using(StreamReader reader = new StreamReader(stream, encoding)) {
-        while(!reader.EndOfStream) {
-          lines.Add(reader.ReadLine());
-        }
+      StreamReader reader = new StreamReader(stream, encoding);
+      while(!reader.EndOfStream) {
+        lines.Add(reader.ReadLine());
       }
+
+      /* The writer is not closed here, because that would also close the underlying stream */  
 
       return this.Deserialize(lines);
     }
@@ -268,7 +284,8 @@ namespace OscarBrouwer.Framework.Serialization {
       if(this.EmitHeader) {
         firstObject = false;
         bool firstField = true;
-        foreach(string propertyName in this.ColumnNameMappings.OrderBy(kvp => kvp.Key).Select(kvp => kvp.Value)) {
+        for(int columnIndex = 0; columnIndex <= this.ColumnNameMappings.Max(kvp => kvp.Key); ++columnIndex) {
+          string propertyName = this.ColumnNameMappings.ContainsKey(columnIndex) ? this.ColumnNameMappings[columnIndex] : "Placeholder";
           if(firstField) {
             lines.AppendFormat("{0}", propertyName);
             firstField = false;
@@ -288,18 +305,46 @@ namespace OscarBrouwer.Framework.Serialization {
         }
 
         bool firstField = true;
-        foreach(Delegate retrievePropertyFunc in this.PropertyDelegates.OrderBy(kvp => kvp.Key).Select(kvp => kvp.Value)) {
-          object propertyValue = retrievePropertyFunc.DynamicInvoke(obj);
+        for(int columnIndex = 0; columnIndex <= this.ColumnNameMappings.Max(kvp => kvp.Key); ++columnIndex) {
+          Delegate retrievePropertyFunc = this.PropertyDelegates.ContainsKey(columnIndex) ? this.PropertyDelegates[columnIndex] : null;
+          object propertyValue = null;
+          if(retrievePropertyFunc != null) {
+            propertyValue = retrievePropertyFunc.DynamicInvoke(obj);
+          }
+          
           if(propertyValue == null) {
-            propertyValue = "null";
+            propertyValue = string.Empty;
+          }
+
+          string formatString = firstField ? "{0" : "{0}{1:";
+          if(this.FormatMappings.ContainsKey(columnIndex)) {
+            formatString += this.FormatMappings[columnIndex];
+          }
+
+          formatString += "}";
+
+          CultureInfo culture = null;
+          if(this.CultureMappings.ContainsKey(columnIndex)) {
+            culture = new CultureInfo(this.CultureMappings[columnIndex]);
           }
 
           if(firstField) {
-            lines.AppendFormat("{0}", propertyValue);
+            if(culture != null) {
+              lines.AppendFormat(culture, formatString, propertyValue);
+            }
+            else {
+              lines.AppendFormat(formatString, propertyValue);
+            }
+
             firstField = false;
           }
           else {
-            lines.AppendFormat("{0}{1}", this.Separator, propertyValue);
+            if(culture != null) {
+              lines.AppendFormat(culture, formatString, this.Separator, propertyValue);
+            }
+            else {
+              lines.AppendFormat(formatString, this.Separator, propertyValue);
+            }
           }
         }
       }
@@ -319,9 +364,15 @@ namespace OscarBrouwer.Framework.Serialization {
 
         string[] columns = lines.ElementAt(lineIndex).Split(this.Separator);
         for(int colIndex = 0; colIndex < columns.Count(); colIndex++) {
-          PropertyInfo propertyInfo = obj.GetType().GetProperty(this.ColumnNameMappings[colIndex]);
+          if(this.ColumnNameMappings.ContainsKey(colIndex)) {
+            string cultureName;
+            string formatString;
+            this.FormatMappings.TryGetValue(colIndex, out formatString);
+            this.CultureMappings.TryGetValue(colIndex, out cultureName);
 
-          SetPropertyValue(propertyInfo, obj, columns[colIndex]);
+            PropertyInfo propertyInfo = obj.GetType().GetProperty(this.ColumnNameMappings[colIndex]);
+            SetPropertyValue(propertyInfo, obj, columns[colIndex], formatString, cultureName);
+          }
         }
 
         objList.Add(obj);
@@ -336,10 +387,15 @@ namespace OscarBrouwer.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
+    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
+    /// <param name="cultureName">An optional culture-name that can be used to properly parse the value.</param>
     /// <exception cref="NotSupportedException">The type of the property that must be assigned is not supported.
     /// </exception>
-    private static void SetPropertyValue(PropertyInfo propertyInfo, T obj, string value) {
+    private static void SetPropertyValue(PropertyInfo propertyInfo, T obj, string value, string formatString, string cultureName) {
       CultureInfo culture = CultureInfo.InvariantCulture;
+      if(cultureName != null) {
+        culture = new CultureInfo(cultureName);
+      }
 
       if(propertyInfo.PropertyType == typeof(string)) {
         propertyInfo.SetValue(obj, value, null);
@@ -356,9 +412,18 @@ namespace OscarBrouwer.Framework.Serialization {
         value = string.IsNullOrEmpty(value) ? default(double).ToString(culture) : value;
         propertyInfo.SetValue(obj, double.Parse(value, culture), null);
       }
+      else if(propertyInfo.PropertyType == typeof(bool)) {
+        value = string.IsNullOrEmpty(value) ? default(bool).ToString(culture) : value;
+        propertyInfo.SetValue(obj, bool.Parse(value), null);
+      }
       else if(propertyInfo.PropertyType == typeof(DateTime)) {
         value = string.IsNullOrEmpty(value) ? default(DateTime).ToString(culture) : value;
-        propertyInfo.SetValue(obj, DateTime.Parse(value, culture), null);
+        if(formatString != null) {
+          propertyInfo.SetValue(obj, DateTime.ParseExact(value, formatString, culture), null);
+        }
+        else {
+          propertyInfo.SetValue(obj, DateTime.Parse(value, culture), null);
+        }
       }
       else {
         throw new NotSupportedException("Unable to parse data for data-type " + propertyInfo.PropertyType);

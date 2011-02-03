@@ -57,7 +57,7 @@ namespace OscarBrouwer.Framework {
         return true;
       }
       else if(fieldOfX == null || fieldOfY == null) {
-        return true;
+        return false;
       }
       else {
         return fieldOfX.Equals(fieldOfY);

@@ -1,0 +1,2 @@
+﻿This file serves as a placeholder. By deploying this placeholder automatically by MSTest, the required output directory is 
+created and the test-database can be stored there.
