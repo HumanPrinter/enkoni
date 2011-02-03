@@ -73,6 +73,12 @@ Version X.X.X.X
       Comment: Added the DataSourceInfo class and some helpfull descendants that are used to pass datasource-specific information to the various 
       repositories.
 
+  OscarBrouwer.Framework.Testing (X.X.X.X)
+  [+] Added the HttpContextHelper and SimulatedHttpRequest classes
+      Date:    2011-01-16
+      Comment: Added the HttpContextHelper and SimulatedHttpRequest classes that can be used to simulate an Http session. This can be usefull when
+               testing functionality that depends on an existing HTTP-session inside a testing environment that does not have one.
+
   OscarBrouwer.Framework.Entities.EntityFramework (3.0.0.0)
   [-] Removed the EntityFramework project
       Date:    2011-01-03

@@ -10,8 +10,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Linq.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
+
+using LinqKit;
 
 using OscarBrouwer.Framework.Linq;
 
@@ -20,7 +22,7 @@ namespace OscarBrouwer.Framework.Entities {
   /// functionality using the Entity Framework.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
   public class DatabaseRepository<TEntity> : Repository<TEntity>, IDatabaseRepository
-    where TEntity : class, new() {
+    where TEntity : class, IEntity<TEntity>, new() {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="DatabaseRepository{TEntity}"/> class using the specified
     /// <see cref="DataSourceInfo"/>.</summary>
@@ -70,10 +72,6 @@ namespace OscarBrouwer.Framework.Entities {
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity AddEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
-
       this.SelectDbContext(dataSourceInfo).Set<TEntity>().Add(entity);
       return entity;
     }
@@ -85,8 +83,16 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity UpdateEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
-      /* By default, EntityFramework-objects do not require any additional logic to update the values */
-      return entity;
+      Expression<Func<TEntity, bool>> selectExpression = t => t.RecordId == entity.RecordId;
+      TEntity existingEntity = this.FindSingleCore(selectExpression, dataSourceInfo, null);
+      if(existingEntity != null) {
+        existingEntity.CopyFrom(entity);
+      }
+      else {
+        throw new InvalidOperationException("The entity seems to be new and can therefore not be updated.");
+      }
+      
+      return existingEntity;
     }
 
     /// <summary>Deletes an entity from the repository.</summary>
@@ -94,19 +100,56 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     protected override void DeleteEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
+      Expression<Func<TEntity, bool>> selectExpression = t => t.RecordId == entity.RecordId;
+      TEntity existingEntity = this.FindSingleCore(selectExpression, dataSourceInfo, null);
+      if(existingEntity != null) {
+        this.SelectDbContext(dataSourceInfo).Set<TEntity>().Remove(existingEntity);
       }
-
-      this.SelectDbContext(dataSourceInfo).Set<TEntity>().Remove(entity);
+      else {
+        throw new InvalidOperationException("The entity seems to be new and can therefore not be deleted.");
+      }
     }
 
     /// <summary>Finds all the available entities that match the specified expression.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
+    /// ignore the ordering.</param>
+    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.
+    /// </param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
-    protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
-      return this.SelectDbContext(dataSourceInfo).Set<TEntity>().Where(expression);
+    protected override IEnumerable<TEntity> FindAllCore(Expression<Func<TEntity, bool>> expression, 
+      SortSpecifications<TEntity> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
+      /* First query the database directly (this will also populate the local cache) */
+      IQueryable<TEntity> databaseQuery = this.SelectDbContext(dataSourceInfo).Set<TEntity>().AsExpandable().Where(expression);
+
+      /* Add the ordering to the query */
+      databaseQuery = databaseQuery.OrderBy(sortRules);
+            
+      if(maximumResults != -1) {
+        /* Take the maximum into account */
+        databaseQuery = databaseQuery.Take(maximumResults);
+      }
+      
+      /* Force the execution of the query */
+      IEnumerable<TEntity> databaseData = databaseQuery.AsEnumerable().ToList();
+
+      /* Then query the local cache */
+      IEnumerable<TEntity> cachedData = this.SelectDbContext(dataSourceInfo).Set<TEntity>().Local.Where(expression.Compile());
+      
+      /* Combine the databasedata and the local cache using the cache as the master (since it may contain unsaved updates) */
+      /* IMPORTANT: It is possible that the combined collection contains an unsaved deletion. There is no way to detect this 
+       * without lossing the optimization of limiting the results retrieved directly from the database*/
+      IEnumerable<TEntity> result = cachedData.Union(databaseData);
+
+      result = result.OrderBy(sortRules);
+      
+      if(maximumResults != -1) {
+        /* Take the maximum into account */
+        result = result.Take(maximumResults);
+      }
+
+      return result;
     }
 
     /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value
@@ -115,18 +158,73 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
-      return this.SelectDbContext(dataSourceInfo).Set<TEntity>().SingleOrDefault(expression, defaultValue);
+    protected override TEntity FindSingleCore(Expression<Func<TEntity, bool>> expression, DataSourceInfo dataSourceInfo, 
+      TEntity defaultValue) {
+      /* First query the database directly (this will also populate the local cache) */
+      TEntity databaseData = this.SelectDbContext(dataSourceInfo).Set<TEntity>().AsExpandable().SingleOrDefault(expression, defaultValue);
+      /* Then query the local cache */
+      TEntity cachedData = this.SelectDbContext(dataSourceInfo).Set<TEntity>().Local.SingleOrDefault(expression.Compile(), defaultValue);
+
+      if(databaseData == null && cachedData == null) {
+        /* Both the database ans cache drew a blank, there is no such object */
+        return null;
+      }
+      else if(databaseData != null && cachedData != null) {
+        /* The object exists in both the database and the cache. Return the cached-value because it may contain unsaved updates */
+        return cachedData;
+      }
+      else if(databaseData == null && cachedData != null) {
+        /* The object only exists in the cache. Return the cached value because it most likely is an unsaved addition */
+        return cachedData;
+      }
+      else {
+        /* The object only seems to live in the database. If it was a new record (not yet cached), it would have been in de 
+         * cache after the database-query. Since it isn't, it most likely is an unsaved deletion therefore 'null' is returned. */
+        return null;
+      }
     }
 
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value
     /// is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
+    /// ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
-      return this.SelectDbContext(dataSourceInfo).Set<TEntity>().FirstOrDefault(expression, defaultValue);
+    protected override TEntity FindFirstCore(Expression<Func<TEntity, bool>> expression, 
+      SortSpecifications<TEntity> sortRules, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+      /* First query the database directly (this will also populate the local cache) */
+      IQueryable<TEntity> databaseQuery = this.SelectDbContext(dataSourceInfo).Set<TEntity>().AsExpandable();
+
+      /* Add the ordering to the query */
+      databaseQuery = databaseQuery.OrderBy(sortRules);
+
+      TEntity databaseData = databaseQuery.FirstOrDefault(expression, defaultValue);
+      
+      /* Then query the local cache */
+      IEnumerable<TEntity> cacheQuery = this.SelectDbContext(dataSourceInfo).Set<TEntity>().Local;
+      cacheQuery = cacheQuery.OrderBy(sortRules);
+
+      TEntity cachedData = cacheQuery.FirstOrDefault(expression.Compile(), defaultValue);
+
+      if(databaseData == null && cachedData == null) {
+        /* Both the database ans cache drew a blank, there is no such object */
+        return null;
+      }
+      else if(databaseData != null && cachedData != null) {
+        /* The object exists in both the database and the cache. Return the cached-value because it may contain unsaved updates */
+        return cachedData;
+      }
+      else if(databaseData == null && cachedData != null) {
+        /* The object only exists in the cache. Return the cached value because it most likely is an unsaved addition */
+        return cachedData;
+      }
+      else {
+        /* The object only seems to live in the database. If it was a new record (not yet cached), it would have been in de 
+         * cache after the database-query. Since it isn't, it most likely is an unsaved deletion therefore 'null' is returned. */
+        return null;
+      }
     }
 
     /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
@@ -134,9 +232,24 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.
     /// </param>
     /// <returns>The created expression.</returns>
-    protected override Func<TEntity, bool> CreateLikeExpressionCore(Func<TEntity, string> field, string pattern) {
-      pattern = pattern.Replace("*", "%").Replace("?", "_");
-      return t => SqlMethods.Like(field(t), pattern);
+    protected override Expression<Func<TEntity, bool>> CreateLikeExpressionCore(Expression<Func<TEntity, string>> field, 
+      string pattern) {
+      throw new NotSupportedException("The Entity Framework currently does not support LIKE-queries. Use StartsWith, EndsWith or Contains instead.");
+      
+      /* If the Entity Framework would have supported LIKE queries the way standard Linq-to-SQL does, the implementation 
+       * would have looked like this: */
+      /* Replace the wildcards */
+      /*pattern = pattern.Replace("*", "%").Replace("?", "_");*/
+
+      /* Get the methodinfo for the 'Like' method of the 'SqlMethods' class */
+      /*System.Reflection.MethodInfo likeMethod = typeof(SqlMethods).GetMethod("Like", new Type[]{typeof(string),typeof(string)});*/
+      /* Create a constantexpression for the pattern */
+      /*ConstantExpression patternExpr = Expression.Constant(pattern, typeof(string));*/
+      /* Create a methodexpression that executes the Like-method */
+      /*MethodCallExpression likeCallExpression = Expression.Call(likeMethod, field.Body, patternExpr);*/
+      /* Convert the expression into a lambdaexpression */
+      /*Expression<Func<TEntity, bool>>  resultExpression = Expression.Lambda<Func<TEntity, bool>>(likeCallExpression, field.Parameters[0]);*/
+      /*return resultExpression;*/
     }
     #endregion
 

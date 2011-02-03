@@ -196,36 +196,6 @@ namespace OscarBrouwer.Framework.Testing {
       }
     }
 
-    /// <summary>Finds the first entity that matches the expression.</summary>
-    /// <param name="expression">The search-specification.</param>
-    /// <param name="dataSourceInfo">The parameter is not used.</param>
-    /// <returns>The first result.</returns>
-    protected override T FindFirstCore(Func<T, bool> expression, DataSourceInfo dataSourceInfo) {
-      try {
-        this.temporaryStorageLock.EnterReadLock();
-        T result = this.temporaryStorage.FirstOrDefault(item => expression(item.Key)).Key;
-        this.temporaryStorageLock.ExitReadLock();
-        if(result != null) {
-          return result;
-        }
-        else {
-          storageLock.EnterReadLock();
-          result = storage.First(item => expression(item));
-          storageLock.ExitReadLock();
-          return result;
-        }
-      }
-      finally {
-        if(storageLock.IsReadLockHeld) {
-          storageLock.ExitReadLock();
-        }
-
-        if(this.temporaryStorageLock.IsReadLockHeld) {
-          this.temporaryStorageLock.ExitReadLock();
-        }
-      }
-    }
-
     /// <summary>Finds the single entity that matches the expression or returns the defaultvalue if there were no matches.
     /// </summary>
     /// <param name="expression">The search-specification.</param>
@@ -243,36 +213,6 @@ namespace OscarBrouwer.Framework.Testing {
         else {
           storageLock.EnterReadLock();
           result = storage.SingleOrDefault(item => expression(item), defaultValue);
-          storageLock.ExitReadLock();
-          return result;
-        }
-      }
-      finally {
-        if(storageLock.IsReadLockHeld) {
-          storageLock.ExitReadLock();
-        }
-
-        if(this.temporaryStorageLock.IsReadLockHeld) {
-          this.temporaryStorageLock.ExitReadLock();
-        }
-      }
-    }
-
-    /// <summary>Finds the single entity that matches the expression.</summary>
-    /// <param name="expression">The search-specification.</param>
-    /// <param name="dataSourceInfo">The parameter is not used.</param>
-    /// <returns>The single result.</returns>
-    protected override T FindSingleCore(Func<T, bool> expression, DataSourceInfo dataSourceInfo) {
-      try {
-        this.temporaryStorageLock.EnterReadLock();
-        T result = this.temporaryStorage.SingleOrDefault(item => expression(item.Key)).Key;
-        this.temporaryStorageLock.ExitReadLock();
-        if(result != null) {
-          return result;
-        }
-        else {
-          storageLock.EnterReadLock();
-          result = storage.Single(item => expression(item));
           storageLock.ExitReadLock();
           return result;
         }

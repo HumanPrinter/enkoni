@@ -1,5 +1,6 @@
 
 Source/*.suo
+Source/*.sdf
 Source/OscarBrouwer.Framework/*.user
 Source/OscarBrouwer.Framework/*.Cache
 Source/OscarBrouwer.Framework/bin/
@@ -8,14 +9,6 @@ Source/OscarBrouwer.Framework.Entities/*.user
 Source/OscarBrouwer.Framework.Entities/*.Cache
 Source/OscarBrouwer.Framework.Entities/bin/
 Source/OscarBrouwer.Framework.Entities/obj/
-Source/OscarBrouwer.Framework.Entities.EntityFramework/*.user
-Source/OscarBrouwer.Framework.Entities.EntityFramework/*.Cache
-Source/OscarBrouwer.Framework.Entities.EntityFramework/bin/
-Source/OscarBrouwer.Framework.Entities.EntityFramework/obj/
-Source/OscarBrouwer.Framework.Entities.LinqToSql/*.user
-Source/OscarBrouwer.Framework.Entities.LinqToSql/*.Cache
-Source/OscarBrouwer.Framework.Entities.LinqToSql/bin/
-Source/OscarBrouwer.Framework.Entities.LinqToSql/obj/
 Source/OscarBrouwer.Framework.ServiceModel/*.user
 Source/OscarBrouwer.Framework.ServiceModel/*.Cache
 Source/OscarBrouwer.Framework.ServiceModel/bin/
@@ -38,24 +31,12 @@ Source/Test/OscarBrouwer.Framework.Entities.Tests/*.user
 Source/Test/OscarBrouwer.Framework.Entities.Tests/*.Cache
 Source/Test/OscarBrouwer.Framework.Entities.Tests/bin/
 Source/Test/OscarBrouwer.Framework.Entities.Tests/obj/
-/Releases/Microsoft.Practices.EnterpriseLibrary.Validation.dll
-/Releases/Microsoft.Practices.EnterpriseLibrary.Validation.xml
-/Releases/OscarBrouwer.Framework.Entities.EntityFramework.dll
-/Releases/OscarBrouwer.Framework.Entities.EntityFramework.xml
-/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v3.5.dll
-/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v3.5.xml
-/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v4.0.dll
-/Releases/OscarBrouwer.Framework.Entities.LinqToSql.v4.0.xml
-/Releases/OscarBrouwer.Framework.Entities.dll
-/Releases/OscarBrouwer.Framework.Entities.xml
-/Releases/OscarBrouwer.Framework.ServiceModel.dll
-/Releases/OscarBrouwer.Framework.ServiceModel.xml
-/Releases/OscarBrouwer.Framework.Testing.dll
-/Releases/OscarBrouwer.Framework.Testing.xml
-/Releases/OscarBrouwer.Framework.Validation.dll
-/Releases/OscarBrouwer.Framework.Validation.xml
-/Releases/OscarBrouwer.Framework.dll
-/Releases/OscarBrouwer.Framework.xml
-/Releases/Release Notes.txt
+Source/Test/OscarBrouwer.Framework.Validation.Tests/*.user
+Source/Test/OscarBrouwer.Framework.Validation.Tests/*.Cache
+Source/Test/OscarBrouwer.Framework.Validation.Tests/bin/
+Source/Test/OscarBrouwer.Framework.Validation.Tests/obj/
+/Releases/*.dll
+/Releases/*.xml
+/Releases/*.txt
 Release.bat
 Source/TestResults/

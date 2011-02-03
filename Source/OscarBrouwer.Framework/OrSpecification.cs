@@ -8,6 +8,7 @@
 //--------------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq.Expressions;
 
 namespace OscarBrouwer.Framework {
   /// <summary>This class contains a specificationtype that combines two specifications using an OR operation.</summary>
@@ -27,7 +28,7 @@ namespace OscarBrouwer.Framework {
     /// an expression that can be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
-    protected override Func<T, bool> VisitCore(ISpecificationVisitor<T> visitor) {
+    protected override Expression<Func<T, bool>> VisitCore(ISpecificationVisitor<T> visitor) {
       return visitor.CreateOrExpression(this.LeftOperand, this.RightOperand);
     }
     #endregion

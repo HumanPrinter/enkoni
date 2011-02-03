@@ -27,6 +27,9 @@ namespace OscarBrouwer.Framework.Entities {
 
     /// <summary>A lock that controls access to the temporary storage.</summary>
     private ReaderWriterLockSlim temporaryStorageLock = new ReaderWriterLockSlim();
+
+    /// <summary>Indicates if the type of entity implements the ICloneable interface.</summary>
+    private bool typeImplementsICloneable;
     #endregion
 
     #region Constructor
@@ -35,6 +38,8 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="dataSourceInfo">The datasource information that must be used to access the datasource.</param>
     public MemoryRepository(DataSourceInfo dataSourceInfo)
       : base() {
+      this.typeImplementsICloneable = typeof(TEntity).GetInterfaces().Contains(typeof(ICloneable));
+      
       this.MemoryStore = MemorySourceInfo.SelectMemoryStore<TEntity>(dataSourceInfo);
 
       if(this.MemoryStore == null) {
@@ -169,15 +174,32 @@ namespace OscarBrouwer.Framework.Entities {
 
     /// <summary>Finds all the entities that match the expression.</summary>
     /// <param name="expression">The search-specification.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
+    /// ignore the ordering.</param>
+    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.
+    /// </param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <returns>The items that match the expression.</returns>
-    protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
+    protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, 
+      SortSpecifications<TEntity> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
       try {
         this.temporaryStorageLock.EnterReadLock();
         memoryStore.EnterReadLock();
-        return this.MemoryStore.Storage.Where(item => expression(item)).Concat(this.temporaryStorage.Where(item => expression(item.Key)).Select(item => item.Key));
+        IEnumerable<TEntity> results = this.MemoryStore.Storage.Where(expression).OrderBy(sortRules);
+        if(this.typeImplementsICloneable) {
+          results = results.Select(t => ((ICloneable)t).Clone() as TEntity);
+        }
+
+        results = results.Concat(this.temporaryStorage.Where(item => expression(item.Key)).Select(item => item.Key).OrderBy(sortRules));
+
+        if(maximumResults == -1) {
+          return results;
+        }
+        else {
+          return results.Take(maximumResults);
+        }
       }
       finally {
         memoryStore.ExitReadLock();
@@ -188,24 +210,49 @@ namespace OscarBrouwer.Framework.Entities {
     /// <summary>Finds the first entity that matches the expression or returns the defaultvalue if there were no matches.
     /// </summary>
     /// <param name="expression">The search-specification.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
+    /// ignore the ordering.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <param name="defaultValue">The value that must be returned if there were no matches.</param>
     /// <returns>The first result or the defaultvalue.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, 
+      DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
       try {
         this.temporaryStorageLock.EnterReadLock();
-        TEntity result = this.temporaryStorage.FirstOrDefault(item => expression(item.Key)).Key;
+        bool resultIsToBeDeleted = false;
+
+        TEntity result = this.temporaryStorage.Where(kvp => kvp.Value != StorageAction.Delete).Select(kvp => kvp.Key)
+          .OrderBy(sortRules).FirstOrDefault(expression);
+        
+        if(result == null) {
+          result = this.temporaryStorage.Where(kvp => kvp.Value == StorageAction.Delete).Select(kvp => kvp.Key)
+            .OrderBy(sortRules).FirstOrDefault(expression);
+          
+          if(result != null) {
+            resultIsToBeDeleted = true;
+          }
+        }
+
         this.temporaryStorageLock.ExitReadLock();
+        if(resultIsToBeDeleted) {
+          return null;
+        }
+
         if(result != null) {
           return result;
         }
         else {
           memoryStore.EnterReadLock();
-          result = this.MemoryStore.Storage.FirstOrDefault(item => expression(item), defaultValue);
+          result = this.MemoryStore.Storage.OrderBy(sortRules).FirstOrDefault(expression, defaultValue);
           memoryStore.ExitReadLock();
-          return result;
+          if(result != null && !object.ReferenceEquals(result, defaultValue) && this.typeImplementsICloneable) {
+            return ((ICloneable)result).Clone() as TEntity;
+          }
+          else {
+            return result;
+          }
         }
       }
       finally {
@@ -223,13 +270,27 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <param name="defaultValue">The value that must be returned if there were no matches.</param>
     /// <returns>The single result or the defaultvalue.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, 
+      TEntity defaultValue) {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
       try {
         this.temporaryStorageLock.EnterReadLock();
-        TEntity result = this.temporaryStorage.SingleOrDefault(item => expression(item.Key)).Key;
+        bool resultIsToBeDeleted = false;
+
+        TEntity result = this.temporaryStorage.Where(kvp => kvp.Value != StorageAction.Delete).FirstOrDefault(item => expression(item.Key)).Key;
+        if(result == null) {
+          result = this.temporaryStorage.Where(kvp => kvp.Value == StorageAction.Delete).FirstOrDefault(item => expression(item.Key)).Key;
+          if(result != null) {
+            resultIsToBeDeleted = true;
+          }
+        }
+
         this.temporaryStorageLock.ExitReadLock();
+        if(resultIsToBeDeleted) {
+          return null;
+        }
+
         if(result != null) {
           return result;
         }
@@ -237,7 +298,12 @@ namespace OscarBrouwer.Framework.Entities {
           memoryStore.EnterReadLock();
           result = this.MemoryStore.Storage.SingleOrDefault(item => expression(item), defaultValue);
           memoryStore.ExitReadLock();
-          return result;
+          if(result != null && !object.ReferenceEquals(result, defaultValue) && this.typeImplementsICloneable) {
+            return ((ICloneable)result).Clone() as TEntity;
+          }
+          else {
+            return result;
+          }
         }
       }
       finally {
@@ -262,10 +328,18 @@ namespace OscarBrouwer.Framework.Entities {
         IEnumerable<TEntity> deletedEntities = this.temporaryStorage.Where(kvp => kvp.Value == StorageAction.Delete).Select(kvp => kvp.Key).ToList();
 
         /* First, apply new identifiers to the new entities */
-        this.ApplyIdentifiers(addedEntities, memoryStore.Storage.Max(t => t.RecordId) + 1);
+        this.ApplyIdentifiers(addedEntities, memoryStore.Storage.DefaultIfEmpty(new TEntity { RecordId = 0 }).Max(t => t.RecordId) + 1);
 
         /* Add the added entities to the global storage */
-        addedEntities.ForEach(entity => this.MemoryStore.Storage.Add(entity));
+        Action<TEntity> addAction;
+        if(this.typeImplementsICloneable) {
+          addAction = t => this.MemoryStore.Storage.Add(((ICloneable)t).Clone() as TEntity);
+        }
+        else {
+          addAction = t => this.MemoryStore.Storage.Add(t);
+        }
+
+        addedEntities.ForEach(entity => addAction(entity));
 
         /* Update the updated entities in the global storage */
         foreach(TEntity entity in updatedEntities) {
@@ -274,7 +348,12 @@ namespace OscarBrouwer.Framework.Entities {
             throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "Cannot update entity {0} since it does not exist in the global storage", entity.RecordId));
           }
           else {
-            this.MemoryStore.Storage[storedEntity.Index] = entity;
+            if(this.typeImplementsICloneable) {
+              this.MemoryStore.Storage[storedEntity.Index] = ((ICloneable)entity).Clone() as TEntity;
+            }
+            else {
+              this.MemoryStore.Storage[storedEntity.Index] = entity;
+            }
           }
         }
 

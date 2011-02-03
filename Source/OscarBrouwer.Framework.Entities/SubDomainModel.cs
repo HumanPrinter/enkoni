@@ -65,7 +65,7 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="entityId">The ID of the entity that must be found.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     public T FindEntityById(int entityId) {
-      return this.FindEntityCore(Specification.Lambda(new Func<T, bool>(t => t.RecordId == entityId)));
+      return this.FindEntityCore(Specification.Lambda<T>(t => t.RecordId == entityId));
     }
 
     /// <summary>Adds the specified entity to the domain. Before it is added, the entity is validated to ensure that 

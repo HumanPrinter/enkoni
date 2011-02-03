@@ -9,6 +9,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace OscarBrouwer.Framework.Entities {
@@ -28,7 +29,7 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="dataSourceInfo">The datasource information that must be used to access the sourcefile.</param>
     public XmlFileRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
-      this.serializer = new XmlSerializer(typeof(TEntity));
+      this.serializer = new XmlSerializer(typeof(List<TEntity>));
     }
     #endregion
 
@@ -38,9 +39,9 @@ namespace OscarBrouwer.Framework.Entities {
     /// <param name="dataSourceInfo">Optional information about the datasource.</param>
     /// <returns>The entities that were read from the file.</returns>
     protected override IEnumerable<TEntity> ReadAllRecordsFromFile(FileInfo sourceFile, DataSourceInfo dataSourceInfo) {
-      FileStream fileStream = new FileStream(sourceFile.FullName, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream fileStream = new FileStream(sourceFile.FullName, FileMode.Open, FileAccess.Read);
       try {
-        IEnumerable<TEntity> result = this.serializer.Deserialize(fileStream) as IEnumerable<TEntity>;
+        IEnumerable<TEntity> result = this.serializer.Deserialize(fileStream) as List<TEntity>;
         return result;
       }
       finally {
@@ -56,9 +57,9 @@ namespace OscarBrouwer.Framework.Entities {
     /// </returns>
     protected override IEnumerable<TEntity> WriteAllRecordsToFile(FileInfo destinationFile, DataSourceInfo dataSourceInfo, 
       IEnumerable<TEntity> contents) {
-      FileStream fileStream = new FileStream(destinationFile.FullName, FileMode.Open, FileAccess.Read);
+      FileStream fileStream = new FileStream(destinationFile.FullName, FileMode.Create, FileAccess.Write);
       try {
-        this.serializer.Serialize(fileStream, contents);
+        this.serializer.Serialize(fileStream, contents.ToList());
         return contents;
       }
       finally {

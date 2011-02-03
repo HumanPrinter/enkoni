@@ -7,6 +7,8 @@
 // </summary>
 //--------------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace OscarBrouwer.Framework {
   /// <summary>This abstract class defines the basic API of a specification-type that combines two specifications.</summary>
   /// <typeparam name="T">The type of object that is ultimatilly selected by the specification.</typeparam>
@@ -16,6 +18,17 @@ namespace OscarBrouwer.Framework {
     /// <param name="leftOperand">The left operand of the combination.</param>
     /// <param name="rightOperand">The right operand of the combination.</param>
     protected CombinedSpecification(ISpecification<T> leftOperand, ISpecification<T> rightOperand) {
+      if(leftOperand == null) {
+        throw new ArgumentNullException("leftOperand");
+      }
+
+      if(rightOperand == null) {
+        throw new ArgumentNullException("rightOperand");
+      }
+
+      leftOperand.MaximumResultsUpdated += this.HandleMaximumResultsUpdated;
+      rightOperand.MaximumResultsUpdated += this.HandleMaximumResultsUpdated;
+
       this.LeftOperand = leftOperand;
       this.RightOperand = rightOperand;
     }

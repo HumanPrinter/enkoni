@@ -192,7 +192,6 @@ namespace OscarBrouwer.Framework.Serialization {
 
       string output = this.Serialize(objects);
 
-      byte[] outputBytes = encoding.GetBytes(output);
       StreamWriter writer = new StreamWriter(stream, encoding);
       writer.Write(output);
       /* The writer is not closed here, because that would also close the underlying stream */  

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0"?>
+<ArrayOfTestDummy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TestDummy>
+    <TextValue>"Row1"</TextValue>
+    <NumericValue>3</NumericValue>
+    <BooleanValue>false</BooleanValue>
+  </TestDummy>
+  <TestDummy>
+    <TextValue>"Row2"</TextValue>
+    <NumericValue>3</NumericValue>
+    <BooleanValue>true</BooleanValue>
+  </TestDummy>
+  <TestDummy>
+    <TextValue>"Row3"</TextValue>
+    <NumericValue>7</NumericValue>
+    <BooleanValue>true</BooleanValue>
+  </TestDummy>
+  <TestDummy>
+    <TextValue>"Row4"</TextValue>
+    <NumericValue>2</NumericValue>
+    <BooleanValue>true</BooleanValue>
+  </TestDummy>
+  <TestDummy>
+    <TextValue>"Row5"</TextValue>
+    <NumericValue>5</NumericValue>
+    <BooleanValue>false</BooleanValue>
+  </TestDummy>
+  <TestDummy>
+    <TextValue>"Row6"</TextValue>
+    <NumericValue>1</NumericValue>
+    <BooleanValue>true</BooleanValue>
+  </TestDummy>
+</ArrayOfTestDummy>

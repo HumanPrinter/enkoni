@@ -8,6 +8,7 @@
 //--------------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq.Expressions;
 
 namespace OscarBrouwer.Framework {
   /// <summary>This class defines a specification type that matches using a string-pattern.</summary>
@@ -17,7 +18,7 @@ namespace OscarBrouwer.Framework {
     /// <summary>Initializes a new instance of the <see cref="LikeSpecification{T}"/> class.</summary>
     /// <param name="field">The field that must match the pattern.</param>
     /// <param name="pattern">The search-pattern.</param>
-    internal LikeSpecification(Func<T, string> field, string pattern) {
+    internal LikeSpecification(Expression<Func<T, string>> field, string pattern) {
       this.Field = field;
       this.Pattern = pattern;
     }
@@ -25,7 +26,7 @@ namespace OscarBrouwer.Framework {
 
     #region Public properties
     /// <summary>Gets the field that must match the pattern.</summary>
-    public Func<T, string> Field { get; private set; }
+    public Expression<Func<T, string>> Field { get; private set; }
 
     /// <summary>Gets the search-pattern.</summary>
     public string Pattern { get; private set; }
@@ -36,7 +37,7 @@ namespace OscarBrouwer.Framework {
     /// an expression that can be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
-    protected override Func<T, bool> VisitCore(ISpecificationVisitor<T> visitor) {
+    protected override Expression<Func<T, bool>> VisitCore(ISpecificationVisitor<T> visitor) {
       return visitor.CreateLikeExpression(this.Field, this.Pattern);
     }
     #endregion

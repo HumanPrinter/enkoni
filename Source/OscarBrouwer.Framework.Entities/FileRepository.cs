@@ -113,7 +113,8 @@ namespace OscarBrouwer.Framework.Entities {
     /// than the original sourcefile.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {
       /* First, apply new identifiers to the new entities */
-      this.ApplyIdentifiers(this.additionCache, this.internalCache.Max(t => t.RecordId) + 1);
+      int startId = this.internalCache.DefaultIfEmpty(new TEntity { RecordId = 0 }).Max(t => t.RecordId) + 1;
+      this.ApplyIdentifiers(this.additionCache, startId);
 
       /* Build the new contents */
       IEnumerable<TEntity> newContent = this.ConcatCache();
@@ -156,37 +157,51 @@ namespace OscarBrouwer.Framework.Entities {
 
     /// <summary>Finds all the entities of type <typeparamref name="TEntity"/> that match the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
+    /// ignore the ordering.</param>
+    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.
+    /// </param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This
     /// parameter is not used.<br/>
     /// If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache.
     /// Otherwise, the concatenated cache is simply returned.</param>
     /// <returns>All the available entities that match the expression.</returns>
-    protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo) {
+    protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, 
+      SortSpecifications<TEntity> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
       if(this.internalCache.Count == 0 && this.SourceFile.Exists) {
         IEnumerable<TEntity> readEntities = this.ReadAllRecordsFromFile(this.SourceFile, dataSourceInfo);
         this.ApplyIdentifiers(readEntities);
         this.RefreshCache(readEntities);
       }
 
-      return this.ConcatCache().Where(expression);
+      IEnumerable<TEntity> result = this.ConcatCache().Where(expression).OrderBy(sortRules);
+      if(maximumResults == -1) {
+        return result;
+      }
+      else {
+        return result.Take(maximumResults);
+      }
     }
 
     /// <summary>Finds the first entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
+    /// ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This
     /// parameter is not used.<br/>
     /// If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache.
     /// Otherwise, the concatenated cache is simply returned.</param>
     /// <param name="defaultValue">The value that must be returned if the query yielded no results.</param>
     /// <returns>The first entity that matches the expression or the defaultvalue if there were no results.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, 
+      DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       if(this.internalCache.Count == 0 && this.SourceFile.Exists) {
         IEnumerable<TEntity> readEntities = this.ReadAllRecordsFromFile(this.SourceFile, dataSourceInfo);
         this.ApplyIdentifiers(readEntities);
         this.RefreshCache(readEntities);
       }
 
-      return this.ConcatCache().FirstOrDefault(expression, defaultValue);
+      return this.ConcatCache().OrderBy(sortRules).FirstOrDefault(expression, defaultValue);
     }
 
     /// <summary>Finds the single entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
@@ -197,7 +212,8 @@ namespace OscarBrouwer.Framework.Entities {
     /// Otherwise, the concatenated cache is simply returned.</param>
     /// <param name="defaultValue">The value that must be returned if the query yielded no results.</param>
     /// <returns>The single entity that matches the expression or the defaultvalue if there were no results.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, 
+      TEntity defaultValue) {
       if(this.internalCache.Count == 0 && this.SourceFile.Exists) {
         IEnumerable<TEntity> readEntities = this.ReadAllRecordsFromFile(this.SourceFile, dataSourceInfo);
         this.ApplyIdentifiers(readEntities);

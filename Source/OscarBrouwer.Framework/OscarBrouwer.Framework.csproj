@@ -50,6 +50,12 @@
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="CombinedSpecification.cs" />
     <Compile Include="AndSpecification.cs" />
+    <Compile Include="BusinessRuleSpecification.cs" />
+    <Compile Include="SortSpecificationsEventArgs.cs" />
+    <Compile Include="SortSpecifications.cs" />
+    <Compile Include="SortSpecification.cs" />
+    <Compile Include="ISortSpecification.cs" />
+    <Compile Include="Enumerations.cs" />
     <Compile Include="ISpecificationVisitor.cs" />
     <Compile Include="LikeSpecification.cs" />
     <Compile Include="NotSpecification.cs" />

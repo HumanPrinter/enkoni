@@ -95,6 +95,10 @@
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\External Libraries\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\External Libraries\LinqKit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -19,13 +19,6 @@ using System.Threading;
 namespace OscarBrouwer.Framework {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {
-    #region Private delegates
-    /// <summary>This delegate is used to execute delegates asynchronous.</summary>
-    /// <param name="del">The actual delegate that must be executed.</param>
-    /// <param name="args">Any arguments that must be passed to delegate <c>del</c>.</param>
-    private delegate void AsyncFire(Delegate del, object[] args);
-    #endregion
-
     #region ICloneable extensions
     /// <summary>Returns a strong-typed clone of the instance.</summary>
     /// <typeparam name="T">The actual type of the instance that will be cloned.</typeparam>
@@ -42,7 +35,7 @@ namespace OscarBrouwer.Framework {
     #endregion
 
     #region Event extensions
-    /// <summary>Fires an event in a serial way. An eventhandler needs to finish before the next eventhandler will be 
+    /// <summary>Fires an event in a sequential way. An eventhandler needs to finish before the next eventhandler will be 
     /// called. This method will return when all the eventhandlers have finished. <br/>
     /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> 
     /// and it will automatically propagate the call the the appropriate thread.</summary>
@@ -53,7 +46,7 @@ namespace OscarBrouwer.Framework {
       UnsafeFire(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a serial way. An eventhandler needs to finish before the next eventhandler will be 
+    /// <summary>Fires an event in a sequential way. An eventhandler needs to finish before the next eventhandler will be 
     /// called. This method will return when all the eventhandlers have finished. <br/>
     /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/>
     /// and it will automatically propagate the call the the appropriate thread.</summary>
@@ -345,7 +338,7 @@ namespace OscarBrouwer.Framework {
       /* Get the subscribers and prepare the asynchronous invocations */
       Delegate[] delegates = del.GetInvocationList();
       List<WaitHandle> calls = new List<WaitHandle>(delegates.Length);
-      AsyncFire asyncFire = InvokeDelegate;
+      Action<Delegate, object[]> asyncFire = InvokeDelegate;
 
       /* Invoke the subscribers */
       foreach(Delegate sink in delegates) {
@@ -356,10 +349,8 @@ namespace OscarBrouwer.Framework {
       /* Wait untill all the subscribers are finished */
       WaitHandle[] handles = calls.ToArray();
       WaitHandle.WaitAll(handles);
-      Action<WaitHandle> close = delegate(WaitHandle handle) {
-        handle.Close();
-      };
-      Array.ForEach(handles, close);
+      
+      Array.ForEach(handles, handle => handle.Close());
     }
 
     /// <summary>Invokes the subscribers of the specified delegate in an asynchronous way.</summary>
@@ -374,17 +365,14 @@ namespace OscarBrouwer.Framework {
 
       /* Get the subscribers and prepare the asynchronous invocations */
       Delegate[] delegates = del.GetInvocationList();
-      AsyncFire asyncFire = InvokeDelegate;
-      AsyncCallback cleanUp = delegate(IAsyncResult asyncResult) {
-        asyncResult.AsyncWaitHandle.Close();
-      };
+      Action<Delegate, object[]> asyncFire = InvokeDelegate;
+      AsyncCallback cleanUp = asyncResult => asyncResult.AsyncWaitHandle.Close();
 
       /* Invoke the subscribers */
       foreach(Delegate sink in delegates) {
         asyncFire.BeginInvoke(sink, args, cleanUp, null);
       }
     }
-
     #endregion
   }
 }

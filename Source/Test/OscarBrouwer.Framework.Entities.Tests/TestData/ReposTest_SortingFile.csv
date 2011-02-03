@@ -1,0 +1,13 @@
+﻿TextValue,NumericValue,BooleanValue
+aabcdef,3,False
+abcdefg,3,True
+aadefgh,7,True
+abefghi,2,True
+bbcdefg,5,False
+bbdefgh,1,True
+bbefghi,1,True
+bbfghij,1,True
+acdefgh,5,False
+ccefghi,1,True
+acfghij,1,True
+ccghijk,1,True

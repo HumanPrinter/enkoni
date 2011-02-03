@@ -1,33 +1,39 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CsvFileRepositoryTest.cs" company="Oscar Brouwer">
+// <copyright file="DatabaseRepositoryTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2010. All rights reserved.
 // </copyright>
 // <summary>
-//     Contains testcases that test the functionality of the CsvRepository class.
+//     Contains testcases that test the functionality of the DatabaseRepository class.
 // </summary>
 //--------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Database;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Reflection;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace OscarBrouwer.Framework.Entities.Tests {
-  /// <summary>Tests the functionality of the <see cref="CsvFileRepository{TEntity}"/> class.</summary>
+  /// <summary>Tests the functionality of the <see cref="DatabaseRepository{TEntity}"/> class.</summary>
   [TestClass]
-  public class CsvFileRepositoryTest {
+  public class DatabaseRepositoryTest {
     #region Retrieve test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase01")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase01")]
     public void TestCase01_FindAll() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase01\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase01");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
 
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      
       IEnumerable<TestDummy> results = repository.FindAll();
 
       Assert.IsNotNull(results);
@@ -38,12 +44,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase02")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase02")]
     public void TestCase02_FindAll_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase02\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase02");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       IEnumerable<TestDummy> results = repository.FindAll();
 
@@ -52,17 +63,22 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase03")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase03")]
     public void TestCase03_FindAllWithExpression() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase03\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase03");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue < 3 || td.NumericValue > 5);
       spec = spec.And(Specification.Not((TestDummy td) => td.BooleanValue == false));
       IEnumerable<TestDummy> results = repository.FindAll(spec);
-
+      
       Assert.IsNotNull(results);
       Assert.AreEqual(3, results.Count());
       Assert.AreEqual(3, results.ElementAt(0).RecordId);
@@ -70,7 +86,6 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(6, results.ElementAt(2).RecordId);
 
       spec = Specification.Lambda((TestDummy td) => td.NumericValue > 500);
-      spec = spec.Or(Specification.Like((TestDummy td) => td.TextValue, "R*7"));
       results = repository.FindAll(spec);
 
       Assert.IsNotNull(results);
@@ -78,12 +93,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase04")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase04")]
     public void TestCase04_FindAllWithExpression_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase04\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase04");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue < 3 || td.NumericValue > 5);
       spec = spec.And(Specification.Not((TestDummy td) => !td.BooleanValue));
@@ -95,26 +115,29 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase05")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase05")]
     public void TestCase05_FindSingleWithExpression() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase05\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase05");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 7);
-      TestDummy result = repository.FindSingle(spec);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
+
+      TestDummy result = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 7));
 
       Assert.IsNotNull(result);
       Assert.AreEqual(3, result.RecordId);
-
-      spec = Specification.Lambda((TestDummy td) => td.NumericValue == 500);
-      result = repository.FindSingle(spec);
+      
+      result = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 500));
 
       Assert.IsNull(result);
 
       TestDummy defaultDummy = new TestDummy { RecordId = -25 };
-      result = repository.FindSingle(spec, defaultDummy);
+      result = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 500), defaultDummy);
 
       Assert.IsNotNull(result);
       Assert.AreSame(defaultDummy, result);
@@ -122,20 +145,24 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase06")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase06")]
     public void TestCase06_FindSingleWithExpression_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase06\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase06");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 7);
-      TestDummy result = repository.FindSingle(spec);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
+
+      TestDummy result = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 7));
 
       Assert.IsNull(result);
       
       TestDummy defaultDummy = new TestDummy { RecordId = -25 };
-      result = repository.FindSingle(spec, defaultDummy);
+      result = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 7), defaultDummy);
 
       Assert.IsNotNull(result);
       Assert.AreSame(defaultDummy, result);
@@ -143,26 +170,29 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase07")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase07")]
     public void TestCase07_FindFirstWithExpression() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase07\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase07");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 3);
-      TestDummy result = repository.FindFirst(spec);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
+
+      TestDummy result = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 3));
 
       Assert.IsNotNull(result);
       Assert.AreEqual(1, result.RecordId);
 
-      spec = Specification.Lambda((TestDummy td) => td.NumericValue == 500);
-      result = repository.FindFirst(spec);
+      result = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 500));
 
       Assert.IsNull(result);
 
       TestDummy defaultDummy = new TestDummy { RecordId = -25 };
-      result = repository.FindFirst(spec, defaultDummy);
+      result = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 500), defaultDummy);
 
       Assert.IsNotNull(result);
       Assert.AreSame(defaultDummy, result);
@@ -170,20 +200,24 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase08")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase08")]
     public void TestCase08_FindFirstWithExpression_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase08\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase08");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 7);
-      TestDummy result = repository.FindFirst(spec);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
+
+      TestDummy result = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 7));
 
       Assert.IsNull(result);
 
       TestDummy defaultDummy = new TestDummy { RecordId = -25 };
-      result = repository.FindFirst(spec, defaultDummy);
+      result = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 7), defaultDummy);
 
       Assert.IsNotNull(result);
       Assert.AreSame(defaultDummy, result);
@@ -193,12 +227,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
 
     #region Sorting test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase09")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase09")]
     public void TestCase09_RetrieveLessThenAvailable() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase09\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase09");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -245,12 +284,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase10")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase10")]
     public void TestCase10_RetrieveExactlyAvailable() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase10\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase10");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -267,12 +311,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation in combination with an empty file.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase11")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase11")]
     public void TestCase11_RetrieveExactlyAvailable_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase11\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase11");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -284,12 +333,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase12")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase12")]
     public void TestCase12_RetrieveMoreThenAvailable() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase12\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase12");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -306,12 +360,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation in combination with an empty file.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase13")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase13")]
     public void TestCase13_RetrieveMoreThenAvailable_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase13\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase13");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -322,12 +381,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase14")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase14")]
     public void TestCase14_OrderBy() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase14\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase14");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -344,7 +408,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
 
       specA.OrderBy((TestDummy td) => td.TextValue, SortOrder.Descending);
       results = repository.FindAll(specA);
-
+      
       Assert.AreEqual(6, results.Count());
       Assert.AreEqual("acfghij", results.First().TextValue, false);
       Assert.AreEqual("abefghi", results.Skip(1).First().TextValue, false);
@@ -355,12 +419,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase15")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase15")]
     public void TestCase15_OrderBy_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase15\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase15");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -378,23 +447,26 @@ namespace OscarBrouwer.Framework.Entities.Tests {
 
     #region Storage test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase16")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase16")]
     public void TestCase16_Add() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase16\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase16");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Add a new entity without saving changes or re-creating the repository */
       TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
       TestDummy addedDummy = repository.AddEntity(newDummy);
 
       Assert.IsNotNull(addedDummy);
-      Assert.IsTrue(addedDummy.RecordId < 0);
+      Assert.IsTrue(addedDummy.RecordId == 0);
 
-      Func<TestDummy, string> field = td => td.TextValue;
-      ISpecification<TestDummy> spec = Specification.Like((TestDummy td) => td.TextValue, "Ro?X");
-      TestDummy retrievedDummy = repository.FindSingle(spec);
+      TestDummy retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.TextValue == "RowX"));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
@@ -403,8 +475,9 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous added entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.TextValue == "RowX"));
 
       Assert.IsNull(retrievedDummy);
 
@@ -414,8 +487,8 @@ namespace OscarBrouwer.Framework.Entities.Tests {
 
       repository.SaveChanges();
 
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.TextValue == "RowX"));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
@@ -425,12 +498,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase17")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase17")]
     public void TestCase17_Update() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase17\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase17");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Update an entity without saving changes or re-creating the repository */
       TestDummy originalDummy = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 3));
@@ -449,7 +527,8 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(false, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.RecordId == 1));
 
       Assert.IsNotNull(retrievedDummy);
@@ -459,12 +538,13 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(false, retrievedDummy.BooleanValue);
 
       /* Update an entity followed by saving changes and re-creating the repository */
-      originalDummy.TextValue = "RowY";
+      retrievedDummy.TextValue = "RowY";
       updatedDummy = repository.UpdateEntity(originalDummy);
 
       repository.SaveChanges();
 
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.RecordId == 1));
 
       Assert.IsNotNull(retrievedDummy);
@@ -475,12 +555,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase18")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase18")]
     public void TestCase18_Delete() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase18\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase18");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Delete an entity without saving changes or re-creating the repository */
       TestDummy originalDummy = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 3));
@@ -491,7 +576,8 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
 
       /* Re-create the repository and try to retrieve previous deleted entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.RecordId == 1));
 
       Assert.IsNotNull(retrievedDummy);
@@ -505,7 +591,8 @@ namespace OscarBrouwer.Framework.Entities.Tests {
 
       repository.SaveChanges();
 
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue == false));
 
       Assert.IsNull(retrievedDummy);
@@ -514,12 +601,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
 
     #region Combined storage test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase19")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase19")]
     public void TestCase19_AddUpdate() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase19\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase19");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Add and then update an entity without saving changes or re-creating the repository */
       TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
@@ -529,8 +621,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.IsNotNull(updatedDummy);
       Assert.AreEqual(addedDummy.RecordId, updatedDummy.RecordId);
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 12);
-      TestDummy retrievedDummy = repository.FindSingle(spec);
+      TestDummy retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 12));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual(updatedDummy.RecordId, retrievedDummy.RecordId);
@@ -539,8 +630,9 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 12));
 
       Assert.IsNull(retrievedDummy);
 
@@ -553,7 +645,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* First retrieve without re-creating the repository */
-      retrievedDummy = repository.FindSingle(spec);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 12));
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
       Assert.AreEqual("RowY", retrievedDummy.TextValue, false);
@@ -561,8 +653,9 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 12));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
@@ -572,12 +665,17 @@ namespace OscarBrouwer.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase20")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase20")]
     public void TestCase20_AddUpdateDelete() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase20\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase20");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
 
       /* Add and then update and then delete an entity without saving changes or re-creating the repository */
       TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
@@ -586,8 +684,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       TestDummy updatedDummy = repository.UpdateEntity(addedDummy);
       repository.DeleteEntity(updatedDummy);
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 12);
-      TestDummy retrievedDummy = repository.FindSingle(spec);
+      TestDummy retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 12));
 
       Assert.IsNull(retrievedDummy);
       
@@ -601,38 +698,44 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* First retrieve without re-creating the repository */
-      retrievedDummy = repository.FindSingle(spec);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 12));
       Assert.IsNull(retrievedDummy);
       
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.NumericValue == 12));
 
       Assert.IsNull(retrievedDummy);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase21")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase21")]
     public void TestCase21_UpdateDelete() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase21\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase21");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.BooleanValue);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
+
       /* Retrieve and then update and delete an entity without saving changes or re-creating the repository */
-      TestDummy originalDummy = repository.FindSingle(spec);
+      TestDummy originalDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
       originalDummy.TextValue = "RowX";
       TestDummy updatedDummy = repository.UpdateEntity(originalDummy);
       repository.DeleteEntity(updatedDummy);
-      
-      TestDummy retrievedDummy = repository.FindSingle(spec);
+
+      TestDummy retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
       
       Assert.IsNull(retrievedDummy);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual("\"Row2\"", retrievedDummy.TextValue, false);
@@ -640,7 +743,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Update and delete an entity followed by saving changes and re-creating the repository */
-      originalDummy = repository.FindSingle(spec);
+      originalDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
       originalDummy.TextValue = "RowX";
       updatedDummy = repository.UpdateEntity(originalDummy);
       repository.DeleteEntity(updatedDummy);
@@ -648,36 +751,41 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* First retrieve without re-creating the repository */
-      retrievedDummy = repository.FindSingle(spec);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
       Assert.IsNull(retrievedDummy);
       
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
 
       Assert.IsNull(retrievedDummy);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase22")]
+    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase22")]
     public void TestCase22_DeleteAdd() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase22\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase22");
+      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
-      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.BooleanValue);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
+
       /* Delete and then add an entity without saving changes or re-creating the repository */
-      TestDummy originalDummy = repository.FindSingle(spec);
+      TestDummy originalDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
       repository.DeleteEntity(originalDummy);
 
       TestDummy newDummy = new TestDummy { TextValue = "\"Row2\"", NumericValue = 4, BooleanValue = true };
       TestDummy addedDummy = repository.AddEntity(newDummy);
 
       Assert.IsNotNull(addedDummy);
-      Assert.IsTrue(addedDummy.RecordId < 0);
+      Assert.IsTrue(addedDummy.RecordId == 0);
 
-      TestDummy retrievedDummy = repository.FindSingle(spec);
+      TestDummy retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual("\"Row2\"", retrievedDummy.TextValue, false);
@@ -685,8 +793,9 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual("\"Row2\"", retrievedDummy.TextValue, false);
@@ -694,7 +803,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Delete and add an entity followed by saving changes and re-creating the repository */
-      originalDummy = repository.FindSingle(spec);
+      originalDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
       repository.DeleteEntity(originalDummy);
       newDummy = new TestDummy { TextValue = "\"Row2\"", NumericValue = 4, BooleanValue = true };
       addedDummy = repository.AddEntity(newDummy);
@@ -702,7 +811,7 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* First retrieve without re-creating the repository */
-      retrievedDummy = repository.FindSingle(spec);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
       Assert.IsNotNull(retrievedDummy);
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual("\"Row2\"", retrievedDummy.TextValue, false);
@@ -710,8 +819,9 @@ namespace OscarBrouwer.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
-      retrievedDummy = repository.FindSingle(spec);
+      sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+      repository = new DatabaseRepository<TestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue));
 
       Assert.IsNotNull(retrievedDummy);
       Assert.IsNotNull(retrievedDummy);
