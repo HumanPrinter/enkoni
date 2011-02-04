@@ -1,32 +1,30 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CsvFileRepositoryTest.cs" company="Oscar Brouwer">
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
+// <copyright file="XmlFileRepositoryTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
-//     Contains testcases that test the functionality of the CsvRepository class.
+//     Contains testcases that test the functionality of the XmlRepository class.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Entities.Tests {
-  /// <summary>Tests the functionality of the <see cref="CsvFileRepository{TEntity}"/> class.</summary>
+  /// <summary>Tests the functionality of the <see cref="XmlFileRepository{TEntity}"/> class.</summary>
   [TestClass]
-  public class CsvFileRepositoryTest {
+  public class XmlFileRepositoryTest {
     #region Retrieve test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="XmlFileRepository{TEntity}"/> 
+    /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase01")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase01")]
     public void TestCase01_FindAll() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase01\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase01\ReposTest_InputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       IEnumerable<TestDummy> results = repository.FindAll();
 
@@ -37,13 +35,13 @@ namespace Enkoni.Framework.Entities.Tests {
       }
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="XmlFileRepository{TEntity}"/> 
+    /// implementation based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase02")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase02")]
     public void TestCase02_FindAll_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase02\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase02\ReposTest_EmptyInputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       IEnumerable<TestDummy> results = repository.FindAll();
 
@@ -51,16 +49,16 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase03")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase03")]
     public void TestCase03_FindAllWithExpression() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase03\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase03\ReposTest_InputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue < 3 || td.NumericValue > 5);
-      spec = spec.And(Specification.Not((TestDummy td) => td.BooleanValue == false));
+      spec = spec.And(Specification.Not((TestDummy td) => !td.BooleanValue));
       IEnumerable<TestDummy> results = repository.FindAll(spec);
 
       Assert.IsNotNull(results);
@@ -77,30 +75,29 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase04")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase04")]
     public void TestCase04_FindAllWithExpression_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase04\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase04\ReposTest_EmptyInputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue < 3 || td.NumericValue > 5);
       spec = spec.And(Specification.Not((TestDummy td) => !td.BooleanValue));
-
       IEnumerable<TestDummy> results = repository.FindAll(spec);
 
       Assert.IsNotNull(results);
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase05")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase05")]
     public void TestCase05_FindSingleWithExpression() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase05\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase05\ReposTest_InputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 7);
       TestDummy result = repository.FindSingle(spec);
@@ -121,13 +118,13 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase06")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase06")]
     public void TestCase06_FindSingleWithExpression_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase06\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase06\ReposTest_EmptyInputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 7);
       TestDummy result = repository.FindSingle(spec);
@@ -142,13 +139,13 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase07")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase07")]
     public void TestCase07_FindFirstWithExpression() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase07\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase07\ReposTest_InputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 3);
       TestDummy result = repository.FindFirst(spec);
@@ -169,13 +166,13 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="CsvFileRepository{TEntity}"/> implementation based on an empty file.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase08")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase08")]
     public void TestCase08_FindFirstWithExpression_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase08\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase08\ReposTest_EmptyInputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 7);
       TestDummy result = repository.FindFirst(spec);
@@ -193,12 +190,12 @@ namespace Enkoni.Framework.Entities.Tests {
 
     #region Sorting test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase09")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\TestCase09")]
     public void TestCase09_RetrieveLessThenAvailable() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase09\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase09\ReposTest_SortingFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -245,12 +242,12 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase10")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\TestCase10")]
     public void TestCase10_RetrieveExactlyAvailable() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase10\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase10\ReposTest_SortingFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -267,12 +264,12 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation in combination with an empty file.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase11")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase11")]
     public void TestCase11_RetrieveExactlyAvailable_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase11\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase11\ReposTest_EmptyInputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -284,12 +281,12 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase12")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\TestCase12")]
     public void TestCase12_RetrieveMoreThenAvailable() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase12\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase12\ReposTest_SortingFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -306,12 +303,12 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation in combination with an empty file.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase13")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase13")]
     public void TestCase13_RetrieveMoreThenAvailable_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase13\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase13\ReposTest_EmptyInputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -322,12 +319,12 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase14")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\TestCase14")]
     public void TestCase14_OrderBy() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase14\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase14\ReposTest_SortingFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -355,12 +352,12 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase15")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase15")]
     public void TestCase15_OrderBy_EmptyFile() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase15\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase15\ReposTest_EmptyInputFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Set maximumresults on top-most specification */
       ISpecification<TestDummy> specA = Specification.Lambda((TestDummy td) => td.TextValue.StartsWith("a"));
@@ -377,13 +374,13 @@ namespace Enkoni.Framework.Entities.Tests {
     #endregion
 
     #region Storage test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the <see cref="XmlFileRepository{TEntity}"/> 
+    /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase16")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase16")]
     public void TestCase16_Add() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase16\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase16\ReposTest_DataSourceFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Add a new entity without saving changes or re-creating the repository */
       TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
@@ -392,7 +389,6 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNotNull(addedDummy);
       Assert.IsTrue(addedDummy.RecordId < 0);
 
-      Func<TestDummy, string> field = td => td.TextValue;
       ISpecification<TestDummy> spec = Specification.Like((TestDummy td) => td.TextValue, "Ro?X");
       TestDummy retrievedDummy = repository.FindSingle(spec);
 
@@ -403,7 +399,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous added entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNull(retrievedDummy);
@@ -414,7 +410,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
       repository.SaveChanges();
 
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNotNull(retrievedDummy);
@@ -424,13 +420,13 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the <see cref="XmlFileRepository{TEntity}"/> 
+    /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase17")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase17")]
     public void TestCase17_Update() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase17\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase17\ReposTest_DataSourceFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Update an entity without saving changes or re-creating the repository */
       TestDummy originalDummy = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 3));
@@ -449,7 +445,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(false, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.RecordId == 1));
 
       Assert.IsNotNull(retrievedDummy);
@@ -464,7 +460,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
       repository.SaveChanges();
 
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.RecordId == 1));
 
       Assert.IsNotNull(retrievedDummy);
@@ -474,13 +470,13 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(false, retrievedDummy.BooleanValue);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the <see cref="XmlFileRepository{TEntity}"/> 
+    /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase18")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase18")]
     public void TestCase18_Delete() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase18\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase18\ReposTest_DataSourceFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Delete an entity without saving changes or re-creating the repository */
       TestDummy originalDummy = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 3));
@@ -491,7 +487,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
 
       /* Re-create the repository and try to retrieve previous deleted entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.RecordId == 1));
 
       Assert.IsNotNull(retrievedDummy);
@@ -505,7 +501,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
       repository.SaveChanges();
 
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(Specification.Lambda((TestDummy td) => td.BooleanValue == false));
 
       Assert.IsNull(retrievedDummy);
@@ -514,12 +510,12 @@ namespace Enkoni.Framework.Entities.Tests {
 
     #region Combined storage test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase19")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase19")]
     public void TestCase19_AddUpdate() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase19\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase19\ReposTest_DataSourceFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Add and then update an entity without saving changes or re-creating the repository */
       TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
@@ -539,7 +535,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNull(retrievedDummy);
@@ -561,7 +557,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNotNull(retrievedDummy);
@@ -572,12 +568,12 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase20")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase20")]
     public void TestCase20_AddUpdateDelete() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase20\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase20\ReposTest_DataSourceFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       /* Add and then update and then delete an entity without saving changes or re-creating the repository */
       TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
@@ -605,21 +601,22 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
       
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNull(retrievedDummy);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase21")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase21")]
     public void TestCase21_UpdateDelete() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase21\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase21\ReposTest_DataSourceFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.BooleanValue);
+
       /* Retrieve and then update and delete an entity without saving changes or re-creating the repository */
       TestDummy originalDummy = repository.FindSingle(spec);
       originalDummy.TextValue = "RowX";
@@ -631,7 +628,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNotNull(retrievedDummy);
@@ -652,19 +649,19 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
       
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNull(retrievedDummy);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="CsvFileRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="XmlFileRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase22")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase22")]
     public void TestCase22_DeleteAdd() {
-      DataSourceInfo sourceInfo = new CsvFileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase22\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8);
-      Repository<TestDummy> repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      DataSourceInfo sourceInfo = new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase22\ReposTest_DataSourceFile.xml"), true, 3000);
+      Repository<TestDummy> repository = new XmlFileRepository<TestDummy>(sourceInfo);
 
       ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.BooleanValue);
       /* Delete and then add an entity without saving changes or re-creating the repository */
@@ -685,7 +682,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous updated entity */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNotNull(retrievedDummy);
@@ -710,7 +707,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
 
       /* Then retrieve after re-creating the repository */
-      repository = new CsvFileRepository<TestDummy>(sourceInfo);
+      repository = new XmlFileRepository<TestDummy>(sourceInfo);
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNotNull(retrievedDummy);

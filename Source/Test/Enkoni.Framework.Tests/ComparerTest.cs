@@ -1,21 +1,19 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ComparerTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the Comparer-class.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {
-  /// <summary>This class defines the testcases that test the functionality of the <see cref="Comparer{T}"/> class.
-  /// </summary>
+  /// <summary>This class defines the testcases that test the functionality of the <see cref="Comparer{T}"/> class.</summary>
   [TestClass]
   public class ComparerTest {
-    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a 
-    /// first-level property.</summary>
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a first-level property.</summary>
     [TestMethod]
     public void TestCase01_FirstLevelPropertyAccess() {
       Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("TextValue");
@@ -50,8 +48,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(result < 0);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a 
-    /// second-level property.</summary>
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a second-level property.</summary>
     [TestMethod]
     public void TestCase02_SecondLevelPropertyAccess() {
       Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("Leaf.TextValue");
@@ -86,8 +83,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(result < 0);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a 
-    /// third-level property.</summary>
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a third-level property.</summary>
     [TestMethod]
     public void TestCase03_ThirdLevelPropertyAccess() {
       Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("Leaf.Leaf.TextValue");

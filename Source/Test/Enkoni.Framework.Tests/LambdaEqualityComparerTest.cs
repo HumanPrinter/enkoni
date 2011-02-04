@@ -1,21 +1,20 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="LambdaEqualityComparerTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the LambdaEqualityComparer-class.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {
-  /// <summary>This class defines the testcases that test the functionality of the 
-  /// <see cref="LambdaEqualityComparer{T,TField}"/> class.</summary>
+  /// <summary>This class defines the testcases that test the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class.</summary>
   [TestClass]
   public class LambdaEqualityComparerTest {
-    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
-    /// objects based on a first-level property.</summary>
+    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to objects based on a first-level 
+    /// property.</summary>
     [TestMethod]
     public void TestCase01_DirectPropertyAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.TextValue);
@@ -51,8 +50,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
-    /// objects based on a second-level property.</summary>
+    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to objects based on a 
+    /// second-level property.</summary>
     [TestMethod]
     public void TestCase02_TreePropertyAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.Leaf.TextValue);
@@ -88,8 +87,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
-    /// objects based on a first-level method.</summary>
+    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to objects based on a first-level 
+    /// method.</summary>
     [TestMethod]
     public void TestCase03_MethodAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.RetrieveTestValue());
@@ -107,8 +106,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsFalse(result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to 
-    /// objects based on a second-level method.</summary>
+    /// <summary>Tests the functionality of the <see cref="LambdaEqualityComparer{T,TField}"/> class when comparing to objects based on a 
+    /// second-level method.</summary>
     [TestMethod]
     public void TestCase04_TreeMethodAccess() {
       LambdaEqualityComparer<TestDummy, string> comparer = new LambdaEqualityComparer<TestDummy, string>(td => td.Leaf.RetrieveTestValue());

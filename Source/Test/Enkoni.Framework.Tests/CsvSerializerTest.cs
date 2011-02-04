@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvSerializerTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the CsvSerializer class.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase01")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase01")]
     public void TestCase01_Deserialize_Complete_DefaultEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase01\CsvTestInputFileWithHeaderUTF8.csv";
 
@@ -44,7 +44,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase02")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase02")]
     public void TestCase02_Deserialize_Complete_DefaultEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase02\CsvTestInputFileNoHeaderUTF8.csv";
 
@@ -63,7 +63,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase03")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase03")]
     public void TestCase03_Deserialize_Complete_CustomEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase03\CsvTestInputFileWithHeaderASCII.csv";
 
@@ -82,7 +82,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase04")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase04")]
     public void TestCase04_Deserialize_Complete_CustomEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase04\CsvTestInputFileNoHeaderASCII.csv";
 
@@ -101,7 +101,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase05")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase05")]
     public void TestCase05_Deserialize_Partial_DefaultEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase05\CsvTestInputFileWithHeaderUTF8.csv";
 
@@ -120,7 +120,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase06")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase06")]
     public void TestCase06_Deserialize_Partial_DefaultEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase06\CsvTestInputFileNoHeaderUTF8.csv";
 
@@ -139,7 +139,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase07")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase07")]
     public void TestCase07_Deserialize_Partial_CustomEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase07\CsvTestInputFileWithHeaderASCII.csv";
 
@@ -158,7 +158,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase08")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase08")]
     public void TestCase08_Deserialize_Partial_CustomEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase08\CsvTestInputFileNoHeaderASCII.csv";
 
@@ -179,19 +179,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase09")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase09")]
     public void TestCase09_Serialize_Complete_DefaultEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase09\CsvTestOutputFileWithHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase09\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
-      TestDummyWithHeader dummyA = new TestDummyWithHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      TestDummyWithHeader dummyB = new TestDummyWithHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      TestDummyWithHeader dummyC = new TestDummyWithHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      TestDummyWithHeader dummyD = new TestDummyWithHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      TestDummyWithHeader dummyE = new TestDummyWithHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      TestDummyWithHeader dummyF = new TestDummyWithHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      TestDummyWithHeader dummyA = new TestDummyWithHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      TestDummyWithHeader dummyB = new TestDummyWithHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      TestDummyWithHeader dummyC = new TestDummyWithHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      TestDummyWithHeader dummyD = new TestDummyWithHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      TestDummyWithHeader dummyE = new TestDummyWithHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      TestDummyWithHeader dummyF = new TestDummyWithHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);
@@ -214,19 +226,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase10")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase10")]
     public void TestCase10_Serialize_Complete_DefaultEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase10\CsvTestOutputFileNoHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase10\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
-      TestDummyNoHeader dummyA = new TestDummyNoHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      TestDummyNoHeader dummyB = new TestDummyNoHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      TestDummyNoHeader dummyC = new TestDummyNoHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      TestDummyNoHeader dummyD = new TestDummyNoHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      TestDummyNoHeader dummyE = new TestDummyNoHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      TestDummyNoHeader dummyF = new TestDummyNoHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      TestDummyNoHeader dummyA = new TestDummyNoHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      TestDummyNoHeader dummyB = new TestDummyNoHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      TestDummyNoHeader dummyC = new TestDummyNoHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      TestDummyNoHeader dummyD = new TestDummyNoHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      TestDummyNoHeader dummyE = new TestDummyNoHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      TestDummyNoHeader dummyF = new TestDummyNoHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);
@@ -249,19 +273,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase11")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase11")]
     public void TestCase11_Serialize_Complete_CustomEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase11\CsvTestOutputFileWithHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase11\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
-      TestDummyWithHeader dummyA = new TestDummyWithHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      TestDummyWithHeader dummyB = new TestDummyWithHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      TestDummyWithHeader dummyC = new TestDummyWithHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      TestDummyWithHeader dummyD = new TestDummyWithHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      TestDummyWithHeader dummyE = new TestDummyWithHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      TestDummyWithHeader dummyF = new TestDummyWithHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      TestDummyWithHeader dummyA = new TestDummyWithHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      TestDummyWithHeader dummyB = new TestDummyWithHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      TestDummyWithHeader dummyC = new TestDummyWithHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      TestDummyWithHeader dummyD = new TestDummyWithHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      TestDummyWithHeader dummyE = new TestDummyWithHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      TestDummyWithHeader dummyF = new TestDummyWithHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);
@@ -284,19 +320,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase12")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase12")]
     public void TestCase12_Serialize_Complete_CustomEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase12\CsvTestOutputFileNoHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase12\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
-      TestDummyNoHeader dummyA = new TestDummyNoHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      TestDummyNoHeader dummyB = new TestDummyNoHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      TestDummyNoHeader dummyC = new TestDummyNoHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      TestDummyNoHeader dummyD = new TestDummyNoHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      TestDummyNoHeader dummyE = new TestDummyNoHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      TestDummyNoHeader dummyF = new TestDummyNoHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      TestDummyNoHeader dummyA = new TestDummyNoHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      TestDummyNoHeader dummyB = new TestDummyNoHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      TestDummyNoHeader dummyC = new TestDummyNoHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      TestDummyNoHeader dummyD = new TestDummyNoHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      TestDummyNoHeader dummyE = new TestDummyNoHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      TestDummyNoHeader dummyF = new TestDummyNoHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);
@@ -319,19 +367,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase13")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase13")]
     public void TestCase13_Serialize_Partial_DefaultEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase13\CsvTestOutputFilePartialWithHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase13\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyWithHeader> collection = new List<PartialTestDummyWithHeader>();
-      PartialTestDummyWithHeader dummyA = new PartialTestDummyWithHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      PartialTestDummyWithHeader dummyB = new PartialTestDummyWithHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      PartialTestDummyWithHeader dummyC = new PartialTestDummyWithHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      PartialTestDummyWithHeader dummyD = new PartialTestDummyWithHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      PartialTestDummyWithHeader dummyE = new PartialTestDummyWithHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      PartialTestDummyWithHeader dummyF = new PartialTestDummyWithHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      PartialTestDummyWithHeader dummyA = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      PartialTestDummyWithHeader dummyB = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      PartialTestDummyWithHeader dummyC = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      PartialTestDummyWithHeader dummyD = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      PartialTestDummyWithHeader dummyE = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      PartialTestDummyWithHeader dummyF = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);
@@ -354,19 +414,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase14")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase14")]
     public void TestCase14_Serialize_Partial_DefaultEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase14\CsvTestOutputFilePartialNoHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase14\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyNoHeader> collection = new List<PartialTestDummyNoHeader>();
-      PartialTestDummyNoHeader dummyA = new PartialTestDummyNoHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      PartialTestDummyNoHeader dummyB = new PartialTestDummyNoHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      PartialTestDummyNoHeader dummyC = new PartialTestDummyNoHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      PartialTestDummyNoHeader dummyD = new PartialTestDummyNoHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      PartialTestDummyNoHeader dummyE = new PartialTestDummyNoHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      PartialTestDummyNoHeader dummyF = new PartialTestDummyNoHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      PartialTestDummyNoHeader dummyA = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      PartialTestDummyNoHeader dummyB = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      PartialTestDummyNoHeader dummyC = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      PartialTestDummyNoHeader dummyD = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      PartialTestDummyNoHeader dummyE = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      PartialTestDummyNoHeader dummyF = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);
@@ -389,19 +461,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderASCII.csv", @"CsvSerializerTest\TestCase15")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderASCII.csv", @"CsvSerializerTest\TestCase15")]
     public void TestCase15_Serialize_Partial_CustomEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase15\CsvTestOutputFilePartialWithHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase15\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyWithHeader> collection = new List<PartialTestDummyWithHeader>();
-      PartialTestDummyWithHeader dummyA = new PartialTestDummyWithHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      PartialTestDummyWithHeader dummyB = new PartialTestDummyWithHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      PartialTestDummyWithHeader dummyC = new PartialTestDummyWithHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      PartialTestDummyWithHeader dummyD = new PartialTestDummyWithHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      PartialTestDummyWithHeader dummyE = new PartialTestDummyWithHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      PartialTestDummyWithHeader dummyF = new PartialTestDummyWithHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      PartialTestDummyWithHeader dummyA = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      PartialTestDummyWithHeader dummyB = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      PartialTestDummyWithHeader dummyC = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      PartialTestDummyWithHeader dummyD = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      PartialTestDummyWithHeader dummyE = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      PartialTestDummyWithHeader dummyF = new PartialTestDummyWithHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);
@@ -424,19 +508,31 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderASCII.csv", @"CsvSerializerTest\TestCase16")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderASCII.csv", @"CsvSerializerTest\TestCase16")]
     public void TestCase16_Serialize_Partial_CustomEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase16\CsvTestOutputFilePartialNoHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase16\CsvTestOutputFile.csv";
       CreateOutputDir(outputPath);
 
       List<PartialTestDummyNoHeader> collection = new List<PartialTestDummyNoHeader>();
-      PartialTestDummyNoHeader dummyA = new PartialTestDummyNoHeader { ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F };
-      PartialTestDummyNoHeader dummyB = new PartialTestDummyNoHeader { ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F };
-      PartialTestDummyNoHeader dummyC = new PartialTestDummyNoHeader { ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F };
-      PartialTestDummyNoHeader dummyD = new PartialTestDummyNoHeader { ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F };
-      PartialTestDummyNoHeader dummyE = new PartialTestDummyNoHeader { ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F };
-      PartialTestDummyNoHeader dummyF = new PartialTestDummyNoHeader { ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F };
+      PartialTestDummyNoHeader dummyA = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+      };
+      PartialTestDummyNoHeader dummyB = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+      };
+      PartialTestDummyNoHeader dummyC = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+      };
+      PartialTestDummyNoHeader dummyD = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+      };
+      PartialTestDummyNoHeader dummyE = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+      };
+      PartialTestDummyNoHeader dummyF = new PartialTestDummyNoHeader {
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+      };
       collection.Add(dummyA);
       collection.Add(dummyB);
       collection.Add(dummyC);

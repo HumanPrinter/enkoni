@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="StaticMemoryRepositoryTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the MemoryRepository class using the StaticMemoryStore.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +18,8 @@ namespace Enkoni.Framework.Entities.Tests {
   [TestClass]
   public class StaticMemoryRepositoryTest {
     #region Retrieve test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="MemoryRepository{TEntity}"/> 
+    /// implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase01_FindAll() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -38,9 +37,8 @@ namespace Enkoni.Framework.Entities.Tests {
       }
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty 
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="MemoryRepository{TEntity}"/> 
+    /// implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase02_FindAll_EmptyFile() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -55,9 +53,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="MemoryRepository{TEntity}"/> implementation in combination with a 
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase03_FindAllWithExpression() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -84,9 +81,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase04_FindAllWithExpression_EmptyFile() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -103,9 +99,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="MemoryRepository{TEntity}"/> implementation in combination with a
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase05_FindSingleWithExpression() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -133,10 +128,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty
-    /// <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase06_FindSingleWithExpression_EmptyFile() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -158,9 +151,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="MemoryRepository{TEntity}"/> implementation in combination with a 
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase07_FindFirstWithExpression() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -188,9 +180,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty 
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase08_FindFirstWithExpression_EmptyFile() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -293,8 +284,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty 
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase11_RetrieveExactlyAvailable_EmptyFile() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -337,8 +327,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty 
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase13_RetrieveMoreThenAvailable_EmptyFile() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -356,8 +345,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase14_OrderBy() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -392,8 +380,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty
-    /// <see cref="StaticMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase15_OrderBy_EmptyFile() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -417,9 +404,8 @@ namespace Enkoni.Framework.Entities.Tests {
     #endregion
 
     #region Storage test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the <see cref="MemoryRepository{TEntity}"/> 
+    /// implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase16_Add() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -466,9 +452,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the <see cref="MemoryRepository{TEntity}"/> 
+    /// implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase17_Update() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -519,9 +504,8 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(false, retrievedDummy.BooleanValue);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the <see cref="MemoryRepository{TEntity}"/> 
+    /// implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase18_Delete() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -562,8 +546,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     #region Combined storage test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase19_AddUpdate() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -623,8 +606,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase20_AddUpdateDelete() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -666,8 +648,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase21_UpdateDelete() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -717,8 +698,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.
-    /// </summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void TestCase22_DeleteAdd() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();

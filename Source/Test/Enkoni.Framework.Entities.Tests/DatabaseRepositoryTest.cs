@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DatabaseRepositoryTest.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the DatabaseRepository class.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -21,10 +21,10 @@ namespace Enkoni.Framework.Entities.Tests {
   [TestClass]
   public class DatabaseRepositoryTest {
     #region Retrieve test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
+    /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase01")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase01")]
     public void TestCase01_FindAll() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase01");
@@ -43,10 +43,10 @@ namespace Enkoni.Framework.Entities.Tests {
       }
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
+    /// implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase02")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase02")]
     public void TestCase02_FindAll_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase02");
@@ -62,10 +62,10 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase03")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase03")]
     public void TestCase03_FindAllWithExpression() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase03");
@@ -92,10 +92,10 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method 
-    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase04")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase04")]
     public void TestCase04_FindAllWithExpression_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase04");
@@ -114,10 +114,10 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(0, results.Count());
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase05")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase05")]
     public void TestCase05_FindSingleWithExpression() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase05");
@@ -144,10 +144,10 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method 
-    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase06")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase06")]
     public void TestCase06_FindSingleWithExpression_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase06");
@@ -169,10 +169,10 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase07")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase07")]
     public void TestCase07_FindFirstWithExpression() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase07");
@@ -199,10 +199,10 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(-25, result.RecordId);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method 
-    /// using the <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase08")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase08")]
     public void TestCase08_FindFirstWithExpression_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase08");
@@ -229,7 +229,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase09")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase09")]
     public void TestCase09_RetrieveLessThenAvailable() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase09");
@@ -286,7 +286,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase10")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase10")]
     public void TestCase10_RetrieveExactlyAvailable() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase10");
@@ -313,7 +313,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase11")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase11")]
     public void TestCase11_RetrieveExactlyAvailable_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase11");
@@ -335,7 +335,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase12")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase12")]
     public void TestCase12_RetrieveMoreThenAvailable() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase12");
@@ -362,7 +362,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase13")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase13")]
     public void TestCase13_RetrieveMoreThenAvailable_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase13");
@@ -383,7 +383,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase14")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase14")]
     public void TestCase14_OrderBy() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase14");
@@ -421,7 +421,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase15")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase15")]
     public void TestCase15_OrderBy_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase15");
@@ -446,10 +446,10 @@ namespace Enkoni.Framework.Entities.Tests {
     #endregion
 
     #region Storage test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
+    /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase16")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase16")]
     public void TestCase16_Add() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase16");
@@ -500,7 +500,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase17")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase17")]
     public void TestCase17_Update() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase17");
@@ -557,7 +557,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase18")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase18")]
     public void TestCase18_Delete() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase18");
@@ -603,7 +603,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase19")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase19")]
     public void TestCase19_AddUpdate() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase19");
@@ -667,7 +667,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase20")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase20")]
     public void TestCase20_AddUpdateDelete() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase20");
@@ -712,7 +712,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase21")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase21")]
     public void TestCase21_UpdateDelete() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase21");
@@ -765,7 +765,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\OscarBrouwer.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase22")]
+    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase22")]
     public void TestCase22_DeleteAdd() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase22");
