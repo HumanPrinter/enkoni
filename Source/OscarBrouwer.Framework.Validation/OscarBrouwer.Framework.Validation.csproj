@@ -13,6 +13,8 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Enkoni.Framework.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +32,7 @@
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <DefineConstants>TRACE;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Enkoni.Framework.Validation.xml</DocumentationFile>
@@ -38,12 +40,6 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\OscarBrouwer.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\SolutionInfo.cs">
@@ -56,8 +52,8 @@
     <Compile Include="Validators\TimeSpanRangeValidatorAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\OscarBrouwer.pfx">
-      <Link>OscarBrouwer.pfx</Link>
+    <None Include="..\Enkoni.Framework.pfx">
+      <Link>Enkoni.Framework.pfx</Link>
     </None>
   </ItemGroup>
   <ItemGroup>

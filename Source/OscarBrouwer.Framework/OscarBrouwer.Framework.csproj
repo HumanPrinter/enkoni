@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\OscarBrouwer.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\Enkoni.Framework.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,7 +32,7 @@
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;CODE_ANALYSIS;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants>TRACE;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Enkoni.Framework.xml</DocumentationFile>
@@ -79,14 +79,12 @@
     <Compile Include="Workflow.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\OscarBrouwer.pfx">
-      <Link>OscarBrouwer.pfx</Link>
+    <None Include="..\Enkoni.Framework.pfx">
+      <Link>Enkoni.Framework.pfx</Link>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="CustomDictionary.xml">
-      <SubType>Designer</SubType>
-    </CodeAnalysisDictionary>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
