@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="BusinessRuleSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a Specification class that holds information about a special business rule that must be executed.
@@ -11,7 +11,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This class implements a specific Specification-type that holds information about a special businessrule.
   /// </summary>
   /// <typeparam name="T">The type of object to which the specification applies.</typeparam>

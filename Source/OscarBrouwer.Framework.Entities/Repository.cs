@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Repository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the generic functionality of a repository.
@@ -14,14 +14,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
+using Enkoni.Framework.Linq;
+using Enkoni.Framework.Validation;
+
 using LinqKit;
 
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 
-using OscarBrouwer.Framework.Linq;
-using OscarBrouwer.Framework.Validation;
-
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the API of a repository that is capable of accessing specific types in a 
   /// persistency.</summary>
   /// <typeparam name="T">The type of entity that is managed by the repository.</typeparam>

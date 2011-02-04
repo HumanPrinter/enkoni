@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DatabaseSourceInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a database datasource that is used by the DatabaseRepository.
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics.CodeAnalysis;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class can be used by the <see cref="DatabaseRepository{TEntity}"/> to retrieve valuable information about the 
   /// database that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the
   /// DatabaseRepository.</summary>

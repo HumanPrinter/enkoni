@@ -8,8 +8,8 @@
     <ProjectGuid>{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OscarBrouwer.Framework.Validation</RootNamespace>
-    <AssemblyName>OscarBrouwer.Framework.Validation</AssemblyName>
+    <RootNamespace>Enkoni.Framework.Validation</RootNamespace>
+    <AssemblyName>Enkoni.Framework.Validation</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -22,7 +22,7 @@
     <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\OscarBrouwer.Framework.Validation.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Enkoni.Framework.Validation.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -33,7 +33,7 @@
     <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\OscarBrouwer.Framework.Validation.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Enkoni.Framework.Validation.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>

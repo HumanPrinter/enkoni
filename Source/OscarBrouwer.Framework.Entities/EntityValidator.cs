@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="EntityValidator.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //    Holds the generic implementation of an entity validator.
@@ -11,7 +11,7 @@ using System;
 
 using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the public API of a class that can validate entities.</summary>
   /// <typeparam name="T">The type of entity that must be validated.</typeparam>
   public class EntityValidator<T> where T : class {

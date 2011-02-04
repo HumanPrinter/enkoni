@@ -1,17 +1,17 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="SimulatedHttpRequest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a simulated HTTP request that is used by the HttpContextHelper.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.IO;
 using System.Web.Hosting;
 
-namespace OscarBrouwer.Framework.Testing {
+namespace Enkoni.Framework.Testing {
   /// <summary>Used to simulate an HttpRequest.</summary>
   public class SimulatedHttpRequest : SimpleWorkerRequest {
     /// <summary>The simulated host.</summary>

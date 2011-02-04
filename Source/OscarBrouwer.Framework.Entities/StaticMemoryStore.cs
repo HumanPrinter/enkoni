@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="StaticMemoryStore.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that holds objects in a simple static variable.
@@ -9,7 +9,7 @@
 
 using System.Collections.Generic;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class implements the abstract class <see cref="MemoryStore{T}"/> using a simple static collection
   /// variable.</summary>
   /// <typeparam name="T">The type of object that is stored.</typeparam>

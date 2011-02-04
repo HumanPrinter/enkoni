@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Specification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the standard Specification class.
@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This class contains static members that would normally be part of the <see cref="Specification{T}"/> 
   /// class, but since that class is generic the static members are placed in this non-generic counterpart to avoid possible
   /// confussion about the use of the methods.</summary>

@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="AsyncResultVoid.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Type that can be used to return 'void' from an asynchronous operation.
@@ -10,7 +10,7 @@
 using System;
 using System.Threading;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>Represents the status of an asynchronous operation that returns void.</summary>
   public class AsyncResultVoid : IAsyncResult {
     #region Private constants

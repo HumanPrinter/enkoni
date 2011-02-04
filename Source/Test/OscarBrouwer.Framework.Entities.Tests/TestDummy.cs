@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TestDummy.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains a dummy class that is used by the repository testcases.
@@ -11,9 +11,9 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
-using OscarBrouwer.Framework.Serialization;
+using Enkoni.Framework.Serialization;
 
-namespace OscarBrouwer.Framework.Entities.Tests {
+namespace Enkoni.Framework.Entities.Tests {
   /// <summary>A helper class to support the testcases.</summary>
   [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot]
   public class TestDummy : IEntity<TestDummy>, ICloneable {

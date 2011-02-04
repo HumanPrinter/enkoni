@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Workflow.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the generic Workflow functionality.
@@ -10,7 +10,7 @@
 using System;
 using System.Threading;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>Represents a process or workflow that executes a defined task or set of tasks. This class provides the 
   /// basic logic to start, stop, pause and continue a workflow both synchronously and asynchronously.</summary>
   public abstract class Workflow : IWorkflow {

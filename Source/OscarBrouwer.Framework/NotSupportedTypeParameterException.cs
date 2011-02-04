@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="NotSupportedTypeParameterException.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a specific exceptiontype that can be used when an unsupported type parameter is used.
@@ -10,7 +10,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This exception can be thrown when a method or class definition is called with an unsupported type 
   /// parameter.</summary>
   [Serializable]

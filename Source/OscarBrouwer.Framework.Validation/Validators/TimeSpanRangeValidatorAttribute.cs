@@ -1,18 +1,18 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TimeSpanRangeValidatorAttribute.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains an attribute for the validation capabilities.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
-namespace OscarBrouwer.Framework.Validation.Validators {
+namespace Enkoni.Framework.Validation.Validators {
   /// <summary>Attribute to specify timespan range validation on a property, method or field.</summary>
   [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | 
     AttributeTargets.Parameter, AllowMultiple = true, Inherited = false)]
@@ -32,8 +32,8 @@ namespace OscarBrouwer.Framework.Validation.Validators {
     #endregion
 
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidatorAttribute"/> class with lower and 
-    /// upper bounds, and bound types.</summary>
+    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidatorAttribute"/> class with lower and upper bounds, and bound types.
+    /// </summary>
     /// <param name="lowerBound">The lower bound.</param>
     /// <param name="lowerBoundType">The bound type for the lower bound.</param>
     /// <param name="upperBound">The upper bound.</param>
@@ -47,8 +47,8 @@ namespace OscarBrouwer.Framework.Validation.Validators {
       this.upperBoundType = upperBoundType;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidatorAttribute"/> class with lower and 
-    /// upper bounds, and bound types.</summary>
+    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidatorAttribute"/> class with lower and upper bounds, and bound types.
+    /// </summary>
     /// <param name="lowerBound">An ISO8601 formatted string representing the lower bound, like "00:00:00".</param>
     /// <param name="lowerBoundType">The bound type for the lower bound.</param>
     /// <param name="upperBound">An ISO8601 formatted string representing the upper bound, like "00:00:00".</param>

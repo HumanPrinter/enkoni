@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Comparer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a class that can be used to compare a tree of objects.
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>Provides a generic implementation of <see cref="IComparer{T}"/> that is able to compare two objects 
   /// based on a specified fieldname, which can even be concatenated using the '.' character. The final field by which 
   /// the objects must be compared must implement the <c>CompareTo</c> method which is defined by the

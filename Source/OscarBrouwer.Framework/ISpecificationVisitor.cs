@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ISpecificationVisitor.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the basic specification-visitor API.
@@ -10,7 +10,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This interface describes the public API of a visitor class that can be used to visit a specification using
   /// the visitor Design Pattern.</summary>
   /// <typeparam name="T">The type of object that is ultimatilly selected using the specification.</typeparam>

@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="SubDomainModel.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a SubDomainModel type.
@@ -10,11 +10,11 @@
 using System;
 using System.Collections.Generic;
 
+using Enkoni.Framework.Validation;
+
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 
-using OscarBrouwer.Framework.Validation;
-
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the public API of a class that represents the subdomain of the domain model.
   /// </summary>
   /// <typeparam name="T">The type to which this subdomain applies.</typeparam>

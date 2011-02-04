@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DatabaseRepositoryInitializer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains a helper class that is used by the repository testcases.
@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Database;
 
-namespace OscarBrouwer.Framework.Entities.Tests {
+namespace Enkoni.Framework.Entities.Tests {
   /// <summary>The testcategories that are supported by the testinitializer.</summary>
   public enum TestCategory {
     /// <summary>Testcases that test the retrieve-functions of the repository.</summary>

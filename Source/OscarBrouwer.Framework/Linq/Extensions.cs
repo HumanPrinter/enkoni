@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Extensions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds numerous extension-methods that extend the standard .NET Linq capabilities.
@@ -13,7 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework.Linq {
+namespace Enkoni.Framework.Linq {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {
     #region IEnumerable<T> extension methods

@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ConfigurationException.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a specific exceptiontype that can be used when an configuration-related exception occurs.
@@ -11,7 +11,7 @@ using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This exception can be thrown when a problem with the configuration has been discovered.</summary>
   [Serializable]
   public class ConfigurationException : Exception {

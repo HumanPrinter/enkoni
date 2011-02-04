@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TimeSpanRangeValidatorTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the TimeSpanRangeValidator class.
@@ -8,15 +8,12 @@
 //--------------------------------------------------------------------------------------------------------------------------
 
 using System;
-
+using Enkoni.Framework.Validation.Validators;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using OscarBrouwer.Framework.Validation.Validators;
-
 using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
 
-namespace OscarBrouwer.Framework.Validation.Tests {
+namespace Enkoni.Framework.Validation.Tests {
   /// <summary>Tests the functionality of the <see cref="TimeSpanRangeValidator"/> and 
   /// <see cref="TimeSpanRangeValidatorAttribute"/> classes.</summary>
   [TestClass]
@@ -139,9 +136,9 @@ namespace OscarBrouwer.Framework.Validation.Tests {
       Assert.AreEqual(2, results.Count);
     }
 
-    [TestMethod]
     /// <summary>Tests the functionality of the <see cref="TimeSpanRangeValidator"/> class when applied to a non-TimeSpan 
     /// attribute.</summary>
+    [TestMethod]
     public void TestCase04_InvalidPropertyType(){
       TestDummy_InvalidPropertyType dummy = new TestDummy_InvalidPropertyType();
       dummy.TextValue = "00:30:00";

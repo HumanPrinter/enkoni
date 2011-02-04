@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="FileSourceInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a filebased datasource that is used by the FileRepository.
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class can be used by the <see cref="FileRepository{TEntity}"/> or any of its descendants to retrieve 
   /// valuable information about the file that is to be used. This class is added for improved usability of the 
   /// DataSourceInfo in combination with the FileRepository.</summary>

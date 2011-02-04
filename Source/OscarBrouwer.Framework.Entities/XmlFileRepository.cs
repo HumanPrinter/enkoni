@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="XmlFileRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that uses an XML-file as datasource.
@@ -12,7 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class extends the abstract <see cref="FileRepository{TEntity}"/> class and implements the 
   /// functionality to read and write from or to an XML-file.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>

@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DisposableServiceBehaviorAttribute.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds an attribute that can be used for disposable WCF service-implementations.
@@ -15,7 +15,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 
-namespace OscarBrouwer.Framework.ServiceModel {
+namespace Enkoni.Framework.ServiceModel {
   /// <summary>This behavior makes it possible to properly dispose a service instance upon release.</summary>
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class DisposableServiceBehaviorAttribute : Attribute, IServiceBehavior {

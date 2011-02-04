@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="GlobalSuppressions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the project's suppressions.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 // This file is used by Code Analysis to maintain SuppressMessage 
 // attributes that are applied to this project.
@@ -16,6 +16,3 @@
 // Error List, point to "Suppress Message(s)", and click 
 // "In Project Suppression File".
 // You do not need to add suppressions to this file manually.
-using System.Diagnostics.CodeAnalysis;
-
-[assembly: SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Scope = "member", Target = "OscarBrouwer.Framework.Testing.TestRepository`1.#SaveChangesCore(OscarBrouwer.Framework.Entities.DataSourceInfo)", Justification = "The code is well documented and therefore fine.")]

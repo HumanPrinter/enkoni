@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="LambdaSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a Specification class that uses a lambda-expression to define the desired specification.
@@ -10,7 +10,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This class implements a specific Specification-type that uses a lambda expression to define the desired 
   /// specification.</summary>
   /// <typeparam name="T">The type of object to which the specification applies.</typeparam>

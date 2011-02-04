@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="FileRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that uses a file as datasource.
@@ -13,9 +13,9 @@ using System.IO;
 using System.Linq;
 using System.Timers;
 
-using OscarBrouwer.Framework.Linq;
+using Enkoni.Framework.Linq;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the 
   /// functionality using basic file I/O. This implementation can be used a base for any fileformat-specific 
   /// filerepositories.</summary>

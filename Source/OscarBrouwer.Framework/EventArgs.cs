@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="EventArgs.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a generic EventArgs class.
@@ -9,7 +9,7 @@
 
 using System;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>Represents a generic type of <see cref="EventArgs"/> that holds a single value.</summary>
   /// <typeparam name="T">The type of the value that is passed with the event.</typeparam>
   public class EventArgs<T> : EventArgs {

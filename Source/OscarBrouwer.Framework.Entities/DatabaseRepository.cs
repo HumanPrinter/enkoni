@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DatabaseRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that uses the Entity Framework to communicate with a database.
@@ -13,11 +13,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
+using Enkoni.Framework.Linq;
+
 using LinqKit;
 
-using OscarBrouwer.Framework.Linq;
-
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the 
   /// functionality using the Entity Framework.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>

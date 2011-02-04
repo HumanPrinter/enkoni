@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Extensions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds some WCF related extension methods.
@@ -10,7 +10,7 @@
 using System;
 using System.ServiceModel;
 
-namespace OscarBrouwer.Framework.ServiceModel {
+namespace Enkoni.Framework.ServiceModel {
   /// <summary>This class contains some extension-methods that apply to ServiceModel-related types.</summary>
   public static class Extensions {
     /// <summary>Tries to gracefully close the clientobject. If this fails, it aborts the connection.</summary>

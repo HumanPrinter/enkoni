@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvRecordAttribute.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines an attribute that is used for the CSV (de)serialization capabilities.
@@ -10,7 +10,7 @@
 using System;
 using System.ComponentModel;
 
-namespace OscarBrouwer.Framework.Serialization {
+namespace Enkoni.Framework.Serialization {
   /// <summary>This attribute defines how an object must be serialized and deserialized to and from a CVS file.</summary>
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class CsvRecordAttribute : Attribute {

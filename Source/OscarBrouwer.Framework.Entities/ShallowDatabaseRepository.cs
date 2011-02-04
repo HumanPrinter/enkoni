@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ShallowDatabaseRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository with limited functionality.
@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class extends the <see cref="DatabaseRepository{TEntity}"/> class and implements some of the 
   /// functionality using the Entity Framework. The repository can be used for types that only need to be created, but not
   /// saved or retrieved as this is done by the parent-type's repository.</summary>

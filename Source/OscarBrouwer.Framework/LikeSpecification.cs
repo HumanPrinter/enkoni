@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="LikeSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a specificationtype that matches based on a string-pattern.
@@ -10,7 +10,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This class defines a specification type that matches using a string-pattern.</summary>
   /// <typeparam name="T">The type of object to which the specification applies.</typeparam>
   internal class LikeSpecification<T> : Specification<T> {

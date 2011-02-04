@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the project-wide metadata.
@@ -14,8 +14,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OscarBrouwer.Framewor.Entities.Tests")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Enkoni.Framewor.Entities.Tests")]
+[assembly: AssemblyDescription("Contains the testcases for the Enkoni.Framework.Entities assembly.")]
 [assembly: AssemblyConfiguration("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

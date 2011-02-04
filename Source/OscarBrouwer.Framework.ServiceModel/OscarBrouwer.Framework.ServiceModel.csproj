@@ -8,8 +8,8 @@
     <ProjectGuid>{364CAFCC-BB2B-4F31-AA7E-26562918664D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OscarBrouwer.Framework.ServiceModel</RootNamespace>
-    <AssemblyName>OscarBrouwer.Framework.ServiceModel</AssemblyName>
+    <RootNamespace>Enkoni.Framework.ServiceModel</RootNamespace>
+    <AssemblyName>Enkoni.Framework.ServiceModel</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
@@ -24,7 +24,7 @@
     <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\OscarBrouwer.Framework.ServiceModel.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Enkoni.Framework.ServiceModel.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -36,7 +36,7 @@
     <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\OscarBrouwer.Framework.ServiceModel.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Enkoni.Framework.ServiceModel.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>

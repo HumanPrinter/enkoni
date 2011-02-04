@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvSerializer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the class that is capable of (de)serializing CSV data.
@@ -16,7 +16,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace OscarBrouwer.Framework.Serialization {
+namespace Enkoni.Framework.Serialization {
   /// <summary>Serializes or deserializes a list of objects to and from a CSV file.</summary>
   /// <typeparam name="T">Type of the object that has to be serialized.</typeparam>
   public class CsvSerializer<T> where T : new() {

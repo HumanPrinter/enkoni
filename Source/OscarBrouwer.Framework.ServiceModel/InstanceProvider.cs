@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="InstanceProvider.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a type that is used by the Disposable WCF Service capabilities.
@@ -12,7 +12,7 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 
-namespace OscarBrouwer.Framework.ServiceModel {
+namespace Enkoni.Framework.ServiceModel {
   /// <summary>This class acts as a default instance provider except that it is able to dispose the service instances 
   /// upon release.</summary>
   public class InstanceProvider : IInstanceProvider {

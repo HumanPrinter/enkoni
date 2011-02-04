@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="MemorySourceInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a memory datasource that is used by the MemoryRepository.
@@ -12,7 +12,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class contains static members that would normally be part of the <see cref="MemorySourceInfo{T}"/> 
   /// class, but since that class is generic the static members are placed in this non-generic counterpart to avoid possible
   /// confussion about the use of the methods.</summary>

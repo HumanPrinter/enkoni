@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="MemoryStore.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Describes the basic API of a class that holds entities in memory.
@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the API of a class that holds a collection of objects in memory.</summary>
   /// <typeparam name="T">The type of object that is stored.</typeparam>
   public abstract class MemoryStore<T> where T : class {

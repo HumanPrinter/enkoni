@@ -9,8 +9,8 @@
     <ProjectGuid>{AC6B8CF0-972F-4F08-AA20-6490D18955F9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OscarBrouwer.Framework.Entities.Tests</RootNamespace>
-    <AssemblyName>OscarBrouwer.Framework.Entities.Tests</AssemblyName>
+    <RootNamespace>Enkoni.Framework.Entities.Tests</RootNamespace>
+    <AssemblyName>Enkoni.Framework.Entities.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\OscarBrouwer.Framework.Entities.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Enkoni.Framework.Entities.Tests.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\OscarBrouwer.Framework.Entities.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Enkoni.Framework.Entities.Tests.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

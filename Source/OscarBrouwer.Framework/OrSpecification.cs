@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="OrSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a Specificationtype that combines two specifications using an OR operation.
@@ -10,7 +10,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This class contains a specificationtype that combines two specifications using an OR operation.</summary>
   /// <typeparam name="T">The type of object that is ultimatilly selected by the specification.</typeparam>
   internal class OrSpecification<T> : CombinedSpecification<T> {

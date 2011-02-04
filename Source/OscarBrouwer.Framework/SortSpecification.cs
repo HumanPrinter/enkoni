@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="SortSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Implements the ISortSpecification interface.
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>Implements the <see cref="ISortSpecification{T}"/>.</summary>
   /// <typeparam name="T">The type of object that must be sorted.</typeparam>
   /// <typeparam name="TKey">The type of the key that is used to perform the sorting.</typeparam>

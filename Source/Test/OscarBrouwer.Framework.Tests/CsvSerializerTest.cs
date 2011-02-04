@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvSerializerTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the CsvSerializer class.
@@ -13,11 +13,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using Enkoni.Framework.Serialization;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using OscarBrouwer.Framework.Serialization;
-
-namespace OscarBrouwer.Framework.Tests {
+namespace Enkoni.Framework.Tests {
   /// <summary>This class defines the testcases that test the functionality of the CsvSerializer class.</summary>
   [TestClass]
   public class CsvSerializerTest {

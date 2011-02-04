@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that uses a WCF-service as datasource.
@@ -10,7 +10,7 @@
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the 
   /// functionality using WCF datacommunication. This implementation can be used a base for any WCF-service repositories.
   /// </summary>

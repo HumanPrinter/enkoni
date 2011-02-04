@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceSourceInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a servicebased datasource that is used by the ServiceRepository.
@@ -12,7 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class can be used by the <see cref="ServiceRepository{TEntity}"/> or any of its descendants to retrieve 
   /// valuable information about the service that is to be used. This class is added for improved usability of the 
   /// DataSourceInfo in combination with the ServiceRepository.</summary>

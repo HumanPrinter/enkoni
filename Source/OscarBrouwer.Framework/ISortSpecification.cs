@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ISortSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the basic sortspecification API.
@@ -10,7 +10,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>Defines a type that is able to sort a collection using the specificationsystem.</summary>
   /// <typeparam name="T">The type of object that must be sorted.</typeparam>
   internal interface ISortSpecification<T> {

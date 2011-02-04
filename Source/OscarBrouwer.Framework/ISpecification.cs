@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ISpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the basic selectspecification API.
@@ -10,7 +10,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This interface describes the public API of the classes that make up the specification subsystem that is
   /// implemented using the Specification Pattern.</summary>
   /// <typeparam name="T">The type of object that is ultimatilly selected by the specification.</typeparam>

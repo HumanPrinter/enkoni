@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="IDatabaseRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the basic IDatabaseRepository API.
@@ -9,7 +9,7 @@
 
 using System.Data.Entity;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This interface is used as a marker by the RepositoryFactory.</summary>
   public interface IDatabaseRepository {
     /// <summary>Replaces the current DbContext with the specified one. The current DbContext is first disposed.

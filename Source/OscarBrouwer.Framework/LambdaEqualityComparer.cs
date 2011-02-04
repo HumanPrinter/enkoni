@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="LambdaEqualityComparer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a comparer-class that is capable of comparing two objects using a lambda-expression.
@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This class compares types based on a field of the type. By using this class, it is no longer required to
   /// create a specific equality comparer to compare types using just one field.</summary>
   /// <typeparam name="T">The type of object that must be compared.</typeparam>

@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvFileRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that uses a CSV-file as datasource.
@@ -11,9 +11,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-using OscarBrouwer.Framework.Serialization;
+using Enkoni.Framework.Serialization;
 
-namespace OscarBrouwer.Framework.Entities {
+namespace Enkoni.Framework.Entities {
   /// <summary>This class extends the abstract <see cref="FileRepository{TEntity}"/> class and implements the 
   /// functionality to read and write from or to a CSV-file.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>

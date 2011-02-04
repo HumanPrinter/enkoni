@@ -8,8 +8,8 @@
     <ProjectGuid>{26D1BDC7-B2E8-4351-AD6B-5441F292320A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OscarBrouwer.Framework.Entities</RootNamespace>
-    <AssemblyName>OscarBrouwer.Framework.Entities</AssemblyName>
+    <RootNamespace>Enkoni.Framework.Entities</RootNamespace>
+    <AssemblyName>Enkoni.Framework.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
@@ -25,7 +25,7 @@
     <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\OscarBrouwer.Framework.Entities.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Enkoni.Framework.Entities.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -36,7 +36,7 @@
     <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\OscarBrouwer.Framework.Entities.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Enkoni.Framework.Entities.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>

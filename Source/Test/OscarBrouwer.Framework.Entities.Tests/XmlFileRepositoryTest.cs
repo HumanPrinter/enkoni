@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="XmlFileRepositoryTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the XmlRepository class.
@@ -13,7 +13,7 @@ using System.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace OscarBrouwer.Framework.Entities.Tests {
+namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of the <see cref="XmlFileRepository{TEntity}"/> class.</summary>
   [TestClass]
   public class XmlFileRepositoryTest {

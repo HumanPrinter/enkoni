@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="HttpSessionMemoryRepositoryTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the MemoryRepository class using the HttpSessionMemoryStore.
@@ -9,12 +9,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
+using Enkoni.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using OscarBrouwer.Framework.Testing;
-
-namespace OscarBrouwer.Framework.Entities.Tests {
+namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of the <see cref="MemoryRepository{TEntity}"/> class in combination with the 
   /// <see cref="HttpSessionMemoryStore{T}"/> class.</summary>
   [TestClass]

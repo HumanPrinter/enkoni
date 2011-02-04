@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CollectionExtensionTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the extension methods for the ICollection and IList-interfaces and
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace OscarBrouwer.Framework.Tests {
+namespace Enkoni.Framework.Tests {
   /// <summary>This class defines the testcases that test the functionality of the extension methods for the 
   /// <see cref="ICollection{T}"/> and <see cref="IList{T}"/> interfaces and the <see cref="List{T}"/> class.</summary>
   [TestClass]

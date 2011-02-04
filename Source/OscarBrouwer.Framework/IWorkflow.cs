@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="IWorkflow.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the basic workflow API.
@@ -9,7 +9,7 @@
 
 using System;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   #region Enumerations
   /// <summary>Contains the states in which a workflow can be. A workflow can only be in one state at a time.</summary>
   public enum WorkflowState {

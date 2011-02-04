@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="NotSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a Specification class that uses an inverted lambda-expression to define the desired specification.
@@ -10,7 +10,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace OscarBrouwer.Framework {
+namespace Enkoni.Framework {
   /// <summary>This class implements a specific Specification-type that uses a lambda expression to define the desired 
   /// specification. The expression must not be true in order for it to pass this specification.</summary>
   /// <typeparam name="T">The type of object to which the specification applies.</typeparam>
@@ -19,7 +19,7 @@ namespace OscarBrouwer.Framework {
     /// <summary>Initializes a new instance of the <see cref="NotSpecification{T}"/> class.</summary>
     /// <param name="function">The function that equals the search pattern that is implemented by the type.</param>
     internal NotSpecification(Expression<Func<T, bool>> function) {
-      this.Specification = OscarBrouwer.Framework.Specification.Lambda(function);
+      this.Specification = Enkoni.Framework.Specification.Lambda(function);
     }
 
     /// <summary>Initializes a new instance of the <see cref="NotSpecification{T}"/> class.</summary>

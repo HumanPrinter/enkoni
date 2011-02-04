@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="LinqExtensionTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2010. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the extension methods for the IEnumerable interface.
@@ -9,16 +9,16 @@
 
 using System.Collections.Generic;
 
+using Enkoni.Framework.Linq;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using OscarBrouwer.Framework.Linq;
-
-namespace OscarBrouwer.Framework.Tests {
+namespace Enkoni.Framework.Tests {
   /// <summary>This class defines the testcases that test the functionality of the extension methods for the 
   /// <see cref="IEnumerable{T}"/> interface.</summary>
   [TestClass]
   public class LinqExtensionTest {
-    /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> 
     /// extension method.</summary>
     [TestMethod]
     public void TestCase01_SingleOrDefault() {
@@ -46,7 +46,7 @@ namespace OscarBrouwer.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyB, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
     /// extension method.</summary>
     [TestMethod]
     public void TestCase02_ElementAtOrDefault() {
@@ -74,8 +74,8 @@ namespace OscarBrouwer.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyB, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> 
-    /// and <see cref="OscarBrouwer.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> 
+    /// and <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void TestCase03_FirstOrDefault() {
@@ -112,8 +112,8 @@ namespace OscarBrouwer.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyA, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> 
-    /// and <see cref="OscarBrouwer.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> 
+    /// and <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void TestCase04_LastOrDefault() {
@@ -150,7 +150,7 @@ namespace OscarBrouwer.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyE, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="OscarBrouwer.Framework.Linq.Extensions.ForEach{T}(IEnumerable{T}, System.Action{T})"/>  
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ForEach{T}(IEnumerable{T}, System.Action{T})"/>  
     /// extension method.</summary>
     [TestMethod]
     public void TestCase05_ForEach() {

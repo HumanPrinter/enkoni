@@ -28,7 +28,7 @@
       </Rules>
       <AnalyzerSettings>
         <StringProperty Name="CompanyName">Oscar Brouwer</StringProperty>
-        <StringProperty Name="Copyright">Copyright (c) Oscar Brouwer 2010. All rights reserved.</StringProperty>
+        <StringProperty Name="Copyright">Copyright (c) Oscar Brouwer 2011. All rights reserved.</StringProperty>
       </AnalyzerSettings>
     </Analyzer>
     <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.OrderingRules">
