@@ -34,11 +34,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Vali
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CA8AB7FC-D23A-4461-88CA-657C417AD4E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Tests", "Test\OscarBrouwer.Framework.Tests\OscarBrouwer.Framework.Tests.csproj", "{62E779EB-4AC3-4210-8E34-3C45B6FA0329}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Tests", "Test\Enkoni.Framework.Tests\Enkoni.Framework.Tests.csproj", "{62E779EB-4AC3-4210-8E34-3C45B6FA0329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities.Tests", "Test\OscarBrouwer.Framework.Entities.Tests\OscarBrouwer.Framework.Entities.Tests.csproj", "{AC6B8CF0-972F-4F08-AA20-6490D18955F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.Tests", "Test\OscarBrouwer.Framework.Entities.Tests\Enkoni.Framework.Entities.Tests.csproj", "{AC6B8CF0-972F-4F08-AA20-6490D18955F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Validation.Tests", "Test\OscarBrouwer.Framework.Validation.Tests\OscarBrouwer.Framework.Validation.Tests.csproj", "{0DD5B931-0066-4EF4-8196-4CA91C5BF95D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Validation.Tests", "Test\OscarBrouwer.Framework.Validation.Tests\Enkoni.Framework.Validation.Tests.csproj", "{0DD5B931-0066-4EF4-8196-4CA91C5BF95D}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
