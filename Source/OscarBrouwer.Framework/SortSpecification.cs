@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="SortSpecification.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Implements the ISortSpecification interface.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -26,8 +26,8 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="SortSpecification{T,TKey}"/> class using the ascending 
-    /// sortorder as default sort direction.</summary>
+    /// <summary>Initializes a new instance of the <see cref="SortSpecification{T,TKey}"/> class using the ascending sortorder as default sort 
+    /// direction.</summary>
     /// <param name="sortExpression">The expression that is used for the sorting.</param>
     internal SortSpecification(Expression<Func<T, TKey>> sortExpression)
       : this(sortExpression, SortOrder.Ascending) {

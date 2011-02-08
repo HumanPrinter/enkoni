@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="AsyncResultVoid.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Type that can be used to return 'void' from an asynchronous operation.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Threading;
@@ -44,10 +44,9 @@ namespace Enkoni.Framework {
 
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="AsyncResultVoid"/> class.</summary>
-    /// <param name="asyncCallback">The callback that is executed when the operation completes. Leave 
+    /// <param name="asyncCallback">The callback that is executed when the operation completes. Leave <see langword="null"/> if not used.</param>
+    /// <param name="state">A user-defined object that qualifies or contains information about an asynchronous operation. Leave 
     /// <see langword="null"/> if not used.</param>
-    /// <param name="state">A user-defined object that qualifies or contains information about an asynchronous operation.
-    /// Leave <see langword="null"/> if not used.</param>
     public AsyncResultVoid(AsyncCallback asyncCallback, object state) {
       this.asyncCallback = asyncCallback;
       this.asyncState = state;
@@ -64,8 +63,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Gets a user-defined object that qualifies or contains information about an asynchronous operation.
-    /// </summary>
+    /// <summary>Gets a user-defined object that qualifies or contains information about an asynchronous operation.</summary>
     public object AsyncState {
       get { return this.asyncState; }
     }
@@ -101,16 +99,14 @@ namespace Enkoni.Framework {
 
     #region Methods
     /// <summary>Sets the status of the asynchronous call to completed.</summary>
-    /// <param name="exception">The <see cref="Exception"/> that was thrown by the executed method. If no pendingException was 
-    /// thrown, pass a <see langword="null"/> reference.</param>
-    /// <param name="completedSynchronously"><c>True</c> if the asynchronous operation completed synchronously; otherwise,
-    /// <c>false</c>.</param>
-    /// <remarks>If the synchronous completion of the call is detected in the <see cref="AsyncCallback"/> delegate, it is
-    /// probable that the thread that initiated the asynchronous operation is the current thread.<br/>
+    /// <param name="exception">The <see cref="Exception"/> that was thrown by the executed method. If no pendingException was thrown, pass a 
+    /// <see langword="null"/> reference.</param>
+    /// <param name="completedSynchronously"><c>True</c> if the asynchronous operation completed synchronously; otherwise, <c>false</c>.</param>
+    /// <remarks>If the synchronous completion of the call is detected in the <see cref="AsyncCallback"/> delegate, it is probable that the thread 
+    /// that initiated the asynchronous operation is the current thread.<br/>
     /// <br/>
     /// <b>Notes to Implementers:</b><br/>
-    /// Most implementers of the <see cref="IAsyncResult"/> interface will not use this property and should return 
-    /// <see langword="false"/>.</remarks>
+    /// Most implementers of the <see cref="IAsyncResult"/> interface will not use this property and should return <see langword="false"/>.</remarks>
     public void SetAsCompleted(Exception exception, bool completedSynchronously) {
       /* Set the pending exception if any */
       this.pendingException = exception;

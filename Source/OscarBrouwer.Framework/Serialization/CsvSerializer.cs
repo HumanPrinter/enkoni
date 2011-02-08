@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvSerializer.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the class that is capable of (de)serializing CSV data.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -22,10 +22,9 @@ namespace Enkoni.Framework.Serialization {
   public class CsvSerializer<T> where T : new() {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="CsvSerializer{T}"/> class.</summary>
-    /// <exception cref="InvalidTypeParameterException">The specified type-parameter cannot be serialized using this 
-    /// serializer.</exception>
-    /// <exception cref="InvalidOperationException">The specified type-parameter contains illegal metadata that prevents it 
-    /// from being (de)serialized.</exception>
+    /// <exception cref="InvalidTypeParameterException">The specified type-parameter cannot be serialized using this serializer.</exception>
+    /// <exception cref="InvalidOperationException">The specified type-parameter contains illegal metadata that prevents it from being 
+    /// (de)serialized.</exception>
     public CsvSerializer() {
       this.ColumnNameMappings = new Dictionary<int, string>();
       this.PropertyDelegates = new Dictionary<int, Delegate>();
@@ -37,7 +36,9 @@ namespace Enkoni.Framework.Serialization {
       /* Get the CsvRecord attribute */
       CsvRecordAttribute recordAttr = Attribute.GetCustomAttribute(info, typeof(CsvRecordAttribute), false) as CsvRecordAttribute;
       if(recordAttr == null) {
-        throw new InvalidTypeParameterException("The specified type does not contain the CsvRecord-attribute. This attribute must be applied before it can be serialized to a CSV file.");
+        string message = "The specified type does not contain the CsvRecord-attribute. " +
+          "This attribute must be applied before it can be serialized to a CSV file.";
+        throw new InvalidTypeParameterException(message);
       }
 
       /* Get some properties of the attribute */
@@ -88,20 +89,16 @@ namespace Enkoni.Framework.Serialization {
     #endregion
 
     #region Properties
-    /// <summary>Gets the mappings of the columnnames. The dictionary uses the columnindex as key and columnname as value.
-    /// </summary>
+    /// <summary>Gets the mappings of the columnnames. The dictionary uses the columnindex as key and columnname as value.</summary>
     protected Dictionary<int, string> ColumnNameMappings { get; private set; }
 
-    /// <summary>Gets the delegates that give access to the properties of the instances that need to be serialized and 
-    /// deserialized.</summary>
+    /// <summary>Gets the delegates that give access to the properties of the instances that need to be serialized and deserialized.</summary>
     protected Dictionary<int, Delegate> PropertyDelegates { get; private set; }
 
-    /// <summary>Gets the mappings of the formatstrings. The dictionary uses the columnindex as key and formatstring as value.
-    /// </summary>
+    /// <summary>Gets the mappings of the formatstrings. The dictionary uses the columnindex as key and formatstring as value.</summary>
     protected Dictionary<int, string> FormatMappings { get; private set; }
 
-    /// <summary>Gets the mappings of the cultures. The dictionary uses the columnindex as key and culturename as value.
-    /// </summary>
+    /// <summary>Gets the mappings of the cultures. The dictionary uses the columnindex as key and culturename as value.</summary>
     protected Dictionary<int, string> CultureMappings { get; private set; }
 
     /// <summary>Gets or sets a value indicating whether a header-line must be included when serializing the objects.</summary>
@@ -118,28 +115,22 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Serializes a list of objects to a CSV file using a default encoding of UTF-8.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="filePath">The name of the outputfile.</param>
+    /// <returns>The number of bytes that have been written to the file.</returns>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
-    public void Serialize(IEnumerable<T> objects, string filePath) {
-      this.Serialize(objects, filePath, Encoding.UTF8);
+    public int Serialize(IEnumerable<T> objects, string filePath) {
+      return this.Serialize(objects, filePath, Encoding.UTF8);
     }
 
     /// <summary>Serializes a list of objects to a CSV file.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="filePath">The name of the outputfile.</param>
     /// <param name="encoding">The encoding that must be used to serialize the data.</param>
+    /// <returns>The number of bytes that have been written to the file.</returns>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
-    public void Serialize(IEnumerable<T> objects, string filePath, Encoding encoding) {
+    public int Serialize(IEnumerable<T> objects, string filePath, Encoding encoding) {
       /* Validate the parameters */
-      if(objects == null) {
-        throw new ArgumentNullException("objects", "The parameter cannot be null.");
-      }
-
       if(filePath == null) {
         throw new ArgumentNullException("filePath", "The parameter cannot be null.");
-      }
-
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding", "The parameter cannot be null.");
       }
 
       /* The check for null and empty can be combined into one test, but this approach allows for more fine-grained 
@@ -153,26 +144,34 @@ namespace Enkoni.Framework.Serialization {
         throw new ArgumentException("The filepath contains illegal characters.", "filePath");
       }
 
-      string output = this.Serialize(objects);
+      int byteCount = -1;
+      using(StreamWriter fileWriter = new StreamWriter(filePath, false, encoding)) {
+        /* Write an empty string to the stream. This enforces the output of the encoding-bytes for the fileheader */
+        fileWriter.Write(string.Empty);
+        fileWriter.Flush();
 
-      File.WriteAllText(filePath, output, encoding);
+        byteCount = this.Serialize(objects, fileWriter.BaseStream, encoding);
+      }
+
+      return byteCount;
     }
 
-    /// <summary>Serializes a list of objects to a CSV format and writes the data to a stream using a default encoding of
-    /// UTF-8.</summary>
+    /// <summary>Serializes a list of objects to a CSV format and writes the data to a stream using a default encoding of UTF-8.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="stream">The name of the outputfile.</param>
+    /// <returns>The number of bytes that have been written to the stream.</returns>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
-    public void Serialize(IEnumerable<T> objects, Stream stream) {
-      this.Serialize(objects, stream, Encoding.UTF8);
+    public int Serialize(IEnumerable<T> objects, Stream stream) {
+      return this.Serialize(objects, stream, Encoding.UTF8);
     }
 
     /// <summary>Serializes a list of objects to a CSV format and writes the data to a stream.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="stream">The name of the outputfile.</param>
     /// <param name="encoding">The encoding that must be used to serialize the data.</param>
+    /// <returns>The number of bytes that have been written to the stream.</returns>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
-    public void Serialize(IEnumerable<T> objects, Stream stream, Encoding encoding) {
+    public int Serialize(IEnumerable<T> objects, Stream stream, Encoding encoding) {
       /* Validate the parameters */
       if(objects == null) {
         throw new ArgumentNullException("objects", "The parameter cannot be null.");
@@ -191,10 +190,10 @@ namespace Enkoni.Framework.Serialization {
       }
 
       string output = this.Serialize(objects);
+      byte[] outputAsBytes = encoding.GetBytes(output);
+      stream.Write(outputAsBytes, 0, outputAsBytes.Length);
 
-      StreamWriter writer = new StreamWriter(stream, encoding);
-      writer.Write(output);
-      /* The writer is not closed here, because that would also close the underlying stream */  
+      return outputAsBytes.Length;
     }
 
     /// <summary>Deserializes a CSV to a list of objects using a default encoding of UTF-8.</summary>
@@ -267,15 +266,15 @@ namespace Enkoni.Framework.Serialization {
         lines.Add(reader.ReadLine());
       }
 
-      /* The writer is not closed here, because that would also close the underlying stream */  
+      /* The reader is not closed here, because that would also close the underlying stream */  
 
       return this.Deserialize(lines);
     }
     #endregion
 
     #region Protected methods
-    /// <summary>Serializes the collection of objects to a string in which all lines are seperated using the line-terminator 
-    /// for the current environment.</summary>
+    /// <summary>Serializes the collection of objects to a string in which all lines are seperated using the line-terminator for the current 
+    /// environment.</summary>
     /// <param name="objects">The objects that must be serialized.</param>
     /// <returns>The string representation of the collection of objects.</returns>
     protected virtual string Serialize(IEnumerable<T> objects) {
@@ -389,8 +388,7 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="value">The value that must be assigned.</param>
     /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
     /// <param name="cultureName">An optional culture-name that can be used to properly parse the value.</param>
-    /// <exception cref="NotSupportedException">The type of the property that must be assigned is not supported.
-    /// </exception>
+    /// <exception cref="NotSupportedException">The type of the property that must be assigned is not supported.</exception>
     private static void SetPropertyValue(PropertyInfo propertyInfo, T obj, string value, string formatString, string cultureName) {
       CultureInfo culture = CultureInfo.InvariantCulture;
       if(cultureName != null) {

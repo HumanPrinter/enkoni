@@ -1,20 +1,19 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Specification.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the standard Specification class.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
-  /// <summary>This class contains static members that would normally be part of the <see cref="Specification{T}"/> 
-  /// class, but since that class is generic the static members are placed in this non-generic counterpart to avoid possible
-  /// confussion about the use of the methods.</summary>
+  /// <summary>This class contains static members that would normally be part of the <see cref="Specification{T}"/> class, but since that class is 
+  /// generic the static members are placed in this non-generic counterpart to avoid possible confussion about the use of the methods.</summary>
   public static class Specification {
     #region Public static method
     /// <summary>Creates a specification that will return all available objects.</summary>
@@ -39,9 +38,9 @@ namespace Enkoni.Framework {
       return new LambdaSpecification<T>(expression);
     }
 
-    /// <summary>Creates a specification that will return the objects for which the specified field matches the specified 
-    /// pattern. The pattern supports two types of wildcards. The '*' wildcard matches any character (zero or more times)
-    /// and the '?' wildcard matches exactly one character.</summary>
+    /// <summary>Creates a specification that will return the objects for which the specified field matches the specified pattern. The pattern 
+    /// supports two types of wildcards. The '*' wildcard matches any character (zero or more times) and the '?' wildcard matches exactly one 
+    /// character.</summary>
     /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
     /// <param name="field">The field that must match the expression.</param>
     /// <param name="pattern">The search-pattern.</param>
@@ -83,15 +82,13 @@ namespace Enkoni.Framework {
       Justification = "Since the static class is merely a container for the static members of the non-static class, they can be in the same file")]
   public abstract class Specification<T> : ISpecification<T> {
     #region Private event-delegates
-    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one 
-    /// handler.</summary>
+    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one handler.</summary>
     private EventHandler<EventArgs<int>> maxResultsUpdated;
 
     /// <summary>Indicates if there is a change-event pending.</summary>
     private bool maxResultsChangePending;
 
-    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one
-    /// handler.</summary>
+    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one handler.</summary>
     private EventHandler<SortSpecificationsEventArgs<T>> sortRulesUpdated;
 
     /// <summary>Indicates if there is a change-event pending.</summary>
@@ -206,8 +203,8 @@ namespace Enkoni.Framework {
       return this;
     }
 
-    /// <summary>Creates an 'And' specification that can be used to combine two specifications and compare them using the
-    /// '&amp;&amp;' operation.</summary>
+    /// <summary>Creates an 'And' specification that can be used to combine two specifications and compare them using the '&amp;&amp;' operation.
+    /// </summary>
     /// <param name="specification">The specification that must be combined.</param>
     /// <returns>The combined specification.</returns>
     public virtual ISpecification<T> And(ISpecification<T> specification) {
@@ -218,8 +215,7 @@ namespace Enkoni.Framework {
       return new AndSpecification<T>(this, specification);
     }
 
-    /// <summary>Creates an 'Or' specification that can be used to combine two specifications and compare them using
-    /// the '||' operation.</summary>
+    /// <summary>Creates an 'Or' specification that can be used to combine two specifications and compare them using the '||' operation.</summary>
     /// <param name="specification">The specification that must be combined.</param>
     /// <returns>The combined specification.</returns>
     public virtual ISpecification<T> Or(ISpecification<T> specification) {
@@ -230,8 +226,8 @@ namespace Enkoni.Framework {
       return new OrSpecification<T>(this, specification);
     }
 
-    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into
-    /// an expression that can be used to perform the actual filtering/selection.</summary>
+    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can 
+    /// be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
     /// <exception cref="ArgumentNullException">Parameter is <see langword="null"/>.</exception>
@@ -269,8 +265,8 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Extendibility methods
-    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into
-    /// an expression that can be used to perform the actual filtering/selection.</summary>
+    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can 
+    /// be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
     protected abstract Expression<Func<T, bool>> VisitCore(ISpecificationVisitor<T> visitor);

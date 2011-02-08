@@ -1,19 +1,18 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="BusinessRuleSpecification.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a Specification class that holds information about a special business rule that must be executed.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
-  /// <summary>This class implements a specific Specification-type that holds information about a special businessrule.
-  /// </summary>
+  /// <summary>This class implements a specific Specification-type that holds information about a special businessrule.</summary>
   /// <typeparam name="T">The type of object to which the specification applies.</typeparam>
   public class BusinessRuleSpecification<T> : Specification<T> {
     #region Constructor
@@ -39,12 +38,14 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Specification-overrides
-    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into
-    /// an expression that can be used to perform the actual filtering/selection.</summary>
+    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can 
+    /// be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
     protected override Expression<Func<T, bool>> VisitCore(ISpecificationVisitor<T> visitor) {
-      throw new InvalidOperationException("A business rule cannot be converted to a lambda-expression. This exception is normally caused by a fault in the Repository-class.");
+      string message = "A business rule cannot be converted to a lambda-expression. " +
+        "This exception is normally caused by a fault in the Repository-class.";
+      throw new InvalidOperationException(message);
     }
     #endregion
   }

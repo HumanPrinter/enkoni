@@ -1,30 +1,30 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Workflow.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the generic Workflow functionality.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Threading;
 
 namespace Enkoni.Framework {
-  /// <summary>Represents a process or workflow that executes a defined task or set of tasks. This class provides the 
-  /// basic logic to start, stop, pause and continue a workflow both synchronously and asynchronously.</summary>
+  /// <summary>Represents a process or workflow that executes a defined task or set of tasks. This class provides the basic logic to start, stop, 
+  /// pause and continue a workflow both synchronously and asynchronously.</summary>
   public abstract class Workflow : IWorkflow {
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="Workflow"/> class. It sets the state to the initial value
-    /// of <see cref="WorkflowState.Init"/>.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Workflow"/> class. It sets the state to the initial value of 
+    /// <see cref="WorkflowState.Init"/>.</summary>
     protected Workflow() {
       this.State = WorkflowState.Init;
     }
     #endregion
 
     #region Properties
-    /// <summary>Gets a value indicating whether the workflow is able to pause and continue its internal processes. By
-    /// default, a <b>Workflow</b> cannot be paused or continued.</summary>
+    /// <summary>Gets a value indicating whether the workflow is able to pause and continue its internal processes. By default, a <b>Workflow</b> 
+    /// cannot be paused or continued.</summary>
     public virtual bool CanPauseAndContinue {
       get { return false; }
     }
@@ -35,9 +35,8 @@ namespace Enkoni.Framework {
 
     #region Workflow Synchronous Methods
     /// <summary>Tries to start the workflow. It blocks untill the workflow is started.</summary>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when 
-    /// the workflow is in the state <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be
-    /// started.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be started.</exception>
     public void Start() {
       if(this.State == WorkflowState.Init || this.State == WorkflowState.Stopped) {
         /* Set the state to indicate that the workflow is starting. */
@@ -61,9 +60,9 @@ namespace Enkoni.Framework {
     }
 
     /// <summary>Tries to stop the workflow. It blocks untill the workflow is stopped.</summary>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when 
-    /// the workflow is in the state <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or 
-    /// <see cref="WorkflowState.Continued"/>, it can be stopped.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or <see cref="WorkflowState.Continued"/>, it can be stopped.
+    /// </exception>
     public void Stop() {
       if(this.State == WorkflowState.Started || this.State == WorkflowState.Pausing ||
         this.State == WorkflowState.Continued) {
@@ -89,9 +88,8 @@ namespace Enkoni.Framework {
 
     /// <summary>Tries to pause the workflow. It blocks untill the workflow is paused.</summary>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and resuming.</exception>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when
-    /// the workflow is in the state <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can 
-    /// be paused.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</exception>
     /// <seealso cref="P:CanPauseAndContinue"/>
     public void Pause() {
       if(this.CanPauseAndContinue) {
@@ -122,8 +120,8 @@ namespace Enkoni.Framework {
 
     /// <summary>Tries to continue the workflow. It blocks untill the workflow is continued.</summary>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and continuing.</exception>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when 
-    /// the workflow is in the state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when the workflow is in the 
+    /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
     /// <seealso cref="P:CanPauseAndContinue"/>
     public void Continue() {
       if(this.CanPauseAndContinue) {
@@ -156,8 +154,7 @@ namespace Enkoni.Framework {
     #region Workflow Asynchronous Methods
     /// <summary>Begins to start the workflow.</summary>
     /// <param name="callback">The method to be called when the asynchronous start operation is completed.</param>
-    /// <param name="state">A user-provided object that distinguishes this particular asynchronous start request from 
-    /// other requests.</param>
+    /// <param name="state">A user-provided object that distinguishes this particular asynchronous start request from other requests.</param>
     /// <returns>An <see cref="IAsyncResult"/> that references the asynchronous start.</returns>
     public IAsyncResult BeginStart(AsyncCallback callback, object state) {
       AsyncResultVoid result = new AsyncResultVoid(callback, state);
@@ -167,9 +164,8 @@ namespace Enkoni.Framework {
 
     /// <summary>Waits for the pending asynchronous start to complete.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when 
-    /// the workflow is in the state <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be
-    /// started.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be started.</exception>
     public void EndStart(IAsyncResult asyncResult) {
       if(asyncResult == null) {
         throw new ArgumentNullException("asyncResult");
@@ -186,8 +182,7 @@ namespace Enkoni.Framework {
 
     /// <summary>Begins to stop the workflow.</summary>
     /// <param name="callback">The method to be called when the asynchronous stop operation is completed.</param>
-    /// <param name="state">A user-provided object that distinguishes this particular asynchronous stop request from 
-    /// other requests.</param>
+    /// <param name="state">A user-provided object that distinguishes this particular asynchronous stop request from other requests.</param>
     /// <returns>An <see cref="IAsyncResult"/> that references the asynchronous stop.</returns>
     public IAsyncResult BeginStop(AsyncCallback callback, object state) {
       AsyncResultVoid result = new AsyncResultVoid(callback, state);
@@ -197,9 +192,8 @@ namespace Enkoni.Framework {
 
     /// <summary>Waits for the pending asynchronous stop to complete.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when 
-    /// the workflow is in the state <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or 
-    /// <see cref="WorkflowState.Continued"/>, it can be stopped.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or <see cref="WorkflowState.Continued"/>, it can be stopped.</exception>
     public void EndStop(IAsyncResult asyncResult) {
       if(asyncResult == null) {
         throw new ArgumentNullException("asyncResult");
@@ -216,8 +210,7 @@ namespace Enkoni.Framework {
 
     /// <summary>Begins to pause the workflow.</summary>
     /// <param name="callback">The method to be called when the asynchronous pause operation is completed.</param>
-    /// <param name="state">A user-provided object that distinguishes this particular asynchronous pause request from 
-    /// other requests.</param>
+    /// <param name="state">A user-provided object that distinguishes this particular asynchronous pause request from other requests.</param>
     /// <returns>An <see cref="IAsyncResult"/> that references the asynchronous pause.</returns>
     public IAsyncResult BeginPause(AsyncCallback callback, object state) {
       AsyncResultVoid result = new AsyncResultVoid(callback, state);
@@ -228,9 +221,8 @@ namespace Enkoni.Framework {
     /// <summary>Waits for the pending asynchronous pause to complete.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and resuming.</exception>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when 
-    /// the workflow is in the state <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can 
-    /// be paused.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</exception>
     /// <seealso cref="P:CanPauseAndContinue"/>
     public void EndPause(IAsyncResult asyncResult) {
       if(asyncResult == null) {
@@ -248,8 +240,7 @@ namespace Enkoni.Framework {
 
     /// <summary>Begins to continue the workflow.</summary>
     /// <param name="callback">The method to be called when the asynchronous continue operation is completed.</param>
-    /// <param name="state">A user-provided object that distinguishes this particular asynchronous continue request 
-    /// from other requests.</param>
+    /// <param name="state">A user-provided object that distinguishes this particular asynchronous continue request from other requests.</param>
     /// <returns>An <see cref="IAsyncResult"/> that references the asynchronous continue.</returns>
     public IAsyncResult BeginContinue(AsyncCallback callback, object state) {
       AsyncResultVoid result = new AsyncResultVoid(callback, state);
@@ -260,8 +251,8 @@ namespace Enkoni.Framework {
     /// <summary>Waits for the pending asynchronous continue to complete.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and continuing.</exception>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only 
-    /// when the workflow is in the state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when the workflow is in the 
+    /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
     /// <seealso cref="P:CanPauseAndContinue"/>
     public void EndContinue(IAsyncResult asyncResult) {
       if(asyncResult == null) {
@@ -279,54 +270,45 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Protected methods
-    /// <summary>Contains the actual start-up logic. The default implementation is empty, subclasses will have to 
-    /// provide the implementation by overriding this method. Implementers of this method do not have to check the 
-    /// state of the workflow or change the state of the workflow as this is already done by the public 
-    /// <see cref="Start()"/> method.</summary>
-    /// <remarks>If the implementer detects a situation in which it cannot be started, it should throw an 
-    /// <see cref="InvalidOperationException"/>. This will cause the <b>Workflow</b> to move to the 
-    /// <see cref="WorkflowState.Faulted"/> state.</remarks>
+    /// <summary>Contains the actual start-up logic. The default implementation is empty, subclasses will have to provide the implementation by 
+    /// overriding this method. Implementers of this method do not have to check the state of the workflow or change the state of the workflow as 
+    /// this is already done by the public <see cref="Start()"/> method.</summary>
+    /// <remarks>If the implementer detects a situation in which it cannot be started, it should throw an <see cref="InvalidOperationException"/>. 
+    /// This will cause the <b>Workflow</b> to move to the <see cref="WorkflowState.Faulted"/> state.</remarks>
     protected virtual void OnStart() {
       /* Empty implementation. Implementation is to be provided by the subclasses. */
     }
 
-    /// <summary>Contains the actual stop logic. The default implementation is empty, subclasses will have to provide
-    /// the implementation by overriding this method. Implementers of this method do not have to check the state of the
-    /// workflow or change the state of the workflow as this is already done by the public <see cref="Stop()"/> 
-    /// method.</summary>
-    /// <remarks>If the implementer detects a situation in which it cannot be stopped, it should throw an 
-    /// <see cref="InvalidOperationException"/>. This will cause the <b>Workflow</b> to move to the 
-    /// <see cref="WorkflowState.Faulted"/> state.</remarks>
+    /// <summary>Contains the actual stop logic. The default implementation is empty, subclasses will have to provide the implementation by 
+    /// overriding this method. Implementers of this method do not have to check the state of the workflow or change the state of the workflow as 
+    /// this is already done by the public <see cref="Stop()"/> method.</summary>
+    /// <remarks>If the implementer detects a situation in which it cannot be stopped, it should throw an <see cref="InvalidOperationException"/>. 
+    /// This will cause the <b>Workflow</b> to move to the <see cref="WorkflowState.Faulted"/> state.</remarks>
     protected virtual void OnStop() {
       /* Empty implementation. Implementation is to be provided by the subclasses. */
     }
 
-    /// <summary>Contains the actual pause logic. The default implementation is empty, subclasses will have to provide
-    /// the implementation by overriding this method. Implementers of this method do not have to check the state of the
-    /// workflow or change the state of the workflow as this is already done by the public <see cref="Pause()"/>
-    /// method.</summary>
-    /// <remarks>If the implementer detects a situation in which it cannot be paused, it should throw an 
-    /// <see cref="InvalidOperationException"/>. This will cause the <b>Workflow</b> to move to the 
-    /// <see cref="WorkflowState.Faulted"/> state.</remarks>
+    /// <summary>Contains the actual pause logic. The default implementation is empty, subclasses will have to provide the implementation by 
+    /// overriding this method. Implementers of this method do not have to check the state of the workflow or change the state of the workflow as 
+    /// this is already done by the public <see cref="Pause()"/> method.</summary>
+    /// <remarks>If the implementer detects a situation in which it cannot be paused, it should throw an <see cref="InvalidOperationException"/>. 
+    /// This will cause the <b>Workflow</b> to move to the <see cref="WorkflowState.Faulted"/> state.</remarks>
     protected virtual void OnPause() {
       /* Empty implementation. Implementation is to be provided by the subclasses. */
     }
 
-    /// <summary>Contains the actual continue logic. The default implementation is empty, subclasses will have to 
-    /// provide the implementation by overriding this method. Implementers of this method do not have to check the 
-    /// state of the workflow or change the state of the workflow as this is already done by the public 
-    /// <see cref="Continue()"/> method.</summary>
-    /// <remarks>If the implementer detects a situation in which it cannot be continued, it should throw an 
-    /// <see cref="InvalidOperationException"/>. This will cause the <b>Workflow</b> to move to the 
-    /// <see cref="WorkflowState.Faulted"/> state.</remarks>
+    /// <summary>Contains the actual continue logic. The default implementation is empty, subclasses will have to provide the implementation by 
+    /// overriding this method. Implementers of this method do not have to check the state of the workflow or change the state of the workflow as 
+    /// this is already done by the public <see cref="Continue()"/> method.</summary>
+    /// <remarks>If the implementer detects a situation in which it cannot be continued, it should throw an <see cref="InvalidOperationException"/>. 
+    /// This will cause the <b>Workflow</b> to move to the <see cref="WorkflowState.Faulted"/> state.</remarks>
     protected virtual void OnContinue() {
       /* Empty implementation. Implementation is to be provided by the subclasses. */
     }
     #endregion
 
     #region Private methods
-    /// <summary>Executes the <see cref="Start()"/> method in a seperate thread. This is used to support asynchronous 
-    /// operations.</summary>
+    /// <summary>Executes the <see cref="Start()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void StartWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
@@ -339,14 +321,12 @@ namespace Enkoni.Framework {
         result.SetAsCompleted(null, false);
       }
       catch(Exception ex) {
-        /* We deliberately catch every exception. It is up to the caller of EndStart() to do a more 
-         * fine-grained exception handling */
+        /* We deliberately catch every exception. It is up to the caller of EndStart() to do a more fine-grained exception handling */
         result.SetAsCompleted(ex, false);
       }
     }
 
-    /// <summary>Executes the <see cref="Stop()"/> method in a seperate thread. This is used to support asynchronous 
-    /// operations.</summary>
+    /// <summary>Executes the <see cref="Stop()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void StopWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
@@ -359,14 +339,12 @@ namespace Enkoni.Framework {
         result.SetAsCompleted(null, false);
       }
       catch(Exception ex) {
-        /* We deliberately catch every exception. It is up to the caller of EndStop() to do a more 
-         * fine-grained exception handling */
+        /* We deliberately catch every exception. It is up to the caller of EndStop() to do a more fine-grained exception handling */
         result.SetAsCompleted(ex, false);
       }
     }
 
-    /// <summary>Executes the <see cref="Pause()"/> method in a seperate thread. This is used to support asynchronous 
-    /// operations.</summary>
+    /// <summary>Executes the <see cref="Pause()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void PauseWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
@@ -379,14 +357,12 @@ namespace Enkoni.Framework {
         result.SetAsCompleted(null, false);
       }
       catch(Exception ex) {
-        /* We deliberately catch every exception. It is up to the caller of EndPause() to do a more 
-         * fine-grained exception handling */
+        /* We deliberately catch every exception. It is up to the caller of EndPause() to do a more fine-grained exception handling */
         result.SetAsCompleted(ex, false);
       }
     }
 
-    /// <summary>Executes the <see cref="Continue()"/> method in a seperate thread. This is used to support asynchronous 
-    /// operations.</summary>
+    /// <summary>Executes the <see cref="Continue()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void ContinueWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
@@ -399,8 +375,7 @@ namespace Enkoni.Framework {
         result.SetAsCompleted(null, false);
       }
       catch(Exception ex) {
-        /* We deliberately catch every exception. It is up to the caller of EndContinue() to do a more 
-         * fine-grained exception handling */
+        /* We deliberately catch every exception. It is up to the caller of EndContinue() to do a more fine-grained exception handling */
         result.SetAsCompleted(ex, false);
       }
     }

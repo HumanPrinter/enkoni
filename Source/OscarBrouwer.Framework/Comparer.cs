@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Comparer.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a class that can be used to compare a tree of objects.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -13,10 +13,9 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
-  /// <summary>Provides a generic implementation of <see cref="IComparer{T}"/> that is able to compare two objects 
-  /// based on a specified fieldname, which can even be concatenated using the '.' character. The final field by which 
-  /// the objects must be compared must implement the <c>CompareTo</c> method which is defined by the
-  /// <see cref="IComparable"/> and <see cref="IComparable{T}"/> interfaces.</summary>
+  /// <summary>Provides a generic implementation of <see cref="IComparer{T}"/> that is able to compare two objects based on a specified fieldname, 
+  /// which can even be concatenated using the '.' character. The final field by which the objects must be compared must implement the 
+  /// <c>CompareTo</c> method which is defined by the <see cref="IComparable"/> and <see cref="IComparable{T}"/> interfaces.</summary>
   /// <typeparam name="T">The type of object that must be compared.</typeparam>
   public class Comparer<T> : IComparer<T> {
     #region Instance variables
@@ -31,16 +30,15 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Constructor
-    /// <summary>Initializes a new instance of the <see cref="Comparer{T}"/> class that compares objects in an ascending 
-    /// order.</summary>
-    /// <param name="fieldName">The field that must be used to compare two objects. Use the '.' character to specify
-    /// a field that is deeper in the chain of hierachy.</param>
+    /// <summary>Initializes a new instance of the <see cref="Comparer{T}"/> class that compares objects in an ascending order.</summary>
+    /// <param name="fieldName">The field that must be used to compare two objects. Use the '.' character to specify a field that is deeper in the
+    /// chain of hierachy.</param>
     public Comparer(string fieldName) : this(fieldName, SortOrder.Ascending) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Comparer{T}"/> class.</summary>
-    /// <param name="fieldName">The field that must be used to compare two objects. Use the '.' character to specify
-    /// a field that is deeper in the chain of hierachy.</param>
+    /// <param name="fieldName">The field that must be used to compare two objects. Use the '.' character to specify a field that is deeper in the 
+    /// chain of hierachy.</param>
     /// <param name="order">The ordering direction that must be used.</param>
     public Comparer(string fieldName, SortOrder order) {
       if(string.IsNullOrEmpty(fieldName)) {
@@ -53,12 +51,11 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Methods
-    /// <summary>Compares two objects and returns a value indicating whether one is less than, equal to, or greater 
-    /// than the other.</summary>
+    /// <summary>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.</summary>
     /// <param name="x">The first object to compare.</param>
     /// <param name="y">The second object to compare.</param>
-    /// <returns>If <b>x</b> is smaller than <b>y</b>, a value less than zero is returned. If <b>x</b> equals <b>y</b>, 
-    /// zero is returned. If <b>x</b> is greater than <b>y</b>, a value greater than zero is returned.<br/>
+    /// <returns>If <b>x</b> is smaller than <b>y</b>, a value less than zero is returned. If <b>x</b> equals <b>y</b>, zero is returned. If <b>x</b> 
+    /// is greater than <b>y</b>, a value greater than zero is returned.<br/>
     /// If the sort-order was set to <see cref="SortOrder.Descending"/>, the results are inverted.</returns>
     public int Compare(T x, T y) {
       if(x == null) {

@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "Exter
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.xml = External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework", "OscarBrouwer.Framework\OscarBrouwer.Framework.csproj", "{849BA8BA-A061-4278-85BD-90910680462E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework", "OscarBrouwer.Framework\Enkoni.Framework.csproj", "{849BA8BA-A061-4278-85BD-90910680462E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities", "OscarBrouwer.Framework.Entities\OscarBrouwer.Framework.Entities.csproj", "{26D1BDC7-B2E8-4351-AD6B-5441F292320A}"
 EndProject

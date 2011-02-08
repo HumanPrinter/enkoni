@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="LikeSpecification.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a specificationtype that matches based on a string-pattern.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Linq.Expressions;
@@ -33,8 +33,8 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Specification-overrides
-    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into
-    /// an expression that can be used to perform the actual filtering/selection.</summary>
+    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can 
+    /// be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
     protected override Expression<Func<T, bool>> VisitCore(ISpecificationVisitor<T> visitor) {

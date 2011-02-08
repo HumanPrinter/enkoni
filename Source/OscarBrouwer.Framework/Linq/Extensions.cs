@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Extensions.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds numerous extension-methods that extend the standard .NET Linq capabilities.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,8 @@ namespace Enkoni.Framework.Linq {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {
     #region IEnumerable<T> extension methods
-    /// <summary>Adds an overload for the Linq-method 'SingleOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'SingleOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'SingleOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'SingleOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IEnumerable{T}"/> to return a single element from.</param>
     /// <param name="predicate">A function to test an element for a condition.</param>
@@ -30,14 +30,14 @@ namespace Enkoni.Framework.Linq {
       return result;
     }
 
-    /// <summary>Adds an overload for the Linq-method 'ElementAtOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'ElementAtOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'ElementAtOrDefault' which lets the user define the default value that must be returned when 
+    /// the standard 'ElementAtOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IEnumerable{T}"/> to return a single element from.</param>
     /// <param name="index">The zero-based index of the element to retrieve.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns><paramref name="defaultValue"/> if the index is outside the bounds of the source sequence; otherwise, 
-    /// the element at the specified position in the source sequence.</returns>
+    /// <returns><paramref name="defaultValue"/> if the index is outside the bounds of the source sequence; otherwise, the element at the specified 
+    /// position in the source sequence.</returns>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
       Justification = "The parametername starts with a lowercase letter")]
     public static T ElementAtOrDefault<T>(this IEnumerable<T> source, int index, T defaultValue) {
@@ -51,51 +51,49 @@ namespace Enkoni.Framework.Linq {
       }
     }
 
-    /// <summary>Adds an overload for the Linq-method 'FirstOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'FirstOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'FirstOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'FirstOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IEnumerable{T}"/> to return a single element from.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns>The first element of the input sequence, or <paramref name="defaultValue"/> if no such element is 
-    /// found.</returns>
+    /// <returns>The first element of the input sequence, or <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T FirstOrDefault<T>(this IEnumerable<T> source, T defaultValue) {
       T result = source.DefaultIfEmpty(defaultValue).First();
       return result;
     }
 
-    /// <summary>Adds an overload for the Linq-method 'FirstOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'FirstOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'FirstOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'FirstOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IEnumerable{T}"/> to return a single element from.</param>
     /// <param name="predicate">A function to test an element for a condition.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns>The first element of the input sequence that satisfies the condition, or 
-    /// <paramref name="defaultValue"/> if no such element is found.</returns>
+    /// <returns>The first element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is 
+    /// found.</returns>
     public static T FirstOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).First();
       return result;
     }
 
-    /// <summary>Adds an overload for the Linq-method 'LastOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'LastOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'LastOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'LastOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IEnumerable{T}"/> to return a single element from.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns>The last element of the input sequence, or <paramref name="defaultValue"/> if no such element is 
-    /// found.</returns>
+    /// <returns>The last element of the input sequence, or <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T LastOrDefault<T>(this IEnumerable<T> source, T defaultValue) {
       T result = source.DefaultIfEmpty(defaultValue).Last();
       return result;
     }
 
-    /// <summary>Adds an overload for the Linq-method 'LastOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'LastOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'LastOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'LastOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IEnumerable{T}"/> to return a single element from.</param>
     /// <param name="predicate">A function to test an element for a condition.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns>The last element of the input sequence that satisfies the condition, or 
-    /// <paramref name="defaultValue"/> if no such element is found.</returns>
+    /// <returns>The last element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is found.
+    /// </returns>
     public static T LastOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).Last();
       return result;
@@ -140,14 +138,14 @@ namespace Enkoni.Framework.Linq {
     #endregion
 
     #region IQueryable<T> extension methods
-    /// <summary>Adds an overload for the Linq-method 'SingleOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'SingleOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'SingleOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'SingleOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IQueryable{T}"/> to return a single element from.</param>
     /// <param name="predicate">A function to test an element for a condition.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns>The single element of the input sequence that satisfies the condition, or 
-    /// <paramref name="defaultValue"/> if no such element is found.</returns>
+    /// <returns>The single element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is 
+    /// found.</returns>
     public static T SingleOrDefault<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate, T defaultValue) {
       IQueryable<T> queryResult = source.Where(predicate);
       if(queryResult.Any()) {
@@ -158,14 +156,14 @@ namespace Enkoni.Framework.Linq {
       }
     }
 
-    /// <summary>Adds an overload for the Linq-method 'FirstOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'FirstOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'FirstOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'FirstOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IQueryable{T}"/> to return a single element from.</param>
     /// <param name="predicate">A function to test an element for a condition.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns>The first element of the input sequence that satisfies the condition, or 
-    /// <paramref name="defaultValue"/> if no such element is found.</returns>
+    /// <returns>The first element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is 
+    /// found.</returns>
     public static T FirstOrDefault<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate, T defaultValue) {
       IQueryable<T> queryResult = source.Where(predicate);
       if(queryResult.Any()) {
@@ -176,14 +174,14 @@ namespace Enkoni.Framework.Linq {
       }
     }
 
-    /// <summary>Adds an overload for the Linq-method 'LastOrDefault' which lets the user define the default value 
-    /// that must be returned when the standard 'LastOrDefault' operation yields no results.</summary>
+    /// <summary>Adds an overload for the Linq-method 'LastOrDefault' which lets the user define the default value that must be returned when the 
+    /// standard 'LastOrDefault' operation yields no results.</summary>
     /// <typeparam name="T">The type of the elements of source.</typeparam>
     /// <param name="source">An <see cref="IQueryable{T}"/> to return a single element from.</param>
     /// <param name="predicate">A function to test an element for a condition.</param>
     /// <param name="defaultValue">The default value that must be used.</param>
-    /// <returns>The last element of the input sequence that satisfies the condition, or 
-    /// <paramref name="defaultValue"/> if no such element is found.</returns>
+    /// <returns>The last element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is found.
+    /// </returns>
     public static T LastOrDefault<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate, T defaultValue) {
       IQueryable<T> queryResult = source.Where(predicate);
       if(queryResult.Any()) {
@@ -214,8 +212,7 @@ namespace Enkoni.Framework.Linq {
     #endregion
 
     #region Expression<Func<T,bool>> extension methods
-    /// <summary>Creates an <see cref="Expression{TDelegate}"/> that inverts the result of <paramref name="source"/>.
-    /// </summary>
+    /// <summary>Creates an <see cref="Expression{TDelegate}"/> that inverts the result of <paramref name="source"/>.</summary>
     /// <typeparam name="T">The type that is used as input for the expression.</typeparam>
     /// <param name="source">An <see cref="Expression{TDelegate}"/> whose result must be inverted.</param>
     /// <returns>An expression that will invert the result of <paramref name="source"/>.</returns>

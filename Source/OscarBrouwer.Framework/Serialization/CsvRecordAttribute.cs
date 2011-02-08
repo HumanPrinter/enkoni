@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvRecordAttribute.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines an attribute that is used for the CSV (de)serialization capabilities.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.ComponentModel;
@@ -15,8 +15,7 @@ namespace Enkoni.Framework.Serialization {
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class CsvRecordAttribute : Attribute {
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="CsvRecordAttribute"/> class using a default seperator.
-    /// </summary>
+    /// <summary>Initializes a new instance of the <see cref="CsvRecordAttribute"/> class using a default seperator.</summary>
     public CsvRecordAttribute()
       : this(',') {
     }
@@ -32,13 +31,11 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Gets the seperator character. Defaults to ','.</summary>
     public char Separator { get; private set; }
 
-    /// <summary>Gets or sets a value indicating whether the first line in the file must be ignored when deserializing the
-    /// object.</summary>
+    /// <summary>Gets or sets a value indicating whether the first line in the file must be ignored when deserializing the object.</summary>
     [DefaultValue(false)]
     public bool IgnoreHeaderOnRead { get; set; }
 
-    /// <summary>Gets or sets a value indicating whether the header must be included in the file when serializing the object.
-    /// </summary>
+    /// <summary>Gets or sets a value indicating whether the header must be included in the file when serializing the object.</summary>
     [DefaultValue(false)]
     public bool WriteHeader { get; set; }
 

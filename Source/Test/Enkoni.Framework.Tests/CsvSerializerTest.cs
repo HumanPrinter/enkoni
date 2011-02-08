@@ -216,7 +216,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream);
       stream.Close();
 
@@ -263,7 +268,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream);
       stream.Close();
 
@@ -310,7 +320,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream, Encoding.ASCII);
       stream.Close();
 
@@ -357,7 +372,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream, Encoding.ASCII);
       stream.Close();
 
@@ -404,7 +424,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream);
       stream.Close();
 
@@ -451,7 +476,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream);
       stream.Close();
 
@@ -498,7 +528,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream, Encoding.ASCII);
       stream.Close();
 
@@ -545,7 +580,12 @@ namespace Enkoni.Framework.Tests {
 
       CheckTestResult(templatePath, outputPath);
 
-      FileStream stream = new FileStream(outputPath, FileMode.OpenOrCreate, FileAccess.Write);
+      FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+      StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
+      /* Write an empty string to enforce the output of the encoding bytes. */
+      writer.Write(string.Empty);
+      writer.Flush();
+
       serializer.Serialize(collection, stream, Encoding.ASCII);
       stream.Close();
 
