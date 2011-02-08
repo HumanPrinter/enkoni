@@ -1,10 +1,10 @@
 
 Source/*.suo
 Source/*.sdf
-Source/OscarBrouwer.Framework/*.user
-Source/OscarBrouwer.Framework/*.Cache
-Source/OscarBrouwer.Framework/bin/
-Source/OscarBrouwer.Framework/obj/
+Source/Enkoni.Framework/*.user
+Source/Enkoni.Framework/*.Cache
+Source/Enkoni.Framework/bin/
+Source/Enkoni.Framework/obj/
 Source/OscarBrouwer.Framework.Entities/*.user
 Source/OscarBrouwer.Framework.Entities/*.Cache
 Source/OscarBrouwer.Framework.Entities/bin/

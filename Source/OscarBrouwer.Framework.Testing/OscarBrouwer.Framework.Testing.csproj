@@ -60,16 +60,6 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OscarBrouwer.Framework.Entities\OscarBrouwer.Framework.Entities.csproj">
-      <Project>{26D1BDC7-B2E8-4351-AD6B-5441F292320A}</Project>
-      <Name>OscarBrouwer.Framework.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OscarBrouwer.Framework\Enkoni.Framework.csproj">
-      <Project>{849BA8BA-A061-4278-85BD-90910680462E}</Project>
-      <Name>Enkoni.Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Web" />
   </ItemGroup>

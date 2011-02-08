@@ -60,7 +60,7 @@
     <Compile Include="LambdaEqualityComparerTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OscarBrouwer.Framework\Enkoni.Framework.csproj">
+    <ProjectReference Include="..\..\Enkoni.Framework\Enkoni.Framework.csproj">
       <Project>{849BA8BA-A061-4278-85BD-90910680462E}</Project>
       <Name>Enkoni.Framework</Name>
     </ProjectReference>
