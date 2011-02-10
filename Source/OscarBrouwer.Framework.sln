@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.ServiceModel", "Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj", "{364CAFCC-BB2B-4F31-AA7E-26562918664D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Testing", "OscarBrouwer.Framework.Testing\OscarBrouwer.Framework.Testing.csproj", "{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Testing", "OscarBrouwer.Framework.Testing\Enkoni.Framework.Testing.csproj", "{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Validation", "OscarBrouwer.Framework.Validation\OscarBrouwer.Framework.Validation.csproj", "{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}"
 EndProject
