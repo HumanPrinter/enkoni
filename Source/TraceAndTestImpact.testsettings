@@ -2,7 +2,7 @@
 <TestSettings name="Trace and Test Impact" id="fca91bef-d868-4684-9bf0-2144f134e18b" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are test settings for Trace and Test Impact.</Description>
   <Deployment>
-    <DeploymentItem filename="Test\OscarBrouwer.Framework.Tests\TestData\" />
+    <DeploymentItem filename="Test\Enkoni.Framework.Tests\TestData\" />
   </Deployment>
   <Execution>
     <TestTypeSpecific>

@@ -84,7 +84,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj">
       <Project>{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}</Project>
-      <Name>OscarBrouwer.Framework.Validation</Name>
+      <Name>Enkoni.Framework.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enkoni.Framework\Enkoni.Framework.csproj">
       <Project>{849BA8BA-A061-4278-85BD-90910680462E}</Project>
