@@ -79,9 +79,9 @@
     <Compile Include="XmlFileRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OscarBrouwer.Framework.Entities\Enkoni.Framework.Entities.csproj">
+    <ProjectReference Include="..\..\Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj">
       <Project>{26D1BDC7-B2E8-4351-AD6B-5441F292320A}</Project>
-      <Name>OscarBrouwer.Framework.Entities</Name>
+      <Name>Enkoni.Framework.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\OscarBrouwer.Framework.Testing\OscarBrouwer.Framework.Testing.csproj">
       <Project>{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}</Project>

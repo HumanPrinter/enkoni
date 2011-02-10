@@ -5,10 +5,10 @@ Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
 Source/Enkoni.Framework/bin/
 Source/Enkoni.Framework/obj/
-Source/OscarBrouwer.Framework.Entities/*.user
-Source/OscarBrouwer.Framework.Entities/*.Cache
-Source/OscarBrouwer.Framework.Entities/bin/
-Source/OscarBrouwer.Framework.Entities/obj/
+Source/Enkoni.Framework.Entities/*.user
+Source/Enkoni.Framework.Entities/*.Cache
+Source/Enkoni.Framework.Entities/bin/
+Source/Enkoni.Framework.Entities/obj/
 Source/OscarBrouwer.Framework.ServiceModel/*.user
 Source/OscarBrouwer.Framework.ServiceModel/*.Cache
 Source/OscarBrouwer.Framework.ServiceModel/bin/
