@@ -1,20 +1,20 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DataSourceInfo.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a certain datasource that is used by a repository.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class contains information about a specific datasource. This can be any kind of datasource. This class 
-  /// is utilized by the various repositories. Check the documentation of the used repository for more information about 
-  /// the required or supported datasource-information.</summary>
+  /// <summary>This class contains information about a specific datasource. This can be any kind of datasource. This class is utilized by the various 
+  /// repositories. Check the documentation of the used repository for more information about the required or supported datasource-information.
+  /// </summary>
   public class DataSourceInfo {
     #region Instance variables
     /// <summary>The collection that holds the keys with the associated values.</summary>
@@ -55,8 +55,7 @@ namespace Enkoni.Framework.Entities {
     #region Public methods
     /// <summary>Determines if a value is specified by looking up the specified key in the internal storage.</summary>
     /// <param name="key">The key that identifies the desired value.</param>
-    /// <returns><see langword="true"/> if the key (and accompanying value) is defined; <see langword="false"/> otherwise.
-    /// </returns>
+    /// <returns><see langword="true"/> if the key (and accompanying value) is defined; <see langword="false"/> otherwise.</returns>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
       Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool IsValueSpecified(string key) {

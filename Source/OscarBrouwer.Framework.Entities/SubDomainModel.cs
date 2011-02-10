@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="SubDomainModel.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a SubDomainModel type.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -15,8 +15,7 @@ using Enkoni.Framework.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This abstract class defines the public API of a class that represents the subdomain of the domain model.
-  /// </summary>
+  /// <summary>This abstract class defines the public API of a class that represents the subdomain of the domain model.</summary>
   /// <typeparam name="T">The type to which this subdomain applies.</typeparam>
   public abstract class SubDomainModel<T> where T : IEntity<T> {
     #region Constructor
@@ -68,8 +67,8 @@ namespace Enkoni.Framework.Entities {
       return this.FindEntityCore(Specification.Lambda<T>(t => t.RecordId == entityId));
     }
 
-    /// <summary>Adds the specified entity to the domain. Before it is added, the entity is validated to ensure that 
-    /// only validated entities are added in the domain.</summary>
+    /// <summary>Adds the specified entity to the domain. Before it is added, the entity is validated to ensure that only validated entities are 
+    /// added in the domain.</summary>
     /// <param name="entity">The entity that must be added.</param>
     /// <exception cref="ValidationException">The entity is invalid.</exception>
     /// <returns>The entity with the most recent values.</returns>
@@ -87,8 +86,8 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Updates the specified entity in the domain. Before it is updated, the entity is validated to ensure that 
-    /// only validated entities are added in the domain.</summary>
+    /// <summary>Updates the specified entity in the domain. Before it is updated, the entity is validated to ensure that only validated entities are 
+    /// added in the domain.</summary>
     /// <param name="originalEntityId">The ID of the entity that must be updated.</param>
     /// <param name="updatedEntity">The entity that contains the new values.</param>
     /// <exception cref="ValidationException">The entity is invalid.</exception>

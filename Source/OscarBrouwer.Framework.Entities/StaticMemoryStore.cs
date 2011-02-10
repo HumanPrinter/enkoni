@@ -1,17 +1,16 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="StaticMemoryStore.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that holds objects in a simple static variable.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class implements the abstract class <see cref="MemoryStore{T}"/> using a simple static collection
-  /// variable.</summary>
+  /// <summary>This class implements the abstract class <see cref="MemoryStore{T}"/> using a simple static collection variable.</summary>
   /// <typeparam name="T">The type of object that is stored.</typeparam>
   public class StaticMemoryStore<T> : MemoryStore<T> where T : class {
     #region Static variables

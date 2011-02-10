@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="EntityValidator.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //    Holds the generic implementation of an entity validator.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 
@@ -22,8 +22,8 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public API
-    /// <summary>Performs a shallow validation of the specified entity. This will only validate the consistency of the 
-    /// entity itself without looking at the references to other entities or the underlying persistency.</summary>
+    /// <summary>Performs a shallow validation of the specified entity. This will only validate the consistency of the entity itself without looking 
+    /// at the references to other entities or the underlying persistency.</summary>
     /// <param name="entity">The entity that must be validated.</param>
     /// <returns>The results of the validation.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="entity"/> is null.</exception>
@@ -35,9 +35,8 @@ namespace Enkoni.Framework.Entities {
       return this.PerformShallowValidationCore(entity);
     }
 
-    /// <summary>Performs a deep validation of the specified entity. Besides performing a shallow validation, it may 
-    /// also look at the underlying persistency for instance to make sure that no uniqueness-rules are violated.
-    /// </summary>
+    /// <summary>Performs a deep validation of the specified entity. Besides performing a shallow validation, it may also look at the underlying
+    /// persistency for instance to make sure that no uniqueness-rules are violated.</summary>
     /// <param name="entity">The entity that must be validated.</param>
     /// <returns>The results of the validation.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="entity"/> is null.</exception>

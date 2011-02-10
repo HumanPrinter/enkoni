@@ -1,47 +1,43 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="FileSourceInfo.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a filebased datasource that is used by the FileRepository.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class can be used by the <see cref="FileRepository{TEntity}"/> or any of its descendants to retrieve 
-  /// valuable information about the file that is to be used. This class is added for improved usability of the 
-  /// DataSourceInfo in combination with the FileRepository.</summary>
+  /// <summary>This class can be used by the <see cref="FileRepository{TEntity}"/> or any of its descendants to retrieve valuable information about 
+  /// the file that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the FileRepository.</summary>
   public class FileSourceInfo : DataSourceInfo {
     #region Public constants
     /// <summary>Defines the key that is used to store and retrieve the FileInfo that points to the desired file.</summary>
     public const string SourceFileInfoKey = "SourceFileInfo";
 
-    /// <summary>Defines the key that is used to store and retrieve the boolean that indicates wheter or not to monitor the 
-    /// sourcefile.</summary>
+    /// <summary>Defines the key that is used to store and retrieve the boolean that indicates wheter or not to monitor the sourcefile.</summary>
     public const string MonitorSourceFileKey = "MonitorSourceFile";
 
-    /// <summary>Defines the key that is used to store and retrieve the numeric value that is used to determine if a change
-    /// in the sourcefile is finished.</summary>
+    /// <summary>Defines the key that is used to store and retrieve the numeric value that is used to determine if a change in the sourcefile is 
+    /// finished.</summary>
     public const string ChangeCompleteTimeoutKey = "ChangeCompleteTimeout";
     #endregion
 
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using default values for the
-    /// properties.</summary>
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using default values for the properties.</summary>
     public FileSourceInfo()
       : this((FileInfo)null, true, 3000) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified 
-    /// <see cref="FileInfo"/>, <see langword="bool"/> and <see langword="int"/> values.</summary>
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
+    /// <see langword="bool"/> and <see langword="int"/> values.</summary>
     /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
     /// <param name="monitorSourceFile">Indicates if the monitor that watches the sourcefile must be started.</param>
-    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.
-    /// </param>
+    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, int changeCompleteTimeout)
       : base() {
       this.SourceFileInfo = sourceFileInfo;
@@ -49,9 +45,8 @@ namespace Enkoni.Framework.Entities {
       this.ChangeCompleteTimeout = changeCompleteTimeout;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified default values.
-    /// If the default values do not specify supported properties using the correct key and/or type, the default values 
-    /// will be used.</summary>
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified default values. If the default values do 
+    /// not specify supported properties using the correct key and/or type, the default values will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     public FileSourceInfo(Dictionary<string, object> defaultValues)
       : base(defaultValues) {
@@ -105,8 +100,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the source FileInfo from the specified datasource information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The FileInfo that is stored in the datasource information or <see langword="null"/> if the FileInfo could
-    /// not be found.</returns>
+    /// <returns>The FileInfo that is stored in the datasource information or <see langword="null"/> if the FileInfo could not be found.</returns>
     public static FileInfo SelectSourceFileInfo(DataSourceInfo dataSourceInfo) {
       if(IsSourceFileInfoSpecified(dataSourceInfo)) {
         return dataSourceInfo[SourceFileInfoKey] as FileInfo;
@@ -127,8 +121,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the monitor-flag from the specified datasource information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The monitor-flag that is stored in the datasource information or <see langword="true"/> if the flag could
-    /// not be found.</returns>
+    /// <returns>The monitor-flag that is stored in the datasource information or <see langword="true"/> if the flag could not be found.</returns>
     public static bool SelectMonitorSourceFile(DataSourceInfo dataSourceInfo) {
       if(IsMonitorSourceFileSpecified(dataSourceInfo)) {
         return (bool)dataSourceInfo[MonitorSourceFileKey];
@@ -149,8 +142,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the changecomplete timeout from the specified datasource information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or the default value if the flag could not be found.
-    /// </returns>
+    /// <returns>The value that is stored in the datasource information or the default value if the flag could not be found.</returns>
     public static int SelectChangeCompleteTimeout(DataSourceInfo dataSourceInfo) {
       if(IsChangeCompleteTimeoutSpecified(dataSourceInfo)) {
         return (int)dataSourceInfo[ChangeCompleteTimeoutKey];

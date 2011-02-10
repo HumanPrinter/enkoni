@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="MemoryRepository.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that stores and retrieves entities to and from memory.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -16,8 +16,8 @@ using System.Threading;
 using Enkoni.Framework.Linq;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the 
-  /// functionality using memorystorage.</summary>
+  /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the functionality using 
+  /// memorystorage.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
   public class MemoryRepository<TEntity> : Repository<TEntity>
     where TEntity : class, IEntity<TEntity>, new() {
@@ -33,8 +33,8 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Constructor
-    /// <summary>Initializes a new instance of the <see cref="MemoryRepository{TEntity}"/> class using the specified
-    /// <see cref="DataSourceInfo"/>.</summary>
+    /// <summary>Initializes a new instance of the <see cref="MemoryRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
+    /// </summary>
     /// <param name="dataSourceInfo">The datasource information that must be used to access the datasource.</param>
     public MemoryRepository(DataSourceInfo dataSourceInfo)
       : base() {
@@ -174,10 +174,8 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the entities that match the expression.</summary>
     /// <param name="expression">The search-specification.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
-    /// ignore the ordering.</param>
-    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.
-    /// </param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <returns>The items that match the expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, 
@@ -207,11 +205,9 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Finds the first entity that matches the expression or returns the defaultvalue if there were no matches.
-    /// </summary>
+    /// <summary>Finds the first entity that matches the expression or returns the defaultvalue if there were no matches.</summary>
     /// <param name="expression">The search-specification.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
-    /// ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <param name="defaultValue">The value that must be returned if there were no matches.</param>
     /// <returns>The first result or the defaultvalue.</returns>
@@ -223,12 +219,12 @@ namespace Enkoni.Framework.Entities {
         this.temporaryStorageLock.EnterReadLock();
         bool resultIsToBeDeleted = false;
 
-        TEntity result = this.temporaryStorage.Where(kvp => kvp.Value != StorageAction.Delete).Select(kvp => kvp.Key)
-          .OrderBy(sortRules).FirstOrDefault(expression);
+        TEntity result = this.temporaryStorage.Where(kvp => kvp.Value != StorageAction.Delete).Select(kvp => kvp.Key).OrderBy(sortRules)
+          .FirstOrDefault(expression);
         
         if(result == null) {
-          result = this.temporaryStorage.Where(kvp => kvp.Value == StorageAction.Delete).Select(kvp => kvp.Key)
-            .OrderBy(sortRules).FirstOrDefault(expression);
+          result = this.temporaryStorage.Where(kvp => kvp.Value == StorageAction.Delete).Select(kvp => kvp.Key).OrderBy(sortRules)
+            .FirstOrDefault(expression);
           
           if(result != null) {
             resultIsToBeDeleted = true;
@@ -264,14 +260,12 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Finds the single entity that matches the expression or returns the defaultvalue if there were no matches.
-    /// </summary>
+    /// <summary>Finds the single entity that matches the expression or returns the defaultvalue if there were no matches.</summary>
     /// <param name="expression">The search-specification.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <param name="defaultValue">The value that must be returned if there were no matches.</param>
     /// <returns>The single result or the defaultvalue.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, 
-      TEntity defaultValue) {
+    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
       try {
@@ -343,9 +337,11 @@ namespace Enkoni.Framework.Entities {
 
         /* Update the updated entities in the global storage */
         foreach(TEntity entity in updatedEntities) {
-          var storedEntity = this.MemoryStore.Storage.Select((item, index) => new { Entity = item, Index = index }).FirstOrDefault(a => a.Entity.RecordId == entity.RecordId);
+          var storedEntity = this.MemoryStore.Storage.Select((item, index) => new { Entity = item, Index = index })
+            .FirstOrDefault(a => a.Entity.RecordId == entity.RecordId);
           if(storedEntity == null) {
-            throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "Cannot update entity {0} since it does not exist in the global storage", entity.RecordId));
+            throw new InvalidOperationException(
+              string.Format(CultureInfo.CurrentCulture, "Cannot update entity {0} since it does not exist in the global storage", entity.RecordId));
           }
           else {
             if(this.typeImplementsICloneable) {
@@ -359,9 +355,11 @@ namespace Enkoni.Framework.Entities {
 
         /* Delete the deleted entities from the global storage */
         foreach(TEntity entity in deletedEntities) {
-          var storedEntity = this.MemoryStore.Storage.Select((item, index) => new { Entity = item, Index = index }).FirstOrDefault(a => a.Entity.RecordId == entity.RecordId);
+          var storedEntity = this.MemoryStore.Storage.Select((item, index) => new { Entity = item, Index = index })
+            .FirstOrDefault(a => a.Entity.RecordId == entity.RecordId);
           if(storedEntity == null) {
-            throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "Cannot delete entity {0} since it does not exist in the global storage", entity.RecordId));
+            throw new InvalidOperationException(
+              string.Format(CultureInfo.CurrentCulture, "Cannot delete entity {0} since it does not exist in the global storage", entity.RecordId));
           }
           else {
             this.MemoryStore.Storage.RemoveAt(storedEntity.Index);
@@ -421,19 +419,13 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected helper methods
-    /// <summary>Applies new identifiers to the entities starting with identifier '1'. More often then not, entities that 
-    /// are read from a file do not have any identifiers. Therefore, they are applied here. If the sourcefile already 
-    /// specifies identifiers for each record, override this method with an empty implementation to disable this behaviour.
-    /// </summary>
+    /// <summary>Applies new identifiers to the entities starting with identifier '1'.</summary>
     /// <param name="entities">The entities to which the identifiers must be applied.</param>
     protected virtual void ApplyIdentifiers(IEnumerable<TEntity> entities) {
       this.ApplyIdentifiers(entities, 1);
     }
 
-    /// <summary>Applies new identifiers to the entities starting with the specified startvalue. More often then not, 
-    /// entities that are read from a file do not have any identifiers. Therefore, they are applied here. If the sourcefile 
-    /// already specifies identifiers for each record, override this method with an empty implementation to disable this 
-    /// behaviour.</summary>
+    /// <summary>Applies new identifiers to the entities starting with the specified startvalue.</summary>
     /// <param name="entities">The entities to which the identifiers must be applied.</param>
     /// <param name="startIdentifier">The first identifier that must be applied.</param>
     protected virtual void ApplyIdentifiers(IEnumerable<TEntity> entities, int startIdentifier) {
@@ -448,8 +440,8 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Private helper methods
-    /// <summary>Selects the MemoryStore that must be used. If the specified DataSourceInfo contains a valid MemoryStore, it 
-    /// is used; otherwise the value of the property 'MemoryStore' is used.</summary>
+    /// <summary>Selects the MemoryStore that must be used. If the specified DataSourceInfo contains a valid MemoryStore, it is used; otherwise the 
+    /// value of the property 'MemoryStore' is used.</summary>
     /// <param name="dataSourceInfo">Any information regarding the datastore that is used as datasource.</param>
     /// <returns>The MemoryStore that must be used.</returns>
     private MemoryStore<TEntity> SelectMemoryStore(DataSourceInfo dataSourceInfo) {

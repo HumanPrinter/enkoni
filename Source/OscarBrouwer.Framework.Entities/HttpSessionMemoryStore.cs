@@ -1,19 +1,18 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="HttpSessionMemoryStore.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that holds objects in a variable that is stored in a HTTP session.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
 using System.Web;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class implements the abstract class <see cref="MemoryStore{T}"/> using collections that are stored in a
-  /// HTTP Session.</summary>
+  /// <summary>This class implements the abstract class <see cref="MemoryStore{T}"/> using collections that are stored in a HTTP Session.</summary>
   /// <typeparam name="T">The type of object that is stored.</typeparam>
   public class HttpSessionMemoryStore<T> : MemoryStore<T> where T : class {
     #region Static variables
@@ -36,8 +35,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Private static helper methods
-    /// <summary>Retrieves the storage from the current session. If there is no storage available yet, a new one is created.
-    /// </summary>
+    /// <summary>Retrieves the storage from the current session. If there is no storage available yet, a new one is created.</summary>
     /// <returns>The storage that is stored in the session.</returns>
     private static IList<T> RetrieveStorage() {
       if(HttpContext.Current == null || HttpContext.Current.Session == null) {

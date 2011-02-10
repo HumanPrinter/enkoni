@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DatabaseRepository.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that uses the Entity Framework to communicate with a database.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -18,14 +18,14 @@ using Enkoni.Framework.Linq;
 using LinqKit;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the 
-  /// functionality using the Entity Framework.</summary>
+  /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the functionality using the Entity 
+  /// Framework.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
   public class DatabaseRepository<TEntity> : Repository<TEntity>, IDatabaseRepository
     where TEntity : class, IEntity<TEntity>, new() {
     #region Constructor
-    /// <summary>Initializes a new instance of the <see cref="DatabaseRepository{TEntity}"/> class using the specified
-    /// <see cref="DataSourceInfo"/>.</summary>
+    /// <summary>Initializes a new instance of the <see cref="DatabaseRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
+    /// </summary>
     /// <param name="dataSourceInfo">The datasource information that must be used to access the database.</param>
     public DatabaseRepository(DataSourceInfo dataSourceInfo)
       : base() {
@@ -41,8 +41,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region IDatabaseRepository methods
-    /// <summary>Replaces the current DbContext with the specified one. The current DbContext is first disposed.
-    /// </summary>
+    /// <summary>Replaces the current DbContext with the specified one. The current DbContext is first disposed.</summary>
     /// <param name="dbContext">The new DbContext that must be used.</param>
     public void ReloadObjectContext(DbContext dbContext) {
       this.DbContext.Dispose();
@@ -57,8 +56,8 @@ namespace Enkoni.Framework.Entities {
       this.SelectDbContext(dataSourceInfo).SaveChanges();
     }
 
-    /// <summary>Creates a new entity of type <typeparamref name="TEntity"/>. This is done by calling the default
-    /// constructor of <typeparamref name="TEntity"/>.</summary>
+    /// <summary>Creates a new entity of type <typeparamref name="TEntity"/>. This is done by calling the default constructor of 
+    /// <typeparamref name="TEntity"/>.</summary>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The created entity.</returns>
     protected override TEntity CreateEntityCore(DataSourceInfo dataSourceInfo) {
@@ -76,9 +75,8 @@ namespace Enkoni.Framework.Entities {
       return entity;
     }
 
-    /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. Since the entity framework 
-    /// already monitors the state of entities, no additional functionality is required. This method is therefore empty.
-    /// </summary>
+    /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. Since the entity framework already monitors the state of 
+    /// entities, no additional functionality is required. This method is therefore empty.</summary>
     /// <param name="entity">The entity that was updated.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
@@ -112,10 +110,8 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the available entities that match the specified expression.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
-    /// ignore the ordering.</param>
-    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.
-    /// </param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Expression<Func<TEntity, bool>> expression, 
@@ -138,8 +134,8 @@ namespace Enkoni.Framework.Entities {
       IEnumerable<TEntity> cachedData = this.SelectDbContext(dataSourceInfo).Set<TEntity>().Local.Where(expression.Compile());
       
       /* Combine the databasedata and the local cache using the cache as the master (since it may contain unsaved updates) */
-      /* IMPORTANT: It is possible that the combined collection contains an unsaved deletion. There is no way to detect this 
-       * without lossing the optimization of limiting the results retrieved directly from the database*/
+      /* IMPORTANT: It is possible that the combined collection contains an unsaved deletion. There is no way to detect this without lossing the 
+       * optimization of limiting the results retrieved directly from the database*/
       IEnumerable<TEntity> result = cachedData.Union(databaseData);
 
       result = result.OrderBy(sortRules);
@@ -152,8 +148,7 @@ namespace Enkoni.Framework.Entities {
       return result;
     }
 
-    /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value
-    /// is returned.</summary>
+    /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
@@ -178,17 +173,15 @@ namespace Enkoni.Framework.Entities {
         return cachedData;
       }
       else {
-        /* The object only seems to live in the database. If it was a new record (not yet cached), it would have been in de 
-         * cache after the database-query. Since it isn't, it most likely is an unsaved deletion therefore 'null' is returned. */
+        /* The object only seems to live in the database. If it was a new record (not yet cached), it would have been in the cache after the 
+         * database-query. Since it isn't, it most likely is an unsaved deletion therefore 'null' is returned. */
         return null;
       }
     }
 
-    /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value
-    /// is returned.</summary>
+    /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to 
-    /// ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
@@ -221,23 +214,22 @@ namespace Enkoni.Framework.Entities {
         return cachedData;
       }
       else {
-        /* The object only seems to live in the database. If it was a new record (not yet cached), it would have been in de 
-         * cache after the database-query. Since it isn't, it most likely is an unsaved deletion therefore 'null' is returned. */
+        /* The object only seems to live in the database. If it was a new record (not yet cached), it would have been in the cache after the 
+         * database-query. Since it isn't, it most likely is an unsaved deletion therefore 'null' is returned. */
         return null;
       }
     }
 
     /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
     /// <param name="field">The field of type <c>T</c> that must match the pattern.</param>
-    /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.
-    /// </param>
+    /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
     /// <returns>The created expression.</returns>
     protected override Expression<Func<TEntity, bool>> CreateLikeExpressionCore(Expression<Func<TEntity, string>> field, 
       string pattern) {
       throw new NotSupportedException("The Entity Framework currently does not support LIKE-queries. Use StartsWith, EndsWith or Contains instead.");
       
-      /* If the Entity Framework would have supported LIKE queries the way standard Linq-to-SQL does, the implementation 
-       * would have looked like this: */
+      /* If the Entity Framework would have supported LIKE queries the way standard Linq-to-SQL does, the implementation would have looked like 
+       * this: */
       /* Replace the wildcards */
       /*pattern = pattern.Replace("*", "%").Replace("?", "_");*/
 
@@ -254,8 +246,8 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected overridable helper methods
-    /// <summary>Selects the DbContext that must be used. If the specified DataSourceInfo contains a valid DbContext, it is
-    /// used; otherwise the value of the property 'DbContext' is used.</summary>
+    /// <summary>Selects the DbContext that must be used. If the specified DataSourceInfo contains a valid DbContext, it is used; otherwise the value 
+    /// of the property 'DbContext' is used.</summary>
     /// <param name="dataSourceInfo">Any information regarding the database that is used as datasource.</param>
     /// <returns>The DbContext that must be used.</returns>
     protected virtual DbContext SelectDbContext(DataSourceInfo dataSourceInfo) {

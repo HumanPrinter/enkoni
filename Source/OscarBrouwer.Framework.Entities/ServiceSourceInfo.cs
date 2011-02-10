@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceSourceInfo.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a servicebased datasource that is used by the ServiceRepository.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -13,9 +13,9 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class can be used by the <see cref="ServiceRepository{TEntity}"/> or any of its descendants to retrieve 
-  /// valuable information about the service that is to be used. This class is added for improved usability of the 
-  /// DataSourceInfo in combination with the ServiceRepository.</summary>
+  /// <summary>This class can be used by the <see cref="ServiceRepository{TEntity}"/> or any of its descendants to retrieve valuable information 
+  /// about the service that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the 
+  /// ServiceRepository.</summary>
   public class ServiceSourceInfo : DataSourceInfo {
     #region Public constants
     /// <summary>Defines the key that is used to store and retrieve the endpointconfigurationname.</summary>
@@ -34,16 +34,15 @@ namespace Enkoni.Framework.Entities {
       : base() {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified 
-    /// endpointconfigurationname.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname.</summary>
     /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
     public ServiceSourceInfo(string endpointConfigurationName)
       : base() {
       this.EndpointConfigurationName = endpointConfigurationName;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified 
-    /// endpointconfigurationname and service address.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+    /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     public ServiceSourceInfo(string endpointConfigurationName, EndpointAddress remoteAddress)
@@ -52,8 +51,8 @@ namespace Enkoni.Framework.Entities {
       this.RemoteAddress = remoteAddress;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified 
-    /// endpointconfigurationname and service address.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+    /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     public ServiceSourceInfo(string endpointConfigurationName, string remoteAddress)
@@ -62,8 +61,7 @@ namespace Enkoni.Framework.Entities {
       this.RemoteAddress = new EndpointAddress(remoteAddress);
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified 
-    /// binding and service address.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified binding and service address.</summary>
     /// <param name="binding">The binding that must be used to communicate with the service.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     public ServiceSourceInfo(Binding binding, EndpointAddress remoteAddress)
@@ -72,8 +70,8 @@ namespace Enkoni.Framework.Entities {
       this.RemoteAddress = remoteAddress;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified default values.
-    /// If the default values do not specify any of the supported properties, the default values will be used.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified default values. If the default values do 
+    /// not specify any of the supported properties, the default values will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     public ServiceSourceInfo(Dictionary<string, object> defaultValues)
       : base(defaultValues) {
@@ -132,8 +130,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the endpointconfigurationname from the specified datasource information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be
-    /// found.</returns>
+    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
     public static string SelectEndpointConfigurationName(DataSourceInfo dataSourceInfo) {
       if(IsEndpointConfigurationNameSpecified(dataSourceInfo)) {
         return dataSourceInfo[EndpointConfigurationNameKey] as string;
@@ -154,8 +151,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the remote address from the specified datasource information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be
-    /// found.</returns>
+    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
     public static EndpointAddress SelectRemoteAddress(DataSourceInfo dataSourceInfo) {
       if(IsRemoteAddressSpecified(dataSourceInfo)) {
         return dataSourceInfo[RemoteAddressKey] as EndpointAddress;
@@ -176,8 +172,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the binding from the specified datasource information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be
-    /// found.</returns>
+    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
     public static Binding SelectBinding(DataSourceInfo dataSourceInfo) {
       if(IsBindingSpecified(dataSourceInfo)) {
         return dataSourceInfo[BindingKey] as Binding;

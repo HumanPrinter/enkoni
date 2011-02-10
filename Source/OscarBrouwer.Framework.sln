@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "Exter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework", "Enkoni.Framework\Enkoni.Framework.csproj", "{849BA8BA-A061-4278-85BD-90910680462E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.Entities", "OscarBrouwer.Framework.Entities\OscarBrouwer.Framework.Entities.csproj", "{26D1BDC7-B2E8-4351-AD6B-5441F292320A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities", "OscarBrouwer.Framework.Entities\Enkoni.Framework.Entities.csproj", "{26D1BDC7-B2E8-4351-AD6B-5441F292320A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OscarBrouwer.Framework.ServiceModel", "OscarBrouwer.Framework.ServiceModel\OscarBrouwer.Framework.ServiceModel.csproj", "{364CAFCC-BB2B-4F31-AA7E-26562918664D}"
 EndProject

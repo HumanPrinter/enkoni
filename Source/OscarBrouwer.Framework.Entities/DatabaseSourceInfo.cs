@@ -1,20 +1,19 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DatabaseSourceInfo.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a class that contains information about a database datasource that is used by the DatabaseRepository.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class can be used by the <see cref="DatabaseRepository{TEntity}"/> to retrieve valuable information about the 
-  /// database that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the
-  /// DatabaseRepository.</summary>
+  /// <summary>This class can be used by the <see cref="DatabaseRepository{TEntity}"/> to retrieve valuable information about the database that is to 
+  /// be used. This class is added for improved usability of the DataSourceInfo in combination with the DatabaseRepository.</summary>
   public class DatabaseSourceInfo : DataSourceInfo {
     #region Public constants
     /// <summary>Defines the key that is used to store and retrieve the DbContext.</summary>
@@ -22,23 +21,22 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using a default value of
-    /// <see langword="null"/> for the DbContext.</summary>
+    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using a default value of <see langword="null"/> for the 
+    /// DbContext.</summary>
     public DatabaseSourceInfo()
       : this((DbContext)null) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified 
-    /// <see cref="DbContext"/> instance.</summary>
+    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified <see cref="DbContext"/> instance.
+    /// </summary>
     /// <param name="dbContext">The database context that must be use to communicate with the database.</param>
     public DatabaseSourceInfo(DbContext dbContext)
       : base() {
       this.DbContext = dbContext;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified default 
-    /// values. If the default values do not specify the DbContext using the correct key and/or type, the value 
-    /// <see langword="null"/> will be used.</summary>
+    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified default values. If the default values 
+    /// do not specify the DbContext using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     public DatabaseSourceInfo(Dictionary<string, object> defaultValues)
       : base(defaultValues) {
@@ -70,8 +68,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the DbContext from the specified datasource information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The DbContext that is stored in the datasource information or <see langword="null"/> if the DbContext could
-    /// not be found.</returns>
+    /// <returns>The DbContext that is stored in the datasource information or <see langword="null"/> if the DbContext could not be found.</returns>
     public static DbContext SelectDbContext(DataSourceInfo dataSourceInfo) {
       if(IsDbContextSpecified(dataSourceInfo)) {
         return dataSourceInfo[DbContextKey] as DbContext;
