@@ -83,7 +83,7 @@
       <Project>{26D1BDC7-B2E8-4351-AD6B-5441F292320A}</Project>
       <Name>Enkoni.Framework.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\OscarBrouwer.Framework.Testing\Enkoni.Framework.Testing.csproj">
+    <ProjectReference Include="..\..\Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj">
       <Project>{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}</Project>
       <Name>Enkoni.Framework.Testing</Name>
     </ProjectReference>
