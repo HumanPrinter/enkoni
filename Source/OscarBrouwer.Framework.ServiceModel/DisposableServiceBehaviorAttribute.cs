@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DisposableServiceBehaviorAttribute.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds an attribute that can be used for disposable WCF service-implementations.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.ObjectModel;
@@ -35,11 +35,9 @@ namespace Enkoni.Framework.ServiceModel {
       Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters) {
     }
 
-    /// <summary>Provides the ability to change run-time property values or insert custom extension objects such as 
-    /// error handlers, message or parameter interceptors, security extensions, and other custom extension objects. 
-    /// <br/>
-    /// This implementation sets the <c>InstanceProvider</c> of each endpoint to an instance of 
-    /// <see cref="InstanceProvider"/>.</summary>
+    /// <summary>Provides the ability to change run-time property values or insert custom extension objects such as error handlers, message or 
+    /// parameter interceptors, security extensions, and other custom extension objects.<br/>
+    /// This implementation sets the <c>InstanceProvider</c> of each endpoint to an instance of <see cref="InstanceProvider"/>.</summary>
     /// <param name="serviceDescription">The service description.</param>
     /// <param name="serviceHostBase">The host that is currently being built.</param>
     /// <exception cref="ArgumentNullException">one or more parameters are null.</exception>
@@ -62,14 +60,12 @@ namespace Enkoni.Framework.ServiceModel {
       }
     }
 
-    /// <summary>Provides the ability to inspect the service host and the service description to confirm that the 
-    /// service can run successfully. <br/>
+    /// <summary>Provides the ability to inspect the service host and the service description to confirm that the service can run successfully.<br/>
     /// This implementation validates if the service type implements the <see cref="IDisposable"/> interface.</summary>
     /// <param name="serviceDescription">The service description.</param>
     /// <param name="serviceHostBase">The host that is currently being constructed.</param>
     /// <exception cref="ArgumentNullException"><paramref name="serviceDescription"/> is null.</exception>
-    /// <exception cref="ArgumentException">The service-implementation does not implement <see cref="IDisposable"/>.
-    /// </exception>
+    /// <exception cref="ArgumentException">The service-implementation does not implement <see cref="IDisposable"/>.</exception>
     public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) {
       if(serviceDescription == null) {
         throw new ArgumentNullException("serviceDescription");

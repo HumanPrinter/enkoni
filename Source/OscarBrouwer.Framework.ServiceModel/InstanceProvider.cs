@@ -1,11 +1,11 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="InstanceProvider.cs" company="Oscar Brouwer">
 //     Copyright (c) Oscar Brouwer 2011. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a type that is used by the Disposable WCF Service capabilities.
 // </summary>
-//--------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.ServiceModel;
@@ -13,8 +13,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 
 namespace Enkoni.Framework.ServiceModel {
-  /// <summary>This class acts as a default instance provider except that it is able to dispose the service instances 
-  /// upon release.</summary>
+  /// <summary>This class acts as a default instance provider except that it is able to dispose the service instances upon release.</summary>
   public class InstanceProvider : IInstanceProvider {
     #region Instance variables
     /// <summary>The type of the class that implements the service and must be created.</summary>
