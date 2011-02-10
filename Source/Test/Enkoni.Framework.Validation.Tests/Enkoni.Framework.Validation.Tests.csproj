@@ -64,7 +64,7 @@
     <Compile Include="TimeSpanRangeValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OscarBrouwer.Framework.Validation\Enkoni.Framework.Validation.csproj">
+    <ProjectReference Include="..\..\Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj">
       <Project>{B9A458EF-9C12-4CCE-83B2-B759BF92F3F7}</Project>
       <Name>Enkoni.Framework.Validation</Name>
     </ProjectReference>
