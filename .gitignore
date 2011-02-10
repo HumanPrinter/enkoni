@@ -9,10 +9,10 @@ Source/Enkoni.Framework.Entities/*.user
 Source/Enkoni.Framework.Entities/*.Cache
 Source/Enkoni.Framework.Entities/bin/
 Source/Enkoni.Framework.Entities/obj/
-Source/OscarBrouwer.Framework.ServiceModel/*.user
-Source/OscarBrouwer.Framework.ServiceModel/*.Cache
-Source/OscarBrouwer.Framework.ServiceModel/bin/
-Source/OscarBrouwer.Framework.ServiceModel/obj/
+Source/Enkoni.Framework.ServiceModel/*.user
+Source/Enkoni.Framework.ServiceModel/*.Cache
+Source/Enkoni.Framework.ServiceModel/bin/
+Source/Enkoni.Framework.ServiceModel/obj/
 Source/OscarBrouwer.Framework.Testing/*.user
 Source/OscarBrouwer.Framework.Testing/*.Cache
 Source/OscarBrouwer.Framework.Testing/bin/
