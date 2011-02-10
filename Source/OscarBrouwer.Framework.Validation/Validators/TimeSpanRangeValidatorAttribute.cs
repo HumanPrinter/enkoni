@@ -14,8 +14,8 @@ using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace Enkoni.Framework.Validation.Validators {
   /// <summary>Attribute to specify timespan range validation on a property, method or field.</summary>
-  [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | 
-    AttributeTargets.Parameter, AllowMultiple = true, Inherited = false)]
+  [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true, 
+    Inherited = false)]
   public sealed class TimeSpanRangeValidatorAttribute : ValueValidatorAttribute {
     #region Instance variables
     /// <summary>The lower bound.</summary>
