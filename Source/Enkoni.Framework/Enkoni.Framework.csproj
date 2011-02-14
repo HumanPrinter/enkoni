@@ -51,6 +51,7 @@
     <Compile Include="CombinedSpecification.cs" />
     <Compile Include="AndSpecification.cs" />
     <Compile Include="BusinessRuleSpecification.cs" />
+    <Compile Include="ReferenceEqualityComparer.cs" />
     <Compile Include="SortSpecificationsEventArgs.cs" />
     <Compile Include="SortSpecifications.cs" />
     <Compile Include="SortSpecification.cs" />

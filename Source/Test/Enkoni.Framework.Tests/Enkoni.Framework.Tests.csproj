@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="ComparerTest.cs" />
     <Compile Include="CollectionExtensionTest.cs" />
+    <Compile Include="ReferenceEqualityComparerTest.cs" />
     <Compile Include="CsvSerializerTest.cs" />
     <Compile Include="LinqExtensionTest.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
