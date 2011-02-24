@@ -13,8 +13,8 @@ using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the 
 // information associated with an assembly.
-[assembly: AssemblyTitle("Enkoni.Framework.Testing")]
-[assembly: AssemblyDescription("Contains a number of classes that can aid in the execution of tests.")]
+[assembly: AssemblyTitle("Enkoni.Framework.Logging")]
+[assembly: AssemblyDescription("Contains functionality to add logging to an application using the Microsoft Enterprise Library's Logging Application Block")]
 [assembly: AssemblyConfiguration("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible to COM components.  If you need to access a type in this assembly from 
@@ -22,6 +22,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1efdfdd1-efbf-499e-aab4-9306abc47dd4")]
+[assembly: Guid("a814253f-91cd-4056-ab20-00f6b416c325")]
 
 [assembly: CLSCompliant(true)]

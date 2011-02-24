@@ -12,4 +12,21 @@ Version 1.0.0.0
       The versionnumber has been reset to 1.0.0.0 and the release notes are cleared. The previous release notes and releases are 
       available through the source control system.
 
+  [+] Added the Enkoni.Framework.Logging project
+      Date:    2011-02-23
+      Author:  Oscar Brouwer
+      Comment: Added the Enkoni.Framework.Logging project which contains classes that can be used to emit logmessages using the Logging Application
+               Block which is part of the Microsoft Enterprise Library.
+
+  [*] Splitted the Enkoni.Framework.Entities project into four seperate projects
+      Date:    2011-02-24
+      Author:  Oscar Brouwer
+      Comment: Splitted the Enkoni.Framework.Entities into four seperate projects. Enkoni.Framework.Entities contains the general data-access classes,
+               Enkoni.Framework.Entities.Database contains the classes use a database as datasource for the data-access, 
+               Enkoni.Framework.Entities.File contains classes that use a file as datasource for the data-access,
+               Enkoni.Framework.Entities.Service contains classes that use a WCF service as datasource for the data-access.
+               By splitting these classes into seperate projects, developers no longer need to include WCF-related libraries when they only want to
+               use a database or include database-related libraries when they only want to use a filebased datasource. The memory-based data-access 
+               classes are still a part of the Enkoni.Framework.Entities project since they don't require any additional and/or memory-specific 
+               libraries nor is it to be expected that they will need to in the future.
 =============================================================

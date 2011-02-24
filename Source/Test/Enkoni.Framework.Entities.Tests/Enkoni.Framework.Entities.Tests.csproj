@@ -79,6 +79,14 @@
     <Compile Include="XmlFileRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj">
+      <Project>{A3E70A0C-9C06-4283-94E2-2665FFCA529F}</Project>
+      <Name>Enkoni.Framework.Entities.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj">
+      <Project>{8EE52C76-0EAE-498E-8854-0447A703F667}</Project>
+      <Name>Enkoni.Framework.Entities.File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj">
       <Project>{26D1BDC7-B2E8-4351-AD6B-5441F292320A}</Project>
       <Name>Enkoni.Framework.Entities</Name>

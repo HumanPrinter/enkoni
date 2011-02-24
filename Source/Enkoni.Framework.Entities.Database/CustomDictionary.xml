@@ -5,4 +5,9 @@
       <Word>Enkoni</Word>
     </Recognized>
   </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>Db</Acronym>
+    </CasingExceptions>
+  </Acronyms>
 </Dictionary>

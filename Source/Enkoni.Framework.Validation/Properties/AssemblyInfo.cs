@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the 
 // information associated with an assembly.
 [assembly: AssemblyTitle("Enkoni.Framework.Validation")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Contains functionality that extends the functionality that is offered by the default .NET DataAnnotations and the Microsoft Enterprise Library's Validation Application Block.")]
 [assembly: AssemblyConfiguration("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible to COM components.  If you need to access a type in this assembly from 

@@ -134,7 +134,7 @@ namespace Enkoni.Framework.Entities {
       IEnumerable<TEntity> cachedData = this.SelectDbContext(dataSourceInfo).Set<TEntity>().Local.Where(expression.Compile());
       
       /* Combine the databasedata and the local cache using the cache as the master (since it may contain unsaved updates) */
-      /* IMPORTANT: It is possible that the combined collection contains an unsaved deletion. There is no way to detect this without lossing the 
+      /* IMPORTANT: It is possible that the combined collection contains an unsaved deletion. There is no way to detect this without losing the 
        * optimization of limiting the results retrieved directly from the database*/
       IEnumerable<TEntity> result = cachedData.Union(databaseData);
 

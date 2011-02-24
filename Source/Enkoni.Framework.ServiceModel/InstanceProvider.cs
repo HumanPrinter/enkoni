@@ -12,6 +12,9 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 
+using Enkoni.Framework.Logging;
+using Enkoni.Framework.ServiceModel.Properties;
+
 namespace Enkoni.Framework.ServiceModel {
   /// <summary>This class acts as a default instance provider except that it is able to dispose the service instances upon release.</summary>
   public class InstanceProvider : IInstanceProvider {
@@ -52,6 +55,8 @@ namespace Enkoni.Framework.ServiceModel {
     public void ReleaseInstance(InstanceContext instanceContext, object instance) {
       IDisposable disposableInstance = instance as IDisposable;
       if(disposableInstance != null) {
+        Logger logger = LogManager.CreateLogger();
+        logger.Verbose(LogMessages.VerboseDisposingInstance + instance.GetType(), "enkoni.framework");
         disposableInstance.Dispose();
       }
     }

@@ -14,8 +14,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Enkoni.Framework.Entities")]
-[assembly: AssemblyDescription("Contains the basic functionality of a generic data-access layer which can be utilized in a typical multi-tier application")]
+[assembly: AssemblyTitle("Enkoni.Framework.Entities.Service")]
+[assembly: AssemblyDescription("Extends the default Enkoni.Framework.Entities library and adds support for WCF Services")]
 [assembly: AssemblyConfiguration("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

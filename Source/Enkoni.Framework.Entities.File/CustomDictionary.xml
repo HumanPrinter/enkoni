@@ -3,6 +3,10 @@
   <Words>
     <Recognized>
       <Word>Enkoni</Word>
+      <Word>FileRepository</Word>
     </Recognized>
+    <Compound>
+      <Term CompoundAlternate="FileRepository">Filerepository</Term>
+    </Compound>
   </Words>
 </Dictionary>
