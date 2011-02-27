@@ -1,0 +1,737 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.Entities</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.Entities.MemoryStore`1">
+            <summary>This abstract class defines the API of a class that holds a collection of objects in memory.</summary>
+            <typeparam name="T">The type of object that is stored.</typeparam>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryStore`1.storageLock">
+            <summary>A lock that controls access to the storage.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterReadLock">
+            <summary>Enters the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitReadLock">
+            <summary>Exits the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterWriteLock">
+            <summary>Enters the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitWriteLock">
+            <summary>Exists the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterReadLockCore">
+            <summary>Enters the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitReadLockCore">
+            <summary>Exits the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterWriteLockCore">
+            <summary>Enters the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitWriteLockCore">
+            <summary>Exists the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.MemoryStore`1.Storage">
+            <summary>Gets the storage that holds the saved instances.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.SubDomainModel`1">
+            <summary>This abstract class defines the public API of a class that represents the subdomain of the domain model.</summary>
+            <typeparam name="T">The type to which this subdomain applies.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.#ctor(Enkoni.Framework.Entities.DomainModel)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.SubDomainModel`1"/> class.</summary>
+            <param name="parentDomainModel">The parent model that gives access to the other subdomains.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.CreateEmptyEntity">
+            <summary>Creates an empty instance of type T.</summary>
+            <returns>The created instance.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.FindEntities(Enkoni.Framework.ISpecification{`0})">
+            <summary>Finds all the entities that match the specified specification.</summary>
+            <param name="searchSpecification">The specification that desribes the query that must be performed.</param>
+            <returns>The found entities or an empty list if there were no results.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.FindEntity(Enkoni.Framework.ISpecification{`0})">
+            <summary>Finds one entities that matches the specified specification.</summary>
+            <param name="searchSpecification">The specification that desribes the query that must be performed.</param>
+            <returns>The found entity or <see langword="null"/> if there was no result.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.FindEntityById(System.Int32)">
+            <summary>Finds one entities with the specified entity-ID.</summary>
+            <param name="entityId">The ID of the entity that must be found.</param>
+            <returns>The found entity or <see langword="null"/> if there was no result.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.AddEntity(`0)">
+            <summary>Adds the specified entity to the domain. Before it is added, the entity is validated to ensure that only validated entities are 
+            added in the domain.</summary>
+            <param name="entity">The entity that must be added.</param>
+            <exception cref="T:Enkoni.Framework.Validation.ValidationException">The entity is invalid.</exception>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.UpdateEntity(System.Int32,`0)">
+            <summary>Updates the specified entity in the domain. Before it is updated, the entity is validated to ensure that only validated entities are 
+            added in the domain.</summary>
+            <param name="originalEntityId">The ID of the entity that must be updated.</param>
+            <param name="updatedEntity">The entity that contains the new values.</param>
+            <exception cref="T:Enkoni.Framework.Validation.ValidationException">The entity is invalid.</exception>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.DeleteEntity(System.Int32)">
+            <summary>Removes the entity from the domain.</summary>
+            <param name="originalEntityId">The ID of the entity that must be removed.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.CreateEmptyEntityCore">
+            <summary>Creates an empty instance of type T.</summary>
+            <returns>The created instance.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.FindEntitiesCore(Enkoni.Framework.ISpecification{`0})">
+            <summary>Finds all the entities that match the specified specification.</summary>
+            <param name="specification">The specification that desribes the query that must be performed.</param>
+            <returns>The found entities or an empty list if there were no results.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.FindEntityCore(Enkoni.Framework.ISpecification{`0})">
+            <summary>Finds one entities that matches the specified specification.</summary>
+            <param name="specification">The specification that desribes the query that must be performed.</param>
+            <returns>The found entity or <see langword="null"/> if there was no result.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.ValidateEntity(`0)">
+            <summary>Validates the entity.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The results of the validation.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.AddEntityCore(`0)">
+            <summary>Adds the entity to the domain.</summary>
+            <param name="entity">The entity that must be added.</param>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.UpdateEntityCore(`0)">
+            <summary>Updates the entity in the domain.</summary>
+            <param name="entity">The entity that must is updated.</param>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.SubDomainModel`1.DeleteEntityCore(`0)">
+            <summary>Removes the entity from the domain.</summary>
+            <param name="entity">The entity that must be removed.</param>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.SubDomainModel`1.ParentDomainModel">
+            <summary>Gets the parent domainmodel.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.EntityEqualityComparer`1">
+            <summary>This class can be used to compare two instances of <see cref="T:Enkoni.Framework.Entities.IEntity`1"/> for equality. It uses the
+            <see cref="P:Enkoni.Framework.Entities.IEntity`1.RecordId"/> property to compare the two instances.</summary>
+            <typeparam name="TEntity">The type of entity that must be compared.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityEqualityComparer`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.EntityEqualityComparer`1"/> class.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.Repository`1">
+            <summary>This abstract class defines the API of a repository that is capable of accessing specific types in a persistency.</summary>
+            <typeparam name="T">The type of entity that is managed by the repository.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.Repository`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.Enkoni#Framework#ISpecificationVisitor{T}#CreateAndExpression(Enkoni.Framework.ISpecification{`0},Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates an AND-expression using the two specified specifications.</summary>
+            <param name="leftOperand">The left operand of the combination.</param>
+            <param name="rightOperand">The right operand of the combination.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.Enkoni#Framework#ISpecificationVisitor{T}#CreateOrExpression(Enkoni.Framework.ISpecification{`0},Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates an OR-expression using the two specified specifications.</summary>
+            <param name="leftOperand">The left operand of the combination.</param>
+            <param name="rightOperand">The right operand of the combination.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.Enkoni#Framework#ISpecificationVisitor{T}#CreateLambdaExpression(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>Creates a lambda-expression using the specified expression. Typically, this method simply returns the parameter.</summary>
+            <param name="expression">The expression that was originally passed to the specification.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.Enkoni#Framework#ISpecificationVisitor{T}#CreateNotExpression(Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates a NOT-expression using the specified specification.</summary>
+            <param name="specification">The specification whose result must be inverted.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.Enkoni#Framework#ISpecificationVisitor{T}#CreateLikeExpression(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String)">
+            <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+            <param name="field">The field of type <c>T</c> that must match the pattern.</param>
+            <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.Enkoni#Framework#ISpecificationVisitor{T}#CreateCustomExpression(Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates a lambda-expression using the custom specification. This method is executed when a specification-type is used that is not 
+            part of the default specification system.</summary>
+            <param name="specification">The custom specification.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.SaveChanges">
+            <summary>Saves all the changes to the underlying persistency.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.SaveChanges(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Saves all the changes to the underlying persistency.</summary>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateEntity">
+            <summary>Creates a new entity. To add the entity to the repository, use the <see cref="M:AddEntity(T)"/> method with the returned value.
+            </summary>
+            <returns>The newly created entity.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateEntity(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Creates a new entity. To add the entity to the repository, use the <see cref="M:AddEntity(T)"/> method with the returned value.
+            </summary>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The newly created entity.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.AddEntity(`0)">
+            <summary>Adds a new entity to the repository. Call <see cref="M:SaveChanges()"/> to make the addition permanent.</summary>
+            <param name="entity">The entity that must be added to the repository.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.AddEntity(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Adds a new entity to the repository. Call <see cref="M:SaveChanges()"/> to make the addition permanent.</summary>
+            <param name="entity">The entity that must be added to the repository.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.UpdateEntity(`0)">
+            <summary>Updates the repository with the changes made to the entity. Call <see cref="M:SaveChanges()"/> to make the changes permanent.
+            </summary>
+            <param name="entity">The entity whose members are updated.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.UpdateEntity(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Updates the repository with the changes made to the entity. Call <see cref="M:SaveChanges()"/> to make the changes permanent.
+            </summary>
+            <param name="entity">The entity whose members are updated.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.DeleteEntity(`0)">
+            <summary>Deletes the entity from the repository. Call <see cref="M:SaveChanges()"/> to make the changes permanent.</summary>
+            <param name="entity">The entity that must be deleted.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.DeleteEntity(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Deletes the entity from the repository. Call <see cref="M:SaveChanges()"/> to make the changes permanent.</summary>
+            <param name="entity">The entity that must be deleted.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindAll">
+            <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
+            <returns>All the available entities.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindAll(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>All the available entities.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindAll(Enkoni.Framework.ISpecification{`0})">
+            <summary>Finds all the available entities that match the specification.</summary>
+            <param name="specification">The specification to which entities must match.</param>
+            <returns>The entities that match the specification.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindAll(Enkoni.Framework.ISpecification{`0},Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds all the available entities that match the specification.</summary>
+            <param name="specification">The specification to which the entities must match.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The entities that match the specification.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindSingle(Enkoni.Framework.ISpecification{`0})">
+            <summary>Finds a single entity that matches the specification.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <returns>The found entity.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindSingle(Enkoni.Framework.ISpecification{`0},Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds a single entity that matches the specification.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The found entity.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindSingle(Enkoni.Framework.ISpecification{`0},`0)">
+            <summary>Finds a single entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindSingle(Enkoni.Framework.ISpecification{`0},`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds a single entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindFirst(Enkoni.Framework.ISpecification{`0})">
+            <summary>Finds the first entity that matches the specification.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <returns>The found entity.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindFirst(Enkoni.Framework.ISpecification{`0},Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds the first entity that matches the specification.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The found entity.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindFirst(Enkoni.Framework.ISpecification{`0},`0)">
+            <summary>Finds the first entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindFirst(Enkoni.Framework.ISpecification{`0},`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds the first entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
+            <param name="specification">The specification to which the entity must match.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.Dispose">
+            <summary>Disposes any resources held by this instance.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.DisposeManagedResources">
+            <summary>Disposes all the managed resources that are held by this instance.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.SaveChangesCore(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Saves all the changes to the underlying persistency.</summary>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateEntityCore(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Creates a new entity.</summary>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The newly created entity.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.AddEntityCore(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Adds a new entity to the repository.</summary>
+            <param name="entity">The entity that must be added to the repository.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.UpdateEntityCore(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Updates the repository with the changes made to the entity.</summary>
+            <param name="entity">The entity whose members are updated.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The entity with the most recent values.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.DeleteEntityCore(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Deletes the entity from the repository.</summary>
+            <param name="entity">The entity that must be deleted.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindAllCore(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Enkoni.Framework.SortSpecifications{`0},System.Int32,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds all the available entities that match the specified expression.</summary>
+            <param name="expression">The expression to which the entities must match.</param>
+            <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+            <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The entities that match the specified expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindAllCore(System.Func{`0,System.Boolean},Enkoni.Framework.SortSpecifications{`0},System.Int32,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds all the available entities that match the specified expression.</summary>
+            <param name="expression">The expression to which the entities must match.</param>
+            <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+            <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The entities that match the specified expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindSingleCore(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Enkoni.Framework.Entities.DataSourceInfo,`0)">
+            <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindSingleCore(System.Func{`0,System.Boolean},Enkoni.Framework.Entities.DataSourceInfo,`0)">
+            <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindFirstCore(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Enkoni.Framework.SortSpecifications{`0},Enkoni.Framework.Entities.DataSourceInfo,`0)">
+            <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindFirstCore(System.Func{`0,System.Boolean},Enkoni.Framework.SortSpecifications{`0},Enkoni.Framework.Entities.DataSourceInfo,`0)">
+            <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <param name="defaultValue">The value that will be returned when no match was found.</param>
+            <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindAllCore(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>All the available entities.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindSingleCore(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds a single entity that matches the expression.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The found entity.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.FindFirstCore(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Enkoni.Framework.SortSpecifications{`0},Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds the first single entity that matches the expression.</summary>
+            <param name="expression">The expression to which the entity must match.</param>
+            <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The found entity.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateAndExpressionCore(Enkoni.Framework.ISpecification{`0},Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates an AND-expression using the two specified specifications.</summary>
+            <param name="leftOperand">The left operand of the combination.</param>
+            <param name="rightOperand">The right operand of the combination.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateOrExpressionCore(Enkoni.Framework.ISpecification{`0},Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates an OR-expression using the two specified specifications.</summary>
+            <param name="leftOperand">The left operand of the combination.</param>
+            <param name="rightOperand">The right operand of the combination.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateLambdaExpressionCore(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>Creates a lambda-expression using the specified expression. Typically, this method simply returns the parameter.</summary>
+            <param name="expression">The expression that was originally passed to the specification.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateNotExpressionCore(Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates a NOT-expression using the specified specification.</summary>
+            <param name="specification">The specification whose result must be inverted.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateLikeExpressionCore(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String)">
+            <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+            <param name="field">The field of type <c>T</c> that must match the pattern.</param>
+            <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.CreateCustomExpressionCore(Enkoni.Framework.ISpecification{`0})">
+            <summary>Creates a lambda-expression using the custom specification. This method is executed when a specification-type is used that is not 
+            part of the default specification system.</summary>
+            <param name="specification">The custom specification.</param>
+            <returns>The created expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.ExecuteBusinessRuleWithSingleResult(System.String,System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>Executes a businessrule that yields to a single result. By default, this method throws a <see cref="T:System.NotSupportedException"/>. 
+            Override this method to deal with special businessrules.</summary>
+            <param name="ruleName">The name of the rule that must be executed.</param>
+            <param name="ruleArguments">The arguments that were passed.</param>
+            <returns>The result of the businessrule.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.Repository`1.ExecuteBusinessRuleWithMultipleResults(System.String,System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>Executes a businessrule that yields to multiple results. By default, this method throws a <see cref="T:System.NotSupportedException"/>. 
+            Override this method to deal with special businessrules.</summary>
+            <param name="ruleName">The name of the rule that must be executed.</param>
+            <param name="ruleArguments">The arguments that were passed.</param>
+            <returns>The result of the businessrule.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.Repository`1.Validator">
+            <summary>Gets or sets the instance that must be used to validate the entities before adding or updating them in the repository.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.DomainModel">
+            <summary>This class defines the public API of a class that represents a domainmodel.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DomainModel"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.PersistencyExists">
+            <summary>Determines if the underlying persistency already exists.</summary>
+            <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.CreatePersistency">
+            <summary>Creates the underlying persistency if it does not yet already exist.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.ClearPersistency">
+            <summary>Clears the underlying persistency.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.GetSubDomain``1">
+            <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
+            <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
+            <returns>The SubDomain.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.PersistencyExistsCore">
+            <summary>Determines if the underlying persistency already exists.</summary>
+            <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.CreatePersistencyCore">
+            <summary>Creates the underlying persistency.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.ClearPersistencyCore">
+            <summary>Clears the underlying persistency.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.GetSubDomainCore``1">
+            <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
+            <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
+            <returns>The appropriate SubDomainModel.</returns>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.HttpSessionMemoryStore`1">
+            <summary>This class implements the abstract class <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> using collections that are stored in a HTTP Session.</summary>
+            <typeparam name="T">The type of object that is stored.</typeparam>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.StorageKey">
+            <summary>The key that is used to retrieve the storage-collection from the HttpSession.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.HttpSessionMemoryStore`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.RetrieveStorage">
+            <summary>Retrieves the storage from the current session. If there is no storage available yet, a new one is created.</summary>
+            <returns>The storage that is stored in the session.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.Storage">
+            <summary>Gets the storage that holds the saved instances.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.DataSourceInfo">
+            <summary>This class contains information about a specific datasource. This can be any kind of datasource. This class is utilized by the various 
+            repositories. Check the documentation of the used repository for more information about the required or supported datasource-information.
+            </summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.DataSourceInfo.sourceInfoItems">
+            <summary>The collection that holds the keys with the associated values.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class using the specified values.</summary>
+            <param name="defaultValues">The default values that must be loaded.</param>
+            <exception cref="T:System.ArgumentNullException">The parameter is null.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.IsValueSpecified(System.String)">
+            <summary>Determines if a value is specified by looking up the specified key in the internal storage.</summary>
+            <param name="key">The key that identifies the desired value.</param>
+            <returns><see langword="true"/> if the key (and accompanying value) is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.DataSourceInfo.Item(System.String)">
+            <summary>Gets or sets the value that is associated with the specified key.</summary>
+            <param name="key">The key with which the value is identified.</param>
+            <returns>The value that is associated with the specified key.</returns>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.StaticMemoryStore`1">
+            <summary>This class implements the abstract class <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> using a simple static collection variable.</summary>
+            <typeparam name="T">The type of object that is stored.</typeparam>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.StaticMemoryStore`1.storage">
+            <summary>The storage itself.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.StaticMemoryStore`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.StaticMemoryStore`1"/> class.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.StaticMemoryStore`1.Storage">
+            <summary>Gets the storage that holds the saved instances.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.IEntity`1">
+            <summary>Defines the basic signature of an entity-type.</summary>
+            <typeparam name="T">The actual entity type.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.IEntity`1.CopyFrom(`0)">
+            <summary>Copies the values from <paramref name="source"/> into this instance.</summary>
+            <param name="source">The entity that contains the desired values.</param>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.IEntity`1.RecordId">
+            <summary>Gets or sets the record-ID of the entity.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.MemorySourceInfo">
+            <summary>This class contains static members that would normally be part of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class, but since that class is
+            generic the static members are placed in this non-generic counterpart to avoid possible confussion about the use of the methods.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemorySourceInfo.MemoryStoreKey">
+            <summary>Defines the key that is used to store and retrieve the MemoryStore.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo.IsMemoryStoreSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Determines if the MemoryStore is specified in the source information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo.SelectMemoryStore``1(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Selects the MemoryStore from the specified datasource information.</summary>
+            <typeparam name="T">The type of object that is stored in the memorystore.</typeparam>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns>The MemoryStore that is stored in the datasource information or <see langword="null"/> if the MemoryStore could not be found.
+            </returns>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.MemorySourceInfo`1">
+            <summary>This class can be used by the <see cref="T:Enkoni.Framework.Entities.MemoryRepository`1"/> to retrieve valuable information about the datastore that is to 
+            be used. This class is added for improved usability of the DataSourceInfo in combination with the MemoryRepository.</summary>
+            <typeparam name="T">The type of object that is stored in memory.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using a default value of <see langword="null"/> for the 
+            MemoryStore.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(Enkoni.Framework.Entities.MemoryStore{`0})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified memorystore instance.</summary>
+            <param name="memoryStore">The memorystore that must be use to store the entities.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified default values. If the default values 
+            do not specify the MemoryStore using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
+            <param name="defaultValues">The default values that are to be used.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.IsMemoryStoreSpecified">
+            <summary>Determines if the MemoryStore is specified in the source information.</summary>
+            <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.MemorySourceInfo`1.MemoryStore">
+            <summary>Gets or sets the MemoryStore that is to be used by the MemoryRepository.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.EntityValidator`1">
+            <summary>This abstract class defines the public API of a class that can validate entities.</summary>
+            <typeparam name="T">The type of entity that must be validated.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.EntityValidator`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformShallowValidation(`0)">
+            <summary>Performs a shallow validation of the specified entity. This will only validate the consistency of the entity itself without looking 
+            at the references to other entities or the underlying persistency.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The results of the validation.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="entity"/> is null.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformDeepValidation(`0)">
+            <summary>Performs a deep validation of the specified entity. Besides performing a shallow validation, it may also look at the underlying
+            persistency for instance to make sure that no uniqueness-rules are violated.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The results of the validation.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="entity"/> is null.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformShallowValidationCore(`0)">
+            <summary>Performs a shallow validation of the entity.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The result of the validation.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformDeepValidationCore(`0)">
+            <summary>Performs a deep validation of the entity.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The result of the validation.</returns>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.MemoryRepository`1">
+            <summary>This abstract class extends the abstract <see cref="T:Enkoni.Framework.Entities.Repository`1"/> class and implements some of the functionality using 
+            memorystorage.</summary>
+            <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryRepository`1.temporaryStorage">
+            <summary>The storage that contains the items that are not yet saved.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryRepository`1.temporaryStorageLock">
+            <summary>A lock that controls access to the temporary storage.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryRepository`1.typeImplementsICloneable">
+            <summary>Indicates if the type of entity implements the ICloneable interface.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.#ctor(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemoryRepository`1"/> class using the specified <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/>.
+            </summary>
+            <param name="dataSourceInfo">The datasource information that must be used to access the datasource.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.DisposeManagedResources">
+            <summary>Disposes all the managed resources that are held by this instance.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.AddEntityCore(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Adds the entity to the storage.</summary>
+            <param name="entity">The entity that must be added.</param>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+            <returns>The entity with the updated recordID.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.CreateEntityCore(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Creates a new instance of type T.</summary>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+            <returns>The constructed object.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.DeleteEntityCore(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Deletes the entity from the storage.</summary>
+            <param name="entity">The entity that must be removed.</param>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.FindAllCore(System.Func{`0,System.Boolean},Enkoni.Framework.SortSpecifications{`0},System.Int32,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Finds all the entities that match the expression.</summary>
+            <param name="expression">The search-specification.</param>
+            <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+            <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+            <returns>The items that match the expression.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.FindFirstCore(System.Func{`0,System.Boolean},Enkoni.Framework.SortSpecifications{`0},Enkoni.Framework.Entities.DataSourceInfo,`0)">
+            <summary>Finds the first entity that matches the expression or returns the defaultvalue if there were no matches.</summary>
+            <param name="expression">The search-specification.</param>
+            <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+            <param name="defaultValue">The value that must be returned if there were no matches.</param>
+            <returns>The first result or the defaultvalue.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.FindSingleCore(System.Func{`0,System.Boolean},Enkoni.Framework.Entities.DataSourceInfo,`0)">
+            <summary>Finds the single entity that matches the expression or returns the defaultvalue if there were no matches.</summary>
+            <param name="expression">The search-specification.</param>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+            <param name="defaultValue">The value that must be returned if there were no matches.</param>
+            <returns>The single result or the defaultvalue.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.SaveChangesCore(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Merges the temporary storage with the global storage.</summary>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.UpdateEntityCore(`0,Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Updates an entity in the storage.</summary>
+            <param name="entity">The enity that must be updated.</param>
+            <param name="dataSourceInfo">The parameter is not used.</param>
+            <returns>The updated entity.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.ApplyIdentifiers(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Applies new identifiers to the entities starting with identifier '1'.</summary>
+            <param name="entities">The entities to which the identifiers must be applied.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.ApplyIdentifiers(System.Collections.Generic.IEnumerable{`0},System.Int32)">
+            <summary>Applies new identifiers to the entities starting with the specified startvalue.</summary>
+            <param name="entities">The entities to which the identifiers must be applied.</param>
+            <param name="startIdentifier">The first identifier that must be applied.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryRepository`1.SelectMemoryStore(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Selects the MemoryStore that must be used. If the specified DataSourceInfo contains a valid MemoryStore, it is used; otherwise the 
+            value of the property 'MemoryStore' is used.</summary>
+            <param name="dataSourceInfo">Any information regarding the datastore that is used as datasource.</param>
+            <returns>The MemoryStore that must be used.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.MemoryRepository`1.MemoryStore">
+            <summary>Gets the DbContext that is used to access the database.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.MemoryRepository`1.StorageAction">
+            <summary>Contains the supported storage actions.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryRepository`1.StorageAction.Add">
+            <summary>Indicates that the item is to be added to the global storage.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryRepository`1.StorageAction.Update">
+            <summary>Indicates that the item is to be updated in the global storage.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryRepository`1.StorageAction.Delete">
+            <summary>Indicates that the item is to be deleted from the global storage.</summary>
+        </member>
+    </members>
+</doc>
