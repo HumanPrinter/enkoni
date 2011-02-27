@@ -11,7 +11,7 @@ using System;
 using System.ComponentModel;
 
 namespace Enkoni.Framework.Serialization {
-  /// <summary>This attribute defines how an object must be serialized and deserialized to and from a CVS file.</summary>
+  /// <summary>This attribute defines how an object must be serialized and deserialized to and from a CSV file.</summary>
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class CsvRecordAttribute : Attribute {
     #region Constructors

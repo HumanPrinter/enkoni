@@ -10,7 +10,7 @@
 using System;
 
 namespace Enkoni.Framework.Serialization {
-  /// <summary>This attribute defines how a property must be serialized and deserialized to and from a column in a CVS file.</summary>
+  /// <summary>This attribute defines how a property must be serialized and deserialized to and from a column in a CSV file.</summary>
   [AttributeUsage(AttributeTargets.Property)]
   public sealed class CsvColumnAttribute : Attribute {
     #region Constructors
