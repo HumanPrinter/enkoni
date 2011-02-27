@@ -49,6 +49,7 @@ Source/Test/Enkoni.Framework.Validation.Tests/*.user
 Source/Test/Enkoni.Framework.Validation.Tests/*.Cache
 Source/Test/Enkoni.Framework.Validation.Tests/bin/
 Source/Test/Enkoni.Framework.Validation.Tests/obj/
+/Releases/Documentation/
 /Releases/*.dll
 /Releases/*.xml
 /Releases/*.txt
