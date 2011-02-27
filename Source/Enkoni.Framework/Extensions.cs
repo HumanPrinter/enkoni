@@ -154,6 +154,34 @@ namespace Enkoni.Framework {
     }
     #endregion
 
+    #region DateTime extensions
+    /// <summary>Determines the weeknumber of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
+    /// <param name="source">The datetime of which the weeknumber must be determined.</param>
+    /// <returns>The determined weeknumber.</returns>
+    public static int GetWeekNumber(this DateTime source) {
+      /* This implementation is inspired on the article written by Shawn Steele which is available on 
+       * http://blogs.msdn.com/b/shawnste/archive/2006/01/24/517178.aspx */
+      /* This implementation is slightly more complicated than simply calling GetWeekOfYear() on Calendar, because the default implementation is not 
+       * entirely ISO 8601 compliant (even though the documentation says it is). */
+      
+      /* Since this method calculates the weeknumber in accordance with the ISO 8601 specification, which is culture independant, the calendar of the
+       * invariant culture is used. */
+      Calendar calendar = CultureInfo.InvariantCulture.Calendar;
+
+      /* Get the day of the week */
+      DayOfWeek weekDay = calendar.GetDayOfWeek(source);
+
+      /* Make sure the date points to the Thursday (or some day later in the same week) to make sure the weeknumber calculation succeeds. */
+      if(weekDay >= DayOfWeek.Monday && weekDay <= DayOfWeek.Wednesday) {
+        /* Sinde the DateTime parameter isn't passed by reference, there is no harm in overwritting the parameters value. */
+        source = source.AddDays(3);
+      }
+
+      /* Now the GetWeekOfYear method can be used and it will return the correct value in accordance with the ISO 8601 specification. */
+      return calendar.GetWeekOfYear(source, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+    }
+    #endregion
+
     #region ICollection<T> extension methods
     /// <summary>Adds an overload for the ICollection-method 'Remove(T)' which lets the user define a comparer that must be used.</summary>
     /// <typeparam name="T">The type of element that is stored in the collection.</typeparam>
