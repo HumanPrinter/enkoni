@@ -39,11 +39,7 @@
 <DocumentationSource sourceFile="Enkoni.Framework.Testing\bin\Release\Enkoni.Framework.Testing.xml" />
 <DocumentationSource sourceFile="Enkoni.Framework.Validation\bin\Release\Enkoni.Framework.Validation.dll" />
 <DocumentationSource sourceFile="Enkoni.Framework.Validation\bin\Release\Enkoni.Framework.Validation.xml" />
-<DocumentationSource sourceFile="Enkoni.Framework\bin\Release\Enkoni.Framework.xml" />
-<DocumentationSource sourceFile="External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
-<DocumentationSource sourceFile="External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.xml" />
-<DocumentationSource sourceFile="External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll" />
-<DocumentationSource sourceFile="External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.xml" /></DocumentationSources>
+<DocumentationSource sourceFile="Enkoni.Framework\bin\Release\Enkoni.Framework.xml" /></DocumentationSources>
     <PlugInConfigurations>
     </PlugInConfigurations>
     <FrameworkVersion>4.0.30319</FrameworkVersion>
@@ -62,41 +58,42 @@
     </NamespaceSummaries>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.Filters" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.Formatters" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.TraceListeners" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Unity" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Helpers" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Filters" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Instrumentation" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.PolicyInjection" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Configuration" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Unity" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Instrumentation" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Integration" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.PolicyInjection" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Properties" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="True" xmlns="">
-  <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1" filterName="NamedElementCollection`1" isExposed="True">
-    <Filter entryType="Method" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IMergeableConfigurationElementCollection#CreateNewElement" filterName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IMergeableConfigurationElementCollection.CreateNewElement" isExposed="False" />
-    <Filter entryType="Method" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IMergeableConfigurationElementCollection#ResetCollection" filterName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IMergeableConfigurationElementCollection.ResetCollection" isExposed="False" />
-  </Filter>
-</Filter>
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity" isExposed="True" xmlns="">
-  <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity.EnterpriseLibraryBlockExtension" filterName="EnterpriseLibraryBlockExtension" isExposed="False" />
-</Filter>
-<Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation" isExposed="True" xmlns="">
-  <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.EnterpriseLibraryPerformanceCounter" filterName="EnterpriseLibraryPerformanceCounter" isExposed="False" />
-</Filter></ApiFilter>
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.Filters" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.Formatters" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.TraceListeners" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Unity" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Helpers" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Filters" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Instrumentation" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.PolicyInjection" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Configuration" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Unity" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Instrumentation" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Integration" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.PolicyInjection" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Properties" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators" isExposed="False" xmlns="" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="True" xmlns="">
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1" filterName="NamedElementCollection`1" isExposed="True">
+          <Filter entryType="Method" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IMergeableConfigurationElementCollection#CreateNewElement" filterName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IMergeableConfigurationElementCollection.CreateNewElement" isExposed="False" />
+          <Filter entryType="Method" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IMergeableConfigurationElementCollection#ResetCollection" filterName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IMergeableConfigurationElementCollection.ResetCollection" isExposed="False" />
+        </Filter>
+      </Filter>
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity" isExposed="True" xmlns="">
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity.EnterpriseLibraryBlockExtension" filterName="EnterpriseLibraryBlockExtension" isExposed="False" />
+      </Filter>
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation" isExposed="True" xmlns="">
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.EnterpriseLibraryPerformanceCounter" filterName="EnterpriseLibraryPerformanceCounter" isExposed="False" />
+      </Filter>
+    </ApiFilter>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
        order for Visual Studio to perform the build.  The others are optional
