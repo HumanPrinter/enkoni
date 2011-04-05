@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Data.Entity.Database;
+using System.Data.Entity;
 
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>The testcategories that are supported by the testinitializer.</summary>

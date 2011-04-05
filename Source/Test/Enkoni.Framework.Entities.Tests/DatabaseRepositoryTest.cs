@@ -9,7 +9,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Database;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -28,8 +29,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase01_FindAll() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase01");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -50,8 +51,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase02_FindAll_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase02");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -69,8 +70,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase03_FindAllWithExpression() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase03");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -99,8 +100,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase04_FindAllWithExpression_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase04");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -121,8 +122,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase05_FindSingleWithExpression() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase05");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -151,8 +152,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase06_FindSingleWithExpression_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase06");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -176,8 +177,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase07_FindFirstWithExpression() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase07");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -188,7 +189,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(1, result.RecordId);
 
       result = repository.FindFirst(Specification.Lambda((TestDummy td) => td.NumericValue == 500));
-
+      
       Assert.IsNull(result);
 
       TestDummy defaultDummy = new TestDummy { RecordId = -25 };
@@ -206,8 +207,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase08_FindFirstWithExpression_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase08");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -233,8 +234,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase09_RetrieveLessThenAvailable() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase09");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -290,8 +291,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase10_RetrieveExactlyAvailable() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase10");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -317,8 +318,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase11_RetrieveExactlyAvailable_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase11");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -339,8 +340,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase12_RetrieveMoreThenAvailable() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase12");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -366,8 +367,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase13_RetrieveMoreThenAvailable_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase13");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -387,8 +388,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase14_OrderBy() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase14");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -425,8 +426,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase15_OrderBy_EmptyFile() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase15");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -453,8 +454,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase16_Add() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase16");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -504,8 +505,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase17_Update() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase17");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -561,8 +562,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase18_Delete() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase18");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -607,8 +608,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase19_AddUpdate() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase19");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -671,8 +672,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase20_AddUpdateDelete() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase20");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -716,8 +717,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase21_UpdateDelete() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase21");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);
@@ -769,8 +770,8 @@ namespace Enkoni.Framework.Entities.Tests {
     public void TestCase22_DeleteAdd() {
       string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase22");
-      DbDatabase.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
-      DbDatabase.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
       Repository<TestDummy> repository = new DatabaseRepository<TestDummy>(sourceInfo);

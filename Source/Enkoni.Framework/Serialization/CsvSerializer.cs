@@ -315,9 +315,9 @@ namespace Enkoni.Framework.Serialization {
             propertyValue = string.Empty;
           }
 
-          string formatString = firstField ? "{0" : "{0}{1:";
+          string formatString = firstField ? "{0" : "{0}{1";
           if(this.FormatMappings.ContainsKey(columnIndex)) {
-            formatString += this.FormatMappings[columnIndex];
+            formatString += ":" + this.FormatMappings[columnIndex];
           }
 
           formatString += "}";
