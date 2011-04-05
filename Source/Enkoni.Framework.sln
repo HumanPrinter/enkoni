@@ -52,7 +52,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.File", "Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj", "{8EE52C76-0EAE-498E-8854-0447A703F667}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.Services", "Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj", "{32E9425C-EB1C-4989-B9DB-23AEB9BFA748}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.Service", "Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj", "{32E9425C-EB1C-4989-B9DB-23AEB9BFA748}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
