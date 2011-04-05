@@ -191,7 +191,9 @@ namespace Enkoni.Framework.Entities {
       IQueryable<TEntity> databaseQuery = this.SelectDbContext(dataSourceInfo).Set<TEntity>().AsExpandable();
 
       /* Add the ordering to the query */
-      databaseQuery = databaseQuery.OrderBy(sortRules);
+      if(sortRules != null) {
+        databaseQuery = databaseQuery.OrderBy(sortRules);
+      }
 
       TEntity databaseData = databaseQuery.FirstOrDefault(expression, defaultValue);
       

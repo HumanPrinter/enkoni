@@ -18,7 +18,7 @@ namespace Enkoni.Framework.Entities.Tests {
   [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot]
   public class TestDummy : IEntity<TestDummy>, ICloneable {
     /// <summary>Gets or sets a unique record ID.</summary>
-    [XmlIgnore, Key, DatabaseGenerated(DatabaseGenerationOption.Identity)]
+    [XmlIgnore, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int RecordId { get; set; }
 
     /// <summary>Gets or sets a text value.</summary>

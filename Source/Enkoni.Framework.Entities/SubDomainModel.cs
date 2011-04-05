@@ -64,7 +64,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entityId">The ID of the entity that must be found.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     public T FindEntityById(int entityId) {
-      return this.FindEntityCore(Specification.Lambda<T>(t => t.RecordId == entityId));
+      return this.FindEntityByIdCore(entityId);
     }
 
     /// <summary>Adds the specified entity to the domain. Before it is added, the entity is validated to ensure that only validated entities are 
@@ -106,9 +106,12 @@ namespace Enkoni.Framework.Entities {
         if(existingEntity == null) {
           throw new ArgumentException("The entity cannot be updated because it does not yet exist in the model", "originalEntityId");
         }
-        else {
+        else if(!object.ReferenceEquals(existingEntity, updatedEntity)) {
           existingEntity.CopyFrom(updatedEntity);
           return this.UpdateEntityCore(existingEntity);
+        }
+        else {
+          return updatedEntity;
         }
       }
     }
@@ -159,6 +162,13 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Removes the entity from the domain.</summary>
     /// <param name="entity">The entity that must be removed.</param>
     protected abstract void DeleteEntityCore(T entity);
+
+    /// <summary>Finds one entities with the specified entity-ID.</summary>
+    /// <param name="entityId">The ID of the entity that must be found.</param>
+    /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
+    protected virtual T FindEntityByIdCore(int entityId) {
+      return this.FindEntityCore(Specification.Lambda((T t) => t.RecordId == entityId));
+    }
     #endregion
   }
 }
