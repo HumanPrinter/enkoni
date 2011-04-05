@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.ServiceModel</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.ServiceModel.DisposableServiceBehaviorAttribute">
+            <summary>This behavior makes it possible to properly dispose a service instance upon release.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.DisposableServiceBehaviorAttribute.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.ServiceModel.DisposableServiceBehaviorAttribute"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.DisposableServiceBehaviorAttribute.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>This method is not implemented.</summary>
+            <param name="serviceDescription">The parameter is not used.</param>
+            <param name="serviceHostBase">The parameter is not used.</param>
+            <param name="endpoints">The parameter is not used.</param>
+            <param name="bindingParameters">The parameter is not used.</param>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.DisposableServiceBehaviorAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>Provides the ability to change run-time property values or insert custom extension objects such as error handlers, message or 
+            parameter interceptors, security extensions, and other custom extension objects.<br/>
+            This implementation sets the <c>InstanceProvider</c> of each endpoint to an instance of <see cref="T:Enkoni.Framework.ServiceModel.InstanceProvider"/>.</summary>
+            <param name="serviceDescription">The service description.</param>
+            <param name="serviceHostBase">The host that is currently being built.</param>
+            <exception cref="T:System.ArgumentNullException">one or more parameters are null.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.DisposableServiceBehaviorAttribute.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>Provides the ability to inspect the service host and the service description to confirm that the service can run successfully.<br/>
+            This implementation validates if the service type implements the <see cref="T:System.IDisposable"/> interface.</summary>
+            <param name="serviceDescription">The service description.</param>
+            <param name="serviceHostBase">The host that is currently being constructed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="serviceDescription"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">The service-implementation does not implement <see cref="T:System.IDisposable"/>.</exception>
+        </member>
+        <member name="T:Enkoni.Framework.ServiceModel.Extensions">
+            <summary>This class contains some extension-methods that apply to ServiceModel-related types.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.Extensions.SafeClose``1(System.ServiceModel.ClientBase{``0})">
+            <summary>Tries to gracefully close the clientobject. If this fails, it aborts the connection.</summary>
+            <typeparam name="TChannel">The channel to be used to connect to the service.</typeparam>
+            <param name="source">The instance that is connected to the service.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="T:Enkoni.Framework.ServiceModel.Properties.LogMessages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Enkoni.Framework.ServiceModel.Properties.LogMessages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Enkoni.Framework.ServiceModel.Properties.LogMessages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Enkoni.Framework.ServiceModel.Properties.LogMessages.VerboseDisposingInstance">
+            <summary>
+              Looks up a localized string similar to Going to dispose instance of type .
+            </summary>
+        </member>
+        <member name="T:Enkoni.Framework.ServiceModel.InstanceProvider">
+            <summary>This class acts as a default instance provider except that it is able to dispose the service instances upon release.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.ServiceModel.InstanceProvider.serviceType">
+            <summary>The type of the class that implements the service and must be created.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.InstanceProvider.#ctor(System.Type)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.ServiceModel.InstanceProvider"/> class.</summary>
+            <param name="serviceType">The type of service that must be created.</param>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.InstanceProvider.GetInstance(System.ServiceModel.InstanceContext,System.ServiceModel.Channels.Message)">
+            <summary>Returns a service object given the specified <see cref="T:System.ServiceModel.InstanceContext"/> object.</summary>
+            <param name="instanceContext">The current <see cref="T:System.ServiceModel.InstanceContext"/> object.</param>
+            <param name="message">The message that triggered the creation of a service object.</param>
+            <returns>The service object.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.InstanceProvider.GetInstance(System.ServiceModel.InstanceContext)">
+            <summary>Returns a service object given the specified <see cref="T:System.ServiceModel.InstanceContext"/> object.</summary>
+            <param name="instanceContext">The current <see cref="T:System.ServiceModel.InstanceContext"/> object.</param>
+            <returns>The service object.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.ServiceModel.InstanceProvider.ReleaseInstance(System.ServiceModel.InstanceContext,System.Object)">
+            <summary>Called when an <see cref="T:System.ServiceModel.InstanceContext"/> object recycles a service object.</summary>
+            <param name="instanceContext">The service's instance context.</param>
+            <param name="instance">The service object to be recycled.</param>
+        </member>
+    </members>
+</doc>
