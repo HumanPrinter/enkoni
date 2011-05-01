@@ -7,6 +7,12 @@
 # [-]: Removal                                  #
 #################################################
 
+Version 1.0.2.0
+  Enkoni.Framework.Entities.Database (1.2.0.0)
+  [*] Updated the reference to EntityFramework.dll to version 4.1 Final (4.1.0.0)
+      Date:    2011-04-04
+	  Comment: The project now uses version 4.1 Final of the EntityFramework. There are no API changes.
+
 Version 1.0.1.0
   Enkoni.Framework (1.0.1.0)
   [*] Fixed a bug in the CsvSerializer

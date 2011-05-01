@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\External Libraries\EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -103,6 +103,7 @@
   <ItemGroup>
     <Content Include="TestData\ReposTest_SortingFile.xml" />
     <Content Include="TestData\placeholder.txt" />
+    <None Include="packages.config" />
     <None Include="TestData\ReposTest_SortingFile.csv" />
     <None Include="TestData\ReposTest_DataSourceFile.csv" />
     <None Include="TestData\ReposTest_EmptyInputFile.csv" />

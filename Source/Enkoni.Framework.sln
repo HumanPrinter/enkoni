@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "External Libraries", "{C81ED175-3CEA-4396-9774-A255353474A0}"
 	ProjectSection(SolutionItems) = preProject
-		External Libraries\EntityFramework.dll = External Libraries\EntityFramework.dll
-		External Libraries\EntityFramework.xml = External Libraries\EntityFramework.xml
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll
@@ -52,7 +50,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.File", "Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj", "{8EE52C76-0EAE-498E-8854-0447A703F667}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.Services", "Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj", "{32E9425C-EB1C-4989-B9DB-23AEB9BFA748}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.Service", "Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj", "{32E9425C-EB1C-4989-B9DB-23AEB9BFA748}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
