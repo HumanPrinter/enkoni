@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.Entities.Service</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.Entities.ServiceRepository`1">
+            <summary>This abstract class extends the abstract <see cref="T:Enkoni.Framework.Entities.Repository`1"/> class and implements some of the functionality using WCF 
+            datacommunication. This implementation can be used a base for any WCF-service repositories.</summary>
+            <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceRepository`1.#ctor(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.ServiceRepository`1"/> class using the specified <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/>.
+            </summary>
+            <param name="dataSourceInfo">The datasource information that must be used to access the sourcefile.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceRepository`1.CreateEntityCore(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Creates a new entity of type <typeparamref name="TEntity"/>. This is done by calling the default constructor of 
+            <typeparamref name="TEntity"/>.</summary>
+            <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+            <returns>The created entity.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.ServiceRepository`1.EndpointConfigurationName">
+            <summary>Gets the endpointconfigurationname that references the used endpointconfiguration.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.ServiceRepository`1.RemoteAddress">
+            <summary>Gets the address of the remote service.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.ServiceRepository`1.Binding">
+            <summary>Gets the binding that is used to communicate with the remote service.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.ServiceSourceInfo">
+            <summary>This class can be used by the <see cref="T:Enkoni.Framework.Entities.ServiceRepository`1"/> or any of its descendants to retrieve valuable information 
+            about the service that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the 
+            ServiceRepository.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.ServiceSourceInfo.EndpointConfigurationNameKey">
+            <summary>Defines the key that is used to store and retrieve the endpointconfigurationname.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.ServiceSourceInfo.RemoteAddressKey">
+            <summary>Defines the key that is used to store and retrieve the endpointaddress of the service.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.ServiceSourceInfo.BindingKey">
+            <summary>Defines the key that is used to store and retrieve the binding that is used to communicate with the service.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.ServiceSourceInfo"/> class using default values.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.ServiceSourceInfo"/> class using the specified endpointconfigurationname.</summary>
+            <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.#ctor(System.String,System.ServiceModel.EndpointAddress)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+            address.</summary>
+            <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+            <param name="remoteAddress">The address of the remote service.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.#ctor(System.String,System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+            address.</summary>
+            <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+            <param name="remoteAddress">The address of the remote service.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.#ctor(System.ServiceModel.Channels.Binding,System.ServiceModel.EndpointAddress)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.ServiceSourceInfo"/> class using the specified binding and service address.</summary>
+            <param name="binding">The binding that must be used to communicate with the service.</param>
+            <param name="remoteAddress">The address of the remote service.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.ServiceSourceInfo"/> class using the specified default values. If the default values do 
+            not specify any of the supported properties, the default values will be used.</summary>
+            <param name="defaultValues">The default values that are to be used.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.IsEndpointConfigurationNameSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Determines if the endpointconfigurationname is specified in the source information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.SelectEndpointConfigurationName(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Selects the endpointconfigurationname from the specified datasource information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.IsRemoteAddressSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Determines if the remote address is specified in the source information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.SelectRemoteAddress(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Selects the remote address from the specified datasource information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.IsBindingSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Determines if the binding is specified in the source information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.SelectBinding(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Selects the binding from the specified datasource information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.IsEndpointConfigurationNameSpecified">
+            <summary>Determines if the endpointconfigurationname is specified in the source information.</summary>
+            <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.IsRemoteAddressSpecified">
+            <summary>Determines if the remote address is specified in the source information.</summary>
+            <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.ServiceSourceInfo.IsBindingSpecified">
+            <summary>Determines if the binding is specified in the source information.</summary>
+            <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.ServiceSourceInfo.EndpointConfigurationName">
+            <summary>Gets or sets the name of the endpointconfiguration in the applicationconfig file.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.ServiceSourceInfo.RemoteAddress">
+            <summary>Gets or sets the endpointaddress of the service.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.ServiceSourceInfo.Binding">
+            <summary>Gets or sets the binding that must be used to connect to the service.</summary>
+        </member>
+    </members>
+</doc>
