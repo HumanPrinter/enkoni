@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "External Libraries", "{C81ED175-3CEA-4396-9774-A255353474A0}"
 	ProjectSection(SolutionItems) = preProject
-		External Libraries\EntityFramework.dll = External Libraries\EntityFramework.dll
-		External Libraries\EntityFramework.xml = External Libraries\EntityFramework.xml
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml
 		External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll
