@@ -1,37 +1,73 @@
-#################################################
-# Release Notes for Enkoni.Framework assemblies #
-#                                               #
-# Legend:                                       #
-# [*]: Change                                   #
-# [+]: Addition                                 #
-# [-]: Removal                                  #
-#################################################
+###################################################
+# Release Notes for Enkoni.Framework assemblies   #
+# Author is Oscar Brouwer unless stated otherwise #
+# Legend:                                         #
+# [*]: Change                                     #
+# [+]: Addition                                   #
+# [-]: Removal                                    #
+###################################################
+
+Version 1.0.3.0
+  Remark: This is a maintainance release. No API or functional changes have been made.
+
+  Enkoni.Framework.Entities (1.2.0.0)
+  [*] Updated the reference to EnterpriseLibrary.Validation to 5.0.505.0
+      Date:    2011-06-08
+      Comment: The project now references the EnterpriseLibrary libraries through the NuGet system.
+  
+  Enkoni.Framework.Entities.Database (1.3.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (1.2.0.0)
+
+  Enkoni.Framework.Entities.File (1.1.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (1.2.0.0)
+
+  Enkoni.Framework.Entities.Service (1.1.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (1.2.0.0)
+
+  Enkoni.Framework.Logging (1.1.0.0)
+  [*] Updated the reference to EnterpriseLibrary.Logging to 5.0.505.0
+      Date:    2011-06-08
+      Comment: The project now references the EnterpriseLibrary libraries through the NuGet system.
+
+  Enkoni.Framework.ServiceModel (1.1.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Logging
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Logging library (1.1.0.0)
+
+  Enkoni.Framework.Validation (1.1.0.0)
+  [*] Updated the reference to EnterpriseLibrary.Validation to 5.0.505.0
+      Date:    2011-06-08
+      Comment: The project now references the EnterpriseLibrary libraries through the NuGet system. There are no API changes.
 
 Version 1.0.2.0
   Enkoni.Framework.Entities.Database (1.2.0.0)
   [*] Updated the reference to EntityFramework.dll to version 4.1 Final (4.1.0.0)
       Date:    2011-04-04
-	  Comment: The project now uses version 4.1 Final of the EntityFramework. There are no API changes.
+      Comment: The project now uses version 4.1 Final of the EntityFramework. There are no API changes.
 
 Version 1.0.1.0
   Enkoni.Framework (1.0.1.0)
   [*] Fixed a bug in the CsvSerializer
       Date:    2011-03-03
-      Author:  Oscar Brouwer
       Comment: Fixed a bug that in specific circumstances caused an exception when serializing an object using explicit formatting
 
   Enkoni.Framework.Entities (1.1.0.0)
   [*] Added a virtual FindEntityByIdCore method to the abstract SubDomainModel class
       Date:    2011-04-04
-	  Author:  Oscar Brouwer
-	  Comment: The default implementation of the FindEntityById method of SubDomainModel does not work with some datasources (like SQL Server 2008).
-	           Therefore, a protected virtual method called FindEntityByIdCore method has been added. By default this method works just as the previous releases. Override
-			   this method in case you experience some unexpected problems with your datasource.
+      Comment: The default implementation of the FindEntityById method of SubDomainModel does not work with some datasources (like SQL Server 2008).
+               Therefore, a protected virtual method called FindEntityByIdCore method has been added. By default this method works just as the previous releases. Override
+               this method in case you experience some unexpected problems with your datasource.
 
   Enkoni.Framework.Entities.Database (1.1.0.0)
   [*] Updated the reference to EntityFramework.dll to version 4.1RC
       Date:    2011-04-04
-	  Comment: The project now uses version 4.1RC of the EntityFramework. There are no API changes.
+      Comment: The project now uses version 4.1RC of the EntityFramework. There are no API changes.
 
 Version 1.0.0.0
   [+] Renamed the framework to the Enkoni framework. This marks a new phase in the development and usage of this product.
@@ -41,14 +77,12 @@ Version 1.0.0.0
   Enkoni.Framework (1.0.0.0)
   [+] Added an extension method for the DateTime struct.
       Date:    2011-02-27
-      Author:  Oscar Brouwer
       Comment: Added an extension method which can be used to determine the weeknumber of any given date in accordance with the ISO 8601 
                specification.
 
   Enkoni.Framework.Entities (1.0.0.0)
   [*] Splitted the Enkoni.Framework.Entities project into four seperate projects
       Date:    2011-02-24
-      Author:  Oscar Brouwer
       Comment: Splitted the Enkoni.Framework.Entities into four seperate projects. Enkoni.Framework.Entities contains the general data-access classes,
                Enkoni.Framework.Entities.Database contains the classes use a database as datasource for the data-access, 
                Enkoni.Framework.Entities.File contains classes that use a file as datasource for the data-access,
@@ -61,7 +95,6 @@ Version 1.0.0.0
   Enkoni.Framework.Logging (1.0.0.0)
   [+] Added the Enkoni.Framework.Logging project
       Date:    2011-02-23
-      Author:  Oscar Brouwer
       Comment: Added the Enkoni.Framework.Logging project which contains classes that can be used to emit logmessages using the Logging Application
                Block which is part of the Microsoft Enterprise Library.
 
