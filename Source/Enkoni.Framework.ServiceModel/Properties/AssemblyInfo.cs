@@ -27,4 +27,4 @@ using System.Runtime.InteropServices;
 
 [assembly: CLSCompliant(true)]
 
-[assembly:NeutralResourcesLanguage("en")]
+[assembly: NeutralResourcesLanguage("en")]

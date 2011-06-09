@@ -40,7 +40,7 @@ namespace Enkoni.Framework.ServiceModel {
     /// This implementation sets the <c>InstanceProvider</c> of each endpoint to an instance of <see cref="InstanceProvider"/>.</summary>
     /// <param name="serviceDescription">The service description.</param>
     /// <param name="serviceHostBase">The host that is currently being built.</param>
-    /// <exception cref="ArgumentNullException">one or more parameters are null.</exception>
+    /// <exception cref="ArgumentNullException">One or more parameters are null.</exception>
     public void ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) {
       if(serviceDescription == null) {
         throw new ArgumentNullException("serviceDescription");
