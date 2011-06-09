@@ -23,25 +23,15 @@
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
     <DocumentationSources>
-      <DocumentationSource sourceFile="Enkoni.Framework\bin\Release\Enkoni.Framework.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.Database.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.Database.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.File.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.File.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.Service.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.Service.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Entities.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Logging.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\bin\Release\Enkoni.Framework.Logging.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\bin\Release\Enkoni.Framework.ServiceModel.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\bin\Release\Enkoni.Framework.ServiceModel.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Testing\bin\Release\Enkoni.Framework.Testing.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Testing\bin\Release\Enkoni.Framework.Testing.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Validation\bin\Release\Enkoni.Framework.Validation.dll" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Validation\bin\Release\Enkoni.Framework.Validation.xml" />
-      <DocumentationSource sourceFile="Enkoni.Framework\bin\Release\Enkoni.Framework.xml" />
-    </DocumentationSources>
+      <DocumentationSource sourceFile="Enkoni.Framework\Enkoni.Framework.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" /></DocumentationSources>
     <PlugInConfigurations>
     </PlugInConfigurations>
     <FrameworkVersion>.NET 4.0.30319</FrameworkVersion>
