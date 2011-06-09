@@ -65,7 +65,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>Not applicable.</returns>
-    /// <exception cref="NotSupportedException">Always.</exception>
+    /// <exception cref="NotSupportedException">Always, since this operation is not supported by this type of repository.</exception>
     protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, int maximumResults, 
       DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
@@ -78,7 +78,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The parameter is not used.</param>
     /// <returns>Not applicable.</returns>
-    /// <exception cref="NotSupportedException">Always.</exception>
+    /// <exception cref="NotSupportedException">Always, since this operation is not supported by this type of repository.</exception>
     protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, DataSourceInfo dataSourceInfo, 
       TEntity defaultValue) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
@@ -90,7 +90,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The parameter is not used.</param>
     /// <returns>Not applicable.</returns>
-    /// <exception cref="NotSupportedException">Always.</exception>
+    /// <exception cref="NotSupportedException">Always, since this operation is not supported by this type of repository.</exception>
     protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }

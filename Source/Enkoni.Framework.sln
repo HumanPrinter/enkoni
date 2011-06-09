@@ -12,20 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libraries", "External Libraries", "{C81ED175-3CEA-4396-9774-A255353474A0}"
-	ProjectSection(SolutionItems) = preProject
-		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll
-		External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml = External Libraries\Microsoft.Practices.EnterpriseLibrary.Common.xml
-		External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll
-		External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.xml = External Libraries\Microsoft.Practices.EnterpriseLibrary.Logging.xml
-		External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll = External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.dll
-		External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.xml = External Libraries\Microsoft.Practices.EnterpriseLibrary.Validation.xml
-		External Libraries\Microsoft.Practices.ServiceLocation.dll = External Libraries\Microsoft.Practices.ServiceLocation.dll
-		External Libraries\Microsoft.Practices.Unity.Configuration.dll = External Libraries\Microsoft.Practices.Unity.Configuration.dll
-		External Libraries\Microsoft.Practices.Unity.dll = External Libraries\Microsoft.Practices.Unity.dll
-		External Libraries\Microsoft.Practices.Unity.Interception.dll = External Libraries\Microsoft.Practices.Unity.Interception.dll
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework", "Enkoni.Framework\Enkoni.Framework.csproj", "{849BA8BA-A061-4278-85BD-90910680462E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities", "Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj", "{26D1BDC7-B2E8-4351-AD6B-5441F292320A}"
@@ -253,9 +239,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C81ED175-3CEA-4396-9774-A255353474A0} = {CF418619-7942-4E44-A625-192FEA532693}
 		{62E779EB-4AC3-4210-8E34-3C45B6FA0329} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{AC6B8CF0-972F-4F08-AA20-6490D18955F9} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{0DD5B931-0066-4EF4-8196-4CA91C5BF95D} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Validation.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35
 	EndGlobalSection
 EndGlobal
