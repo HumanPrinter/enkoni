@@ -1,6 +1,6 @@
-
 Source/*.suo
 Source/*.sdf
+Source/Enkoni.Documentation.shfbproj_Oscar
 Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
 Source/Enkoni.Framework/bin/
@@ -49,11 +49,11 @@ Source/Test/Enkoni.Framework.Validation.Tests/*.user
 Source/Test/Enkoni.Framework.Validation.Tests/*.Cache
 Source/Test/Enkoni.Framework.Validation.Tests/bin/
 Source/Test/Enkoni.Framework.Validation.Tests/obj/
+Source/TestResults/
 /Releases/*.dll
 /Releases/*.xml
+/Releases/*.XML
 /Releases/*.txt
 /Releases/*.zip
 /Releases/Documentation/
 Release.bat
-Source/TestResults/
-Source/Enkoni.Documentation.shfbproj_Oscar
