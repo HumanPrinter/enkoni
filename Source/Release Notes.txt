@@ -6,6 +6,18 @@
 # [+]: Addition                                   #
 # [-]: Removal                                    #
 ###################################################
+Version X.X.X.X
+  Enkoni.Framework (X.X.X.X)
+  [*] Fixed an issue with the Enkoni.Framework.Linq.Extensions.Capitalize() methods.
+      Date:    2011-06-26
+	  Comment: The Enkoni.Framework.Linq.Extensions.Capitalize methods caused an InvalidOperationException when called with 
+	           an empty (not null) string. This has now been fixed.
+
+  [+] Added the Enkoni.Framework.Linq.Extensions.CreateEqualityComparer extension method.
+      Date:    2011-07-01
+	  Comment: Added the Enkoni.Framework.Linq.CreateEqualityComparer extension method that can be used to create an
+	           IEqualityComparer using the signature of an IEnumerable<T>. This method is particular usefull for collections
+			   of anonymous types.
 
 Version 1.0.3.0
   Remark: This is a maintainance release. No API or functional changes have been made.

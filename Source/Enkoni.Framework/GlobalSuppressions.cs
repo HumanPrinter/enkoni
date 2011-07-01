@@ -6,7 +6,7 @@
 //     Contains the project's suppressions.
 // </summary>
 //---------------------------------------------------------------------------------------------------------------------------------------------------
- 
+
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member", Target = "Enkoni.Framework.Extensions.#IndexOf`1(System.Collections.Generic.List`1<!!0>,!!0,System.Int32,System.Collections.Generic.IEqualityComparer`1<!!0>)", Justification = "The method provides an 'overload' for a List-method")]
@@ -67,9 +67,9 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Stop", Scope = "member", Target = "Enkoni.Framework.IWorkflow.#Stop()", Justification = "There simply is no better name for it")]
 
 [assembly: SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Scope = "member", Target = "Enkoni.Framework.Workflow.#EndContinue(System.IAsyncResult)", Justification = "By keeping it an instance-member, its use is more logical for endusers")]
-[assembly: SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Scope = "member", Target = "Enkoni.Framework.Workflow.#EndPause(System.IAsyncResult)", Justification = "By keeping it an instance-member, its use is more logical for endusers")]
-[assembly: SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Scope = "member", Target = "Enkoni.Framework.Workflow.#EndStart(System.IAsyncResult)", Justification = "By keeping it an instance-member, its use is more logical for endusers")]
-[assembly: SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Scope = "member", Target = "Enkoni.Framework.Workflow.#EndStop(System.IAsyncResult)", Justification = "By keeping it an instance-member, its use is more logical for endusers")]
+[assembly: SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Scope = "member", Target = "Enkoni.Framework.Workflow.#EndPause(System.IAsyncResult)", Justification = "By keeping it an instance-member, its use is more logical for end users")]
+[assembly: SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Scope = "member", Target = "Enkoni.Framework.Workflow.#EndStart(System.IAsyncResult)", Justification = "By keeping it an instance-member, its use is more logical for end users")]
+[assembly: SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Scope = "member", Target = "Enkoni.Framework.Workflow.#EndStop(System.IAsyncResult)", Justification = "By keeping it an instance-member, its use is more logical for end users")]
 
 [assembly: SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Scope = "member", Target = "Enkoni.Framework.AsyncResultVoid.#AsyncWaitHandle", Justification = "Disposing is handled at a different place")]
 
@@ -77,3 +77,5 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "CsvRecord-attribute", Scope = "member", Target = "Enkoni.Framework.Serialization.CsvSerializer`1.#.ctor()", Justification = "The spelling is correct")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "BusinessRuleSpecification", Scope = "member", Target = "Enkoni.Framework.Specification`1.#And(Enkoni.Framework.ISpecification`1<!0>)", Justification = "This is the name of the type")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "BusinessRuleSpecification", Scope = "member", Target = "Enkoni.Framework.Specification`1.#Or(Enkoni.Framework.ISpecification`1<!0>)", Justification = "This is the name of the type")]
+
+[assembly: SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "source", Scope = "member", Target = "Enkoni.Framework.Linq.Extensions.#CreateEqualityComparer`2(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,!!1>)", Justification = "The parameter is crucial for the extension mechanism to work")]
