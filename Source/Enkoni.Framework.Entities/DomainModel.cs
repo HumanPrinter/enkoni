@@ -7,8 +7,6 @@
 // </summary>
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace Enkoni.Framework.Entities {
   /// <summary>This class defines the public API of a class that represents a domainmodel.</summary>
   public abstract class DomainModel {
@@ -21,8 +19,6 @@ namespace Enkoni.Framework.Entities {
     #region Public methods
     /// <summary>Determines if the underlying persistency already exists.</summary>
     /// <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool PersistencyExists() {
       return this.PersistencyExistsCore();
     }
@@ -52,8 +48,6 @@ namespace Enkoni.Framework.Entities {
     #region Extensibility methods
     /// <summary>Determines if the underlying persistency already exists.</summary>
     /// <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     protected abstract bool PersistencyExistsCore();
 
     /// <summary>Creates the underlying persistency.</summary>

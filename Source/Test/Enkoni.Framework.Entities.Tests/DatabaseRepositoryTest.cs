@@ -831,5 +831,83 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
     }
     #endregion
-  }
+
+		#region Custom query test-cases
+		/// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves a single result using the 
+		/// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+		[TestMethod]
+		[DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase23")]
+		public void TestCase23_ExecuteBusinessRuleSingleResult() {
+			string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+			dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase23");
+			Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+			Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+			DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+			Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
+
+			/* Add some ectra records to te database */
+			TestDummy itemA = new TestDummy { BooleanValue = true, NumericValue = 6, TextValue = "NothingA" };
+			TestDummy itemB = new TestDummy { BooleanValue = true, NumericValue = 6, TextValue = "NothingB" };
+			TestDummy itemC = new TestDummy { BooleanValue = true, NumericValue = 7, TextValue = "Hit" };
+			TestDummy itemD = new TestDummy { BooleanValue = true, NumericValue = 6, TextValue = "NothingD" };
+
+			repository.AddEntity(itemA);
+			repository.AddEntity(itemB);
+			repository.AddEntity(itemC);
+			repository.AddEntity(itemD);
+
+			repository.SaveChanges();
+
+			/* Create the specification */
+			ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase23_CustomQuery", "Hit");
+			Assert.IsNotNull(selectSpec);
+
+			/* Execute the query */
+			TestDummy result = repository.FindFirst(selectSpec);
+			Assert.IsNotNull(result);
+			Assert.AreEqual("Hit", result.TextValue, false);
+			Assert.AreEqual(7, result.NumericValue);
+		}
+
+		/// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves multiple results using the 
+		/// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+		[TestMethod]
+		[DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
+		public void TestCase24_ExecuteBusinessRuleMultipleResults() {
+			string dbBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+			dbBasePath = Path.Combine(dbBasePath, @"DatabaseRepositoryTest\TestCase24");
+			Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", dbBasePath, "");
+			Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+			DataSourceInfo sourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext());
+			Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
+
+			/* Add some ectra records to te database */
+			TestDummy itemA = new TestDummy { BooleanValue = true, NumericValue = 6, TextValue = "NothingA" };
+			TestDummy itemB = new TestDummy { BooleanValue = true, NumericValue = 6, TextValue = "NothingB" };
+			TestDummy itemC = new TestDummy { BooleanValue = true, NumericValue = 7, TextValue = "Hit" };
+			TestDummy itemD = new TestDummy { BooleanValue = true, NumericValue = 6, TextValue = "NothingD" };
+
+			repository.AddEntity(itemA);
+			repository.AddEntity(itemB);
+			repository.AddEntity(itemC);
+			repository.AddEntity(itemD);
+
+			repository.SaveChanges();
+
+			/* Create the specification */
+			ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase24_CustomQuery", 3, 2);
+			Assert.IsNotNull(selectSpec);
+
+			/* Execute the query */
+			IEnumerable<TestDummy> result = repository.FindAll(selectSpec);
+			Assert.IsNotNull(result);
+			Assert.AreEqual(3, result.Count());
+			Assert.AreEqual("NothingA", result.ElementAt(0).TextValue);
+			Assert.AreEqual("NothingB", result.ElementAt(1).TextValue);
+			Assert.AreEqual("NothingD", result.ElementAt(2).TextValue);
+		}
+		#endregion
+	}
 }

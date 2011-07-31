@@ -62,11 +62,9 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -85,6 +83,7 @@
     <Compile Include="DatabaseRepositoryTest.cs" />
     <Compile Include="HttpSessionMemoryRepositoryTest.cs" />
     <Compile Include="StaticMemoryRepositoryTest.cs" />
+    <Compile Include="TestDatabaseRepository.cs" />
     <Compile Include="TestDummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityValidatorTest.cs" />
@@ -114,19 +113,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\ReposTest_SortingFile.xml" />
-    <Content Include="TestData\placeholder.txt" />
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="TestData\ReposTest_SortingFile.csv" />
-    <None Include="TestData\ReposTest_DataSourceFile.csv" />
-    <None Include="TestData\ReposTest_EmptyInputFile.csv" />
-    <None Include="TestData\ReposTest_InputFile.csv" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\ReposTest_DataSourceFile.xml" />
-    <Content Include="TestData\ReposTest_EmptyInputFile.xml" />
+    <Content Include="TestData\placeholder.txt" />
+	<Content Include="TestData\ReposTest_DataSourceFile.csv" />
+	<Content Include="TestData\ReposTest_DataSourceFile.xml" />
+	<Content Include="TestData\ReposTest_EmptyInputFile.csv" />
+	<Content Include="TestData\ReposTest_EmptyInputFile.xml" />
+	<Content Include="TestData\ReposTest_InputFile.csv" />
     <Content Include="TestData\ReposTest_InputFile.xml" />
+	<Content Include="TestData\ReposTest_SortingFile.csv" />
+	<Content Include="TestData\ReposTest_SortingFile.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

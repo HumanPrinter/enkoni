@@ -40,6 +40,8 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Linq", Justification = "The types in this namespace extend the functionality of the default Linq library")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Serialization", Justification = "The types in this namespace are only used for serialization")]
 
+[assembly: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Enkoni.Framework.CircularStack`1.#GetEnumeratorCore()", Justification = "A method is more appropriate here")]
+
 [assembly: SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Scope = "member", Target = "Enkoni.Framework.Extensions.#Fire(System.EventHandler,System.Object,System.EventArgs)", Justification = "Intentionaly constructed as a extension method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Scope = "member", Target = "Enkoni.Framework.Extensions.#Fire`1(System.EventHandler`1<!!0>,System.Object,!!0)", Justification = "Intentionaly constructed as a extension method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Scope = "member", Target = "Enkoni.Framework.Extensions.#FireAsync(System.EventHandler,System.Object,System.EventArgs)", Justification = "Intentionaly constructed as a extension method")]
@@ -58,8 +60,14 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.LikeSpecification`1.#VisitCore(Enkoni.Framework.ISpecificationVisitor`1<!0>)", Justification = "The parameter is already checked in the public method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.NotSpecification`1.#VisitCore(Enkoni.Framework.ISpecificationVisitor`1<!0>)", Justification = "The parameter is already checked in the public method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.OrSpecification`1.#VisitCore(Enkoni.Framework.ISpecificationVisitor`1<!0>)", Justification = "The parameter is already checked in the public method")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.CircularStack`1.#CopyTo(System.Array,System.Int32)", Justification = "The parameter is already checked in the public method")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.CircularStack`1.#CopyToCore(!0[],System.Int32)", Justification = "The parameter is already checked in the public method")]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Scope = "member", Target = "Enkoni.Framework.Linq.Extensions.#Not`1(System.Linq.Expressions.Expression`1<System.Func`2<!!0,System.Boolean>>)", Justification = "This type is more applicable")]
+
+[assembly: SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Scope = "type", Target = "Enkoni.Framework.CircularStack`1", Justification = "The class behaves as a stack even though it doesn't extend it")]
+
+[assembly: SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Scope = "type", Target = "Enkoni.Framework.CircularStack`1", Justification = "The class behaves as a stack even though it doesn't extend it")]
 
 [assembly: SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "And", Scope = "member", Target = "Enkoni.Framework.ISpecification`1.#And(Enkoni.Framework.ISpecification`1<!0>)", Justification = "There simply is no better name for it")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Or", Scope = "member", Target = "Enkoni.Framework.ISpecification`1.#Or(Enkoni.Framework.ISpecification`1<!0>)", Justification = "There simply is no better name for it")]
@@ -77,5 +85,6 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "CsvRecord-attribute", Scope = "member", Target = "Enkoni.Framework.Serialization.CsvSerializer`1.#.ctor()", Justification = "The spelling is correct")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "BusinessRuleSpecification", Scope = "member", Target = "Enkoni.Framework.Specification`1.#And(Enkoni.Framework.ISpecification`1<!0>)", Justification = "This is the name of the type")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "BusinessRuleSpecification", Scope = "member", Target = "Enkoni.Framework.Specification`1.#Or(Enkoni.Framework.ISpecification`1<!0>)", Justification = "This is the name of the type")]
+[assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "GetEnumerator", Scope = "member", Target = "Enkoni.Framework.CircularStack`1+Enumerator.#Current", Justification = "Literal is the actual name of the method")]
 
 [assembly: SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "source", Scope = "member", Target = "Enkoni.Framework.Linq.Extensions.#CreateEqualityComparer`2(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,!!1>)", Justification = "The parameter is crucial for the extension mechanism to work")]

@@ -15,7 +15,7 @@ using Enkoni.Framework.Serialization;
 
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>A helper class to support the testcases.</summary>
-  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot]
+  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot, Table("TestDummy")]
   public class TestDummy : IEntity<TestDummy>, ICloneable {
     /// <summary>Gets or sets a unique record ID.</summary>
     [XmlIgnore, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -8,7 +8,6 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
@@ -122,8 +121,6 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the endpointconfigurationname is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public static bool IsEndpointConfigurationNameSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(EndpointConfigurationNameKey);
     }
@@ -143,8 +140,6 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the remote address is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public static bool IsRemoteAddressSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(RemoteAddressKey);
     }
@@ -164,8 +159,6 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the binding is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public static bool IsBindingSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(BindingKey);
     }
@@ -186,24 +179,18 @@ namespace Enkoni.Framework.Entities {
     #region Public methods
     /// <summary>Determines if the endpointconfigurationname is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool IsEndpointConfigurationNameSpecified() {
       return this.IsValueSpecified(EndpointConfigurationNameKey);
     }
 
     /// <summary>Determines if the remote address is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool IsRemoteAddressSpecified() {
       return this.IsValueSpecified(RemoteAddressKey);
     }
 
     /// <summary>Determines if the binding is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool IsBindingSpecified() {
       return this.IsValueSpecified(BindingKey);
     }

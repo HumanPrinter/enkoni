@@ -25,8 +25,6 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the MemoryStore is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
     /// <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public static bool IsMemoryStoreSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(MemoryStoreKey);
     }
@@ -95,8 +93,6 @@ namespace Enkoni.Framework.Entities {
     #region Public methods
     /// <summary>Determines if the MemoryStore is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     [SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1101:PrefixLocalCallsWithThis",
       Justification = "StyleCop doesn't correctly recognizes this construction, but using 'this' to reference MemorySourceInfo is not possible")]
     public bool IsMemoryStoreSpecified() {

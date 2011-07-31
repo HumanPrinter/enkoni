@@ -8,7 +8,6 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
@@ -78,8 +77,6 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the sourcefile's encoding is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public static bool IsSourceFileEncodingSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(SourceFileEncodingKey);
     }
@@ -100,8 +97,6 @@ namespace Enkoni.Framework.Entities {
     #region Public methods
     /// <summary>Determines if the sourcefile's encoding is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool IsSourceFileEncodingSpecified() {
       return this.IsValueSpecified(SourceFileEncodingKey);
     }

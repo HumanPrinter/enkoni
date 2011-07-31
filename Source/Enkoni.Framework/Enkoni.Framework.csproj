@@ -46,6 +46,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="AsyncResultVoid.cs" />
+    <Compile Include="CircularStack.cs" />
     <Compile Include="Comparer.cs" />
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="CombinedSpecification.cs" />

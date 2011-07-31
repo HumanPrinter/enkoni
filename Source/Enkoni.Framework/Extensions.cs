@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -199,8 +198,6 @@ namespace Enkoni.Framework {
 		/// <returns><see langword="true"/> if item was successfully removed from the <see cref="ICollection{T}"/>; otherwise, <see langword="false"/>. 
 		/// This method also returns false if item is not found in the original <see cref="ICollection{T}"/>.</returns>
 		/// <exception cref="ArgumentNullException">One or more parameters are null.</exception>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-			Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
 		public static bool Remove<T>(this ICollection<T> source, T item, IEqualityComparer<T> comparer) {
 			if(source == null) {
 				throw new ArgumentNullException("source");

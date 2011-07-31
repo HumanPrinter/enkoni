@@ -19,6 +19,11 @@ Version X.X.X.X
 	           IEqualityComparer using the signature of an IEnumerable<T>. This method is particular usefull for collections
 			   of anonymous types.
 
+  [+] Added the CircularStack<T> class.
+      Date:    2011-07-31
+	  Comment: Added the CircularStack<T> class that can be used as a normal stack except that is will overwrite the oldest value 
+	           once a preset maximum has been reached.
+
 Version 1.0.3.0
   Remark: This is a maintainance release. No API or functional changes have been made.
 

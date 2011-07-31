@@ -13,9 +13,9 @@
             "'$(CodeAnalysisIgnoreBuiltInRuleSets)'!='true' and
              '$(CodeAnalysisStaticAnalysisDirectory)'!=''">$(CodeAnalysisRuleSetDirectories);$(CodeAnalysisStaticAnalysisDirectory)\Rule Sets</CodeAnalysisRuleSetDirectories>
     </PropertyGroup>
-
+<!--
     <PropertyGroup Condition="'$(RunCodeAnalysis)'=='true' or '$(RunCodeAnalysisOnce)'=='true'">
-        <!-- Define the CODE_ANALYSIS constant -->
+        Define the CODE_ANALYSIS constant
         <DefineConstants Condition="'$(Language)'=='C#' ">CODE_ANALYSIS;$(DefineConstants)</DefineConstants>
         <FinalDefineConstants Condition="'$(Language)'=='VB' ">CODE_ANALYSIS=-1,$(FinalDefineConstants)</FinalDefineConstants>
     </PropertyGroup>
@@ -25,7 +25,7 @@
             <PreprocessorDefinitions>CODE_ANALYSIS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
         </ClCompile>
     </ItemDefinitionGroup>
-
+-->
 <!-- Global properties for all analyzers -->
 
 

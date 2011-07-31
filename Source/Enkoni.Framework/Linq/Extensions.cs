@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -38,8 +37,6 @@ namespace Enkoni.Framework.Linq {
 		/// <param name="defaultValue">The default value that must be used.</param>
 		/// <returns><paramref name="defaultValue"/> if the index is outside the bounds of the source sequence; otherwise, the element at the specified 
 		/// position in the source sequence.</returns>
-		[SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-			Justification = "The parametername starts with a lowercase letter")]
 		public static T ElementAtOrDefault<T>(this IEnumerable<T> source, int index, T defaultValue) {
 			T result = source.ElementAtOrDefault(index);
 

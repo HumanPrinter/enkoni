@@ -9,7 +9,6 @@
 
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This class can be used by the <see cref="DatabaseRepository{TEntity}"/> to retrieve valuable information about the database that is to 
@@ -60,8 +59,6 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the DbContext is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The datasource information that is queried.</param>
     /// <returns><see langword="true"/> if the DbContext is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public static bool IsDbContextSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(DbContextKey);
     }
@@ -82,8 +79,6 @@ namespace Enkoni.Framework.Entities {
     #region Public methods
     /// <summary>Determines if the DbContext is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the DbContext is defined; <see langword="false"/> otherwise.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool IsDbContextSpecified() {
       return this.IsValueSpecified(DbContextKey);
     }
