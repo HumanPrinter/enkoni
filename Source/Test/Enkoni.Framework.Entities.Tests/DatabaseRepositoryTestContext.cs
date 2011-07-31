@@ -10,13 +10,13 @@
 using System.Data.Entity;
 
 namespace Enkoni.Framework.Entities.Tests {
-  /// <summary>A helper class to support the testcases.</summary>
-  public class DatabaseRepositoryTestContext : DbContext {
-    /// <summary>Initializes a new instance of the <see cref="DatabaseRepositoryTestContext"/> class.</summary>
-    public DatabaseRepositoryTestContext() {
-    }
+	/// <summary>A helper class to support the testcases.</summary>
+	public class DatabaseRepositoryTestContext : DbContext {
+		/// <summary>Initializes a new instance of the <see cref="DatabaseRepositoryTestContext"/> class.</summary>
+		public DatabaseRepositoryTestContext() {
+		}
 
-    /// <summary>Gets or sets the db-set for the TestDummy-table.</summary>
-    public DbSet<TestDummy> TestDummies { get; set; }
-  }
+		/// <summary>Gets or sets the db-set for the TestDummy-table.</summary>
+		public DbSet<TestDummy> TestDummies { get; set; }
+	}
 }
