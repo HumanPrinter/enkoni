@@ -64,6 +64,10 @@ Version X.X.X.X
       Comment: The DatabaseRepository class has been rewritten to improve the performance and stability of the implementation. It also supports 
       transactions now.
 
+  [*] Updated to Entity Framework version 4.1.10715.0
+      Date:    2011-08-10
+      Comment: Updated the project to use Entity Framework version 4.1.10715.0 (was 4.1.10331.0) 
+
 Version 1.0.3.0
   Remark: This is a maintainance release. No API or functional changes have been made.
 
