@@ -183,7 +183,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase09_Serialize_Complete_DefaultEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase09\CsvTestOutputFileWithHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase09\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+      TestCaseHelper.CreateOutputDir(outputPath);
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
       TestDummyWithHeader dummyA = new TestDummyWithHeader {
@@ -214,7 +214,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<TestDummyWithHeader> serializer = new CsvSerializer<TestDummyWithHeader>();
       serializer.Serialize(collection, outputPath);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
@@ -225,7 +225,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
@@ -235,7 +235,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase10_Serialize_Complete_DefaultEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase10\CsvTestOutputFileNoHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase10\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+			TestCaseHelper.CreateOutputDir(outputPath);
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
       TestDummyNoHeader dummyA = new TestDummyNoHeader {
@@ -266,7 +266,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<TestDummyNoHeader> serializer = new CsvSerializer<TestDummyNoHeader>();
       serializer.Serialize(collection, outputPath);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
@@ -277,7 +277,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
@@ -287,7 +287,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase11_Serialize_Complete_CustomEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase11\CsvTestOutputFileWithHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase11\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+			TestCaseHelper.CreateOutputDir(outputPath);
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
       TestDummyWithHeader dummyA = new TestDummyWithHeader {
@@ -318,7 +318,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<TestDummyWithHeader> serializer = new CsvSerializer<TestDummyWithHeader>();
       serializer.Serialize(collection, outputPath, Encoding.ASCII);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
@@ -329,7 +329,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream, Encoding.ASCII);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
@@ -339,7 +339,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase12_Serialize_Complete_CustomEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase12\CsvTestOutputFileNoHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase12\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+			TestCaseHelper.CreateOutputDir(outputPath);
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
       TestDummyNoHeader dummyA = new TestDummyNoHeader {
@@ -370,7 +370,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<TestDummyNoHeader> serializer = new CsvSerializer<TestDummyNoHeader>();
       serializer.Serialize(collection, outputPath, Encoding.ASCII);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
@@ -381,7 +381,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream, Encoding.ASCII);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
@@ -391,7 +391,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase13_Serialize_Partial_DefaultEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase13\CsvTestOutputFilePartialWithHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase13\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+			TestCaseHelper.CreateOutputDir(outputPath);
 
       List<PartialTestDummyWithHeader> collection = new List<PartialTestDummyWithHeader>();
       PartialTestDummyWithHeader dummyA = new PartialTestDummyWithHeader {
@@ -422,7 +422,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<PartialTestDummyWithHeader> serializer = new CsvSerializer<PartialTestDummyWithHeader>();
       serializer.Serialize(collection, outputPath);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
@@ -433,7 +433,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string)"/> and
@@ -443,7 +443,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase14_Serialize_Partial_DefaultEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase14\CsvTestOutputFilePartialNoHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase14\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+			TestCaseHelper.CreateOutputDir(outputPath);
 
       List<PartialTestDummyNoHeader> collection = new List<PartialTestDummyNoHeader>();
       PartialTestDummyNoHeader dummyA = new PartialTestDummyNoHeader {
@@ -474,7 +474,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<PartialTestDummyNoHeader> serializer = new CsvSerializer<PartialTestDummyNoHeader>();
       serializer.Serialize(collection, outputPath);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
@@ -485,7 +485,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
@@ -495,7 +495,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase15_Serialize_Partial_CustomEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase15\CsvTestOutputFilePartialWithHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase15\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+			TestCaseHelper.CreateOutputDir(outputPath);
 
       List<PartialTestDummyWithHeader> collection = new List<PartialTestDummyWithHeader>();
       PartialTestDummyWithHeader dummyA = new PartialTestDummyWithHeader {
@@ -526,7 +526,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<PartialTestDummyWithHeader> serializer = new CsvSerializer<PartialTestDummyWithHeader>();
       serializer.Serialize(collection, outputPath, Encoding.ASCII);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
@@ -537,7 +537,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream, Encoding.ASCII);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvSerializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
@@ -547,7 +547,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase16_Serialize_Partial_CustomEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase16\CsvTestOutputFilePartialNoHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase16\CsvTestOutputFile.csv";
-      CreateOutputDir(outputPath);
+			TestCaseHelper.CreateOutputDir(outputPath);
 
       List<PartialTestDummyNoHeader> collection = new List<PartialTestDummyNoHeader>();
       PartialTestDummyNoHeader dummyA = new PartialTestDummyNoHeader {
@@ -578,7 +578,7 @@ namespace Enkoni.Framework.Tests {
       CsvSerializer<PartialTestDummyNoHeader> serializer = new CsvSerializer<PartialTestDummyNoHeader>();
       serializer.Serialize(collection, outputPath, Encoding.ASCII);
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
 
 			using(FileStream stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write)) {
 				StreamWriter writer = new StreamWriter(stream, Encoding.ASCII);
@@ -589,7 +589,7 @@ namespace Enkoni.Framework.Tests {
 				serializer.Serialize(collection, stream, Encoding.ASCII);
 			}
 
-      CheckTestResult(templatePath, outputPath);
+			TestCaseHelper.CheckTestResult(templatePath, outputPath);
     }
     #endregion
 
@@ -621,31 +621,6 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(i, selectedDummy.ColumnB);
         Assert.AreEqual(DateTime.MinValue, selectedDummy.ColumnC);
         Assert.AreEqual(i, (int)(selectedDummy.ColumnD * 10));
-      }
-    }
-
-    /// <summary>Checks if the contents of the two files are equal.</summary>
-    /// <param name="templatePath">The path to the templatefile.</param>
-    /// <param name="outputPath">The path to the file that was produced by the test.</param>
-    private static void CheckTestResult(string templatePath, string outputPath) {
-      Assert.IsTrue(File.Exists(outputPath));
-
-      byte[] templateContent = File.ReadAllBytes(templatePath);
-      byte[] outputContent = File.ReadAllBytes(outputPath);
-
-      Assert.AreEqual(templateContent.Length, outputContent.Length);
-
-      for(int i = 0; i < templateContent.Length; ++i) {
-        Assert.AreEqual(templateContent[i], outputContent[i]);
-      }
-    }
-
-    /// <summary>Creates the directory if it does not yet exists.</summary>
-    /// <param name="outputPath">The path to the outputfile.</param>
-    private static void CreateOutputDir(string outputPath) {
-      FileInfo fileInfo = new FileInfo(outputPath);
-      if(!fileInfo.Directory.Exists) {
-        fileInfo.Directory.Create();
       }
     }
     #endregion

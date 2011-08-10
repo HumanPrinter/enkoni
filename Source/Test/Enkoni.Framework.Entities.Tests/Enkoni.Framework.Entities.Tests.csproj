@@ -77,6 +77,8 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="RepositoryTest.cs" />
+    <Compile Include="FileRepositoryTest.cs" />
     <Compile Include="CsvFileRepositoryTest.cs" />
     <Compile Include="DatabaseRepositoryInitializer.cs" />
     <Compile Include="DatabaseRepositoryTestContext.cs" />
@@ -111,6 +113,10 @@
       <Project>{849BA8BA-A061-4278-85BD-90910680462E}</Project>
       <Name>Enkoni.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Enkoni.Framework.Tests.Common\Enkoni.Framework.Tests.Common.csproj">
+      <Project>{8532A56C-54B1-4C2F-9DA2-62F570F42BA2}</Project>
+      <Name>Enkoni.Framework.Tests.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -118,14 +124,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\placeholder.txt" />
-	<Content Include="TestData\ReposTest_DataSourceFile.csv" />
-	<Content Include="TestData\ReposTest_DataSourceFile.xml" />
-	<Content Include="TestData\ReposTest_EmptyInputFile.csv" />
-	<Content Include="TestData\ReposTest_EmptyInputFile.xml" />
-	<Content Include="TestData\ReposTest_InputFile.csv" />
+    <Content Include="TestData\ReposTest_DataSourceFile.csv" />
+    <Content Include="TestData\ReposTest_DataSourceFile.xml" />
+    <Content Include="TestData\ReposTest_EmptyInputFile.csv" />
+    <Content Include="TestData\ReposTest_EmptyInputFile.xml" />
+    <Content Include="TestData\ReposTest_InputFile.csv" />
     <Content Include="TestData\ReposTest_InputFile.xml" />
-	<Content Include="TestData\ReposTest_SortingFile.csv" />
-	<Content Include="TestData\ReposTest_SortingFile.xml" />
+    <Content Include="TestData\ReposTest_SortingFile.csv" />
+    <Content Include="TestData\ReposTest_SortingFile.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

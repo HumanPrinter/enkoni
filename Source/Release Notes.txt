@@ -6,23 +6,63 @@
 # [+]: Addition                                   #
 # [-]: Removal                                    #
 ###################################################
+
 Version X.X.X.X
   Enkoni.Framework (X.X.X.X)
   [*] Fixed an issue with the Enkoni.Framework.Linq.Extensions.Capitalize() methods.
       Date:    2011-06-26
-	  Comment: The Enkoni.Framework.Linq.Extensions.Capitalize methods caused an InvalidOperationException when called with 
-	           an empty (not null) string. This has now been fixed.
+      Comment: The Enkoni.Framework.Linq.Extensions.Capitalize methods caused an InvalidOperationException when called with 
+               an empty (not null) string. This has now been fixed.
 
   [+] Added the Enkoni.Framework.Linq.Extensions.CreateEqualityComparer extension method.
       Date:    2011-07-01
-	  Comment: Added the Enkoni.Framework.Linq.CreateEqualityComparer extension method that can be used to create an
-	           IEqualityComparer using the signature of an IEnumerable<T>. This method is particular usefull for collections
-			   of anonymous types.
+      Comment: Added the Enkoni.Framework.Linq.CreateEqualityComparer extension method that can be used to create an
+               IEqualityComparer using the signature of an IEnumerable<T>. This method is particular usefull for collections
+               of anonymous types.
 
   [+] Added the CircularStack<T> class.
       Date:    2011-07-31
-	  Comment: Added the CircularStack<T> class that can be used as a normal stack except that is will overwrite the oldest value 
-	           once a preset maximum has been reached.
+      Comment: Added the CircularStack<T> class that can be used as a normal stack except that is will overwrite the oldest value 
+               once a preset maximum has been reached.
+  
+  Enkoni.Framework.Entities (X.X.X.X)
+  [+] Added the ability to add, update and delete a collection of entities in the repository
+      Date:    2011-08-01
+      Comment: The Repository class now has the ability to add, update or delete a collection of entities in the repository. It provides a default
+               implementation which can be overwritten in specific implementations of the repository.
+
+  [*] Improves overall performance and stability of the MemoryRepository class
+      Date:    2011-08-06
+      Comment: The MemoryRepository class has been rewritten to improve the performance and stability of the implementation.
+
+  [+] Added an extra flag called 'clone data source items' to the DataSourceInfo class
+      Date:    2011-08-09
+      Comment: The DataSourceInfo class can now specify wheter or not an entity that originates from a datasource, must be cloned before it is 
+               returned or not.
+
+  Enkoni.Framework.Entities.File (X.X.X.X)
+  [+] Added support for Encoding to the FileSourceInfo class
+      Date:    2011-08-06
+      Comment: The FileSourceInfo class can now also specify the encoding of a file that is handled by one of the repositories.
+
+  [*] Marked the CsvFileSourceInfo obsolete
+      Date:    2011-08-06
+      Comment: Since the FileSourceInfo class now has build-in support to specify the required file encoding, the CsvFileSourceInfo class no longer 
+               has any added value. Therefore, the class is marked obsolete. This type may be completely removed in a future release.
+
+  [*] XmlFileRepository now supports different file encodings
+      Date:    2011-08-06
+      Comment: It is now possible to specify a specific file encoding for the XML-file that is used by the XmlFileRepository.
+
+  [*] Improves overall performance and stability of the FileRepository class
+      Date:    2011-08-09
+      Comment: The FileRepository class has been rewritten to improve the performance and stability of the implementation.
+
+  Enkoni.Framework.Entities.Database (X.X.X.X)
+  [*] Improves overall performance and stability of the DatabaseRepository class
+      Date:    2011-08-08
+      Comment: The DatabaseRepository class has been rewritten to improve the performance and stability of the implementation. It also supports 
+      transactions now.
 
 Version 1.0.3.0
   Remark: This is a maintainance release. No API or functional changes have been made.

@@ -141,7 +141,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="TimeSpanRangeValidator"/> class when applied to a non-TimeSpan attribute.</summary>
     [TestMethod]
-    public void TestCase04_InvalidPropertyType(){
+    public void TestCase04_InvalidPropertyType() {
       TestDummy_InvalidPropertyType dummy = new TestDummy_InvalidPropertyType();
       dummy.TextValue = "00:30:00";
       EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_InvalidPropertyType>(dummy, "ValidationTest");
