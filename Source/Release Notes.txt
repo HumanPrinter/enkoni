@@ -25,6 +25,15 @@ Version X.X.X.X
       Comment: Added the CircularStack<T> class that can be used as a normal stack except that is will overwrite the oldest value 
                once a preset maximum has been reached.
   
+  [+] Added the Serializer<T>, Transformer<T> and CsvTransformer<T> classes.
+      Date:    2011-08-26
+      Comment: Added three classes that aid in (de)serializing objects. Also the existing CsvSerializer class has been updated to make use of these 
+               new classes. By using this new architecture, the serialization classes are more flexible for future extensions and other developments.
+
+  [+] Added support for asynchronous operations to the Serializer class.
+      Date:    2011-08-26
+      Comment: Added support for asynchronous (de)serialization.
+
   Enkoni.Framework.Entities (X.X.X.X)
   [+] Added the ability to add, update and delete a collection of entities in the repository
       Date:    2011-08-01

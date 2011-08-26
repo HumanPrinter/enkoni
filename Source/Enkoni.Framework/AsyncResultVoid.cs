@@ -125,7 +125,7 @@ namespace Enkoni.Framework {
       }
 
       /* If someone subscribed to the event, set it */
-      if(this.asyncWaitHandle != null) {
+      if(this.AsyncWaitHandle != null) {
         this.asyncWaitHandle.Set();
       }
 
@@ -139,7 +139,7 @@ namespace Enkoni.Framework {
     public void EndInvoke() {
       if(!this.IsCompleted) {
         /* Block untill the waithandle is finished */
-        this.asyncWaitHandle.WaitOne();
+        this.AsyncWaitHandle.WaitOne();
         /* Close and de-reference the waithandle */
         this.asyncWaitHandle.Close();
         this.asyncWaitHandle = null;

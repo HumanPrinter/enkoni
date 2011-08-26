@@ -52,7 +52,10 @@
     <Compile Include="CombinedSpecification.cs" />
     <Compile Include="AndSpecification.cs" />
     <Compile Include="BusinessRuleSpecification.cs" />
+    <Compile Include="AsyncResult.cs" />
     <Compile Include="ReferenceEqualityComparer.cs" />
+    <Compile Include="Serialization\Serializer.cs" />
+    <Compile Include="Serialization\CsvTransformer.cs" />
     <Compile Include="SortSpecificationsEventArgs.cs" />
     <Compile Include="SortSpecifications.cs" />
     <Compile Include="SortSpecification.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="Serialization\CsvRecordAttribute.cs" />
     <Compile Include="Serialization\CsvSerializer.cs" />
     <Compile Include="LambdaSpecification.cs" />
+    <Compile Include="Serialization\Transformer.cs" />
     <Compile Include="Workflow.cs" />
   </ItemGroup>
   <ItemGroup>
