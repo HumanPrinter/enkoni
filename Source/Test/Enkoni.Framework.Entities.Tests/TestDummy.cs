@@ -9,13 +9,14 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Xml.Serialization;
 
 using Enkoni.Framework.Serialization;
 
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>A helper class to support the testcases.</summary>
-  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot]
+  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot, Table("TestDummy"), DebuggerDisplay("RecordId: {RecordId} TextValue: {TextValue}")]
   public class TestDummy : IEntity<TestDummy>, ICloneable {
     /// <summary>Gets or sets a unique record ID.</summary>
     [XmlIgnore, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,7 +30,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [CsvColumn(1), XmlElement, Required]
     public int NumericValue { get; set; }
 
-    /// <summary>Gets or sets an optional boolean value.</summary>
+    /// <summary>Gets or sets a value indicating whether something is true or not.</summary>
     [CsvColumn(2), XmlElement, Required]
     public bool BooleanValue { get; set; }
 

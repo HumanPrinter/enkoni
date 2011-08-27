@@ -35,8 +35,8 @@
     <DocumentationFile>bin\Release\Enkoni.Framework.Entities.Tests.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -62,11 +62,9 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -79,12 +77,15 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="RepositoryTest.cs" />
+    <Compile Include="FileRepositoryTest.cs" />
     <Compile Include="CsvFileRepositoryTest.cs" />
     <Compile Include="DatabaseRepositoryInitializer.cs" />
     <Compile Include="DatabaseRepositoryTestContext.cs" />
     <Compile Include="DatabaseRepositoryTest.cs" />
     <Compile Include="HttpSessionMemoryRepositoryTest.cs" />
     <Compile Include="StaticMemoryRepositoryTest.cs" />
+    <Compile Include="TestDatabaseRepository.cs" />
     <Compile Include="TestDummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityValidatorTest.cs" />
@@ -112,21 +113,25 @@
       <Project>{849BA8BA-A061-4278-85BD-90910680462E}</Project>
       <Name>Enkoni.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Enkoni.Framework.Tests.Common\Enkoni.Framework.Tests.Common.csproj">
+      <Project>{8532A56C-54B1-4C2F-9DA2-62F570F42BA2}</Project>
+      <Name>Enkoni.Framework.Tests.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\ReposTest_SortingFile.xml" />
-    <Content Include="TestData\placeholder.txt" />
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="TestData\ReposTest_SortingFile.csv" />
-    <None Include="TestData\ReposTest_DataSourceFile.csv" />
-    <None Include="TestData\ReposTest_EmptyInputFile.csv" />
-    <None Include="TestData\ReposTest_InputFile.csv" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestData\placeholder.txt" />
+    <Content Include="TestData\ReposTest_DataSourceFile.csv" />
     <Content Include="TestData\ReposTest_DataSourceFile.xml" />
+    <Content Include="TestData\ReposTest_EmptyInputFile.csv" />
     <Content Include="TestData\ReposTest_EmptyInputFile.xml" />
+    <Content Include="TestData\ReposTest_InputFile.csv" />
     <Content Include="TestData\ReposTest_InputFile.xml" />
+    <Content Include="TestData\ReposTest_SortingFile.csv" />
+    <Content Include="TestData\ReposTest_SortingFile.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

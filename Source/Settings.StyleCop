@@ -25,9 +25,9 @@
             <BooleanProperty Name="Enabled">True</BooleanProperty>
           </RuleSettings>
         </Rule>
-        <Rule Name="FileHeaderFileNameDocumentationMustMatchTypeName">
+        <Rule Name="DocumentationTextMustMeetMinimumCharacterLength">
           <RuleSettings>
-            <BooleanProperty Name="Enabled">False</BooleanProperty>
+            <BooleanProperty Name="Enabled">True</BooleanProperty>
           </RuleSettings>
         </Rule>
       </Rules>
@@ -81,6 +81,11 @@
           </RuleSettings>
         </Rule>
         <Rule Name="SingleLineCommentsMustBeginWithSingleSpace">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+        <Rule Name="TabsMustNotBeUsed">
           <RuleSettings>
             <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>

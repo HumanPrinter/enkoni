@@ -1,6 +1,6 @@
-<StyleCopSettings Version="4.3">
+<StyleCopSettings Version="105">
   <Analyzers>
-    <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.NamingRules">
+    <Analyzer AnalyzerId="StyleCop.CSharp.NamingRules">
       <AnalyzerSettings>
         <CollectionProperty Name="Hungarian">
           <Value>db</Value>

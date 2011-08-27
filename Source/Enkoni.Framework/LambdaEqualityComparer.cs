@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Enkoni.Framework {
   /// <summary>This class compares types based on a field of the type. By using this class, it is no longer required to create a specific equality 
@@ -39,9 +38,6 @@ namespace Enkoni.Framework {
     /// <param name="x">The first object of type T to compare.</param>
     /// <param name="y">The second object of type T to compare.</param>
     /// <returns><see langword="true"/> if the specified objects are equal; otherwise, <see langword="false"/>.</returns>
-    [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules",
-      "SA1628:DocumentationTextMustBeginWithACapitalLetter",
-      Justification = "The keywords 'true' and 'false' start with a lowercase letter")]
     public bool Equals(T x, T y) {
       if(x == null && y == null) {
         return true;

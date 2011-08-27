@@ -21,7 +21,7 @@ namespace Enkoni.Framework.Entities {
     /// </summary>
     /// <param name="dataSourceInfo">The datasource information that must be used to access the sourcefile.</param>
     protected ServiceRepository(DataSourceInfo dataSourceInfo)
-      : base() {
+      : base(dataSourceInfo) {
       /* Determine if the supported properties have been specified */
       if(ServiceSourceInfo.IsEndpointConfigurationNameSpecified(dataSourceInfo)) {
         this.EndpointConfigurationName = ServiceSourceInfo.SelectEndpointConfigurationName(dataSourceInfo);
