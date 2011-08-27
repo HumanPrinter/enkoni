@@ -41,14 +41,15 @@
     <CopyrightText>Copyright %28c%29 Oscar Brouwer 2011. All rights reserved.</CopyrightText>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="Enkoni.Framework" isDocumented="True">Contains numerous easy-to-use types and operations that can be utilized in any kind of project or application.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Enkoni.Framework.Linq" isDocumented="True">Contains a number of extension methods that were not included in the default .NET Linq library.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Enkoni.Framework.Serialization" isDocumented="True">Contains a number of classes that allow for (de)serialization in formats other than the formats that are supported by default by the .NET Framework.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Enkoni.Framework.ServiceModel" isDocumented="True">Contains a number of helper-classes that can be utilized in combination with WCF services and proxies.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Enkoni.Framework.Testing" isDocumented="True">Contains a number of classes that can aid in the execution of tests.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Enkoni.Framework.Validation" isDocumented="True">Contains functionality that extends the functionality that is offered by the default .NET DataAnnotations and the Microsoft Enterprise Library's Validation Application Block.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Enkoni.Framework.Validation.Validators" isDocumented="True">Contains a number of validators that were not part of the .NET DataAnnotations library.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="(global)" isDocumented="False" /></NamespaceSummaries>
+      <NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Enkoni.Framework.Linq" isDocumented="True">Contains a number of extension methods that were not included in the default .NET Linq library.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Enkoni.Framework.Serialization" isDocumented="True">Contains a number of classes that allow for (de)serialization in formats other than the formats that are supported by default by the .NET Framework.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Enkoni.Framework.ServiceModel" isDocumented="True">Contains a number of helper-classes that can be utilized in combination with WCF services and proxies.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Enkoni.Framework.Testing" isDocumented="True">Contains a number of classes that can aid in the execution of tests.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Enkoni.Framework.Validation" isDocumented="True">Contains functionality that extends the functionality that is offered by the default .NET DataAnnotations and the Microsoft Enterprise Library's Validation Application Block.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Enkoni.Framework.Validation.Validators" isDocumented="True">Contains a number of validators that were not part of the .NET DataAnnotations library.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+    </NamespaceSummaries>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="False" xmlns="" />
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent" isExposed="False" xmlns="" />
@@ -87,7 +88,7 @@
         <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.EnterpriseLibraryPerformanceCounter" filterName="EnterpriseLibraryPerformanceCounter" isExposed="False" />
       </Filter>
     </ApiFilter>
-    <HelpFileVersion>1.0.3.0</HelpFileVersion>
+    <HelpFileVersion>1.0.4.0</HelpFileVersion>
     <HelpAttributes />
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
