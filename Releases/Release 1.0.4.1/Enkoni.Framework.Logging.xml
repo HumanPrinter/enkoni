@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.Logging.LogManager">
+            <summary>Manages and gives access to a <see cref="T:Enkoni.Framework.Logging.Logger"/> instance that is capable of logging messages through the Logging Application Block
+            which is part of the Microsoft Enterprise Library.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Logging.LogManager.logWriter">
+            <summary>The actual logger that is used.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.LogManager.CreateLogger">
+            <summary>Creates a new instance of <see cref="T:Enkoni.Framework.Logging.Logger"/> which can be used to send logmessages to the Logging Application Block.</summary>
+            <returns>The created <see cref="T:Enkoni.Framework.Logging.Logger"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.LogManager.AssignLogWriter">
+            <summary>Gets a configured <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter"/> from the Enterprise Library configuration. If there is no logger configured, 
+            <see langword="null"/> is returned.</summary>
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter"/> that is configured in the configuration of <see langword="null"/> if no logger is configured.</returns>
+        </member>
+        <member name="T:Enkoni.Framework.Logging.Logger">
+            <summary>This class sends logs messages using the Logging Application Block which is part of the Microsoft Entrprise Library. An instance of
+            this class can be retrieved through the <see cref="T:Enkoni.Framework.Logging.LogManager"/> class.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Logging.Logger.logWriter">
+            <summary>The actual logger. When set to null, no logging will be performed.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.#ctor(Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Logging.Logger"/> class using the specified <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter"/>.</summary>
+            <param name="logWriter">The actual logger that mist be used. Use <see langword="null"/> to disable logging.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Log(Microsoft.Practices.EnterpriseLibrary.Logging.LogEntry)">
+            <summary>Logs the specified <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogEntry"/> using the pre-configured logger. If <paramref name="logEntry"/> is <see langword="null"/> 
+            or there is no pre-configured logger, nothing will be logged.</summary>
+            <param name="logEntry">The entry containing all the information that must be logged.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Log(System.String,System.Diagnostics.TraceEventType,System.String,System.Int32,System.String,System.Int32,System.Guid,System.Nullable{System.Guid})">
+            <summary>Logs a message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="severity">The severity of the message.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+            <param name="title">The title of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="eventId">The EventId that must be logged. Use <c>-1</c> to ignore the value and use the default.</param>
+            <param name="activityId">The ActivityId that must be logged. Use <see cref="F:System.Guid.Empty"/> to ignore the value and use the default.</param>
+            <param name="relatedActivityId">The Id of the related activity. Use <see langword="null"/> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Info(System.String)">
+            <summary>Logs an informational message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Information"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Info(System.String,System.String)">
+            <summary>Logs an informational message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Information"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Info(System.String,System.String,System.Int32)">
+            <summary>Logs an informational message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Information"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Verbose(System.String)">
+            <summary>Logs a verbose message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Verbose"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Verbose(System.String,System.String)">
+            <summary>Logs a verbose message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Verbose"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Verbose(System.String,System.String,System.Int32)">
+            <summary>Logs a verbose message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Verbose"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Warn(System.String)">
+            <summary>Logs a warning using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Warning"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Warn(System.String,System.Exception)">
+            <summary>Logs a warning using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Warning"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Warn(System.String,System.String)">
+            <summary>Logs a warning using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Warning"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Warn(System.String,System.String,System.Exception)">
+            <summary>Logs a warning using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Warning"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Warn(System.String,System.String,System.Int32)">
+            <summary>Logs a warning using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Warning"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Warn(System.String,System.String,System.Int32,System.Exception)">
+            <summary>Logs a warning using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Warning"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Error(System.String)">
+            <summary>Logs an error using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Error"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Error(System.String,System.Exception)">
+            <summary>Logs an error using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Error"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Error(System.String,System.String)">
+            <summary>Logs an error using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Error"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Error(System.String,System.String,System.Exception)">
+            <summary>Logs an error using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Error"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Error(System.String,System.String,System.Int32)">
+            <summary>Logs an error using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Error"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Error(System.String,System.String,System.Int32,System.Exception)">
+            <summary>Logs an error using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Error"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Critical(System.String)">
+            <summary>Logs a critical message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Critical"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Critical(System.String,System.Exception)">
+            <summary>Logs a critical message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Critical"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Critical(System.String,System.String)">
+            <summary>Logs a critical message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Critical"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Critical(System.String,System.String,System.Exception)">
+            <summary>Logs a critical message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Critical"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Critical(System.String,System.String,System.Int32)">
+            <summary>Logs a critical message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Critical"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.Logger.Critical(System.String,System.String,System.Int32,System.Exception)">
+            <summary>Logs a critical message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
+            The logmessage will get the severity <see cref="F:System.Diagnostics.TraceEventType.Critical"/>.</summary>
+            <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
+            <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
+            <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
+            <param name="exception">The exception whose details must be included in the logmessage.</param>
+        </member>
+    </members>
+</doc>

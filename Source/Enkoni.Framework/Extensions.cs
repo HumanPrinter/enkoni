@@ -189,6 +189,41 @@ namespace Enkoni.Framework {
 		}
 		#endregion
 
+		#region Type extensions
+		/// <summary>Determines if the specified type actually a nullable type.</summary>
+		/// <param name="source">The type that is investigated.</param>
+		/// <returns><see langword="true"/> is <paramref name="source"/> denotes a nullable type, <see langword="false"/>
+		/// otherwise.</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+		public static bool IsNullable(this Type source) {
+			if(source == null) {
+				throw new ArgumentNullException("source");
+			}
+			
+			return source.IsGenericType && source.GetGenericTypeDefinition() == typeof(Nullable<>);
+		}
+
+		/// <summary>Returns the actual type of <paramref name="source"/>. If <paramref name="source"/> denotes a nullable type,
+		/// the underlying type is returned. Otherwise, <paramref name="source"/> is returned.</summary>
+		/// <param name="source">The type that is investigated.</param>
+		/// <returns>The underlying type if <paramref name="source"/> is nullable or <paramref name="source"/> if it is not 
+		/// nullable.</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
+		public static Type ActualType(this Type source) {
+			if(source == null) {
+				throw new ArgumentNullException("source");
+			}
+			
+			if(source.IsNullable()) {
+				NullableConverter converter = new NullableConverter(source);
+				return converter.UnderlyingType;
+			}
+			else {
+				return source;
+			}
+		}
+		#endregion
+
 		#region ICollection<T> extension methods
 		/// <summary>Adds an overload for the ICollection-method 'Remove(T)' which lets the user define a comparer that must be used.</summary>
 		/// <typeparam name="T">The type of element that is stored in the collection.</typeparam>
