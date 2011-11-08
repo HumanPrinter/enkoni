@@ -4,6 +4,22 @@
         <name>Enkoni.Framework.Logging</name>
     </assembly>
     <members>
+        <member name="T:Enkoni.Framework.Logging.LogManager">
+            <summary>Manages and gives access to a <see cref="T:Enkoni.Framework.Logging.Logger"/> instance that is capable of logging messages through the Logging Application Block
+            which is part of the Microsoft Enterprise Library.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Logging.LogManager.logWriter">
+            <summary>The actual logger that is used.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.LogManager.CreateLogger">
+            <summary>Creates a new instance of <see cref="T:Enkoni.Framework.Logging.Logger"/> which can be used to send logmessages to the Logging Application Block.</summary>
+            <returns>The created <see cref="T:Enkoni.Framework.Logging.Logger"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Logging.LogManager.AssignLogWriter">
+            <summary>Gets a configured <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter"/> from the Enterprise Library configuration. If there is no logger configured, 
+            <see langword="null"/> is returned.</summary>
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter"/> that is configured in the configuration of <see langword="null"/> if no logger is configured.</returns>
+        </member>
         <member name="T:Enkoni.Framework.Logging.Logger">
             <summary>This class sends logs messages using the Logging Application Block which is part of the Microsoft Entrprise Library. An instance of
             this class can be retrieved through the <see cref="T:Enkoni.Framework.Logging.LogManager"/> class.</summary>
@@ -183,22 +199,6 @@
             <param name="category">The category of the message. Use <see langword="null"/> to ignore the value and use the default.</param>
             <param name="priority">The priority of the message. Use <c>-1</c> to ignore the value and use the default.</param>
             <param name="exception">The exception whose details must be included in the logmessage.</param>
-        </member>
-        <member name="T:Enkoni.Framework.Logging.LogManager">
-            <summary>Manages and gives access to a <see cref="T:Enkoni.Framework.Logging.Logger"/> instance that is capable of logging messages through the Logging Application Block
-            which is part of the Microsoft Enterprise Library.</summary>
-        </member>
-        <member name="F:Enkoni.Framework.Logging.LogManager.logWriter">
-            <summary>The actual logger that is used.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Logging.LogManager.CreateLogger">
-            <summary>Creates a new instance of <see cref="T:Enkoni.Framework.Logging.Logger"/> which can be used to send logmessages to the Logging Application Block.</summary>
-            <returns>The created <see cref="T:Enkoni.Framework.Logging.Logger"/>.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Logging.LogManager.AssignLogWriter">
-            <summary>Gets a configured <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter"/> from the Enterprise Library configuration. If there is no logger configured, 
-            <see langword="null"/> is returned.</summary>
-            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter"/> that is configured in the configuration of <see langword="null"/> if no logger is configured.</returns>
         </member>
     </members>
 </doc>

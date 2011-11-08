@@ -4,6 +4,14 @@
         <name>Enkoni.Framework.Testing</name>
     </assembly>
     <members>
+        <member name="T:Enkoni.Framework.Testing.HttpContextHelper">
+            <summary>Can be used to create a mocked HttpContext.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Testing.HttpContextHelper.SetHttpContextWithSimulatedRequest(System.String,System.String)">
+            <summary>Sets the HTTP context with a valid simulated request.</summary>
+            <param name="host">The host that must be associated with the session. Normally 'localhost' will suffice.</param>
+            <param name="application">The name of the application that requires the session. Any name will do.</param>
+        </member>
         <member name="T:Enkoni.Framework.Testing.SimulatedHttpRequest">
             <summary>Used to simulate an HttpRequest.</summary>
         </member>
@@ -27,14 +35,6 @@
             <summary>Maps the path to a filesystem path.</summary>
             <param name="virtualPath">Virtual path.</param>
             <returns>The result of the operation.</returns>
-        </member>
-        <member name="T:Enkoni.Framework.Testing.HttpContextHelper">
-            <summary>Can be used to create a mocked HttpContext.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Testing.HttpContextHelper.SetHttpContextWithSimulatedRequest(System.String,System.String)">
-            <summary>Sets the HTTP context with a valid simulated request.</summary>
-            <param name="host">The host that must be associated with the session. Normally 'localhost' will suffice.</param>
-            <param name="application">The name of the application that requires the session. Any name will do.</param>
         </member>
     </members>
 </doc>

@@ -4,42 +4,41 @@
         <name>Enkoni.Framework.Entities</name>
     </assembly>
     <members>
-        <member name="T:Enkoni.Framework.Entities.MemoryStore`1">
-            <summary>This abstract class defines the API of a class that holds a collection of objects in memory.</summary>
-            <typeparam name="T">The type of object that is stored.</typeparam>
+        <member name="T:Enkoni.Framework.Entities.DomainModel">
+            <summary>This class defines the public API of a class that represents a domainmodel.</summary>
         </member>
-        <member name="F:Enkoni.Framework.Entities.MemoryStore`1.storageLock">
-            <summary>A lock that controls access to the storage.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DomainModel"/> class.</summary>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> class.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.PersistencyExists">
+            <summary>Determines if the underlying persistency already exists.</summary>
+            <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterReadLock">
-            <summary>Enters the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.CreatePersistency">
+            <summary>Creates the underlying persistency if it does not yet already exist.</summary>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitReadLock">
-            <summary>Exits the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.ClearPersistency">
+            <summary>Clears the underlying persistency.</summary>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterWriteLock">
-            <summary>Enters the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.GetSubDomain``1">
+            <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
+            <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
+            <returns>The SubDomain.</returns>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitWriteLock">
-            <summary>Exists the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.PersistencyExistsCore">
+            <summary>Determines if the underlying persistency already exists.</summary>
+            <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterReadLockCore">
-            <summary>Enters the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.CreatePersistencyCore">
+            <summary>Creates the underlying persistency.</summary>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitReadLockCore">
-            <summary>Exits the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.ClearPersistencyCore">
+            <summary>Clears the underlying persistency.</summary>
         </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterWriteLockCore">
-            <summary>Enters the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitWriteLockCore">
-            <summary>Exists the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
-        </member>
-        <member name="P:Enkoni.Framework.Entities.MemoryStore`1.Storage">
-            <summary>Gets the storage that holds the saved instances.</summary>
+        <member name="M:Enkoni.Framework.Entities.DomainModel.GetSubDomainCore``1">
+            <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
+            <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
+            <returns>The appropriate SubDomainModel.</returns>
         </member>
         <member name="T:Enkoni.Framework.Entities.SubDomainModel`1">
             <summary>This abstract class defines the public API of a class that represents the subdomain of the domain model.</summary>
@@ -128,6 +127,17 @@
         <member name="P:Enkoni.Framework.Entities.SubDomainModel`1.ParentDomainModel">
             <summary>Gets the parent domainmodel.</summary>
         </member>
+        <member name="T:Enkoni.Framework.Entities.IEntity`1">
+            <summary>Defines the basic signature of an entity-type.</summary>
+            <typeparam name="T">The actual entity type.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.IEntity`1.CopyFrom(`0)">
+            <summary>Copies the values from <paramref name="source"/> into this instance.</summary>
+            <param name="source">The entity that contains the desired values.</param>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.IEntity`1.RecordId">
+            <summary>Gets or sets the record-ID of the entity.</summary>
+        </member>
         <member name="T:Enkoni.Framework.Entities.EntityEqualityComparer`1">
             <summary>This class can be used to compare two instances of <see cref="T:Enkoni.Framework.Entities.IEntity`1"/> for equality. It uses the
             <see cref="P:Enkoni.Framework.Entities.IEntity`1.RecordId"/> property to compare the two instances.</summary>
@@ -135,6 +145,194 @@
         </member>
         <member name="M:Enkoni.Framework.Entities.EntityEqualityComparer`1.#ctor">
             <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.EntityEqualityComparer`1"/> class.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.EntityValidator`1">
+            <summary>This abstract class defines the public API of a class that can validate entities.</summary>
+            <typeparam name="T">The type of entity that must be validated.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.EntityValidator`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformShallowValidation(`0)">
+            <summary>Performs a shallow validation of the specified entity. This will only validate the consistency of the entity itself without looking 
+            at the references to other entities or the underlying persistency.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The results of the validation.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="entity"/> is null.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformDeepValidation(`0)">
+            <summary>Performs a deep validation of the specified entity. Besides performing a shallow validation, it may also look at the underlying
+            persistency for instance to make sure that no uniqueness-rules are violated.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The results of the validation.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="entity"/> is null.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformShallowValidationCore(`0)">
+            <summary>Performs a shallow validation of the entity.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The result of the validation.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformDeepValidationCore(`0)">
+            <summary>Performs a deep validation of the entity.</summary>
+            <param name="entity">The entity that must be validated.</param>
+            <returns>The result of the validation.</returns>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.MemorySourceInfo">
+            <summary>This class contains static members that would normally be part of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class, but since that class is
+            generic the static members are placed in this non-generic counterpart to avoid possible confussion about the use of the methods.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemorySourceInfo.MemoryStoreKey">
+            <summary>Defines the key that is used to store and retrieve the MemoryStore.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo.IsMemoryStoreSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Determines if the MemoryStore is specified in the source information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo.SelectMemoryStore``1(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Selects the MemoryStore from the specified datasource information.</summary>
+            <typeparam name="T">The type of object that is stored in the memorystore.</typeparam>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns>The MemoryStore that is stored in the datasource information or <see langword="null"/> if the MemoryStore could not be found.
+            </returns>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.MemorySourceInfo`1">
+            <summary>This class can be used by the <see cref="T:Enkoni.Framework.Entities.MemoryRepository`1"/> to retrieve valuable information about the datastore that is to 
+            be used. This class is added for improved usability of the DataSourceInfo in combination with the MemoryRepository.</summary>
+            <typeparam name="T">The type of object that is stored in memory.</typeparam>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.DataSourceInfo">
+            <summary>This class contains information about a specific datasource. This can be any kind of datasource. This class is utilized by the various 
+            repositories. Check the documentation of the used repository for more information about the required or supported datasource-information.
+            </summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.DataSourceInfo.CloneDataSourceItemsKey">
+            <summary>Defines the key that is used to store and retrieve the boolean that indicates if any entity that originates from the datasource must 
+            be cloned or not.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.DataSourceInfo.DefaultCloneDataSourceItems">
+            <summary>The default value for the <see cref="P:Enkoni.Framework.Entities.DataSourceInfo.CloneDataSourceItems"/> that will be used when no custom value has been specified.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.DataSourceInfo.sourceInfoItems">
+            <summary>The collection that holds the keys with the associated values.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor(System.Boolean)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class.</summary>
+            <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class using the specified values.</summary>
+            <param name="defaultValues">The default values that must be loaded.</param>
+            <exception cref="T:System.ArgumentNullException">The parameter is null.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.IsCloneDataSourceItemsSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Determines if the 'clone datasource items'-flag is specified in the source information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.SelectCloneDataSourceItems(Enkoni.Framework.Entities.DataSourceInfo)">
+            <summary>Selects the 'clone datasource items'-flag from the specified datasource information.</summary>
+            <param name="dataSourceInfo">The datasource information that is queried.</param>
+            <returns>The flag that is stored in the datasource information or <see langword="false"/> if the flag could not be found.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.IsValueSpecified(System.String)">
+            <summary>Determines if a value is specified by looking up the specified key in the internal storage.</summary>
+            <param name="key">The key that identifies the desired value.</param>
+            <returns><see langword="true"/> if the key (and accompanying value) is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.IsCloneDataSourceItemsSpecified">
+            <summary>Determines if the 'clone data source items'-flag is specified in the source information.</summary>
+            <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.DataSourceInfo.CloneDataSourceItems">
+            <summary>Gets or sets a value indicating whether any retrieved entity that originates from the data source should be cloned or not.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.DataSourceInfo.Item(System.String)">
+            <summary>Gets or sets the value that is associated with the specified key.</summary>
+            <param name="key">The key with which the value is identified.</param>
+            <returns>The value that is associated with the specified key.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using a default value of <see langword="null"/> for the 
+            MemoryStore.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(Enkoni.Framework.Entities.MemoryStore{`0})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified memorystore instance.</summary>
+            <param name="memoryStore">The memorystore that must be use to store the entities.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(Enkoni.Framework.Entities.MemoryStore{`0},System.Boolean)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified memorystore instance.</summary>
+            <param name="memoryStore">The memorystore that must be use to store the entities.</param>
+            <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified default values. If the default values 
+            do not specify the MemoryStore using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
+            <param name="defaultValues">The default values that are to be used.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.IsMemoryStoreSpecified">
+            <summary>Determines if the MemoryStore is specified in the source information.</summary>
+            <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.MemorySourceInfo`1.MemoryStore">
+            <summary>Gets or sets the MemoryStore that is to be used by the MemoryRepository.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.HttpSessionMemoryStore`1">
+            <summary>This class implements the abstract class <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> using collections that are stored in a HTTP Session.</summary>
+            <typeparam name="T">The type of object that is stored.</typeparam>
+        </member>
+        <member name="T:Enkoni.Framework.Entities.MemoryStore`1">
+            <summary>This abstract class defines the API of a class that holds a collection of objects in memory.</summary>
+            <typeparam name="T">The type of object that is stored.</typeparam>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.MemoryStore`1.storageLock">
+            <summary>A lock that controls access to the storage.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterReadLock">
+            <summary>Enters the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitReadLock">
+            <summary>Exits the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterWriteLock">
+            <summary>Enters the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitWriteLock">
+            <summary>Exists the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterReadLockCore">
+            <summary>Enters the readlock to synchronize read-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitReadLockCore">
+            <summary>Exits the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.EnterWriteLockCore">
+            <summary>Enters the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.MemoryStore`1.ExitWriteLockCore">
+            <summary>Exists the writelock to synchronize write-access to the <see cref="M:Storage"/>.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.MemoryStore`1.Storage">
+            <summary>Gets the storage that holds the saved instances.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.StorageKey">
+            <summary>The key that is used to retrieve the storage-collection from the HttpSession.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.HttpSessionMemoryStore`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.RetrieveStorage">
+            <summary>Retrieves the storage from the current session. If there is no storage available yet, a new one is created.</summary>
+            <returns>The storage that is stored in the session.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.Storage">
+            <summary>Gets the storage that holds the saved instances.</summary>
         </member>
         <member name="T:Enkoni.Framework.Entities.Repository`1">
             <summary>This abstract class defines the API of a repository that is capable of accessing specific types in a persistency.</summary>
@@ -540,113 +738,6 @@
         <member name="P:Enkoni.Framework.Entities.Repository`1.CloneDataSourceItems">
             <summary>Gets a value indicating whether entities retrieved from the datasource must be cloned or not.</summary>
         </member>
-        <member name="T:Enkoni.Framework.Entities.DomainModel">
-            <summary>This class defines the public API of a class that represents a domainmodel.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DomainModel"/> class.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.PersistencyExists">
-            <summary>Determines if the underlying persistency already exists.</summary>
-            <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.CreatePersistency">
-            <summary>Creates the underlying persistency if it does not yet already exist.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.ClearPersistency">
-            <summary>Clears the underlying persistency.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.GetSubDomain``1">
-            <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
-            <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
-            <returns>The SubDomain.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.PersistencyExistsCore">
-            <summary>Determines if the underlying persistency already exists.</summary>
-            <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.CreatePersistencyCore">
-            <summary>Creates the underlying persistency.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.ClearPersistencyCore">
-            <summary>Clears the underlying persistency.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DomainModel.GetSubDomainCore``1">
-            <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
-            <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
-            <returns>The appropriate SubDomainModel.</returns>
-        </member>
-        <member name="T:Enkoni.Framework.Entities.HttpSessionMemoryStore`1">
-            <summary>This class implements the abstract class <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> using collections that are stored in a HTTP Session.</summary>
-            <typeparam name="T">The type of object that is stored.</typeparam>
-        </member>
-        <member name="F:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.StorageKey">
-            <summary>The key that is used to retrieve the storage-collection from the HttpSession.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.HttpSessionMemoryStore`1"/> class.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.RetrieveStorage">
-            <summary>Retrieves the storage from the current session. If there is no storage available yet, a new one is created.</summary>
-            <returns>The storage that is stored in the session.</returns>
-        </member>
-        <member name="P:Enkoni.Framework.Entities.HttpSessionMemoryStore`1.Storage">
-            <summary>Gets the storage that holds the saved instances.</summary>
-        </member>
-        <member name="T:Enkoni.Framework.Entities.DataSourceInfo">
-            <summary>This class contains information about a specific datasource. This can be any kind of datasource. This class is utilized by the various 
-            repositories. Check the documentation of the used repository for more information about the required or supported datasource-information.
-            </summary>
-        </member>
-        <member name="F:Enkoni.Framework.Entities.DataSourceInfo.CloneDataSourceItemsKey">
-            <summary>Defines the key that is used to store and retrieve the boolean that indicates if any entity that originates from the datasource must 
-            be cloned or not.</summary>
-        </member>
-        <member name="F:Enkoni.Framework.Entities.DataSourceInfo.DefaultCloneDataSourceItems">
-            <summary>The default value for the <see cref="P:Enkoni.Framework.Entities.DataSourceInfo.CloneDataSourceItems"/> that will be used when no custom value has been specified.</summary>
-        </member>
-        <member name="F:Enkoni.Framework.Entities.DataSourceInfo.sourceInfoItems">
-            <summary>The collection that holds the keys with the associated values.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor(System.Boolean)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class.</summary>
-            <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.DataSourceInfo"/> class using the specified values.</summary>
-            <param name="defaultValues">The default values that must be loaded.</param>
-            <exception cref="T:System.ArgumentNullException">The parameter is null.</exception>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.IsCloneDataSourceItemsSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
-            <summary>Determines if the 'clone datasource items'-flag is specified in the source information.</summary>
-            <param name="dataSourceInfo">The datasource information that is queried.</param>
-            <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.SelectCloneDataSourceItems(Enkoni.Framework.Entities.DataSourceInfo)">
-            <summary>Selects the 'clone datasource items'-flag from the specified datasource information.</summary>
-            <param name="dataSourceInfo">The datasource information that is queried.</param>
-            <returns>The flag that is stored in the datasource information or <see langword="false"/> if the flag could not be found.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.IsValueSpecified(System.String)">
-            <summary>Determines if a value is specified by looking up the specified key in the internal storage.</summary>
-            <param name="key">The key that identifies the desired value.</param>
-            <returns><see langword="true"/> if the key (and accompanying value) is defined; <see langword="false"/> otherwise.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.DataSourceInfo.IsCloneDataSourceItemsSpecified">
-            <summary>Determines if the 'clone data source items'-flag is specified in the source information.</summary>
-            <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
-        </member>
-        <member name="P:Enkoni.Framework.Entities.DataSourceInfo.CloneDataSourceItems">
-            <summary>Gets or sets a value indicating whether any retrieved entity that originates from the data source should be cloned or not.</summary>
-        </member>
-        <member name="P:Enkoni.Framework.Entities.DataSourceInfo.Item(System.String)">
-            <summary>Gets or sets the value that is associated with the specified key.</summary>
-            <param name="key">The key with which the value is identified.</param>
-            <returns>The value that is associated with the specified key.</returns>
-        </member>
         <member name="T:Enkoni.Framework.Entities.StaticMemoryStore`1">
             <summary>This class implements the abstract class <see cref="T:Enkoni.Framework.Entities.MemoryStore`1"/> using a simple static collection variable.</summary>
             <typeparam name="T">The type of object that is stored.</typeparam>
@@ -659,97 +750,6 @@
         </member>
         <member name="P:Enkoni.Framework.Entities.StaticMemoryStore`1.Storage">
             <summary>Gets the storage that holds the saved instances.</summary>
-        </member>
-        <member name="T:Enkoni.Framework.Entities.IEntity`1">
-            <summary>Defines the basic signature of an entity-type.</summary>
-            <typeparam name="T">The actual entity type.</typeparam>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.IEntity`1.CopyFrom(`0)">
-            <summary>Copies the values from <paramref name="source"/> into this instance.</summary>
-            <param name="source">The entity that contains the desired values.</param>
-        </member>
-        <member name="P:Enkoni.Framework.Entities.IEntity`1.RecordId">
-            <summary>Gets or sets the record-ID of the entity.</summary>
-        </member>
-        <member name="T:Enkoni.Framework.Entities.MemorySourceInfo">
-            <summary>This class contains static members that would normally be part of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class, but since that class is
-            generic the static members are placed in this non-generic counterpart to avoid possible confussion about the use of the methods.</summary>
-        </member>
-        <member name="F:Enkoni.Framework.Entities.MemorySourceInfo.MemoryStoreKey">
-            <summary>Defines the key that is used to store and retrieve the MemoryStore.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo.IsMemoryStoreSpecified(Enkoni.Framework.Entities.DataSourceInfo)">
-            <summary>Determines if the MemoryStore is specified in the source information.</summary>
-            <param name="dataSourceInfo">The datasource information that is queried.</param>
-            <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo.SelectMemoryStore``1(Enkoni.Framework.Entities.DataSourceInfo)">
-            <summary>Selects the MemoryStore from the specified datasource information.</summary>
-            <typeparam name="T">The type of object that is stored in the memorystore.</typeparam>
-            <param name="dataSourceInfo">The datasource information that is queried.</param>
-            <returns>The MemoryStore that is stored in the datasource information or <see langword="null"/> if the MemoryStore could not be found.
-            </returns>
-        </member>
-        <member name="T:Enkoni.Framework.Entities.MemorySourceInfo`1">
-            <summary>This class can be used by the <see cref="T:Enkoni.Framework.Entities.MemoryRepository`1"/> to retrieve valuable information about the datastore that is to 
-            be used. This class is added for improved usability of the DataSourceInfo in combination with the MemoryRepository.</summary>
-            <typeparam name="T">The type of object that is stored in memory.</typeparam>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using a default value of <see langword="null"/> for the 
-            MemoryStore.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(Enkoni.Framework.Entities.MemoryStore{`0})">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified memorystore instance.</summary>
-            <param name="memoryStore">The memorystore that must be use to store the entities.</param>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(Enkoni.Framework.Entities.MemoryStore{`0},System.Boolean)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified memorystore instance.</summary>
-            <param name="memoryStore">The memorystore that must be use to store the entities.</param>
-            <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.MemorySourceInfo`1"/> class using the specified default values. If the default values 
-            do not specify the MemoryStore using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
-            <param name="defaultValues">The default values that are to be used.</param>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.MemorySourceInfo`1.IsMemoryStoreSpecified">
-            <summary>Determines if the MemoryStore is specified in the source information.</summary>
-            <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
-        </member>
-        <member name="P:Enkoni.Framework.Entities.MemorySourceInfo`1.MemoryStore">
-            <summary>Gets or sets the MemoryStore that is to be used by the MemoryRepository.</summary>
-        </member>
-        <member name="T:Enkoni.Framework.Entities.EntityValidator`1">
-            <summary>This abstract class defines the public API of a class that can validate entities.</summary>
-            <typeparam name="T">The type of entity that must be validated.</typeparam>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.#ctor">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Entities.EntityValidator`1"/> class.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformShallowValidation(`0)">
-            <summary>Performs a shallow validation of the specified entity. This will only validate the consistency of the entity itself without looking 
-            at the references to other entities or the underlying persistency.</summary>
-            <param name="entity">The entity that must be validated.</param>
-            <returns>The results of the validation.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="entity"/> is null.</exception>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformDeepValidation(`0)">
-            <summary>Performs a deep validation of the specified entity. Besides performing a shallow validation, it may also look at the underlying
-            persistency for instance to make sure that no uniqueness-rules are violated.</summary>
-            <param name="entity">The entity that must be validated.</param>
-            <returns>The results of the validation.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="entity"/> is null.</exception>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformShallowValidationCore(`0)">
-            <summary>Performs a shallow validation of the entity.</summary>
-            <param name="entity">The entity that must be validated.</param>
-            <returns>The result of the validation.</returns>
-        </member>
-        <member name="M:Enkoni.Framework.Entities.EntityValidator`1.PerformDeepValidationCore(`0)">
-            <summary>Performs a deep validation of the entity.</summary>
-            <param name="entity">The entity that must be validated.</param>
-            <returns>The result of the validation.</returns>
         </member>
         <member name="T:Enkoni.Framework.Entities.MemoryRepository`1">
             <summary>This abstract class extends the abstract <see cref="T:Enkoni.Framework.Entities.Repository`1"/> class and implements some of the functionality using

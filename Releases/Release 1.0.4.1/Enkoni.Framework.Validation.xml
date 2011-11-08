@@ -4,6 +4,69 @@
         <name>Enkoni.Framework.Validation</name>
     </assembly>
     <members>
+        <member name="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator">
+            <summary>Performs validation on TimeSpan instances by comparing them to the specified boundaries.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with an upper bound constraint.</summary>
+            <param name="upperBound">The upper bound.</param>
+            <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be 
+            <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,System.Boolean)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with an upper bound constraint.</summary>
+            <param name="upperBound">The upper bound.</param>
+            <param name="negated">True if the validator must negate the result of the validation.</param>
+            <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be 
+            <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,System.TimeSpan)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with lower and upper bound constraints.</summary>
+            <param name="lowerBound">The lower bound.</param>
+            <param name="upperBound">The upper bound.</param>
+            <remarks>Both bound checks will be <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,System.TimeSpan,System.Boolean)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with lower and upper bound constraints.</summary>
+            <param name="lowerBound">The lower bound.</param>
+            <param name="upperBound">The upper bound.</param>
+            <param name="negated">True if the validator must negate the result of the validation.</param>
+            <remarks>Both bound checks will be <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints.</summary>
+            <param name="lowerBound">The lower bound.</param>
+            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
+            <param name="upperBound">The upper bound.</param>
+            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.Boolean)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints.</summary>
+            <param name="lowerBound">The lower bound.</param>
+            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
+            <param name="upperBound">The upper bound.</param>
+            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
+            <param name="negated">True if the validator must negate the result of the validation.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints and a message 
+            template.</summary>
+            <param name="lowerBound">The lower bound.</param>
+            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
+            <param name="upperBound">The upper bound.</param>
+            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
+            <param name="messageTemplate">The message template to use when logging results.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.String,System.Boolean)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints and a message 
+            template.</summary>
+            <param name="lowerBound">The lower bound.</param>
+            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
+            <param name="upperBound">The upper bound.</param>
+            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
+            <param name="messageTemplate">The message template to use when logging results.</param>
+            <param name="negated">True if the validator must negate the result of the validation.</param>
+        </member>
         <member name="T:Enkoni.Framework.Validation.ValidationException">
             <summary>The Exception that is thrown when an object cannot be properly validated.</summary>
         </member>
@@ -92,69 +155,6 @@
         </member>
         <member name="P:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidatorAttribute.UpperBoundType">
             <summary>Gets the upper bound type of the range validator.</summary>
-        </member>
-        <member name="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator">
-            <summary>Performs validation on TimeSpan instances by comparing them to the specified boundaries.</summary>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with an upper bound constraint.</summary>
-            <param name="upperBound">The upper bound.</param>
-            <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be 
-            <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,System.Boolean)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with an upper bound constraint.</summary>
-            <param name="upperBound">The upper bound.</param>
-            <param name="negated">True if the validator must negate the result of the validation.</param>
-            <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be 
-            <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,System.TimeSpan)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with lower and upper bound constraints.</summary>
-            <param name="lowerBound">The lower bound.</param>
-            <param name="upperBound">The upper bound.</param>
-            <remarks>Both bound checks will be <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,System.TimeSpan,System.Boolean)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with lower and upper bound constraints.</summary>
-            <param name="lowerBound">The lower bound.</param>
-            <param name="upperBound">The upper bound.</param>
-            <param name="negated">True if the validator must negate the result of the validation.</param>
-            <remarks>Both bound checks will be <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType.Inclusive"/>.</remarks>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints.</summary>
-            <param name="lowerBound">The lower bound.</param>
-            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
-            <param name="upperBound">The upper bound.</param>
-            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.Boolean)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints.</summary>
-            <param name="lowerBound">The lower bound.</param>
-            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
-            <param name="upperBound">The upper bound.</param>
-            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
-            <param name="negated">True if the validator must negate the result of the validation.</param>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.String)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints and a message 
-            template.</summary>
-            <param name="lowerBound">The lower bound.</param>
-            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
-            <param name="upperBound">The upper bound.</param>
-            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
-            <param name="messageTemplate">The message template to use when logging results.</param>
-        </member>
-        <member name="M:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator.#ctor(System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeBoundaryType,System.String,System.Boolean)">
-            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Validation.Validators.TimeSpanRangeValidator"/> class with fully specified bound constraints and a message 
-            template.</summary>
-            <param name="lowerBound">The lower bound.</param>
-            <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
-            <param name="upperBound">The upper bound.</param>
-            <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
-            <param name="messageTemplate">The message template to use when logging results.</param>
-            <param name="negated">True if the validator must negate the result of the validation.</param>
         </member>
     </members>
 </doc>

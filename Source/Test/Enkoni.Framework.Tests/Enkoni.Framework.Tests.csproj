@@ -50,6 +50,7 @@
     <Compile Include="ComparerTest.cs" />
     <Compile Include="CollectionExtensionTest.cs" />
     <Compile Include="CircularStackTest.cs" />
+    <Compile Include="TypeExtensionTest.cs" />
     <Compile Include="DateTimeExtensionTest.cs" />
     <Compile Include="ReferenceEqualityComparerTest.cs" />
     <Compile Include="CsvSerializerTest.cs" />
