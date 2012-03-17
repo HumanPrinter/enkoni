@@ -7,6 +7,13 @@
 # [-]: Removal                                    #
 ###################################################
 
+Version X.X.X.X
+  Enkoni.Framework (1.2.0.0)
+  [+] Added the LocalizedDescriptionAttribute class
+      Date:    2012-03-17
+      Comment: - Added the LocalizedDescriptionAttribute-class that can be used to define a localizable description for a type or member.
+               - Added the EnumHelper class that contains methods that help when dealing with enums.
+
 Version 1.0.4.1
   Enkoni.Framework.Entities.Database (1.4.1.0)
   [*] Updated the reference to EntityFramework to 4.2.0.0
