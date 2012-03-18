@@ -7,13 +7,37 @@
 # [-]: Removal                                    #
 ###################################################
 
-Version X.X.X.X
+Version X.X.X.X (1.0.5.0)
   Enkoni.Framework (1.2.0.0)
   [+] Added new classes and methods
       Date:    2012-03-17
       Comment: - Added the LocalizedDescriptionAttribute-class that can be used to define a localizable description for a type or member.
                - Added the EnumHelper class that contains methods that help when dealing with enums.
                - Added additional extension methods for the Type class.
+
+  Enkoni.Framework.Entities (1.4.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+
+  Enkoni.Framework.Entities.Database (1.5.0.0)
+  [*] Updated the reference to EntityFramework to 4.3.1.0
+      Date:    2012-03-18
+      Comment: The project now uses version 4.3.1 of the EntityFramework. There are no API changes.
+
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+
+  Enkoni.Framework.Entities.File (1.3.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+
+  Enkoni.Framework.Entities.Service (1.3.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
 
 Version 1.0.4.1
   Enkoni.Framework.Entities.Database (1.4.1.0)
