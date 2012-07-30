@@ -33,6 +33,10 @@ Source/Enkoni.Framework.Testing/*.user
 Source/Enkoni.Framework.Testing/*.Cache
 Source/Enkoni.Framework.Testing/bin/
 Source/Enkoni.Framework.Testing/obj/
+Source/Enkoni.Framework.UI/*.user
+Source/Enkoni.Framework.UI/*.Cache
+Source/Enkoni.Framework.UI/bin/
+Source/Enkoni.Framework.UI/obj/
 Source/Enkoni.Framework.Validation/*.user
 Source/Enkoni.Framework.Validation/*.Cache
 Source/Enkoni.Framework.Validation/bin/

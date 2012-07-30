@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Tests.Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Tests.Addition", "Test\Enkoni.Framework.Tests.Addition\Enkoni.Framework.Tests.Addition.csproj", "{B62FDD33-5C74-483A-B34E-70B6B084F330}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.UI", "Enkoni.Framework.UI\Enkoni.Framework.UI.csproj", "{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Enkoni.Framework.vsmdi
@@ -267,6 +269,21 @@ Global
 		{B62FDD33-5C74-483A-B34E-70B6B084F330}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B62FDD33-5C74-483A-B34E-70B6B084F330}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B62FDD33-5C74-483A-B34E-70B6B084F330}.Release|x86.ActiveCfg = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -60,6 +60,7 @@
     <None Include="..\Enkoni.Framework.pfx">
       <Link>Enkoni.Framework.pfx</Link>
     </None>
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
