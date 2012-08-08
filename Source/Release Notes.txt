@@ -39,6 +39,11 @@ Version X.X.X.X (1.0.5.0)
       Date:    2012-03-17
       Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
 
+  Enkoni.Framework.UI (1.0.0.0)
+  [+] Added the Enkoni.Framework.UI project
+      Date:    2012-07-31
+      Comment: Added the Enkoni.Framework.UI project which contains classes that can be used within UI projects (WinForms and WPF).
+
 Version 1.0.4.1
   Enkoni.Framework.Entities.Database (1.4.1.0)
   [*] Updated the reference to EntityFramework to 4.2.0.0

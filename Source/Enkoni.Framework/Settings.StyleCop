@@ -24,4 +24,12 @@
 	  </Analyzers>
 	</Settings>
   </SourceFileList>
+  <SourceFileList>
+    <SourceFile>SolutionInfo.cs</SourceFile>
+	<Settings>
+	  <GlobalSettings>
+        <BooleanProperty Name="RulesEnabledByDefault">False</BooleanProperty>
+      </GlobalSettings>
+	</Settings>
+  </SourceFileList>
 </StyleCopSettings>

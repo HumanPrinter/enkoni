@@ -28,3 +28,7 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 
 [assembly: NeutralResourcesLanguage("en")]
+
+#if DEBUG
+#warning Remove the Settings.StyleCop override-file after the first change of this project
+#endif
