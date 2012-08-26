@@ -57,6 +57,10 @@ Source/Test/Enkoni.Framework.Entities.Tests/*.user
 Source/Test/Enkoni.Framework.Entities.Tests/*.Cache
 Source/Test/Enkoni.Framework.Entities.Tests/bin/
 Source/Test/Enkoni.Framework.Entities.Tests/obj/
+Source/Test/Enkoni.Framework.UI.Tests/*.user
+Source/Test/Enkoni.Framework.UI.Tests/*.Cache
+Source/Test/Enkoni.Framework.UI.Tests/bin/
+Source/Test/Enkoni.Framework.UI.Tests/obj/
 Source/Test/Enkoni.Framework.Validation.Tests/*.user
 Source/Test/Enkoni.Framework.Validation.Tests/*.Cache
 Source/Test/Enkoni.Framework.Validation.Tests/bin/
