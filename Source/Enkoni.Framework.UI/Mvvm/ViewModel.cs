@@ -87,10 +87,11 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     #region Public methods
     /// <summary>Determines whether the specified property contains a valid value.</summary>
-    /// <typeparam name="T">The type of property.</typeparam>
+    /// <typeparam name="TViewModel">The type of viewmodel whose property is validated.</typeparam>
+    /// <typeparam name="TProperty">The type of property that is validated.</typeparam>
     /// <param name="property">The property that must be evaluated.</param>
     /// <returns><see langword="true"/> if the specified property is valid; otherwise, <see langword="false"/>.</returns>
-    public bool IsPropertyValid<T>(Expression<Func<T, object>> property) {
+    public bool IsPropertyValid<TViewModel, TProperty>(Expression<Func<TViewModel, TProperty>> property) {
       if(property == null) {
         throw new ArgumentNullException("property");
       }

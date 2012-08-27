@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="GlobalSuppressions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the project's suppressions.

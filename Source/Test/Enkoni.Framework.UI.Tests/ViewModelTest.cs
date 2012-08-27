@@ -68,8 +68,8 @@ namespace Enkoni.Framework.UI.Tests {
       Assert.IsFalse(testSubject.IsHandledByMessage);
     }
     #endregion
-    
-    #region Events Testcases
+
+    #region Validation Testcases
     /// <summary>Tests the validation functionality of the <see cref="ViewModel"/> class.</summary>
     [TestMethod]
     public void TestCase02_Validation() {
@@ -81,9 +81,18 @@ namespace Enkoni.Framework.UI.Tests {
 
       /* Check if the viewmodel is valid */
       Assert.IsTrue(testSubject.IsEachPropertyValid());
-      Assert.IsTrue(testSubject.IsPropertyValid<int>(t => testSubject.IntegerValue));
+      Assert.IsTrue(testSubject.IsPropertyValid<ValidatedDummyViewModel, int>(item => item.IntegerValue));
       Assert.AreEqual(string.Empty, testSubject.Error);
       Assert.AreEqual(string.Empty, testSubject["IntegerValue"]);
+
+      /* Set an invalid value */
+      testSubject.IntegerValue = 88;
+
+      /* Check if the viewmodel is indeed invalid */
+      Assert.IsFalse(testSubject.IsEachPropertyValid());
+      Assert.IsFalse(testSubject.IsPropertyValid<ValidatedDummyViewModel, int>(item => item.IntegerValue));
+      Assert.AreEqual("IntegerValue must be between 40 and 44", testSubject.Error);
+      Assert.AreEqual("IntegerValue must be between 40 and 44", testSubject["IntegerValue"]);
     }
     #endregion
 
@@ -195,14 +204,6 @@ namespace Enkoni.Framework.UI.Tests {
 
     /// <summary>A dummy viewmodel for testing purposes only.</summary>
     public class ValidatedDummyViewModel : ViewModel {
-      #region Instance variables
-      /// <summary>The actual value of the boolean property.</summary>
-      private bool boolValue;
-
-      /// <summary>The actual value of the integer property.</summary>
-      private int intValue;
-      #endregion
-
       #region Constructor
       /// <summary>Initializes a new instance of the <see cref="ValidatedDummyViewModel"/> class.</summary>
       public ValidatedDummyViewModel() {
@@ -212,13 +213,12 @@ namespace Enkoni.Framework.UI.Tests {
 
       #region Properties
       /// <summary>Gets or sets a value for testing purposes only.</summary>
-      public int IntegerValue {
-        get { return this.intValue; }
-        set { this.intValue = value; }
-      }
+      public int IntegerValue { get; set; }
       #endregion
 
       #region Methods
+      /// <summary>Validates the value of the integer-property.</summary>
+      /// <returns>A validation-message in case the validation failed.</returns>
       private string ValidateIntegerValue() {
         if(this.IntegerValue < 40 || this.IntegerValue > 44) {
           return "IntegerValue must be between 40 and 44";

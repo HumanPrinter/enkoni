@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Specification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the standard Specification class.
@@ -100,12 +100,12 @@ namespace Enkoni.Framework {
     protected Specification() {
       this.MaximumResults = -1;
     }
-    #endregion   
+    #endregion
 
     #region Public events
     /// <summary>Occurs when the maximum number of records has changed.</summary>
     public event EventHandler<EventArgs<int>> MaximumResultsUpdated {
-      add { 
+      add {
         this.maxResultsUpdated += value;
         if(this.maxResultsChangePending) {
           this.maxResultsUpdated(this, new EventArgs<int>(this.MaximumResults));
@@ -113,8 +113,8 @@ namespace Enkoni.Framework {
         }
       }
 
-      remove { 
-        this.maxResultsUpdated -= value; 
+      remove {
+        this.maxResultsUpdated -= value;
       }
     }
 

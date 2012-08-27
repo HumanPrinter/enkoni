@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Extensions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines several all-purpose extension methods.
@@ -205,7 +205,7 @@ namespace Enkoni.Framework {
       if(source == null) {
         throw new ArgumentNullException("source");
       }
-      
+
       return source.IsGenericType && source.GetGenericTypeDefinition() == typeof(Nullable<>);
     }
 
@@ -219,7 +219,7 @@ namespace Enkoni.Framework {
       if(source == null) {
         throw new ArgumentNullException("source");
       }
-      
+
       if(source.IsNullable()) {
         NullableConverter converter = new NullableConverter(source);
         return converter.UnderlyingType;

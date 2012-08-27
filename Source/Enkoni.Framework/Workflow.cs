@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Workflow.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the generic Workflow functionality.
@@ -315,7 +315,7 @@ namespace Enkoni.Framework {
       if(result == null) {
         throw new ArgumentException("The specified object was not of the expected type AsyncResultVoid", "asyncResult");
       }
-      
+
       try {
         this.Start();
         result.SetAsCompleted(null, false);
