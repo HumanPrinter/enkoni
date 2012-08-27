@@ -222,7 +222,7 @@ namespace Enkoni.Framework.UI.Mvvm {
               continue;
             }
 
-            if(token != null && item.Token != token) {
+            if(token != null && !token.Equals(item.Token)) {
               continue;
             }
 
@@ -256,7 +256,11 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// different token) will not get the message. Similarly, messages sent without any token, or with a different token, will not be delivered to 
     /// that recipient.</param>
     public void Send<TMessage>(TMessage message, object token) where TMessage : IMessage {
-      Type type = typeof(TMessage);
+      if(message == null) {
+        throw new ArgumentNullException("message");
+      }
+
+      Type type = message.GetType();
       List<IRecipient> list;
 
       List<Type> keys = this.derivedRecipients.Keys.Where(key => key.IsAssignableFrom(type)).ToList();
