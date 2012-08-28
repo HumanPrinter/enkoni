@@ -47,6 +47,8 @@
     </Compile>
     <Compile Include="DisposableServiceBehaviorAttribute.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FlatWsdlBehaviorAttribute.cs" />
+    <Compile Include="FlatWsdlBehaviorExtensionElement.cs" />
     <Compile Include="InstanceProvider.cs" />
     <Compile Include="Properties\LogMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -60,14 +62,16 @@
     <None Include="..\Enkoni.Framework.pfx">
       <Link>Enkoni.Framework.pfx</Link>
     </None>
-    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj">

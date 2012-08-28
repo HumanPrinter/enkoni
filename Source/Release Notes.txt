@@ -39,6 +39,12 @@ Version X.X.X.X (1.0.5.0)
       Date:    2012-03-17
       Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
 
+  Enkoni.Framework.ServiceModel (1.2.0.0)
+  [+] Added the FlatWsdlBehavior class
+      Date:    2012-08-28
+	  Comment: - Added the FlatWsdlBehaviorAttribute and FlatWsdlBehaviorExtensionElement classes that can be used to produce a 
+	             flattend WSL-document.
+
   Enkoni.Framework.UI (1.0.0.0)
   [+] Added the Enkoni.Framework.UI project
       Date:    2012-07-31
