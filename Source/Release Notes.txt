@@ -14,16 +14,20 @@ Version X.X.X.X (1.0.5.0)
       Comment: - Added the LocalizedDescriptionAttribute-class that can be used to define a localizable description for a type or member.
                - Added the EnumHelper class that contains methods that help when dealing with enums.
                - Added additional extension methods for the Type class.
-
+  
   Enkoni.Framework.Entities (1.4.0.0)
   [*] Refreshed build as a result of version increment of Enkoni.Framework
       Date:    2012-03-17
       Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
 
+  [*] Updated the reference to Unity to 2.1.505.2
+      Date:    2012-08-28
+	  Comment: Updated the reference to Unity 2.1.505.2
+
   Enkoni.Framework.Entities.Database (1.5.0.0)
-  [*] Updated the reference to EntityFramework to 4.3.1.0
+  [*] Updated the reference to EntityFramework to 5.0.0
       Date:    2012-03-18
-      Comment: The project now uses version 4.3.1 of the EntityFramework. There are no API changes.
+      Comment: The project now uses version 5.0.0 of the EntityFramework. There are no API changes.
 
   [*] Refreshed build as a result of version increment of Enkoni.Framework
       Date:    2012-03-17
@@ -39,6 +43,11 @@ Version X.X.X.X (1.0.5.0)
       Date:    2012-03-17
       Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
 
+  Enkoni.Framework.Logging (1.2.0.0)
+  [*] Updated the reference to Unity to 2.1.505.2
+      Date:    2012-08-28
+	  Comment: Updated the reference to Unity 2.1.505.2
+
   Enkoni.Framework.ServiceModel (1.2.0.0)
   [+] Added the FlatWsdlBehavior class
       Date:    2012-08-28
@@ -49,6 +58,11 @@ Version X.X.X.X (1.0.5.0)
   [+] Added the Enkoni.Framework.UI project
       Date:    2012-07-31
       Comment: Added the Enkoni.Framework.UI project which contains classes that can be used within UI projects (WinForms and WPF).
+  
+  Enkoni.Framework.Validation (1.2.0.0)
+  [*] Updated the reference to Unity to 2.1.505.2
+      Date:    2012-08-28
+	  Comment: Updated the reference to Unity 2.1.505.2
 
 Version 1.0.4.1
   Enkoni.Framework.Entities.Database (1.4.1.0)

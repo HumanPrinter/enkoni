@@ -21,7 +21,7 @@ namespace Enkoni.Framework.ServiceModel {
   /// </remarks>
   public class FlatWsdlBehaviorExtensionElement : BehaviorExtensionElement {
     #region Constructors
-    /// <summary>Implements a new instance of the <see cref="FlatWsdlBehaviorExtensionElement"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="FlatWsdlBehaviorExtensionElement"/> class.</summary>
     public FlatWsdlBehaviorExtensionElement() {
     }
     #endregion

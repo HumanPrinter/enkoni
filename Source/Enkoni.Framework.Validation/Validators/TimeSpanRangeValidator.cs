@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TimeSpanRangeValidator.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains an helper class for the validation capabilities.
@@ -64,7 +64,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="upperBound">The upper bound.</param>
     /// <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
     /// <param name="negated">True if the validator must negate the result of the validation.</param>
-    public TimeSpanRangeValidator(TimeSpan lowerBound, RangeBoundaryType lowerBoundType, TimeSpan upperBound, RangeBoundaryType upperBoundType, 
+    public TimeSpanRangeValidator(TimeSpan lowerBound, RangeBoundaryType lowerBoundType, TimeSpan upperBound, RangeBoundaryType upperBoundType,
       bool negated)
       : base(lowerBound, lowerBoundType, upperBound, upperBoundType, negated) {
     }
@@ -76,7 +76,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="upperBound">The upper bound.</param>
     /// <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
     /// <param name="messageTemplate">The message template to use when logging results.</param>
-    public TimeSpanRangeValidator(TimeSpan lowerBound, RangeBoundaryType lowerBoundType, TimeSpan upperBound, RangeBoundaryType upperBoundType, 
+    public TimeSpanRangeValidator(TimeSpan lowerBound, RangeBoundaryType lowerBoundType, TimeSpan upperBound, RangeBoundaryType upperBoundType,
       string messageTemplate)
       : base(lowerBound, lowerBoundType, upperBound, upperBoundType, messageTemplate) {
     }
@@ -89,7 +89,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="upperBoundType">The indication of how to perform the upper bound check.</param>
     /// <param name="messageTemplate">The message template to use when logging results.</param>
     /// <param name="negated">True if the validator must negate the result of the validation.</param>
-    public TimeSpanRangeValidator(TimeSpan lowerBound, RangeBoundaryType lowerBoundType, TimeSpan upperBound, RangeBoundaryType upperBoundType, 
+    public TimeSpanRangeValidator(TimeSpan lowerBound, RangeBoundaryType lowerBoundType, TimeSpan upperBound, RangeBoundaryType upperBoundType,
       string messageTemplate, bool negated)
       : base(lowerBound, lowerBoundType, upperBound, upperBoundType, messageTemplate, negated) {
     }
