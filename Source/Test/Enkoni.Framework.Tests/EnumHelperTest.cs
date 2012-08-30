@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="EnumHelperTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the EnumHelper-class.
@@ -19,6 +19,32 @@ namespace Enkoni.Framework.Tests {
   /// <summary>This class defines the testcases that test the functionality of the <see cref="EnumHelper"/> class.</summary>
   [TestClass]
   public class EnumHelperTest {
+    #region Private helper enums
+    /// <summary>A basic dummy enum to support the testcases.</summary>
+    [Flags]
+    private enum TestEnum {
+      /// <summary>Value A.</summary>
+      [LocalizedDescription("ValueA", DefaultDescription = "Default A")]
+      ValueA = 1,
+
+      /// <summary>Value B.</summary>
+      [LocalizedDescription("ValueB", typeof(Resources), DefaultDescription = "Default B")]
+      ValueB = 2,
+
+      /// <summary>Value C.</summary>
+      [LocalizedDescription("ValueC")]
+      ValueC = 4,
+
+      /// <summary>Value D.</summary>
+      [LocalizedDescription("ValueD", typeof(Resources))]
+      ValueD = 8,
+
+      /// <summary>Value B+D.</summary>
+      [LocalizedDescription("ValueINVALID", typeof(Resources), DefaultDescription = "Default B and D")]
+      ValueBD = 10
+    }
+    #endregion
+
     /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
     [TestMethod]
     public void TestCase01_ToString() {
@@ -153,7 +179,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(TestEnum.ValueD, subject);
       subject = EnumHelper.UnsetFlag(subject, TestEnum.ValueD);
       Assert.AreEqual((TestEnum)0, subject);
-      
+
       /* Start with certain value, then unset two flags */
       subject = TestEnum.ValueA | TestEnum.ValueC | TestEnum.ValueD;
       subject = EnumHelper.UnsetFlag(subject, TestEnum.ValueA);
@@ -246,31 +272,5 @@ namespace Enkoni.Framework.Tests {
       subject = EnumHelper.ToggleFlag(subject, TestEnum.ValueD);
       Assert.AreEqual(TestEnum.ValueB, subject);
     }
-
-    #region Private helper classes
-    /// <summary>A basic dummy enum to support the testcases.</summary>
-    [Flags]
-    private enum TestEnum {
-      /// <summary>Value A.</summary>
-      [LocalizedDescription("ValueA", DefaultDescription = "Default A")]
-      ValueA = 1,
-
-      /// <summary>Value B.</summary>
-      [LocalizedDescription("ValueB", typeof(Resources), DefaultDescription = "Default B")]
-      ValueB = 2,
-
-      /// <summary>Value C.</summary>
-      [LocalizedDescription("ValueC")]
-      ValueC = 4,
-
-      /// <summary>Value D.</summary>
-      [LocalizedDescription("ValueD", typeof(Resources))]
-      ValueD = 8,
-
-      /// <summary>Value B+D.</summary>
-      [LocalizedDescription("ValueINVALID", typeof(Resources), DefaultDescription = "Default B and D")]
-      ValueBD = 10
-    }
-    #endregion
   }
 }

@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="DatabaseRepositoryTestContext.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains a helper class that is used by the repository testcases.
@@ -10,13 +10,13 @@
 using System.Data.Entity;
 
 namespace Enkoni.Framework.Entities.Tests {
-	/// <summary>A helper class to support the testcases.</summary>
-	public class DatabaseRepositoryTestContext : DbContext {
-		/// <summary>Initializes a new instance of the <see cref="DatabaseRepositoryTestContext"/> class.</summary>
-		public DatabaseRepositoryTestContext() {
-		}
+  /// <summary>A helper class to support the testcases.</summary>
+  public class DatabaseRepositoryTestContext : DbContext {
+    /// <summary>Initializes a new instance of the <see cref="DatabaseRepositoryTestContext"/> class.</summary>
+    public DatabaseRepositoryTestContext() {
+    }
 
-		/// <summary>Gets or sets the db-set for the TestDummy-table.</summary>
-		public DbSet<TestDummy> TestDummies { get; set; }
-	}
+    /// <summary>Gets or sets the db-set for the TestDummy-table.</summary>
+    public DbSet<TestDummy> TestDummies { get; set; }
+  }
 }

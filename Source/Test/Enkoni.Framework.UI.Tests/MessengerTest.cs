@@ -49,7 +49,7 @@ namespace Enkoni.Framework.UI.Tests {
       messenger.Register<TestMessage>(this, this.ReceiveMessage);
 
       TestMessage testMessage = new TestMessage();
-      
+
       /* Send the message without a token */
       messenger.Send(testMessage);
 
@@ -62,7 +62,7 @@ namespace Enkoni.Framework.UI.Tests {
 
       /* Check if the message was handled */
       Assert.IsTrue(testMessage.IsHandled);
-      
+
       /* Reset the test */
       testMessage.IsHandled = false;
 
@@ -79,7 +79,7 @@ namespace Enkoni.Framework.UI.Tests {
 
       /* Check if the message is not received (as expected) */
       Assert.IsFalse(testMessage.IsHandled);
-      
+
       /* Prepare a derived message type */
       testMessage = new SubTestMessage();
 
@@ -405,13 +405,13 @@ namespace Enkoni.Framework.UI.Tests {
     #endregion
 
     #region Private helper methods
-    /// <summary>A helper method that acts as a receiver for messages</summary>
+    /// <summary>A helper method that acts as a receiver for messages.</summary>
     /// <param name="message">The received message.</param>
     private void ReceiveMessage(TestMessage message) {
       message.IsHandled = true;
     }
 
-    /// <summary>A helper method that acts as a receiver for messages</summary>
+    /// <summary>A helper method that acts as a receiver for messages.</summary>
     /// <param name="message">The received message.</param>
     private void ReceiveMessage2(TestMessage message) {
       ++message.Counter;

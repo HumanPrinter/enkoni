@@ -30,7 +30,7 @@ namespace Enkoni.Framework.Entities {
     /// </summary>
     /// <param name="dbContext">The database context that must be use to communicate with the database.</param>
     public DatabaseSourceInfo(DbContext dbContext)
-      : this(dbContext, DefaultCloneDataSourceItems) {
+      : this(dbContext, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified <see cref="DbContext"/> instance.

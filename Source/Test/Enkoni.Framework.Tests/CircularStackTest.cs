@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CircularStackTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the CircularStack-class.
@@ -597,7 +597,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase10_NoMaximumSize_CopyToBasic_Exceptions() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
-      
+
       /* Push items in the test subject and test the return-value of the Peek-method after each addition */
       char stackItem = 'A';
       for(int i = 0; i < 10; ++i) {
@@ -819,7 +819,7 @@ namespace Enkoni.Framework.Tests {
     [TestMethod]
     public void TestCase14_NoMaximumSize_ForEach_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>();
-      
+
       /* Test the functionality of the enumerator when the stack is empty */
       foreach(string item in stack) {
         Assert.Fail("CircularStack<T>.Enumerator.MoveNext() did not return 'false'");
@@ -1122,7 +1122,7 @@ namespace Enkoni.Framework.Tests {
     [TestMethod]
     public void TestCase18_WithMaximumSize_ForEach_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>(8);
-      
+
       /* Test the functionality of the enumerator when the stack is empty */
       foreach(string item in stack) {
         Assert.Fail("CircularStack<T>.Enumerator.MoveNext() did not return 'false'");

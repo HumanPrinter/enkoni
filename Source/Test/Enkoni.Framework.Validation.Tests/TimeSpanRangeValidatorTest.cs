@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TimeSpanRangeValidatorTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the TimeSpanRangeValidator class.
@@ -86,7 +86,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
       results = EntLib.Validation.Validate<TestDummy_ExclusiveIgnore>(dummyB, "ValidationTest");
       Assert.IsTrue(results.IsValid);
-      
+
       /* Use valid values in combination with an Ignore-Inclusive boundary combination. */
       TestDummy_IgnoreInclusive dummyC = new TestDummy_IgnoreInclusive();
       /* Test the upper bound */
@@ -155,12 +155,12 @@ namespace Enkoni.Framework.Validation.Tests {
   /// <summary>A helper class to support the testcases.</summary>
   public class TestDummy_InclusiveExclusive {
     /// <summary>Gets or sets a <see cref="TimeSpan"/> value.</summary>
-    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Inclusive, "00:59:45", RangeBoundaryType.Exclusive, Ruleset = "ValidationTest", 
+    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Inclusive, "00:59:45", RangeBoundaryType.Exclusive, Ruleset = "ValidationTest",
       MessageTemplate = "The property {1} has an invalid value ('{0}'). It must be between '{3}' ({4}) and '{5}' ({6})")]
     public TimeSpan TimeSpanValueA { get; set; }
 
     /// <summary>Gets or sets a <see cref="TimeSpan"/> value.</summary>
-    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Inclusive, "00:59:45", RangeBoundaryType.Exclusive, Negated = true, 
+    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Inclusive, "00:59:45", RangeBoundaryType.Exclusive, Negated = true,
       Ruleset = "ValidationTest", MessageTemplate = "The property {1} has an invalid value ('{0}'). It must be between '{3}' ({4}) and '{5}' ({6})")]
     public TimeSpan TimeSpanValueB { get; set; }
   }
@@ -168,12 +168,12 @@ namespace Enkoni.Framework.Validation.Tests {
   /// <summary>A helper class to support the testcases.</summary>
   public class TestDummy_ExclusiveIgnore {
     /// <summary>Gets or sets a <see cref="TimeSpan"/> value.</summary>
-    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Exclusive, "00:59:45", RangeBoundaryType.Ignore, Ruleset = "ValidationTest", 
+    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Exclusive, "00:59:45", RangeBoundaryType.Ignore, Ruleset = "ValidationTest",
       MessageTemplate = "The property {1} has an invalid value ('{0}'). It must be between '{3}' ({4}) and '{5}' ({6})")]
     public TimeSpan TimeSpanValueA { get; set; }
 
     /// <summary>Gets or sets a <see cref="TimeSpan"/> value.</summary>
-    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Exclusive, "00:59:45", RangeBoundaryType.Ignore, Negated = true, 
+    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Exclusive, "00:59:45", RangeBoundaryType.Ignore, Negated = true,
       Ruleset = "ValidationTest", MessageTemplate = "The property {1} has an invalid value ('{0}'). It must be between '{3}' ({4}) and '{5}' ({6})")]
     public TimeSpan TimeSpanValueB { get; set; }
   }
@@ -181,12 +181,12 @@ namespace Enkoni.Framework.Validation.Tests {
   /// <summary>A helper class to support the testcases.</summary>
   public class TestDummy_IgnoreInclusive {
     /// <summary>Gets or sets a <see cref="TimeSpan"/> value.</summary>
-    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Ignore, "00:59:45", RangeBoundaryType.Inclusive, Ruleset = "ValidationTest", 
+    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Ignore, "00:59:45", RangeBoundaryType.Inclusive, Ruleset = "ValidationTest",
       MessageTemplate = "The property {1} has an invalid value ('{0}'). It must be between '{3}' ({4}) and '{5}' ({6})")]
     public TimeSpan TimeSpanValueA { get; set; }
 
     /// <summary>Gets or sets a <see cref="TimeSpan"/> value.</summary>
-    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Ignore, "00:59:45", RangeBoundaryType.Inclusive, Negated = true, 
+    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Ignore, "00:59:45", RangeBoundaryType.Inclusive, Negated = true,
       Ruleset = "ValidationTest", MessageTemplate = "The property {1} has an invalid value ('{0}'). It must be between '{3}' ({4}) and '{5}' ({6})")]
     public TimeSpan TimeSpanValueB { get; set; }
   }
@@ -194,7 +194,7 @@ namespace Enkoni.Framework.Validation.Tests {
   /// <summary>A helper class to support the testcases.</summary>
   public class TestDummy_InvalidPropertyType {
     /// <summary>Gets or sets a <see langword="string"/> value.</summary>
-    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Ignore, "00:59:45", RangeBoundaryType.Inclusive, Ruleset = "ValidationTest", 
+    [TimeSpanRangeValidator("00:10:00", RangeBoundaryType.Ignore, "00:59:45", RangeBoundaryType.Inclusive, Ruleset = "ValidationTest",
       MessageTemplate = "The property {1} has an invalid value ('{0}'). It must be between '{3}' ({4}) and '{5}' ({6})")]
     public string TextValue { get; set; }
   }

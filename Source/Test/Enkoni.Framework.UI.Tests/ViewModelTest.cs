@@ -156,6 +156,7 @@ namespace Enkoni.Framework.UI.Tests {
         get {
           return this.boolValue;
         }
+
         set {
           if(this.boolValue != value) {
             this.boolValue = value;
@@ -171,7 +172,10 @@ namespace Enkoni.Framework.UI.Tests {
 
       /// <summary>Gets or sets a value for testing purposes only.</summary>
       public int IntegerValue {
-        get { return this.intValue; }
+        get {
+          return this.intValue;
+        }
+
         set {
           if(this.intValue != value) {
             int oldValue = this.intValue;

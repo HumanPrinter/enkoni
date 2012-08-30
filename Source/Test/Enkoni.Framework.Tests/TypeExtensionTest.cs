@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TypeExtensionTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains testcases that test the functionality of the extension methods for the Type-class.
@@ -87,7 +87,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase04_GetBaseTypes() {
       Type subject = typeof(ClassC);
       Type[] result = subject.GetBaseTypes();
-      Type[] expected = new Type[] { typeof(IInterfaceA), typeof(IInterfaceC) ,typeof(ClassA), typeof(object) };
+      Type[] expected = new Type[] { typeof(IInterfaceA), typeof(IInterfaceC), typeof(ClassA), typeof(object) };
 
       Assert.IsNotNull(result);
       Assert.AreEqual(expected.Length, result.Length);
@@ -123,7 +123,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(result);
 
       subjectParent = typeof(IInterfaceA);
-      
+
       result = subjectParent.Implements(subjectChild);
       Assert.IsFalse(result);
 
@@ -131,7 +131,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(result);
 
       subjectParent = typeof(ClassD);
-      
+
       result = subjectParent.Implements(subjectChild);
       Assert.IsTrue(result);
 
