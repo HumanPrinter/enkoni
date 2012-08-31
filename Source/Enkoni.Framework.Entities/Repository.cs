@@ -127,14 +127,14 @@ namespace Enkoni.Framework.Entities {
       this.SaveChangesCore(dataSourceInfo);
     }
 
-    /// <summary>Creates a new entity. To add the entity to the repository, use the <see cref="M:AddEntity(T)"/> method with the returned value.
+    /// <summary>Creates a new entity. To add the entity to the repository, use the <see cref="AddEntity(T)"/> method with the returned value.
     /// </summary>
     /// <returns>The newly created entity.</returns>
     public T CreateEntity() {
       return this.CreateEntity(null);
     }
 
-    /// <summary>Creates a new entity. To add the entity to the repository, use the <see cref="M:AddEntity(T)"/> method with the returned value.
+    /// <summary>Creates a new entity. To add the entity to the repository, use the <see cref="AddEntity(T)"/> method with the returned value.
     /// </summary>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The newly created entity.</returns>
@@ -142,7 +142,7 @@ namespace Enkoni.Framework.Entities {
       return this.CreateEntityCore(dataSourceInfo);
     }
 
-    /// <summary>Adds a new entity to the repository. Call <see cref="M:SaveChanges()"/> to make the addition permanent.</summary>
+    /// <summary>Adds a new entity to the repository. Call <see cref="SaveChanges()"/> to make the addition permanent.</summary>
     /// <param name="entity">The entity that must be added to the repository.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     /// <returns>The entity with the most recent values.</returns>
@@ -150,7 +150,7 @@ namespace Enkoni.Framework.Entities {
       return this.AddEntity(entity, null);
     }
 
-    /// <summary>Adds a new entity to the repository. Call <see cref="M:SaveChanges()"/> to make the addition permanent.</summary>
+    /// <summary>Adds a new entity to the repository. Call <see cref="SaveChanges()"/> to make the addition permanent.</summary>
     /// <param name="entity">The entity that must be added to the repository.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
@@ -170,7 +170,7 @@ namespace Enkoni.Framework.Entities {
       return this.AddEntityCore(entity, dataSourceInfo);
     }
 
-    /// <summary>Adds a collection of new entities to the repository. Call <see cref="M:SaveChanges()"/> to make the additions permanent.</summary>
+    /// <summary>Adds a collection of new entities to the repository. Call <see cref="SaveChanges()"/> to make the additions permanent.</summary>
     /// <param name="entities">The entities that must be added to the repository.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
@@ -212,7 +212,7 @@ namespace Enkoni.Framework.Entities {
       return this.AddEntitiesCore(entities, dataSourceInfo);
     }
 
-    /// <summary>Updates the repository with the changes made to the entity. Call <see cref="M:SaveChanges()"/> to make the changes permanent.
+    /// <summary>Updates the repository with the changes made to the entity. Call <see cref="SaveChanges()"/> to make the changes permanent.
     /// </summary>
     /// <param name="entity">The entity whose members are updated.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
@@ -221,7 +221,7 @@ namespace Enkoni.Framework.Entities {
       return this.UpdateEntity(entity, null);
     }
 
-    /// <summary>Updates the repository with the changes made to the entity. Call <see cref="M:SaveChanges()"/> to make the changes permanent.
+    /// <summary>Updates the repository with the changes made to the entity. Call <see cref="SaveChanges()"/> to make the changes permanent.
     /// </summary>
     /// <param name="entity">The entity whose members are updated.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
@@ -283,14 +283,14 @@ namespace Enkoni.Framework.Entities {
       return this.UpdateEntitiesCore(entities, dataSourceInfo);
     }
 
-    /// <summary>Deletes the entity from the repository. Call <see cref="M:SaveChanges()"/> to make the changes permanent.</summary>
+    /// <summary>Deletes the entity from the repository. Call <see cref="SaveChanges()"/> to make the changes permanent.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     public void DeleteEntity(T entity) {
       this.DeleteEntity(entity, null);
     }
 
-    /// <summary>Deletes the entity from the repository. Call <see cref="M:SaveChanges()"/> to make the changes permanent.</summary>
+    /// <summary>Deletes the entity from the repository. Call <see cref="SaveChanges()"/> to make the changes permanent.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
@@ -302,7 +302,7 @@ namespace Enkoni.Framework.Entities {
       this.DeleteEntityCore(entity, dataSourceInfo);
     }
 
-    /// <summary>Deletes the entities from the repository. Call <see cref="M:SaveChanges()"/> to make the changes permanent.</summary>
+    /// <summary>Deletes the entities from the repository. Call <see cref="SaveChanges()"/> to make the changes permanent.</summary>
     /// <param name="entities">The entities that must be deleted.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
@@ -310,7 +310,7 @@ namespace Enkoni.Framework.Entities {
       this.DeleteEntities(entities, null);
     }
 
-    /// <summary>Deletes the entities from the repository. Call <see cref="M:SaveChanges()"/> to make the changes permanent.</summary>
+    /// <summary>Deletes the entities from the repository. Call <see cref="SaveChanges()"/> to make the changes permanent.</summary>
     /// <param name="entities">The entities that must be deleted.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>

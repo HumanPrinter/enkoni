@@ -12,11 +12,10 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 
-namespace Enkoni.Framework.UI.Mvvm
-{
+namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the 
   /// <see cref="CanExecute"/> method is <see langword="true"/>. This class does not allow you to accept command parameters in the 
-  /// <see cref="M:Execute"/> and <see cref="M:CanExecute"/> callback methods.</summary>
+  /// <see cref="Execute"/> and <see cref="CanExecute"/> callback methods.</summary>
   public class RelayCommand : ICommand {
     #region Instance variables
     /// <summary>The action that is executed by this command.</summary>
@@ -87,8 +86,8 @@ namespace Enkoni.Framework.UI.Mvvm
   }
 
   /// <summary>A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the 
-  /// <see cref="CanExecute"/> method is <see langword="true"/>. This class allows you to accept command parameters in the <see cref="M:Execute"/> 
-  /// and <see cref="M:CanExecute"/> callback methods.</summary>
+  /// <see cref="CanExecute"/> method is <see langword="true"/>. This class allows you to accept command parameters in the <see cref="Execute"/> 
+  /// and <see cref="CanExecute"/> callback methods.</summary>
   /// <typeparam name="T">The type of command parameter that is handled by this command.</typeparam>
   [SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass",
       Justification = "These are small classes that only differ by type-parameter, therefore they can be in the same file")]

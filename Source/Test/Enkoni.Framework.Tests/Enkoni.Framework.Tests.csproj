@@ -99,16 +99,22 @@
     <None Include="TestData\CsvTestInputFileWithHeaderASCII.csv" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\AlternateResources.nl.resx" />
+    <EmbeddedResource Include="Properties\AlternateResources.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\AlternateResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AlternateResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.nl.resx" />
+    <EmbeddedResource Include="Properties\Resources.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

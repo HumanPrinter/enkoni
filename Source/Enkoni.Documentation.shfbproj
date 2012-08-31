@@ -24,15 +24,16 @@
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
     <DocumentationSources>
       <DocumentationSource sourceFile="Enkoni.Framework\Enkoni.Framework.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" /></DocumentationSources>
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" />
+    </DocumentationSources>
     <PlugInConfigurations>
     </PlugInConfigurations>
     <FrameworkVersion>.NET 4.0.30319</FrameworkVersion>
@@ -41,15 +42,17 @@
     <CopyrightText>Copyright %28c%29 Oscar Brouwer 2012. All rights reserved.</CopyrightText>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="Enkoni.Framework" isDocumented="True">Contains numerous easy-to-use types and operations that can be utilized in any kind of project or application.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Linq" isDocumented="True">Contains a number of extension methods that were not included in the default .NET Linq library.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Serialization" isDocumented="True">Contains a number of classes that allow for (de)serialization in formats other than the formats that are supported by default by the .NET Framework.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.ServiceModel" isDocumented="True">Contains a number of helper-classes that can be utilized in combination with WCF services and proxies.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Testing" isDocumented="True">Contains a number of classes that can aid in the execution of tests.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Validation" isDocumented="True">Contains functionality that extends the functionality that is offered by the default .NET DataAnnotations and the Microsoft Enterprise Library's Validation Application Block.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Validation.Validators" isDocumented="True">Contains a number of validators that were not part of the .NET DataAnnotations library.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="(global)" isDocumented="False" />
-    </NamespaceSummaries>
+<NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Linq" isDocumented="True">Contains a number of extension methods that were not included in the default .NET Linq library.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Serialization" isDocumented="True">Contains a number of classes that allow for (de)serialization in formats other than the formats that are supported by default by the .NET Framework.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.ServiceModel" isDocumented="True">Contains a number of helper-classes that can be utilized in combination with WCF services and proxies.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Testing" isDocumented="True">Contains a number of classes that can aid in the execution of tests.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Validation" isDocumented="True">Contains functionality that extends the functionality that is offered by the default .NET DataAnnotations and the Microsoft Enterprise Library's Validation Application Block.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Validation.Validators" isDocumented="True">Contains a number of validators that were not part of the .NET DataAnnotations library.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="(global)" isDocumented="False" />
+<NamespaceSummaryItem name="Enkoni.Framework.UI" isDocumented="True">Contains a number of classes that provide multi-purpose functionality for WPF applications.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.UI.Mvvm" isDocumented="True">Contains a number of classes that provide multi-purpose functionality for WPF-MVVM applications.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Logging" isDocumented="True">Contains functionality to add logging to an application using the Microsoft Enterprise Library's Logging Application Block</NamespaceSummaryItem></NamespaceSummaries>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="False" xmlns="" />
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent" isExposed="False" xmlns="" />
