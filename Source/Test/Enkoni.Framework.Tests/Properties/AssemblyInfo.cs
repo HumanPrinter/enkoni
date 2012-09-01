@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the project-wide metadata.
@@ -9,6 +9,7 @@
 
 using System;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -27,3 +28,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("6ace3742-5c0c-41f2-9e43-bca2a543cc29")]
 
 [assembly: CLSCompliant(true)]
+[assembly: NeutralResourcesLanguageAttribute("en")]

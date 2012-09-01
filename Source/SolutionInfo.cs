@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="SolutionInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the solution-wide metadata.
@@ -13,7 +13,7 @@ using System.Reflection;
 // information associated with an assembly.
 [assembly: AssemblyCompany("Oscar Brouwer")]
 [assembly: AssemblyProduct("Multi-purposes framwork")]
-[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2011")]
+[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -26,4 +26,4 @@ using System.Reflection;
 //
 // You can specify all the values or you can default the Build and Revision Numbers by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyInformationalVersion("1.0.4.1")]
+[assembly: AssemblyInformationalVersion("1.0.5.0")]

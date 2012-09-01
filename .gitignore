@@ -1,5 +1,6 @@
 Source/*.suo
 Source/*.sdf
+Source/*.Cache
 Source/Enkoni.Documentation.shfbproj_Oscar
 Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
@@ -33,6 +34,10 @@ Source/Enkoni.Framework.Testing/*.user
 Source/Enkoni.Framework.Testing/*.Cache
 Source/Enkoni.Framework.Testing/bin/
 Source/Enkoni.Framework.Testing/obj/
+Source/Enkoni.Framework.UI/*.user
+Source/Enkoni.Framework.UI/*.Cache
+Source/Enkoni.Framework.UI/bin/
+Source/Enkoni.Framework.UI/obj/
 Source/Enkoni.Framework.Validation/*.user
 Source/Enkoni.Framework.Validation/*.Cache
 Source/Enkoni.Framework.Validation/bin/
@@ -41,6 +46,10 @@ Source/Test/Enkoni.Framework.Tests/*.user
 Source/Test/Enkoni.Framework.Tests/*.Cache
 Source/Test/Enkoni.Framework.Tests/bin/
 Source/Test/Enkoni.Framework.Tests/obj/
+Source/Test/Enkoni.Framework.Tests.Addition/*.user
+Source/Test/Enkoni.Framework.Tests.Addition/*.Cache
+Source/Test/Enkoni.Framework.Tests.Addition/bin/
+Source/Test/Enkoni.Framework.Tests.Addition/obj/
 Source/Test/Enkoni.Framework.Tests.Common/*.user
 Source/Test/Enkoni.Framework.Tests.Common/*.Cache
 Source/Test/Enkoni.Framework.Tests.Common/bin/
@@ -49,6 +58,10 @@ Source/Test/Enkoni.Framework.Entities.Tests/*.user
 Source/Test/Enkoni.Framework.Entities.Tests/*.Cache
 Source/Test/Enkoni.Framework.Entities.Tests/bin/
 Source/Test/Enkoni.Framework.Entities.Tests/obj/
+Source/Test/Enkoni.Framework.UI.Tests/*.user
+Source/Test/Enkoni.Framework.UI.Tests/*.Cache
+Source/Test/Enkoni.Framework.UI.Tests/bin/
+Source/Test/Enkoni.Framework.UI.Tests/obj/
 Source/Test/Enkoni.Framework.Validation.Tests/*.user
 Source/Test/Enkoni.Framework.Validation.Tests/*.Cache
 Source/Test/Enkoni.Framework.Validation.Tests/bin/

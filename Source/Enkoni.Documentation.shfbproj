@@ -31,6 +31,7 @@
       <DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
       <DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
       <DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
       <DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" />
     </DocumentationSources>
     <PlugInConfigurations>
@@ -38,18 +39,20 @@
     <FrameworkVersion>.NET 4.0.30319</FrameworkVersion>
     <PresentationStyle>vs2005</PresentationStyle>
     <ProjectSummary>The Enkoni Framework contains numerous types and methods that typically are written over and over again for specific projects.</ProjectSummary>
-    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2011. All rights reserved.</CopyrightText>
+    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2012. All rights reserved.</CopyrightText>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="Enkoni.Framework" isDocumented="True">Contains numerous easy-to-use types and operations that can be utilized in any kind of project or application.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Linq" isDocumented="True">Contains a number of extension methods that were not included in the default .NET Linq library.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Serialization" isDocumented="True">Contains a number of classes that allow for (de)serialization in formats other than the formats that are supported by default by the .NET Framework.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.ServiceModel" isDocumented="True">Contains a number of helper-classes that can be utilized in combination with WCF services and proxies.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Testing" isDocumented="True">Contains a number of classes that can aid in the execution of tests.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Validation" isDocumented="True">Contains functionality that extends the functionality that is offered by the default .NET DataAnnotations and the Microsoft Enterprise Library's Validation Application Block.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Enkoni.Framework.Validation.Validators" isDocumented="True">Contains a number of validators that were not part of the .NET DataAnnotations library.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="(global)" isDocumented="False" />
-    </NamespaceSummaries>
+<NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Linq" isDocumented="True">Contains a number of extension methods that were not included in the default .NET Linq library.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Serialization" isDocumented="True">Contains a number of classes that allow for (de)serialization in formats other than the formats that are supported by default by the .NET Framework.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.ServiceModel" isDocumented="True">Contains a number of helper-classes that can be utilized in combination with WCF services and proxies.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Testing" isDocumented="True">Contains a number of classes that can aid in the execution of tests.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Validation" isDocumented="True">Contains functionality that extends the functionality that is offered by the default .NET DataAnnotations and the Microsoft Enterprise Library's Validation Application Block.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Validation.Validators" isDocumented="True">Contains a number of validators that were not part of the .NET DataAnnotations library.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="(global)" isDocumented="False" />
+<NamespaceSummaryItem name="Enkoni.Framework.UI" isDocumented="True">Contains a number of classes that provide multi-purpose functionality for WPF applications.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.UI.Mvvm" isDocumented="True">Contains a number of classes that provide multi-purpose functionality for WPF-MVVM applications.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Enkoni.Framework.Logging" isDocumented="True">Contains functionality to add logging to an application using the Microsoft Enterprise Library's Logging Application Block</NamespaceSummaryItem></NamespaceSummaries>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="False" xmlns="" />
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent" isExposed="False" xmlns="" />
@@ -88,7 +91,7 @@
         <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.EnterpriseLibraryPerformanceCounter" filterName="EnterpriseLibraryPerformanceCounter" isExposed="False" />
       </Filter>
     </ApiFilter>
-    <HelpFileVersion>1.0.4.1</HelpFileVersion>
+    <HelpFileVersion>1.0.5.0</HelpFileVersion>
     <HelpAttributes />
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
@@ -112,10 +115,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="LinqKit">
       <HintPath>packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions">
+      <HintPath>packages\Blend.Interactivity.Wpf.1.0.1340.0\lib\net\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -130,16 +136,16 @@
       <HintPath>packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <HintPath>packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception">
-      <HintPath>packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <HintPath>packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
-      <HintPath>packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <HintPath>packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -148,6 +154,9 @@
     <Reference Include="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>packages\Blend.Interactivity.Wpf.1.0.1340.0\lib\net\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   </ItemGroup>
   <!-- Import the SHFB build targets -->

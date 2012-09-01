@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ISpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the basic selectspecification API.
@@ -26,7 +26,7 @@ namespace Enkoni.Framework {
     #region Properties
     /// <summary>Gets the maximum number of results that must be returned by the specification.</summary>
     int MaximumResults { get; }
-    
+
     /// <summary>Gets the sorting rules.</summary>
     SortSpecifications<T> SortRules { get; }
     #endregion

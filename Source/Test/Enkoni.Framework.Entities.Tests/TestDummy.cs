@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TestDummy.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains a dummy class that is used by the repository testcases.
@@ -9,9 +9,9 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Xml.Serialization;
-
 using Enkoni.Framework.Serialization;
 
 namespace Enkoni.Framework.Entities.Tests {

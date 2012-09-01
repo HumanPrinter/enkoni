@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="TimeSpanRangeValidatorAttribute.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains an attribute for the validation capabilities.
@@ -14,7 +14,7 @@ using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace Enkoni.Framework.Validation.Validators {
   /// <summary>Attribute to specify timespan range validation on a property, method or field.</summary>
-  [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true, 
+  [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true,
     Inherited = false)]
   public sealed class TimeSpanRangeValidatorAttribute : ValueValidatorAttribute {
     #region Instance variables
@@ -61,8 +61,8 @@ namespace Enkoni.Framework.Validation.Validators {
 
     #region Properties
     /// <summary>Gets the lower bound of the range validator.</summary>
-    public TimeSpan LowerBound { 
-      get { return this.lowerBound; } 
+    public TimeSpan LowerBound {
+      get { return this.lowerBound; }
     }
 
     /// <summary>Gets the lower bound type of the range validator.</summary>
@@ -86,7 +86,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="targetType">The type of object that will be validated by the validator.</param>
     /// <returns>The created Validator.</returns>
     protected override Validator DoCreateValidator(Type targetType) {
-      return new TimeSpanRangeValidator(this.lowerBound, this.lowerBoundType, this.upperBound, this.upperBoundType, 
+      return new TimeSpanRangeValidator(this.lowerBound, this.lowerBoundType, this.upperBound, this.upperBoundType,
         this.MessageTemplate, this.Negated);
     }
     #endregion

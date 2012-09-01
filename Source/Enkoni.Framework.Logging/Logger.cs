@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Logger.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines the class that sends logmessages to the Logging Application Block.
@@ -48,7 +48,7 @@ namespace Enkoni.Framework.Logging {
     /// <param name="eventId">The EventId that must be logged. Use <c>-1</c> to ignore the value and use the default.</param>
     /// <param name="activityId">The ActivityId that must be logged. Use <see cref="Guid.Empty"/> to ignore the value and use the default.</param>
     /// <param name="relatedActivityId">The Id of the related activity. Use <see langword="null"/> to ignore the value and use the default.</param>
-    public void Log(string message, TraceEventType severity, string category, int priority, string title, int eventId, Guid activityId, 
+    public void Log(string message, TraceEventType severity, string category, int priority, string title, int eventId, Guid activityId,
       Guid? relatedActivityId) {
       if(this.logWriter == null || string.IsNullOrEmpty(message) || Enum.IsDefined(typeof(TraceEventType), severity)) {
         return;

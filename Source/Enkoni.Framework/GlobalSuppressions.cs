@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="GlobalSuppressions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the project's suppressions.
@@ -90,6 +90,13 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes", Scope = "member", Target = "Enkoni.Framework.Serialization.Transformer`1.#FromBytesCore(System.Byte[],System.Text.Encoding)", Justification = "This name is better self-explanatory than any other name.")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes", Scope = "member", Target = "Enkoni.Framework.Serialization.Transformer`1.#ToBytes(!0,System.Text.Encoding,System.Byte[],System.Int32)", Justification = "This name is better self-explanatory than any other name.")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes", Scope = "member", Target = "Enkoni.Framework.Serialization.Transformer`1.#ToBytesCore(!0,System.Text.Encoding,System.Byte[],System.Int32)", Justification = "This name is better self-explanatory than any other name.")]
+
+[assembly: SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flag", Scope = "member", Target = "Enkoni.Framework.EnumHelper.#SetFlag`1(!!0,!!0)", Justification = "The term 'flag' is appropriate here")]
+[assembly: SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flag", Scope = "member", Target = "Enkoni.Framework.EnumHelper.#UnsetFlag`1(!!0,!!0)", Justification = "The term 'flag' is appropriate here")]
+[assembly: SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flag", Scope = "member", Target = "Enkoni.Framework.EnumHelper.#ToggleFlag`1(!!0,!!0)", Justification = "The term 'flag' is appropriate here")]
+[assembly: SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "flag", Scope = "member", Target = "Enkoni.Framework.EnumHelper.#SetFlag`1(!!0,!!0)", Justification = "The term 'flag' is appropriate here")]
+[assembly: SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "flag", Scope = "member", Target = "Enkoni.Framework.EnumHelper.#UnsetFlag`1(!!0,!!0)", Justification = "The term 'flag' is appropriate here")]
+[assembly: SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "flag", Scope = "member", Target = "Enkoni.Framework.EnumHelper.#ToggleFlag`1(!!0,!!0)", Justification = "The term 'flag' is appropriate here")]
 
 [assembly: SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "source", Scope = "member", Target = "Enkoni.Framework.Linq.Extensions.#CreateEqualityComparer`2(System.Collections.Generic.IEnumerable`1<!!0>,System.Func`2<!!0,!!1>)", Justification = "The parameter is crucial for the extension mechanism to work")]
 

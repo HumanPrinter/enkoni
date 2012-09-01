@@ -47,9 +47,21 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="TypeExtensionTest.Dummies.cs" />
+    <Compile Include="Properties\AlternateResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AlternateResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ComparerTest.cs" />
     <Compile Include="CollectionExtensionTest.cs" />
     <Compile Include="CircularStackTest.cs" />
+    <Compile Include="EnumHelperTest.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TypeExtensionTest.cs" />
     <Compile Include="DateTimeExtensionTest.cs" />
     <Compile Include="ReferenceEqualityComparerTest.cs" />
@@ -85,6 +97,24 @@
     <None Include="TestData\CsvTestInputFileNoHeaderASCII.csv" />
     <None Include="TestData\CsvTestInputFileNoHeaderUTF8.csv" />
     <None Include="TestData\CsvTestInputFileWithHeaderASCII.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\AlternateResources.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\AlternateResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AlternateResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

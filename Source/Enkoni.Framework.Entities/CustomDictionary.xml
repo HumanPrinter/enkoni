@@ -4,5 +4,8 @@
     <Recognized>
       <Word>Enkoni</Word>
     </Recognized>
+    <Compound>
+      <Term CompoundAlternate="SubDomain">Subdomain</Term>
+    </Compound>
   </Words>
 </Dictionary>

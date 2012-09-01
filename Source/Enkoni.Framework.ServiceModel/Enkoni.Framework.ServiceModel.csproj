@@ -47,6 +47,8 @@
     </Compile>
     <Compile Include="DisposableServiceBehaviorAttribute.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FlatWsdlBehaviorAttribute.cs" />
+    <Compile Include="FlatWsdlBehaviorExtensionElement.cs" />
     <Compile Include="InstanceProvider.cs" />
     <Compile Include="Properties\LogMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -66,7 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj">
@@ -78,6 +83,7 @@
     <EmbeddedResource Include="Properties\LogMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogMessages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

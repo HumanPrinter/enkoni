@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Comparer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a class that can be used to compare a tree of objects.
@@ -33,7 +33,8 @@ namespace Enkoni.Framework {
     /// <summary>Initializes a new instance of the <see cref="Comparer{T}"/> class that compares objects in an ascending order.</summary>
     /// <param name="fieldName">The field that must be used to compare two objects. Use the '.' character to specify a field that is deeper in the
     /// chain of hierachy.</param>
-    public Comparer(string fieldName) : this(fieldName, SortOrder.Ascending) {
+    public Comparer(string fieldName)
+      : this(fieldName, SortOrder.Ascending) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Comparer{T}"/> class.</summary>

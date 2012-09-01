@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ValidationException.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a specific exceptiontype that can be used when a validation did not succeed.
@@ -54,7 +54,7 @@ namespace Enkoni.Framework.Validation {
       : base(message, innerException) {
       this.ValidationResults = validationResults;
     }
-    
+
     /// <summary>Initializes a new instance of the <see cref="ValidationException"/> class.</summary>
     /// <param name="info">The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
     /// <param name="context">The <see cref="StreamingContext"/> that contains contextual information about the source or destination.</param>
