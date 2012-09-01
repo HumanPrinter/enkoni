@@ -272,7 +272,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache untill it is saved using the 
-    /// <see cref="M:SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the entity is 
+    /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the entity is 
     /// saved.</summary>
     /// <param name="entities">The entities that must be added.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
@@ -393,7 +393,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
-    /// or it is added to the deletion-cache untill it is saved using the <see cref="M:SaveChanges()"/> method.</summary>
+    /// or it is added to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entities">The entities that must be removed.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
     /// </param>

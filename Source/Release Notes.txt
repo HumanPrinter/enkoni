@@ -7,7 +7,7 @@
 # [-]: Removal                                    #
 ###################################################
 
-Version X.X.X.X (1.0.5.0)
+Version 1.0.5.0
   Enkoni.Framework (1.2.0.0)
   [+] Added new classes and methods
       Date:    2012-03-17

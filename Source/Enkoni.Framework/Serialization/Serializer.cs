@@ -341,7 +341,7 @@ namespace Enkoni.Framework.Serialization {
     #endregion
 
     #region Protected methods
-    /// <summary>Serializes a collection of items by transforming each item using the <see cref="M:Transformer"/> property and writing the 
+    /// <summary>Serializes a collection of items by transforming each item using the <see cref="Transformer"/> property and writing the 
     /// transformed item to the <paramref name="stream"/>. Each item will be seperated using the new line character(s) of the current environment.
     /// </summary>
     /// <param name="objects">The objects that must be serialized.</param>

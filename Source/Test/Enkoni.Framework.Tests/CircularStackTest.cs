@@ -136,7 +136,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(0, testSubject.Count);
     }
 
-    /// <summary>Tests the functionality of the <see cref="M:CircularStack{T}.Peek()"/> and <see cref="M:CircularStack{T}.Pop()"/> methods when 
+    /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Peek()"/> and <see cref="CircularStack{T}.Pop()"/> methods when 
     /// invoked on an empty stack.</summary>
     [TestMethod]
     public void TestCase03_NoMaximumSize_Exceptions() {
@@ -430,7 +430,7 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
-    /// <summary>Tests the functionality of the <see cref="M:CircularStack{T}.ToArray()"/> method.</summary>
+    /// <summary>Tests the functionality of the <see cref="CircularStack{T}.ToArray()"/> method.</summary>
     [TestMethod]
     public void TestCase07_NoMaximumSize_ToArray() {
       /* Create the test subject */
@@ -454,7 +454,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(10, stackAsArray.Length);
     }
 
-    /// <summary>Tests the functionality of the <see cref="M:CircularStack{T}.CopyTo(T[],int)"/> method.</summary>
+    /// <summary>Tests the functionality of the <see cref="CircularStack{T}.CopyTo(T[],int)"/> method.</summary>
     [TestMethod]
     public void TestCase08_NoMaximumSize_CopyToBasic() {
       /* Create the test subject */
@@ -513,7 +513,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual("YZJIHGFEDCBA", string.Join(string.Empty, testArray), false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="M:ICollection.CopyTo(Array,int)"/> method.</summary>
+    /// <summary>Tests the functionality of the <see cref="ICollection.CopyTo(Array,int)"/> method.</summary>
     [TestMethod]
     public void TestCase09_NoMaximumSize_CopyToICollection() {
       /* Create the test subject */
@@ -592,7 +592,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual("YZJIHGFEDCBA", builder.ToString(), false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="M:CircularStack{T}.CopyTo(T[],int)"/> method when passing invalid parameters.</summary>
+    /// <summary>Tests the functionality of the <see cref="CircularStack{T}.CopyTo(T[],int)"/> method when passing invalid parameters.</summary>
     [TestMethod]
     public void TestCase10_NoMaximumSize_CopyToBasic_Exceptions() {
       /* Create the test subject */
@@ -654,7 +654,7 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
-    /// <summary>Tests the functionality of the <see cref="M:CircularStack{T}.CopyTo(Array,int)"/> method when passing invalid parameters.</summary>
+    /// <summary>Tests the functionality of the <see cref="CircularStack{T}.CopyTo(Array,int)"/> method when passing invalid parameters.</summary>
     [TestMethod]
     public void TestCase11_NoMaximumSize_CopyToICollection_Exceptions() {
       /* Create the test subject */
