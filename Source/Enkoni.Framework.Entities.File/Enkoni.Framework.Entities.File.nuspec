@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <iconUrl>http://www.oscarbrouwer.nl/images/enkoni.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+	<summary>$description$</summary>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+	<copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
+    <dependencies>
+      <dependency id="Enkoni" version="1.2.0.0" />
+      <dependency id="Enkoni.Entities" version="1.4.0.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework3.5" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
