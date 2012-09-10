@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
+    <id>Enkoni</id>
+    <version>1.2.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <releaseNotes><![CDATA[- Added the LocalizedDescriptionAttribute-class that can be used to define a localizable description for a type or member.
+- Added the EnumHelper class that contains methods that help when dealing with enums.
+- Added additional extension methods for the Type class.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

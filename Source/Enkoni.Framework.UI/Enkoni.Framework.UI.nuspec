@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
+    <id>Enkoni.UI</id>
+    <version>1.0.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <releaseNotes><![CDATA[Added the Enkoni.Framework.UI project which contains classes that can be used within UI projects (WinForms and WPF).]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Blend.Interactivity.Wpf" version="1.0.1340.0" />
@@ -21,6 +21,6 @@
       <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0" />
       <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0" />
       <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0" />
-	</frameworkAssemblies>
+    </frameworkAssemblies>
   </metadata>
 </package>

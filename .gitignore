@@ -73,4 +73,6 @@ Source/TestResults/
 /Releases/*.txt
 /Releases/*.zip
 /Releases/Documentation/
+/WorkingDir
 Release.bat
+Build.log

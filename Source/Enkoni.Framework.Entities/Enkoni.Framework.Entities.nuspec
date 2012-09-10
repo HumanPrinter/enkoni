@@ -1,25 +1,26 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
+    <id>Enkoni.Entities</id>
+    <version>1.4.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <iconUrl>http://www.oscarbrouwer.nl/images/enkoni.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-	<summary>$description$</summary>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <summary>$description$</summary>
+    <releaseNotes><![CDATA[The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+Updated the reference to Unity 2.1.505.2]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />
-        <dependency id="Enkoni" version="1.2.0.0" />
-        <dependency id="Enkoni.Validation" version="1.2.0.0" />
-      </dependencies>
-      <frameworkAssemblies>
-        <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
-        <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework3.5" />
-      </frameworkAssemblies>
+      <dependency id="Enkoni" version="1.2.0.0" />
+      <dependency id="Enkoni.Validation" version="1.2.0.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework3.5" />
+    </frameworkAssemblies>
   </metadata>
 </package>

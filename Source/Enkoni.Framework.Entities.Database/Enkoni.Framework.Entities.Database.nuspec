@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
+    <id>Enkoni.Entities.Database</id>
+    <version>1.5.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <iconUrl>http://www.oscarbrouwer.nl/images/enkoni.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-	<summary>$description$</summary>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <summary>$description$</summary>
+    <releaseNotes><![CDATA[The project now uses version 5.0.0 of the EntityFramework. There are no API changes.
+The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />

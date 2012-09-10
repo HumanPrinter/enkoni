@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
+    <id>Enkoni.ServiceModel</id>
+    <version>1.2.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,14 +10,15 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <releaseNotes><![CDATA[- Added the FlatWsdlBehaviorAttribute and FlatWsdlBehaviorExtensionElement classes that can be used to produce a
+flattend WSL-document.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Enkoni.Logging" version="1.2.0.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
-      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework3.5" />            
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework3.5" />
       <frameworkAssembly assemblyName="System.ServiceModel" targetFramework=".NETFramework3.5" />
       <frameworkAssembly assemblyName="System.Web.Services" targetFramework=".NETFramework3.5" />
       <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework3.5" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="enkoni" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema id="enkoni" xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <!-- Define the attribute types -->
   <xs:attribute name="type">
     <xs:simpleType>
