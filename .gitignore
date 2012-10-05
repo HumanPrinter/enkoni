@@ -42,6 +42,7 @@ Source/Enkoni.Framework.Validation/*.user
 Source/Enkoni.Framework.Validation/*.Cache
 Source/Enkoni.Framework.Validation/bin/
 Source/Enkoni.Framework.Validation/obj/
+Source/packages
 Source/Test/Enkoni.Framework.Tests/*.user
 Source/Test/Enkoni.Framework.Tests/*.Cache
 Source/Test/Enkoni.Framework.Tests/bin/

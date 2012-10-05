@@ -46,6 +46,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.UI", "Enko
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.UI.Tests", "Test\Enkoni.Framework.UI.Tests\Enkoni.Framework.UI.Tests.csproj", "{83A56D44-A6C6-4613-AB15-336D046F2A1B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4AE85DC3-3117-47DA-B4CB-D21714AB9A1C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Enkoni.Framework.vsmdi
