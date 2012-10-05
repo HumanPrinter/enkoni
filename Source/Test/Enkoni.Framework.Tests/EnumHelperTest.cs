@@ -9,6 +9,7 @@
 
 using System;
 using System.Globalization;
+using System.Runtime.Serialization;
 using System.Threading;
 
 using Enkoni.Framework.Tests.Properties;
@@ -41,7 +42,38 @@ namespace Enkoni.Framework.Tests {
 
       /// <summary>Value B+D.</summary>
       [LocalizedDescription("ValueINVALID", typeof(Resources), DefaultDescription = "Default B and D")]
-      ValueBD = 10
+      ValueBD = 10,
+
+      /// <summary>Value E.</summary>
+      [LocalizedDescription("ValueE1", DefaultDescription = "ValueE1")]
+      [System.ComponentModel.Description("ValueE2")]
+      [EnumMember(Value = "ValueE3")]
+      ValueE = 16,
+
+      /// <summary>Value F.</summary>
+      [System.ComponentModel.Description("ValueF2")]
+      [EnumMember(Value = "ValueF3")]
+      ValueF = 32,
+
+      /// <summary>Value G.</summary>
+      [System.ComponentModel.Description]
+      [EnumMember(Value = "ValueG3")]
+      ValueG = 64,
+
+      /// <summary>Value H.</summary>
+      [System.ComponentModel.Description]
+      ValueH = 128,
+
+      /// <summary>Value I.</summary>
+      [EnumMember(Value = "ValueI3")]
+      ValueI = 256,
+
+      /// <summary>Value J.</summary>
+      [EnumMember]
+      ValueJ = 512,
+
+      /// <summary>Value K.</summary>
+      ValueK = 1024
     }
     #endregion
 
@@ -115,6 +147,34 @@ namespace Enkoni.Framework.Tests {
       actual = EnumHelper.ToString(TestEnum.ValueD, AlternateResources.ResourceManager);
       Assert.AreEqual(expected, actual, false);
       actual = EnumHelper.ToString(TestEnum.ValueD, AlternateResources.ResourceManager);
+      Assert.AreEqual(expected, actual, false);
+
+      expected = "ValueE1";
+      actual = EnumHelper.ToString(TestEnum.ValueE);
+      Assert.AreEqual(expected, actual, false);
+
+      expected = "ValueF2";
+      actual = EnumHelper.ToString(TestEnum.ValueF);
+      Assert.AreEqual(expected, actual, false);
+
+      expected = "ValueG3";
+      actual = EnumHelper.ToString(TestEnum.ValueG);
+      Assert.AreEqual(expected, actual, false);
+
+      expected = "ValueH";
+      actual = EnumHelper.ToString(TestEnum.ValueH);
+      Assert.AreEqual(expected, actual, false);
+
+      expected = "ValueI3";
+      actual = EnumHelper.ToString(TestEnum.ValueI);
+      Assert.AreEqual(expected, actual, false);
+
+      expected = "ValueJ";
+      actual = EnumHelper.ToString(TestEnum.ValueJ);
+      Assert.AreEqual(expected, actual, false);
+
+      expected = "ValueK";
+      actual = EnumHelper.ToString(TestEnum.ValueK);
       Assert.AreEqual(expected, actual, false);
     }
 
