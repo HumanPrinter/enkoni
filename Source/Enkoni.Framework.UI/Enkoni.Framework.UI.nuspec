@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.UI</id>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added the Enkoni.Framework.UI project which contains classes that can be used within UI projects (WinForms and WPF).]]></releaseNotes>
+    <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Blend.Interactivity.Wpf" version="1.0.1340.0" />

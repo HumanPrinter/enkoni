@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni</id>
-    <version>1.2.0.0</version>
+    <version>1.3.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,9 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[- Added the LocalizedDescriptionAttribute-class that can be used to define a localizable description for a type or member.
-- Added the EnumHelper class that contains methods that help when dealing with enums.
-- Added additional extension methods for the Type class.]]></releaseNotes>
+    <releaseNotes><![CDATA[Fixed a bug in the EnumHelper.ToString() method that could cause an exception if no resource was specified in combination
+with the LocalizedDescriptionAttribute.
+The EnumHelper.ToString() now also supports the EnumMemberAttribute when trying to transform an enum to a string.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
