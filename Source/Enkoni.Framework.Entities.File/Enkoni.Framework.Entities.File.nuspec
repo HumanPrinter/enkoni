@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities.File</id>
-    <version>1.3.0.0</version>
+    <version>1.3.0.1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,11 +10,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)]]></releaseNotes>
+    <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="1.2.0.0" />
-      <dependency id="Enkoni.Entities" version="1.4.0.0" />
+      <dependency id="Enkoni" version="1.3.0.0" />
+      <dependency id="Enkoni.Entities" version="1.4.0.1" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
