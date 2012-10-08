@@ -11,7 +11,7 @@ $LastExitCode = 0
 Write-Host "Going to validate the release notes..." -ForegroundColor Cyan
 
 # Validate the release notes
-$messages = Validate-ReleaseNotes -xmlPath 'Source\ReleaseNotes.xml' -xsdPath 'Source\ReleaseNotes.xsd' | Select-Object Message
+$messages = Validate-ReleaseNotes -xmlPath (-join ($projectDir, '\Source\ReleaseNotes.xml')) -xsdPath (-join ($projectDir, '\Source\ReleaseNotes.xsd')) | Select-Object Message
 [bool]$proceed = $TRUE
 # Check the results to see if there were any validation messages
 foreach($message in $messages) {
@@ -31,7 +31,7 @@ if(!$proceed) {
 
 Write-Host "Validation successfull. Going to read the release notes..." -ForegroundColor Cyan
 
-$releaseInfo = Read-ReleaseNotes -path 'Source\ReleaseNotes.xml'
+$releaseInfo = Read-ReleaseNotes -path '.\Source\ReleaseNotes.xml'
 
 [int]$exitCode = $LastExitCode
 if($exitCode -ne 0) {
@@ -49,11 +49,35 @@ if(!(Test-Path $releaseDir)) {
   return 1
 }
 
-Push-NuGet -inputDirectory $releaseDir -apiKey d2addced-c1be-4220-8b87-568ae8e952c3 -server 'http://localhost/nuget/api/v2/package'
+$menu = @"
+To which repository do you want to push the NuGet packages?
+1) Local repository
+2) Public repository
+
+"@
+
+Write-Host $menu
+$repositoryChoice = Read-Host
+switch($repositoryChoice) {
+  1 {
+    $apiKey = 'd2addced-c1be-4220-8b87-568ae8e952c3'
+    $server = 'http://localhost/nuget/api/v2/package'
+  }
+  2 {
+    $apiKey = '017ae0d2-5850-42b3-af40-2d19128e1e8a'
+    $server = 'http://nuget.org/api/v2/package'
+  }
+  default {
+    Write-Host "No valid option was selected. Going to abort."
+    return 1
+  }
+}
+
+Push-NuGet -inputDirectory $releaseDir -apiKey $apiKey -server $server
 
 [System.DateTime]$endTime = [System.DateTime]::Now
 
 Write-Host "Push succeeded. Total elapsed time: "($endTime - $startTime) -ForegroundColor Green
-Write-Host "  - Release notes validation:`t`t"($validationTime - $startTime) -ForegroundColor Green
-Write-Host "  - Release notes reading:`t`t`t"($readNotesTime - $validationTime) -ForegroundColor Green
-Write-Host "  - Push NuGet packages:`t`t`t"($endTime - $readNotesTime) -ForegroundColor Green
+Write-Host "  - Release notes validation:`t"($validationTime - $startTime) -ForegroundColor Green
+Write-Host "  - Release notes reading:`t"($readNotesTime - $validationTime) -ForegroundColor Green
+Write-Host "  - Push NuGet packages:`t"($endTime - $readNotesTime) -ForegroundColor Green
