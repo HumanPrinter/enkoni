@@ -167,6 +167,42 @@ namespace Enkoni.Framework {
     }
     #endregion
 
+    #region Double extensions
+    /// <summary>Returns a value indicating whether both values represent the same value.</summary>
+    /// <param name="source">The first value to compare.</param>
+    /// <param name="obj">The second value to compare.</param>
+    /// <param name="comparisonFactor">The factor that must be taken into account. If <paramref name="compareOption"/> is set to 
+    /// <see cref="DoubleCompareOption.Margin"/>, the comparison factor will be treated as an absolute margin. If <paramref name="compareOption"/> is
+    /// set to <see cref="DoubleCompareOption.SignificantDigits"/> the comparison factor will be treated as the number of digits that must be 
+    /// examined will comparing. Note that the comparison factor in that case will be truncated to an integer.</param>
+    /// <param name="compareOption">Defines the method that must be used to compare the double values.</param>
+    /// <returns><see langword="true"/> if the two values are equal; otherwise, <see langword="false"/>.</returns>
+    public static bool Equals(this double source, double obj, double comparisonFactor, DoubleCompareOption compareOption) {
+      return new DoubleEqualityComparer(comparisonFactor, compareOption).Equals(source, obj);
+    }
+
+    /// <summary>Compares the two values and returns an integer that indicates whether the first value is less than, equal to, or greater than the 
+    /// second value.</summary>
+    /// <param name="source">The first value to compare.</param>
+    /// <param name="value">The second value to compare.</param>
+    /// <param name="comparisonFactor">The factor that must be taken into account. If <paramref name="compareOption"/> is set to 
+    /// <see cref="DoubleCompareOption.Margin"/>, the comparison factor will be treated as an absolute margin. If <paramref name="compareOption"/> is
+    /// set to <see cref="DoubleCompareOption.SignificantDigits"/> the comparison factor will be treated as the number of digits that must be 
+    /// examined will comparing. Note that the comparison factor in that case will be truncated to an integer.</param>
+    /// <param name="compareOption">Defines the method that must be used to compare the double values.</param>
+    /// <returns>A signed number indicating the relative values of the two numbers. <br />
+    /// Return Value Description <br/>
+    /// Less than zero: <paramref name="source"/> is less than <paramref name="value"/> -or- <paramref name="source"/> is not a number 
+    /// (<see cref="Double.NaN"/>) and value is a number.<br/>
+    /// Zero: <paramref name="source"/> is equal to <paramref name="value"/> -or- Both <paramref name="source"/> and <paramref name="value"/> are 
+    /// not a number (<see cref="Double.NaN"/>), <see cref="Double.PositiveInfinity"/>, or <see cref="Double.NegativeInfinity"/>.<br/>
+    /// Greater than zero: <paramref name="source"/> is greater than <paramref name="value"/> -or- <paramref name="source"/> is a number and 
+    /// <paramref name="value"/> is not a number (<see cref="Double.NaN"/>).</returns>
+    public static int CompareTo(this double source, double value, double comparisonFactor, DoubleCompareOption compareOption) {
+      return new DoubleComparer(comparisonFactor, compareOption).Compare(source, value);
+    }
+    #endregion
+
     #region DateTime extensions
     /// <summary>Determines the weeknumber of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
     /// <param name="source">The datetime of which the weeknumber must be determined.</param>

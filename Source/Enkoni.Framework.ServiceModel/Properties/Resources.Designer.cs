@@ -22,14 +22,14 @@ namespace Enkoni.Framework.ServiceModel.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LogMessages {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LogMessages() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Enkoni.Framework.ServiceModel.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Enkoni.Framework.ServiceModel.Properties.LogMessages", typeof(LogMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Enkoni.Framework.ServiceModel.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace Enkoni.Framework.ServiceModel.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Going to dispose instance of type .
+        ///   Looks up a localized string similar to The received message does not comply with the required schema.
         /// </summary>
-        internal static string VerboseDisposingInstance {
+        internal static string MessageDoesNotComplyWithSchema {
             get {
-                return ResourceManager.GetString("VerboseDisposingInstance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The message that was received from the client does not comply with the XML schema.
-        /// </summary>
-        internal static string WarningReceivedMessageIsInvalid {
-            get {
-                return ResourceManager.GetString("WarningReceivedMessageIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The message that was send to the server does not comply with the XML schema.
-        /// </summary>
-        internal static string WarningSentMessageInvalid {
-            get {
-                return ResourceManager.GetString("WarningSentMessageInvalid", resourceCulture);
+                return ResourceManager.GetString("MessageDoesNotComplyWithSchema", resourceCulture);
             }
         }
     }

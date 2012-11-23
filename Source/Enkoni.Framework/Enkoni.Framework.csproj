@@ -53,6 +53,8 @@
     <Compile Include="AndSpecification.cs" />
     <Compile Include="BusinessRuleSpecification.cs" />
     <Compile Include="AsyncResult.cs" />
+    <Compile Include="DoubleEqualityComparer.cs" />
+    <Compile Include="DoubleComparer.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="LocalizedDescriptionAttribute.cs" />
     <Compile Include="ReferenceEqualityComparer.cs" />
