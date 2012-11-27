@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 
+using Enkoni.Framework.Collections;
 using Enkoni.Framework.Linq;
 
 namespace Enkoni.Framework.Entities {

@@ -13,6 +13,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using Enkoni.Framework.Collections;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {

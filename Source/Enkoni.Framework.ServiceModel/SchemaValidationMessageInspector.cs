@@ -17,12 +17,13 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Xml;
 using System.Xml.Schema;
+
 using Enkoni.Framework.Logging;
 using Enkoni.Framework.ServiceModel.Properties;
 
 namespace Enkoni.Framework.ServiceModel {
   /// <summary>Implements a message inspector that inspects a received message.</summary>
-  public class SchemaValidationMessageInspector : IDispatchMessageInspector, IClientMessageInspector {
+  public class SchemaValidationMessageInspector : IDispatchMessageInspector {
     #region Instance variables
     /// <summary>The schemas that are used to validate the messages.</summary>
     private readonly XmlSchemaSet schemas;
@@ -79,47 +80,6 @@ namespace Enkoni.Framework.ServiceModel {
     }
     #endregion
 
-    #region IClientMessageInspector implementation
-    /// <summary>Called before an outbound message is send to the server.</summary>
-    /// <param name="request">The request message.</param>
-    /// <param name="channel">The outgoing channel.</param>
-    /// <returns>The object used to correlate state. This object is passed back in the AfterReceiveReply(Message@,object) method.</returns>
-    public object BeforeSendRequest(ref Message request, IClientChannel channel) {
-      if(request == null) {
-        return null;
-      }
-
-      /* Create a buffer in order to make it possible to work with copies of the message */
-      MessageBuffer buffer = request.CreateBufferedCopy(int.MaxValue);
-
-      /* Create a copy of the message and send it to the validation */
-      request = buffer.CreateMessage();
-      try {
-        this.ValidateMessage(request);
-      }
-      catch(XmlSchemaValidationException ex) {
-        Logger logger = LogManager.CreateLogger();
-        logger.Warn(LogMessages.WarningSentMessageInvalid, "enkoni.framework", ex);
-
-        FaultReasonText reasonText = new FaultReasonText(Resources.MessageDoesNotComplyWithSchema, CultureInfo.InvariantCulture);
-        throw new FaultException<string>(ex.Message, new FaultReason(reasonText), FaultCode.CreateSenderFaultCode(new FaultCode("InvalidMessage")));
-      }
-
-      /* Validation was succesfull. Create a new copy of the message and pass it to the WCF process. */
-      request = buffer.CreateMessage();
-
-      /* There is no need to correlate the BeforeSendRequest en AfterReceiveReply calls, so simply return null */
-      return null;
-    }
-
-    /// <summary>Called after a reply message has been received but before the message is returned to the client application.</summary>
-    /// <param name="reply">The reply message.</param>
-    /// <param name="correlationState">The correlation object returned from the BeforeSendRequest(Message@,IClientChannel) method.</param>
-    public void AfterReceiveReply(ref Message reply, object correlationState) {
-      /* Nothing to do */
-    }
-    #endregion
-
     #region Private methods
     /// <summary>Validates the message using the supplied XSD-schemas.</summary>
     /// <param name="message">The message that is to be validated.</param>
@@ -134,7 +94,7 @@ namespace Enkoni.Framework.ServiceModel {
           writer.Flush();
           stream.Position = 0;
 
-          /* Laad de inhoud van de memorystream in een Xmldocument */        
+          /* Laad de inhoud van de memorystream in een Xmldocument */
           bodyDoc.Load(stream);
         }
       }

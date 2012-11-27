@@ -11,7 +11,7 @@ using System.ServiceModel;
 
 namespace Enkoni.Framework.ServiceModel.Tests {
   /// <summary>This interface describes a service that is used by the ServiceModel test cases.</summary>
-  [ServiceContract]
+  [ServiceContract(Namespace = "http://test.enkoni.sourceforge.org/contracts")]
   public interface ITestService {
     /// <summary>A dummy method.</summary>
     /// <returns>Some dummy value.</returns>

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Enkoni.Framework {
+namespace Enkoni.Framework.Collections {
   /// <summary>Provides a generic implementation of <see cref="IComparer{T}"/> that is able to compare two objects based on a specified fieldname, 
   /// which can even be concatenated using the '.' character. The final field by which the objects must be compared must implement the 
   /// <c>CompareTo</c> method which is defined by the <see cref="IComparable"/> and <see cref="IComparable{T}"/> interfaces.</summary>

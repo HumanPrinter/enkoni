@@ -9,6 +9,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using Enkoni.Framework.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;

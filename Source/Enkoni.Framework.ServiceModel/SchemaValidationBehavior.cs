@@ -29,7 +29,7 @@ namespace Enkoni.Framework.ServiceModel {
     /// <summary>Initializes a new instance of the <see cref="SchemaValidationBehavior"/> class.</summary>
     /// <param name="enabled">Indicates whether or not the behavior is enabled.</param>
     /// <param name="schemaSet">Defines the schemas that must be used.</param>
-    internal SchemaValidationBehavior(bool enabled, XmlSchemaSet schemaSet) {
+    public SchemaValidationBehavior(bool enabled, XmlSchemaSet schemaSet) {
       this.Enabled = enabled;
       this.schemaSet = schemaSet;
     }

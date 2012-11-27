@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Enkoni.Framework {
+namespace Enkoni.Framework.Collections {
   /// <summary>Represents a fixed size last-in-first-out (LIFO) collection of instances of the same arbitrary type that uses a circulair collection
   /// as internal storage.</summary>
   /// <typeparam name="T">Specifies the type of elements in the stack.</typeparam>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://test.enkoni.sourceforge.org/contracts" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://test.enkoni.sourceforge.org/contracts">
+  <xsd:simpleType name="dateOrDateTime">
+    <xsd:union memberTypes="xsd:date xsd:dateTime"/>
+  </xsd:simpleType>
+  
+  <xsd:element name="ProcessObject">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="obj">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="SomeDate" type="tns:dateOrDateTime"/>
+              <xsd:element name="SomeName" type="xsd:string"/>
+              <xsd:element name="SomeNumber" type="xsd:int"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

@@ -64,6 +64,10 @@ namespace Enkoni.Framework.ServiceModel {
     protected override object CreateBehavior() {
       XmlSchemaSet schemaSet = new XmlSchemaSet();
 
+      if(!this.Enabled) {
+        return new SchemaValidationBehavior(this.Enabled, null);
+      }
+
       if(this.SchemaFile == null || string.IsNullOrEmpty(this.SchemaFile)) {
         throw new InvalidOperationException("The schema file must be specified");
       }

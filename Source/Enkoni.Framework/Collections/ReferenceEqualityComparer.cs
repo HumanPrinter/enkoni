@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Enkoni.Framework {
+namespace Enkoni.Framework.Collections {
   /// <summary>This class compares types based on their reference.</summary>
   /// <typeparam name="T">The type of object that must be compared.</typeparam>
   public class ReferenceEqualityComparer<T> : IEqualityComparer<T> {

@@ -12,7 +12,7 @@ using System.Runtime.Serialization;
 
 namespace Enkoni.Framework.ServiceModel.Tests {
   /// <summary>Defines a data contract that is used during the tests.</summary>
-  [DataContract]
+  [DataContract(Namespace = "http://test.enkoni.sourceforge.org/contracts")]
   public class TestDataContract {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="TestDataContract"/> class.</summary>
@@ -22,15 +22,15 @@ namespace Enkoni.Framework.ServiceModel.Tests {
 
     #region Properties
     /// <summary>Gets or sets some dummy value.</summary>
-    [DataMember]
+    [DataMember(IsRequired = false)]
     public DateTime SomeDate { get; set; }
 
     /// <summary>Gets or sets some dummy value.</summary>
-    [DataMember]
+    [DataMember(IsRequired = true)]
     public string SomeName { get; set; }
 
     /// <summary>Gets or sets some dummy value.</summary>
-    [DataMember]
+    [DataMember(IsRequired = true)]
     public int SomeNumber { get; set; }
     #endregion
   }

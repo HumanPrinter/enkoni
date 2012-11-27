@@ -5,11 +5,19 @@
       <projects>
         <project name="Enkoni.Framework" version="X.X.X.X">
           <updates>
-            <update date="2012-11-18" type="change">
-              <summary><![CDATA[Added new properties to the Workflow-class to determine if the workflow can be started, stopped, paused or continued.]]></summary>
+            <update date="2012-11-24" type="change">
+              <summary><![CDATA[Reorganized some classes]]></summary>
               <comment>
-                <![CDATA[Added four new properties to the Workflow-class (CanStart, CanStop, CanPause, CanContinue) that can be used to 
-                 determine if the workflow is in a state in which it can be started, stopped, paused or continued.]]></comment>
+                <![CDATA[Reorganized some collection-related classes into a new namespace calles Enkoni.Framework.Collections. This is a breaking change
+                but will add some more flexibility for the future.]]>
+              </comment>
+            </update>
+            <update date="2012-11-23" type="addition">
+              <summary><![CDATA[Added new timer related classes.]]></summary>
+              <comment>
+                <![CDATA[- Added a new Stopwatch class that wraps the default .NET Stopwatch class and adds the ability to record lap times.
+                 - Added a new AlarmClock class is capable of triggering an event at a specific time of day.]]>
+              </comment>
             </update>
             <update date="2012-11-23" type="addition">
               <summary><![CDATA[Added new functionality to compare double-values in a more confinient way.]]></summary>
@@ -17,7 +25,25 @@
                 <![CDATA[- Added new extension methods for System.Double to make it easier to compare double-values by looking only at the 
                    significant digits or a specified margin.
                  - Added the new DoubleComparer and DoubleEqualityComparer classes to make it easier to compare double-values by looking only at the 
-                   significant digits or a specified margin.]]></comment>
+                   significant digits or a specified margin.]]>
+              </comment>
+            </update>
+            <update date="2012-11-18" type="change">
+              <summary><![CDATA[Added new properties to the Workflow-class to determine if the workflow can be started, stopped, paused or continued.]]></summary>
+              <comment>
+                <![CDATA[Added four new properties to the Workflow-class (CanStart, CanStop, CanPause, CanContinue) that can be used to 
+                 determine if the workflow is in a state in which it can be started, stopped, paused or continued.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="X.X.X.X">
+          <updates>
+            <update date="2012-11-24" type="removal">
+              <summary><![CDATA[Removed the obsolete CsvFileSourceInfo class]]></summary>
+              <comment>
+                <![CDATA[Removed the obsolete CsvFileSourceInfo. Since this class was marked obsolete over a year ago and there is also
+                 a breaking change scheduled for the Enkoni.Framework project, this seemes like a good moment to remove this class.]]>
+              </comment>
             </update>
           </updates>
         </project>
@@ -28,6 +54,24 @@
               <comment>
                 <![CDATA[- Added the SchemaValidationMessageInspector and SchemaValidationBehaviorExtensionElement classes that can be used to 
                  validate sent and received messages against an XML schema.]]>
+              </comment>
+            </update>
+            <update date="2012-11-26" type="removal">
+              <summary><![CDATA[Removed the FlatWsdlBehavior classes]]></summary>
+              <comment>
+                <![CDATA[- Removed the FlatWsdlBehaviorExtensionElement and FlatWsdlBehaviorAttribute classes. The functionality did not always
+                 behave as expected. Since .Net 4.5 has build-in support for generating a single WSDL file, this functionality is no longer required 
+                 and therefore it was removed from this framework. When using .NET 4.5, it is recommended to use the new ?singlewsdl quierystring.
+                 When using an earlier version of .NET, it is recommended to use the single WSDL functionality provided by the WCFExtras-library
+                 which can be found at http://wcfextras.codeplex.com.]]>
+              </comment>
+            </update>
+            <update date="2012-11-26" type="removal">
+              <summary><![CDATA[Removed the DisposableServiceBehaviorAttribute class]]></summary>
+              <comment>
+                <![CDATA[- New understanding of the WCF framework and more extensive unit testing learned that the disposable service behavior has 
+                 been quite useless from the beginning. If the service implementation needs disposing, use a bindingtype and behavior that supports 
+                 sessions. That way, the .NET ecosystem will automatically call the Dispose method upon session ending or channel faulting.]]>
               </comment>
             </update>
           </updates>

@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="GlobalSuppressions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the project's suppressions.
@@ -8,6 +8,8 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics.CodeAnalysis;
+
+[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Entities", Justification = "A typical false positive from FxCop")]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.FileSourceInfo.#SelectMonitorSourceFile(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The parameter is checked through the Is*Specified method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.FileSourceInfo.#SelectSourceFileInfo(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The parameter is checked through the Is*Specified method")]

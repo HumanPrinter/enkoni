@@ -52,20 +52,26 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="TestService2.cs" />
     <Compile Include="ITestService.cs" />
     <Compile Include="SchemaValidationBehaviorTest.cs" />
-    <Compile Include="FlatWsdlBehaviorTest.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataContract.cs" />
-    <Compile Include="TestService1.cs" />
+    <Compile Include="TestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj">
       <Project>{364CAFCC-BB2B-4F31-AA7E-26562918664D}</Project>
       <Name>Enkoni.Framework.ServiceModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\ValidRequest.xml" />
+    <Content Include="TestData\InvalidRequest.xml" />
+    <None Include="App.config" />
+    <EmbeddedResource Include="TestDataContract.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

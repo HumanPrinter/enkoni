@@ -45,12 +45,8 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="DisposableServiceBehaviorAttribute.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="FlatWsdlBehaviorAttribute.cs" />
-    <Compile Include="FlatWsdlBehaviorExtensionElement.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="InstanceProvider.cs" />
     <Compile Include="Properties\LogMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

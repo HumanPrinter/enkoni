@@ -1,0 +1,12 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:enk="http://test.enkoni.sourceforge.org/contracts">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <enk:ProcessObject>
+      <enk:obj>
+        <enk:SomeName>TestValue</enk:SomeName>
+        <enk:SomeDate>2012-11-24</enk:SomeDate>
+        <enk:SomeNumber>42</enk:SomeNumber>
+      </enk:obj>
+    </enk:ProcessObject>
+  </soapenv:Body>
+</soapenv:Envelope>

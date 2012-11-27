@@ -9,10 +9,10 @@
 
 namespace Enkoni.Framework.ServiceModel.Tests {
   /// <summary>Implements the ITestService in a very simple way.</summary>
-  public class TestService1 : ITestService {
+  public class TestService : ITestService {
     #region Constructor
-    /// <summary>Initializes a new instance of the <see cref="TestService1"/> class.</summary>
-    public TestService1() {
+    /// <summary>Initializes a new instance of the <see cref="TestService"/> class.</summary>
+    public TestService() {
     }
     #endregion
 

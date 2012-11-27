@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Enkoni.Framework {
+namespace Enkoni.Framework.Collections {
   /// <summary>This class compares types based on a field of the type. By using this class, it is no longer required to create a specific equality 
   /// comparer to compare types using just one field.</summary>
   /// <typeparam name="T">The type of object that must be compared.</typeparam>

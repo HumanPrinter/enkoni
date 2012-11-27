@@ -26,7 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Enkoni.Framework.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Enkoni.Framework.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -46,18 +46,21 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="AsyncResultVoid.cs" />
-    <Compile Include="CircularStack.cs" />
-    <Compile Include="Comparer.cs" />
+    <Compile Include="Collections\CircularStack.cs" />
+    <Compile Include="Collections\Comparer.cs" />
+    <Compile Include="Collections\Extensions.cs" />
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="CombinedSpecification.cs" />
     <Compile Include="AndSpecification.cs" />
     <Compile Include="BusinessRuleSpecification.cs" />
     <Compile Include="AsyncResult.cs" />
-    <Compile Include="DoubleEqualityComparer.cs" />
-    <Compile Include="DoubleComparer.cs" />
+    <Compile Include="Timers\AlarmClock.cs" />
+    <Compile Include="Timers\Stopwatch.cs" />
+    <Compile Include="Collections\DoubleEqualityComparer.cs" />
+    <Compile Include="Collections\DoubleComparer.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="LocalizedDescriptionAttribute.cs" />
-    <Compile Include="ReferenceEqualityComparer.cs" />
+    <Compile Include="Collections\ReferenceEqualityComparer.cs" />
     <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="Serialization\CsvTransformer.cs" />
     <Compile Include="SortSpecificationsEventArgs.cs" />
@@ -76,7 +79,7 @@
     <Compile Include="InvalidTypeParameterException.cs" />
     <Compile Include="ISpecification.cs" />
     <Compile Include="IWorkflow.cs" />
-    <Compile Include="LambdaEqualityComparer.cs" />
+    <Compile Include="Collections\LambdaEqualityComparer.cs" />
     <Compile Include="Linq\Extensions.cs" />
     <Compile Include="NotSupportedTypeParameterException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
