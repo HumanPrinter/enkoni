@@ -28,7 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Enkoni.Framework.Logging.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Enkoni.Framework.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -40,7 +40,7 @@
     <DocumentationFile>bin\Release\Enkoni.Framework.Logging.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Enkoni.Framework.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>

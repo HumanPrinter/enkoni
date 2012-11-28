@@ -37,8 +37,8 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     [DeploymentItem(@"bin\Debug\Enkoni.Framework.ServiceModel.dll", "")]
     [DeploymentItem(@"bin\Debug\Enkoni.Framework.ServiceModel.pdb", "")]
 #else
-    [DeploymentItem(@"bin\Release\Enkoni.Framework.ServiceModel.dll", string.Empty)]
-    [DeploymentItem(@"bin\Release\Enkoni.Framework.ServiceModel.pdb", string.Empty)]
+    [DeploymentItem(@"bin\Release\Enkoni.Framework.ServiceModel.dll", "")]
+    [DeploymentItem(@"bin\Release\Enkoni.Framework.ServiceModel.pdb", "")]
 #endif
     public void TestCase01_DefaultBehavior() {
       /* First, send a valid request */

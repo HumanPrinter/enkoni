@@ -38,7 +38,7 @@
     <DocumentationFile>bin\Release\Enkoni.Framework.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Enkoni.Framework.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
