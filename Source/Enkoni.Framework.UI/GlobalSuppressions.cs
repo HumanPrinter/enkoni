@@ -43,12 +43,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.ViewModel.#RaisePropertyChanged`1(System.Linq.Expressions.Expression`1<System.Func`1<!!0>>)", Justification = "This method hides some administrative functionality from the subclasses.")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.ViewModel.#RaisePropertyChanged`1(System.Linq.Expressions.Expression`1<System.Func`1<!!0>>,!!0,!!0)", Justification = "This method hides some administrative functionality from the subclasses.")]
 
-[assembly: SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.Messenger.#Dispose()", Justification = "The Microsoft reference implementation is wrong.")]
-[assembly: SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Scope = "type", Target = "Enkoni.Framework.UI.Mvvm.Messenger", Justification = "The Microsoft reference implementation is wrong.")]
-
 [assembly: SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration", MessageId = "0#", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.ViewModel.#Item[System.String]", Justification = "In this case, the new parametername is more describing than the original parameter name.")]
-
-[assembly: SuppressMessage("Microsoft.Usage", "CA1816:CallGCSuppressFinalizeCorrectly", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.Messenger.#Dispose()", Justification = "The Microsoft reference implementation is wrong.")]
 
 [assembly: SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.Messenger.#.cctor()", Justification = "This instance is not supposed to be disposed before the application ends.")]
 

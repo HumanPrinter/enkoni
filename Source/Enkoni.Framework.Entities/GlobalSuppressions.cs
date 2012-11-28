@@ -46,11 +46,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#UpdateEntitiesCore(System.Collections.Generic.IEnumerable`1<!0>,Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The parameter is checked in the public method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#DeleteEntitiesCore(System.Collections.Generic.IEnumerable`1<!0>,Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The parameter is checked in the public method")]
 
-[assembly: SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#Dispose()", Justification = "The Microsoft reference implementation is wrong.")]
-
 [assembly: SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Scope = "member", Target = "Enkoni.Framework.Entities.MemoryRepository`1.#SaveChangesCore(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The code is well documented and therefore fine.")]
-
-[assembly: SuppressMessage("Microsoft.Usage", "CA1816:CallGCSuppressFinalizeCorrectly", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#Dispose()", Justification = "The Microsoft reference implementation is wrong.")]
 
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "businessrules", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#ExecuteBusinessRuleWithMultipleResults(System.String,System.Collections.Generic.IEnumerable`1<System.Object>)", Justification = "The spelling here is fine")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "businessrules", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#ExecuteBusinessRuleWithSingleResult(System.String,System.Collections.Generic.IEnumerable`1<System.Object>)", Justification = "The spelling here is fine")]
