@@ -11,5 +11,8 @@
       <Word>Validators</Word>
       <Word>BusinessRuleSpecification</Word>
     </Recognized>
+    <Compound>
+      <Term CompoundAlternate="CompareTo">Compareto</Term>
+    </Compound>
   </Words>
 </Dictionary>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="enkoni" xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.oscarbrouwer.nl/enkoni/2012/09">
+  <!-- Define the attribute types -->
+  <xs:attribute name="type">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="addition" />
+        <xs:enumeration value="change" />
+        <xs:enumeration value="removal" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+
+  <xs:attribute name="version">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[1-9]\d*\.(0|([1-9]\d*))\.(0|([1-9]\d*))\.(0|([1-9]\d*))" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+
+  <xs:attribute name="name">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Enkoni.Framework" />
+        <xs:enumeration value="Enkoni.Framework.Entities" />
+        <xs:enumeration value="Enkoni.Framework.Entities.Database" />
+        <xs:enumeration value="Enkoni.Framework.Entities.File" />
+        <xs:enumeration value="Enkoni.Framework.Entities.Service" />
+        <xs:enumeration value="Enkoni.Framework.Logging" />
+        <xs:enumeration value="Enkoni.Framework.ServiceModel" />
+        <xs:enumeration value="Enkoni.Framework.Testing" />
+        <xs:enumeration value="Enkoni.Framework.UI" />
+        <xs:enumeration value="Enkoni.Framework.Validation" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+
+  <!-- Define the element types -->
+  <xs:element name="summary" type="xs:string" nillable="false" />
+  <xs:element name="comment" type="xs:string" nillable="false" />
+  <xs:element name="remark" type="xs:string" nillable="false" />
+
+  <xs:element name="update" nillable="false">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="summary" minOccurs="1" maxOccurs="1" />
+        <xs:element ref="comment" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attribute name="date" type="xs:date" use="required" />
+      <xs:attribute ref="type" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="project">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="updates" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="update" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="name" />
+      <xs:attribute ref="version" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="release">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="remark" minOccurs="0" maxOccurs="1" />
+        <xs:element name="projects" minOccurs="1" maxOccurs="1" nillable="false">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="project" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="version" use="required" />
+      <xs:attribute name="releasedate" type="xs:date" use="required" />
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="enkoni">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="releases" nillable="false">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="release" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

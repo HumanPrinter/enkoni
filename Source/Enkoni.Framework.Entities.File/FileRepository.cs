@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="FileRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the default implementation of a repository that uses a file as datasource.
@@ -10,15 +10,16 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 
+using Enkoni.Framework.Collections;
 using Enkoni.Framework.Linq;
 
 namespace Enkoni.Framework.Entities {
-  using System.Globalization;
   using System.Timers;
 
   /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the functionality using basic file 

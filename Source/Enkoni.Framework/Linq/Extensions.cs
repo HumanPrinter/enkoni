@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
+using Enkoni.Framework.Collections;
+
 namespace Enkoni.Framework.Linq {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {

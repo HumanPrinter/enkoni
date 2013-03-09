@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Enkoni.ServiceModel</id>
+    <version>2.0.0.0</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <iconUrl>http://www.oscarbrouwer.nl/images/enkoni.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <summary>$description$</summary>
+    <releaseNotes><![CDATA[- Added the SchemaValidationMessageInspector and SchemaValidationBehaviorExtensionElement classes that can be used to
+validate sent and received messages against an XML schema.
+- Removed the FlatWsdlBehaviorExtensionElement and FlatWsdlBehaviorAttribute classes. The functionality did not always
+behave as expected. Since .Net 4.5 has build-in support for generating a single WSDL file, this functionality is no longer required
+and therefore it was removed from this framework. When using .NET 4.5, it is recommended to use the new ?singlewsdl quierystring.
+When using an earlier version of .NET, it is recommended to use the single WSDL functionality provided by the WCFExtras-library
+which can be found at http://wcfextras.codeplex.com.
+- New understanding of the WCF framework and more extensive unit testing learned that the disposable service behavior has
+been quite useless from the beginning. If the service implementation needs disposing, use a bindingtype and behavior that supports
+sessions. That way, the .NET ecosystem will automatically call the Dispose method upon session ending or channel faulting.]]></releaseNotes>
+    <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
+    <dependencies>
+      <dependency id="Enkoni.Logging" version="1.2.0.2" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.ServiceModel" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.Web.Services" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework3.5" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

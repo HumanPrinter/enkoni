@@ -42,6 +42,7 @@ Source/Enkoni.Framework.Validation/*.user
 Source/Enkoni.Framework.Validation/*.Cache
 Source/Enkoni.Framework.Validation/bin/
 Source/Enkoni.Framework.Validation/obj/
+Source/packages
 Source/Test/Enkoni.Framework.Tests/*.user
 Source/Test/Enkoni.Framework.Tests/*.Cache
 Source/Test/Enkoni.Framework.Tests/bin/
@@ -58,6 +59,10 @@ Source/Test/Enkoni.Framework.Entities.Tests/*.user
 Source/Test/Enkoni.Framework.Entities.Tests/*.Cache
 Source/Test/Enkoni.Framework.Entities.Tests/bin/
 Source/Test/Enkoni.Framework.Entities.Tests/obj/
+Source/Test/Enkoni.Framework.ServiceModel.Tests/*.user
+Source/Test/Enkoni.Framework.ServiceModel.Tests/*.Cache
+Source/Test/Enkoni.Framework.ServiceModel.Tests/bin/
+Source/Test/Enkoni.Framework.ServiceModel.Tests/obj/
 Source/Test/Enkoni.Framework.UI.Tests/*.user
 Source/Test/Enkoni.Framework.UI.Tests/*.Cache
 Source/Test/Enkoni.Framework.UI.Tests/bin/
@@ -73,4 +78,6 @@ Source/TestResults/
 /Releases/*.txt
 /Releases/*.zip
 /Releases/Documentation/
+/WorkingDir
 Release.bat
+Build.log

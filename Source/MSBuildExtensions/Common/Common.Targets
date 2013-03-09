@@ -10,7 +10,8 @@
 	<CodeAnalysisPath>$(SolutionDir)\MSBuildExtensions\CodeAnalysis\FxCop\</CodeAnalysisPath>
   </PropertyGroup>
   <!-- Execute StyleCop -->
-  <Import Project="$(SolutionDir)\MSBuildExtensions\StyleCop\StyleCop.Targets" />
+  <Import Project="$(SolutionDir)\MSBuildExtensions\StyleCop\StyleCop.Targets" Condition="'$(SolutionDir)' != '..\'"/>
+  <Import Project="$(SolutionDir)\..\MSBuildExtensions\StyleCop\StyleCop.Targets" Condition="'$(SolutionDir)' == '..\'"/>
   <!-- Execute FxCop (if required) -->
   <Import Condition="'$(UseExternalFxCop)' == 'True'" Project="$(SolutionDir)\MSBuildExtensions\CodeAnalysis\Microsoft.CodeAnalysis.Targets" />
 </Project>

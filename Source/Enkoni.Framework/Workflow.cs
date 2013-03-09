@@ -31,6 +31,30 @@ namespace Enkoni.Framework {
 
     /// <summary>Gets or sets the current <see cref="WorkflowState"/> of the workflow.</summary>
     public WorkflowState State { get; protected set; }
+
+    /// <summary>Gets a value indicating whether this workflow is in a state in which it can be started. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be started.</summary>
+    public bool CanStart {
+      get { return this.State == WorkflowState.Init || this.State == WorkflowState.Stopped; }
+    }
+
+    /// <summary>Gets a value indicating whether this workflow is in a state in which it can be stopped. Only when the workflow is in the state 
+    /// <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or <see cref="WorkflowState.Continued"/>, it can be stopped.</summary>
+    public bool CanStop {
+      get { return this.State == WorkflowState.Started || this.State == WorkflowState.Pausing || this.State == WorkflowState.Continued; }
+    }
+
+    /// <summary>Gets a value indicating whether this workflow is in a state in which it can be paused. Only when the workflow supports pausing and 
+    /// the workflow is in the state <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</summary>
+    public bool CanPause {
+      get { return this.CanPauseAndContinue && (this.State == WorkflowState.Started || this.State == WorkflowState.Continued); }
+    }
+
+    /// <summary>Gets a value indicating whether this workflow is in a state in which it can be continued. Only when the workflow supports pausing and 
+    /// the workflow is in the state <see cref="WorkflowState.Paused"/>, it can be continued.</summary>
+    public bool CanContinue {
+      get { return this.CanPauseAndContinue && this.State == WorkflowState.Paused; }
+    }
     #endregion
 
     #region Workflow Synchronous Methods
