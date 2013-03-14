@@ -65,8 +65,8 @@
     <Compile Include="SubDomainModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Enkoni.Framework.pfx">
-      <Link>Enkoni.Framework.pfx</Link>
+    <None Include="..\Enkoni.Framework.snk">
+      <Link>Enkoni.Framework.snk</Link>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
