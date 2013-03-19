@@ -99,8 +99,8 @@ namespace Enkoni.Framework.Tests {
       /* Start a new lap and check the properties */
       TimeSpan lapTime = testSubject.NewLap();
 
-      Assert.IsTrue(lapTime.TotalMilliseconds >= 2000 && lapTime.TotalMilliseconds <= 2100);
-      Assert.IsTrue(testSubject.CurrentLapTime.TotalMilliseconds <= 100);
+      Assert.IsTrue(lapTime.TotalMilliseconds >= 2000 && lapTime.TotalMilliseconds <= 2200);
+      Assert.IsTrue(testSubject.CurrentLapTime.TotalMilliseconds <= 200);
       Assert.IsTrue(testSubject.LapTimes.Count == 1);
       Assert.AreEqual(lapTime.Ticks, testSubject.LapTimes[0].Ticks);
     }
