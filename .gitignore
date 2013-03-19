@@ -1,6 +1,7 @@
 Source/*.suo
 Source/*.sdf
 Source/*.Cache
+Source/Enkoni.Framework.pfx
 Source/Enkoni.Documentation.shfbproj_Oscar
 Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
