@@ -47,14 +47,14 @@ namespace Enkoni.Framework.Tests {
       /* Check the properties while in running mode */
       Assert.AreEqual(0, testSubject.LapTimes.Count);
       double elapsed = testSubject.CurrentLapTime.TotalMilliseconds;
-      Assert.IsTrue(elapsed >= 3000 && elapsed <= 3100);
+      Assert.IsTrue(elapsed >= 3000 && elapsed <= 3200);
 
       /* Stop the stopwatch and check the properties again */
       testSubject.Stop();
       TimeSpan lapTime = testSubject.CurrentLapTime;
       Assert.AreEqual(0, testSubject.LapTimes.Count);
       elapsed = testSubject.CurrentLapTime.TotalMilliseconds;
-      Assert.IsTrue(elapsed >= 3000 && elapsed <= 3100);
+      Assert.IsTrue(elapsed >= 3000 && elapsed <= 3200);
 
       /* Wait some more and check the properties again to verify that the stopwatch was really stopped */
       Thread.Sleep(3000);
