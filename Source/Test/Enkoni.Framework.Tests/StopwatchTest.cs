@@ -30,6 +30,7 @@ namespace Enkoni.Framework.Tests {
 
       /* Tests that the methods do not throw unexpected exceptions when the stopwatch is not running */
       testSubject.Stop();
+      testSubject.Pause();
       testSubject.Reset();
       testSubject.NewLap();
     }
@@ -48,18 +49,22 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(0, testSubject.LapTimes.Count);
       double elapsed = testSubject.CurrentLapTime.TotalMilliseconds;
       Assert.IsTrue(elapsed >= 3000 && elapsed <= 3200);
+      Assert.IsNotNull(testSubject.LapTimes);
+      Assert.AreEqual(0, testSubject.LapTimes.Count);
 
       /* Stop the stopwatch and check the properties again */
       testSubject.Stop();
       TimeSpan lapTime = testSubject.CurrentLapTime;
-      Assert.AreEqual(0, testSubject.LapTimes.Count);
+      Assert.AreEqual(1, testSubject.LapTimes.Count);
       elapsed = testSubject.CurrentLapTime.TotalMilliseconds;
       Assert.IsTrue(elapsed >= 3000 && elapsed <= 3200);
+      Assert.AreEqual(testSubject.LapTimes[0], lapTime);
 
       /* Wait some more and check the properties again to verify that the stopwatch was really stopped */
       Thread.Sleep(3000);
-      Assert.AreEqual(0, testSubject.LapTimes.Count);
+      Assert.AreEqual(1, testSubject.LapTimes.Count);
       Assert.AreEqual(lapTime.Ticks, testSubject.CurrentLapTime.Ticks);
+      Assert.AreEqual(testSubject.LapTimes[0], lapTime);
     }
 
     /// <summary>Tests the pause and resume functionality of the <see cref="Stopwatch"/> class.</summary>
@@ -72,17 +77,17 @@ namespace Enkoni.Framework.Tests {
       testSubject.Start();
       Thread.Sleep(2000);
 
-      /* Stop (pause) the stopwatch and wait some more */
-      testSubject.Stop();
+      /* Pause the stopwatch and wait some more */
+      testSubject.Pause();
       Thread.Sleep(2000);
 
       /* Resume the stopwatch */
-      testSubject.Start();
+      testSubject.Resume();
       Thread.Sleep(2000);
 
       /* Stop the timer and check the properties */
       testSubject.Stop();
-      Assert.AreEqual(0, testSubject.LapTimes.Count);
+      Assert.AreEqual(1, testSubject.LapTimes.Count);
       Assert.IsTrue(testSubject.CurrentLapTime.TotalMilliseconds >= 4000 && testSubject.CurrentLapTime.TotalMilliseconds < 4200);
     }
 
@@ -101,7 +106,7 @@ namespace Enkoni.Framework.Tests {
 
       Assert.IsTrue(lapTime.TotalMilliseconds >= 2000 && lapTime.TotalMilliseconds <= 2200);
       Assert.IsTrue(testSubject.CurrentLapTime.TotalMilliseconds <= 200);
-      Assert.IsTrue(testSubject.LapTimes.Count == 1);
+      Assert.AreEqual(1, testSubject.LapTimes.Count);
       Assert.AreEqual(lapTime.Ticks, testSubject.LapTimes[0].Ticks);
     }
   }
