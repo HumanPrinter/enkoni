@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="SolutionInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
 // </copyright>
 // <summary>
 //     Contains the solution-wide metadata.
@@ -12,8 +12,8 @@ using System.Reflection;
 // General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the 
 // information associated with an assembly.
 [assembly: AssemblyCompany("Oscar Brouwer")]
-[assembly: AssemblyProduct("Multi-purposes framwork")]
-[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2012")]
+[assembly: AssemblyProduct("Multi-purposes framework")]
+[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

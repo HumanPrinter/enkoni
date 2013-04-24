@@ -57,6 +57,7 @@
     <None Include="..\Enkoni.Framework.snk">
       <Link>Enkoni.Framework.snk</Link>
     </None>
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
