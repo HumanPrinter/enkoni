@@ -54,8 +54,8 @@ namespace Enkoni.Framework.Timers {
     #endregion
 
     #region Public methods
-    /// <summary>Starts or resumes the stopwatch. If the stopwatch was paused before, the current lap will be resumed; otherwise, a new lap
-    /// is started.</summary>
+    /// <summary>Starts or resumes the stopwatch. If the stopwatch was paused before, the current lap will be resumed; otherwise, a new lap is 
+    /// started.</summary>
     public void Start() {
       this.internalStopwatch.Start();
       this.state = WorkflowState.Started;
@@ -77,8 +77,8 @@ namespace Enkoni.Framework.Timers {
     }
 
     /// <summary>Resumes the stopwatch.</summary>
-    /// <remarks><see cref="Resume()"/> and <see cref="Start()"/> provide the same functionality. The <see cref="Resume()"/> method has been
-    /// added to make working with the <see cref="Stopwatch"/> class more intuïtive.</remarks>
+    /// <remarks><see cref="Resume()"/> and <see cref="Start()"/> provide the same functionality. The <see cref="Resume()"/> method has been added to 
+    /// make working with the <see cref="Stopwatch"/> class more intuïtive.</remarks>
     public void Resume() {
       this.internalStopwatch.Start();
       this.state = WorkflowState.Started;
