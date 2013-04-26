@@ -43,26 +43,25 @@ namespace Enkoni.Framework.Tests {
 
       /* Start the stopwatch and wait a little while */
       testSubject.Start();
-      Thread.Sleep(1000);
+      double elapsedBeforeWait = testSubject.CurrentLapTime.TotalMilliseconds;
+      Thread.Sleep(500);
+      double elapsedAfterWait = testSubject.CurrentLapTime.TotalMilliseconds;
 
       /* Check the properties while in running mode */
-      Assert.AreEqual(0, testSubject.LapTimes.Count);
-      double elapsed = testSubject.CurrentLapTime.TotalMilliseconds;
-      Assert.IsTrue(elapsed >= 1000);
       Assert.IsNotNull(testSubject.LapTimes);
       Assert.AreEqual(0, testSubject.LapTimes.Count);
+      Assert.IsTrue(elapsedAfterWait > elapsedBeforeWait);
 
       /* Stop the stopwatch and check the properties again */
       testSubject.Stop();
       TimeSpan lapTime = testSubject.CurrentLapTime;
+      double elapsedAfterStop = lapTime.TotalMilliseconds;
       Assert.AreEqual(1, testSubject.LapTimes.Count);
-      double elapsed2 = testSubject.CurrentLapTime.TotalMilliseconds;
-      Assert.IsTrue(elapsed2 >= 1000);
-      Assert.IsTrue(elapsed2 >= elapsed);
+      Assert.IsTrue(elapsedAfterStop >= elapsedAfterWait);
       Assert.AreEqual(testSubject.LapTimes[0], lapTime);
 
       /* Wait some more and check the properties again to verify that the stopwatch was really stopped */
-      Thread.Sleep(1000);
+      Thread.Sleep(500);
       Assert.AreEqual(1, testSubject.LapTimes.Count);
       Assert.AreEqual(lapTime.Ticks, testSubject.CurrentLapTime.Ticks);
       Assert.AreEqual(testSubject.LapTimes[0], lapTime);
