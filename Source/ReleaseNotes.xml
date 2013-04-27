@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
+    <release version="X.X.X.X" releasedate="XXXX-XX-XX">
+      <projects>
+        <project name="Enkoni.Framework" version="2.0.1.0">
+          <updates>
+            <update date="2013-04-24" type="change">
+              <summary><![CDATA[Fix a bug in the StopWatch class and improved pause and resume functionality]]></summary>
+              <comment>
+                <![CDATA[Fixed a bug in the StopWatch-class that resulted in a laptime not being added to the collection of laptimes when the StopWatch
+                was stopped. In addition, the StopWatch now has improved pausing and resuming functionality.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.ServiceModel" version="2.1.0.0">
+          <updates>
+            <update date="2013-04-24" type="change">
+              <summary><![CDATA[Changed the SafeClose-extension method to work on more WCF-related types.]]></summary>
+              <comment><![CDATA[The SafeClose-extension method now works on objects of type ICommunicationObject which allows for a broader use of the 
+              functionality.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.1.0.0" releasedate="2012-12-28">
       <projects>
         <project name="Enkoni.Framework" version="2.0.0.0">
