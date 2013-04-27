@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 
 namespace Enkoni.Framework.Collections {
-  /// <summary>This class compares two <see cref="Double"/> values a more mathematically accepted approach.</summary>
+  /// <summary>This class compares two <see cref="Double"/> values using a more mathematically accepted approach.</summary>
   public class DoubleEqualityComparer : IEqualityComparer<double> {
     #region Instance variables
     /// <summary>The option that determines the compare method.</summary>
@@ -108,8 +108,8 @@ namespace Enkoni.Framework.Collections {
     /// <param name="digits">The siginificant digits that must be taken into account.</param>
     /// <returns><see langword="true"/> if the two numbers are equal upto their significant digits; otherwise, <see langword="false"/>.</returns>
     private static bool EqualsBySignificantDigits(double x, double y, int digits) {
-      int roundedX = (int)Math.Round((x * Math.Pow(10, digits)));
-      int roundedY = (int)Math.Round((y * Math.Pow(10, digits)));
+      int roundedX = (int)Math.Round(x * Math.Pow(10, digits));
+      int roundedY = (int)Math.Round(y * Math.Pow(10, digits));
 
       return roundedX == roundedY;
     }
