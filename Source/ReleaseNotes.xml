@@ -14,12 +14,52 @@
             </update>
           </updates>
         </project>
+        <project name="Enkoni.Framework.Entities" version="2.0.0.1">
+          <updates>
+            <update date="2013-05-24" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.0.0.1">
+          <updates>
+            <update date="2013-05-24" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="2.0.0.1">
+          <updates>
+            <update date="2013-05-24" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Service" version="2.0.0.1">
+          <updates>
+            <update date="2013-05-24" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
         <project name="Enkoni.Framework.ServiceModel" version="2.1.0.0">
           <updates>
             <update date="2013-04-24" type="change">
               <summary><![CDATA[Changed the SafeClose-extension method to work on more WCF-related types.]]></summary>
               <comment><![CDATA[The SafeClose-extension method now works on objects of type ICommunicationObject which allows for a broader use of the 
               functionality.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Web" version="1.0.0.0">
+          <updates>
+            <update date="2013-05-24" type="addition">
+              <summary><![CDATA[Added the Enkoni.Framework.Web project]]></summary>
+              <comment><![CDATA[Added the Enkoni.Framework.Web project which contains classes that can be used within Web projects (WebForms and MVC).]]></comment>
             </update>
           </updates>
         </project>
