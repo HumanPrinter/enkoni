@@ -29,6 +29,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
 
     #region Test methods
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
+    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
@@ -56,6 +57,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     }
 
     /// <summary>Tests if the <see cref="SchemaValidationBehavior"/> is disabled accordingly with the configuration parameter.</summary>
+    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
@@ -75,6 +77,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as an assembly resource.</summary>
+    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
@@ -92,6 +95,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as a file.</summary>
+    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
