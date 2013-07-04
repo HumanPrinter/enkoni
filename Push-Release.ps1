@@ -64,8 +64,8 @@ switch($repositoryChoice) {
     $server = 'http://localhost/nuget/api/v2/package'
   }
   2 {
-    $apiKey = '017ae0d2-5850-42b3-af40-2d19128e1e8a'
-    $server = 'http://nuget.org/api/v2/package'
+    $apiKey = '37d6d849-3ba7-4481-a091-1bb1a1dacb4b'
+    $server = 'https://nuget.org/api/v2/package'
   }
   default {
     Write-Host "No valid option was selected. Going to abort."
