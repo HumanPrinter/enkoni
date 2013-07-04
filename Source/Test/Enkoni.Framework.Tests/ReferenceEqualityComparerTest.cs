@@ -9,6 +9,8 @@
 
 using System;
 
+using Enkoni.Framework.Collections;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {

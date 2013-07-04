@@ -3,10 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF418619-7942-4E44-A625-192FEA532693}"
 	ProjectSection(SolutionItems) = preProject
-		Enkoni.Framework.pfx = Enkoni.Framework.pfx
+		Enkoni.Framework.ruleset = Enkoni.Framework.ruleset
+		Enkoni.Framework.snk = Enkoni.Framework.snk
 		Enkoni.Framework.vsmdi = Enkoni.Framework.vsmdi
 		Local.testsettings = Local.testsettings
-		Release Notes.txt = Release Notes.txt
+		ReleaseNotes.xml = ReleaseNotes.xml
+		ReleaseNotes.xsd = ReleaseNotes.xsd
 		Settings.StyleCop = Settings.StyleCop
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
@@ -44,6 +46,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.UI", "Enkoni.Framework.UI\Enkoni.Framework.UI.csproj", "{CDEFFA77-DC94-49FD-82E5-5729DB3B983F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.UI.Tests", "Test\Enkoni.Framework.UI.Tests\Enkoni.Framework.UI.Tests.csproj", "{83A56D44-A6C6-4613-AB15-336D046F2A1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4AE85DC3-3117-47DA-B4CB-D21714AB9A1C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.ServiceModel.Tests", "Test\Enkoni.Framework.ServiceModel.Tests\Enkoni.Framework.ServiceModel.Tests.csproj", "{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Web", "Enkoni.Framework.Web\Enkoni.Framework.Web.csproj", "{BD4B35DD-8010-4B7B-B061-D38830FAC24A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Web.Tests", "Test\Enkoni.Framework.Web.Tests\Enkoni.Framework.Web.Tests.csproj", "{B7741800-9BC8-4805-92C2-C9EFE61521C6}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -301,6 +316,51 @@ Global
 		{83A56D44-A6C6-4613-AB15-336D046F2A1B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{83A56D44-A6C6-4613-AB15-336D046F2A1B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{83A56D44-A6C6-4613-AB15-336D046F2A1B}.Release|x86.ActiveCfg = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}.Release|x86.ActiveCfg = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BD4B35DD-8010-4B7B-B061-D38830FAC24A}.Release|x86.ActiveCfg = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -312,8 +372,7 @@ Global
 		{8532A56C-54B1-4C2F-9DA2-62F570F42BA2} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{B62FDD33-5C74-483A-B34E-70B6B084F330} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{83A56D44-A6C6-4613-AB15-336D046F2A1B} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Validation.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35;packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
+		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{B7741800-9BC8-4805-92C2-C9EFE61521C6} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="Enumerations.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds the enumerations of this project.
@@ -51,6 +51,17 @@ namespace Enkoni.Framework {
 
     /// <summary>Indicates that the workflow is stopped as a result of an error.</summary>
     Faulted
+  }
+  #endregion
+
+  #region DoubleCompareOption enum
+  /// <summary>Contains the options that can be passed to a double comparison function to specify the method to compare doubles.</summary>
+  public enum DoubleCompareOption {
+    /// <summary>Compare two doubles by looking if the difference is within a specific margin.</summary>
+    Margin,
+
+    /// <summary>Compare two doubles by looking at their significant digits.</summary>
+    SignificantDigits
   }
   #endregion
 }

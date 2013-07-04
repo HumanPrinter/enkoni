@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="OrSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
 // </copyright>
 // <summary>
 //     Defines a Specificationtype that combines two specifications using an OR operation.

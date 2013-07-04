@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="AsyncResult.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
 // </copyright>
 // <summary>
 //     Type that can be used to return a generic value from an asynchronous operation.

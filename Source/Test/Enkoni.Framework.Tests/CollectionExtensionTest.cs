@@ -10,6 +10,8 @@
 
 using System.Collections.Generic;
 
+using Enkoni.Framework.Collections;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {
@@ -17,8 +19,8 @@ namespace Enkoni.Framework.Tests {
   /// <see cref="IList{T}"/> interfaces and the <see cref="List{T}"/> class.</summary>
   [TestClass]
   public class CollectionExtensionTest {
-    /// <summary>Tests the functionality of the <see cref="Extensions.Remove{T}(ICollection{T}, T, IEqualityComparer{T})"/> extension method.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Collections.Extensions.Remove{T}(ICollection{T}, T, IEqualityComparer{T})"/> 
+    /// extension method.</summary>
     [TestMethod]
     public void TestCase01_ICollection_Remove() {
       ICollection<TestDummy> collection = new List<TestDummy>();
@@ -55,7 +57,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(collection.Contains(dummyE));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.IndexOf{T}(IList{T}, T, IEqualityComparer{T})"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Collections.Extensions.IndexOf{T}(IList{T}, T, IEqualityComparer{T})"/> 
+    /// extension method.</summary>
     [TestMethod]
     public void TestCase02_IList_IndexOf() {
       IList<TestDummy> collection = new List<TestDummy>();
@@ -84,8 +87,8 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(1, result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.IndexOf{T}(List{T}, T, int, IEqualityComparer{T})"/> extension method.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Collections.Extensions.IndexOf{T}(List{T}, T, int, IEqualityComparer{T})"/> 
+    /// extension method.</summary>
     [TestMethod]
     public void TestCase03_List_IndexOfWithStartIndex() {
       List<TestDummy> collection = new List<TestDummy>();
@@ -118,8 +121,8 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(1, result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.IndexOf{T}(List{T}, T, int, int, IEqualityComparer{T})"/> extension method.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Collections.Extensions.IndexOf{T}(List{T}, T, int, int, IEqualityComparer{T})"/> 
+    /// extension method.</summary>
     [TestMethod]
     public void TestCase04_List_IndexOfWithStartIndexAndCount() {
       List<TestDummy> collection = new List<TestDummy>();

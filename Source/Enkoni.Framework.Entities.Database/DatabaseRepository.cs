@@ -17,6 +17,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Transactions;
 
+using Enkoni.Framework.Collections;
 using Enkoni.Framework.Linq;
 
 using LinqKit;

@@ -26,6 +26,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase01")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase01_FindAll() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase01");
@@ -43,6 +47,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// implementation based on an empty database.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase02")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase02_FindAll_EmptySource() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase02");
@@ -60,6 +68,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase03")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase03_FindAllWithExpression() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase03");
@@ -77,6 +89,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase04")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase04_FindAllWithExpression_EmptySource() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase04");
@@ -94,6 +110,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase05")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase05_FindSingleWithExpression() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase05");
@@ -111,6 +131,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase06")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase06_FindSingleWithExpression_EmptySource() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase06");
@@ -128,6 +152,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase07")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase07_FindFirstWithExpression() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase07");
@@ -145,6 +173,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase08")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase08_FindFirstWithExpression_EmptySource() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase08");
@@ -162,6 +194,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase09")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase09_RetrieveLessThenAvailable() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase09");
@@ -179,6 +215,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase10")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase10_RetrieveExactlyAvailable() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase10");
@@ -196,6 +236,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase11")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase11_RetrieveExactlyAvailable_EmptySource() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase11");
@@ -213,6 +257,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase12")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase12_RetrieveMoreThenAvailable() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase12");
@@ -230,6 +278,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase13")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase13_RetrieveMoreThenAvailable_EmptySource() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase13");
@@ -249,6 +301,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase14")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase14_OrderBy() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase14");
@@ -266,6 +322,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase15")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase15_OrderBy_EmptySource() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase15");
@@ -285,6 +345,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase16")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase16_Add() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase16");
@@ -302,6 +366,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase17")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase17_Update() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase17");
@@ -319,6 +387,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase18")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase18_Delete() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase18");
@@ -336,6 +408,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase19")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase19_AddMultiple_NormalUse() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase19");
@@ -353,6 +429,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase20")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase20_DeleteMultiple_NormalUse() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase20");
@@ -370,6 +450,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase21")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase21_DeleteMultiple_Exceptions() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase21");
@@ -387,6 +471,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase22")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase22_UpdateMultiple_NormalUse() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase22");
@@ -404,6 +492,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase23")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase23_UpdateMultiple_Exceptions() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase23");
@@ -423,6 +515,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase24_AddUpdate() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase24");
@@ -440,6 +536,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase25_AddUpdateDelete() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase25");
@@ -457,6 +557,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase26_UpdateDelete() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase26");
@@ -474,6 +578,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public override void TestCase27_DeleteAdd() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase27");
@@ -493,6 +601,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public void TestCase28_ExecuteBusinessRuleSingleResult() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase28");
@@ -533,6 +645,10 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
     public void TestCase29_ExecuteBusinessRuleMultipleResults() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase29");

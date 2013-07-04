@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------
 // <copyright file="CsvTransformer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
 // </copyright>
 // <summary>
 //     This class is capable of transforming objects into CSV data and vice versa.

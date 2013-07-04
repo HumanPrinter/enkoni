@@ -7,6 +7,8 @@
 // </summary>
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
+using Enkoni.Framework.Collections;
+
 namespace Enkoni.Framework.Entities {
   /// <summary>This class can be used to compare two instances of <see cref="IEntity{T}"/> for equality. It uses the
   /// <see cref="IEntity{T}.RecordId"/> property to compare the two instances.</summary>
