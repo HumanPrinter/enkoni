@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni</id>
-    <version>2.0.0.0</version>
+    <version>2.0.1.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,16 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Reorganized some collection-related classes into a new namespace calles Enkoni.Framework.Collections. This is a breaking change
-but will add some more flexibility for the future.
-- Added a new Stopwatch class that wraps the default .NET Stopwatch class and adds the ability to record lap times.
-- Added a new AlarmClock class is capable of triggering an event at a specific time of day.
-- Added new extension methods for System.Double to make it easier to compare double-values by looking only at the
-significant digits or a specified margin.
-- Added the new DoubleComparer and DoubleEqualityComparer classes to make it easier to compare double-values by looking only at the
-significant digits or a specified margin.
-Added four new properties to the Workflow-class (CanStart, CanStop, CanPause, CanContinue) that can be used to
-determine if the workflow is in a state in which it can be started, stopped, paused or continued.]]></releaseNotes>
+    <releaseNotes><![CDATA[Fixed a bug in the StopWatch-class that resulted in a laptime not being added to the collection of laptimes when the StopWatch
+was stopped. In addition, the StopWatch now has improved pausing and resuming functionality.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

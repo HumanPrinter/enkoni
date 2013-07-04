@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
-    <release version="X.X.X.X" releasedate="XXXX-XX-XX">
+    <release version="1.1.1.0" releasedate="2013-07-04">
       <projects>
         <project name="Enkoni.Framework" version="2.0.1.0">
           <updates>
@@ -46,12 +46,44 @@
             </update>
           </updates>
         </project>
+        <project name="Enkoni.Framework.Logging" version="1.2.0.3">
+          <updates>
+            <update date="2013-07-04" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
         <project name="Enkoni.Framework.ServiceModel" version="2.1.0.0">
           <updates>
             <update date="2013-04-24" type="change">
               <summary><![CDATA[Changed the SafeClose-extension method to work on more WCF-related types.]]></summary>
               <comment><![CDATA[The SafeClose-extension method now works on objects of type ICommunicationObject which allows for a broader use of the 
               functionality.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Testing" version="1.0.0.4">
+          <updates>
+            <update date="2013-07-04" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.UI" version="1.0.0.3">
+          <updates>
+            <update date="2013-07-04" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Validation" version="1.2.0.3">
+          <updates>
+            <update date="2013-07-04" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
             </update>
           </updates>
         </project>

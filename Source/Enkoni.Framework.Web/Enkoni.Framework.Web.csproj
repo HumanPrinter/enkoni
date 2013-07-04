@@ -24,7 +24,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Enkoni.Framework.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Enkoni.Framework.Web.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\Enkoni.Framework.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -35,7 +35,7 @@
     <DefineConstants>TRACE;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Enkoni.Framework.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Enkoni.Framework.Web.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\Enkoni.Framework.ruleset</CodeAnalysisRuleSet>

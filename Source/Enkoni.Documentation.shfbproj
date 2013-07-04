@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <!-- The configuration and platform will be used to determine which
@@ -33,6 +33,7 @@
       <DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
       <DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
       <DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Web\Enkoni.Framework.Web.csproj" />
     </DocumentationSources>
     <PlugInConfigurations>
     </PlugInConfigurations>
@@ -92,7 +93,7 @@
         <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.EnterpriseLibraryPerformanceCounter" filterName="EnterpriseLibraryPerformanceCounter" isExposed="False" />
       </Filter>
     </ApiFilter>
-    <HelpFileVersion>1.1.0.0</HelpFileVersion>
+    <HelpFileVersion>1.1.1.0</HelpFileVersion>
     <HelpAttributes />
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
@@ -148,6 +149,9 @@
     <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
       <HintPath>packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.ComponentModel.DataAnnotations, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
@@ -155,6 +159,24 @@
     <Reference Include="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>packages\Microsoft.AspNet.Mvc.3.0.20105.1\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Interactivity">
       <HintPath>packages\Blend.Interactivity.Wpf.1.0.1340.0\lib\net\System.Windows.Interactivity.dll</HintPath>
     </Reference>
