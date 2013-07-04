@@ -10,9 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added the project to the Enkoni Framework.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added the Enkoni.Framework.Web project which contains classes that can be used within Web projects (WebForms and MVC).]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2013. All rights reserved.</copyright>
-	<dependencies>
+    <dependencies>
       <dependency id="Microsoft.AspNet.Mvc" version="3.0.20105.1" />
     </dependencies>
     <frameworkAssemblies>
