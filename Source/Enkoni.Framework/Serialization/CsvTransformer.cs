@@ -262,6 +262,10 @@ namespace Enkoni.Framework.Serialization {
         value = string.IsNullOrEmpty(value) ? default(double).ToString(culture) : value;
         propertyInfo.SetValue(obj, double.Parse(value, culture), null);
       }
+      else if(propertyInfo.PropertyType == typeof(decimal)) {
+        value = string.IsNullOrEmpty(value) ? default(decimal).ToString(culture) : value;
+        propertyInfo.SetValue(obj, decimal.Parse(value, culture), null);
+      }
       else if(propertyInfo.PropertyType == typeof(bool)) {
         value = string.IsNullOrEmpty(value) ? default(bool).ToString(culture) : value;
         propertyInfo.SetValue(obj, bool.Parse(value), null);

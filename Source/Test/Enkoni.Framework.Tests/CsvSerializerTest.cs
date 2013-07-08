@@ -194,22 +194,22 @@ namespace Enkoni.Framework.Tests {
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
       TestDummyWithHeader dummyA = new TestDummyWithHeader {
-        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F, ColumnE = 1.11M
       };
       TestDummyWithHeader dummyB = new TestDummyWithHeader {
-        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F, ColumnE = 2.22M
       };
       TestDummyWithHeader dummyC = new TestDummyWithHeader {
-        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F, ColumnE = 3.33M
       };
       TestDummyWithHeader dummyD = new TestDummyWithHeader {
-        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F, ColumnE = 4.44M
       };
       TestDummyWithHeader dummyE = new TestDummyWithHeader {
-        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F, ColumnE = 5.55M
       };
       TestDummyWithHeader dummyF = new TestDummyWithHeader {
-        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F, ColumnE = 6.66M
       };
       collection.Add(dummyA);
       collection.Add(dummyB);
@@ -246,22 +246,22 @@ namespace Enkoni.Framework.Tests {
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
       TestDummyNoHeader dummyA = new TestDummyNoHeader {
-        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F, ColumnE = 1.11M
       };
       TestDummyNoHeader dummyB = new TestDummyNoHeader {
-        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F, ColumnE = 2.22M
       };
       TestDummyNoHeader dummyC = new TestDummyNoHeader {
-        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F, ColumnE = 3.33M
       };
       TestDummyNoHeader dummyD = new TestDummyNoHeader {
-        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F, ColumnE = 4.44M
       };
       TestDummyNoHeader dummyE = new TestDummyNoHeader {
-        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F, ColumnE = 5.55M
       };
       TestDummyNoHeader dummyF = new TestDummyNoHeader {
-        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F, ColumnE = 6.66M
       };
       collection.Add(dummyA);
       collection.Add(dummyB);
@@ -298,22 +298,22 @@ namespace Enkoni.Framework.Tests {
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
       TestDummyWithHeader dummyA = new TestDummyWithHeader {
-        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F, ColumnE = 1.11M
       };
       TestDummyWithHeader dummyB = new TestDummyWithHeader {
-        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F, ColumnE = 2.22M
       };
       TestDummyWithHeader dummyC = new TestDummyWithHeader {
-        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F, ColumnE = 3.33M
       };
       TestDummyWithHeader dummyD = new TestDummyWithHeader {
-        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F, ColumnE = 4.44M
       };
       TestDummyWithHeader dummyE = new TestDummyWithHeader {
-        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F, ColumnE = 5.55M
       };
       TestDummyWithHeader dummyF = new TestDummyWithHeader {
-        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F, ColumnE = 6.66M
       };
       collection.Add(dummyA);
       collection.Add(dummyB);
@@ -350,22 +350,22 @@ namespace Enkoni.Framework.Tests {
 
       List<TestDummyNoHeader> collection = new List<TestDummyNoHeader>();
       TestDummyNoHeader dummyA = new TestDummyNoHeader {
-        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F, ColumnE = 1.11M
       };
       TestDummyNoHeader dummyB = new TestDummyNoHeader {
-        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F, ColumnE = 2.22M
       };
       TestDummyNoHeader dummyC = new TestDummyNoHeader {
-        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F, ColumnE = 3.33M
       };
       TestDummyNoHeader dummyD = new TestDummyNoHeader {
-        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F, ColumnE = 4.44M
       };
       TestDummyNoHeader dummyE = new TestDummyNoHeader {
-        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F, ColumnE = 5.55M
       };
       TestDummyNoHeader dummyF = new TestDummyNoHeader {
-        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F, ColumnE = 6.66M
       };
       collection.Add(dummyA);
       collection.Add(dummyB);
@@ -715,22 +715,22 @@ namespace Enkoni.Framework.Tests {
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
       TestDummyWithHeader dummyA = new TestDummyWithHeader {
-        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F, ColumnE = 1.11M
       };
       TestDummyWithHeader dummyB = new TestDummyWithHeader {
-        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F, ColumnE = 2.22M
       };
       TestDummyWithHeader dummyC = new TestDummyWithHeader {
-        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F, ColumnE = 3.33M
       };
       TestDummyWithHeader dummyD = new TestDummyWithHeader {
-        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F, ColumnE = 4.44M
       };
       TestDummyWithHeader dummyE = new TestDummyWithHeader {
-        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F, ColumnE = 5.55M
       };
       TestDummyWithHeader dummyF = new TestDummyWithHeader {
-        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F, ColumnE = 6.66M
       };
       collection.Add(dummyA);
       collection.Add(dummyB);
@@ -804,22 +804,22 @@ namespace Enkoni.Framework.Tests {
 
       List<TestDummyWithHeader> collection = new List<TestDummyWithHeader>();
       TestDummyWithHeader dummyA = new TestDummyWithHeader {
-        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F
+        ColumnA = "ColA_1", ColumnB = 1, ColumnC = new DateTime(2011, 1, 1, 12, 0, 1), ColumnD = 0.1F, ColumnE = 1.11M
       };
       TestDummyWithHeader dummyB = new TestDummyWithHeader {
-        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F
+        ColumnA = "ColA_2", ColumnB = 2, ColumnC = new DateTime(2011, 1, 1, 12, 0, 2), ColumnD = 0.2F, ColumnE = 2.22M
       };
       TestDummyWithHeader dummyC = new TestDummyWithHeader {
-        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F
+        ColumnA = "ColA_3", ColumnB = 3, ColumnC = new DateTime(2011, 1, 1, 12, 0, 3), ColumnD = 0.3F, ColumnE = 3.33M
       };
       TestDummyWithHeader dummyD = new TestDummyWithHeader {
-        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F
+        ColumnA = "ColA_4", ColumnB = 4, ColumnC = new DateTime(2011, 1, 1, 12, 0, 4), ColumnD = 0.4F, ColumnE = 4.44M
       };
       TestDummyWithHeader dummyE = new TestDummyWithHeader {
-        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F
+        ColumnA = "ColA_5", ColumnB = 5, ColumnC = new DateTime(2011, 1, 1, 12, 0, 5), ColumnD = 0.5F, ColumnE = 5.55M
       };
       TestDummyWithHeader dummyF = new TestDummyWithHeader {
-        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F
+        ColumnA = "ColA_6", ColumnB = 6, ColumnC = new DateTime(2011, 1, 1, 12, 0, 6), ColumnD = 0.6F, ColumnE = 6.66M
       };
       collection.Add(dummyA);
       collection.Add(dummyB);
@@ -935,6 +935,9 @@ namespace Enkoni.Framework.Tests {
 
       /// <summary>Gets or sets the value of the third column.</summary>
       public abstract DateTime ColumnC { get; set; }
+
+      /// <summary>Gets or sets the value of the fifth column.</summary>
+      public abstract decimal ColumnE { get; set; }
     }
 
     /// <summary>A basic dummy class to support the testcases.</summary>
@@ -970,6 +973,10 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the third column.</summary>
       [CsvColumn(2, FormatString = "yyyy-MM-dd HH:mm:ss")]
       public override DateTime ColumnC { get; set; }
+
+      /// <summary>Gets or sets the value of the fifth column.</summary>
+      [CsvColumn(4, CultureName = "nl-NL")]
+      public override decimal ColumnE { get; set; }
     }
 
     /// <summary>A basic dummy class to support the testcases.</summary>
@@ -1008,6 +1015,10 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the third column.</summary>
       [CsvColumn(2, FormatString = "yyyy-MM-dd HH:mm:ss")]
       public override DateTime ColumnC { get; set; }
+
+      /// <summary>Gets or sets the value of the fifth column.</summary>
+      [CsvColumn(4, CultureName = "nl-NL")]
+      public override decimal ColumnE { get; set; }
     }
 
     /// <summary>A basic dummy class to support the testcases.</summary>
