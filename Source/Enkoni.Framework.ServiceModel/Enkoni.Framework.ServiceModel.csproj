@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Enkoni.Framework.ServiceModel.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>..\Enkoni.Framework.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
