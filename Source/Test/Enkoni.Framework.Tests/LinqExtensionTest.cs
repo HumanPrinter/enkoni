@@ -235,6 +235,50 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(anonymousComparer.Equals(anonymousDummyB, anonymousDummyE));
     }
 
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void TestCase07_Distinct() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using an empty collection as source */
+      List<TestDummy> collection = new List<TestDummy>();
+      var anonymousCollection = collection.Select(td => new { OtherTextValue = td.TextValue.Reverse(), Length = td.TextValue.Length });
+      IEnumerable<TestDummy> distinctCollection = collection.Distinct(td => td.NumericValue);
+      var distinctAnonymousCollection = anonymousCollection.Distinct(a => a.Length);
+
+      Assert.IsNotNull(distinctCollection);
+      Assert.IsNotNull(distinctAnonymousCollection);
+      Assert.AreEqual(0, distinctCollection.Count());
+      Assert.AreEqual(0, distinctAnonymousCollection.Count());
+
+      /* Test the method using a filled collection as source */
+      TestDummy dummyA = new TestDummy { NumericValue = 1, TextValue = "TestValue" };
+      TestDummy dummyB = new TestDummy { NumericValue = 2, TextValue = "AnotherValue" };
+      TestDummy dummyC = new TestDummy { NumericValue = 1, TextValue = "MyValue" };
+      TestDummy dummyD = new TestDummy { NumericValue = 4, TextValue = "TestValue" };
+      TestDummy dummyE = new TestDummy { NumericValue = 1, TextValue = "TestingValue" };
+      collection = new List<TestDummy> { dummyA, dummyB, dummyC, dummyD, dummyE };
+      anonymousCollection = collection.Select(td => new { OtherTextValue = td.TextValue.Reverse(), Length = td.TextValue.Length });
+      distinctCollection = collection.Distinct(td => td.NumericValue);
+      distinctAnonymousCollection = anonymousCollection.Distinct(a => a.Length);
+
+      Assert.IsNotNull(distinctCollection);
+      Assert.IsNotNull(distinctAnonymousCollection);
+
+      Assert.AreEqual(3, distinctCollection.Count());
+      Assert.AreEqual(1, distinctCollection.Count(d => d.NumericValue == 1));
+      Assert.AreEqual(1, distinctCollection.Count(d => d.NumericValue == 2));
+      Assert.AreEqual(1, distinctCollection.Count(d => d.NumericValue == 4));
+      Assert.AreEqual(3, distinctAnonymousCollection.Count());
+      Assert.AreEqual(1, distinctAnonymousCollection.Count(d => d.Length == 7));
+      Assert.AreEqual(1, distinctAnonymousCollection.Count(d => d.Length == 9));
+      Assert.AreEqual(1, distinctAnonymousCollection.Count(d => d.Length == 12));
+    }
+
     #region Private helper classes
     /// <summary>A basic dummy class to support the testcases.</summary>
     private class TestDummy {

@@ -9,6 +9,7 @@
 
 
 using System;
+using System.Globalization;
 using Enkoni.Framework.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -475,16 +476,20 @@ namespace Enkoni.Framework.Tests {
       };
 
       string result = testSubject.ToString(inputValue);
+      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\"",
+        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\"", result);
+      Assert.AreEqual(expected, result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
       result = testSubject.ToString(inputValue);
+      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\"",
+        inputValue.ColumnA, inputValue.ColumnC);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\"", result);
+      Assert.AreEqual(expected, result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -504,16 +509,20 @@ namespace Enkoni.Framework.Tests {
       };
 
       string result = testSubject.ToString(inputValue);
+      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\"",
+        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\"", result);
+      Assert.AreEqual(expected, result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
       result = testSubject.ToString(inputValue);
+      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\"",
+        inputValue.ColumnA, inputValue.ColumnC);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\"", result);
+      Assert.AreEqual(expected, result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -533,16 +542,20 @@ namespace Enkoni.Framework.Tests {
       };
 
       string result = testSubject.ToString(inputValue);
+      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\"",
+        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\"", result);
+      Assert.AreEqual(expected, result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
       result = testSubject.ToString(inputValue);
+      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\"",
+        inputValue.ColumnA, inputValue.ColumnC);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\"", result);
+      Assert.AreEqual(expected, result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -676,7 +689,7 @@ namespace Enkoni.Framework.Tests {
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12-7-2013 00:00:00,20130713,\"14-7-2013 00:00:00\",\"20130715\",16-7-2013 00:00:00,20130717,\"18-7-2013 00:00:00\",\"20130719\"", result);
+      Assert.AreEqual("12-07-2013 00:00:00,20130713,\"14-07-2013 00:00:00\",\"20130715\",16-07-2013 00:00:00,20130717,\"18-07-2013 00:00:00\",\"20130719\"", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
@@ -684,7 +697,7 @@ namespace Enkoni.Framework.Tests {
       inputValue.ColumnH = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12-7-2013 00:00:00,20130713,\"14-7-2013 00:00:00\",\"20130715\",,,\"\",\"\"", result);
+      Assert.AreEqual("12-07-2013 00:00:00,20130713,\"14-07-2013 00:00:00\",\"20130715\",,,\"\",\"\"", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>

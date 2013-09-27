@@ -3,10 +3,17 @@
   <releases>
     <release version="1.1.2.0" releasedate="xxxx-xx-xx">
       <projects>
-        <project name="Enkoni.Framework" version="2.0.2.0">
+        <project name="Enkoni.Framework" version="2.1.0.0">
           <updates>
+            <update date="2013-09-27" type="addition">
+              <summary><![CDATA[Added the Enkoni.Framework.Linq.Extensions.Distinct extension method.]]></summary>
+              <comment>
+                <![CDATA[Added the Enkoni.Framework.Linq.Distinct extension method that can be used to return unique items
+                from a IEnumerable<T> by comparing a specified field.]]>
+              </comment>
+            </update>
             <update date="2013-07-14" type="change">
-              <summary><![CDATA[Added support for more formats to the ScvSerializer]]></summary>
+              <summary><![CDATA[Added support for more formats to the CsvSerializer]]></summary>
               <comment>
                 <![CDATA[The CsvSerializer now support more formats when (de)serializing classes.]]>
               </comment>
