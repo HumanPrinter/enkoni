@@ -29,7 +29,6 @@ namespace Enkoni.Framework.ServiceModel.Tests {
 
     #region Test methods
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
-    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
@@ -44,7 +43,14 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     public void TestCase01_DefaultBehavior() {
       /* First, send a valid request */
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase01\ValidRequest.xml");
-      XDocument result = ReadServiceResponse(request, typeof(TestService), "test_default");
+      XDocument result = null;
+      try {
+        result = ReadServiceResponse(request, typeof(TestService), "test_default");
+      }
+      catch(AddressAccessDeniedException) {
+        Assert.Inconclusive("This test case could not be executed at the test controller due to insufficient rights");
+        return;
+      }
 
       /* Check if the response is as expected */
       Assert.IsTrue(DocumentContainsExpectedValues(result, new DateTime(2012, 11, 24), "Hello TestValue", 43));
@@ -57,14 +63,20 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     }
 
     /// <summary>Tests if the <see cref="SchemaValidationBehavior"/> is disabled accordingly with the configuration parameter.</summary>
-    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
     public void TestCase02_SchemaValidationBehaviorDisabled() {
       /* First, send a valid request */
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase02\ValidRequest.xml");
-      XDocument result = ReadServiceResponse(request, typeof(TestService), "test_disabled");
+      XDocument result = null;
+      try {
+        result = ReadServiceResponse(request, typeof(TestService), "test_default");
+      }
+      catch(AddressAccessDeniedException) {
+        Assert.Inconclusive("This test case could not be executed at the test controller due to insufficient rights");
+        return;
+      }
 
       /* Check if the response is as expected */
       Assert.IsTrue(DocumentContainsExpectedValues(result, new DateTime(2012, 11, 24), "Hello TestValue", 43));
@@ -77,13 +89,19 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as an assembly resource.</summary>
-    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
     public void TestCase03_SchemaValidationBehaviorSchemaFromResource() {
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase03\ValidRequest.xml");
-      XDocument result = ReadServiceResponse(request, typeof(TestService), "test_resource");
+      XDocument result = null;
+      try {
+        result = ReadServiceResponse(request, typeof(TestService), "test_default");
+      }
+      catch(AddressAccessDeniedException) {
+        Assert.Inconclusive("This test case could not be executed at the test controller due to insufficient rights");
+        return;
+      }
 
       /* Check if the response is as expected */
       Assert.IsTrue(DocumentContainsExpectedValues(result, new DateTime(2012, 11, 24), "Hello TestValue", 43));
@@ -95,14 +113,20 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as a file.</summary>
-    [Ignore]
     [TestMethod]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
     [DeploymentItem(@"Test\Enkoni.Framework.ServiceModel.Tests\TestDataContract.xsd", @"SchemaValidationBehaviorTest\TestCase04")]
     public void TestCase04_SchemaValidationBehaviorSchemaFromFile() {
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase04\ValidRequest.xml");
-      XDocument result = ReadServiceResponse(request, typeof(TestService), "test_file");
+      XDocument result = null;
+      try {
+        result = ReadServiceResponse(request, typeof(TestService), "test_default");
+      }
+      catch(AddressAccessDeniedException) {
+        Assert.Inconclusive("This test case could not be executed at the test controller due to insufficient rights");
+        return;
+      }
 
       Assert.IsTrue(DocumentContainsExpectedValues(result, new DateTime(2012, 11, 24), "Hello TestValue", 43));
 

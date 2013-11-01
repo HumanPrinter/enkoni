@@ -30,7 +30,31 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Gets the index of the field in the CSV file.</summary>
     public int FieldIndex { get; private set; }
 
-    /// <summary>Gets or sets the format string that is to be used when parsing the column value.</summary>
+    /// <summary>Gets or sets the format string that is to be used when parsing the column value.<br />
+    /// De following format strings are supported:<br/>
+    /// <list type="bullet">
+    ///   <item>
+    ///     <term>XXX</term>
+    ///     <description>Serialize the property according to the format. I.e.: '000' in combination with integer value 7 results in "007".</description>
+    ///   </item>
+    ///   <item>
+    ///     <term>[prefix]{0:XXX}[postfix]</term>
+    ///     <description>Serialize the property according to the format. I.e.: 'a{0:000}b' in combination with integer value 7 results in "a007b".</description>
+    ///   </item>
+    ///   <item>
+    ///     <term>X or -X (<see cref="String"/> properties only)</term>
+    ///     <description>Serialize the property according to the format. I.e.: '-5' in combination with string value 'abc' results in "abc  ".</description>
+    ///   </item>
+    ///   <item>
+    ///     <term>[prefix]{0,X}[postfix] or [prefix]{0,-X}[postfix] (<see cref="String"/> properties only)</term>
+    ///     <description>Serialize the property according to the format. I.e.: 'y{0,-5}z' in combination with string value 'abc' results in "yabc  z".</description>
+    ///   </item>
+    ///   <item>
+    ///     <term>true:[true string]|false:[false string] (<see cref="Boolean"/> properties only)</term>
+    ///     <description>Serialize the property according to the format. I.e.: 'true:Y|false:N' in combination with boolean value 'True' results in "Y".</description>
+    ///   </item>
+    /// </list>
+    /// </summary>
     public string FormatString { get; set; }
 
     /// <summary>Gets or sets the name of the culture that must be used to parse the field value. If this property is set, it overrides any 

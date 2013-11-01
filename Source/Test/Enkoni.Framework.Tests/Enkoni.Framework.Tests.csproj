@@ -48,6 +48,7 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="CsvTransformerTest.cs" />
     <Compile Include="StopwatchTest.cs" />
     <Compile Include="DoubleExtensionTest.cs" />
     <Compile Include="TypeExtensionTest.Dummies.cs" />

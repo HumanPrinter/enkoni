@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <CodeAnalysisDependentAssemblyPaths>$(SolutionDir)\Libraries\</CodeAnalysisDependentAssemblyPaths>
+  </PropertyGroup>
+  <PropertyGroup>
     <!-- Check if the integrated version of FxCop is installed. If so, do not execute the external FxCop -->
 	<UseExternalFxCop Condition="!Exists('$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\Setup\VS@ProductDir)\Team Tools\Static Analysis Tools\FxCop') AND !Exists('$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\11.0\Setup\VS@ProductDir)\Team Tools\Static Analysis Tools\FxCop')">True</UseExternalFxCop>
   </PropertyGroup>

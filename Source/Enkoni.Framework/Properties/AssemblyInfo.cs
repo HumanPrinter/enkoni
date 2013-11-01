@@ -9,6 +9,7 @@
 
 using System;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the 
@@ -25,3 +26,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("9dd872c0-5f11-41e4-94d9-e3e7813d58fe")]
 
 [assembly: CLSCompliant(true)]
+
+[assembly: NeutralResourcesLanguage("en")]

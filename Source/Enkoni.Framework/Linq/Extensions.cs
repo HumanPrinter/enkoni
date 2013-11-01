@@ -151,6 +151,27 @@ namespace Enkoni.Framework.Linq {
 
       return new LambdaEqualityComparer<T, TField>(field);
     }
+
+    /// <summary>Returns distinct elements from a sequence by using a <see cref="LambdaEqualityComparer{T,TField}"/> that 
+    /// compares values using the specified <paramref name="field"/>.</summary>
+    /// <param name="source">The sequence to remove duplicate elements from.</param>
+    /// <param name="field">The function that gives access to the field that must be used in the comparison.</param>
+    /// <typeparam name="T">The type of the elements of source.</typeparam>
+    /// <typeparam name="TField">The type of the field that must be used for the comparison.</typeparam>
+    /// <returns>An <see cref="IEnumerable{T}"/> that contains distinct elements from the source sequence.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="source"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentNullException"><paramref name="field"/> is <see langword="null"/>.</exception>
+    public static IEnumerable<T> Distinct<T, TField>(this IEnumerable<T> source, Func<T, TField> field) {
+      if(source == null) {
+        throw new ArgumentNullException("source", "The IEnumerable-instance is mandatory.");
+      }
+
+      if(field == null) {
+        throw new ArgumentNullException("field");
+      }
+
+      return source.Distinct(source.CreateEqualityComparer(field));
+    }
     #endregion
 
     #region IQueryable<T> extension methods
