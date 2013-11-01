@@ -119,10 +119,10 @@ Write-Host "NuGet packages were successfully created. Going to generate the docu
 
 $aliasExists = Test-Path Alias:\msbuild
 if(!$aliasExists) {
-  Set-Alias msbuild c:\WINDOWS\Microsoft.Net\Framework\v4.0.30319\MSBuild.exe  
+  Set-Alias msbuild "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
 }
 
-msbuild /p:Configuration=Release /p:DumpLogOnFailure=True (Join-Path $projectDir '\Source\Enkoni.Documentation.shfbproj')
+msbuild /p:Configuration=Release`;DumpLogOnFailure=True (Join-Path $projectDir '\Source\Enkoni.Documentation.shfbproj')
 $exitCode = $LastExitCode
 if($exitCode -ne 0) {
   Write-Host -ForegroundColor Red 'MSBuild failed. Review MSBuild-output and try again'
