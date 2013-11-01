@@ -10,6 +10,7 @@
 
 using System;
 using System.Globalization;
+using System.Text;
 using Enkoni.Framework.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -689,7 +690,17 @@ namespace Enkoni.Framework.Tests {
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12-07-2013 00:00:00,20130713,\"14-07-2013 00:00:00\",\"20130715\",16-07-2013 00:00:00,20130717,\"18-07-2013 00:00:00\",\"20130719\"", result);
+      string expected = new StringBuilder()
+        .AppendFormat(new CultureInfo("nl-NL"), "{0},", new DateTime(2013, 7, 12))
+        .AppendFormat("{0:yyyyMMdd},", new DateTime(2013, 7, 13))
+        .AppendFormat(new CultureInfo("nl-NL"), "\"{0}\",", new DateTime(2013, 7, 14))
+        .AppendFormat("\"{0:yyyyMMdd}\",", new DateTime(2013, 7, 15))
+        .AppendFormat(new CultureInfo("nl-NL"), "{0},", new DateTime(2013, 7, 16))
+        .AppendFormat("{0:yyyyMMdd},", new DateTime(2013, 7, 17))
+        .AppendFormat(new CultureInfo("nl-NL"), "\"{0}\",", new DateTime(2013, 7, 18))
+        .AppendFormat("\"{0:yyyyMMdd}\"", new DateTime(2013, 7, 19))
+        .ToString();
+      Assert.AreEqual(expected, result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
@@ -697,6 +708,13 @@ namespace Enkoni.Framework.Tests {
       inputValue.ColumnH = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
+      expected = new StringBuilder()
+        .AppendFormat(new CultureInfo("nl-NL"), "{0},", new DateTime(2013, 7, 12))
+        .AppendFormat("{0:yyyyMMdd},", new DateTime(2013, 7, 13))
+        .AppendFormat(new CultureInfo("nl-NL"), "\"{0}\",", new DateTime(2013, 7, 14))
+        .AppendFormat("\"{0:yyyyMMdd}\",", new DateTime(2013, 7, 15))
+        .Append(",,\"\",\"\"")
+        .ToString();
       Assert.AreEqual("12-07-2013 00:00:00,20130713,\"14-07-2013 00:00:00\",\"20130715\",,,\"\",\"\"", result);
     }
 
