@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.Web.Mvc.DecimalModelBinder">
+            <summary>Provides a custom model binder that is capable of binding decimal values using a configurable format. It also allows
+            for binding decimal values that do not contain a decimal point.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Web.Mvc.DecimalModelBinder.formatProvider">
+            <summary>The format provider that is used to convert the decimals.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.DecimalModelBinder.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Web.Mvc.DecimalModelBinder"/> class that will use a default culture invariant formatting to
+            convert the <see langword="decimal"/> values.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.DecimalModelBinder.#ctor(System.IFormatProvider)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Web.Mvc.DecimalModelBinder"/> class that will use the specified <see cref="T:System.IFormatProvider"/>
+            instance to convert the <see langword="decimal"/> values.</summary>
+            <param name="provider">The <see cref="T:System.IFormatProvider"/> that will be used to convert the <see langword="decimal"/> values.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="provider"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.DecimalModelBinder.BindModel(System.Web.Mvc.ControllerContext,System.Web.Mvc.ModelBindingContext)">
+            <summary>Binds a received decimal value to the viewmodel.</summary>
+            <param name="controllerContext">An instance that encapsulates information about the HTTP request.</param>
+            <param name="bindingContext">The context for the model binder.</param>
+            <returns>The converted decimal value.</returns>
+        </member>
+    </members>
+</doc>
