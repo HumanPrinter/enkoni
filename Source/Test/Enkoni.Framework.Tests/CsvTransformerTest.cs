@@ -715,7 +715,7 @@ namespace Enkoni.Framework.Tests {
         .AppendFormat("\"{0:yyyyMMdd}\",", new DateTime(2013, 7, 15))
         .Append(",,\"\",\"\"")
         .ToString();
-      Assert.AreEqual("12-07-2013 00:00:00,20130713,\"14-07-2013 00:00:00\",\"20130715\",,,\"\",\"\"", result);
+      Assert.AreEqual(expected, result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
