@@ -67,7 +67,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="ReferenceEqualityComparer{T}"/> class when comparing two value-type objects.</summary>
     [TestMethod]
-    public void CompareValueTypes() {
+    public void TestCase02_CompareValueTypes() {
       ReferenceEqualityComparer<DateTime> comparer = new ReferenceEqualityComparer<DateTime>();
 
       /* Situation 1: Comparing two variables that point to different instances with different contents */
