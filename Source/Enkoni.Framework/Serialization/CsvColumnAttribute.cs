@@ -57,6 +57,11 @@ namespace Enkoni.Framework.Serialization {
     /// </summary>
     public string FormatString { get; set; }
 
+    /// <summary>Gets or sets the string that is used to identify a null-value. During serialization, this value is used when the property to which 
+    /// this attribute is applied equals <see langword="null"/>. During deserialization, if the serialized value equals this null-string, 
+    /// <see langword="null"/> or the default value is used.</summary>
+    public string NullString { get; set; }
+
     /// <summary>Gets or sets the name of the culture that must be used to parse the field value. If this property is set, it overrides any 
     /// culture-settings that may have been set in the CsvRecord-attribute.</summary>
     public string CultureName { get; set; }
