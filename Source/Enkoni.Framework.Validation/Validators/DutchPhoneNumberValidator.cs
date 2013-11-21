@@ -37,6 +37,7 @@ namespace Enkoni.Framework.Validation.Validators {
 
       if(ConfiguredValues != null) {
         this.AllowCountryCallingCode = ConfiguredValues.AllowCountryCallingCode;
+        this.AllowCarrierPreselect = ConfiguredValues.AllowCarrierPreselect;
         if(ConfiguredValues.AreaCodesOverridden) {
           this.IncludeAreaCodes = ConfiguredValues.AreaCodes;
         }
@@ -51,6 +52,10 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <summary>Gets or sets a value indicating whether the international dialing prefix and country calling code (eg. 0031 or +31) code is allowed 
     /// in the phone number. Defaults to <see langword="true"/>.</summary>
     public bool AllowCountryCallingCode { get; set; }
+
+    /// <summary>Gets or sets a value indicating whether a carrier preselect code (eg. 1642) code is allowed in the phone number. Defaults to
+    /// <see langword="false"/>.</summary>
+    public bool AllowCarrierPreselect { get; set; }
 
     /// <summary>Gets or sets the semicolon-seperated area codes that are considered valid. This overrides the default area codes for this validator.
     /// </summary>
@@ -95,28 +100,23 @@ namespace Enkoni.Framework.Validation.Validators {
       bool isValid = false;
 
       if((this.Categories & PhoneNumberCategories.Regular) == PhoneNumberCategories.Regular) {
-        isValid = ValidateRegularNumber(strippedObjectToValidate, this.AllowCountryCallingCode, this.IncludeAreaCodes, this.ExcludeAreaCodes);
-        //isValid = this.Negated ? !isValid : isValid;
+        isValid = ValidateRegularNumber(strippedObjectToValidate, this.AllowCountryCallingCode, this.AllowCarrierPreselect, this.IncludeAreaCodes, this.ExcludeAreaCodes);
       }
 
       if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Mobile) == PhoneNumberCategories.Mobile) {
-        isValid |= ValidateMobileNumber(strippedObjectToValidate, this.AllowCountryCallingCode);
-        //isValid = this.Negated ? !isValid : isValid;
+        isValid |= ValidateMobileNumber(strippedObjectToValidate, this.AllowCountryCallingCode, this.AllowCarrierPreselect);
       }
 
       if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Emergency) == PhoneNumberCategories.Emergency) {
         isValid |= ValidateEmergencyNumber(strippedObjectToValidate);
-        //isValid = this.Negated ? !isValid : isValid;
       }
 
       if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Service) == PhoneNumberCategories.Service) {
         isValid |= ValidateServiceNumber(strippedObjectToValidate);
-        //isValid = this.Negated ? !isValid : isValid;
       }
 
       if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Other) == PhoneNumberCategories.Other) {
-        isValid |= ValidateOtherNumber(strippedObjectToValidate);
-        //isValid = this.Negated ? !isValid : isValid;
+        isValid |= ValidateOtherNumber(strippedObjectToValidate, this.AllowCarrierPreselect);
       }
 
       isValid = this.Negated ? !isValid : isValid;
@@ -145,31 +145,50 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <summary>Validates whether the input is a valid Dutch mobile phone number.</summary>
     /// <param name="input">The string that must be validated.</param>
     /// <param name="allowCountryCallingCode">Indicates whether the country calling code is allowed in the phone number.</param>
+    /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
-    private static bool ValidateMobileNumber(string input, bool allowCountryCallingCode) {
-      return allowCountryCallingCode 
-        ? new MobileRegexNetherlands().IsMatch(input)
-        : new MobileRegexNetherlandsNoCountryAccessCode().IsMatch(input);
+    private static bool ValidateMobileNumber(string input, bool allowCountryCallingCode, bool allowCarrierPreselect) {
+      if(allowCarrierPreselect) {
+        return allowCountryCallingCode
+          ? new MobileRegexNetherlandsWithCarrierPreselect().IsMatch(input)
+          : new MobileRegexNetherlandsNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
+      }
+      else {
+        return allowCountryCallingCode
+          ? new MobileRegexNetherlands().IsMatch(input)
+          : new MobileRegexNetherlandsNoCountryAccessCode().IsMatch(input);
+      }
     }
 
     /// <summary>Validates whether the input is a valid Dutch phone number.</summary>
     /// <param name="input">The string that must be validated.</param>
+    /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
-    private static bool ValidateOtherNumber(string input) {
-      return new OtherRegexNetherlands().IsMatch(input);
+    private static bool ValidateOtherNumber(string input, bool allowCarrierPreselect) {
+      return allowCarrierPreselect
+        ? new OtherRegexNetherlandsWithCarrierPreselect().IsMatch(input)
+        : new OtherRegexNetherlands().IsMatch(input);
     }
 
     /// <summary>Validates whether the input is a valid Dutch regular phone number.</summary>
     /// <param name="input">The string that must be validated.</param>
     /// <param name="allowCountryCallingCode">Indicates whether the country calling code is allowed in the phone number.</param>
+    /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
     /// <param name="includeAreaCodes">Overrides the area codes that are part of the regular expression.</param>
     /// <param name="excludeAreaCodes">The area codes that must be excluded from the standard list of area codes.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
-    private static bool ValidateRegularNumber(string input, bool allowCountryCallingCode, string includeAreaCodes, string excludeAreaCodes) {
+    private static bool ValidateRegularNumber(string input, bool allowCountryCallingCode, bool allowCarrierPreselect, string includeAreaCodes, string excludeAreaCodes) {
       if(string.IsNullOrEmpty(includeAreaCodes) && string.IsNullOrEmpty(excludeAreaCodes)) {
-        return allowCountryCallingCode
-          ? new DefaultRegularRegexNetherlands().IsMatch(input)
-          : new DefaultRegularRegexNetherlandsNoCountryAccessCode().IsMatch(input);
+        if(allowCarrierPreselect) {
+          return allowCountryCallingCode
+            ? new DefaultRegularRegexNetherlandsWithCarrierPreselect().IsMatch(input)
+            : new DefaultRegularRegexNetherlandsNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
+        }
+        else {
+          return allowCountryCallingCode
+            ? new DefaultRegularRegexNetherlands().IsMatch(input)
+            : new DefaultRegularRegexNetherlandsNoCountryAccessCode().IsMatch(input);
+        }
       }
 
       IEnumerable<string> areaCodes = Resources.AreaCodes_NL.Split(';');
@@ -187,11 +206,21 @@ namespace Enkoni.Framework.Validation.Validators {
       string longAreaCodesRegexPart = string.Join("|", longAreaCodes.ToArray());
 
       string pattern;
-      if(allowCountryCallingCode) {
-        pattern = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPattern_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+      if(allowCarrierPreselect) {
+        if(allowCountryCallingCode) {
+          pattern = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPatternWithCarrierPreselect_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+        }
+        else {
+          pattern = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPatternNoCountryAccessCodeWithCarrierPreselect_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+        }
       }
       else {
-        pattern = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPatternNoCountryAccessCode_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+        if(allowCountryCallingCode) {
+          pattern = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPattern_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+        }
+        else {
+          pattern = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPatternNoCountryAccessCode_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+        }
       }
 
       return Regex.IsMatch(input, pattern, RegexOptions.Singleline);
@@ -203,7 +232,10 @@ namespace Enkoni.Framework.Validation.Validators {
     private class ConfiguredValuesContainer {
       /// <summary>Gets or sets a value indicating whether the setting for 'AllowCountryCallingCode' was set to <see langword="true"/>.</summary>
       public bool AllowCountryCallingCode { get; set; }
-      
+
+      /// <summary>Gets or sets a value indicating whether the setting for 'AllowCarrierPreselect' was set to <see langword="true"/>.</summary>
+      public bool AllowCarrierPreselect { get; set; }
+
       /// <summary>Gets or sets a value indicating whether the collection of area codes were overridden through configuration.</summary>
       public bool AreaCodesOverridden { get; set; }
       
@@ -258,6 +290,7 @@ namespace Enkoni.Framework.Validation.Validators {
 
         ConfiguredValuesContainer configuredValues = new ConfiguredValuesContainer {
           AllowCountryCallingCode = validatorsSection.DutchPhoneNumberValidator.AllowCountryCallingCode,
+          AllowCarrierPreselect = validatorsSection.DutchPhoneNumberValidator.AllowCarrierPreselect,
           AreaCodesOverridden = difference.Any(),
           AreaCodes = string.Join(";", configuredAreaCodes.ToArray())
         };

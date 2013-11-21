@@ -86,5 +86,23 @@ namespace Enkoni.Framework.Validation.Properties {
                 return ResourceManager.GetString("RegularRegexPatternNoCountryAccessCode_NL", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^((((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?((((0({0})))-?)|(\(0({0})\)))[2-8]\d{{6}})|(((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?((((0({1})))-?)|(\(0({1})\)))[2-8]\d{{5}}))$.
+        /// </summary>
+        internal static string RegularRegexPatternNoCountryAccessCodeWithCarrierPreselect_NL {
+            get {
+                return ResourceManager.GetString("RegularRegexPatternNoCountryAccessCodeWithCarrierPreselect_NL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^(((((((\+|(((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?)00)31(\(0\))?({0}))|((((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?)0({0})))-?)|((((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?)\(0({0})\)))[2-8]\d{{6}})|((((((\+|(((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?)00)31(\(0\))?({1}))|((((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?)0({1})))-?)|((((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?)\(0({1})\)))[2-8]\d{{5}}))$.
+        /// </summary>
+        internal static string RegularRegexPatternWithCarrierPreselect_NL {
+            get {
+                return ResourceManager.GetString("RegularRegexPatternWithCarrierPreselect_NL", resourceCulture);
+            }
+        }
     }
 }

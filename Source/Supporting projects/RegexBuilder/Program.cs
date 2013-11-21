@@ -28,6 +28,8 @@ namespace RegexBuilder {
       string longAreaCodesRegexPart = string.Join("|", longAreaCodes.ToArray());
       string defaultRegularRegexPattern = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPattern_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
       string defaultRegularRegexPatternNotInternational = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPatternNoCountryAccessCode_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+      string defaultRegularRegexPatternWithCarrierPreselect = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPatternWithCarrierPreselect_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
+      string defaultRegularRegexPatternNotInternationalWithCarrierPreselect = string.Format(CultureInfo.InvariantCulture, Resources.RegularRegexPatternNoCountryAccessCodeWithCarrierPreselect_NL, shortAreaCodesRegexPart, longAreaCodesRegexPart);
 
       RegexCompilationInfo defaultRegularRegex_NL = new RegexCompilationInfo(defaultRegularRegexPattern,
                                                     RegexOptions.Singleline,
@@ -38,6 +40,18 @@ namespace RegexBuilder {
       RegexCompilationInfo defaultRegularRegexNoCountryAccessCode_NL = new RegexCompilationInfo(defaultRegularRegexPatternNotInternational,
                                                     RegexOptions.Singleline,
                                                     "DefaultRegularRegexNetherlandsNoCountryAccessCode",
+                                                    "Enkoni.Framework.Validation.RegularExpressions",
+                                                    true);
+
+      RegexCompilationInfo defaultRegularRegexWithCP_NL = new RegexCompilationInfo(defaultRegularRegexPatternWithCarrierPreselect,
+                                                    RegexOptions.Singleline,
+                                                    "DefaultRegularRegexNetherlandsWithCarrierPreselect",
+                                                    "Enkoni.Framework.Validation.RegularExpressions",
+                                                    true);
+
+      RegexCompilationInfo defaultRegularRegexNoCountryAccessCodeWithCP_NL = new RegexCompilationInfo(defaultRegularRegexPatternNotInternationalWithCarrierPreselect,
+                                                    RegexOptions.Singleline,
+                                                    "DefaultRegularRegexNetherlandsNoCountryAccessCodeWithCarrierPreselect",
                                                     "Enkoni.Framework.Validation.RegularExpressions",
                                                     true);
 
@@ -65,9 +79,21 @@ namespace RegexBuilder {
                                                     "Enkoni.Framework.Validation.RegularExpressions",
                                                     true);
 
+      RegexCompilationInfo mobileRegexWithCP_NL = new RegexCompilationInfo(@"^(((((\+|(((16\d{2})|(10[0-5,7-9]\d{2}))?)00)31(\(0\))?6)|((((16\d{2})|(10[0-5,7-9]\d{2}))?)06))-?)|((((16\d{2})|(10[0-5,7-9]\d{2}))?)\(06\)))[1-5,8]\d{7}$",
+                                                    RegexOptions.Singleline,
+                                                    "MobileRegexNetherlandsWithCarrierPreselect",
+                                                    "Enkoni.Framework.Validation.RegularExpressions",
+                                                    true);
+
       RegexCompilationInfo mobileRegexNoCountryAccessCode_NL = new RegexCompilationInfo(@"^((06-?)|(\(06\)))[1-5,8]\d{7}$",
                                                     RegexOptions.Singleline,
                                                     "MobileRegexNetherlandsNoCountryAccessCode",
+                                                    "Enkoni.Framework.Validation.RegularExpressions",
+                                                    true);
+
+      RegexCompilationInfo mobileRegexNoCountryAccessCodeWithCP_NL = new RegexCompilationInfo(@"^(((((16\d{2})|(10[0-5,7-9]\d{2}))?)06-?)|((((16\d{2})|(10[0-5,7-9]\d{2}))?)\(06\)))[1-5,8]\d{7}$",
+                                                    RegexOptions.Singleline,
+                                                    "MobileRegexNetherlandsNoCountryAccessCodeWithCarrierPreselect",
                                                     "Enkoni.Framework.Validation.RegularExpressions",
                                                     true);
 
@@ -83,13 +109,27 @@ namespace RegexBuilder {
       const string governmentPattern = @"1400|1451|(140((10|13|15|20|23|24|26|30|33|35|36|38|40|43|45|46|50|53|55|58)|((11|16|17|18|22|25|29|31|32|34|41|47|48|49|51|52|54|56|57|59)\d)))";
       string otherNumbersPattern = string.Format(CultureInfo.InvariantCulture, "^(({0})|({1})|({2})|({3})|({4})|({5})|({6})|({7})|({8}))$", 
         videotexPattern, ipBasedPattern, semaphonePattern, vpnPattern, personalAssistantServicesPattern, electronicServicesPattern, providerServicesPattern, infoServicesPattern, governmentPattern);
+      string otherNumbersPatternWithCarrierPreselect = string.Format(CultureInfo.InvariantCulture, @"^((16\d{{2}})|(10[0-5,7-9]\d{{2}}))?(({0})|({1})|({2})|({3})|({4})|({5})|({6})|({7})|({8}))$",
+        videotexPattern, ipBasedPattern, semaphonePattern, vpnPattern, personalAssistantServicesPattern, electronicServicesPattern, providerServicesPattern, infoServicesPattern, governmentPattern);
+      
       RegexCompilationInfo otherRegex_NL = new RegexCompilationInfo(otherNumbersPattern,
                                                     RegexOptions.Singleline,
                                                     "OtherRegexNetherlands",
                                                     "Enkoni.Framework.Validation.RegularExpressions",
                                                     true);
 
-      RegexCompilationInfo[] regexes = { defaultRegularRegex_NL, defaultRegularRegexNoCountryAccessCode_NL, serviceRegex_NL, emergencyRegex_NL, mobileRegex_NL, mobileRegexNoCountryAccessCode_NL, otherRegex_NL };
+      RegexCompilationInfo otherRegexWithCP_NL = new RegexCompilationInfo(otherNumbersPatternWithCarrierPreselect,
+                                                    RegexOptions.Singleline,
+                                                    "OtherRegexNetherlandsWithCarrierPreselect",
+                                                    "Enkoni.Framework.Validation.RegularExpressions",
+                                                    true);
+
+      RegexCompilationInfo[] regexes = 
+      { 
+        defaultRegularRegex_NL, defaultRegularRegexNoCountryAccessCode_NL, defaultRegularRegexWithCP_NL, defaultRegularRegexNoCountryAccessCodeWithCP_NL, 
+        serviceRegex_NL, emergencyRegex_NL, mobileRegex_NL, mobileRegexNoCountryAccessCode_NL, mobileRegexWithCP_NL, mobileRegexNoCountryAccessCodeWithCP_NL, 
+        otherRegex_NL, otherRegexWithCP_NL
+      };
       AssemblyName assemblyName = new AssemblyName("Enkoni.Framework.Validation.RegularExpressions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d6265e3de96a22aa");
       Regex.CompileToAssembly(regexes, assemblyName);
     }

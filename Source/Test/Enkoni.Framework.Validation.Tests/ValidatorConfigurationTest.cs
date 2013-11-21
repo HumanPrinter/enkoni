@@ -30,6 +30,7 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator);
 
       Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCountryCallingCode);
+      Assert.IsTrue(validatorsSection.DutchPhoneNumberValidator.AllowCarrierPreselect);
 
       Assert.AreEqual(143, validatorsSection.DutchPhoneNumberValidator.AreaCodes.Count);
       Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["058"]);
@@ -49,6 +50,7 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator);
 
       Assert.IsTrue(validatorsSection.DutchPhoneNumberValidator.AllowCountryCallingCode);
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCarrierPreselect);
 
       Assert.AreEqual(1, validatorsSection.DutchPhoneNumberValidator.AreaCodes.Count);
       Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["0123"]);
@@ -66,6 +68,7 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator);
 
       Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCountryCallingCode);
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCarrierPreselect);
 
       Assert.AreEqual(141, validatorsSection.DutchPhoneNumberValidator.AreaCodes.Count);
       Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["010"]);

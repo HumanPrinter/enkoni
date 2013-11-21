@@ -33,6 +33,13 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
       set { this["allowCountryCallingCode"] = value; }
     }
 
+    /// <summary>Gets or sets a value indicating whether carrier preselect codes are allowed by the validator.</summary>
+    [ConfigurationProperty("allowCarrierPreselect", IsKey = true, IsRequired = false, DefaultValue = false)]
+    public bool AllowCarrierPreselect {
+      get { return (bool)this["allowCarrierPreselect"]; }
+      set { this["allowCarrierPreselect"] = value; }
+    }
+
     /// <summary>Gets the collection of countries that must be used by the validator.</summary>
     [ConfigurationProperty("areaCodes", IsRequired = false, IsDefaultCollection = false)]
     [ConfigurationCollection(typeof(DutchPhoneNumberAreaCodeCollection), AddItemName = "add", RemoveItemName = "remove", ClearItemsName = "clear")]
