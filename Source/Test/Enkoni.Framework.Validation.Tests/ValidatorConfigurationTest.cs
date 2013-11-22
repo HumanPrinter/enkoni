@@ -27,16 +27,17 @@ namespace Enkoni.Framework.Validation.Tests {
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase01") as ValidatorsSection;
 
       Assert.IsNotNull(validatorsSection);
-      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators);
+      Assert.AreEqual(1, validatorsSection.DutchPhoneNumberValidators.Count);
 
-      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCountryCallingCode);
-      Assert.IsTrue(validatorsSection.DutchPhoneNumberValidator.AllowCarrierPreselect);
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCountryCallingCode);
+      Assert.IsTrue(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCarrierPreselect);
 
-      Assert.AreEqual(143, validatorsSection.DutchPhoneNumberValidator.AreaCodes.Count);
-      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["058"]);
-      Assert.AreEqual("058", validatorsSection.DutchPhoneNumberValidator.AreaCodes["058"].AreaCode);
-      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["0123"]);
-      Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidator.AreaCodes["0123"].AreaCode);
+      Assert.AreEqual(143, validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes.Count);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["058"]);
+      Assert.AreEqual("058", validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["058"].AreaCode);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["0123"]);
+      Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["0123"].AreaCode);
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class using values that should easily pass the validation.
@@ -47,14 +48,14 @@ namespace Enkoni.Framework.Validation.Tests {
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase02") as ValidatorsSection;
 
       Assert.IsNotNull(validatorsSection);
-      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator);
+      Assert.AreEqual(1, validatorsSection.DutchPhoneNumberValidators.Count);
 
-      Assert.IsTrue(validatorsSection.DutchPhoneNumberValidator.AllowCountryCallingCode);
-      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCarrierPreselect);
+      Assert.IsTrue(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCountryCallingCode);
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCarrierPreselect);
 
-      Assert.AreEqual(1, validatorsSection.DutchPhoneNumberValidator.AreaCodes.Count);
-      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["0123"]);
-      Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidator.AreaCodes["0123"].AreaCode);
+      Assert.AreEqual(1, validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes.Count);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["0123"]);
+      Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["0123"].AreaCode);
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class using values that should easily pass the validation.
@@ -65,15 +66,42 @@ namespace Enkoni.Framework.Validation.Tests {
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase03") as ValidatorsSection;
 
       Assert.IsNotNull(validatorsSection);
-      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators[string.Empty]);
 
-      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCountryCallingCode);
-      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidator.AllowCarrierPreselect);
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCountryCallingCode);
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCarrierPreselect);
 
-      Assert.AreEqual(141, validatorsSection.DutchPhoneNumberValidator.AreaCodes.Count);
-      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["010"]);
-      Assert.AreEqual("010", validatorsSection.DutchPhoneNumberValidator.AreaCodes["010"].AreaCode);
-      Assert.IsNull(validatorsSection.DutchPhoneNumberValidator.AreaCodes["058"]);
+      Assert.AreEqual(141, validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes.Count);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["010"]);
+      Assert.AreEqual("010", validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["010"].AreaCode);
+      Assert.IsNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["058"]);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class using values that should easily pass the validation.
+    /// </summary>
+    [TestMethod]
+    public void TestCase04_ReadPhoneNumberValidatorConfiguration_MultipleValidators() {
+      Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+      ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase04") as ValidatorsSection;
+
+      Assert.IsNotNull(validatorsSection);
+      Assert.AreEqual(2, validatorsSection.DutchPhoneNumberValidators.Count);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators[string.Empty]);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators["TestValidator"]);
+
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCountryCallingCode);
+      Assert.IsFalse(validatorsSection.DutchPhoneNumberValidators[string.Empty].AllowCarrierPreselect);
+      Assert.IsTrue(validatorsSection.DutchPhoneNumberValidators["TestValidator"].AllowCountryCallingCode);
+      Assert.IsTrue(validatorsSection.DutchPhoneNumberValidators["TestValidator"].AllowCarrierPreselect);
+
+      Assert.AreEqual(141, validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes.Count);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["010"]);
+      Assert.AreEqual("010", validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["010"].AreaCode);
+      Assert.IsNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["058"]);
+
+      Assert.AreEqual(1, validatorsSection.DutchPhoneNumberValidators["TestValidator"].AreaCodes.Count);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators["TestValidator"].AreaCodes["0123"]);
+      Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidators["TestValidator"].AreaCodes["0123"].AreaCode);
     }
     #endregion
   }

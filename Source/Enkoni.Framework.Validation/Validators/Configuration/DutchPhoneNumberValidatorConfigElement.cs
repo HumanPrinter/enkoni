@@ -8,6 +8,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System.Configuration;
+using System.Xml;
 
 using Enkoni.Framework.Validation.Properties;
 
@@ -26,6 +27,13 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     #endregion
 
     #region Properties
+    /// <summary>Gets or sets a value indicating whether country calling codes are allowed by the validator.</summary>
+    [ConfigurationProperty("name", IsKey = true, IsRequired = false, DefaultValue = DutchPhoneNumberValidator.DefaultName)]
+    public string Name {
+      get { return (string)this["name"]; }
+      set { this["name"] = value; }
+    }
+
     /// <summary>Gets or sets a value indicating whether country calling codes are allowed by the validator.</summary>
     [ConfigurationProperty("allowCountryCallingCode", IsKey = true, IsRequired = false, DefaultValue = true)]
     public bool AllowCountryCallingCode {
@@ -48,6 +56,16 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
         DutchPhoneNumberAreaCodeCollection areaCodes = (DutchPhoneNumberAreaCodeCollection)this["areaCodes"];
         return areaCodes;
       }
+    }
+    #endregion
+
+    #region Internal methods
+    /// <summary>Reads XML from the configuration file.</summary>
+    /// <param name="reader">The <see cref="XmlReader"/> that reads from the configuration file.</param>
+    /// <param name="serializeCollectionKey"><see langword="true"/> to serialize only the collection key properties; otherwise, 
+    /// <see langword="false"/>.</param>
+    internal void ReadFromConfig(XmlReader reader, bool serializeCollectionKey) {
+      this.DeserializeElement(reader, serializeCollectionKey);
     }
     #endregion
   }

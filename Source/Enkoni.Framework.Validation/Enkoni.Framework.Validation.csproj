@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="ValidationException.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberAreaCodeCollection.cs" />
+    <Compile Include="Validators\Configuration\DutchPhoneNumberValidatorConfigDictionary.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberValidatorConfigElement.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberAreaCodeConfigElement.cs" />
     <Compile Include="Validators\Configuration\ValidatorsSection.cs" />
@@ -111,6 +112,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

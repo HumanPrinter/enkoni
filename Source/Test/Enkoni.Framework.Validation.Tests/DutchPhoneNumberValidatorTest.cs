@@ -444,9 +444,18 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.IsTrue(results.IsValid, input);
     }
 
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
+    [TestMethod]
+    public void TestCase24_Configuration_NamedValidator() {
+      DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("Custom Validator", "message {0}", "tag", false);
+      string input = "+31582141740";
+      EntLib.ValidationResults results = testSubject.Validate(input);
+      Assert.IsFalse(results.IsValid, input);
+    }
+
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase24_Attribute_AllDefaults() {
+    public void TestCase25_Attribute_AllDefaults() {
       TestDummy_AllDefault dummy = new TestDummy_AllDefault { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_AllDefault>(dummy, "ValidationTest");
@@ -458,19 +467,6 @@ namespace Enkoni.Framework.Validation.Tests {
 
       dummy.PhoneNumber = "08001254";
       results = EntLib.Validation.Validate<TestDummy_AllDefault>(dummy, "ValidationTest");
-      Assert.IsFalse(results.IsValid);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
-    [TestMethod]
-    public void TestCase25_Attribute_CustomCategory() {
-      TestDummy_CustomCategory dummy = new TestDummy_CustomCategory { PhoneNumber = "0582151740" };
-
-      EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_CustomCategory>(dummy, "ValidationTest");
-      Assert.IsTrue(results.IsValid);
-
-      dummy.PhoneNumber = "0616070302";
-      results = EntLib.Validation.Validate<TestDummy_CustomCategory>(dummy, "ValidationTest");
       Assert.IsFalse(results.IsValid);
     }
 
@@ -489,7 +485,20 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase27_Attribute_IncludeAreaCodes() {
+    public void TestCase27_Attribute_CustomCategory() {
+      TestDummy_CustomCategory dummy = new TestDummy_CustomCategory { PhoneNumber = "0582151740" };
+
+      EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_CustomCategory>(dummy, "ValidationTest");
+      Assert.IsTrue(results.IsValid);
+
+      dummy.PhoneNumber = "0616070302";
+      results = EntLib.Validation.Validate<TestDummy_CustomCategory>(dummy, "ValidationTest");
+      Assert.IsFalse(results.IsValid);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
+    [TestMethod]
+    public void TestCase28_Attribute_IncludeAreaCodes() {
       TestDummy_IncludeAreaCodes dummy = new TestDummy_IncludeAreaCodes { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_IncludeAreaCodes>(dummy, "ValidationTest");
@@ -502,7 +511,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase28_Attribute_ExcludeAreaCodes() {
+    public void TestCase29_Attribute_ExcludeAreaCodes() {
       TestDummy_ExcludeAreaCodes dummy = new TestDummy_ExcludeAreaCodes { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_ExcludeAreaCodes>(dummy, "ValidationTest");
@@ -515,11 +524,20 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase29_Attribute_AllowCarrierPreselect() {
+    public void TestCase30_Attribute_AllowCarrierPreselect() {
       TestDummy_AllowCarrierPreselect dummy = new TestDummy_AllowCarrierPreselect { PhoneNumber = "105630582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_AllowCarrierPreselect>(dummy, "ValidationTest");
       Assert.IsTrue(results.IsValid);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
+    [TestMethod]
+    public void TestCase31_Attribute_NamedValidator() {
+      TestDummy_NamedValidator dummy = new TestDummy_NamedValidator { PhoneNumber = "0582151740" };
+
+      EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy_NamedValidator>(dummy, "ValidationTest");
+      Assert.IsFalse(results.IsValid);
     }
     #endregion
   }
@@ -557,6 +575,13 @@ namespace Enkoni.Framework.Validation.Tests {
   public class TestDummy_AllowCarrierPreselect {
     /// <summary>Gets or sets a phone number.</summary>
     [DutchPhoneNumberValidator(AllowCarrierPreselect = true, Ruleset = "ValidationTest", MessageTemplate = "The property {1} is not a valid Dutch phone number ('{0}').")]
+    public string PhoneNumber { get; set; }
+  }
+
+  /// <summary>A helper class to support the testcases.</summary>
+  public class TestDummy_NamedValidator {
+    /// <summary>Gets or sets a phone number.</summary>
+    [DutchPhoneNumberValidator(Name = "Custom Validator", Ruleset = "ValidationTest", MessageTemplate = "The property {1} is not a valid Dutch phone number ('{0}').")]
     public string PhoneNumber { get; set; }
   }
   #endregion
