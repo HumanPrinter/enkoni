@@ -18,8 +18,8 @@
       <dependency id="Enkoni.Validation" version="1.2.0.4" />
     </dependencies>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
-      <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
   </metadata>
 </package>
