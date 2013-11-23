@@ -14,8 +14,82 @@
             </update>
           </updates>
         </project>
-        <project name="Enkoni.Framework.Validation" version="1.3.0.0">
+        <project name="Enkoni.Framework.Entities" version="3.0.0.0">
           <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.0.0.3">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="3.0.0.0">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Service" version="3.0.0.0">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Logging" version="1.2.0.5">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.ServiceModel" version="2.1.0.2">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Testing" version="1.0.0.6">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.UI" version="1.0.0.5">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Validation" version="2.0.0.0">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+            <update date="2013-11-23" type="addition">
+              <summary><![CDATA[Added the IbanValidator class]]></summary>
+              <comment>
+                <![CDATA[Added a new validator that is able to check if a string value represents a valid IBAN account number.]]>
+              </comment>
+            </update>
             <update date="2013-11-18" type="addition">
               <summary><![CDATA[Added the DutchPhoneNumberValidator class]]></summary>
               <comment>

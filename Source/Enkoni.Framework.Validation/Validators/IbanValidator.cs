@@ -66,13 +66,12 @@ namespace Enkoni.Framework.Validation.Validators {
 
       /* Then, check if the account number matches the regular expression */
       Match match = new IbanRegex().Match(objectToValidate);
-      if(!match.Success) {
-        if(!this.Negated) {
-          this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
-        }
-      }
-      else if(this.Negated) {
+      if(!match.Success && !this.Negated) {
         this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
+        return;
+      }
+      else if(!match.Success && this.Negated) {
+        return;
       }
 
       /* If the account number passes the regex check, continue to check the contents */

@@ -17,7 +17,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
 
 namespace Enkoni.Framework.Validation.Tests {
-  /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> and <see cref="DutchPhoneNumberValidator"/> classes.</summary>
+  /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> and <see cref="DutchPhoneNumberValidatorAttribute"/> classes.
+  /// </summary>
   [TestClass]
   public class DutchPhoneNumberValidatorTest {
     #region Properties
