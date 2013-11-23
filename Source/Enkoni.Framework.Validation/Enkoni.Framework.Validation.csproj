@@ -10,10 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Enkoni.Framework.Validation</RootNamespace>
     <AssemblyName>Enkoni.Framework.Validation</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Enkoni.Framework.snk</AssemblyOriginatorKeyFile>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -62,6 +61,8 @@
     <Compile Include="Validators\Configuration\DutchPhoneNumberValidatorConfigElement.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberAreaCodeConfigElement.cs" />
     <Compile Include="Validators\Configuration\ValidatorsSection.cs" />
+    <Compile Include="Validators\IbanValidatorAttribute.cs" />
+    <Compile Include="Validators\IbanValidator.cs" />
     <Compile Include="Validators\Enumerations.cs" />
     <Compile Include="Validators\DutchPhoneNumberValidatorAttribute.cs" />
     <Compile Include="Validators\DutchPhoneNumberValidator.cs" />
@@ -112,6 +113,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>

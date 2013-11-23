@@ -8,6 +8,7 @@
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Globalization;
 
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
@@ -55,7 +56,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="upperBoundType">The bound type for the upper bound.</param>
     public TimeSpanRangeValidatorAttribute(string lowerBound, RangeBoundaryType lowerBoundType, string upperBound,
       RangeBoundaryType upperBoundType)
-      : this(TimeSpan.Parse(lowerBound), lowerBoundType, TimeSpan.Parse(upperBound), upperBoundType) {
+      : this(TimeSpan.Parse(lowerBound, CultureInfo.InvariantCulture), lowerBoundType, TimeSpan.Parse(upperBound, CultureInfo.InvariantCulture), upperBoundType) {
     }
     #endregion
 

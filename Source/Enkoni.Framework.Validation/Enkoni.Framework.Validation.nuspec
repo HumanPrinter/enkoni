@@ -16,7 +16,7 @@
       <dependency id="EnterpriseLibrary.Validation" version="5.0.505.0" />
     </dependencies>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework3.5" />
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
   </metadata>
 </package>

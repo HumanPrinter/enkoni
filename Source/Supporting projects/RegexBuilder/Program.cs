@@ -124,11 +124,18 @@ namespace RegexBuilder {
                                                     "Enkoni.Framework.Validation.RegularExpressions",
                                                     true);
 
+      RegexCompilationInfo ibanRegex = new RegexCompilationInfo(@"^(?<countrycode>[A-Z]{2})(?<check_digits>\d{2})(?<accountid>[A-Z0-9]{1,30})$",
+                                                    RegexOptions.Singleline,
+                                                    "IbanRegex",
+                                                    "Enkoni.Framework.Validation.RegularExpressions",
+                                                    true);
+
+
       RegexCompilationInfo[] regexes = 
       { 
         defaultRegularRegex_NL, defaultRegularRegexNoCountryAccessCode_NL, defaultRegularRegexWithCP_NL, defaultRegularRegexNoCountryAccessCodeWithCP_NL, 
         serviceRegex_NL, emergencyRegex_NL, mobileRegex_NL, mobileRegexNoCountryAccessCode_NL, mobileRegexWithCP_NL, mobileRegexNoCountryAccessCodeWithCP_NL, 
-        otherRegex_NL, otherRegexWithCP_NL
+        otherRegex_NL, otherRegexWithCP_NL, ibanRegex
       };
       AssemblyName assemblyName = new AssemblyName("Enkoni.Framework.Validation.RegularExpressions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d6265e3de96a22aa");
       Regex.CompileToAssembly(regexes, assemblyName);
