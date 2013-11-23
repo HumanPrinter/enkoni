@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni</id>
-    <version>2.1.0.0</version>
+    <version>2.2.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,10 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added the Enkoni.Framework.Linq.Distinct extension method that can be used to return unique items
-from a IEnumerable<T> by comparing a specified field.
-The CsvSerializer now support more formats when (de)serializing classes.
-The CsvSerializer class now supports (de)serialization of properties of type decimal and Enum.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added support for a custom 'null' string to the CsvSerializer. This allows for more flexibility when (de)serializing
+objects to and from CSV format.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

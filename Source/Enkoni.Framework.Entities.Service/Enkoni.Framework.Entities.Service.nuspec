@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities.Service</id>
-    <version>2.0.0.2</version>
+    <version>3.0.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,11 +10,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
+    <releaseNotes><![CDATA[The project now references the .NET 4 framework.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.1.0.0" />
-      <dependency id="Enkoni.Entities" version="2.0.0.2" />
+      <dependency id="Enkoni" version="2.2.0.0" />
+      <dependency id="Enkoni.Entities" version="3.0.0.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />

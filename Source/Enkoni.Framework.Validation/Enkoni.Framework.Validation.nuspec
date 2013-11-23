@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Validation</id>
-    <version>1.2.0.4</version>
+    <version>2.0.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
+    <releaseNotes><![CDATA[The project now references the .NET 4 framework.
+Added a new validator that is able to check if a string value represents a valid IBAN account number.
+Added a new validator that is able to check if a string value represents a valid Dutch phone number. The validator can be
+instantiated directly or through an attribute and can be configured in code and in configuration.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="EnterpriseLibrary.Validation" version="5.0.505.0" />
@@ -19,4 +22,7 @@
       <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
   </metadata>
+  <files>
+    <file src="..\libraries\Enkoni.Framework.Validation.RegularExpressions.dll" target="lib\net40-client" />
+  </files>
 </package>

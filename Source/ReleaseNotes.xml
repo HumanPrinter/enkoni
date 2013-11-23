@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
-    <release version="x.x.x.x" releasedate="xxxx-xx-xx">
+    <release version="1.2.0.0" releasedate="2013-11-23">
       <projects>
         <project name="Enkoni.Framework" version="2.2.0.0">
           <updates>
