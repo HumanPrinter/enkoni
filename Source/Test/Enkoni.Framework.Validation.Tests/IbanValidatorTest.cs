@@ -28,7 +28,7 @@ namespace Enkoni.Framework.Validation.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Validation.Tests\TestData\TestData.mdf", @"IbanValidatorTest\TestCase01")]
+    [DeploymentItem(@"..\..\TestData\TestData.mdf", @"IbanValidatorTest\TestCase01")]
     [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|IbanValidatorTest\TestCase01\TestData.mdf;Integrated Security=True;Connect Timeout=30", "IbanAccountNumber", DataAccessMethod.Sequential)]
     public void TestCase01_Validator() {
       IbanValidator testSubject = new IbanValidator("message {0}", "tag", false);
@@ -47,26 +47,26 @@ namespace Enkoni.Framework.Validation.Tests {
     public void TestCase02_Attribute() {
       TestDummy dummy = new TestDummy { AccountNumber = "NL80INGB0007321304" };
 
-      EntLib.ValidationResults results = EntLib.Validation.Validate<TestDummy>(dummy, "ValidationTest");
+      EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
       Assert.IsTrue(results.IsValid);
 
       dummy.AccountNumber = "NL80INgB0007321304";
-      results = EntLib.Validation.Validate<TestDummy>(dummy, "ValidationTest");
+      results = EntLib.Validation.Validate(dummy, "ValidationTest");
       Assert.IsFalse(results.IsValid);
 
       dummy.AccountNumber = null;
-      results = EntLib.Validation.Validate<TestDummy>(dummy, "ValidationTest");
+      results = EntLib.Validation.Validate(dummy, "ValidationTest");
       Assert.IsFalse(results.IsValid);
     }
     #endregion
-  }
 
-  #region Helper classes
-  /// <summary>A helper class to support the testcases.</summary>
-  public class TestDummy {
-    /// <summary>Gets or sets a phone number.</summary>
-    [IbanValidator(Ruleset = "ValidationTest", MessageTemplate = "The property {1} is not a valid IBAN account number ('{0}').")]
-    public string AccountNumber { get; set; }
+    #region Inner test classes
+    /// <summary>A helper class to support the testcases.</summary>
+    public class TestDummy {
+      /// <summary>Gets or sets a phone number.</summary>
+      [IbanValidator(Ruleset = "ValidationTest", MessageTemplate = "The property {1} is not a valid IBAN account number ('{0}').")]
+      public string AccountNumber { get; set; }
+    }
+    #endregion
   }
-  #endregion
 }

@@ -56,11 +56,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ValidationException.cs" />
+    <Compile Include="Validators\Configuration\EmailDomainConfigElement.cs" />
+    <Compile Include="Validators\Configuration\EmailDomainCollection.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberAreaCodeCollection.cs" />
+    <Compile Include="Validators\Configuration\EmailValidatorConfigElement.cs" />
+    <Compile Include="Validators\Configuration\EmailValidatorConfigDictionary.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberValidatorConfigDictionary.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberValidatorConfigElement.cs" />
     <Compile Include="Validators\Configuration\DutchPhoneNumberAreaCodeConfigElement.cs" />
     <Compile Include="Validators\Configuration\ValidatorsSection.cs" />
+    <Compile Include="Validators\EmailValidatorAttribute.cs" />
+    <Compile Include="Validators\EmailValidator.cs" />
     <Compile Include="Validators\IbanValidatorAttribute.cs" />
     <Compile Include="Validators\IbanValidator.cs" />
     <Compile Include="Validators\Enumerations.cs" />

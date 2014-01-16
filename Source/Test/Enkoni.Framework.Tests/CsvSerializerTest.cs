@@ -31,7 +31,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string)"/> and <see cref="Serializer{T}.Deserialize(Stream)"/> 
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase01")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase01")]
     public void TestCase01_Deserialize_Complete_DefaultEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase01\CsvTestInputFileWithHeaderUTF8.csv";
 
@@ -51,7 +51,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string)"/> and <see cref="Serializer{T}.Deserialize(Stream)"/> 
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase02")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase02")]
     public void TestCase02_Deserialize_Complete_DefaultEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase02\CsvTestInputFileNoHeaderUTF8.csv";
 
@@ -70,7 +70,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string, Encoding)"/> and 
     /// <see cref="Serializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase03")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase03")]
     public void TestCase03_Deserialize_Complete_CustomEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase03\CsvTestInputFileWithHeaderASCII.csv";
 
@@ -89,7 +89,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string, Encoding)"/> and 
     /// <see cref="Serializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase04")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase04")]
     public void TestCase04_Deserialize_Complete_CustomEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase04\CsvTestInputFileNoHeaderASCII.csv";
 
@@ -108,7 +108,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string)"/> and <see cref="Serializer{T}.Deserialize(Stream)"/> 
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase05")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase05")]
     public void TestCase05_Deserialize_Partial_DefaultEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase05\CsvTestInputFileWithHeaderUTF8.csv";
 
@@ -127,7 +127,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string)"/> and <see cref="Serializer{T}.Deserialize(Stream)"/> 
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase06")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase06")]
     public void TestCase06_Deserialize_Partial_DefaultEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase06\CsvTestInputFileNoHeaderUTF8.csv";
 
@@ -146,7 +146,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string, Encoding)"/> and 
     /// <see cref="Serializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase07")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase07")]
     public void TestCase07_Deserialize_Partial_CustomEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase07\CsvTestInputFileWithHeaderASCII.csv";
 
@@ -165,7 +165,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Deserialize(string, Encoding)"/> and
     /// <see cref="Serializer{T}.Deserialize(Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase08")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase08")]
     public void TestCase08_Deserialize_Partial_CustomEncoding_NoHeader() {
       string inputPath = @"CsvSerializerTest\TestCase08\CsvTestInputFileNoHeaderASCII.csv";
 
@@ -186,7 +186,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase09")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase09")]
     public void TestCase09_Serialize_Complete_DefaultEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase09\CsvTestOutputFileWithHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase09\CsvTestOutputFile.csv";
@@ -238,7 +238,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string)"/> and 
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase10")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFileNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase10")]
     public void TestCase10_Serialize_Complete_DefaultEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase10\CsvTestOutputFileNoHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase10\CsvTestOutputFile.csv";
@@ -290,7 +290,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase11")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase11")]
     public void TestCase11_Serialize_Complete_CustomEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase11\CsvTestOutputFileWithHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase11\CsvTestOutputFile.csv";
@@ -342,7 +342,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase12")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFileNoHeaderASCII.csv", @"CsvSerializerTest\TestCase12")]
     public void TestCase12_Serialize_Complete_CustomEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase12\CsvTestOutputFileNoHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase12\CsvTestOutputFile.csv";
@@ -394,7 +394,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase13")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase13")]
     public void TestCase13_Serialize_Partial_DefaultEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase13\CsvTestOutputFilePartialWithHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase13\CsvTestOutputFile.csv";
@@ -446,7 +446,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string)"/> and
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase14")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv", @"CsvSerializerTest\TestCase14")]
     public void TestCase14_Serialize_Partial_DefaultEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase14\CsvTestOutputFilePartialNoHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase14\CsvTestOutputFile.csv";
@@ -498,7 +498,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialWithHeaderASCII.csv", @"CsvSerializerTest\TestCase15")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFilePartialWithHeaderASCII.csv", @"CsvSerializerTest\TestCase15")]
     public void TestCase15_Serialize_Partial_CustomEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase15\CsvTestOutputFilePartialWithHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase15\CsvTestOutputFile.csv";
@@ -550,7 +550,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.Serialize(IEnumerable{T},string, Encoding)"/> and
     /// <see cref="Serializer{T}.Serialize(IEnumerable{T},Stream, Encoding)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFilePartialNoHeaderASCII.csv", @"CsvSerializerTest\TestCase16")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFilePartialNoHeaderASCII.csv", @"CsvSerializerTest\TestCase16")]
     public void TestCase16_Serialize_Partial_CustomEncoding_NoHeader() {
       string templatePath = @"CsvSerializerTest\TestCase16\CsvTestOutputFilePartialNoHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase16\CsvTestOutputFile.csv";
@@ -604,7 +604,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.BeginDeserialize(string, AsyncCallback, object)"/> and 
     /// <see cref="Serializer{T}.BeginDeserialize(Stream, AsyncCallback, object)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase17")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase17")]
     public void TestCase17_AsyncDeserialize_DefaultEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase17\CsvTestInputFileWithHeaderUTF8.csv";
 
@@ -656,7 +656,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.BeginDeserialize(string, Encoding, AsyncCallback, object)"/> and 
     /// <see cref="Serializer{T}.BeginDeserialize(Stream, Encoding, AsyncCallback, object)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase18")]
+    [DeploymentItem(@"..\..\TestData\CsvTestInputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase18")]
     public void TestCase18_AsyncDeserialize_CustomEncoding() {
       string inputPath = @"CsvSerializerTest\TestCase18\CsvTestInputFileWithHeaderASCII.csv";
 
@@ -707,7 +707,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.BeginSerialize(IEnumerable{T},string, AsyncCallback, object)"/> and
     /// <see cref="Serializer{T}.BeginSerialize(IEnumerable{T},Stream, AsyncCallback, object)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase19")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFileWithHeaderUTF8.csv", @"CsvSerializerTest\TestCase19")]
     public void TestCase19_AsyncSerialize_DefaultEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase19\CsvTestOutputFileWithHeaderUTF8.csv";
       string outputPath = @"CsvSerializerTest\TestCase19\CsvTestOutputFile.csv";
@@ -796,7 +796,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Serializer{T}.BeginSerialize(IEnumerable{T},string, Encoding, AsyncCallback, object)"/> 
     /// and <see cref="Serializer{T}.BeginSerialize(IEnumerable{T},Stream, Encoding, AsyncCallback, object)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests\TestData\CsvTestOutputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase20")]
+    [DeploymentItem(@"..\..\TestData\CsvTestOutputFileWithHeaderASCII.csv", @"CsvSerializerTest\TestCase20")]
     public void TestCase20_AsyncSerialize_CustomEncoding() {
       string templatePath = @"CsvSerializerTest\TestCase20\CsvTestOutputFileWithHeaderASCII.csv";
       string outputPath = @"CsvSerializerTest\TestCase20\CsvTestOutputFile.csv";

@@ -78,6 +78,7 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="EmailValidatorTest.cs" />
     <Compile Include="IbanValidatorTest.cs" />
     <Compile Include="ValidatorConfigurationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Enkoni.Framework.ruleset = Enkoni.Framework.ruleset
 		Enkoni.Framework.snk = Enkoni.Framework.snk
 		Enkoni.Framework.vsmdi = Enkoni.Framework.vsmdi
+		local.runsettings = local.runsettings
 		Local.testsettings = Local.testsettings
 		ReleaseNotes.xml = ReleaseNotes.xml
 		ReleaseNotes.xsd = ReleaseNotes.xsd

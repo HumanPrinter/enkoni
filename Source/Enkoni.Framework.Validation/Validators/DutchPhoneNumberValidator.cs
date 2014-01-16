@@ -24,6 +24,78 @@ using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace Enkoni.Framework.Validation.Validators {
   /// <summary>Performs validation on <see cref="String"/> instances by checking if they contain valid Dutch phone numbers.</summary>
+  /// <remarks>This validator can be configured through code or through the configuration file. When the validator is configured to include the category 
+  /// <see cref="PhoneNumberCategories.Regular"/> (which is the default setting), all area codes that are valid according to the Dutch 'numbering plan
+  /// for phone and ISDN services' that was published at November 12th 2013 (<a href="http://wetten.overheid.nl/BWBR0010198/geldigheidsdatum_13-11-2013">link</a>).
+  /// <br/>
+  /// To override the validated area codes, two approaches can be used.<br/>
+  /// <h3>Code</h3>
+  /// By setting the <see cref="IncludeAreaCodes"/> and/or <see cref="ExcludeAreaCodes"/> properties, the collection of valid area codes can be 
+  /// manipulated. To specify multiple area codes, seperate the area codes with a semi colon (';'). When setting the <see cref="IncludeAreaCodes"/> 
+  /// property, the default list of valid area codes will be ignored and only the specified area codes will be considered valid. Eg. when setting 
+  /// <see cref="IncludeAreaCodes"/> to <c>"010;020;030"</c>, only phone numbers with those area codes will be considered valid.<br/>
+  /// <br/>
+  /// <h3>Configuration</h3>
+  /// All properties of the <see cref="DutchPhoneNumberValidator"/> except for the <see cref="Categories"/> property can be set through configuration.
+  /// First of all, the configuration section must be specified:
+  /// <code>
+  /// <configuration>
+  ///   <configSections>
+  ///     <section name="Enkoni.Validators" type="Enkoni.Framework.Validation.Validators.Configuration.ValidatorsSection, Enkoni.Framework.Validation"/>
+  ///   </configSections>
+  /// </configuration>
+  /// </code>
+  /// Then inside the section, the validator can be configured:
+  /// <code>
+  /// <Enkoni.Validators>
+  ///   <DutchPhoneNumberValidator allowCountryCallingCode="false" allowCarrierPreselect="true">
+  ///     <areaCodes>
+  ///       <clear /> <!-- The clear-tag is optional and will reset the default collection of area codes -->
+  ///       <!--The add-tag can be used to include area codes -->
+  ///       <add areaCode="010" />
+  ///       <add areaCode="020" />
+  ///       <add areaCode="030" />
+  ///       <!-- The remove-tag can be used to exclude area codes -->
+  ///       <remove areaCode="023" />
+  ///       <remove areaCode="058" />
+  ///     </areaCodes>
+  ///   </DutchPhoneNumberValidator>
+  /// </Enkoni.Validators>
+  /// </code>
+  /// It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one 
+  /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified 
+  /// or whose name is not explicitly configured.
+  /// <code>
+  /// <Enkoni.Validators>
+  ///   <!-- Since this validator does not have a name specified, it will be used as the default configuration -->
+  ///   <DutchPhoneNumberValidator allowCountryCallingCode="false" allowCarrierPreselect="true">
+  ///     <areaCodes>
+  ///       <clear /> <!-- The clear-tag is optional and will reset the default collection of area codes -->
+  ///       <!--The add-tag can be used to include area codes -->
+  ///       <add areaCode="010" />
+  ///       <add areaCode="020" />
+  ///       <add areaCode="030" />
+  ///       <!-- The remove-tag can be used to exclude area codes -->
+  ///       <remove areaCode="023" />
+  ///       <remove areaCode="058" />
+  ///     </areaCodes>
+  ///   </DutchPhoneNumberValidator>
+  ///   <!-- This configuration will only be applied to validators with the name "MyValidator" -->
+  ///   <DutchPhoneNumberValidator name="MyValidator" allowCountryCallingCode="false" allowCarrierPreselect="true">
+  ///     <areaCodes>
+  ///       <clear /> <!-- The clear-tag is optional and will reset the default collection of area codes -->
+  ///       <!--The add-tag can be used to include area codes -->
+  ///       <add areaCode="010" />
+  ///       <add areaCode="020" />
+  ///       <add areaCode="030" />
+  ///       <!-- The remove-tag can be used to exclude area codes -->
+  ///       <remove areaCode="023" />
+  ///       <remove areaCode="058" />
+  ///     </areaCodes>
+  ///   </DutchPhoneNumberValidator>
+  /// </Enkoni.Validators>
+  /// </code>
+  /// </remarks>
   public class DutchPhoneNumberValidator : ValueValidator<string> {
     #region Constants
     /// <summary>Defines the default name for the validator.</summary>
@@ -160,14 +232,14 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="input">The string that must be validated.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateServiceNumber(string input) {
-      return new ServiceRegexNetherlands().IsMatch(input);
+      return new DutchPhoneValidatorServiceRegex().IsMatch(input);
     }
 
     /// <summary>Validates whether the input is a valid Dutch emergency phone number.</summary>
     /// <param name="input">The string that must be validated.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateEmergencyNumber(string input) {
-      return new EmergencyRegexNetherlands().IsMatch(input);
+      return new DutchPhoneValidatorEmergencyRegex().IsMatch(input);
     }
 
     /// <summary>Validates whether the input is a valid Dutch mobile phone number.</summary>
@@ -178,13 +250,13 @@ namespace Enkoni.Framework.Validation.Validators {
     private static bool ValidateMobileNumber(string input, bool allowCountryCallingCode, bool allowCarrierPreselect) {
       if(allowCarrierPreselect) {
         return allowCountryCallingCode
-          ? new MobileRegexNetherlandsWithCarrierPreselect().IsMatch(input)
-          : new MobileRegexNetherlandsNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
+          ? new DutchPhoneValidatorMobileRegexWithCarrierPreselect().IsMatch(input)
+          : new DutchPhoneValidatorMobileRegexNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
       }
       else {
         return allowCountryCallingCode
-          ? new MobileRegexNetherlands().IsMatch(input)
-          : new MobileRegexNetherlandsNoCountryAccessCode().IsMatch(input);
+          ? new DutchPhoneValidatorMobileRegex().IsMatch(input)
+          : new DutchPhoneValidatorMobileRegexNoCountryAccessCode().IsMatch(input);
       }
     }
 
@@ -194,8 +266,8 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateOtherNumber(string input, bool allowCarrierPreselect) {
       return allowCarrierPreselect
-        ? new OtherRegexNetherlandsWithCarrierPreselect().IsMatch(input)
-        : new OtherRegexNetherlands().IsMatch(input);
+        ? new DutchPhoneValidatorOtherRegexWithCarrierPreselect().IsMatch(input)
+        : new DutchPhoneValidatorOtherRegex().IsMatch(input);
     }
 
     /// <summary>Validates whether the input is a valid Dutch regular phone number.</summary>
@@ -209,13 +281,13 @@ namespace Enkoni.Framework.Validation.Validators {
       if(string.IsNullOrEmpty(includeAreaCodes) && string.IsNullOrEmpty(excludeAreaCodes)) {
         if(allowCarrierPreselect) {
           return allowCountryCallingCode
-            ? new DefaultRegularRegexNetherlandsWithCarrierPreselect().IsMatch(input)
-            : new DefaultRegularRegexNetherlandsNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
+            ? new DutchPhoneValidatorDefaultRegularRegexWithCarrierPreselect().IsMatch(input)
+            : new DutchPhoneValidatorDefaultRegularRegexNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
         }
         else {
           return allowCountryCallingCode
-            ? new DefaultRegularRegexNetherlands().IsMatch(input)
-            : new DefaultRegularRegexNetherlandsNoCountryAccessCode().IsMatch(input);
+            ? new DutchPhoneValidatorDefaultRegularRegex().IsMatch(input)
+            : new DutchPhoneValidatorDefaultRegularRegexNoCountryAccessCode().IsMatch(input);
         }
       }
 

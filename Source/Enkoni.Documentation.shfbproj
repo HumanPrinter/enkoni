@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4f53bc5c-c08f-4ba9-9004-0f1491ad3dca}</ProjectGuid>
-    <SHFBSchemaVersion>1.9.3.0</SHFBSchemaVersion>
+    <SHFBSchemaVersion>1.9.5.0</SHFBSchemaVersion>
     <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
          Studio adds them anyway -->
     <AssemblyName>Documentation</AssemblyName>
@@ -36,11 +36,16 @@
       <DocumentationSource sourceFile="Enkoni.Framework.Web\Enkoni.Framework.Web.csproj" />
     </DocumentationSources>
     <PlugInConfigurations>
+      <PlugInConfig id="Hierarchical Table of Contents" enabled="True">
+        <configuration>
+          <toc minParts="2" insertBelow="False" />
+        </configuration>
+      </PlugInConfig>
     </PlugInConfigurations>
-    <FrameworkVersion>.NET 4.0.30319</FrameworkVersion>
-    <PresentationStyle>vs2005</PresentationStyle>
+    <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
+    <PresentationStyle>VS2010</PresentationStyle>
     <ProjectSummary>The Enkoni Framework contains numerous types and methods that typically are written over and over again for specific projects.</ProjectSummary>
-    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2012. All rights reserved.</CopyrightText>
+    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2013. All rights reserved.</CopyrightText>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="Enkoni.Framework" isDocumented="True">Contains numerous easy-to-use types and operations that can be utilized in any kind of project or application.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
@@ -56,45 +61,28 @@
       <NamespaceSummaryItem name="Enkoni.Framework.Logging" isDocumented="True">Contains functionality to add logging to an application using the Microsoft Enterprise Library's Logging Application Block</NamespaceSummaryItem>
     </NamespaceSummaries>
     <ApiFilter>
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.Filters" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.Formatters" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Manageability.TraceListeners" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Unity" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Helpers" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Filters" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.Instrumentation" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.PolicyInjection" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Configuration" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Unity" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Instrumentation" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Integration" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.PolicyInjection" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Properties" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators" isExposed="False" xmlns="" />
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration" isExposed="True" xmlns="">
-        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1" filterName="NamedElementCollection`1" isExposed="True">
-          <Filter entryType="Method" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IMergeableConfigurationElementCollection#CreateNewElement" filterName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IMergeableConfigurationElementCollection.CreateNewElement" isExposed="False" />
-          <Filter entryType="Method" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.NamedElementCollection`1.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IMergeableConfigurationElementCollection#ResetCollection" filterName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IMergeableConfigurationElementCollection.ResetCollection" isExposed="False" />
-        </Filter>
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation" isExposed="False">
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validator" filterName="Validator" isExposed="True" />
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validator`1" filterName="Validator`1" isExposed="True" />
       </Filter>
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity" isExposed="True" xmlns="">
-        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Unity.EnterpriseLibraryBlockExtension" filterName="EnterpriseLibraryBlockExtension" isExposed="False" />
+      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators" isExposed="False">
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.BaseValidationAttribute" filterName="BaseValidationAttribute" isExposed="True" />
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeValidator`1" filterName="RangeValidator`1" isExposed="True" />
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.ValidatorAttribute" filterName="ValidatorAttribute" isExposed="True" />
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.ValueValidator`1" filterName="ValueValidator`1" isExposed="True" />
+        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.ValueValidatorAttribute" filterName="ValueValidatorAttribute" isExposed="True" />
       </Filter>
-      <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation" isExposed="True" xmlns="">
-        <Filter entryType="Class" fullName="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.EnterpriseLibraryPerformanceCounter" filterName="EnterpriseLibraryPerformanceCounter" isExposed="False" />
+      <Filter entryType="Namespace" fullName="System" isExposed="True">
+        <Filter entryType="Class" fullName="System.Attribute" filterName="Attribute" isExposed="False" />
       </Filter>
     </ApiFilter>
     <HelpFileVersion>1.2.0.0</HelpFileVersion>
     <HelpAttributes />
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <Preliminary>False</Preliminary>
+    <NamingMethod>Guid</NamingMethod>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
        order for Visual Studio to perform the build.  The others are optional
@@ -157,6 +145,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.ComponentModel.DataAnnotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System.Web.Helpers">

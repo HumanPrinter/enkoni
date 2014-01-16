@@ -18,11 +18,25 @@ namespace Enkoni.Framework.Validation.Tests {
   /// <summary>Tests the functionality of the validator configuration classes.</summary>
   [TestClass]
   public class ValidatorConfigurationTest {
-    #region TestCases
-    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class using values that should easily pass the validation.
-    /// </summary>
+    #region ValidatorsSection TestCases
+    /// <summary>Tests the functionality of the <see cref="ValidatorsSection"/> class.</summary>
     [TestMethod]
-    public void TestCase01_ReadPhoneNumberValidatorConfiguration_Default() {
+    public void TestCase00_ValidatorsSection() {
+      Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+      ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators") as ValidatorsSection;
+
+      Assert.IsNotNull(validatorsSection);
+      Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators);
+      Assert.AreEqual(2, validatorsSection.DutchPhoneNumberValidators.Count);
+      Assert.IsNotNull(validatorsSection.EmailValidators);
+      Assert.AreEqual(2, validatorsSection.EmailValidators.Count);
+    }
+    #endregion
+
+    #region DutchPhoneNumberValidatorConfiguration TestCases
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
+    [TestMethod]
+    public void TestCase01_ReadDutchPhoneNumberValidatorConfiguration_Default() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase01") as ValidatorsSection;
 
@@ -40,10 +54,9 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["0123"].AreaCode);
     }
 
-    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class using values that should easily pass the validation.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase02_ReadPhoneNumberValidatorConfiguration_ClearAreaCodes() {
+    public void TestCase02_ReadDutchPhoneNumberValidatorConfiguration_ClearAreaCodes() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase02") as ValidatorsSection;
 
@@ -58,10 +71,9 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["0123"].AreaCode);
     }
 
-    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class using values that should easily pass the validation.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase03_ReadPhoneNumberValidatorConfiguration_RemoveAreaCode() {
+    public void TestCase03_ReadDutchPhoneNumberValidatorConfiguration_RemoveAreaCode() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase03") as ValidatorsSection;
 
@@ -77,10 +89,9 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.IsNull(validatorsSection.DutchPhoneNumberValidators[string.Empty].AreaCodes["058"]);
     }
 
-    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class using values that should easily pass the validation.
-    /// </summary>
+    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase04_ReadPhoneNumberValidatorConfiguration_MultipleValidators() {
+    public void TestCase04_ReadDutchPhoneNumberValidatorConfiguration_MultipleValidators() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase04") as ValidatorsSection;
 
@@ -102,6 +113,73 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.AreEqual(1, validatorsSection.DutchPhoneNumberValidators["TestValidator"].AreaCodes.Count);
       Assert.IsNotNull(validatorsSection.DutchPhoneNumberValidators["TestValidator"].AreaCodes["0123"]);
       Assert.AreEqual("0123", validatorsSection.DutchPhoneNumberValidators["TestValidator"].AreaCodes["0123"].AreaCode);
+    }
+    #endregion
+
+    #region EmailValidatorConfiguration TestCases
+    /// <summary>Tests the functionality of the <see cref="EmailValidatorConfigElement"/> class.</summary>
+    [TestMethod]
+    public void TestCase05_ReadEmailValidatorConfiguration_Default() {
+      Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+      ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase05") as ValidatorsSection;
+
+      Assert.IsNotNull(validatorsSection);
+      Assert.IsNotNull(validatorsSection.EmailValidators);
+      Assert.AreEqual(2, validatorsSection.EmailValidators.Count);
+
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowComments);
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowIPAddresses);
+
+      Assert.AreEqual(0, validatorsSection.EmailValidators[string.Empty].IncludeDomains.Count);
+      Assert.AreEqual(0, validatorsSection.EmailValidators[string.Empty].ExcludeDomains.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="EmailValidatorConfigElement"/> class.</summary>
+    [TestMethod]
+    public void TestCase06_ReadEmailValidatorConfiguration_IncludeExcludeDomains() {
+      Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+      ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase06") as ValidatorsSection;
+
+      Assert.IsNotNull(validatorsSection);
+      Assert.AreEqual(1, validatorsSection.EmailValidators.Count);
+
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowComments);
+      Assert.IsTrue(validatorsSection.EmailValidators[string.Empty].AllowIPAddresses);
+
+      Assert.AreEqual(2, validatorsSection.EmailValidators[string.Empty].IncludeDomains.Count);
+      Assert.IsNotNull(validatorsSection.EmailValidators[string.Empty].IncludeDomains["microsoft.com"]);
+      Assert.AreEqual("microsoft.com", validatorsSection.EmailValidators[string.Empty].IncludeDomains["microsoft.com"].Pattern);
+      Assert.AreEqual(2, validatorsSection.EmailValidators[string.Empty].ExcludeDomains.Count);
+      Assert.IsNotNull(validatorsSection.EmailValidators[string.Empty].ExcludeDomains["*yahoo.com"]);
+      Assert.AreEqual("*yahoo.com", validatorsSection.EmailValidators[string.Empty].ExcludeDomains["*yahoo.com"].Pattern);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="EmailValidatorConfigElement"/> class.</summary>
+    [TestMethod]
+    public void TestCase07_ReadEmailValidatorConfiguration_MultipleValidators() {
+      Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+      ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase07") as ValidatorsSection;
+
+      Assert.IsNotNull(validatorsSection);
+      Assert.AreEqual(2, validatorsSection.EmailValidators.Count);
+      Assert.IsNotNull(validatorsSection.EmailValidators[string.Empty]);
+      Assert.IsNotNull(validatorsSection.EmailValidators["TestValidator"]);
+
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowComments);
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowIPAddresses);
+      Assert.IsTrue(validatorsSection.EmailValidators["TestValidator"].AllowComments);
+      Assert.IsTrue(validatorsSection.EmailValidators["TestValidator"].AllowIPAddresses);
+
+      Assert.AreEqual(1, validatorsSection.EmailValidators[string.Empty].IncludeDomains.Count);
+      Assert.AreEqual(0, validatorsSection.EmailValidators[string.Empty].ExcludeDomains.Count);
+      Assert.IsNotNull(validatorsSection.EmailValidators[string.Empty].IncludeDomains["gmail.com"]);
+      Assert.AreEqual("gmail.com", validatorsSection.EmailValidators[string.Empty].IncludeDomains["gmail.com"].Pattern);
+      Assert.IsNull(validatorsSection.EmailValidators[string.Empty].IncludeDomains["yahoo.com"]);
+
+      Assert.AreEqual(0, validatorsSection.EmailValidators["TestValidator"].IncludeDomains.Count);
+      Assert.AreEqual(1, validatorsSection.EmailValidators["TestValidator"].ExcludeDomains.Count);
+      Assert.IsNotNull(validatorsSection.EmailValidators["TestValidator"].ExcludeDomains["yahoo.com"]);
+      Assert.AreEqual("yahoo.com", validatorsSection.EmailValidators["TestValidator"].ExcludeDomains["yahoo.com"].Pattern);
     }
     #endregion
   }

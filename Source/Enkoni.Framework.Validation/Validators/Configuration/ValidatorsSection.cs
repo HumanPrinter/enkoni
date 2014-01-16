@@ -17,12 +17,16 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     /// <summary>Initializes a new instance of the <see cref="ValidatorsSection"/> class.</summary>
     public ValidatorsSection() {
       this.DutchPhoneNumberValidators = new DutchPhoneNumberValidatorConfigDictionary();
+      this.EmailValidators = new EmailValidatorConfigDictionary();
     }
     #endregion
 
     #region Properties
     /// <summary>Gets the configurations for the <see cref="DutchPhoneNumberValidator"/>s that were specified in the configuration file.</summary>
     public DutchPhoneNumberValidatorConfigDictionary DutchPhoneNumberValidators { get; private set; }
+
+    /// <summary>Gets the configurations for the <see cref="EmailValidator"/>s that were specified in the configuration file.</summary>
+    public EmailValidatorConfigDictionary EmailValidators { get; private set; }
     #endregion
 
     #region Public methods
@@ -50,6 +54,13 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
               DutchPhoneNumberValidatorConfigElement configElement = new DutchPhoneNumberValidatorConfigElement();
               configElement.ReadFromConfig(reader, serializeCollectionKey);
               this.DutchPhoneNumberValidators[configElement.Name] = configElement;
+            }
+
+            break;
+          case "EmailValidator": {
+              EmailValidatorConfigElement configElement = new EmailValidatorConfigElement();
+              configElement.ReadFromConfig(reader, serializeCollectionKey);
+              this.EmailValidators[configElement.Name] = configElement;
             }
 
             break;

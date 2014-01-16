@@ -37,4 +37,16 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <summary>Match all phone numbers.</summary>
     All = Regular | Mobile | Service | Emergency | Other
   }
+
+  /// <summary>Defines the supported categories of e-mail addresses for the <see cref="EmailValidator"/>.</summary>
+  public enum EmailCategory {
+    /// <summary>Match basic e-mail addresses only. Basic e-mail addresses may contain alfanumeric characters and the '-' and '_' characters.</summary>
+    Basic,
+
+    /// <summary>Match all e-mail addresses except e-mail addresses that contain quoted strings.</summary>
+    Extended,
+
+    /// <summary>Match all e-mail addresses according to RFC5322.</summary>
+    Complete
+  }
 }

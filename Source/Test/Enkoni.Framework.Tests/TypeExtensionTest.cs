@@ -157,9 +157,9 @@ namespace Enkoni.Framework.Tests {
     /// extension methods.</summary>
     [TestMethod]
 #if DEBUG
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests.Addition\bin\Debug\Enkoni.Framework.Tests.Addition.dll", @"Additions")]
+    [DeploymentItem(@"..\..\..\Enkoni.Framework.Tests.Addition\bin\Debug\Enkoni.Framework.Tests.Addition.dll", @"Additions")]
 #else
-    [DeploymentItem(@"Test\Enkoni.Framework.Tests.Addition\bin\Release\Enkoni.Framework.Tests.Addition.dll", @"Additions")]
+    [DeploymentItem(@"..\..\..\Enkoni.Framework.Tests.Addition\bin\Release\Enkoni.Framework.Tests.Addition.dll", @"Additions")]
 #endif
     public void TestCase06_GetDerivedTypes() {
       Type subject = typeof(ClassD);

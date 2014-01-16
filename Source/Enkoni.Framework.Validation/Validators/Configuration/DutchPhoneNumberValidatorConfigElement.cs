@@ -27,7 +27,7 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     #endregion
 
     #region Properties
-    /// <summary>Gets or sets a value indicating whether country calling codes are allowed by the validator.</summary>
+    /// <summary>Gets or sets the name of the validator.</summary>
     [ConfigurationProperty("name", IsKey = true, IsRequired = false, DefaultValue = DutchPhoneNumberValidator.DefaultName)]
     public string Name {
       get { return (string)this["name"]; }

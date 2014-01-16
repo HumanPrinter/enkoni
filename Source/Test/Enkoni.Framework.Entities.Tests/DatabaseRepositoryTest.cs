@@ -25,7 +25,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase01")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase01")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -46,7 +46,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase02")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase02")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -67,7 +67,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase03")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase03")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -88,7 +88,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase04")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase04")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -109,7 +109,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase05")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase05")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -130,7 +130,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase06")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase06")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -151,7 +151,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase07")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase07")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -172,7 +172,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase08")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase08")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -193,7 +193,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase09")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase09")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -214,7 +214,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase10")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase10")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -235,7 +235,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase11")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase11")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -256,7 +256,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase12")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase12")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -277,7 +277,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase13")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase13")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -300,7 +300,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase14")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase14")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -321,7 +321,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase15")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase15")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -344,7 +344,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase16")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase16")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -365,7 +365,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase17")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase17")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -386,7 +386,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase18")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase18")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -407,7 +407,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase19")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase19")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -428,7 +428,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntities(IEnumerable{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase20")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase20")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -449,7 +449,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method when is should throw an exeption using 
     /// the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase21")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase21")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -470,7 +470,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase22")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase22")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -491,7 +491,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method when it should throw an exception
     /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase23")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase23")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -514,7 +514,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -535,7 +535,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -556,7 +556,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -577,7 +577,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -600,7 +600,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves a single result using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
@@ -644,7 +644,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves multiple results using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
+    [DeploymentItem(@"..\..\TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
