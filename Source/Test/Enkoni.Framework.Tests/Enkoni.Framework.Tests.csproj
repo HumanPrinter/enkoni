@@ -87,20 +87,44 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestData\CsvTestInputFileWithHeaderUTF8.csv" />
-    <None Include="TestData\CsvTestOutputFileNoHeaderASCII.csv" />
-    <None Include="TestData\CsvTestOutputFileNoHeaderUTF8.csv" />
-    <None Include="TestData\CsvTestOutputFilePartialNoHeaderASCII.csv" />
-    <None Include="TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv" />
-    <None Include="TestData\CsvTestOutputFilePartialWithHeaderASCII.csv" />
-    <None Include="TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv" />
-    <None Include="TestData\CsvTestOutputFileWithHeaderASCII.csv" />
-    <None Include="TestData\CsvTestOutputFileWithHeaderUTF8.csv" />
+    <None Include="TestData\CsvTestInputFileWithHeaderUTF8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFileNoHeaderASCII.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFileNoHeaderUTF8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFilePartialNoHeaderASCII.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFilePartialWithHeaderASCII.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFileWithHeaderASCII.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestOutputFileWithHeaderUTF8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestData\CsvTestInputFileNoHeaderASCII.csv" />
-    <None Include="TestData\CsvTestInputFileNoHeaderUTF8.csv" />
-    <None Include="TestData\CsvTestInputFileWithHeaderASCII.csv" />
+    <None Include="TestData\CsvTestInputFileNoHeaderASCII.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestInputFileNoHeaderUTF8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CsvTestInputFileWithHeaderASCII.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\AlternateResources.nl.resx">
@@ -121,6 +145,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y $(ProjectDir)..\Enkoni.Framework.Tests.Addition\bin\$(ConfigurationName)\Enkoni.Framework.Tests.Addition.dll</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

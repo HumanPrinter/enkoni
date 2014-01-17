@@ -29,7 +29,7 @@ namespace Enkoni.Framework.Validation.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\TestData.mdf", @"EmailValidatorTest\TestCase01")]
+    [DeploymentItem(@"TestData\TestData.mdf", @"EmailValidatorTest\TestCase01")]
     [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\TestCase01\TestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
     public void TestCase01_Basic() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, IncludeDomains = null, ExcludeDomains = null };
@@ -47,7 +47,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\TestData.mdf", @"EmailValidatorTest\TestCase02")]
+    [DeploymentItem(@"TestData\TestData.mdf", @"EmailValidatorTest\TestCase02")]
     [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\TestCase02\TestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
     public void TestCase02_Extended() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = true, IncludeDomains = null, ExcludeDomains = null };
@@ -65,7 +65,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\TestData.mdf", @"EmailValidatorTest\TestCase03")]
+    [DeploymentItem(@"TestData\TestData.mdf", @"EmailValidatorTest\TestCase03")]
     [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\TestCase03\TestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
     public void TestCase03_Complete() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, IncludeDomains = null, ExcludeDomains = null };

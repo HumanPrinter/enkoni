@@ -156,11 +156,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="Extensions.GetDerivedTypes(Type)"/> and <see cref="Extensions.GetDerivedTypes(Type,bool)"/>
     /// extension methods.</summary>
     [TestMethod]
-#if DEBUG
-    [DeploymentItem(@"..\..\..\Enkoni.Framework.Tests.Addition\bin\Debug\Enkoni.Framework.Tests.Addition.dll", @"Additions")]
-#else
-    [DeploymentItem(@"..\..\..\Enkoni.Framework.Tests.Addition\bin\Release\Enkoni.Framework.Tests.Addition.dll", @"Additions")]
-#endif
+    [DeploymentItem(@"Enkoni.Framework.Tests.Addition.dll", @"Additions")]
     public void TestCase06_GetDerivedTypes() {
       Type subject = typeof(ClassD);
 

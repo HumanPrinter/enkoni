@@ -30,16 +30,12 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     #region Test methods
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
-    [DeploymentItem(@"..\..\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
+    [DeploymentItem(@"TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
+    [DeploymentItem(@"TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase01")]
+    [DeploymentItem(@"TestDataContract.xsd", "")]
     //This construction is a work-around for a bug in VS2012. Unless a referenced DLL is not directly used inside the unit-test, the DLL is not copied to the Testresults folder causing the test to fail.
-#if DEBUG
-    [DeploymentItem(@"bin\Debug\Enkoni.Framework.ServiceModel.dll", "")]
-    [DeploymentItem(@"bin\Debug\Enkoni.Framework.ServiceModel.pdb", "")]
-#else
-    [DeploymentItem(@"bin\Release\Enkoni.Framework.ServiceModel.dll", "")]
-    [DeploymentItem(@"bin\Release\Enkoni.Framework.ServiceModel.pdb", "")]
-#endif
+    [DeploymentItem(@"Enkoni.Framework.ServiceModel.dll", "")]
+    [DeploymentItem(@"Enkoni.Framework.ServiceModel.pdb", "")]
     public void TestCase01_DefaultBehavior() {
       /* First, send a valid request */
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase01\ValidRequest.xml");
@@ -64,8 +60,9 @@ namespace Enkoni.Framework.ServiceModel.Tests {
 
     /// <summary>Tests if the <see cref="SchemaValidationBehavior"/> is disabled accordingly with the configuration parameter.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
-    [DeploymentItem(@"..\..\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
+    [DeploymentItem(@"TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
+    [DeploymentItem(@"TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase02")]
+    [DeploymentItem(@"TestDataContract.xsd", "")]
     public void TestCase02_SchemaValidationBehaviorDisabled() {
       /* First, send a valid request */
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase02\ValidRequest.xml");
@@ -90,8 +87,9 @@ namespace Enkoni.Framework.ServiceModel.Tests {
 
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as an assembly resource.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
-    [DeploymentItem(@"..\..\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
+    [DeploymentItem(@"TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
+    [DeploymentItem(@"TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase03")]
+    [DeploymentItem(@"TestDataContract.xsd", "")]
     public void TestCase03_SchemaValidationBehaviorSchemaFromResource() {
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase03\ValidRequest.xml");
       XDocument result = null;
@@ -114,9 +112,10 @@ namespace Enkoni.Framework.ServiceModel.Tests {
 
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as a file.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
-    [DeploymentItem(@"..\..\TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
-    [DeploymentItem(@"..\..\TestDataContract.xsd", @"SchemaValidationBehaviorTest\TestCase04")]
+    [DeploymentItem(@"TestData\ValidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
+    [DeploymentItem(@"TestData\InvalidRequest.xml", @"SchemaValidationBehaviorTest\TestCase04")]
+    [DeploymentItem(@"TestDataContract.xsd", @"SchemaValidationBehaviorTest\TestCase04")]
+    [DeploymentItem(@"TestDataContract.xsd", "")]
     public void TestCase04_SchemaValidationBehaviorSchemaFromFile() {
       XDocument request = XDocument.Load(@"SchemaValidationBehaviorTest\TestCase04\ValidRequest.xml");
       XDocument result = null;
