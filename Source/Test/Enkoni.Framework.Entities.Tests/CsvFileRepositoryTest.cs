@@ -20,7 +20,7 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Retrieve test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"..\..\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase01")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase01")]
     public override void TestCase01_FindAll() {
       /* Create the repository */
       DataSourceInfo sourceInfo =

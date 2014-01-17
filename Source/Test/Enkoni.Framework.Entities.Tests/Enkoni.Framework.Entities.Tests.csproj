@@ -142,7 +142,9 @@
     <Content Include="TestData\ReposTest_DataSourceFile.xml" />
     <Content Include="TestData\ReposTest_EmptyInputFile.csv" />
     <Content Include="TestData\ReposTest_EmptyInputFile.xml" />
-    <Content Include="TestData\ReposTest_InputFile.csv" />
+    <Content Include="TestData\ReposTest_InputFile.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\ReposTest_InputFile.xml" />
     <Content Include="TestData\ReposTest_SortingFile.csv" />
     <Content Include="TestData\ReposTest_SortingFile.xml" />
