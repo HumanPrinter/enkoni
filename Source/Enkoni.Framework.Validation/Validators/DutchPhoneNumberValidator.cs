@@ -36,17 +36,20 @@ namespace Enkoni.Framework.Validation.Validators {
   /// <see cref="IncludeAreaCodes"/> to <c>"010;020;030"</c>, only phone numbers with those area codes will be considered valid.<br/>
   /// <br/>
   /// <h3>Configuration</h3>
-  /// All properties of the <see cref="DutchPhoneNumberValidator"/> except for the <see cref="Categories"/> property can be set through configuration.
-  /// First of all, the configuration section must be specified:
+  /// <para>All properties of the <see cref="DutchPhoneNumberValidator"/> except for the <see cref="Categories"/> property can be set through configuration.
+  /// First of all, the configuration section must be specified:</para>
   /// <code>
+  /// <![CDATA[
   /// <configuration>
   ///   <configSections>
   ///     <section name="Enkoni.Validators" type="Enkoni.Framework.Validation.Validators.Configuration.ValidatorsSection, Enkoni.Framework.Validation"/>
   ///   </configSections>
   /// </configuration>
+  /// ]]>
   /// </code>
-  /// Then inside the section, the validator can be configured:
+  /// <para>Then inside the section, the validator can be configured:</para>
   /// <code>
+  /// <![CDATA[
   /// <Enkoni.Validators>
   ///   <DutchPhoneNumberValidator allowCountryCallingCode="false" allowCarrierPreselect="true">
   ///     <areaCodes>
@@ -61,11 +64,13 @@ namespace Enkoni.Framework.Validation.Validators {
   ///     </areaCodes>
   ///   </DutchPhoneNumberValidator>
   /// </Enkoni.Validators>
+  /// ]]>
   /// </code>
-  /// It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one 
+  /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one 
   /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified 
-  /// or whose name is not explicitly configured.
+  /// or whose name is not explicitly configured.</para>
   /// <code>
+  /// <![CDATA[
   /// <Enkoni.Validators>
   ///   <!-- Since this validator does not have a name specified, it will be used as the default configuration -->
   ///   <DutchPhoneNumberValidator allowCountryCallingCode="false" allowCarrierPreselect="true">
@@ -94,6 +99,7 @@ namespace Enkoni.Framework.Validation.Validators {
   ///     </areaCodes>
   ///   </DutchPhoneNumberValidator>
   /// </Enkoni.Validators>
+  /// ]]>
   /// </code>
   /// </remarks>
   public class DutchPhoneNumberValidator : ValueValidator<string> {

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.ServiceModel</id>
-    <version>2.1.0.2</version>
+    <version>2.1.0.3</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -13,7 +13,7 @@
     <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni.Logging" version="1.2.0.5" />
+      <dependency id="Enkoni.Logging" version="1.2.0.6" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

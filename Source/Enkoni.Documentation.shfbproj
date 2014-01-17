@@ -45,7 +45,7 @@
     <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
     <PresentationStyle>VS2010</PresentationStyle>
     <ProjectSummary>The Enkoni Framework contains numerous types and methods that typically are written over and over again for specific projects.</ProjectSummary>
-    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2013. All rights reserved.</CopyrightText>
+    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2014. All rights reserved.</CopyrightText>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="Enkoni.Framework" isDocumented="True">Contains numerous easy-to-use types and operations that can be utilized in any kind of project or application.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
@@ -76,7 +76,7 @@
         <Filter entryType="Class" fullName="System.Attribute" filterName="Attribute" isExposed="False" />
       </Filter>
     </ApiFilter>
-    <HelpFileVersion>1.2.0.0</HelpFileVersion>
+    <HelpFileVersion>1.2.1.0</HelpFileVersion>
     <HelpAttributes />
     <SyntaxFilters>Standard</SyntaxFilters>
     <RootNamespaceContainer>False</RootNamespaceContainer>
