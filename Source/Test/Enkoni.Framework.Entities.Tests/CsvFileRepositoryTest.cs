@@ -20,7 +20,7 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Retrieve test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase01")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase01")]
     public override void TestCase01_FindAll() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -30,7 +30,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase02")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase02")]
     public override void TestCase02_FindAll_EmptySource() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -40,7 +40,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase03")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase03")]
     public override void TestCase03_FindAllWithExpression() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -50,7 +50,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase04")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase04")]
     public override void TestCase04_FindAllWithExpression_EmptySource() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -60,7 +60,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase05")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase05")]
     public override void TestCase05_FindSingleWithExpression() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -70,7 +70,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase06")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase06")]
     public override void TestCase06_FindSingleWithExpression_EmptySource() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -80,7 +80,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase07")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase07")]
     public override void TestCase07_FindFirstWithExpression() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -90,7 +90,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase08")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase08")]
     public override void TestCase08_FindFirstWithExpression_EmptySource() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -101,7 +101,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase09")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase09")]
     public override void TestCase09_RetrieveLessThenAvailable() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -112,7 +112,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase10")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase10")]
     public override void TestCase10_RetrieveExactlyAvailable() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -123,7 +123,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
     /// number of results.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase11")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase11")]
     public override void TestCase11_RetrieveExactlyAvailable_EmptySource() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -134,7 +134,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase12")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase12")]
     public override void TestCase12_RetrieveMoreThenAvailable() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -145,7 +145,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
     /// number of results.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase13")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase13")]
     public override void TestCase13_RetrieveMoreThenAvailable_EmptySource() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -158,7 +158,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a specific ordering 
     /// specification.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase14")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\TestCase14")]
     public override void TestCase14_OrderBy() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -169,7 +169,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a specific
     /// ordering specification.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase15")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase15")]
     public override void TestCase15_OrderBy_EmptySource() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -181,7 +181,7 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Storage test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase16")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase16")]
     public override void TestCase16_Add() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -191,7 +191,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase17")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase17")]
     public override void TestCase17_Update() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -201,7 +201,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase18")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase18")]
     public override void TestCase18_Delete() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -211,7 +211,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase19")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase19")]
     public override void TestCase19_AddMultiple_NormalUse() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -221,7 +221,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntities(IEnumerable{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase20")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase20")]
     public override void TestCase20_DeleteMultiple_NormalUse() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -232,7 +232,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntities(IEnumerable{T})"/> method when it should throw an 
     /// exception and rollback the operation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase21")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase21")]
     public override void TestCase21_DeleteMultiple_Exceptions() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -242,7 +242,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase22")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase22")]
     public override void TestCase22_UpdateMultiple_NormalUse() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -253,7 +253,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method when it should throw an 
     /// exception and rollback the operation.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase23")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase23")]
     public override void TestCase23_UpdateMultiple_Exceptions() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -265,7 +265,7 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Combined storage test-cases
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase24")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase24")]
     public override void TestCase24_AddUpdate() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -275,7 +275,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase25")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase25")]
     public override void TestCase25_AddUpdateDelete() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -285,7 +285,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase26")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase26")]
     public override void TestCase26_UpdateDelete() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -295,7 +295,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase27")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase27")]
     public override void TestCase27_DeleteAdd() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -307,7 +307,7 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Read test-cases
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase28")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase28")]
     public override void TestCase28_ReadFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -318,7 +318,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method when 
     /// reading an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase29")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase29")]
     public override void TestCase29_ReadEmptyFile() {
       /* Create the repositiry */
       DataSourceInfo sourceInfo =
@@ -331,8 +331,8 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/>
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase30")]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase30")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase30")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase30")]
     public override void TestCase30_WriteFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
@@ -343,8 +343,8 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
     /// method when writing an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
-    [DeploymentItem(@"Test\Enkoni.Framework.Entities.Tests\TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
     public override void TestCase31_WriteEmptyFile() {
       DataSourceInfo sourceInfo =
         new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase31\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);

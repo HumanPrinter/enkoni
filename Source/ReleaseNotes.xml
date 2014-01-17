@@ -1,6 +1,210 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
+    <release version="1.2.1.0" releasedate="2014-01-17">
+      <projects>
+        <project name="Enkoni.Framework" version="2.2.0.1">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities" version="3.0.0.1">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.0.0.4">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="3.0.0.1">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Service" version="3.0.0.1">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Logging" version="1.2.0.6">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.ServiceModel" version="2.1.0.3">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Testing" version="1.0.0.7">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.UI" version="1.0.0.6">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Validation" version="2.1.0.0">
+          <updates>
+            <update date="2014-01-17" type="addition">
+              <summary><![CDATA[Added the EmailValidator class]]></summary>
+              <comment>
+                <![CDATA[Added a new validator that is able to check if a string value represents a valid e-mail address. The validator can be 
+                instantiated directly or through an attribute and can be configured in code and in configuration.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Web" version="1.1.0.1">
+          <updates>
+            <update date="2014-01-17" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
+    <release version="1.2.0.0" releasedate="2013-11-23">
+      <projects>
+        <project name="Enkoni.Framework" version="2.2.0.0">
+          <updates>
+            <update date="2013-11-03" type="addition">
+              <summary><![CDATA[Added support for a custom 'null' string to the CsvSerializer]]></summary>
+              <comment>
+                <![CDATA[Added support for a custom 'null' string to the CsvSerializer. This allows for more flexibility when (de)serializing
+              objects to and from CSV format.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities" version="3.0.0.0">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.0.0.3">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="3.0.0.0">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Service" version="3.0.0.0">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Logging" version="1.2.0.5">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.ServiceModel" version="2.1.0.2">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Testing" version="1.0.0.6">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.UI" version="1.0.0.5">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
+              <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Validation" version="2.0.0.0">
+          <updates>
+            <update date="2013-11-23" type="change">
+              <summary><![CDATA[Upgraded to the .NET 4 framework]]></summary>
+              <comment><![CDATA[The project now references the .NET 4 framework.]]></comment>
+            </update>
+            <update date="2013-11-23" type="addition">
+              <summary><![CDATA[Added the IbanValidator class]]></summary>
+              <comment>
+                <![CDATA[Added a new validator that is able to check if a string value represents a valid IBAN account number.]]>
+              </comment>
+            </update>
+            <update date="2013-11-18" type="addition">
+              <summary><![CDATA[Added the DutchPhoneNumberValidator class]]></summary>
+              <comment>
+                <![CDATA[Added a new validator that is able to check if a string value represents a valid Dutch phone number. The validator can be 
+                instantiated directly or through an attribute and can be configured in code and in configuration.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Web" version="1.1.0.0">
+          <updates>
+            <update date="2013-11-03" type="addition">
+              <summary><![CDATA[Added the new Mvc3FixedModelBinder to the project]]></summary>
+              <comment><![CDATA[Added the new Mvc3FixedModelBinder which extends Microsoft's DefaultModelBinder and fixes 
+              a bug related to binding enum-values.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.1.2.0" releasedate="2013-11-01">
       <projects>
         <project name="Enkoni.Framework" version="2.1.0.0">
@@ -100,7 +304,7 @@
         </project>
         <project name="Enkoni.Framework.Web" version="1.0.0.1">
           <updates>
-            <update date="2013-11-01" type="addition">
+            <update date="2013-11-01" type="change">
               <summary><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></summary>
               <comment><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></comment>
             </update>

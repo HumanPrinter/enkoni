@@ -49,29 +49,29 @@ if(!(Test-Path $releaseDir)) {
   return 1
 }
 
-$menu = @"
-To which repository do you want to push the NuGet packages?
-1) Local repository
-2) Public repository
+#$menu = @"
+#To which repository do you want to push the NuGet packages?
+#1) Local repository
+#2) Public repository
+#
+#"@
 
-"@
-
-Write-Host $menu
-$repositoryChoice = Read-Host
-switch($repositoryChoice) {
-  1 {
-    $apiKey = 'd2addced-c1be-4220-8b87-568ae8e952c3'
-    $server = 'http://localhost/nuget/api/v2/package'
-  }
-  2 {
+#Write-Host $menu
+#$repositoryChoice = Read-Host
+#switch($repositoryChoice) {
+#  1 {
+#    $apiKey = 'd2addced-c1be-4220-8b87-568ae8e952c3'
+#    $server = 'http://localhost/nuget/api/v2/package'
+#  }
+#  2 {
     $apiKey = '37d6d849-3ba7-4481-a091-1bb1a1dacb4b'
-    $server = 'https://nuget.org/api/v2/package'
-  }
-  default {
-    Write-Host "No valid option was selected. Going to abort."
-    return 1
-  }
-}
+#    $server = 'https://nuget.org/api/v2/package'
+#  }
+#  default {
+#    Write-Host "No valid option was selected. Going to abort."
+#    return 1
+#  }
+#}
 
 Push-NuGet -inputDirectory $releaseDir -apiKey $apiKey -server $server
 

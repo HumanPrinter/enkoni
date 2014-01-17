@@ -10,10 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Enkoni.Framework.Validation</RootNamespace>
     <AssemblyName>Enkoni.Framework.Validation</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Enkoni.Framework.snk</AssemblyOriginatorKeyFile>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -48,9 +47,31 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ValidationException.cs" />
+    <Compile Include="Validators\Configuration\EmailDomainConfigElement.cs" />
+    <Compile Include="Validators\Configuration\EmailDomainCollection.cs" />
+    <Compile Include="Validators\Configuration\DutchPhoneNumberAreaCodeCollection.cs" />
+    <Compile Include="Validators\Configuration\EmailValidatorConfigElement.cs" />
+    <Compile Include="Validators\Configuration\EmailValidatorConfigDictionary.cs" />
+    <Compile Include="Validators\Configuration\DutchPhoneNumberValidatorConfigDictionary.cs" />
+    <Compile Include="Validators\Configuration\DutchPhoneNumberValidatorConfigElement.cs" />
+    <Compile Include="Validators\Configuration\DutchPhoneNumberAreaCodeConfigElement.cs" />
+    <Compile Include="Validators\Configuration\ValidatorsSection.cs" />
+    <Compile Include="Validators\EmailValidatorAttribute.cs" />
+    <Compile Include="Validators\EmailValidator.cs" />
+    <Compile Include="Validators\IbanValidatorAttribute.cs" />
+    <Compile Include="Validators\IbanValidator.cs" />
+    <Compile Include="Validators\Enumerations.cs" />
+    <Compile Include="Validators\DutchPhoneNumberValidatorAttribute.cs" />
+    <Compile Include="Validators\DutchPhoneNumberValidator.cs" />
     <Compile Include="Validators\TimeSpanRangeValidator.cs" />
     <Compile Include="Validators\TimeSpanRangeValidatorAttribute.cs" />
   </ItemGroup>
@@ -59,12 +80,17 @@
       <Link>Enkoni.Framework.snk</Link>
     </None>
     <None Include="packages.config" />
-    <None Include="Settings.StyleCop" />
+    <None Include="Settings.StyleCop">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Enkoni.Framework.Validation.RegularExpressions">
+      <HintPath>..\Libraries\Enkoni.Framework.Validation.RegularExpressions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
@@ -90,7 +116,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\MSBuildExtensions\Common\Common.Targets" />

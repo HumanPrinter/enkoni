@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file="ValidationException.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
+//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
 // </copyright>
 // <summary>
 //     Holds a specific exceptiontype that can be used when a validation did not succeed.
@@ -77,7 +77,6 @@ namespace Enkoni.Framework.Validation {
     /// <summary>Sets the <paramref name="info"/> with information about the exception.</summary>
     /// <param name="info">The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
     /// <param name="context">The <see cref="StreamingContext"/> that contains contextual information about the source or destination.</param>
-    [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
     public override void GetObjectData(SerializationInfo info, StreamingContext context) {
       if(info == null) {
         throw new ArgumentNullException("info");

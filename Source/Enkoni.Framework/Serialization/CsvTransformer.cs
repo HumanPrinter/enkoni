@@ -39,6 +39,7 @@ namespace Enkoni.Framework.Serialization {
       this.ColumnNameMappings = new Dictionary<int, string>();
       this.PropertyDelegates = new Dictionary<int, Delegate>();
       this.FormatMappings = new Dictionary<int, string>();
+      this.NullStringMappings = new Dictionary<int, string>();
       this.CultureMappings = new Dictionary<int, string>();
 
       MemberInfo info = typeof(T);
@@ -73,6 +74,10 @@ namespace Enkoni.Framework.Serialization {
             this.ColumnNameMappings.Add(colAttr.FieldIndex, property.Name);
             if(colAttr.FormatString != null) {
               this.FormatMappings.Add(colAttr.FieldIndex, colAttr.FormatString);
+            }
+
+            if(colAttr.NullString != null) {
+              this.NullStringMappings.Add(colAttr.FieldIndex, colAttr.NullString);
             }
 
             if(colAttr.CultureName != null) {
@@ -135,6 +140,9 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Gets the mappings of the formatstrings. The dictionary uses the columnindex as key and formatstring as value.</summary>
     protected Dictionary<int, string> FormatMappings { get; private set; }
 
+    /// <summary>Gets the mappings of the nullstrings. The dictionary uses the columnindex as key and nullstring as value.</summary>
+    protected Dictionary<int, string> NullStringMappings { get; private set; }
+
     /// <summary>Gets the mappings of the cultures. The dictionary uses the columnindex as key and culturename as value.</summary>
     protected Dictionary<int, string> CultureMappings { get; private set; }
     #endregion
@@ -154,10 +162,6 @@ namespace Enkoni.Framework.Serialization {
           propertyValue = retrievePropertyFunc.DynamicInvoke(instance);
         }
 
-        if(propertyValue == null) {
-          propertyValue = string.Empty;
-        }
-
         CultureInfo culture = null;
         if(this.CultureMappings.ContainsKey(columnIndex)) {
           culture = new CultureInfo(this.CultureMappings[columnIndex]);
@@ -171,20 +175,30 @@ namespace Enkoni.Framework.Serialization {
             propertyFormat = this.FormatMappings[columnIndex];
           }
 
-          if(propertyInfo.PropertyType.ActualType().IsEnum) {
-            formatString = CreateEnumFormatString(propertyFormat, propertyValue, culture);
-          }
-          else if(propertyInfo.PropertyType.ActualType() == typeof(bool)) {
-            formatString = CreateBooleanFormatString(propertyFormat, string.Empty.Equals(propertyValue) ? (bool?)null : (bool)propertyValue);
-          }
-          else if(propertyInfo.PropertyType.ActualType() == typeof(char)) {
-            formatString = CreateCharFormatString(propertyFormat, string.Empty.Equals(propertyValue) ? (char?)null : (char)propertyValue, culture);
-          }
-          else if(propertyInfo.PropertyType == typeof(string)) {
-            formatString = CreateStringFormatString(propertyFormat);
+          if(propertyValue == null && this.NullStringMappings.ContainsKey(columnIndex)) {
+            propertyValue = string.Empty;
+            formatString = this.NullStringMappings[columnIndex];
           }
           else {
-            formatString = CreateFormatString(propertyFormat);
+            if(propertyValue == null) {
+              propertyValue = string.Empty;
+            }
+
+            if(propertyInfo.PropertyType.ActualType().IsEnum) {
+              formatString = CreateEnumFormatString(propertyFormat, propertyValue, culture);
+            }
+            else if(propertyInfo.PropertyType.ActualType() == typeof(bool)) {
+              formatString = CreateBooleanFormatString(propertyFormat, string.Empty.Equals(propertyValue) ? (bool?)null : (bool)propertyValue);
+            }
+            else if(propertyInfo.PropertyType.ActualType() == typeof(char)) {
+              formatString = CreateCharFormatString(propertyFormat, string.Empty.Equals(propertyValue) ? (char?)null : (char)propertyValue, culture);
+            }
+            else if(propertyInfo.PropertyType == typeof(string)) {
+              formatString = CreateStringFormatString(propertyFormat);
+            }
+            else {
+              formatString = CreateFormatString(propertyFormat);
+            }
           }
         }
 
@@ -249,11 +263,23 @@ namespace Enkoni.Framework.Serialization {
         if(this.ColumnNameMappings.ContainsKey(colIndex)) {
           string cultureName;
           string formatString;
+          string nullString;
           this.FormatMappings.TryGetValue(colIndex, out formatString);
           this.CultureMappings.TryGetValue(colIndex, out cultureName);
+          this.NullStringMappings.TryGetValue(colIndex, out nullString);
 
           PropertyInfo propertyInfo = obj.GetType().GetProperty(this.ColumnNameMappings[colIndex]);
-          SetPropertyValue(propertyInfo, obj, columns[colIndex], formatString, cultureName);
+          if(nullString != null && columns[colIndex].Equals(nullString)) {
+            if(!propertyInfo.PropertyType.IsValueType || propertyInfo.PropertyType.IsNullable()) {
+              propertyInfo.SetValue(obj, null, null);
+            }
+            else {
+              throw new FormatException(string.Format(CultureInfo.CurrentUICulture, Resources.FormatExceptionInvalidTypeValue, columns[colIndex], propertyInfo.PropertyType));
+            }
+          }
+          else {
+            SetPropertyValue(propertyInfo, obj, columns[colIndex], formatString, cultureName);
+          }
         }
       }
 

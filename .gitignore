@@ -48,6 +48,10 @@ Source/Enkoni.Framework.Web/*.Cache
 Source/Enkoni.Framework.Web/bin/
 Source/Enkoni.Framework.Web/obj/
 Source/packages
+Source/Supporting projects/RegexBuilder/*.user
+Source/Supporting projects/RegexBuilder/*.Cache
+Source/Supporting projects/RegexBuilder/bin/
+Source/Supporting projects/RegexBuilder/obj/
 Source/Test/Enkoni.Framework.Tests/*.user
 Source/Test/Enkoni.Framework.Tests/*.Cache
 Source/Test/Enkoni.Framework.Tests/bin/

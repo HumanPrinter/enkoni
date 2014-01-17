@@ -24,7 +24,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase01_FromString_Int32() {
       Transformer<TestDummyWithIntProperties> testSubject = new CsvTransformer<TestDummyWithIntProperties>();
 
-      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\"";
+      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,\"39\"";
       TestDummyWithIntProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12, result.ColumnA);
@@ -35,8 +35,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(15, result.ColumnF);
       Assert.AreEqual(43, result.ColumnG);
       Assert.AreEqual(37, result.ColumnH);
+      Assert.AreEqual(38, result.ColumnI);
+      Assert.AreEqual(39, result.ColumnJ);
 
-      inputValue = "12,014,\"42\",\"036\",,,\"\",\"\"";
+      inputValue = "12,014,\"42\",\"036\",,,\"\",\"\",A,A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12, result.ColumnA);
@@ -47,6 +49,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -54,7 +58,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase02_FromString_Boolean() {
       Transformer<TestDummyWithBoolProperties> testSubject = new CsvTransformer<TestDummyWithBoolProperties>();
 
-      string inputValue = "True,1,\"False\",\"N\",False,0,\"True\",\"J\"";
+      string inputValue = "True,1,\"False\",\"N\",False,0,\"True\",\"J\",True,J,\"True\"";
       TestDummyWithBoolProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(true, result.ColumnA);
@@ -65,8 +69,12 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(false, result.ColumnF);
       Assert.AreEqual(true, result.ColumnG);
       Assert.AreEqual(true, result.ColumnH);
+      Assert.AreEqual(true, result.ColumnI);
+      Assert.AreEqual(true, result.ColumnJ);
+      Assert.AreEqual(true, result.ColumnK);
 
-      inputValue = "True,1,\"False\",\"N\",,,\"\",";
+
+      inputValue = "True,1,\"False\",\"N\",,,\"\",,A,A,A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(true, result.ColumnA);
@@ -77,6 +85,9 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
+      Assert.IsNull(result.ColumnK);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -84,7 +95,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase03_FromString_Byte() {
       Transformer<TestDummyWithByteProperties> testSubject = new CsvTransformer<TestDummyWithByteProperties>();
 
-      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\"";
+      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,039";
       TestDummyWithByteProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual((byte)12, result.ColumnA);
@@ -95,8 +106,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual((byte)15, result.ColumnF);
       Assert.AreEqual((byte)43, result.ColumnG);
       Assert.AreEqual((byte)37, result.ColumnH);
+      Assert.AreEqual((byte)38, result.ColumnI);
+      Assert.AreEqual((byte)39, result.ColumnJ);
 
-      inputValue = "12,014,\"42\",\"036\",,,\"\",";
+      inputValue = "12,014,\"42\",\"036\",,,\"\",,A,A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual((byte)12, result.ColumnA);
@@ -107,6 +120,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -114,7 +129,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase04_FromString_Float() {
       Transformer<TestDummyWithFloatProperties> testSubject = new CsvTransformer<TestDummyWithFloatProperties>();
 
-      string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\"";
+      string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\";2.34;\"3.45\"";
       TestDummyWithFloatProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12.1F, result.ColumnA);
@@ -125,8 +140,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(1.50F, result.ColumnF);
       Assert.AreEqual(43.5F, result.ColumnG);
       Assert.AreEqual(3.77F, result.ColumnH);
+      Assert.AreEqual(2.34F, result.ColumnI);
+      Assert.AreEqual(3.45F, result.ColumnJ);
 
-      inputValue = "12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\"";
+      inputValue = "12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\";A;A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12.1F, result.ColumnA);
@@ -137,6 +154,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -144,7 +163,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase05_FromString_Double() {
       Transformer<TestDummyWithDoubleProperties> testSubject = new CsvTransformer<TestDummyWithDoubleProperties>();
 
-      string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\"";
+      string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\";2.34;\"3.45\"";
       TestDummyWithDoubleProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12.1D, result.ColumnA);
@@ -155,8 +174,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(1.50D, result.ColumnF);
       Assert.AreEqual(43.5D, result.ColumnG);
       Assert.AreEqual(3.77D, result.ColumnH);
+      Assert.AreEqual(2.34D, result.ColumnI);
+      Assert.AreEqual(3.45D, result.ColumnJ);
 
-      inputValue = "12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\"";
+      inputValue = "12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\";A;A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12.1D, result.ColumnA);
@@ -167,6 +188,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -174,7 +197,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase06_FromString_Decimal() {
       Transformer<TestDummyWithDecimalProperties> testSubject = new CsvTransformer<TestDummyWithDecimalProperties>();
 
-      string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\"";
+      string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\";2.34;3.45";
       TestDummyWithDecimalProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12.1M, result.ColumnA);
@@ -185,8 +208,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(1.50M, result.ColumnF);
       Assert.AreEqual(43.5M, result.ColumnG);
       Assert.AreEqual(3.77M, result.ColumnH);
+      Assert.AreEqual(2.34M, result.ColumnI);
+      Assert.AreEqual(3.45M, result.ColumnJ);
 
-      inputValue = "12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\"";
+      inputValue = "12.1;01,41;\"42.3\";\"03,26\";;;\"\";\"\";A;A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12.1M, result.ColumnA);
@@ -197,6 +222,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -204,7 +231,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase07_FromString_Short() {
       Transformer<TestDummyWithShortProperties> testSubject = new CsvTransformer<TestDummyWithShortProperties>();
 
-      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\"";
+      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,39";
       TestDummyWithShortProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual((short)12, result.ColumnA);
@@ -215,8 +242,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual((short)15, result.ColumnF);
       Assert.AreEqual((short)43, result.ColumnG);
       Assert.AreEqual((short)37, result.ColumnH);
+      Assert.AreEqual((short)38, result.ColumnI);
+      Assert.AreEqual((short)39, result.ColumnJ);
 
-      inputValue = "12,014,\"42\",\"036\",,,\"\",\"\"";
+      inputValue = "12,014,\"42\",\"036\",,,\"\",\"\",A,A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual((short)12, result.ColumnA);
@@ -227,6 +256,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -234,7 +265,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase08_FromString_Long() {
       Transformer<TestDummyWithLongProperties> testSubject = new CsvTransformer<TestDummyWithLongProperties>();
 
-      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\"";
+      string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,039";
       TestDummyWithLongProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12L, result.ColumnA);
@@ -245,8 +276,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(15L, result.ColumnF);
       Assert.AreEqual(43L, result.ColumnG);
       Assert.AreEqual(37L, result.ColumnH);
+      Assert.AreEqual(38L, result.ColumnI);
+      Assert.AreEqual(39L, result.ColumnJ);
 
-      inputValue = "12,014,\"42\",\"036\",,,\"\",\"\"";
+      inputValue = "12,014,\"42\",\"036\",,,\"\",\"\",A,A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(12L, result.ColumnA);
@@ -257,6 +290,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -264,7 +299,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase09_FromString_Char() {
       Transformer<TestDummyWithCharProperties> testSubject = new CsvTransformer<TestDummyWithCharProperties>();
 
-      string inputValue = "d,097,\"e\",\"105\",e,098,\"f\",\"106\"";
+      string inputValue = "d,097,\"e\",\"105\",e,098,\"f\",\"106\",A,B";
       TestDummyWithCharProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual('d', result.ColumnA);
@@ -275,8 +310,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual('b', result.ColumnF);
       Assert.AreEqual('f', result.ColumnG);
       Assert.AreEqual('j', result.ColumnH);
+      Assert.AreEqual('A', result.ColumnI);
+      Assert.AreEqual('B', result.ColumnJ);
 
-      inputValue = "d,097,\"e\",\"105\",,,\"\",\"\"";
+      inputValue = "d,097,\"e\",\"105\",,,\"\",\"\",<>,<>";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual('d', result.ColumnA);
@@ -287,6 +324,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -294,21 +333,25 @@ namespace Enkoni.Framework.Tests {
     public void TestCase10_FromString_String() {
       Transformer<TestDummyWithStringProperties> testSubject = new CsvTransformer<TestDummyWithStringProperties>();
 
-      string inputValue = "abc,def  ,\"ghi\",\"jk \"";
+      string inputValue = "abc,def  ,\"ghi\",\"jk \",lm,\"no\"";
       TestDummyWithStringProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual("abc", result.ColumnA);
       Assert.AreEqual("def", result.ColumnB);
       Assert.AreEqual("ghi", result.ColumnC);
       Assert.AreEqual("jk", result.ColumnD);
+      Assert.AreEqual("lm", result.ColumnE);
+      Assert.AreEqual("no", result.ColumnF);
 
-      inputValue = ",,\"\",\"\"";
+      inputValue = ",,\"\",\"\",<null>,<null>";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(string.Empty, result.ColumnA);
       Assert.AreEqual(string.Empty, result.ColumnB);
       Assert.AreEqual(string.Empty, result.ColumnC);
       Assert.AreEqual(string.Empty, result.ColumnD);
+      Assert.IsNull(result.ColumnE);
+      Assert.IsNull(result.ColumnF);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -316,7 +359,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase11_FromString_DateTime() {
       Transformer<TestDummyWithDateTimeProperties> testSubject = new CsvTransformer<TestDummyWithDateTimeProperties>();
 
-      string inputValue = "12-07-2013,20130713,\"14-07-2013\",\"20130715\",16-07-2013,20130717,\"18-07-2013\",\"20130719\"";
+      string inputValue = "12-07-2013,20130713,\"14-07-2013\",\"20130715\",16-07-2013,20130717,\"18-07-2013\",\"20130719\",13-08-2014,20140914";
       TestDummyWithDateTimeProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(new DateTime(2013, 7, 12), result.ColumnA);
@@ -327,8 +370,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(new DateTime(2013, 7, 17), result.ColumnF);
       Assert.AreEqual(new DateTime(2013, 7, 18), result.ColumnG);
       Assert.AreEqual(new DateTime(2013, 7, 19), result.ColumnH);
+      Assert.AreEqual(new DateTime(2014, 8, 13), result.ColumnI);
+      Assert.AreEqual(new DateTime(2014, 9, 14), result.ColumnJ);
 
-      inputValue = "12-07-2013,20130713,\"14-07-2013\",\"20130715\",,,\"\",\"\"";
+      inputValue = "12-07-2013,20130713,\"14-07-2013\",\"20130715\",,,\"\",\"\",0,0";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(new DateTime(2013, 7, 12), result.ColumnA);
@@ -339,6 +384,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
@@ -346,7 +393,7 @@ namespace Enkoni.Framework.Tests {
     public void TestCase12_FromString_Enum() {
       Transformer<TestDummyWithEnumProperties> testSubject = new CsvTransformer<TestDummyWithEnumProperties>();
 
-      string inputValue = "ValueB,003,\"ValueE\",\"004\",ValueC,004,\"ValueD\",\"001\"";
+      string inputValue = "ValueB,003,\"ValueE\",\"004\",ValueC,004,\"ValueD\",\"001\",ValueB,1";
       TestDummyWithEnumProperties result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(TestEnum.ValueB, result.ColumnA);
@@ -357,8 +404,10 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(TestEnum.ValueE, result.ColumnF);
       Assert.AreEqual(TestEnum.ValueD, result.ColumnG);
       Assert.AreEqual(TestEnum.ValueB, result.ColumnH);
+      Assert.AreEqual(TestEnum.ValueB, result.ColumnI);
+      Assert.AreEqual(TestEnum.ValueB, result.ColumnJ);
 
-      inputValue = "ValueB,003,\"ValueE\",\"004\",,,\"\",\"\"";
+      inputValue = "ValueB,003,\"ValueE\",\"004\",,,\"\",\"\",X,X";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual(TestEnum.ValueB, result.ColumnA);
@@ -369,6 +418,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnF);
       Assert.IsNull(result.ColumnG);
       Assert.IsNull(result.ColumnH);
+      Assert.IsNull(result.ColumnI);
+      Assert.IsNull(result.ColumnJ);
     }
     #endregion
 
@@ -386,20 +437,24 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 13,
         ColumnF = 15,
         ColumnG = 43,
-        ColumnH = 37
+        ColumnH = 37,
+        ColumnI = 38,
+        ColumnJ = 39
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,\"39\"", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\",A,A", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -415,20 +470,26 @@ namespace Enkoni.Framework.Tests {
         ColumnE = false,
         ColumnF = false,
         ColumnG = true,
-        ColumnH = true
+        ColumnH = true,
+        ColumnI = false,
+        ColumnJ = true,
+        ColumnK = true
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("True,1,\"False\",\"N\",False,0,\"True\",\"J\"", result);
+      Assert.AreEqual("True,1,\"False\",\"N\",False,0,\"True\",\"J\",False,J,\"True\"", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
+      inputValue.ColumnK = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("True,1,\"False\",\"N\",,,\"\",", result);
+      Assert.AreEqual("True,1,\"False\",\"N\",,,\"\",,A,A,A", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -444,20 +505,24 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 13,
         ColumnF = 15,
         ColumnG = 43,
-        ColumnH = 37
+        ColumnH = 37,
+        ColumnI = 38,
+        ColumnJ = 39
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,039", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\",A,A", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -473,12 +538,14 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 13.2F,
         ColumnF = 1.50F,
         ColumnG = 43.5F,
-        ColumnH = 3.77F
+        ColumnH = 3.77F,
+        ColumnI = 2.34F,
+        ColumnJ = 3.45F
       };
 
       string result = testSubject.ToString(inputValue);
-      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\"",
-        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH);
+      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\";{6};\"{7:0.00}\"",
+        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH, inputValue.ColumnI, inputValue.ColumnJ);
       Assert.IsNotNull(result);
       Assert.AreEqual(expected, result);
 
@@ -486,8 +553,10 @@ namespace Enkoni.Framework.Tests {
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
-      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\"",
+      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\";A;A",
         inputValue.ColumnA, inputValue.ColumnC);
       Assert.IsNotNull(result);
       Assert.AreEqual(expected, result);
@@ -506,12 +575,14 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 13.2D,
         ColumnF = 1.50D,
         ColumnG = 43.5D,
-        ColumnH = 3.77D
+        ColumnH = 3.77D,
+        ColumnI = 2.34D,
+        ColumnJ = 3.45D
       };
 
       string result = testSubject.ToString(inputValue);
-      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\"",
-        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH);
+      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\";{6};\"{7:0.00}\"",
+        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH, inputValue.ColumnI, inputValue.ColumnJ);
       Assert.IsNotNull(result);
       Assert.AreEqual(expected, result);
 
@@ -519,8 +590,10 @@ namespace Enkoni.Framework.Tests {
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
-      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\"",
+      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\";A;A",
         inputValue.ColumnA, inputValue.ColumnC);
       Assert.IsNotNull(result);
       Assert.AreEqual(expected, result);
@@ -539,12 +612,14 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 13.2M,
         ColumnF = 1.50M,
         ColumnG = 43.5M,
-        ColumnH = 3.77M
+        ColumnH = 3.77M,
+        ColumnI = 2.34M,
+        ColumnJ = 3.45M
       };
 
       string result = testSubject.ToString(inputValue);
-      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\"",
-        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH);
+      string expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";{2};{3:00.00};\"{4}\";\"{5:00.00}\";{6};{7:0.00}",
+        inputValue.ColumnA, inputValue.ColumnC, inputValue.ColumnE, inputValue.ColumnF, inputValue.ColumnG, inputValue.ColumnH, inputValue.ColumnI, inputValue.ColumnJ);
       Assert.IsNotNull(result);
       Assert.AreEqual(expected, result);
 
@@ -552,8 +627,10 @@ namespace Enkoni.Framework.Tests {
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
-      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\"",
+      expected = string.Format(CultureInfo.CurrentCulture, "{0};01,41;\"{1}\";\"03,26\";;;\"\";\"\";A;A",
         inputValue.ColumnA, inputValue.ColumnC);
       Assert.IsNotNull(result);
       Assert.AreEqual(expected, result);
@@ -572,20 +649,24 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 13,
         ColumnF = 15,
         ColumnG = 43,
-        ColumnH = 37
+        ColumnH = 37,
+        ColumnI = 38,
+        ColumnJ = 39
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,039", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\",A,A", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -601,20 +682,24 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 13,
         ColumnF = 15,
         ColumnG = 43,
-        ColumnH = 37
+        ColumnH = 37,
+        ColumnI = 38,
+        ColumnJ = 39
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,039", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\"", result);
+      Assert.AreEqual("12,014,\"42\",\"036\",,,\"\",\"\",A,A", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -630,20 +715,24 @@ namespace Enkoni.Framework.Tests {
         ColumnE = 'e',
         ColumnF = 'b',
         ColumnG = 'f',
-        ColumnH = 'j'
+        ColumnH = 'j',
+        ColumnI = 'k',
+        ColumnJ = 'l'
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("d,097,\"e\",\"105\",e,098,\"f\",\"106\"", result);
+      Assert.AreEqual("d,097,\"e\",\"105\",e,098,\"f\",\"106\",k,108", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("d,097,\"e\",\"105\",,,\"\",\"\"", result);
+      Assert.AreEqual("d,097,\"e\",\"105\",,,\"\",\"\",<>,<>", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -655,21 +744,25 @@ namespace Enkoni.Framework.Tests {
         ColumnA = "abc",
         ColumnB = "def",
         ColumnC = "ghi",
-        ColumnD = "jk"
+        ColumnD = "jk",
+        ColumnE = "lm",
+        ColumnF = "no"
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("abc,def  ,\"ghi\",\"jk   \"", result);
+      Assert.AreEqual("abc,def  ,\"ghi\",\"jk   \",lm,\"no\"", result);
 
       inputValue.ColumnA = null;
       inputValue.ColumnB = null;
       inputValue.ColumnC = null;
       inputValue.ColumnD = null;
+      inputValue.ColumnE = null;
+      inputValue.ColumnF = null;
 
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual(",     ,\"\",\"     \"", result);
+      Assert.AreEqual(",     ,\"\",\"     \",<null>,<null>", result);
     }
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
@@ -685,7 +778,9 @@ namespace Enkoni.Framework.Tests {
         ColumnE = new DateTime(2013, 7, 16),
         ColumnF = new DateTime(2013, 7, 17),
         ColumnG = new DateTime(2013, 7, 18),
-        ColumnH = new DateTime(2013, 7, 19)
+        ColumnH = new DateTime(2013, 7, 19),
+        ColumnI = new DateTime(2013, 8, 20),
+        ColumnJ = new DateTime(2013, 9, 21)
       };
 
       string result = testSubject.ToString(inputValue);
@@ -698,7 +793,9 @@ namespace Enkoni.Framework.Tests {
         .AppendFormat(new CultureInfo("nl-NL"), "{0},", new DateTime(2013, 7, 16))
         .AppendFormat("{0:yyyyMMdd},", new DateTime(2013, 7, 17))
         .AppendFormat(new CultureInfo("nl-NL"), "\"{0}\",", new DateTime(2013, 7, 18))
-        .AppendFormat("\"{0:yyyyMMdd}\"", new DateTime(2013, 7, 19))
+        .AppendFormat("\"{0:yyyyMMdd}\",", new DateTime(2013, 7, 19))
+        .AppendFormat(new CultureInfo("nl-NL"), "{0},", new DateTime(2013, 8, 20))
+        .AppendFormat("{0:yyyyMMdd}", new DateTime(2013, 9, 21))
         .ToString();
       Assert.AreEqual(expected, result);
 
@@ -706,6 +803,8 @@ namespace Enkoni.Framework.Tests {
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
       expected = new StringBuilder()
@@ -713,7 +812,7 @@ namespace Enkoni.Framework.Tests {
         .AppendFormat("{0:yyyyMMdd},", new DateTime(2013, 7, 13))
         .AppendFormat(new CultureInfo("nl-NL"), "\"{0}\",", new DateTime(2013, 7, 14))
         .AppendFormat("\"{0:yyyyMMdd}\",", new DateTime(2013, 7, 15))
-        .Append(",,\"\",\"\"")
+        .Append(",,\"\",\"\",0,0")
         .ToString();
       Assert.AreEqual(expected, result);
     }
@@ -731,21 +830,25 @@ namespace Enkoni.Framework.Tests {
         ColumnE = TestEnum.ValueC,
         ColumnF = TestEnum.ValueE,
         ColumnG = TestEnum.ValueD,
-        ColumnH = TestEnum.ValueB
+        ColumnH = TestEnum.ValueB,
+        ColumnI = TestEnum.ValueB,
+        ColumnJ = TestEnum.ValueD
       };
 
       string result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("ValueB,003,\"ValueE\",\"004\",ValueC,004,\"ValueD\",\"001\"", result);
+      Assert.AreEqual("ValueB,003,\"ValueE\",\"004\",ValueC,004,\"ValueD\",\"001\",ValueB,3", result);
 
       inputValue.ColumnE = null;
       inputValue.ColumnF = null;
       inputValue.ColumnG = null;
       inputValue.ColumnH = null;
+      inputValue.ColumnI = null;
+      inputValue.ColumnJ = null;
 
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
-      Assert.AreEqual("ValueB,003,\"ValueE\",\"004\",,,\"\",\"\"", result);
+      Assert.AreEqual("ValueB,003,\"ValueE\",\"004\",,,\"\",\"\",X,X", result);
     }
     #endregion
 
@@ -784,6 +887,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:000}\"")]
       public int? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public int? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "\"{0}\"")]
+      public int? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with bool properties to support the testcases.</summary>
@@ -820,6 +931,18 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "tRue:\"J\"|faLse:\"N\"")]
       public bool? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public bool? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "true:J|false:N")]
+      public bool? ColumnJ { get; set; }
+
+      /// <summary>Gets or sets the value of the eleventh column.</summary>
+      [CsvColumn(10, NullString = "A", FormatString = "\"{0}\"")]
+      public bool? ColumnK { get; set; }
     }
 
     /// <summary>A basic dummy class with byte properties to support the testcases.</summary>
@@ -856,6 +979,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:000}\"")]
       public byte? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public byte? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "000")]
+      public byte? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with float properties to support the testcases.</summary>
@@ -892,6 +1023,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:00.00}\"")]
       public float? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public float? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "\"{0:0.00}\"")]
+      public float? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with double properties to support the testcases.</summary>
@@ -928,6 +1067,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:00.00}\"")]
       public double? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public double? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "\"{0:0.00}\"")]
+      public double? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with decimal properties to support the testcases.</summary>
@@ -964,6 +1111,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:00.00}\"")]
       public decimal? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public decimal? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "0.00")]
+      public decimal? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with short properties to support the testcases.</summary>
@@ -1000,6 +1155,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:000}\"")]
       public short? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public short? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "000")]
+      public short? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with long properties to support the testcases.</summary>
@@ -1036,6 +1199,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:000}\"")]
       public long? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "A")]
+      public long? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "A", FormatString = "000")]
+      public long? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with char properties to support the testcases.</summary>
@@ -1072,6 +1243,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:000}\"")]
       public char? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "<>")]
+      public char? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "<>", FormatString = "000")]
+      public char? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with string properties to support the testcases.</summary>
@@ -1092,6 +1271,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the fourth column.</summary>
       [CsvColumn(3, FormatString = "\"{0,-5}\"")]
       public string ColumnD { get; set; }
+
+      /// <summary>Gets or sets the value of the fifth column.</summary>
+      [CsvColumn(4, NullString = "<null>")]
+      public string ColumnE { get; set; }
+
+      /// <summary>Gets or sets the value of the sixth column.</summary>
+      [CsvColumn(5, NullString = "<null>", FormatString = "\"{0}\"")]
+      public string ColumnF { get; set; }
     }
 
     /// <summary>A basic dummy class with DateTime properties to support the testcases.</summary>
@@ -1128,6 +1315,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:yyyyMMdd}\"")]
       public DateTime? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "0", CultureName = "nl-NL")]
+      public DateTime? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "0", FormatString = "yyyyMMdd")]
+      public DateTime? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy class with enum properties to support the testcases.</summary>
@@ -1164,6 +1359,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the eigth column.</summary>
       [CsvColumn(7, FormatString = "\"{0:000}\"")]
       public TestEnum? ColumnH { get; set; }
+
+      /// <summary>Gets or sets the value of the ninth column.</summary>
+      [CsvColumn(8, NullString = "X")]
+      public TestEnum? ColumnI { get; set; }
+
+      /// <summary>Gets or sets the value of the tenth column.</summary>
+      [CsvColumn(9, NullString = "X", FormatString = "0")]
+      public TestEnum? ColumnJ { get; set; }
     }
 
     /// <summary>A basic dummy enum to support the testcases.</summary>

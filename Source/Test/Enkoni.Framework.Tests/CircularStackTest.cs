@@ -23,6 +23,7 @@ namespace Enkoni.Framework.Tests {
   public class CircularStackTest {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}"/> class for normal use when using an unlimited maximum size.</summary>
     [TestMethod]
+    [TestCategory("TEZT")]
     public void TestCase01_NoMaximumSizeNoInitialContent_NormalUse() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
