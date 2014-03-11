@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SolutionInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains the solution-wide metadata.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Reflection;
+﻿using System.Reflection;
 
 // General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the 
 // information associated with an assembly.

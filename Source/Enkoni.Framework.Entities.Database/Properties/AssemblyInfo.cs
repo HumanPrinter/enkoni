@@ -1,13 +1,4 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains the project-wide metadata.
-// </summary>
-//--------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -27,7 +18,3 @@ using System.Runtime.InteropServices;
 [assembly: Guid("d727ee97-a8a4-4dd7-bd7a-36546d9f7b91")]
 
 [assembly: CLSCompliant(true)]
-
-#if DEBUG
-#warning Remove the Settings.StyleCop override-file after the first change of this project
-#endif
