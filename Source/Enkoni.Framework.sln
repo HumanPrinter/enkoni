@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF418619-7942-4E44-A625-192FEA532693}"
 	ProjectSection(SolutionItems) = preProject
@@ -67,6 +67,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Supporting projects", "Supporting projects", "{95F42AAD-D535-48F7-A42C-FB80D8283CEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexBuilder", "Supporting projects\RegexBuilder\RegexBuilder.csproj", "{CE3EBED3-6155-4BFF-B69A-8262A5371464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.Database.Bugs", "Test\Enkoni.Framework.Entities.Database.Bugs\Enkoni.Framework.Entities.Database.Bugs.csproj", "{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -381,6 +383,21 @@ Global
 		{CE3EBED3-6155-4BFF-B69A-8262A5371464}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CE3EBED3-6155-4BFF-B69A-8262A5371464}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CE3EBED3-6155-4BFF-B69A-8262A5371464}.Release|x86.ActiveCfg = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -394,6 +411,7 @@ Global
 		{83A56D44-A6C6-4613-AB15-336D046F2A1B} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{D881FA92-4FE1-43FF-B412-FD48BC1BDD78} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{B7741800-9BC8-4805-92C2-C9EFE61521C6} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{E2616BE3-DB88-4A7C-9F32-A95E88CBC64C} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{CE3EBED3-6155-4BFF-B69A-8262A5371464} = {95F42AAD-D535-48F7-A42C-FB80D8283CEF}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution

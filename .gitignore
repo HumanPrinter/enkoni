@@ -1,7 +1,6 @@
 Source/*.suo
 Source/*.sdf
 Source/*.Cache
-Source/Enkoni.Framework.pfx
 Source/Enkoni.Documentation.shfbproj_Oscar
 Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
@@ -84,6 +83,10 @@ Source/Test/Enkoni.Framework.Web.Tests/*.user
 Source/Test/Enkoni.Framework.Web.Tests/*.Cache
 Source/Test/Enkoni.Framework.Web.Tests/bin/
 Source/Test/Enkoni.Framework.Web.Tests/obj/
+Source/Test/Enkoni.Framework.Entities.Database.Bugs/*.user
+Source/Test/Enkoni.Framework.Entities.Database.Bugs/*.Cache
+Source/Test/Enkoni.Framework.Entities.Database.Bugs/obj/
+Source/Test/Enkoni.Framework.Entities.Database.Bugs/bin/
 Source/TestResults/
 /Releases/*.dll
 /Releases/*.xml
@@ -92,5 +95,4 @@ Source/TestResults/
 /Releases/*.zip
 /Releases/Documentation/
 /WorkingDir
-Release.bat
 Build.log
