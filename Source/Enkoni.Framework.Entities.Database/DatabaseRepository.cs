@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DatabaseRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the default implementation of a repository that uses the Entity Framework to communicate with a database.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -303,7 +294,8 @@ namespace Enkoni.Framework.Entities {
         }
         else {
           /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
-          TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == entity.RecordId);
+          Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == entity.RecordId);
+          TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(queryById);
           if(existingEntity != null) {
             if(!this.deletionCache.Contains(existingEntity, entityComparer)) {
               this.deletionCache.Add(existingEntity);
@@ -359,7 +351,8 @@ namespace Enkoni.Framework.Entities {
 
         foreach(TEntity existingEntity in existingEntities) {
           /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
-          TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == existingEntity.RecordId);
+          Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == existingEntity.RecordId);
+          TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(queryById);
           if(storedEntity != null) {
             if(!tempDeletionCache.Contains(storedEntity, entityComparer)) {
               tempDeletionCache.Add(storedEntity);
@@ -395,6 +388,7 @@ namespace Enkoni.Framework.Entities {
       DbContext context = this.SelectDbContext(dataSourceInfo);
 
       /* First query the database directly (this will also populate the local cache) */
+      expression = EntityCastRemoverVisitor.Convert(expression);
       IQueryable<TEntity> databaseQuery = context.Set<TEntity>().AsExpandable().Where(expression);
 
       /* Add the ordering to the query */
@@ -441,6 +435,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected override TEntity FindSingleCore(Expression<Func<TEntity, bool>> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+      expression = EntityCastRemoverVisitor.Convert(expression);
       Func<TEntity, bool> compiledExpression = expression.Compile();
       /* First, query the addition cache */
       TEntity result = this.additionCache.SingleOrDefault(compiledExpression, null);
@@ -508,6 +503,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected override TEntity FindFirstCore(Expression<Func<TEntity, bool>> expression, SortSpecifications<TEntity> sortRules,
       DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+      expression = EntityCastRemoverVisitor.Convert(expression);
       Func<TEntity, bool> compiledExpression = expression.Compile();
 
       /* This repository defines that any unsaved additions take precedence over previously saved entities, therefore the the addition cache is 
@@ -623,7 +619,8 @@ namespace Enkoni.Framework.Entities {
         }
       }
       else {
-        TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == entity.RecordId);
+        Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == entity.RecordId);
+        TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(queryById);
 
         if(existingEntity != null) {
           if(this.deletionCache.Contains(entity, entityComparer)) {
@@ -686,7 +683,8 @@ namespace Enkoni.Framework.Entities {
       Dictionary<TEntity, TEntity> updatableEntities = new Dictionary<TEntity, TEntity>();
       foreach(TEntity existingEntity in existingEntities) {
         /* Check if the entity already exists, by querying the context directly */
-        TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == existingEntity.RecordId);
+        Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == existingEntity.RecordId);
+        TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(queryById);
         if(storedEntity != null) {
           /* If the entity is already marked for deletion, it can no longer be updated. */
           if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
@@ -714,6 +712,33 @@ namespace Enkoni.Framework.Entities {
       }
       else {
         return newlyAddedEntities.Concat(updatableEntities.Select(kvp => kvp.Value)).ToList();
+      }
+    }
+    #endregion
+
+    #region Private inner classes
+    /// <summary>Implements a custom <see cref="System.Linq.Expressions.ExpressionVisitor"/> that removes the generated Convert-operation from the expression.</summary>
+    private sealed class EntityCastRemoverVisitor : System.Linq.Expressions.ExpressionVisitor {
+      /// <summary>Converts the specified expression into an expression that can be used by the Entity Framework.</summary>
+      /// <param name="expression">The expression that must be converted.</param>
+      /// <returns>The converted expression.</returns>
+      public static Expression<Func<TEntity, bool>> Convert(Expression<Func<TEntity, bool>> expression) {
+        EntityCastRemoverVisitor visitor = new EntityCastRemoverVisitor();
+
+        Expression visitedExpression = visitor.Visit(expression);
+
+        return (Expression<Func<TEntity, bool>>)visitedExpression;
+      }
+
+      /// <summary>Visits the children of the <see cref="UnaryExpression"/>.</summary>
+      /// <param name="node">The expression to visit.</param>
+      /// <returns>The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.</returns>
+      protected override Expression VisitUnary(UnaryExpression node) {
+        if(node.NodeType == ExpressionType.Convert && node.Type == typeof(IEntity<TEntity>)) {
+          return node.Operand;
+        }
+
+        return base.VisitUnary(node);
       }
     }
     #endregion
