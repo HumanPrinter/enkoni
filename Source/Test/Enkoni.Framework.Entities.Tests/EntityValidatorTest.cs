@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EntityValidatorTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the EntityValidator class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 
 using Microsoft.Practices.EnterpriseLibrary.Validation;
