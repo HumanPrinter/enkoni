@@ -13,6 +13,11 @@ using System.Xml;
 namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// <summary>Defines the configuration section that can be used to configure the Enkoni validators.</summary>
   public class ValidatorsSection : ConfigurationSection {
+    #region Constants
+    /// <summary>The default name for the ConfigurationSection in the config file.</summary>
+    public const string DefaultSectionName = "Enkoni.Validators";
+    #endregion
+
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="ValidatorsSection"/> class.</summary>
     public ValidatorsSection() {
