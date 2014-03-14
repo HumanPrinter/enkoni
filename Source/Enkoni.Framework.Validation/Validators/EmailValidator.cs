@@ -39,7 +39,7 @@ namespace Enkoni.Framework.Validation.Validators {
   /// <code>
   /// <![CDATA[
   /// <Enkoni.Validators>
-  ///   <EmailValidator allowComments="false" allowIPAddresses="false">
+  ///   <EmailValidator allowComments="false" allowIPAddresses="false" requireTopLevelDomain="false">
   ///     <includeDomains>
   ///       <domain pattern="microsoft.com" />
   ///       <domain pattern="live.nl" />
@@ -117,6 +117,7 @@ namespace Enkoni.Framework.Validation.Validators {
         if(container != null) {
           this.AllowComments = container.AllowComments;
           this.AllowIPAddresses = container.AllowIPAddresses;
+          this.RequireTopLevelDomain = container.RequireTopLevelDomain;
           this.IncludeDomains = container.IncludeDomains;
           this.ExcludeDomains = container.ExcludeDomains;
         }
@@ -143,6 +144,9 @@ namespace Enkoni.Framework.Validation.Validators {
 
     /// <summary>Gets or sets a value indicating whether IP addresses are allowed as the domain part of the e-mail address. Defaults to <see langword="false"/>.</summary>
     public bool AllowIPAddresses { get; set; }
+
+    /// <summary>Gets or sets a value indicating whether the domain part of the e-mail address must contain a top level domain. Defaults to <see langword="false"/>.</summary>
+    public bool RequireTopLevelDomain { get; set; }
 
     /// <summary>Gets or sets the semicolon-seperated white list of domains.</summary>
     public string IncludeDomains { get; set; }
@@ -184,15 +188,15 @@ namespace Enkoni.Framework.Validation.Validators {
       bool isValid = false;
 
       if(this.Category == EmailCategory.Basic) {
-        isValid = ValidateMailAddress(objectToValidate, new EmailValidatorLocalPartBasicRegex(), this.AllowComments, this.AllowIPAddresses, this.IncludeDomains, this.ExcludeDomains);
+        isValid = ValidateMailAddress(objectToValidate, new EmailValidatorLocalPartBasicRegex(), this.AllowComments, this.AllowIPAddresses, this.RequireTopLevelDomain, this.IncludeDomains, this.ExcludeDomains);
       }
 
       if((!isValid || (isValid && this.Negated)) && this.Category == EmailCategory.Extended) {
-        isValid |= ValidateMailAddress(objectToValidate, new EmailValidatorLocalPartExtendedRegex(), this.AllowComments, this.AllowIPAddresses, this.IncludeDomains, this.ExcludeDomains);
+        isValid |= ValidateMailAddress(objectToValidate, new EmailValidatorLocalPartExtendedRegex(), this.AllowComments, this.AllowIPAddresses, this.RequireTopLevelDomain, this.IncludeDomains, this.ExcludeDomains);
       }
 
       if((!isValid || (isValid && this.Negated)) && this.Category == EmailCategory.Complete) {
-        isValid |= ValidateMailAddress(objectToValidate, new EmailValidatorLocalPartCompleteRegex(), this.AllowComments, this.AllowIPAddresses, this.IncludeDomains, this.ExcludeDomains);
+        isValid |= ValidateMailAddress(objectToValidate, new EmailValidatorLocalPartCompleteRegex(), this.AllowComments, this.AllowIPAddresses, this.RequireTopLevelDomain, this.IncludeDomains, this.ExcludeDomains);
       }
 
       isValid = this.Negated ? !isValid : isValid;
@@ -209,10 +213,11 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="localPartRegex">The regular expression that must be used to validate the local part of the e-mail address.</param>
     /// <param name="allowComments">Indicates whether comments are allowed in the e-mail address.</param>
     /// <param name="allowIPAddresses">Indicates whether IP addresses are allowed in the e-mail address.</param>
+    /// <param name="requireTopLevelDomain">Indicates whether a top level domain is required.</param>
     /// <param name="includeDomains">A semicolon seperated list of domains that are white listed.</param>
     /// <param name="excludeDomains">A semicolon seperated list of domains that are black listed.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
-    private static bool ValidateMailAddress(string input, Regex localPartRegex, bool allowComments, bool allowIPAddresses, string includeDomains, string excludeDomains) {
+    private static bool ValidateMailAddress(string input, Regex localPartRegex, bool allowComments, bool allowIPAddresses, bool requireTopLevelDomain, string includeDomains, string excludeDomains) {
       string[] parts = input.Split('@');
       if(parts.Length == 1) {
         return false;
@@ -223,7 +228,7 @@ namespace Enkoni.Framework.Validation.Validators {
       string domainPart = parts.Last();
 
       /* Validate the domain part */
-      if(!ValidateDomainPart(domainPart, allowComments, allowIPAddresses, includeDomains, excludeDomains)) {
+      if(!ValidateDomainPart(domainPart, allowComments, allowIPAddresses, requireTopLevelDomain, includeDomains, excludeDomains)) {
         return false;
       }
 
@@ -234,7 +239,11 @@ namespace Enkoni.Framework.Validation.Validators {
       }
 
       /* Validate any comments */
-      if(!allowComments && localMatch.Groups["comment"] != null && localMatch.Groups["comment"].Success && !string.IsNullOrEmpty(localMatch.Groups["comment"].Value)) {
+      if(!allowComments && localMatch.Groups["comment1"] != null && localMatch.Groups["comment1"].Success && !string.IsNullOrEmpty(localMatch.Groups["comment1"].Value)) {
+        return false;
+      }
+
+      if(!allowComments && localMatch.Groups["comment2"] != null && localMatch.Groups["comment2"].Success && !string.IsNullOrEmpty(localMatch.Groups["comment2"].Value)) {
         return false;
       }
 
@@ -245,18 +254,24 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="domainPart">The domain part of the e-mail address that must be validated.</param>
     /// <param name="allowComments">Indicates whether comments are allowed in the domain part.</param>
     /// <param name="allowIPAddresses">Indicates whether an IP address is allowed in the domain part.</param>
+    /// <param name="requireTopLevelDomain">Indicates if a top level domain is required.</param>
     /// <param name="includeDomains">A semicolon seperated list of domains that are white listed.</param>
     /// <param name="excludeDomains">A semicolon seperated list of domains that are black listed.</param>
     /// <returns><see langword="true"/> if the domain part is valid; otherwise, <see langword="false"/>.</returns>
-    private static bool ValidateDomainPart(string domainPart, bool allowComments, bool allowIPAddresses, string includeDomains, string excludeDomains) {
+    private static bool ValidateDomainPart(string domainPart, bool allowComments, bool allowIPAddresses, bool requireTopLevelDomain, string includeDomains, string excludeDomains) {
       string fullDomain;
+      bool isIPAddress;
 
       /* Validate the domain part using the general validation rules */
-      if(!ValidateDomainPart(domainPart, allowComments, allowIPAddresses, out fullDomain)) {
+      if(!ValidateDomainPart(domainPart, allowComments, allowIPAddresses, out fullDomain, out isIPAddress)) {
         return false;
       }
 
       if(string.IsNullOrEmpty(fullDomain)) {
+        return false;
+      }
+
+      if(requireTopLevelDomain && (isIPAddress || fullDomain.IndexOf('.') < 0)) {
         return false;
       }
 
@@ -325,10 +340,12 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <param name="domainPart">The domain part of the e-mail address that must be validated.</param>
     /// <param name="allowComments">Indicates whether comments are allowed in the domain part.</param>
     /// <param name="allowIPAddresses">Indicates whether an IP address is allowed in the domain part.</param>
-    /// <param name="fullDomain">The actul domain that makes up the domain part.</param>
+    /// <param name="fullDomain">The actual domain that makes up the domain part.</param>
+    /// <param name="isIPAddress">Holds a value that indicates if the domain is an IP address or a regular domain.</param>
     /// <returns><see langword="true"/> if the domain part is valid; otherwise, <see langword="false"/>.</returns>
-    private static bool ValidateDomainPart(string domainPart, bool allowComments, bool allowIPAddresses, out string fullDomain) {
+    private static bool ValidateDomainPart(string domainPart, bool allowComments, bool allowIPAddresses, out string fullDomain, out bool isIPAddress) {
       fullDomain = null;
+      isIPAddress = false;
 
       /* Perform the first validation by using the regular expression */
       Match domainMatch = new EmailValidatorDomainPartRegex().Match(domainPart);
@@ -337,17 +354,23 @@ namespace Enkoni.Framework.Validation.Validators {
       }
 
       /* Validate any comments in the domain part */
-      if(!allowComments && domainMatch.Groups["comment"] != null && domainMatch.Groups["comment"].Success && !string.IsNullOrEmpty(domainMatch.Groups["comment"].Value)) {
+      if(!allowComments && domainMatch.Groups["comment1"] != null && domainMatch.Groups["comment1"].Success && !string.IsNullOrEmpty(domainMatch.Groups["comment1"].Value)) {
+        return false;
+      }
+
+      if(!allowComments && domainMatch.Groups["comment2"] != null && domainMatch.Groups["comment2"].Success && !string.IsNullOrEmpty(domainMatch.Groups["comment2"].Value)) {
         return false;
       }
 
       /* If the domain part consists out of an IP address, validate the IP address */
       Group ipAddressGroup = domainMatch.Groups["ipAddress"];
       if(!allowIPAddresses && ipAddressGroup != null && ipAddressGroup.Success) {
+        isIPAddress = true;
         return false;
       }
 
       if(ipAddressGroup != null && ipAddressGroup.Success) {
+        isIPAddress = true;
         string ipAddress = ipAddressGroup.Value;
         if(string.IsNullOrEmpty(ipAddress)) {
           return false;
@@ -400,6 +423,9 @@ namespace Enkoni.Framework.Validation.Validators {
 
       /// <summary>Gets or sets a value indicating whether the setting for 'AllowIPAddresses' was set to <see langword="true"/>.</summary>
       public bool AllowIPAddresses { get; set; }
+
+      /// <summary>Gets or sets a value indicating whether the setting for 'RequireTopLevelDomain' was set to <see langword="true"/>.</summary>
+      public bool RequireTopLevelDomain { get; set; }
       
       /// <summary>Gets or sets the configured collection of white listed domains.</summary>
       public string IncludeDomains { get; set; }
@@ -432,7 +458,7 @@ namespace Enkoni.Framework.Validation.Validators {
           sectionName = ValidatorsSection.DefaultSectionName;
         }
 
-        ValidatorsSection validatorsSection = ConfigurationManager.GetSection("Enkoni.Validators") as ValidatorsSection;
+        ValidatorsSection validatorsSection = ConfigurationManager.GetSection(sectionName) as ValidatorsSection;
         if(validatorsSection == null || validatorsSection.EmailValidators.Count == 0) {
           return null;
         }
@@ -441,7 +467,8 @@ namespace Enkoni.Framework.Validation.Validators {
         foreach(EmailValidatorConfigElement validatorConfig in validatorsSection.EmailValidators.Values) {
           ConfiguredValuesContainer valuesContainer = new ConfiguredValuesContainer {
             AllowComments = validatorConfig.AllowComments,
-            AllowIPAddresses = validatorConfig.AllowIPAddresses
+            AllowIPAddresses = validatorConfig.AllowIPAddresses,
+            RequireTopLevelDomain = validatorConfig.RequireTopLevelDomain
           };
 
           List<string> configuredIncludeDomains = new List<string>(validatorConfig.IncludeDomains.Count);

@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailValidatorConfigElement.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains a custom configuration element used to configure the E-mail validator.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Configuration;
+﻿using System.Configuration;
 using System.Xml;
 
 using Enkoni.Framework.Validation.Properties;
@@ -41,6 +32,13 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     public bool AllowIPAddresses {
       get { return (bool)this["allowIPAddresses"]; }
       set { this["allowIPAddresses"] = value; }
+    }
+
+    /// <summary>Gets or sets a value indicating whether the domain part must contain a top level domain.</summary>
+    [ConfigurationProperty("requireTopLevelDomain", IsKey = false, IsRequired = false, DefaultValue = false)]
+    public bool RequireTopLevelDomain {
+      get { return (bool)this["requireTopLevelDomain"]; }
+      set { this["requireTopLevelDomain"] = value; }
     }
 
     /// <summary>Gets the collection of domains that are white listed.</summary>

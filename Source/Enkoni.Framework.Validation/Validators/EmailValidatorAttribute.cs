@@ -24,6 +24,9 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <summary>The actual configured value for the allowIPAddresses flag.</summary>
     private bool? allowIPAddresses;
 
+    /// <summary>The actual configured value for the requireTopLevelDomain flag.</summary>
+    private bool? requireTopLevelDomain;
+
     /// <summary>The actual value of the IncludeDomains property.</summary>
     private string includeDomains;
 
@@ -62,6 +65,12 @@ namespace Enkoni.Framework.Validation.Validators {
     public bool AllowIPAddresses {
       get { return this.allowIPAddresses.GetValueOrDefault(false); }
       set { this.allowIPAddresses = value; }
+    }
+
+    /// <summary>Gets or sets a value indicating whether the domain part of the e-mail address must contain a top level domain. Defaults to <see langword="false"/>.</summary>
+    public bool RequireTopLevelDomain {
+      get { return this.requireTopLevelDomain.GetValueOrDefault(false); }
+      set { this.requireTopLevelDomain = value; }
     }
 
     /// <summary>Gets or sets the semicolon-seperated domains that are white listed.</summary>
@@ -104,6 +113,10 @@ namespace Enkoni.Framework.Validation.Validators {
 
       if(this.allowIPAddresses.HasValue) {
         validator.AllowIPAddresses = this.AllowIPAddresses;
+      }
+
+      if(this.requireTopLevelDomain.HasValue) {
+        validator.RequireTopLevelDomain = this.RequireTopLevelDomain;
       }
 
       if(this.includeDomainsSetExplicitly) {

@@ -129,6 +129,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
       Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowComments);
       Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowIPAddresses);
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].RequireTopLevelDomain);
 
       Assert.AreEqual(0, validatorsSection.EmailValidators[string.Empty].IncludeDomains.Count);
       Assert.AreEqual(0, validatorsSection.EmailValidators[string.Empty].ExcludeDomains.Count);
@@ -145,6 +146,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
       Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowComments);
       Assert.IsTrue(validatorsSection.EmailValidators[string.Empty].AllowIPAddresses);
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].RequireTopLevelDomain);
 
       Assert.AreEqual(2, validatorsSection.EmailValidators[string.Empty].IncludeDomains.Count);
       Assert.IsNotNull(validatorsSection.EmailValidators[string.Empty].IncludeDomains["microsoft.com"]);
@@ -167,8 +169,10 @@ namespace Enkoni.Framework.Validation.Tests {
 
       Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowComments);
       Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].AllowIPAddresses);
+      Assert.IsFalse(validatorsSection.EmailValidators[string.Empty].RequireTopLevelDomain);
       Assert.IsTrue(validatorsSection.EmailValidators["TestValidator"].AllowComments);
       Assert.IsTrue(validatorsSection.EmailValidators["TestValidator"].AllowIPAddresses);
+      Assert.IsTrue(validatorsSection.EmailValidators["TestValidator"].RequireTopLevelDomain);
 
       Assert.AreEqual(1, validatorsSection.EmailValidators[string.Empty].IncludeDomains.Count);
       Assert.AreEqual(0, validatorsSection.EmailValidators[string.Empty].ExcludeDomains.Count);
