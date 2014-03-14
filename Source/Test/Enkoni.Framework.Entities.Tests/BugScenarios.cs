@@ -13,6 +13,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [DeploymentItem(@"TestData\BugScenariosData.mdf", @"BugScenarios\Bug01")]
     public void Bug01_QueryById() {
+      Database.SetInitializer<DatabaseRepositoryTestContext>(null);
       AppDomain.CurrentDomain.SetData("DataDirectory", Environment.CurrentDirectory);
       DbContext context = new DatabaseRepositoryTestContext("BugScenarios");
       System.Diagnostics.Trace.TraceWarning("Connection string: " + context.Database.Connection.ConnectionString);
