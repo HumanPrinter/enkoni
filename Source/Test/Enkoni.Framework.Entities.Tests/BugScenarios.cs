@@ -15,6 +15,7 @@ namespace Enkoni.Framework.Entities.Tests {
     public void Bug01_QueryById() {
       AppDomain.CurrentDomain.SetData("DataDirectory", Environment.CurrentDirectory);
       DbContext context = new DatabaseRepositoryTestContext("BugScenarios");
+      System.Diagnostics.Trace.TraceWarning("Connection string: " + context.Database.Connection.ConnectionString);
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(context);
 
       TestDomainModel domainModel = new TestDomainModel(sourceInfo);
@@ -22,8 +23,10 @@ namespace Enkoni.Framework.Entities.Tests {
 
       TestDummy result = subDomain.FindEntityById(2);
       if(result == null) {
+        System.Diagnostics.Trace.TraceWarning("Count: " + context.Set<TestDummy>().Count());
         Console.WriteLine(context.Set<TestDummy>().Count());
       }
+
       Assert.IsNotNull(result);
       Assert.AreEqual(2, result.RecordId);
       Assert.AreEqual("TestDummy 2", result.TextValue);
