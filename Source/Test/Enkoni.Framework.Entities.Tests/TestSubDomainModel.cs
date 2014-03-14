@@ -58,7 +58,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <param name="specification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     protected override TestDummy FindEntityCore(ISpecification<TestDummy> specification) {
-      return this.repository.FindFirst(specification);
+      return this.repository.FindSingle(specification);
     }
 
     /// <summary>Finds all the entities that match the specified specification.</summary>
