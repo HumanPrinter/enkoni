@@ -13,6 +13,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [DeploymentItem(@"TestData\TestData.mdf", @"BugScenarios\Bug01")]
     public void Bug01_QueryById() {
+      AppDomain.CurrentDomain.SetData("DataDirectory", Environment.CurrentDirectory);
       DbContext context = new DatabaseRepositoryTestContext("BugScenarios");
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(context);
 
