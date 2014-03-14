@@ -168,11 +168,11 @@
     <Content Include="TestData\ReposTest_SortingFile.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\TestData.mdf">
+    <Content Include="TestData\BugScenariosData.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\TestData_log.ldf">
-      <DependentUpon>TestData.mdf</DependentUpon>
+    <Content Include="TestData\BugScenariosData_log.ldf">
+      <DependentUpon>BugScenariosData.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
