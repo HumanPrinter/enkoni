@@ -91,6 +91,7 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="BugScenarios.cs" />
     <Compile Include="RepositoryTest.cs" />
     <Compile Include="FileRepositoryTest.cs" />
     <Compile Include="CsvFileRepositoryTest.cs" />
@@ -100,10 +101,13 @@
     <Compile Include="HttpSessionMemoryRepositoryTest.cs" />
     <Compile Include="StaticMemoryRepositoryTest.cs" />
     <Compile Include="TestDatabaseRepository.cs" />
+    <Compile Include="TestDomainModel.cs" />
     <Compile Include="TestDummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityValidatorTest.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
+    <Compile Include="TestDummyConfiguration.cs" />
+    <Compile Include="TestSubDomainModel.cs" />
     <Compile Include="XmlFileRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +166,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\ReposTest_SortingFile.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\BugScenariosData.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\BugScenariosData_log.ldf">
+      <DependentUpon>BugScenariosData.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

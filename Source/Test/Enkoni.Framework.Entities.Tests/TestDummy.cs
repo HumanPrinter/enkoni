@@ -1,37 +1,27 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="TestDummy.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains a dummy class that is used by the repository testcases.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
 using System.Diagnostics;
 using System.Xml.Serialization;
+
 using Enkoni.Framework.Serialization;
 
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>A helper class to support the testcases.</summary>
-  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot, Table("TestDummy"), DebuggerDisplay("RecordId: {RecordId} TextValue: {TextValue}")]
+  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot, DebuggerDisplay("RecordId: {RecordId} TextValue: {TextValue}")]
   public class TestDummy : IEntity<TestDummy>, ICloneable {
     /// <summary>Gets or sets a unique record ID.</summary>
-    [XmlIgnore, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [XmlIgnore]
     public int RecordId { get; set; }
 
     /// <summary>Gets or sets a text value.</summary>
-    [CsvColumn(0), XmlElement, Required, StringLength(100)]
+    [CsvColumn(0), XmlElement]
     public string TextValue { get; set; }
 
     /// <summary>Gets or sets a numeric value.</summary>
-    [CsvColumn(1), XmlElement, Required]
+    [CsvColumn(1), XmlElement]
     public int NumericValue { get; set; }
 
     /// <summary>Gets or sets a value indicating whether something is true or not.</summary>
-    [CsvColumn(2), XmlElement, Required]
+    [CsvColumn(2), XmlElement]
     public bool BooleanValue { get; set; }
 
     /// <summary>Copies the values from <paramref name="source"/> to this instance.</summary>

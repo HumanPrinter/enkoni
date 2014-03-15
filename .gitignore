@@ -1,7 +1,6 @@
 Source/*.suo
 Source/*.sdf
 Source/*.Cache
-Source/Enkoni.Framework.pfx
 Source/Enkoni.Documentation.shfbproj_Oscar
 Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
@@ -92,5 +91,4 @@ Source/TestResults/
 /Releases/*.zip
 /Releases/Documentation/
 /WorkingDir
-Release.bat
 Build.log

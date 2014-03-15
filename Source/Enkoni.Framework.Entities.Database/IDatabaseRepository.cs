@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDatabaseRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the basic IDatabaseRepository API.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Data.Entity;
+﻿using System.Data.Entity;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This interface is used as a marker by the RepositoryFactory.</summary>

@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DutchPhoneNumberValidator.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains a custom validator that validates Dutch phone numbers.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
@@ -108,6 +99,11 @@ namespace Enkoni.Framework.Validation.Validators {
     internal const string DefaultName = "00661f4a-faa2-452f-8fd9-af6c776bfc49";
     #endregion
 
+    #region Variables
+    /// <summary>Holds the name of the configuration section that must be used.</summary>
+    private static string configurationSectionName;
+    #endregion
+
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     /// <param name="messageTemplate">The template to use when logging validation results, or null we the default message template is to be used.</param>
@@ -149,6 +145,13 @@ namespace Enkoni.Framework.Validation.Validators {
     #endregion
 
     #region Properties
+    /// <summary>Gets or sets the name of the configuration section that is used to preconfigure the validator. The default value is set to <see cref="ValidatorsSection.DefaultSectionName"/>.
+    /// </summary>
+    public static string ConfigurationSectionName {
+      get { return configurationSectionName ?? ValidatorsSection.DefaultSectionName; }
+      set { configurationSectionName = value; }
+    }
+
     /// <summary>Gets the name of the validator.</summary>
     public string Name { get; private set; }
 
@@ -353,7 +356,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <remarks>This implementation is based on the article on Singletons by Jon Skeet (http://csharpindepth.com/Articles/General/Singleton.aspx).</remarks>
     private class ConfiguredValuesSingletonContainer {
       /// <summary>The actual singleton instance.</summary>
-      internal static readonly Dictionary<string, ConfiguredValuesContainer> ConfiguredValues = ReadConfiguration();
+      internal static readonly Dictionary<string, ConfiguredValuesContainer> ConfiguredValues = ReadConfiguration(DutchPhoneNumberValidator.ConfigurationSectionName);
 
       /// <summary>Initializes static members of the <see cref="ConfiguredValuesSingletonContainer"/> class.</summary>
       /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C# 
@@ -366,20 +369,14 @@ namespace Enkoni.Framework.Validation.Validators {
       }
 
       /// <summary>Reads the configuration and sets the configured values.</summary>
+      /// <param name="sectionName">The name of the config section that must be read. Use <see langword="null"/> or <see cref="String.Empty"/> to use the default section name.</param>
       /// <returns>The values that were read from the configuration or <see langword="null"/> if there was no configuration.</returns>
-      private static Dictionary<string, ConfiguredValuesContainer> ReadConfiguration() {
-        string sectionTypeName = typeof(ValidatorsSection).AssemblyQualifiedName;
-        ValidatorsSection validatorsSection = null;
-        System.Configuration.Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        validatorsSection = configuration.Sections["Enkoni.Validators"] as ValidatorsSection;
-        if(validatorsSection == null) {
-          foreach(ConfigurationSection section in configuration.Sections) {
-            if(sectionTypeName.StartsWith(section.SectionInformation.Type, StringComparison.Ordinal)) {
-              validatorsSection = section as ValidatorsSection;
-              break;
-            }
-          }
+      private static Dictionary<string, ConfiguredValuesContainer> ReadConfiguration(string sectionName) {
+        if(string.IsNullOrEmpty(sectionName)) {
+          sectionName = ValidatorsSection.DefaultSectionName;
         }
+
+        ValidatorsSection validatorsSection = ConfigurationManager.GetSection("Enkoni.Validators") as ValidatorsSection;
 
         if(validatorsSection == null || validatorsSection.DutchPhoneNumberValidators.Count == 0) {
           return null;

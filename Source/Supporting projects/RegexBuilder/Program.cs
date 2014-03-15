@@ -161,14 +161,16 @@ namespace RegexBuilder {
     /// <summary>Creates the regular expressions that are used by the EmailValidator.</summary>
     /// <returns>The constructed regular expressions.</returns>
     private static IEnumerable<RegexCompilationInfo> CreateEmailExpressions() {
-      string commentPattern = @"(?<comment>(\(.*\))?)";
+      string commentPattern = @"(?<comment{0}>(\(.*\))?)";
+      string commentPattern1 = string.Format(CultureInfo.InvariantCulture, commentPattern, 1);
+      string commentPattern2 = string.Format(CultureInfo.InvariantCulture, commentPattern, 2);
 
       /* Construct the regex for the domain part */
       /* ... for IP addresses */
       string ipAddressPattern = @"(?<ipAddress>\[.*\])";
       /* ... for domain names */
       string hostNamePattern = @"(?<domain>(([a-zA-Z0-9]{1,63})|([a-zA-Z0-9][a-zA-Z0-9\-]{1,61}[a-zA-Z0-9]))(\.(([a-zA-Z0-9]{1,63})|([a-zA-Z0-9][a-zA-Z0-9\-]{1,61}[a-zA-Z0-9])))*)";
-      string domainPartPattern = string.Format(CultureInfo.InvariantCulture, "^{0}({1}|{2}){0}$", commentPattern, hostNamePattern, ipAddressPattern);
+      string domainPartPattern = string.Format(CultureInfo.InvariantCulture, "^{0}({1}|{2}){3}$", commentPattern1, hostNamePattern, ipAddressPattern, commentPattern2);
 
       RegexCompilationInfo domainPartRegex = new RegexCompilationInfo(domainPartPattern, 
         RegexOptions.Singleline, 
@@ -176,9 +178,9 @@ namespace RegexBuilder {
         "Enkoni.Framework.Validation.RegularExpressions", 
         true);
 
-      /* Construct the regexes foor the local part */
+      /* Construct the regexes for the local part */
       string allowedCharactersBasic = @"a-zA-Z0-9\-_";
-      string localPartBasicPattern = string.Format(CultureInfo.InvariantCulture, @"^{0}[{1}]+(\.?[{1}])*{0}$", commentPattern, allowedCharactersBasic);
+      string localPartBasicPattern = string.Format(CultureInfo.InvariantCulture, @"^{0}[{1}]+(\.?[{1}])*{2}$", commentPattern1, allowedCharactersBasic, commentPattern2);
       RegexCompilationInfo localPartBasicRegex = new RegexCompilationInfo(localPartBasicPattern,
         RegexOptions.Singleline,
         "EmailValidatorLocalPartBasicRegex",
@@ -186,7 +188,7 @@ namespace RegexBuilder {
         true);
 
       string allowedCharactersExtended = allowedCharactersBasic + @"!#$%&'\*\+/=\?^`\{\|\}~";
-      string localPartExtendedPattern = string.Format(CultureInfo.InvariantCulture, @"^{0}[{1}]+(\.?[{1}])*{0}$", commentPattern, allowedCharactersExtended);
+      string localPartExtendedPattern = string.Format(CultureInfo.InvariantCulture, @"^{0}[{1}]+(\.?[{1}])*{2}$", commentPattern1, allowedCharactersExtended, commentPattern2);
       RegexCompilationInfo localPartExtendedRegex = new RegexCompilationInfo(localPartExtendedPattern,
         RegexOptions.Singleline,
         "EmailValidatorLocalPartExtendedRegex",
@@ -194,7 +196,7 @@ namespace RegexBuilder {
         true);
 
       string quotedPattern = string.Format(CultureInfo.InvariantCulture, "\"([{0}\\. \\(\\),:;\\<\\>@\\[\\]]*|(\\\")*|(\\\\\\\\)*)*\"", allowedCharactersExtended);
-      string localPartCompletePattern = string.Format(CultureInfo.InvariantCulture, @"^{0}(({1})|([{2}]+(\.(([{2}]+)|({1})\.[{2}]+))*)){0}$", commentPattern, quotedPattern, allowedCharactersExtended);
+      string localPartCompletePattern = string.Format(CultureInfo.InvariantCulture, @"^{0}(({1})|([{2}]+(\.(([{2}]+)|({1})\.[{2}]+))*)){3}$", commentPattern1, quotedPattern, allowedCharactersExtended, commentPattern2);
       RegexCompilationInfo localPartCompleteRegex = new RegexCompilationInfo(localPartCompletePattern,
         RegexOptions.Singleline,
         "EmailValidatorLocalPartCompleteRegex",
