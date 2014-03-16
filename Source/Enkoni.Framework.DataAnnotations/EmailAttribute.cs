@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
-
 using Enkoni.Framework.DataAnnotations.Configuration;
 using Enkoni.Framework.Validation.RegularExpressions;
 
@@ -161,6 +161,7 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <summary>Determines whether the specified value of the object is valid.</summary>
     /// <param name="value">The value of the object to validate.</param>
     /// <returns><see langword="true"/> if the specified value is valid; otherwise, <see langword="false"/>.</returns>
+    [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "EmailCategory", Justification = "The name 'EmailCategory' is the name of the enumeration and the spelling can therefore be ignored")]
     public override bool IsValid(object value) {
       string valueToValidate = value as string;
       if(string.IsNullOrEmpty(valueToValidate)) {
