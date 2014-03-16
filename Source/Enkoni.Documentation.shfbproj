@@ -76,7 +76,7 @@
         <Filter entryType="Class" fullName="System.Attribute" filterName="Attribute" isExposed="False" />
       </Filter>
     </ApiFilter>
-    <HelpFileVersion>1.2.2.0</HelpFileVersion>
+    <HelpFileVersion>1.2.3.0</HelpFileVersion>
     <HelpAttributes />
     <SyntaxFilters>Standard</SyntaxFilters>
     <RootNamespaceContainer>False</RootNamespaceContainer>

@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="TestData\TestData.mdf">
+    <Content Include="TestData\ValidationTestData.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

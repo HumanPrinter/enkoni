@@ -356,7 +356,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <remarks>This implementation is based on the article on Singletons by Jon Skeet (http://csharpindepth.com/Articles/General/Singleton.aspx).</remarks>
     private class ConfiguredValuesSingletonContainer {
       /// <summary>The actual singleton instance.</summary>
-      internal static readonly Dictionary<string, ConfiguredValuesContainer> ConfiguredValues = ReadConfiguration(DutchPhoneNumberValidator.ConfigurationSectionName);
+      internal static readonly Dictionary<string, ConfiguredValuesContainer> ConfiguredValues = ReadConfiguration(ConfigurationSectionName);
 
       /// <summary>Initializes static members of the <see cref="ConfiguredValuesSingletonContainer"/> class.</summary>
       /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C# 
@@ -376,7 +376,7 @@ namespace Enkoni.Framework.Validation.Validators {
           sectionName = ValidatorsSection.DefaultSectionName;
         }
 
-        ValidatorsSection validatorsSection = ConfigurationManager.GetSection("Enkoni.Validators") as ValidatorsSection;
+        ValidatorsSection validatorsSection = ConfigurationManager.GetSection(sectionName) as ValidatorsSection;
 
         if(validatorsSection == null || validatorsSection.DutchPhoneNumberValidators.Count == 0) {
           return null;

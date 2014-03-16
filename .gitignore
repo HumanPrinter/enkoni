@@ -6,6 +6,10 @@ Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
 Source/Enkoni.Framework/bin/
 Source/Enkoni.Framework/obj/
+Source/Enkoni.Framework.DataAnnotations/*.user
+Source/Enkoni.Framework.DataAnnotations/*.Cache
+Source/Enkoni.Framework.DataAnnotations/bin/
+Source/Enkoni.Framework.DataAnnotations/obj/
 Source/Enkoni.Framework.Entities/*.user
 Source/Enkoni.Framework.Entities/*.Cache
 Source/Enkoni.Framework.Entities/bin/
@@ -63,6 +67,10 @@ Source/Test/Enkoni.Framework.Tests.Common/*.user
 Source/Test/Enkoni.Framework.Tests.Common/*.Cache
 Source/Test/Enkoni.Framework.Tests.Common/bin/
 Source/Test/Enkoni.Framework.Tests.Common/obj/
+Source/Test/Enkoni.Framework.DataAnnotations.Tests/*.user
+Source/Test/Enkoni.Framework.DataAnnotations.Tests/*.Cache
+Source/Test/Enkoni.Framework.DataAnnotations.Tests/bin/
+Source/Test/Enkoni.Framework.DataAnnotations.Tests/obj/
 Source/Test/Enkoni.Framework.Entities.Tests/*.user
 Source/Test/Enkoni.Framework.Entities.Tests/*.Cache
 Source/Test/Enkoni.Framework.Entities.Tests/bin/

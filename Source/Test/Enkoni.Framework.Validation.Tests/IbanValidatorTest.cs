@@ -28,8 +28,8 @@ namespace Enkoni.Framework.Validation.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"IbanValidatorTest\TestCase01")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|IbanValidatorTest\TestCase01\TestData.mdf;Integrated Security=True;Connect Timeout=30", "IbanAccountNumber", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"IbanValidatorTest\TestCase01")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|IbanValidatorTest\TestCase01\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "IbanAccountNumber", DataAccessMethod.Sequential)]
     public void TestCase01_Validator() {
       IbanValidator testSubject = new IbanValidator("message {0}", "tag", false);
       string input = this.TestContext.DataRow["AccountNumber"].ToString();
