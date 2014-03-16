@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Enkoni.DataAnnotations</id>
+    <version>1.0.0.0</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <iconUrl>http://www.oscarbrouwer.nl/images/enkoni.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <summary>$description$</summary>
+    <releaseNotes><![CDATA[Bug 14: When used in a web application the EmailValidator and DutchPhoneNumberValidator throws an exception because
+no exe-configuration file can be found. This has been fixed.
+The EmailValidator class no contais a new property called 'RequireTopLevelDOmain' to indicate if an e-mail address
+must contain a top level domain in order to be valid]]></releaseNotes>
+    <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
+    <dependencies>
+      <dependency id="EnterpriseLibrary.Validation" version="5.0.505.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="..\libraries\Enkoni.Framework.Validation.RegularExpressions.dll" target="lib\net40-client" />
+  </files>
+</package>

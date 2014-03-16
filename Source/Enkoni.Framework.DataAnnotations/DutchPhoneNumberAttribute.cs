@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
-using Enkoni.Framework.Validation.Properties;
+using Enkoni.Framework.DataAnnotations.Configuration;
+using Enkoni.Framework.DataAnnotations.Properties;
 using Enkoni.Framework.Validation.RegularExpressions;
-using Enkoni.Framework.Validation.Validators.Configuration;
 
-using Microsoft.Practices.EnterpriseLibrary.Validation;
-using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
-
-namespace Enkoni.Framework.Validation.Validators {
+namespace Enkoni.Framework.DataAnnotations {
   /// <summary>Performs validation on <see cref="String"/> instances by checking if they contain valid Dutch phone numbers.</summary>
   /// <remarks>This validator can be configured through code or through the configuration file. When the validator is configured to include the category 
   /// <see cref="PhoneNumberCategories.Regular"/> (which is the default setting), all area codes that are valid according to the Dutch 'numbering plan
@@ -27,13 +24,13 @@ namespace Enkoni.Framework.Validation.Validators {
   /// <see cref="IncludeAreaCodes"/> to <c>"010;020;030"</c>, only phone numbers with those area codes will be considered valid.<br/>
   /// <br/>
   /// <h3>Configuration</h3>
-  /// <para>All properties of the <see cref="DutchPhoneNumberValidator"/> except for the <see cref="Categories"/> property can be set through configuration.
+  /// <para>All properties of the <see cref="DutchPhoneNumberAttribute"/> except for the <see cref="Categories"/> property can be set through configuration.
   /// First of all, the configuration section must be specified:</para>
   /// <code>
   /// <![CDATA[
   /// <configuration>
   ///   <configSections>
-  ///     <section name="Enkoni.Validators" type="Enkoni.Framework.Validation.Validators.Configuration.ValidatorsSection, Enkoni.Framework.Validation"/>
+  ///     <section name="Enkoni.DataAnnotations" type="Enkoni.Framework.DataAnnotations.Configuration.ValidatorsSection, Enkoni.Framework.DataAnnotations"/>
   ///   </configSections>
   /// </configuration>
   /// ]]>
@@ -41,8 +38,8 @@ namespace Enkoni.Framework.Validation.Validators {
   /// <para>Then inside the section, the validator can be configured:</para>
   /// <code>
   /// <![CDATA[
-  /// <Enkoni.Validators>
-  ///   <DutchPhoneNumberValidator allowCountryCallingCode="false" allowCarrierPreselect="true">
+  /// <Enkoni.DataAnnotations>
+  ///   <DutchPhoneNumber allowCountryCallingCode="false" allowCarrierPreselect="true">
   ///     <areaCodes>
   ///       <clear /> <!-- The clear-tag is optional and will reset the default collection of area codes -->
   ///       <!--The add-tag can be used to include area codes -->
@@ -53,8 +50,8 @@ namespace Enkoni.Framework.Validation.Validators {
   ///       <remove areaCode="023" />
   ///       <remove areaCode="058" />
   ///     </areaCodes>
-  ///   </DutchPhoneNumberValidator>
-  /// </Enkoni.Validators>
+  ///   </DutchPhoneNumber>
+  /// </Enkoni.DataAnnotations>
   /// ]]>
   /// </code>
   /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one 
@@ -62,9 +59,9 @@ namespace Enkoni.Framework.Validation.Validators {
   /// or whose name is not explicitly configured.</para>
   /// <code>
   /// <![CDATA[
-  /// <Enkoni.Validators>
+  /// <Enkoni.DataAnnotations>
   ///   <!-- Since this validator does not have a name specified, it will be used as the default configuration -->
-  ///   <DutchPhoneNumberValidator allowCountryCallingCode="false" allowCarrierPreselect="true">
+  ///   <DutchPhoneNumber allowCountryCallingCode="false" allowCarrierPreselect="true">
   ///     <areaCodes>
   ///       <clear /> <!-- The clear-tag is optional and will reset the default collection of area codes -->
   ///       <!--The add-tag can be used to include area codes -->
@@ -75,9 +72,9 @@ namespace Enkoni.Framework.Validation.Validators {
   ///       <remove areaCode="023" />
   ///       <remove areaCode="058" />
   ///     </areaCodes>
-  ///   </DutchPhoneNumberValidator>
+  ///   </DutchPhoneNumber>
   ///   <!-- This configuration will only be applied to validators with the name "MyValidator" -->
-  ///   <DutchPhoneNumberValidator name="MyValidator" allowCountryCallingCode="false" allowCarrierPreselect="true">
+  ///   <DutchPhoneNumber name="MyValidator" allowCountryCallingCode="false" allowCarrierPreselect="true">
   ///     <areaCodes>
   ///       <clear /> <!-- The clear-tag is optional and will reset the default collection of area codes -->
   ///       <!--The add-tag can be used to include area codes -->
@@ -88,12 +85,14 @@ namespace Enkoni.Framework.Validation.Validators {
   ///       <remove areaCode="023" />
   ///       <remove areaCode="058" />
   ///     </areaCodes>
-  ///   </DutchPhoneNumberValidator>
-  /// </Enkoni.Validators>
+  ///   </DutchPhoneNumber>
+  /// </Enkoni.DataAnnotations>
   /// ]]>
   /// </code>
   /// </remarks>
-  public class DutchPhoneNumberValidator : ValueValidator<string> {
+  [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true,
+    Inherited = false)]
+  public sealed class DutchPhoneNumberAttribute : ValidationAttribute {
     #region Constants
     /// <summary>Defines the default name for the validator.</summary>
     internal const string DefaultName = "00661f4a-faa2-452f-8fd9-af6c776bfc49";
@@ -105,50 +104,48 @@ namespace Enkoni.Framework.Validation.Validators {
     #endregion
 
     #region Constructor
-    /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
-    /// <param name="messageTemplate">The template to use when logging validation results, or null we the default message template is to be used.</param>
-    /// <param name="tag">The tag to set when logging validation results, or null.</param>
-    /// <param name="negated">Indicates if the validation logic represented by the validator should be negated.</param>
-    public DutchPhoneNumberValidator(string messageTemplate, string tag, bool negated)
-      : this(DefaultName, messageTemplate, tag, negated) {
+    /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
+    public DutchPhoneNumberAttribute()
+      : this(DefaultName) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
     /// <param name="name">The name for the validator.</param>
-    /// <param name="messageTemplate">The template to use when logging validation results, or null we the default message template is to be used.</param>
-    /// <param name="tag">The tag to set when logging validation results, or null.</param>
-    /// <param name="negated">Indicates if the validation logic represented by the validator should be negated.</param>
-    public DutchPhoneNumberValidator(string name, string messageTemplate, string tag, bool negated)
-      : base(messageTemplate, tag, negated) {
+    public DutchPhoneNumberAttribute(string name)
+      : base() {
       this.Name = name;
       this.Categories = PhoneNumberCategories.Default;
       this.AllowCountryCallingCode = true;
 
-      if(ConfiguredValues != null && ConfiguredValues.Count > 0) {
-        ConfiguredValuesContainer container = null;
-        if(ConfiguredValues.ContainsKey(this.Name)) {
-          container = ConfiguredValues[this.Name];
-        }
-        else if(ConfiguredValues.ContainsKey(DefaultName)) {
-          container = ConfiguredValues[DefaultName];
-        }
+      this.LoadConfiguration();
+    }
 
-        if(container != null) {
-          this.AllowCountryCallingCode = container.AllowCountryCallingCode;
-          this.AllowCarrierPreselect = container.AllowCarrierPreselect;
-          if(container.AreaCodesOverridden) {
-            this.IncludeAreaCodes = container.AreaCodes;
-          }
-        }
-      }
+    /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
+    /// <param name="errorMessageAccessor">The function that enables access to validation resources.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="errorMessageAccessor"/> is <see langword="null"/>.</exception>
+    public DutchPhoneNumberAttribute(Func<string> errorMessageAccessor)
+      : this(DefaultName, errorMessageAccessor) {
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
+    /// <param name="name">The name of the validator.</param>
+    /// <param name="errorMessageAccessor">The function that enables access to validation resources.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="errorMessageAccessor"/> is <see langword="null"/>.</exception>
+    public DutchPhoneNumberAttribute(string name, Func<string> errorMessageAccessor)
+      : base(errorMessageAccessor) {
+      this.Name = name;
+      this.Categories = PhoneNumberCategories.Default;
+      this.AllowCountryCallingCode = true;
+
+      this.LoadConfiguration();
     }
     #endregion
 
     #region Properties
-    /// <summary>Gets or sets the name of the configuration section that is used to preconfigure the validator. The default value is set to <see cref="ValidatorsSection.DefaultSectionName"/>.
+    /// <summary>Gets or sets the name of the configuration section that is used to preconfigure the validator. The default value is set to <see cref="ValidationSection.DefaultSectionName"/>.
     /// </summary>
     public static string ConfigurationSectionName {
-      get { return configurationSectionName ?? ValidatorsSection.DefaultSectionName; }
+      get { return configurationSectionName ?? ValidationSection.DefaultSectionName; }
       set { configurationSectionName = value; }
     }
 
@@ -173,66 +170,47 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <summary>Gets or sets the semicolon-seperated area codes that are considered invalid.</summary>
     public string ExcludeAreaCodes { get; set; }
 
-    /// <summary>Gets the Default Message Template when the validator is non negated.</summary>
-    protected override string DefaultNonNegatedMessageTemplate {
-      get { return "Value '{0}' is not a valid phone number"; }
-    }
-
-    /// <summary>Gets the Default Message Template when the validator is negated.</summary>
-    protected override string DefaultNegatedMessageTemplate {
-      get { return "Value '{0}' is a valid phone number"; }
-    }
-
     /// <summary>Gets the values that were set through the configuration.</summary>
     private static Dictionary<string, ConfiguredValuesContainer> ConfiguredValues {
       get { return ConfiguredValuesSingletonContainer.ConfiguredValues; }
     }
     #endregion
 
-    #region Validator overrides
-    /// <summary>Implements the validation logic for the receiver.</summary>
-    /// <param name="objectToValidate">The object to validate.</param>
-    /// <param name="currentTarget">The object on the behalf of which the validation is performed.</param>
-    /// <param name="key">The key that identifies the source of objectToValidate.</param>
-    /// <param name="validationResults">The validation results to which the outcome of the validation should be stored.</param>
-    protected override void DoValidate(string objectToValidate, object currentTarget, string key, ValidationResults validationResults) {
-      if(string.IsNullOrEmpty(objectToValidate) || this.Categories == PhoneNumberCategories.None) {
-        if(!this.Negated) {
-          this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
-        }
-
-        return;
+    #region ValidationAttribute overrides
+    /// <summary>Determines whether the specified value of the object is valid.</summary>
+    /// <param name="value">The value of the object to validate.</param>
+    /// <returns><see langword="true"/> if the specified value is valid; otherwise, <see langword="false"/>.</returns>
+    public override bool IsValid(object value) {
+      string valueToValidate = value as string;
+      if(string.IsNullOrEmpty(valueToValidate) || this.Categories == PhoneNumberCategories.None) {
+        return false;
       }
 
-      string strippedObjectToValidate = objectToValidate.Replace(" ", string.Empty);
+      string strippedValueToValidate = valueToValidate.Replace(" ", string.Empty);
 
       bool isValid = false;
 
       if((this.Categories & PhoneNumberCategories.Regular) == PhoneNumberCategories.Regular) {
-        isValid = ValidateRegularNumber(strippedObjectToValidate, this.AllowCountryCallingCode, this.AllowCarrierPreselect, this.IncludeAreaCodes, this.ExcludeAreaCodes);
+        isValid = ValidateRegularNumber(strippedValueToValidate, this.AllowCountryCallingCode, this.AllowCarrierPreselect, this.IncludeAreaCodes, this.ExcludeAreaCodes);
       }
 
-      if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Mobile) == PhoneNumberCategories.Mobile) {
-        isValid |= ValidateMobileNumber(strippedObjectToValidate, this.AllowCountryCallingCode, this.AllowCarrierPreselect);
+      if(!isValid && (this.Categories & PhoneNumberCategories.Mobile) == PhoneNumberCategories.Mobile) {
+        isValid |= ValidateMobileNumber(strippedValueToValidate, this.AllowCountryCallingCode, this.AllowCarrierPreselect);
       }
 
-      if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Emergency) == PhoneNumberCategories.Emergency) {
-        isValid |= ValidateEmergencyNumber(strippedObjectToValidate);
+      if(!isValid && (this.Categories & PhoneNumberCategories.Emergency) == PhoneNumberCategories.Emergency) {
+        isValid |= ValidateEmergencyNumber(strippedValueToValidate);
       }
 
-      if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Service) == PhoneNumberCategories.Service) {
-        isValid |= ValidateServiceNumber(strippedObjectToValidate);
+      if(!isValid && (this.Categories & PhoneNumberCategories.Service) == PhoneNumberCategories.Service) {
+        isValid |= ValidateServiceNumber(strippedValueToValidate);
       }
 
-      if((!isValid || (isValid && this.Negated)) && (this.Categories & PhoneNumberCategories.Other) == PhoneNumberCategories.Other) {
-        isValid |= ValidateOtherNumber(strippedObjectToValidate, this.AllowCarrierPreselect);
+      if(!isValid && (this.Categories & PhoneNumberCategories.Other) == PhoneNumberCategories.Other) {
+        isValid |= ValidateOtherNumber(strippedValueToValidate, this.AllowCarrierPreselect);
       }
 
-      isValid = this.Negated ? !isValid : isValid;
-
-      if(!isValid) {
-        this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
-      }
+      return isValid;
     }
     #endregion
 
@@ -334,6 +312,27 @@ namespace Enkoni.Framework.Validation.Validators {
 
       return Regex.IsMatch(input, pattern, RegexOptions.Singleline);
     }
+
+    /// <summary>Initializes the properties with the values from the configuration.</summary>
+    private void LoadConfiguration() {
+      if(ConfiguredValues != null && ConfiguredValues.Count > 0) {
+        ConfiguredValuesContainer container = null;
+        if(ConfiguredValues.ContainsKey(this.Name)) {
+          container = ConfiguredValues[this.Name];
+        }
+        else if(ConfiguredValues.ContainsKey(DefaultName)) {
+          container = ConfiguredValues[DefaultName];
+        }
+
+        if(container != null) {
+          this.AllowCountryCallingCode = container.AllowCountryCallingCode;
+          this.AllowCarrierPreselect = container.AllowCarrierPreselect;
+          if(container.AreaCodesOverridden) {
+            this.IncludeAreaCodes = container.AreaCodes;
+          }
+        }
+      }
+    }
     #endregion
 
     #region Private classes
@@ -373,17 +372,17 @@ namespace Enkoni.Framework.Validation.Validators {
       /// <returns>The values that were read from the configuration or <see langword="null"/> if there was no configuration.</returns>
       private static Dictionary<string, ConfiguredValuesContainer> ReadConfiguration(string sectionName) {
         if(string.IsNullOrEmpty(sectionName)) {
-          sectionName = ValidatorsSection.DefaultSectionName;
+          sectionName = ValidationSection.DefaultSectionName;
         }
 
-        ValidatorsSection validatorsSection = ConfigurationManager.GetSection(sectionName) as ValidatorsSection;
+        ValidationSection validatorsSection = ConfigurationManager.GetSection(sectionName) as ValidationSection;
 
         if(validatorsSection == null || validatorsSection.DutchPhoneNumberValidators.Count == 0) {
           return null;
         }
 
         Dictionary<string, ConfiguredValuesContainer> configuredValues = new Dictionary<string, ConfiguredValuesContainer>();
-        foreach(DutchPhoneNumberValidatorConfigElement validatorConfig in validatorsSection.DutchPhoneNumberValidators.Values) {
+        foreach(DutchPhoneNumberValidationConfigElement validatorConfig in validatorsSection.DutchPhoneNumberValidators.Values) {
           List<string> configuredAreaCodes = new List<string>(validatorConfig.AreaCodes.Count);
           foreach(DutchPhoneNumberAreaCodeConfigElement areaCode in validatorConfig.AreaCodes) {
             configuredAreaCodes.Add(areaCode.AreaCode.TrimStart('0'));

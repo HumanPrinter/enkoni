@@ -488,8 +488,8 @@ namespace Enkoni.Framework.Validation.Tests {
       dummy.MailAddress = "user@test.tld";
       results = EntLib.Validation.Validate(dummy, "ValidationTest");
       Assert.IsTrue(results.IsValid);
-
     }
+
     /// <summary>Tests the functionality of the <see cref="EmailValidatorAttribute"/> class.</summary>
     [TestMethod]
     public void TestCase27_Attribute_NamedValidator() {

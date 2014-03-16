@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
+    <release version="1.2.3.0" releasedate="2014-03-16">
+      <projects>
+        <project name="Enkoni.Framework.Validation" version="2.2.1.0">
+          <updates>
+            <update date="2014-03-16" type="change">
+              <summary><![CDATA[Fixed a small bug that was left unfixed in the previous release with regards to the configuration logic of the DutchPhoneNumberValidator]]></summary>
+              <comment><![CDATA[A small bug in the configuration logic of the DutchPhoneNumberValidator was overlokked in the previous release. This has been fixed now.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.DataAnnotations" version="1.0.0.0">
+          <updates>
+            <update date="2014-03-16" type="addition">
+              <summary><![CDATA[Added the Enkoni.Framework.DataAnnotations-project]]></summary>
+              <comment><![CDATA[Added the Enkoni.Framework.DataAnnotations-project which holds extensions to the DataAnnotations subsystem of Microsoft .Net.
+              It basically is a copy of the existing Enkoni.Framework.Validation-project but without the dependency with the obsolete Validation Application 
+              Block of the Microsoft Enterprise Library.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.2.0" releasedate="2014-03-14">
       <projects>
         <project name="Enkoni.Framework.Entities.Database" version="2.0.1.0">
@@ -20,7 +42,7 @@
             </update>
             <update date="2014-03-14" type="change">
               <summary><![CDATA[Added the 'RequireTopLevelDomain' property to the EmailValidator]]></summary>
-              <comment><![CDATA[The EmailValidator class no contais a new property called 'RequireTopLevelDOmain' to indicate if an e-mail address
+              <comment><![CDATA[The EmailValidator class now contains a new property called 'RequireTopLevelDomain' to indicate if an e-mail address
               must contain a top level domain in order to be valid]]></comment>
             </update>
           </updates>
