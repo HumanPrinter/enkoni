@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Enkoni.Framework.DataAnnotations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Enkoni.Framework.DataAnnotations;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.DataAnnotations.Tests {
   /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.
@@ -18,8 +19,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase01")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase01\TestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase01")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase01\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
     public void TestCase01_Basic() {
       TestDummy_Basic_OverrideAll dummy = new TestDummy_Basic_OverrideAll { MailAddress = this.TestContext.DataRow["MailAddress"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -41,8 +42,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase02")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase02\TestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase02")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase02\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
     public void TestCase02_Basic_AllowComments() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Basic, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       
@@ -57,8 +58,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase03")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase03\TestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase03")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase03\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
     public void TestCase03_Basic_AllowIPAddresses() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       
@@ -72,8 +73,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase04")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase04\TestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase04")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase04\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
     public void TestCase04_Basic_RequireTopLevelDomain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -86,8 +87,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase05")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase05\TestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase05")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase05\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
     public void TestCase05_Extended() {
       TestDummy_Extended_OverrideAll dummy = new TestDummy_Extended_OverrideAll { MailAddress = this.TestContext.DataRow["MailAddress"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -109,8 +110,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase06")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase06\TestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase06")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase06\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
     public void TestCase06_Extended_AllowComments() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Extended, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
 
@@ -125,8 +126,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase07")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase07\TestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase07")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase07\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
     public void TestCase07_Extended_AllowIPAddresses() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
 
@@ -140,8 +141,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase08")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase08\TestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase08")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase08\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
     public void TestCase08_Extended_RequireTopLevelDomain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -154,8 +155,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase09")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase09\TestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase09")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase09\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
     public void TestCase09_Complete() {
       TestDummy_Complete_OverrideAll dummy = new TestDummy_Complete_OverrideAll { MailAddress = this.TestContext.DataRow["MailAddress"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -177,8 +178,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase10")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase10\TestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase10")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase10\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
     public void TestCase10_Complete_AllowComments() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Complete, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
 
@@ -193,8 +194,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase11")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase11\TestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase11")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase11\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
     public void TestCase11_Complete_AllowIPAddresses() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
 
@@ -208,8 +209,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\TestData.mdf", @"EmailAttributeTest\TestCase12")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase12\TestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"EmailAttributeTest\TestCase12")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailAttributeTest\TestCase12\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
     public void TestCase12_Complete_RequireTopLevelDOmain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
