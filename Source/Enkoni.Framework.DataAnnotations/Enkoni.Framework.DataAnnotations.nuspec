@@ -14,9 +14,6 @@
 It basically is a copy of the existing Enkoni.Framework.Validation-project but without the dependency with the obsolete Validation Application
 Block of the Microsoft Enterprise Library.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
-    <dependencies>
-      <dependency id="EnterpriseLibrary.Validation" version="5.0.505.0" />
-    </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
