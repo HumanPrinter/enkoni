@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
+
 using Enkoni.Framework.DataAnnotations.Configuration;
 using Enkoni.Framework.Validation.RegularExpressions;
 
@@ -28,7 +29,7 @@ namespace Enkoni.Framework.DataAnnotations {
   /// <![CDATA[
   /// <configuration>
   ///   <configSections>
-  ///     <section name="Enkoni.DataAnnotations" type="Enkoni.Framework.DataAnnotations.Configuration.ValidatorsSection, Enkoni.Framework.DataAnnotations"/>
+  ///     <section name="Enkoni.DataAnnotations" type="Enkoni.Framework.DataAnnotations.Configuration.ValidationSection, Enkoni.Framework.DataAnnotations"/>
   ///   </configSections>
   /// </configuration>
   /// ]]>
@@ -165,7 +166,8 @@ namespace Enkoni.Framework.DataAnnotations {
     public override bool IsValid(object value) {
       string valueToValidate = value as string;
       if(string.IsNullOrEmpty(valueToValidate)) {
-        return false;
+        /* This may seem strange, but in order to reject empty values the RequiredAttribute should be used */
+        return true;
       }
 
       bool isValid = false;

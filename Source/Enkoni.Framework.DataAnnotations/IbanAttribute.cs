@@ -38,7 +38,8 @@ namespace Enkoni.Framework.DataAnnotations {
     public override bool IsValid(object value) {
       string valueToValidate = value as string;
       if(string.IsNullOrWhiteSpace(valueToValidate)) {
-        return false;
+        /* This may seem strange, but in order to reject empty values the RequiredAttribute should be used */
+        return true;
       }
 
       /* Then, check if the account number matches the regular expression */

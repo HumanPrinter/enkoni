@@ -30,7 +30,7 @@ namespace Enkoni.Framework.DataAnnotations {
   /// <![CDATA[
   /// <configuration>
   ///   <configSections>
-  ///     <section name="Enkoni.DataAnnotations" type="Enkoni.Framework.DataAnnotations.Configuration.ValidatorsSection, Enkoni.Framework.DataAnnotations"/>
+  ///     <section name="Enkoni.DataAnnotations" type="Enkoni.Framework.DataAnnotations.Configuration.ValidationSection, Enkoni.Framework.DataAnnotations"/>
   ///   </configSections>
   /// </configuration>
   /// ]]>
@@ -183,7 +183,8 @@ namespace Enkoni.Framework.DataAnnotations {
     public override bool IsValid(object value) {
       string valueToValidate = value as string;
       if(string.IsNullOrEmpty(valueToValidate) || this.Categories == PhoneNumberCategories.None) {
-        return false;
+        /* This may seem strange, but in order to reject empty values the RequiredAttribute should be used */
+        return true;
       }
 
       string strippedValueToValidate = valueToValidate.Replace(" ", string.Empty);
