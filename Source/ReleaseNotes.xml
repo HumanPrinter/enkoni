@@ -12,6 +12,15 @@
             </update>
           </updates>
         </project>
+        <project name="Enkoni.Framework.Entities.Database" version="3.0.1.0">
+          <updates>
+            <update date="2014-03-21" type="change">
+              <summary><![CDATA[Fixed a bug in the SubDomainModel class in the UpdateEntity method]]></summary>
+              <comment><![CDATA[A bug in the UpdateEntity method of the SubDomainModel class prevented the abstract method UpdateEntityCore from being called in case the updated 
+              entity and the database entity where the same reference.]]></comment>
+            </update>
+          </updates>
+        </project>
       </projects>
     </release>
     <release version="1.2.3.0" releasedate="2014-03-16">

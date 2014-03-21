@@ -111,7 +111,7 @@ namespace Enkoni.Framework.Entities {
           return this.UpdateEntityCore(existingEntity);
         }
         else {
-          return updatedEntity;
+          return this.UpdateEntityCore(updatedEntity);
         }
       }
     }
