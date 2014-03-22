@@ -1,25 +1,14 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Repository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the generic functionality of a repository.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
 using Enkoni.Framework.Linq;
-using Enkoni.Framework.Validation;
 
 using LinqKit;
-
-using Microsoft.Practices.EnterpriseLibrary.Validation;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the API of a repository that is capable of accessing specific types in a persistency.</summary>
@@ -145,6 +134,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Adds a new entity to the repository. Call <see cref="SaveChanges()"/> to make the addition permanent.</summary>
     /// <param name="entity">The entity that must be added to the repository.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T AddEntity(T entity) {
       return this.AddEntity(entity, null);
@@ -154,6 +144,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entity">The entity that must be added to the repository.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T AddEntity(T entity, DataSourceInfo dataSourceInfo) {
       if(entity == null) {
@@ -161,9 +152,11 @@ namespace Enkoni.Framework.Entities {
       }
 
       if(this.Validator != null) {
-        ValidationResults results = this.Validator.PerformDeepValidation(entity);
-        if(!results.IsValid) {
-          throw new ValidationException("The entity is not valid and will not be added to the repository", results);
+        try {
+          this.Validator.PerformValidation(entity, true);
+        }
+        catch(ValidationException ex) {
+          throw new ValidationException("The entity is not valid and will not be added to the repository", ex);
         }
       }
 
@@ -174,6 +167,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entities">The entities that must be added to the repository.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
+    /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public IEnumerable<T> AddEntities(IEnumerable<T> entities) {
       return this.AddEntities(entities, null);
@@ -184,6 +178,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
+    /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
     /// <returns>The entities with the most recent values.</returns>
     public IEnumerable<T> AddEntities(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
       if(entities == null) {
@@ -195,17 +190,13 @@ namespace Enkoni.Framework.Entities {
       }
 
       if(this.Validator != null) {
-        ValidationResults overallResults = new ValidationResults();
-        foreach(T entity in entities) {
-          ValidationResults results = this.Validator.PerformDeepValidation(entity);
-
-          if(!results.IsValid) {
-            overallResults.AddAllResults(results);
+        try {
+          foreach(T entity in entities) {
+            this.Validator.PerformValidation(entity, true);
           }
         }
-
-        if(!overallResults.IsValid) {
-          throw new ValidationException("One or more entities are not valid and no entity will be added to the repository", overallResults);
+        catch(ValidationException ex) {
+          throw new ValidationException("One or more entities are not valid and no entity will be added to the repository", ex);
         }
       }
 
@@ -216,6 +207,7 @@ namespace Enkoni.Framework.Entities {
     /// </summary>
     /// <param name="entity">The entity whose members are updated.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T UpdateEntity(T entity) {
       return this.UpdateEntity(entity, null);
@@ -226,6 +218,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entity">The entity whose members are updated.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T UpdateEntity(T entity, DataSourceInfo dataSourceInfo) {
       if(entity == null) {
@@ -233,9 +226,11 @@ namespace Enkoni.Framework.Entities {
       }
 
       if(this.Validator != null) {
-        ValidationResults results = this.Validator.PerformDeepValidation(entity);
-        if(!results.IsValid) {
-          throw new ValidationException("The entity is not valid and will not be added to the repository", results);
+        try {
+          this.Validator.PerformValidation(entity, true);
+        }
+        catch(ValidationException ex) {
+          throw new ValidationException("The entity is not valid and will not be added to the repository", ex);
         }
       }
 
@@ -246,6 +241,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entities">The entities whose members have changed.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
+    /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
     /// <returns>The entities with the most recent values.</returns>
     public IEnumerable<T> UpdateEntities(IEnumerable<T> entities) {
       return this.UpdateEntities(entities, null);
@@ -256,6 +252,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
+    /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
     /// <returns>The entities with the most recent values.</returns>
     public IEnumerable<T> UpdateEntities(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
       if(entities == null) {
@@ -267,16 +264,13 @@ namespace Enkoni.Framework.Entities {
       }
 
       if(this.Validator != null) {
-        ValidationResults overallResults = new ValidationResults();
-        foreach(T entity in entities) {
-          ValidationResults results = this.Validator.PerformDeepValidation(entity);
-          if(!results.IsValid) {
-            overallResults.AddAllResults(results);
+        try {
+          foreach(T entity in entities) {
+            this.Validator.PerformValidation(entity, true);
           }
         }
-
-        if(!overallResults.IsValid) {
-          throw new ValidationException("One or more entities are not valid and no entity will not be added to the repository", overallResults);
+        catch(ValidationException ex) {
+          throw new ValidationException("One or more entities are not valid and no entity will not be added to the repository", ex);
         }
       }
 

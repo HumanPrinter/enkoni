@@ -1,18 +1,6 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SubDomainModel.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the default implementation of a SubDomainModel type.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-
-using Enkoni.Framework.Validation;
-
-using Microsoft.Practices.EnterpriseLibrary.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the public API of a class that represents the subdomain of the domain model.</summary>
@@ -67,6 +55,17 @@ namespace Enkoni.Framework.Entities {
       return this.FindEntityByIdCore(entityId);
     }
 
+    /// <summary>Validates the entity.</summary>
+    /// <param name="entity">The entity that must be validated.</param>
+    /// <returns>The results of the validation.</returns>
+    public ICollection<ValidationResult> ValidateEntity(T entity) {
+      if(entity == null) {
+        throw new ArgumentNullException("entity");
+      }
+
+      return this.ValidateEntityCore(entity);
+    }
+
     /// <summary>Adds the specified entity to the domain. Before it is added, the entity is validated to ensure that only validated entities are 
     /// added in the domain.</summary>
     /// <param name="entity">The entity that must be added.</param>
@@ -77,13 +76,7 @@ namespace Enkoni.Framework.Entities {
         throw new ArgumentNullException("entity");
       }
 
-      ValidationResults results = this.ValidateEntity(entity);
-      if(!results.IsValid) {
-        throw new ValidationException("The entity cannot be added to the model, because it did not pass the validation", results);
-      }
-      else {
-        return this.AddEntityCore(entity);
-      }
+      return this.AddEntityCore(entity);
     }
 
     /// <summary>Updates the specified entity in the domain. Before it is updated, the entity is validated to ensure that only validated entities are 
@@ -97,22 +90,16 @@ namespace Enkoni.Framework.Entities {
         throw new ArgumentNullException("updatedEntity");
       }
 
-      ValidationResults results = this.ValidateEntity(updatedEntity);
-      if(!results.IsValid) {
-        throw new ValidationException("The entity cannot be updated in the model, because it did not pass the validation.", results);
+      T existingEntity = this.FindEntityById(originalEntityId);
+      if(existingEntity == null) {
+        throw new ArgumentException("The entity cannot be updated because it does not yet exist in the model", "originalEntityId");
+      }
+      else if(!object.ReferenceEquals(existingEntity, updatedEntity)) {
+        existingEntity.CopyFrom(updatedEntity);
+        return this.UpdateEntityCore(existingEntity);
       }
       else {
-        T existingEntity = this.FindEntityById(originalEntityId);
-        if(existingEntity == null) {
-          throw new ArgumentException("The entity cannot be updated because it does not yet exist in the model", "originalEntityId");
-        }
-        else if(!object.ReferenceEquals(existingEntity, updatedEntity)) {
-          existingEntity.CopyFrom(updatedEntity);
-          return this.UpdateEntityCore(existingEntity);
-        }
-        else {
-          return this.UpdateEntityCore(updatedEntity);
-        }
+        return this.UpdateEntityCore(updatedEntity);
       }
     }
 
@@ -144,11 +131,6 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     protected abstract T FindEntityCore(ISpecification<T> specification);
 
-    /// <summary>Validates the entity.</summary>
-    /// <param name="entity">The entity that must be validated.</param>
-    /// <returns>The results of the validation.</returns>
-    protected abstract ValidationResults ValidateEntity(T entity);
-
     /// <summary>Adds the entity to the domain.</summary>
     /// <param name="entity">The entity that must be added.</param>
     /// <returns>The entity with the most recent values.</returns>
@@ -168,6 +150,16 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     protected virtual T FindEntityByIdCore(int entityId) {
       return this.FindEntityCore(Specification.Lambda((T t) => t.RecordId == entityId));
+    }
+
+    /// <summary>Validates the entity.</summary>
+    /// <param name="entity">The entity that must be validated.</param>
+    /// <returns>The results of the validation.</returns>
+    protected virtual ICollection<ValidationResult> ValidateEntityCore(T entity) {
+      ValidationContext validationContext = new ValidationContext(entity, null, null);
+      ICollection<ValidationResult> validationResults = new List<ValidationResult>();
+      Validator.TryValidateObject(entity, validationContext, validationResults, true);
+      return validationResults;
     }
     #endregion
   }
