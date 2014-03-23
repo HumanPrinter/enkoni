@@ -116,6 +116,17 @@ namespace Enkoni.Framework.Entities {
       this.SaveChangesCore(dataSourceInfo);
     }
 
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    public void Reset() {
+      this.Reset(null);
+    }
+
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    public void Reset(DataSourceInfo dataSourceInfo) {
+      this.ResetCore(dataSourceInfo);
+    }
+
     /// <summary>Creates a new entity. To add the entity to the repository, use the <see cref="AddEntity(T)"/> method with the returned value.
     /// </summary>
     /// <returns>The newly created entity.</returns>
@@ -514,6 +525,11 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entity">The entity that must be deleted.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     protected abstract void DeleteEntityCore(T entity, DataSourceInfo dataSourceInfo);
+
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    protected virtual void ResetCore(DataSourceInfo dataSourceInfo) {
+    }
 
     /// <summary>Adds a collection of new entities to the repository.</summary>
     /// <param name="entities">The entities that must be added to the repository.</param>

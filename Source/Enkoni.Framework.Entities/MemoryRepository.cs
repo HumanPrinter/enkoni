@@ -64,6 +64,14 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Repository<T> overrides
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    protected override void ResetCore(DataSourceInfo dataSourceInfo) {
+      this.additionCache.Clear();
+      this.deletionCache.Clear();
+      this.updateCache.Clear();
+    }
+
     /// <summary>Merges the temporary storage with the global storage.</summary>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {

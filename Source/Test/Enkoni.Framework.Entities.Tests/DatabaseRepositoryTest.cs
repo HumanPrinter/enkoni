@@ -499,20 +499,80 @@ namespace Enkoni.Framework.Entities.Tests {
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
       this.UpdateMultiple_Exceptions(sourceInfo);
     }
-    #endregion
 
-    #region Combined storage test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase24_AddUpdate() {
+    public override void TestCase24_Add_Reset() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase24");
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DbContext context = new DatabaseRepositoryTestContext();
+      context.Database.Initialize(false);
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      this.Add_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    public override void TestCase25_Update_Reset() {
+      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase25");
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DbContext context = new DatabaseRepositoryTestContext();
+      context.Database.Initialize(false);
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      this.Update_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    public override void TestCase26_Delete_Reset() {
+      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase26");
+      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
+      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
+
+      DbContext context = new DatabaseRepositoryTestContext();
+      context.Database.Initialize(false);
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      this.Delete_Reset(sourceInfo);
+    }
+    #endregion
+
+    #region Combined storage test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    public override void TestCase27_AddUpdate() {
+      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase27");
       Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
       Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
@@ -526,14 +586,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase25_AddUpdateDelete() {
+    public override void TestCase28_AddUpdateDelete() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase25");
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase28");
       Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
       Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
@@ -547,14 +607,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase26_UpdateDelete() {
+    public override void TestCase29_UpdateDelete() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase26");
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase29");
       Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
       Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
@@ -568,14 +628,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase30")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase27_DeleteAdd() {
+    public override void TestCase30_DeleteAdd() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase27");
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase30");
       Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
       Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
@@ -591,14 +651,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves a single result using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase31")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public void TestCase28_ExecuteBusinessRuleSingleResult() {
+    public void TestCase31_ExecuteBusinessRuleSingleResult() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase28");
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase31");
       Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
       Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
@@ -622,7 +682,7 @@ namespace Enkoni.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* Create the specification */
-      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase28_CustomQuery", "Hit");
+      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase31_CustomQuery", "Hit");
       Assert.IsNotNull(selectSpec);
 
       /* Execute the query */
@@ -635,14 +695,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves multiple results using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase32")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public void TestCase29_ExecuteBusinessRuleMultipleResults() {
+    public void TestCase32_ExecuteBusinessRuleMultipleResults() {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase29");
+      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase32");
       Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
       Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
 
@@ -666,7 +726,7 @@ namespace Enkoni.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* Create the specification */
-      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase29_CustomQuery", 3, 2);
+      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase32_CustomQuery", 3, 2);
       Assert.IsNotNull(selectSpec);
 
       /* Execute the query */

@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the default implementation of a repository that uses a file as datasource.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -105,6 +96,16 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Repository<T> overrides
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    protected override void ResetCore(DataSourceInfo dataSourceInfo) {
+      this.additionCache.Clear();
+      this.deletionCache.Clear();
+      this.updateCache.Clear();
+      
+      this.ClearCache();
+    }
+
     /// <summary>Save the changes that were made to the repository. It is possible to supply datasource information that specifies a specific 
     /// destinationfile. In that case, the contents will be written to that file and the internal cache is untouched. Otherwise, the changes are 
     /// written back to the sourcefile and the internal cache will be refresehed.</summary>

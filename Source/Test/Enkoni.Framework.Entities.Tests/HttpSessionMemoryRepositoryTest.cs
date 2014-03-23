@@ -276,13 +276,49 @@ namespace Enkoni.Framework.Entities.Tests {
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
       this.UpdateMultiple_Exceptions(sourceInfo);
     }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    [TestMethod]
+    public override void TestCase24_Add_Reset() {
+      /* Create the repository */
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareStorageTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.Add_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved updates to the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    [TestMethod]
+    public override void TestCase25_Update_Reset() {
+      /* Create the repository */
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareStorageTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.Update_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved deletions from the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    [TestMethod]
+    public override void TestCase26_Delete_Reset() {
+      /* Create the repository */
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareStorageTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.Delete_Reset(sourceInfo);
+    }
     #endregion
 
     #region Combined storage test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public override void TestCase24_AddUpdate() {
+    public override void TestCase27_AddUpdate() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareStorageTests(store);
 
@@ -293,7 +329,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public override void TestCase25_AddUpdateDelete() {
+    public override void TestCase28_AddUpdateDelete() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareStorageTests(store);
 
@@ -304,7 +340,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public override void TestCase26_UpdateDelete() {
+    public override void TestCase29_UpdateDelete() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareStorageTests(store);
 
@@ -315,7 +351,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public override void TestCase27_DeleteAdd() {
+    public override void TestCase30_DeleteAdd() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareStorageTests(store);
 

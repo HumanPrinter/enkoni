@@ -23,6 +23,26 @@
               <summary><![CDATA[Removed the dependency with the Enkoni.Framework.Validation-project and the Validation application block of the Microsoft Enterprise Library]]></summary>
               <comment><![CDATA[The EntityValidator now relies on System.ComponentModel.DataAnnotations for the validation]]></comment>
             </update>
+            <update date="2014-03-23" type="change">
+              <summary><![CDATA[Added a new Reset method to the Repository class]]></summary>
+              <comment><![CDATA[Added a new Reset method to the Repository class which can be used to revert any changes made to the repository.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.1.0.0">
+          <updates>
+            <update date="2014-03-23" type="change">
+              <summary><![CDATA[Implemented the new Reset method of the Repository base class]]></summary>
+              <comment><![CDATA[The DatabaseRepository implements the new Reset method which reverts any unsaved changes to the repository.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="3.1.0.0">
+          <updates>
+            <update date="2014-03-23" type="change">
+              <summary><![CDATA[Implemented the new Reset method of the Repository base class]]></summary>
+              <comment><![CDATA[The FileRepository implements the new Reset method which reverts any unsaved changes to the repository.]]></comment>
+            </update>
           </updates>
         </project>
       </projects>

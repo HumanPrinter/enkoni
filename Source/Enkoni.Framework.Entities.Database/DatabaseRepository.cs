@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -61,6 +62,37 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Repository<T> overrides
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    protected override void ResetCore(DataSourceInfo dataSourceInfo) {
+      this.additionCache.Clear();
+      this.deletionCache.Clear();
+
+      DbContext context = this.SelectDbContext(dataSourceInfo);
+      context.Set<TEntity>().Local.Clear();
+
+      /* Retrieve the unsaved changes */
+      context.ChangeTracker.DetectChanges();
+      List<DbEntityEntry<TEntity>> changedEntries = context.ChangeTracker.Entries<TEntity>().Where(x => x.State != EntityState.Unchanged).ToList();
+
+      /* Undo any modifications */
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Modified)) {
+        entry.CurrentValues.SetValues(entry.OriginalValues);
+        entry.State = EntityState.Unchanged;
+      }
+
+      /* Undo any additions */
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Added)) {
+        entry.State = EntityState.Detached;
+      }
+
+      /* Undo any deletions */
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Deleted)) {
+        entry.CurrentValues.SetValues(entry.OriginalValues);
+        entry.State = EntityState.Unchanged;
+      }
+    }
+
     /// <summary>Submits all the changes to the database.</summary>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {

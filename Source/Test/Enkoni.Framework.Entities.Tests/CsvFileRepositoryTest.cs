@@ -251,46 +251,79 @@ namespace Enkoni.Framework.Entities.Tests {
         new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase23\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
       this.UpdateMultiple_Exceptions(sourceInfo);
     }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase24")]
+    public override void TestCase24_Add_Reset() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase24\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.Add_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved updates to the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase25")]
+    public override void TestCase25_Update_Reset() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase25\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.Update_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved deletions from the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase26")]
+    public override void TestCase26_Delete_Reset() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase26\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.Delete_Reset(sourceInfo);
+    }
     #endregion
 
     #region Combined storage test-cases
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase24")]
-    public override void TestCase24_AddUpdate() {
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase27")]
+    public override void TestCase27_AddUpdate() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase24\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase27\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
       this.AddUpdate(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase25")]
-    public override void TestCase25_AddUpdateDelete() {
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase28")]
+    public override void TestCase28_AddUpdateDelete() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase25\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase28\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
       this.AddUpdateDelete(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase26")]
-    public override void TestCase26_UpdateDelete() {
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase29")]
+    public override void TestCase29_UpdateDelete() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase26\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase29\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
       this.UpdateDelete(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase27")]
-    public override void TestCase27_DeleteAdd() {
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase30")]
+    public override void TestCase30_DeleteAdd() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase27\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase30\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
       this.DeleteAdd(sourceInfo);
     }
     #endregion
@@ -298,22 +331,22 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Read test-cases
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase28")]
-    public override void TestCase28_ReadFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
+    public override void TestCase31_ReadFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase28\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase31\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
       this.ReadFile(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method when 
     /// reading an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase29")]
-    public override void TestCase29_ReadEmptyFile() {
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase32")]
+    public override void TestCase32_ReadEmptyFile() {
       /* Create the repositiry */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase29\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase32\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, true);
       this.ReadEmptyFile(sourceInfo);
     }
     #endregion
@@ -322,24 +355,24 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/>
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase30")]
-    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase30")]
-    public override void TestCase30_WriteFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase33")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase33")]
+    public override void TestCase33_WriteFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase30\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
-      this.WriteFile(sourceInfo, @"CsvFileRepositoryTest\TestCase30\ReposTest_DataSourceFile.csv");
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase33\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.WriteFile(sourceInfo, @"CsvFileRepositoryTest\TestCase33\ReposTest_DataSourceFile.csv");
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
     /// method when writing an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
-    public override void TestCase31_WriteEmptyFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase34")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase34")]
+    public override void TestCase34_WriteEmptyFile() {
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase31\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
-      this.WriteEmptyFile(sourceInfo, @"CsvFileRepositoryTest\TestCase31\ReposTest_EmptyInputFile.csv");
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase34\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.WriteEmptyFile(sourceInfo, @"CsvFileRepositoryTest\TestCase34\ReposTest_EmptyInputFile.csv");
     }
     #endregion
 
