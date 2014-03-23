@@ -92,15 +92,12 @@ namespace Enkoni.Framework.Entities.Tests {
     public abstract void TestCase23_UpdateMultiple_Exceptions();
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
-    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     public abstract void TestCase24_Add_Reset();
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved updates to the repository.</summary>
-    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     public abstract void TestCase25_Update_Reset();
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved deletions from the repository.</summary>
-    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     public abstract void TestCase26_Delete_Reset();
     #endregion
 

@@ -69,7 +69,6 @@ namespace Enkoni.Framework.Entities {
       this.deletionCache.Clear();
 
       DbContext context = this.SelectDbContext(dataSourceInfo);
-      context.Set<TEntity>().Local.Clear();
 
       /* Retrieve the unsaved changes */
       context.ChangeTracker.DetectChanges();
@@ -88,8 +87,8 @@ namespace Enkoni.Framework.Entities {
 
       /* Undo any deletions */
       foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Deleted)) {
-        entry.CurrentValues.SetValues(entry.OriginalValues);
         entry.State = EntityState.Unchanged;
+        entry.CurrentValues.SetValues(entry.OriginalValues);
       }
     }
 

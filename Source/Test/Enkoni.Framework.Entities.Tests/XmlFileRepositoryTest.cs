@@ -253,7 +253,6 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
-    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     [TestMethod]
     [DeploymentItem(@"TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase24")]
     public override void TestCase24_Add_Reset() {
@@ -264,7 +263,6 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved updates to the repository.</summary>
-    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     [TestMethod]
     [DeploymentItem(@"TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase25")]
     public override void TestCase25_Update_Reset() {
@@ -275,7 +273,6 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved deletions from the repository.</summary>
-    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     [TestMethod]
     [DeploymentItem(@"TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase26")]
     public override void TestCase26_Delete_Reset() {
