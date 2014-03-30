@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities</id>
-    <version>3.0.0.1</version>
+    <version>3.1.0-beta01</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
+    <releaseNotes><![CDATA[A bug in the UpdateEntity method of the SubDomainModel class prevented the abstract method UpdateEntityCore from being called in case the updated
+entity and the database entity where the same reference.
+The EntityValidator now relies on System.ComponentModel.DataAnnotations for the validation
+Added a new Reset method to the Repository class which can be used to revert any changes made to the repository.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />
@@ -18,7 +21,7 @@
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
-	  <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
       <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
   </metadata>

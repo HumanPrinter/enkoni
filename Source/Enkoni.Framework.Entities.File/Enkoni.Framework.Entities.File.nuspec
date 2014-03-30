@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities.File</id>
-    <version>3.0.0.1</version>
+    <version>3.1.0-beta01</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,11 +10,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
+    <releaseNotes><![CDATA[The FileRepository implements the new Reset method which reverts any unsaved changes to the repository.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Enkoni" version="2.2.0.1" />
-      <dependency id="Enkoni.Entities" version="3.0.0.1" />
+      <dependency id="Enkoni.Entities" version="3.1.0-beta01" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
