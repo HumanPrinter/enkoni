@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities</id>
-    <version>3.1.0-beta01</version>
+    <version>3.1.0-beta03</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -13,7 +13,9 @@
     <releaseNotes><![CDATA[A bug in the UpdateEntity method of the SubDomainModel class prevented the abstract method UpdateEntityCore from being called in case the updated
 entity and the database entity where the same reference.
 The EntityValidator now relies on System.ComponentModel.DataAnnotations for the validation
-Added a new Reset method to the Repository class which can be used to revert any changes made to the repository.]]></releaseNotes>
+Added a new Reset method to the Repository class which can be used to revert any changes made to the repository.
+The project now references EntityFramework 6.1.0 (old version was 5.0).
+Added a new Execute method to the Repository class that can be used to execute custom actions that don't have to return one or more entities.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />

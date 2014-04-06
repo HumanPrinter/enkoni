@@ -331,6 +331,42 @@ namespace Enkoni.Framework.Entities {
 
       this.DeleteEntitiesCore(entities, dataSourceInfo);
     }
+
+    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
+    /// <param name="specification">The specification that indicates the action that must be executed.</param>
+    /// <returns>An object describing the result of the action.</returns>
+    public object Execute(ISpecification<T> specification) {
+      return this.Execute(specification, null);
+    }
+
+    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
+    /// <param name="specification">The specification that indicates the action that must be executed.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <returns>An object describing the result of the action.</returns>
+    public object Execute(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
+      return this.Execute<object>(specification, dataSourceInfo);
+    }
+
+    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
+    /// <typeparam name="TResult">The type of object that is returned by the action.</typeparam>
+    /// <param name="specification">The specification that indicates the action that must be executed.</param>
+    /// <returns>An object describing the result of the action.</returns>
+    public TResult Execute<TResult>(ISpecification<T> specification) {
+      return this.Execute<TResult>(specification, null);
+    }
+
+    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
+    /// <typeparam name="TResult">The type of object that is returned by the action.</typeparam>
+    /// <param name="specification">The specification that indicates the action that must be executed.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <returns>An object describing the result of the action.</returns>
+    public TResult Execute<TResult>(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
+      if(specification == null) {
+        throw new ArgumentNullException("specification");
+      }
+
+      return this.ExecuteCore<TResult>(specification, dataSourceInfo);
+    }
     #endregion
 
     #region Select methods
@@ -730,6 +766,15 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The result of the businessrule.</returns>
     protected virtual IEnumerable<T> ExecuteBusinessRuleWithMultipleResults(string ruleName, IEnumerable<object> ruleArguments) {
       throw new NotSupportedException("This repository does not support businessrules.");
+    }
+
+    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
+    /// <typeparam name="TResult">The type of object that is returned by the action.</typeparam>
+    /// <param name="specification">The specification that indicates the action that must be executed.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <returns>An object describing the result of the action.</returns>
+    protected virtual TResult ExecuteCore<TResult>(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
+      throw new NotSupportedException("This repository does not support the Execute-operation.");
     }
     #endregion
 
