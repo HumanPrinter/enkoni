@@ -48,7 +48,7 @@ namespace Enkoni.Framework.Entities {
       return this.FindEntityCore(searchSpecification);
     }
 
-    /// <summary>Finds one entities with the specified entity-ID.</summary>
+    /// <summary>Finds a single entity with the specified entity-ID.</summary>
     /// <param name="entityId">The ID of the entity that must be found.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     public T FindEntityById(int entityId) {
