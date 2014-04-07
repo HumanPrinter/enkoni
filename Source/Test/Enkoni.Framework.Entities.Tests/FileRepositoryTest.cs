@@ -14,21 +14,21 @@ namespace Enkoni.Framework.Entities.Tests {
   public abstract class FileRepositoryTest : RepositoryTest {
     #region Read test-case contracts
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
-    public abstract void TestCase31_ReadFile();
+    public abstract void TestCase33_ReadFile();
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method when reading
     /// an empty file.</summary>
-    public abstract void TestCase32_ReadEmptyFile();
+    public abstract void TestCase34_ReadEmptyFile();
     #endregion
 
     #region Write test-case contracts
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
     /// method.</summary>
-    public abstract void TestCase33_WriteFile();
+    public abstract void TestCase35_WriteFile();
 
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
     /// method when writing an empty file.</summary>
-    public abstract void TestCase34_WriteEmptyFile();
+    public abstract void TestCase36_WriteEmptyFile();
     #endregion
 
     #region Read test-cases

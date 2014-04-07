@@ -331,7 +331,9 @@ namespace Enkoni.Framework.Entities {
 
       this.DeleteEntitiesCore(entities, dataSourceInfo);
     }
+    #endregion
 
+    #region Execute methods
     /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
     /// <param name="specification">The specification that indicates the action that must be executed.</param>
     /// <returns>An object describing the result of the action.</returns>
@@ -344,28 +346,17 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>An object describing the result of the action.</returns>
     public object Execute(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
-      return this.Execute<object>(specification, dataSourceInfo);
-    }
-
-    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
-    /// <typeparam name="TResult">The type of object that is returned by the action.</typeparam>
-    /// <param name="specification">The specification that indicates the action that must be executed.</param>
-    /// <returns>An object describing the result of the action.</returns>
-    public TResult Execute<TResult>(ISpecification<T> specification) {
-      return this.Execute<TResult>(specification, null);
-    }
-
-    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
-    /// <typeparam name="TResult">The type of object that is returned by the action.</typeparam>
-    /// <param name="specification">The specification that indicates the action that must be executed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
-    /// <returns>An object describing the result of the action.</returns>
-    public TResult Execute<TResult>(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
       if(specification == null) {
         throw new ArgumentNullException("specification");
       }
 
-      return this.ExecuteCore<TResult>(specification, dataSourceInfo);
+      BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
+      if(businessRule != null) {
+        return this.ExecuteBusinessRule(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
+      }
+
+      Expression<Func<T, bool>> expression = specification.Visit(this);
+      return this.ExecuteCore(expression.Compile(), specification.SortRules, specification.MaximumResults, dataSourceInfo);
     }
     #endregion
 
@@ -403,7 +394,7 @@ namespace Enkoni.Framework.Entities {
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
-        return this.ExecuteBusinessRuleWithMultipleResults(businessRule.RuleName, businessRule.RuleArguments);
+        return this.ExecuteBusinessRuleWithMultipleResults(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
@@ -430,7 +421,7 @@ namespace Enkoni.Framework.Entities {
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
-        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments);
+        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
@@ -459,7 +450,7 @@ namespace Enkoni.Framework.Entities {
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
-        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments);
+        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
@@ -486,7 +477,7 @@ namespace Enkoni.Framework.Entities {
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
-        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments);
+        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
@@ -515,7 +506,7 @@ namespace Enkoni.Framework.Entities {
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
-        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments);
+        return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
@@ -750,31 +741,46 @@ namespace Enkoni.Framework.Entities {
       throw new NotSupportedException("Specification-type {" + specification.GetType() + "} is not supported");
     }
 
-    /// <summary>Executes a businessrule that yields to a single result. By default, this method throws a <see cref="NotSupportedException"/>. 
-    /// Override this method to deal with special businessrules.</summary>
+    /// <summary>Executes a business rule that yields to a single result. By default, this method throws a <see cref="NotSupportedException"/>. 
+    /// Override this method to deal with special business rules.</summary>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="ruleArguments">The arguments that were passed.</param>
-    /// <returns>The result of the businessrule.</returns>
-    protected virtual T ExecuteBusinessRuleWithSingleResult(string ruleName, IEnumerable<object> ruleArguments) {
-      throw new NotSupportedException("This repository does not support businessrules.");
-    }
-
-    /// <summary>Executes a businessrule that yields to multiple results. By default, this method throws a <see cref="NotSupportedException"/>. 
-    /// Override this method to deal with special businessrules.</summary>
-    /// <param name="ruleName">The name of the rule that must be executed.</param>
-    /// <param name="ruleArguments">The arguments that were passed.</param>
-    /// <returns>The result of the businessrule.</returns>
-    protected virtual IEnumerable<T> ExecuteBusinessRuleWithMultipleResults(string ruleName, IEnumerable<object> ruleArguments) {
-      throw new NotSupportedException("This repository does not support businessrules.");
-    }
-
-    /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
-    /// <typeparam name="TResult">The type of object that is returned by the action.</typeparam>
-    /// <param name="specification">The specification that indicates the action that must be executed.</param>
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
-    /// <returns>An object describing the result of the action.</returns>
-    protected virtual TResult ExecuteCore<TResult>(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
-      throw new NotSupportedException("This repository does not support the Execute-operation.");
+    /// <returns>The result of the business rule.</returns>
+    protected virtual T ExecuteBusinessRuleWithSingleResult(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
+      throw new NotSupportedException("This repository does not support business rules.");
+    }
+
+    /// <summary>Executes a business rule that yields to multiple results. By default, this method throws a <see cref="NotSupportedException"/>. 
+    /// Override this method to deal with special business rules.</summary>
+    /// <param name="ruleName">The name of the rule that must be executed.</param>
+    /// <param name="ruleArguments">The arguments that were passed.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <returns>The result of the business rule.</returns>
+    protected virtual IEnumerable<T> ExecuteBusinessRuleWithMultipleResults(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
+      throw new NotSupportedException("This repository does not support business rules.");
+    }
+
+    /// <summary>Executes a business rule that yields to a custom result. By default, this method throws a <see cref="NotSupportedException"/>. 
+    /// Override this method to deal with special business rules.</summary>
+    /// <param name="ruleName">The name of the rule that must be executed.</param>
+    /// <param name="ruleArguments">The arguments that were passed.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <returns>The result of the business rule.</returns>
+    protected virtual object ExecuteBusinessRule(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
+      throw new NotSupportedException("This repository does not support business rules.");
+    }
+
+    /// <summary>Executes an expression. By default, the expression is passed to the <see cref="M:FindAllCore(Func{T,bool}, SortSpecification{T}, int, DataSourceInfo)"/> 
+    /// method.</summary>
+    /// <param name="expression">The expression to which the entities must match.</param>
+    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
+    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <returns>The result of the action. By default, this method returns <see langword="null"/>.</returns>
+    protected virtual object ExecuteCore(Func<T, bool> expression, SortSpecifications<T> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
+      this.FindAllCore(expression, sortRules, maximumResults, dataSourceInfo);
+      return null;
     }
     #endregion
 

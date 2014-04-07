@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -325,25 +326,48 @@ namespace Enkoni.Framework.Entities.Tests {
     }
     #endregion
 
+    #region Execute test-case contracts
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.xml", @"CsvFileRepositoryTest\TestCase31")]
+    public override void TestCase31_ExecuteDefaultSpecification() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase31\ReposTest_DataSourceFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.ExecuteDefaultSpecification(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.xml", @"CsvFileRepositoryTest\TestCase32")]
+    [ExpectedException(typeof(NotSupportedException))]
+    public override void TestCase32_ExecuteBusinessRule() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase32\ReposTest_DataSourceFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.ExecuteBusinessRule(sourceInfo);
+    }
+    #endregion
+
     #region Read test-cases
     /// <summary>Tests the functionality of the <see cref="XmlFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase31")]
-    public override void TestCase31_ReadFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase33")]
+    public override void TestCase33_ReadFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase31\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase33\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
       this.ReadFile(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="XmlFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method when 
     /// reading an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase32")]
-    public override void TestCase32_ReadEmptyFile() {
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase34")]
+    public override void TestCase34_ReadEmptyFile() {
       /* Create the repositiry */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase32\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase34\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, true);
       this.ReadEmptyFile(sourceInfo);
     }
     #endregion
@@ -352,24 +376,24 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="XmlFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase33")]
-    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase33")]
-    public override void TestCase33_WriteFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase35")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.xml", @"XmlFileRepositoryTest\TestCase35")]
+    public override void TestCase35_WriteFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase33\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
-      this.WriteFile(sourceInfo, @"XmlFileRepositoryTest\TestCase33\ReposTest_DataSourceFile.xml");
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase35\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.WriteFile(sourceInfo, @"XmlFileRepositoryTest\TestCase35\ReposTest_DataSourceFile.xml");
     }
 
     /// <summary>Tests the functionality of the <see cref="XmlFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
     /// method when writing an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase34")]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase34")]
-    public override void TestCase34_WriteEmptyFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\TestCase36")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\TestCase36")]
+    public override void TestCase36_WriteEmptyFile() {
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase34\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
-      this.WriteEmptyFile(sourceInfo, @"XmlFileRepositoryTest\TestCase34\ReposTest_EmptyInputFile.xml");
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\TestCase36\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.WriteEmptyFile(sourceInfo, @"XmlFileRepositoryTest\TestCase36\ReposTest_EmptyInputFile.xml");
     }
     #endregion
 

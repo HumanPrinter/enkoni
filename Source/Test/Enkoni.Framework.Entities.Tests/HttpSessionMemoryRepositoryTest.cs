@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
 using Enkoni.Framework.Testing;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Entities.Tests {
@@ -354,6 +353,29 @@ namespace Enkoni.Framework.Entities.Tests {
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
       this.DeleteAdd(sourceInfo);
+    }
+    #endregion
+
+    #region Execute test-case contracts
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    public override void TestCase31_ExecuteDefaultSpecification() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareStorageTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.ExecuteDefaultSpecification(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(NotSupportedException))]
+    public override void TestCase32_ExecuteBusinessRule() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareStorageTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.ExecuteBusinessRule(sourceInfo);
     }
     #endregion
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -325,25 +326,48 @@ namespace Enkoni.Framework.Entities.Tests {
     }
     #endregion
 
+    #region Execute test-case contracts
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase31")]
+    public override void TestCase31_ExecuteDefaultSpecification() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase31\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.ExecuteDefaultSpecification(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase32")]
+    [ExpectedException(typeof(NotSupportedException))]
+    public override void TestCase32_ExecuteBusinessRule() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase32\ReposTest_DataSourceFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.ExecuteBusinessRule(sourceInfo);
+    }
+    #endregion
+
     #region Read test-cases
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase31")]
-    public override void TestCase31_ReadFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase33")]
+    public override void TestCase33_ReadFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase31\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase33\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
       this.ReadFile(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method when 
     /// reading an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase32")]
-    public override void TestCase32_ReadEmptyFile() {
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase34")]
+    public override void TestCase34_ReadEmptyFile() {
       /* Create the repositiry */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase32\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase34\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, true);
       this.ReadEmptyFile(sourceInfo);
     }
     #endregion
@@ -352,24 +376,24 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/>
     /// method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase33")]
-    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase33")]
-    public override void TestCase33_WriteFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase35")]
+    [DeploymentItem(@"TestData\ReposTest_DataSourceFile.csv", @"CsvFileRepositoryTest\TestCase35")]
+    public override void TestCase35_WriteFile() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase33\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
-      this.WriteFile(sourceInfo, @"CsvFileRepositoryTest\TestCase33\ReposTest_DataSourceFile.csv");
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase35\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.WriteFile(sourceInfo, @"CsvFileRepositoryTest\TestCase35\ReposTest_DataSourceFile.csv");
     }
 
     /// <summary>Tests the functionality of the <see cref="CsvFileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
     /// method when writing an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase34")]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase34")]
-    public override void TestCase34_WriteEmptyFile() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\TestCase36")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\TestCase36")]
+    public override void TestCase36_WriteEmptyFile() {
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase34\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
-      this.WriteEmptyFile(sourceInfo, @"CsvFileRepositoryTest\TestCase34\ReposTest_EmptyInputFile.csv");
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\TestCase36\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.WriteEmptyFile(sourceInfo, @"CsvFileRepositoryTest\TestCase36\ReposTest_EmptyInputFile.csv");
     }
     #endregion
 

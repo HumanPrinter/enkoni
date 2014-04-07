@@ -102,17 +102,25 @@ namespace Enkoni.Framework.Entities.Tests {
     #endregion
 
     #region Combined storage test-case contracts
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     public abstract void TestCase27_AddUpdate();
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     public abstract void TestCase28_AddUpdateDelete();
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     public abstract void TestCase29_UpdateDelete();
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     public abstract void TestCase30_DeleteAdd();
+    #endregion
+
+    #region Execute test-case contracts
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    public abstract void TestCase31_ExecuteDefaultSpecification();
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    public abstract void TestCase32_ExecuteBusinessRule();
     #endregion
 
     #region Retrieve test-cases
@@ -1289,7 +1297,7 @@ namespace Enkoni.Framework.Entities.Tests {
     #endregion
 
     #region Combined storage test-cases
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void AddUpdate(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1345,7 +1353,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
     }
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void AddUpdateDelete(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1383,7 +1391,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void UpdateDelete(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1428,7 +1436,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void DeleteAdd(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1486,6 +1494,32 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual("\"Row2\"", retrievedDummy.TextValue, false);
       Assert.AreEqual(4, retrievedDummy.NumericValue);
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
+    }
+    #endregion
+
+    #region Execute test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void ExecuteDefaultSpecification(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.BooleanValue);
+      /* Execute the specification */
+      object result = repository.Execute(spec);
+      
+      Assert.IsNull(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void ExecuteBusinessRule(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      ISpecification<TestDummy> spec = Specification.BusinessRule<TestDummy>("SomeRule");
+      /* Execute the specification */
+      object result = repository.Execute(spec);
     }
     #endregion
 

@@ -437,9 +437,8 @@ namespace Enkoni.Framework.Entities.Tests {
     }
     #endregion
 
-    #region Custom query test-cases
-    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves a single result using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    #region Execute test-case contracts
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase31")]
     [DeploymentItem(@"amd64\", @"amd64\")]
@@ -447,8 +446,38 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("EntityFramework.SqlServer.dll")]
     [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public void TestCase31_ExecuteBusinessRuleSingleResult() {
+    public override void TestCase31_ExecuteDefaultSpecification() {
       DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase31\", TestCategory.Storage);
+      this.ExecuteDefaultSpecification(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase32")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    [ExpectedException(typeof(NotSupportedException))]
+    public override void TestCase32_ExecuteBusinessRule() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase32\", TestCategory.Storage);
+      this.ExecuteBusinessRule(sourceInfo);
+    }
+    #endregion
+
+    #region Custom query test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves a single result using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase33")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public void TestCase33_ExecuteBusinessRuleSingleResult() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase33\", TestCategory.Storage);
       Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
 
       /* Add some ectra records to te database */
@@ -478,14 +507,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves multiple results using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase32")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase34")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
     [DeploymentItem("EntityFramework.SqlServer.dll")]
     [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public void TestCase32_ExecuteBusinessRuleMultipleResults() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase32\", TestCategory.Storage);
+    public void TestCase34_ExecuteBusinessRuleMultipleResults() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase34\", TestCategory.Storage);
       Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
 
       /* Add some ectra records to te database */
