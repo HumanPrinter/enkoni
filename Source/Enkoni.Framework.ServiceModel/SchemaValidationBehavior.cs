@@ -1,16 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SchemaValidationBehavior.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//   Implementatie van een behavior waarmee het ontvangen bericht op basis van een los XSD-schema gevalideerd kan worden.
-// </summary>
-// <remark>
-//   Implementatie gebaseerd op de code van Microsoft (http://msdn.microsoft.com/en-us/library/ff647820.aspx)
-// </remark>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Linq;
+﻿using System.Linq;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;

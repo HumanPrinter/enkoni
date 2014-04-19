@@ -1,16 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SchemaValidationBehaviorExtensionElement.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//   Implementatie van een extension element waarmee de SchemaValidationBehavior aan een endpoint gekoppeld kan worden via de configuratie.
-// </summary>
-// <remark>
-//   Implementatie gebaseerd op de code van Microsoft (http://msdn.microsoft.com/en-us/library/ff647820.aspx)
-// </remark>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Configuration;
 using System.IO;
 using System.Reflection;

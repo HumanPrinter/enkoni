@@ -1,16 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SchemaValidationMessageInspector.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//   Implementatie van een inspector die ontvangen berichten kan valideren tegen een XSD schema.
-// </summary>
-// <remark>
-//   Implementatie gebaseerd op de code van Microsoft (http://msdn.microsoft.com/en-us/library/ff647820.aspx)
-// </remark>
-// --------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Channels;

@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="TestService1.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Implements a service that is used during the tests.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-namespace Enkoni.Framework.ServiceModel.Tests {
+﻿namespace Enkoni.Framework.ServiceModel.Tests {
   /// <summary>Implements the ITestService in a very simple way.</summary>
   public class TestService : ITestService {
     #region Constructor

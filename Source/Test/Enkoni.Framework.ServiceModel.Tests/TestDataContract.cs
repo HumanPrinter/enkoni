@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="TestDataContract.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the FlatWsdlBehaviorTest classes.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
 namespace Enkoni.Framework.ServiceModel.Tests {
