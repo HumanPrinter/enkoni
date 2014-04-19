@@ -22,7 +22,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
       /* Since the behavior will be disabled, passing an non-existing file should not matter */
       testSubject.SchemaFile = @"SchemaValidationBehaviorExtensionElement\CreateBehavior_Disabled\UnknownContract.xsd";
       
-      object result = testSubject.CreateBehavior();
+      object result = testSubject.ExecuteCreateBehavior();
       Assert.IsInstanceOfType(result, typeof(SchemaValidationBehavior));
       SchemaValidationBehavior castedResult = result as SchemaValidationBehavior;
       Assert.IsFalse(castedResult.Enabled);
@@ -36,7 +36,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
       testSubject.Enabled = true;
       testSubject.SchemaFile = @"SchemaValidationBehaviorExtensionElement\CreateBehavior_ValidFile\TestDataContract.xsd";
 
-      object result = testSubject.CreateBehavior();
+      object result = testSubject.ExecuteCreateBehavior();
       Assert.IsInstanceOfType(result, typeof(SchemaValidationBehavior));
       SchemaValidationBehavior castedResult = result as SchemaValidationBehavior;
       Assert.IsTrue(castedResult.Enabled);
@@ -53,7 +53,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
       testSubject.Enabled = true;
       testSubject.SchemaFile = @"resource://Enkoni.Framework.ServiceModel.Tests.TestDataContract.xsd, Enkoni.Framework.ServiceModel.Tests";
 
-      object result = testSubject.CreateBehavior();
+      object result = testSubject.ExecuteCreateBehavior();
       Assert.IsInstanceOfType(result, typeof(SchemaValidationBehavior));
       SchemaValidationBehavior castedResult = result as SchemaValidationBehavior;
       Assert.IsTrue(castedResult.Enabled);
@@ -71,7 +71,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
       testSubject.Enabled = true;
       testSubject.SchemaFile = null;
 
-      object result = testSubject.CreateBehavior();
+      object result = testSubject.ExecuteCreateBehavior();
     }
 
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
@@ -82,7 +82,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
       testSubject.Enabled = true;
       testSubject.SchemaFile = string.Empty;
 
-      object result = testSubject.CreateBehavior();
+      object result = testSubject.ExecuteCreateBehavior();
     }
     #endregion
   }
