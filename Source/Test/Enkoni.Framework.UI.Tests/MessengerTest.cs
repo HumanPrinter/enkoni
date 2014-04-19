@@ -1,15 +1,7 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="MessengerTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the Messenger class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Threading;
 using Enkoni.Framework.UI.Mvvm;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.UI.Tests {
@@ -19,7 +11,7 @@ namespace Enkoni.Framework.UI.Tests {
     #region General Testcases
     /// <summary>Tests the functionality of the <see cref="Messenger.Default"/> property.</summary>
     [TestMethod]
-    public void TestCase01_DefaultMessenger() {
+    public void Messenger_DefaultMessenger() {
       /* First check the system default */
       IMessenger messenger = Messenger.Default;
 
@@ -34,14 +26,13 @@ namespace Enkoni.Framework.UI.Tests {
       Assert.IsNotNull(messenger);
       Assert.IsInstanceOfType(messenger, typeof(DummyMessenger));
     }
-
     #endregion
 
     #region Register-and-Send Testcases
     /// <summary>Tests the functionality of the <see cref="Messenger.Register{TMessage}(object,Action{TMessage})"/> and 
     /// <see cref="Messenger.Send{TMessage}(TMessage,object)"/> methods.</summary>
     [TestMethod]
-    public void TestCase02_RegisterAndSend_NoToken() {
+    public void Messenger_RegisterAndSend_NoToken() {
       /* Create an instance of the messenger */
       IMessenger messenger = new Messenger();
 
@@ -100,7 +91,7 @@ namespace Enkoni.Framework.UI.Tests {
     /// <summary>Tests the functionality of the <see cref="Messenger.Register{TMessage}(object,Action{TMessage})"/> and 
     /// <see cref="Messenger.Send{TMessage}(TMessage,object)"/> methods.</summary>
     [TestMethod]
-    public void TestCase03_RegisterAndSendDerived_NoToken() {
+    public void Messenger_RegisterAndSendDerived_NoToken() {
       /* Create an instance of the messenger */
       IMessenger messenger = new Messenger();
 
@@ -143,7 +134,7 @@ namespace Enkoni.Framework.UI.Tests {
     /// <summary>Tests the functionality of the <see cref="Messenger.Register{TMessage}(object,Action{TMessage},bool,object)"/> and 
     /// <see cref="Messenger.Send{TMessage}(TMessage,object)"/> methods.</summary>
     [TestMethod]
-    public void TestCase04_RegisterAndSend_WithToken() {
+    public void Messenger_RegisterAndSend_WithToken() {
       /* Create an instance of the messenger */
       IMessenger messenger = new Messenger();
 
@@ -221,7 +212,7 @@ namespace Enkoni.Framework.UI.Tests {
     /// <summary>Tests the functionality of the <see cref="Messenger.Register{TMessage}(object,Action{TMessage},bool,object)"/> and 
     /// <see cref="Messenger.Send{TMessage}(TMessage,object)"/> methods.</summary>
     [TestMethod]
-    public void TestCase05_RegisterAndSendDerived_WithToken() {
+    public void Messenger_RegisterAndSendDerived_WithToken() {
       /* Create an instance of the messenger */
       IMessenger messenger = new Messenger();
 
@@ -284,7 +275,7 @@ namespace Enkoni.Framework.UI.Tests {
     #region Deregister Testcases
     /// <summary>Tests the functionality of the <see cref="Messenger.Deregister{TMessage}(object,Action{TMessage})"/> method.</summary>
     [TestMethod]
-    public void TestCase06_Deregister_NoToken() {
+    public void Messenger_Deregister_NoToken() {
       /* Create an instance of the messenger */
       IMessenger messenger = new Messenger();
 
@@ -335,7 +326,7 @@ namespace Enkoni.Framework.UI.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Messenger.Deregister{TMessage}(object,Action{TMessage},object)"/> method.</summary>
     [TestMethod]
-    public void TestCase07_Deregister_WithToken() {
+    public void Messenger_Deregister_WithToken() {
       /* Create an instance of the messenger */
       IMessenger messenger = new Messenger();
 

@@ -22,7 +22,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\ValidRequest.xml", @"SchemaValidationIntegrationTest\DefaultBehavior_ValidRequest")]
-    public void SchemaValidationIntegrationTest_DefaultBehavior_ValidRequest() {
+    public void SchemaValidationIntegration_DefaultBehavior_ValidRequest() {
       /* Send a valid request */
       XDocument request = XDocument.Load(@"SchemaValidationIntegrationTest\DefaultBehavior_ValidRequest\ValidRequest.xml");
       XDocument result = null;
@@ -41,7 +41,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\InvalidRequest.xml", @"SchemaValidationIntegrationTest\DefaultBehavior_InvalidRequest")]
-    public void SchemaValidationIntegrationTest_DefaultBehavior_InvalidRequest() {
+    public void SchemaValidationIntegration_DefaultBehavior_InvalidRequest() {
       /* Send a request that should be rejected (but isn't because of a bug in the default DataContractSerializer xml validation */
       XDocument request = XDocument.Load(@"SchemaValidationIntegrationTest\DefaultBehavior_InvalidRequest\InvalidRequest.xml");
       XDocument result = null;
@@ -59,7 +59,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as an assembly resource.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\ValidRequest.xml", @"SchemaValidationIntegrationTest\SchemaValidation_ValidRequest")]
-    public void SchemaValidationIntegrationTest_SchemaValidation_ValidRequest() {
+    public void SchemaValidationIntegration_SchemaValidation_ValidRequest() {
       XDocument request = XDocument.Load(@"SchemaValidationIntegrationTest\SchemaValidation_ValidRequest\ValidRequest.xml");
       XDocument result = null;
       try {
@@ -77,7 +77,7 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     /// <summary>Tests the functionality of the <see cref="SchemaValidationBehavior"/> with a schema loaded as an assembly resource.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\InvalidRequest.xml", @"SchemaValidationIntegrationTest\SchemaValidation_InvalidRequest")]
-    public void SchemaValidationIntegrationTest_SchemaValidation_InvalidRequest() {
+    public void SchemaValidationIntegration_SchemaValidation_InvalidRequest() {
       XDocument request = XDocument.Load(@"SchemaValidationIntegrationTest\SchemaValidation_InvalidRequest\InvalidRequest.xml");
       XDocument result = null;
       try {
