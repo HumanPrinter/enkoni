@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Xml.Schema;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,8 +41,8 @@ namespace Enkoni.Framework.ServiceModel.Tests {
       SchemaValidationBehavior castedResult = result as SchemaValidationBehavior;
       Assert.IsTrue(castedResult.Enabled);
 
-      FieldInfo schemaSetField = typeof(SchemaValidationBehavior).GetField("schemaSet", BindingFlags.NonPublic | BindingFlags.Instance);
-      XmlSchemaSet schemaSet = schemaSetField.GetValue(castedResult) as XmlSchemaSet;
+      PrivateObject privateObjectResult = new PrivateObject(castedResult, "schemaSet");
+      XmlSchemaSet schemaSet = privateObjectResult.Target as XmlSchemaSet;
       Assert.IsNotNull(schemaSet);
     }
 
@@ -59,8 +58,8 @@ namespace Enkoni.Framework.ServiceModel.Tests {
       SchemaValidationBehavior castedResult = result as SchemaValidationBehavior;
       Assert.IsTrue(castedResult.Enabled);
 
-      FieldInfo schemaSetField = typeof(SchemaValidationBehavior).GetField("schemaSet", BindingFlags.NonPublic | BindingFlags.Instance);
-      XmlSchemaSet schemaSet = schemaSetField.GetValue(castedResult) as XmlSchemaSet;
+      PrivateObject privateObjectResult = new PrivateObject(castedResult, "schemaSet");
+      XmlSchemaSet schemaSet = privateObjectResult.Target as XmlSchemaSet;
       Assert.IsNotNull(schemaSet);
     }
 
@@ -68,6 +67,17 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     [TestMethod]
     [ExpectedException(typeof(InvalidOperationException))]
     public void SchemaValidationBehaviorExtensionElement_CreateBehavior_NullResource() {
+      SchemaValidationBehaviorExtensionElementTestWrapper testSubject = new SchemaValidationBehaviorExtensionElementTestWrapper();
+      testSubject.Enabled = true;
+      testSubject.SchemaFile = null;
+
+      object result = testSubject.CreateBehavior();
+    }
+
+    /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(InvalidOperationException))]
+    public void SchemaValidationBehaviorExtensionElement_CreateBehavior_EmptyResource() {
       SchemaValidationBehaviorExtensionElementTestWrapper testSubject = new SchemaValidationBehaviorExtensionElementTestWrapper();
       testSubject.Enabled = true;
       testSubject.SchemaFile = string.Empty;

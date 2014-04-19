@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CircularStackTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the CircularStack-class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Globalization;
 using System.Linq;
@@ -23,8 +14,7 @@ namespace Enkoni.Framework.Tests {
   public class CircularStackTest {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}"/> class for normal use when using an unlimited maximum size.</summary>
     [TestMethod]
-    [TestCategory("TEZT")]
-    public void TestCase01_NoMaximumSizeNoInitialContent_NormalUse() {
+    public void CircularStackTest_NoMaximumSizeNoInitialContent_NormalUse() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
 
@@ -80,7 +70,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}"/> class for normal use when using an unlimited maximum size and an
     /// initial content.</summary>
     [TestMethod]
-    public void TestCase02_NoMaximumSizeWithInitialContent_NormalUse() {
+    public void CircularStackTest_NoMaximumSizeWithInitialContent_NormalUse() {
       /* Create initial content */
       string[] initialContent = new string[] { "0", "1", "2", "3", "4" };
       /* Create the test subject */
@@ -142,7 +132,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Peek()"/> and <see cref="CircularStack{T}.Pop()"/> methods when 
     /// invoked on an empty stack.</summary>
     [TestMethod]
-    public void TestCase03_NoMaximumSize_Exceptions() {
+    public void CircularStackTest_NoMaximumSize_Exceptions() {
       /* Create the test subject */
       CircularStack<string> testSubject;
 
@@ -174,7 +164,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}"/> class for normal use when using a maximum size.</summary>
     [TestMethod]
-    public void TestCase04_WithMaximumSizeNoInitialContent_NormalUse() {
+    public void CircularStackTest_WithMaximumSizeNoInitialContent_NormalUse() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>(8);
 
@@ -268,7 +258,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}"/> class for normal use when using an unlimited maximum size.</summary>
     [TestMethod]
-    public void TestCase05_WithMaximumSizeWithInitialContent_NormalUse() {
+    public void CircularStackTest_WithMaximumSizeWithInitialContent_NormalUse() {
       /* Create initial content */
       string[] initialContent = new string[] { "0", "1", "2", "3", "4" };
       /* Create the test subject */
@@ -378,7 +368,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}"/> class for normal use when using an unlimited maximum size.</summary>
     [TestMethod]
-    public void TestCase06_WithMaximumSize_Exceptions() {
+    public void CircularStackTest_WithMaximumSize_Exceptions() {
       /* Create the test subject */
       CircularStack<string> testSubject;
 
@@ -435,7 +425,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.ToArray()"/> method.</summary>
     [TestMethod]
-    public void TestCase07_NoMaximumSize_ToArray() {
+    public void CircularStackTest_NoMaximumSize_ToArray() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
 
@@ -459,7 +449,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.CopyTo(T[],int)"/> method.</summary>
     [TestMethod]
-    public void TestCase08_NoMaximumSize_CopyToBasic() {
+    public void CircularStackTest_NoMaximumSize_CopyToBasic() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
 
@@ -518,7 +508,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="ICollection.CopyTo(Array,int)"/> method.</summary>
     [TestMethod]
-    public void TestCase09_NoMaximumSize_CopyToICollection() {
+    public void CircularStackTest_NoMaximumSize_CopyToICollection() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
 
@@ -597,7 +587,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.CopyTo(T[],int)"/> method when passing invalid parameters.</summary>
     [TestMethod]
-    public void TestCase10_NoMaximumSize_CopyToBasic_Exceptions() {
+    public void CircularStackTest_NoMaximumSize_CopyToBasic_Exceptions() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
 
@@ -659,7 +649,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.CopyTo(Array,int)"/> method when passing invalid parameters.</summary>
     [TestMethod]
-    public void TestCase11_NoMaximumSize_CopyToICollection_Exceptions() {
+    public void CircularStackTest_NoMaximumSize_CopyToICollection_Exceptions() {
       /* Create the test subject */
       CircularStack<string> testSubject = new CircularStack<string>();
 
@@ -732,7 +722,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct for normal use when using an unlimited maximum size.
     /// </summary>
     [TestMethod]
-    public void TestCase12_NoMaximumSize_StackEnumerator_NormalUse() {
+    public void CircularStackTest_NoMaximumSize_StackEnumerator_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>();
       CircularStack<string>.Enumerator testSubject = stack.GetEnumerator();
 
@@ -768,7 +758,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct for normal use when using an unlimited maximum size.
     /// </summary>
     [TestMethod]
-    public void TestCase13_NoMaximumSize_IEnumerator_NormalUse() {
+    public void CircularStackTest_NoMaximumSize_IEnumerator_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>();
       IEnumerator testSubject = ((ICollection)stack).GetEnumerator();
 
@@ -820,7 +810,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct for normal use when using an unlimited maximum size.
     /// </summary>
     [TestMethod]
-    public void TestCase14_NoMaximumSize_ForEach_NormalUse() {
+    public void CircularStackTest_NoMaximumSize_ForEach_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>();
 
       /* Test the functionality of the enumerator when the stack is empty */
@@ -850,7 +840,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct during invalid operations when using an unlimited 
     /// maximum size.</summary>
     [TestMethod]
-    public void TestCase15_NoMaximumSize_Enumerator_Exceptions() {
+    public void CircularStackTest_NoMaximumSize_Enumerator_Exceptions() {
       /* Create a stack to create the enumerator from */
       CircularStack<string> stack = new CircularStack<string>();
       char stackItem = 'A';
@@ -918,7 +908,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct for normal use when using a limited maximum size.
     /// </summary>
     [TestMethod]
-    public void TestCase16_WithMaximumSize_StackEnumerator_NormalUse() {
+    public void CircularStackTest_WithMaximumSize_StackEnumerator_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>(8);
       CircularStack<string>.Enumerator testSubject = stack.GetEnumerator();
 
@@ -995,7 +985,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct for normal use when using a limited maximum size.
     /// </summary>
     [TestMethod]
-    public void TestCase17_WithMaximumSize_IEnumerator_NormalUse() {
+    public void CircularStackTest_WithMaximumSize_IEnumerator_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>(8);
       IEnumerator testSubject = ((ICollection)stack).GetEnumerator();
 
@@ -1123,7 +1113,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct for normal use when using a limited maximum size.
     /// </summary>
     [TestMethod]
-    public void TestCase18_WithMaximumSize_ForEach_NormalUse() {
+    public void CircularStackTest_WithMaximumSize_ForEach_NormalUse() {
       CircularStack<string> stack = new CircularStack<string>(8);
 
       /* Test the functionality of the enumerator when the stack is empty */
@@ -1189,7 +1179,7 @@ namespace Enkoni.Framework.Tests {
     /// <summary>Tests the functionality of the <see cref="CircularStack{T}.Enumerator"/> struct during invalid operations when using an fixed 
     /// maximum size.</summary>
     [TestMethod]
-    public void TestCase19_WithMaximumSize_Enumerator_Exceptions() {
+    public void CircularStackTest_WithMaximumSize_Enumerator_Exceptions() {
       /* Create a stack to create the enumerator from */
       CircularStack<string> stack = new CircularStack<string>(8);
       char stackItem = 'A';

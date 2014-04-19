@@ -22,9 +22,6 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\ValidRequest.xml", @"SchemaValidationIntegrationTest\DefaultBehavior_ValidRequest")]
-    //This construction is a work-around for a bug in VS2012. Unless a referenced DLL is not directly used inside the unit-test, the DLL is not copied to the Testresults folder causing the test to fail.
-    //[DeploymentItem(@"Enkoni.Framework.ServiceModel.dll", "")]
-    //[DeploymentItem(@"Enkoni.Framework.ServiceModel.pdb", "")]
     public void SchemaValidationIntegrationTest_DefaultBehavior_ValidRequest() {
       /* Send a valid request */
       XDocument request = XDocument.Load(@"SchemaValidationIntegrationTest\DefaultBehavior_ValidRequest\ValidRequest.xml");
@@ -44,9 +41,6 @@ namespace Enkoni.Framework.ServiceModel.Tests {
     /// <summary>Serves as a reference test to check the default behavior of the XML validation.</summary>
     [TestMethod]
     [DeploymentItem(@"TestData\InvalidRequest.xml", @"SchemaValidationIntegrationTest\DefaultBehavior_InvalidRequest")]
-    //This construction is a work-around for a bug in VS2012. Unless a referenced DLL is not directly used inside the unit-test, the DLL is not copied to the Testresults folder causing the test to fail.
-    [DeploymentItem(@"Enkoni.Framework.ServiceModel.dll", "")]
-    [DeploymentItem(@"Enkoni.Framework.ServiceModel.pdb", "")]
     public void SchemaValidationIntegrationTest_DefaultBehavior_InvalidRequest() {
       /* Send a request that should be rejected (but isn't because of a bug in the default DataContractSerializer xml validation */
       XDocument request = XDocument.Load(@"SchemaValidationIntegrationTest\DefaultBehavior_InvalidRequest\InvalidRequest.xml");
