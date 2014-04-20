@@ -224,10 +224,10 @@ namespace Enkoni.Framework.Entities {
         /* Find the entities in the in-memory cache */
         IEnumerable<TEntity> result = this.ConcatCache().Where(expression).OrderBy(sortRules);
         if(maximumResults == -1) {
-          return result;
+          return result.ToList();
         }
         else {
-          return result.Take(maximumResults);
+          return result.Take(maximumResults).ToList();
         }
       }
       finally {

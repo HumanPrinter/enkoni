@@ -178,10 +178,10 @@ namespace Enkoni.Framework.Entities {
         results = results.Where(item => expression(item)).OrderBy(sortRules);
 
         if(maximumResults == -1) {
-          return results;
+          return results.ToList();
         }
         else {
-          return results.Take(maximumResults);
+          return results.Take(maximumResults).ToList();
         }
       }
       finally {

@@ -91,6 +91,14 @@ Source/Test/Enkoni.Framework.Web.Tests/*.user
 Source/Test/Enkoni.Framework.Web.Tests/*.Cache
 Source/Test/Enkoni.Framework.Web.Tests/bin/
 Source/Test/Enkoni.Framework.Web.Tests/obj/
+Source/LoadTest/Enkoni.Framework.Entities.LoadTests/*.user
+Source/LoadTest/Enkoni.Framework.Entities.LoadTests/*.Cache
+Source/LoadTest/Enkoni.Framework.Entities.LoadTests/bin/
+Source/LoadTest/Enkoni.Framework.Entities.LoadTests/obj/
+Source/LoadTest/Enkoni.Framework.LoadTests/*.user
+Source/LoadTest/Enkoni.Framework.LoadTests/*.Cache
+Source/LoadTest/Enkoni.Framework.LoadTests/bin/
+Source/LoadTest/Enkoni.Framework.LoadTests/obj/
 Source/TestResults/
 /Releases/*.dll
 /Releases/*.xml
@@ -100,3 +108,4 @@ Source/TestResults/
 /Releases/Documentation/
 /WorkingDir
 Build.log
+

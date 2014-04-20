@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LoadTest Name="CsvTransformer" Description="" Owner="" storage="d:\projecten\enkoni.framework\source\test\enkoni.framework.loadtests\csvtransformer.loadtest" Priority="2147483647" Enabled="true" CssProjectStructure="" CssIteration="" DeploymentItemsEditable="" WorkItemIds="" TraceLevel="None" CurrentRunConfig="Run Settings" Id="526f8b24-318b-4742-b760-5a0b279eaf45" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Scenarios>
+    <Scenario Name="Default Scenario" DelayBetweenIterations="0" PercentNewUsers="0" IPSwitching="false" TestMixType="PercentageOfTestsStarted" ApplyDistributionToPacingDelay="true" MaxTestIterations="0" DisableDuringWarmup="false" DelayStartTime="0" AllowedAgents="">
+      <ThinkProfile Value="0.2" Pattern="Off" />
+      <LoadProfile Pattern="Constant" InitialUsers="1" />
+      <TestMix>
+        <TestProfile Name="TestCase01_FromString_Int32" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="7b25768f-0e6e-075b-98ac-7d9bca3ea3d1" Percentage="5" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase02_FromString_Boolean" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="b07ebe62-486c-fb70-b84b-8082acda50ec" Percentage="5" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase03_FromString_Byte" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="c0a9b977-d990-b51b-93bb-0c5b8a1cc5dc" Percentage="5" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase04_FromString_Float" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="663b34e3-1487-e216-02d7-aab7cfe796cc" Percentage="5" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase05_FromString_Double" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="cf0cbe08-dda1-23e0-81fc-ca81950eb56a" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase06_FromString_Decimal" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="e996bf9b-84d5-8b01-28e3-a6eddd845a0b" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase07_FromString_Short" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="4a72fc3e-2778-dbe2-46c9-f49fd21eddd7" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase08_FromString_Long" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="16d1604e-a1bc-c44b-92a1-444dd0f08a03" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase09_FromString_Char" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="403c3118-57dd-c00c-8695-d487ec59a76e" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase10_FromString_String" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="6db4349c-d86d-41cf-a54f-ed5a89177781" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase11_FromString_DateTime" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="6a164b61-51f4-1fc5-434f-370175eedb53" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase12_FromString_Enum" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="f0cd0618-f60f-3070-56ff-4257f1afcd42" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase13_ToString_Int32" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="2eda9cb1-0430-52dd-11f5-780048830ae7" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase14_ToString_Boolean" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="dd00040f-0a10-f328-3078-38063033e057" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase15_ToString_Byte" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="671fb328-dbd6-b2b6-9432-f2c9be8d60f4" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase16_ToString_Float" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="38034ea0-8f5e-4743-f1a8-a5e68daf24a4" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase17_ToString_Double" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="460d30c7-74c6-86a4-dabc-ea7eedf466bb" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase18_ToString_Decimal" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="9dd5c97c-274d-c6b3-eef9-3ed5d82ef9fd" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase19_ToString_Short" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="4779ff5d-4d82-492a-50bb-4c03694da110" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase20_ToString_Long" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="10adf88d-57a9-4110-8251-9f81acba777f" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase21_ToString_Char" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="78cfee5f-e8be-cf2f-4490-37e099413ec6" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase22_ToString_String" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="23393b59-91da-bf8b-bcf4-abdb9559d961" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase23_ToString_DateTime" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="5645d3f3-1838-7431-9691-c707081cc1dd" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="TestCase24_ToString_Enum" Path="..\..\test\enkoni.framework.tests\bin\debug\enkoni.framework.tests.dll" Id="04c5d05e-6ddf-46ef-c9bb-b4a59f36b7d4" Percentage="4" Type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      </TestMix>
+      <NetworkMix>
+        <NetworkProfile Percentage="100">
+          <Network Name="LAN" BandwidthInKbps="1000000" NetworkProfileConfigurationXml="&lt;Emulation&gt;&lt;VirtualChannel name=&quot;defaultChannel&quot;&gt;&lt;FilterList/&gt;&lt;VirtualLink instances=&quot;1&quot; name=&quot;defaultLink&quot;&gt;&lt;LinkRule dir=&quot;upstream&quot;&gt;&lt;Bandwidth&gt;&lt;Speed unit=&quot;kbps&quot;&gt;1000000&lt;/Speed&gt;&lt;/Bandwidth&gt;&lt;/LinkRule&gt;&lt;LinkRule dir=&quot;downstream&quot;&gt;&lt;Bandwidth&gt;&lt;Speed unit=&quot;kbps&quot;&gt;1000000&lt;/Speed&gt;&lt;/Bandwidth&gt;&lt;/LinkRule&gt;&lt;/VirtualLink&gt;&lt;/VirtualChannel&gt;&lt;/Emulation&gt;" />
+        </NetworkProfile>
+      </NetworkMix>
+    </Scenario>
+  </Scenarios>
+  <CounterSets>
+    <CounterSet Name="LoadTest" CounterSetType="LoadTest" LocId="">
+      <CounterCategories>
+        <CounterCategory Name="LoadTest:Scenario">
+          <Counters>
+            <Counter Name="User Load" HigherIsBetter="true" />
+            <Counter Name="Tests Running" HigherIsBetter="true" />
+          </Counters>
+        </CounterCategory>
+        <CounterCategory Name="LoadTest:Test">
+          <Counters>
+            <Counter Name="Total Tests" HigherIsBetter="true" />
+            <Counter Name="Passed Tests" HigherIsBetter="true" />
+            <Counter Name="Failed Tests" />
+            <Counter Name="Tests/Sec" HigherIsBetter="true" />
+            <Counter Name="Passed Tests/Sec" HigherIsBetter="true" />
+            <Counter Name="Failed Tests/Sec" />
+            <Counter Name="Avg. Requests/Test" HigherIsBetter="true" />
+            <Counter Name="Avg. Test Time" />
+            <Counter Name="% Time in LoadTestPlugin" />
+            <Counter Name="% Time in WebTest code" />
+            <Counter Name="% Time in Rules" />
+          </Counters>
+        </CounterCategory>
+        <CounterCategory Name="LoadTest:Errors">
+          <Counters>
+            <Counter Name="Validation Rule Errors" />
+            <Counter Name="Extraction Rule Errors" />
+            <Counter Name="Requests Timed Out" />
+            <Counter Name="Exceptions" />
+            <Counter Name="Total Errors" />
+            <Counter Name="Errors/Sec" />
+            <Counter Name="Threshold Violations/Sec" />
+          </Counters>
+        </CounterCategory>
+        <CounterCategory Name="LoadTest:LogEntries">
+          <Counters>
+            <Counter Name="Total Log Entries" />
+            <Counter Name="Log Entries/Sec" />
+          </Counters>
+        </CounterCategory>
+      </CounterCategories>
+    </CounterSet>
+    <CounterSet Name="Controller" CounterSetType="Controller" LocId="CounterSet_Controller">
+      <CounterCategories>
+        <CounterCategory Name="Memory">
+          <Counters>
+            <Counter Name="% Committed Bytes In Use" Range="100" />
+            <Counter Name="Available MBytes" RangeGroup="Memory Bytes" HigherIsBetter="true">
+              <ThresholdRules>
+                <ThresholdRule Classname="Microsoft.VisualStudio.TestTools.WebStress.Rules.ThresholdRuleCompareConstant, Microsoft.VisualStudio.QualityTools.LoadTest">
+                  <RuleParameters>
+                    <RuleParameter Name="AlertIfOver" Value="False" />
+                    <RuleParameter Name="WarningThreshold" Value="100" />
+                    <RuleParameter Name="CriticalThreshold" Value="50" />
+                  </RuleParameters>
+                </ThresholdRule>
+              </ThresholdRules>
+            </Counter>
+            <Counter Name="Page Faults/sec" />
+            <Counter Name="Pages/sec" />
+            <Counter Name="Pool Paged Bytes" RangeGroup="Memory Bytes" />
+            <Counter Name="Pool Nonpaged bytes" RangeGroup="Memory Bytes" />
+          </Counters>
+        </CounterCategory>
+        <CounterCategory Name="Processor">
+          <Counters>
+            <Counter Name="% Processor Time" Range="100">
+              <ThresholdRules>
+                <ThresholdRule Classname="Microsoft.VisualStudio.TestTools.WebStress.Rules.ThresholdRuleCompareConstant, Microsoft.VisualStudio.QualityTools.LoadTest">
+                  <RuleParameters>
+                    <RuleParameter Name="AlertIfOver" Value="True" />
+                    <RuleParameter Name="WarningThreshold" Value="75" />
+                    <RuleParameter Name="CriticalThreshold" Value="90" />
+                  </RuleParameters>
+                </ThresholdRule>
+              </ThresholdRules>
+            </Counter>
+            <Counter Name="% Privileged Time" Range="100" />
+            <Counter Name="% User Time" Range="100" />
+          </Counters>
+          <Instances>
+            <Instance Name="_Total" />
+          </Instances>
+        </CounterCategory>
+        <CounterCategory Name="System">
+          <Counters>
+            <Counter Name="Context Switches/sec" />
+            <Counter Name="Processes" />
+            <Counter Name="Processor Queue Length" />
+            <Counter Name="Threads" />
+          </Counters>
+        </CounterCategory>
+        <CounterCategory Name="Process">
+          <Counters>
+            <Counter Name="% Processor Time" RangeGroup="Processor Time" />
+            <Counter Name="% Privileged Time" RangeGroup="Processor Time" />
+            <Counter Name="% User Time" RangeGroup="Processor Time" />
+            <Counter Name="Handle Count" />
+            <Counter Name="Thread Count" />
+            <Counter Name="Private Bytes" RangeGroup="Memory Bytes" />
+            <Counter Name="Virtual Bytes" RangeGroup="Memory Bytes" />
+            <Counter Name="Working Set" RangeGroup="Memory Bytes" />
+          </Counters>
+          <Instances>
+            <Instance Name="QTController" />
+            <Instance Name="QTController64" />
+          </Instances>
+        </CounterCategory>
+      </CounterCategories>
+      <DefaultCountersForAutomaticGraphs>
+        <DefaultCounter CategoryName="Processor" CounterName="% Processor Time" InstanceName="_Total" GraphName="" />
+        <DefaultCounter CategoryName="Memory" CounterName="Available MBytes" InstanceName="" GraphName="" />
+      </DefaultCountersForAutomaticGraphs>
+    </CounterSet>
+    <CounterSet Name="Agent" CounterSetType="Agent" LocId="CounterSet_Agent">
+      <CounterCategories>
+        <CounterCategory Name="Memory">
+          <Counters>
+            <Counter Name="% Committed Bytes In Use" Range="100" />
+            <Counter Name="Available MBytes" RangeGroup="Memory Bytes" HigherIsBetter="true">
+              <ThresholdRules>
+                <ThresholdRule Classname="Microsoft.VisualStudio.TestTools.WebStress.Rules.ThresholdRuleCompareConstant, Microsoft.VisualStudio.QualityTools.LoadTest">
+                  <RuleParameters>
+                    <RuleParameter Name="AlertIfOver" Value="False" />
+                    <RuleParameter Name="WarningThreshold" Value="100" />
+                    <RuleParameter Name="CriticalThreshold" Value="50" />
+                  </RuleParameters>
+                </ThresholdRule>
+              </ThresholdRules>
+            </Counter>
+            <Counter Name="Page Faults/sec" />
+            <Counter Name="Pages/sec" />
+            <Counter Name="Pool Paged Bytes" RangeGroup="Memory Bytes" />
+            <Counter Name="Pool Nonpaged bytes" RangeGroup="Memory Bytes" />
+          </Counters>
+        </CounterCategory>
+        <CounterCategory Name="Processor">
+          <Counters>
+            <Counter Name="% Processor Time" Range="100">
+              <ThresholdRules>
+                <ThresholdRule Classname="Microsoft.VisualStudio.TestTools.WebStress.Rules.ThresholdRuleCompareConstant, Microsoft.VisualStudio.QualityTools.LoadTest">
+                  <RuleParameters>
+                    <RuleParameter Name="AlertIfOver" Value="True" />
+                    <RuleParameter Name="WarningThreshold" Value="75" />
+                    <RuleParameter Name="CriticalThreshold" Value="90" />
+                  </RuleParameters>
+                </ThresholdRule>
+              </ThresholdRules>
+            </Counter>
+            <Counter Name="% Privileged Time" Range="100" />
+            <Counter Name="% User Time" Range="100" />
+          </Counters>
+          <Instances>
+            <Instance Name="0" />
+            <Instance Name="_Total" />
+          </Instances>
+        </CounterCategory>
+        <CounterCategory Name="System">
+          <Counters>
+            <Counter Name="Context Switches/sec" />
+            <Counter Name="Processes" />
+            <Counter Name="Processor Queue Length" />
+            <Counter Name="Threads" />
+          </Counters>
+        </CounterCategory>
+        <CounterCategory Name="Process">
+          <Counters>
+            <Counter Name="% Processor Time" RangeGroup="Processor Time" />
+            <Counter Name="% Privileged Time" RangeGroup="Processor Time" />
+            <Counter Name="% User Time" RangeGroup="Processor Time" />
+            <Counter Name="Handle Count" />
+            <Counter Name="Thread Count" />
+            <Counter Name="Private Bytes" RangeGroup="Memory Bytes" />
+            <Counter Name="Virtual Bytes" RangeGroup="Memory Bytes" />
+            <Counter Name="Working Set" RangeGroup="Memory Bytes" />
+          </Counters>
+          <Instances>
+            <Instance Name="devenv" />
+            <Instance Name="QTAgentService" />
+            <Instance Name="QTAgent" />
+            <Instance Name="QTAgent32" />
+            <Instance Name="QTDCAgent" />
+            <Instance Name="QTDCAgent32" />
+            <Instance Name="QTAgent_35" />
+            <Instance Name="QTAgent_40" />
+            <Instance Name="QTAgent32_35" />
+            <Instance Name="QTAgent32_40" />
+          </Instances>
+        </CounterCategory>
+      </CounterCategories>
+      <DefaultCountersForAutomaticGraphs>
+        <DefaultCounter CategoryName="Processor" CounterName="% Processor Time" InstanceName="0" GraphName="" RunType="Local" />
+        <DefaultCounter CategoryName="Processor" CounterName="% Processor Time" InstanceName="_Total" GraphName="" RunType="Remote" />
+        <DefaultCounter CategoryName="Memory" CounterName="Available MBytes" InstanceName="" GraphName="" />
+      </DefaultCountersForAutomaticGraphs>
+    </CounterSet>
+  </CounterSets>
+  <RunConfigurations>
+    <RunConfiguration Name="Run Settings" Description="" ResultsStoreType="Database" TimingDetailsStorage="AllIndividualDetails" SaveTestLogsOnError="true" SaveTestLogsFrequency="0" MaxErrorDetails="200" MaxErrorsPerType="1000" MaxThresholdViolations="1000" MaxRequestUrlsReported="1000" UseTestIterations="false" RunDuration="60" WarmupTime="0" CoolDownTime="0" TestIterations="100" WebTestConnectionModel="ConnectionPerUser" WebTestConnectionPoolSize="50" SampleRate="30" ValidationLevel="High" SqlTracingConnectString="" SqlTracingConnectStringDisplayValue="" SqlTracingDirectory="" SqlTracingEnabled="false" SqlTracingFileCount="2" SqlTracingRolloverEnabled="true" SqlTracingMinimumDuration="500" RunUnitTestsInAppDomain="true" CoreCount="0">
+      <CounterSetMappings>
+        <CounterSetMapping ComputerName="[CONTROLLER MACHINE]">
+          <CounterSetReferences>
+            <CounterSetReference CounterSetName="LoadTest" />
+            <CounterSetReference CounterSetName="Controller" />
+          </CounterSetReferences>
+        </CounterSetMapping>
+        <CounterSetMapping ComputerName="[AGENT MACHINES]">
+          <CounterSetReferences>
+            <CounterSetReference CounterSetName="Agent" />
+          </CounterSetReferences>
+        </CounterSetMapping>
+      </CounterSetMappings>
+    </RunConfiguration>
+  </RunConfigurations>
+</LoadTest>

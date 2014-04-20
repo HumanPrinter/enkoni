@@ -391,39 +391,57 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Prepares the retrieve tests by filling the memorystore with preconfigured testdata.</summary>
     /// <param name="memorystore">The store in which the data must be stored.</param>
     private static void PrepareInputTests(MemoryStore<TestDummy> memorystore) {
-      PrepareTests(memorystore);
-      memorystore.Storage.Add(new TestDummy { RecordId = 1, TextValue = "\"Row1\"", NumericValue = 3, BooleanValue = false });
-      memorystore.Storage.Add(new TestDummy { RecordId = 2, TextValue = "\"Row2\"", NumericValue = 3, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 3, TextValue = "\"Row3\"", NumericValue = 7, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 4, TextValue = "\"Row4\"", NumericValue = 2, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 5, TextValue = "\"Row5\"", NumericValue = 5, BooleanValue = false });
-      memorystore.Storage.Add(new TestDummy { RecordId = 6, TextValue = "\"Row6\"", NumericValue = 1, BooleanValue = true });
+      memorystore.EnterWriteLock();
+      try {
+        PrepareTests(memorystore);
+        memorystore.Storage.Add(new TestDummy { RecordId = 1, TextValue = "\"Row1\"", NumericValue = 3, BooleanValue = false });
+        memorystore.Storage.Add(new TestDummy { RecordId = 2, TextValue = "\"Row2\"", NumericValue = 3, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 3, TextValue = "\"Row3\"", NumericValue = 7, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 4, TextValue = "\"Row4\"", NumericValue = 2, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 5, TextValue = "\"Row5\"", NumericValue = 5, BooleanValue = false });
+        memorystore.Storage.Add(new TestDummy { RecordId = 6, TextValue = "\"Row6\"", NumericValue = 1, BooleanValue = true });
+      }
+      finally {
+        memorystore.ExitWriteLock();
+      }
     }
 
     /// <summary>Prepares the sorting tests by filling the memorystore with preconfigured testdata.</summary>
     /// <param name="memorystore">The store in which the data must be stored.</param>
     private static void PrepareSortingTests(MemoryStore<TestDummy> memorystore) {
-      PrepareTests(memorystore);
-      memorystore.Storage.Add(new TestDummy { RecordId = 1, TextValue = "aabcdef", NumericValue = 3, BooleanValue = false });
-      memorystore.Storage.Add(new TestDummy { RecordId = 2, TextValue = "abcdefg", NumericValue = 3, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 3, TextValue = "aadefgh", NumericValue = 7, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 4, TextValue = "abefghi", NumericValue = 2, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 5, TextValue = "bbcdefg", NumericValue = 5, BooleanValue = false });
-      memorystore.Storage.Add(new TestDummy { RecordId = 6, TextValue = "bbdefgh", NumericValue = 1, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 7, TextValue = "bbefghi", NumericValue = 1, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 8, TextValue = "bbfghij", NumericValue = 1, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 9, TextValue = "acdefgh", NumericValue = 5, BooleanValue = false });
-      memorystore.Storage.Add(new TestDummy { RecordId = 10, TextValue = "ccefghi", NumericValue = 1, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 11, TextValue = "acfghij", NumericValue = 1, BooleanValue = true });
-      memorystore.Storage.Add(new TestDummy { RecordId = 12, TextValue = "ccghijk", NumericValue = 1, BooleanValue = true });
+      memorystore.EnterWriteLock();
+      try {
+        PrepareTests(memorystore);
+        memorystore.Storage.Add(new TestDummy { RecordId = 1, TextValue = "aabcdef", NumericValue = 3, BooleanValue = false });
+        memorystore.Storage.Add(new TestDummy { RecordId = 2, TextValue = "abcdefg", NumericValue = 3, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 3, TextValue = "aadefgh", NumericValue = 7, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 4, TextValue = "abefghi", NumericValue = 2, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 5, TextValue = "bbcdefg", NumericValue = 5, BooleanValue = false });
+        memorystore.Storage.Add(new TestDummy { RecordId = 6, TextValue = "bbdefgh", NumericValue = 1, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 7, TextValue = "bbefghi", NumericValue = 1, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 8, TextValue = "bbfghij", NumericValue = 1, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 9, TextValue = "acdefgh", NumericValue = 5, BooleanValue = false });
+        memorystore.Storage.Add(new TestDummy { RecordId = 10, TextValue = "ccefghi", NumericValue = 1, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 11, TextValue = "acfghij", NumericValue = 1, BooleanValue = true });
+        memorystore.Storage.Add(new TestDummy { RecordId = 12, TextValue = "ccghijk", NumericValue = 1, BooleanValue = true });
+      }
+      finally {
+        memorystore.ExitWriteLock();
+      }
     }
 
     /// <summary>Prepares the (combined) storage tests by filling the memorystore with preconfigured testdata.</summary>
     /// <param name="memorystore">The store in which the data must be stored.</param>
     private static void PrepareStorageTests(MemoryStore<TestDummy> memorystore) {
-      PrepareTests(memorystore);
-      memorystore.Storage.Add(new TestDummy { RecordId = 1, TextValue = "\"Row1\"", NumericValue = 3, BooleanValue = false });
-      memorystore.Storage.Add(new TestDummy { RecordId = 2, TextValue = "\"Row2\"", NumericValue = 3, BooleanValue = true });
+      memorystore.EnterWriteLock();
+      try {
+        PrepareTests(memorystore);
+        memorystore.Storage.Add(new TestDummy { RecordId = 1, TextValue = "\"Row1\"", NumericValue = 3, BooleanValue = false });
+        memorystore.Storage.Add(new TestDummy { RecordId = 2, TextValue = "\"Row2\"", NumericValue = 3, BooleanValue = true });
+      }
+      finally {
+        memorystore.ExitWriteLock();
+      }
     }
     #endregion
   }
