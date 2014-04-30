@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Extensions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines several all-purpose extension methods.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -164,6 +155,69 @@ namespace Enkoni.Framework {
         IEnumerable<string> capitalizedStrings = source.Split(' ')
           .Select(str => new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character */
           new string(str.Skip(1).ToArray()).ToLower(culture));                     /* Lower the remaining characters */
+        return string.Join(" ", capitalizedStrings.ToArray());
+      }
+    }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source) {
+      return source.CapitalizeSentence(null);
+    }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <param name="keepExistingCapitals">Indicates if any capitals that are already in the string must be preserved or must be lowered.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source, bool keepExistingCapitals) {
+      return source.CapitalizeSentence(keepExistingCapitals, null);
+    }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <param name="culture">A <see cref="CultureInfo"/> object that supplies culture-specific casing rules.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source, CultureInfo culture) {
+      return source.CapitalizeSentence(false, culture);
+    }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <param name="keepExistingCapitals">Indicates if any capitals that are already in the string must be preserved or must be lowered.</param>
+    /// <param name="culture">A <see cref="CultureInfo"/> object that supplies culture-specific casing rules.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source, bool keepExistingCapitals, CultureInfo culture) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
+      if(string.IsNullOrEmpty(source.Trim())) {
+        return source;
+      }
+
+      if(culture == null) {
+        culture = CultureInfo.CurrentCulture;
+      }
+
+      if(keepExistingCapitals) {
+        IEnumerable<string> capitalizedStrings = source.Split(' ')
+          .Select((str, i) => i == 0
+              ? new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character of the first word */
+                new string(str.Skip(1).ToArray())                         /* Keep the remaining characters of the first word as they are */
+              : str);                                                     /* Keep the remaining words as they are */
+        return string.Join(" ", capitalizedStrings.ToArray());
+      }
+      else {
+        IEnumerable<string> capitalizedStrings = source.Split(' ')
+          .Select((str, i) => i == 0
+              ? new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character of the first word */
+                new string(str.Skip(1).ToArray()).ToLower(culture)        /* Lower the remaining characters of the first word*/
+              : str.ToLower(culture));                                    /* Lower the remaining characters of the remaining words*/
         return string.Join(" ", capitalizedStrings.ToArray());
       }
     }

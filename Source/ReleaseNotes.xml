@@ -3,6 +3,16 @@
   <releases>
     <release version="1.2.4.0" releasedate="2014-03-24">
       <projects>
+        <project name="Enkoni.Framework" version="2.3.0" versionPostfix="beta01">
+          <updates>
+            <update date="2014-04-30" type="addition">
+              <summary><![CDATA[Added a new CapitalizeSentence extension method]]></summary>
+              <comment>
+                <![CDATA[Added a new CapitalizeSentence extension method that can be used to capitalize the first word in a sentence and change the remaining words to lower case.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
         <project name="Enkoni.Framework.DataAnnotations" version="1.0.1" versionPostfix="beta04">
           <updates>
             <update date="2014-03-18" type="change">
