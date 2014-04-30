@@ -28,9 +28,9 @@ namespace Enkoni.Framework.Validation.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"IbanValidatorTest\TestCase01")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|IbanValidatorTest\TestCase01\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "IbanAccountNumber", DataAccessMethod.Sequential)]
-    public void TestCase01_Validator() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"IbanValidatorTest\Validator")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|IbanValidatorTest\Validator\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "IbanAccountNumber", DataAccessMethod.Sequential)]
+    public void IbanValidator_Validator() {
       IbanValidator testSubject = new IbanValidator("message {0}", "tag", false);
       string input = this.TestContext.DataRow["AccountNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]);
@@ -42,9 +42,9 @@ namespace Enkoni.Framework.Validation.Tests {
       Assert.AreEqual(!expected, results.IsValid, input);
     }
 
-    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
+    /// <summary>Tests the functionality of the <see cref="IbanValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase02_Attribute() {
+    public void IbanValidator_Attribute() {
       TestDummy dummy = new TestDummy { AccountNumber = "NL80INGB0007321304" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
