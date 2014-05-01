@@ -1,17 +1,8 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CombinedSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines an abstract specification type that contains to specifications that must be combined.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 namespace Enkoni.Framework {
   /// <summary>This abstract class defines the basic API of a specification-type that combines two specifications.</summary>
-  /// <typeparam name="T">The type of object that is ultimatilly selected by the specification.</typeparam>
+  /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
   public abstract class CombinedSpecification<T> : Specification<T> {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="CombinedSpecification{T}"/> class.</summary>

@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DoubleComparer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a comparer-class that is capable of comparing two doubles.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Enkoni.Framework.Collections {
@@ -108,7 +99,7 @@ namespace Enkoni.Framework.Collections {
     /// <summary>Compares two doubles by looking only at the significant digits.</summary>
     /// <param name="x">The left operand.</param>
     /// <param name="y">The right operand.</param>
-    /// <param name="digits">The siginificant digits that must be taken into account.</param>
+    /// <param name="digits">The significant digits that must be taken into account.</param>
     /// <returns>An integer indicating the difference between the two numbers.</returns>
     private static int CompareBySignificantDigits(double x, double y, int digits) {
       int roundedX = (int)(x * Math.Pow(10, digits));

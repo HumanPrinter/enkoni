@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigurationException.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a specific exceptiontype that can be used when an configuration-related exception occurs.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
@@ -71,7 +62,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Properties
-    /// <summary>Gets the name of the configurationparameter that caused the problem.</summary>
+    /// <summary>Gets the name of the configuration parameter that caused the problem.</summary>
     public string ConfigurationParameter { get; private set; }
     #endregion
 

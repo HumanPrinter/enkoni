@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="InvalidTypeParameterException.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a specific exceptiontype that can be used when an invalid type parameter is used.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 
 namespace Enkoni.Framework {
@@ -19,13 +10,13 @@ namespace Enkoni.Framework {
       : base() {
     }
 
-    /// <summary> Initializes a new instance of the <see cref="InvalidTypeParameterException"/> class with a specified errormessage.</summary>
+    /// <summary> Initializes a new instance of the <see cref="InvalidTypeParameterException"/> class with a specified error message.</summary>
     /// <param name="message">The message that describes the error.</param>
     public InvalidTypeParameterException(string message)
       : base(message) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="InvalidTypeParameterException"/> class with a specified errormessage and a reference to 
+    /// <summary>Initializes a new instance of the <see cref="InvalidTypeParameterException"/> class with a specified error message and a reference to 
     /// the inner exception that is the cause of this exception.</summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a <see langword="null"/> reference if no inner 

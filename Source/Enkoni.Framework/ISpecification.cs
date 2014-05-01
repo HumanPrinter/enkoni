@@ -1,19 +1,10 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the basic selectspecification API.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
   /// <summary>This interface describes the public API of the classes that make up the specification subsystem that is implemented using the 
   /// Specification Pattern.</summary>
-  /// <typeparam name="T">The type of object that is ultimatilly selected by the specification.</typeparam>
+  /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
   public interface ISpecification<T> {
     #region Events
     /// <summary>Occurs when the maximum number of records has changed.</summary>
@@ -47,23 +38,23 @@ namespace Enkoni.Framework {
     /// <param name="maximum">The maximum number. A value of '-1' means 'retrieve all'.</param>
     void SetMaximumResults(int maximum);
 
-    /// <summary>Specifies the way the sequence must be sorted. It used a default sortorder of ascending.</summary>
+    /// <summary>Specifies the way the sequence must be sorted. It used a default sort order of ascending.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     ISpecification<T> OrderBy<TKey>(Expression<Func<T, TKey>> keySelector);
 
     /// <summary>Specifies the way the sequence must be sorted.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
     /// <param name="direction">The direction that the ordering must take place in.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     ISpecification<T> OrderBy<TKey>(Expression<Func<T, TKey>> keySelector, SortOrder direction);
 
-    /// <summary>Specifies the way the sequence must be sorted. It used a default sortorder of descending.</summary>
+    /// <summary>Specifies the way the sequence must be sorted. It used a default sort order of descending.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     ISpecification<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector);
 
     /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can 

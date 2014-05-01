@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Specification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the standard Specification class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
@@ -82,13 +73,13 @@ namespace Enkoni.Framework {
       Justification = "Since the static class is merely a container for the static members of the non-static class, they can be in the same file")]
   public abstract class Specification<T> : ISpecification<T> {
     #region Private event-delegates
-    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one handler.</summary>
+    /// <summary>The delegate that holds the references to the various event handlers. Normally, there will be at most one handler.</summary>
     private EventHandler<EventArgs<int>> maxResultsUpdated;
 
     /// <summary>Indicates if there is a change-event pending.</summary>
     private bool maxResultsChangePending;
 
-    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one handler.</summary>
+    /// <summary>The delegate that holds the references to the various event handlers. Normally, there will be at most one handler.</summary>
     private EventHandler<SortSpecificationsEventArgs<T>> sortRulesUpdated;
 
     /// <summary>Indicates if there is a change-event pending.</summary>

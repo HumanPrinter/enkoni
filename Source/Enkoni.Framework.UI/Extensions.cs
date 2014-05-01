@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Extensions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines several all-purpose extension methods.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -17,33 +8,33 @@ namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {
     #region Event extensions
-    /// <summary>Fires an event in a sequential way. An eventhandler needs to finish before the next eventhandler will be called. This method will 
-    /// return when all the eventhandlers have finished. <br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will 
+    /// return when all the event handlers have finished. <br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void Fire(this PropertyChangedEventHandler handler, object sender, PropertyChangedEventArgs e) {
       UnsafeFire(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a parallel way. This method will return when all the eventhandlers have finished.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireInParallel(this PropertyChangedEventHandler handler, object sender, PropertyChangedEventArgs e) {
       UnsafeFireInParallel(handler, sender, e);
     }
 
-    /// <summary>Fires an event in an asynchronous way. When this method returns, the eventhandlers may still be running.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireAsync(this PropertyChangedEventHandler handler, object sender, PropertyChangedEventArgs e) {
       UnsafeFireAsync(handler, sender, e);
     }

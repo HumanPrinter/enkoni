@@ -1,18 +1,9 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Mvc3FixedModelBinder.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a custom model binder that fixes some bugs in the MVC3's default model binder.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Web.Mvc;
 
 namespace Enkoni.Framework.Web.Mvc {
-  /// <summary>Provides an override for <see cref="DefaultModelBinder"/> in order to implement fixes to its behaviour. The MVC3 library from 
+  /// <summary>Provides an override for <see cref="DefaultModelBinder"/> in order to implement fixes to its behavior. The MVC3 library from 
   /// Microsoft contains a couple of bugs that cause runtime exceptions when binding received data to the model. The default translation of an enum 
   /// from server to client is enum-to-int. However, the default translation of an enum from client to server is string-to-enum. This bug has been 
   /// fixed in MVC4.</summary>

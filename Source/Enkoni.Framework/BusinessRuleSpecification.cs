@@ -1,23 +1,14 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="BusinessRuleSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a Specification class that holds information about a special business rule that must be executed.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
-  /// <summary>This class implements a specific Specification-type that holds information about a special businessrule.</summary>
+  /// <summary>This class implements a specific Specification type that holds information about a special business rule.</summary>
   /// <typeparam name="T">The type of object to which the specification applies.</typeparam>
   public class BusinessRuleSpecification<T> : Specification<T> {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="BusinessRuleSpecification{T}"/> class.</summary>
-    /// <param name="ruleName">The name of the rule that must be excuted.</param>
+    /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="arguments">The arguments that must be used by the business rule.</param>
     internal BusinessRuleSpecification(string ruleName, params object[] arguments) {
       if(string.IsNullOrEmpty(ruleName)) {
@@ -30,10 +21,10 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Public properties
-    /// <summary>Gets the name of the businessrule that must be executed.</summary>
+    /// <summary>Gets the name of the business rule that must be executed.</summary>
     public string RuleName { get; private set; }
 
-    /// <summary>Gets any arguments that were passed and may be required to execute the businessrule.</summary>
+    /// <summary>Gets any arguments that were passed and may be required to execute the business rule.</summary>
     public ReadOnlyCollection<object> RuleArguments { get; private set; }
     #endregion
 

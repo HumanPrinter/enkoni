@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DecimalModelBinder.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a custom model binder that is capable of binding a decimal value to the viewmodel.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Globalization;
 using System.Web.Mvc;
 
@@ -41,7 +32,7 @@ namespace Enkoni.Framework.Web.Mvc {
     #endregion
 
     #region Public methods
-    /// <summary>Binds a received decimal value to the viewmodel.</summary>
+    /// <summary>Binds a received decimal value to the view model.</summary>
     /// <param name="controllerContext">An instance that encapsulates information about the HTTP request.</param>
     /// <param name="bindingContext">The context for the model binder.</param>
     /// <returns>The converted decimal value.</returns>

@@ -33,67 +33,67 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Event extensions
-    /// <summary>Fires an event in a sequential way. An eventhandler needs to finish before the next eventhandler will be called. This method will 
-    /// return when all the eventhandlers have finished. <br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
-    /// propagate the call the the appropriate thread.</summary>
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will return when all 
+    /// the event handlers have finished. <br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically propagate the call 
+    /// the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void Fire(this EventHandler handler, object sender, EventArgs e) {
       UnsafeFire(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a sequential way. An eventhandler needs to finish before the next eventhandler will be called. This method will 
-    /// return when all the eventhandlers have finished. <br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will 
+    /// return when all the event handlers have finished. <br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
-    /// <typeparam name="T">The type of eventargs that is passed with the event.</typeparam>
+    /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void Fire<T>(this EventHandler<T> handler, object sender, T e) where T : EventArgs {
       UnsafeFire(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a parallel way. This method will return when all the eventhandlers have finished.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireInParallel(this EventHandler handler, object sender, EventArgs e) {
       UnsafeFireInParallel(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a parallel way. This method will return when all the eventhandlers have finished.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
-    /// <typeparam name="T">The type of eventargs that is passed with the event.</typeparam>
+    /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireInParallel<T>(this EventHandler<T> handler, object sender, T e) where T : EventArgs {
       UnsafeFireInParallel(handler, sender, e);
     }
 
-    /// <summary>Fires an event in an asynchronous way. When this method returns, the eventhandlers may still be running.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireAsync(this EventHandler handler, object sender, EventArgs e) {
       UnsafeFireAsync(handler, sender, e);
     }
 
-    /// <summary>Fires an event in an asynchronous way. When this method returns, the eventhandlers may still be running.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
-    /// <typeparam name="T">The type of eventargs that is passed with the event.</typeparam>
+    /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireAsync<T>(this EventHandler<T> handler, object sender, T e) where T : EventArgs {
       UnsafeFireAsync(handler, sender, e);
     }
@@ -260,9 +260,9 @@ namespace Enkoni.Framework {
     #endregion
 
     #region DateTime extensions
-    /// <summary>Determines the weeknumber of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
+    /// <summary>Determines the week number of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
     /// <param name="source">The date time of which the week number must be determined.</param>
-    /// <returns>The determined weeknumber.</returns>
+    /// <returns>The determined week number.</returns>
     public static int GetWeekNumber(this DateTime source) {
       /* This implementation is inspired on the article written by Shawn Steele which is available on 
        * http://blogs.msdn.com/b/shawnste/archive/2006/01/24/517178.aspx */
@@ -408,7 +408,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Helper methods
-    /// <summary>Invokes a delegate. If required, the call is transfered to the appropriate thread.</summary>
+    /// <summary>Invokes a delegate. If required, the call is transferred to the appropriate thread.</summary>
     /// <param name="del">The delegate that must be invoked.</param>
     /// <param name="args">The arguments that must be passed to the delegate.</param>
     private static void InvokeDelegate(Delegate del, object[] args) {

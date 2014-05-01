@@ -1,18 +1,9 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="AndSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a Specificationtype that combines two specifications using an AND operation.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
-  /// <summary>This class contains a specificationtype that combines two specifications using an AND operation.</summary>
-  /// <typeparam name="T">The type of object that is ultimatilly selected by the specification.</typeparam>
+  /// <summary>This class contains a specification type that combines two specifications using an AND operation.</summary>
+  /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
   internal class AndSpecification<T> : CombinedSpecification<T> {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="AndSpecification{T}"/> class.</summary>

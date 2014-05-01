@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailValidatorAttribute.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains an attribute for the validation capabilities.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
@@ -73,7 +64,7 @@ namespace Enkoni.Framework.Validation.Validators {
       set { this.requireTopLevelDomain = value; }
     }
 
-    /// <summary>Gets or sets the semicolon-seperated domains that are white listed.</summary>
+    /// <summary>Gets or sets the semicolon separated domains that are white listed.</summary>
     public string IncludeDomains {
       get { 
         return this.includeDomains; 
@@ -85,7 +76,7 @@ namespace Enkoni.Framework.Validation.Validators {
       } 
     }
 
-    /// <summary>Gets or sets the semicolon-seperated domains that are black listed.</summary>
+    /// <summary>Gets or sets the semicolon separated domains that are black listed.</summary>
     public string ExcludeDomains {
       get {
         return this.excludeDomains;

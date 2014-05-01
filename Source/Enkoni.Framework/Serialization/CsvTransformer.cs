@@ -1,13 +1,4 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CsvTransformer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     This class is capable of transforming objects into CSV data and vice versa.
-// </summary>
-//--------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -108,7 +99,7 @@ namespace Enkoni.Framework.Serialization {
     /// <typeparam name="TPropertyType">The type of the out-parameter of the TryParse-method.</typeparam>
     /// <param name="input">The input string.</param>
     /// <param name="output">The output value.</param>
-    /// <returns><see langword="true"/> if <paramref name="input"/> was succesfully parsed; otherwise, <see langword="false"/>.</returns>
+    /// <returns><see langword="true"/> if <paramref name="input"/> was successfully parsed; otherwise, <see langword="false"/>.</returns>
     private delegate bool TryParse<TPropertyType>(string input, out TPropertyType output);
 
     /// <summary>Defines a delegate that can be used to reference a culture-aware TryParse-method.</summary>
@@ -117,12 +108,12 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="styles">The <see cref="NumberStyles"/> that must be passed to the TryParse method.</param>
     /// <param name="formatProvider">The format provider that must be used.</param>
     /// <param name="output">The output value.</param>
-    /// <returns><see langword="true"/> if <paramref name="input"/> was succesfully parsed; otherwise, <see langword="false"/>.</returns>
+    /// <returns><see langword="true"/> if <paramref name="input"/> was successfully parsed; otherwise, <see langword="false"/>.</returns>
     private delegate bool TryParseFormatted<TPropertyType>(string input, NumberStyles styles, IFormatProvider formatProvider, out TPropertyType output);
     #endregion
 
     #region Properties
-    /// <summary>Gets the mappings of the columnnames. The dictionary uses the columnindex as key and columnname as value.</summary>
+    /// <summary>Gets the mappings of the column names. The dictionary uses the column index as key and column name as value.</summary>
     protected internal Dictionary<int, string> ColumnNameMappings { get; private set; }
 
     /// <summary>Gets or sets a value indicating whether a header-line must be included when serializing the objects.</summary>
@@ -137,13 +128,13 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Gets the delegates that give access to the properties of the instances that need to be serialized and deserialized.</summary>
     protected Dictionary<int, Delegate> PropertyDelegates { get; private set; }
 
-    /// <summary>Gets the mappings of the formatstrings. The dictionary uses the columnindex as key and formatstring as value.</summary>
+    /// <summary>Gets the mappings of the format strings. The dictionary uses the column index as key and format string as value.</summary>
     protected Dictionary<int, string> FormatMappings { get; private set; }
 
-    /// <summary>Gets the mappings of the nullstrings. The dictionary uses the columnindex as key and nullstring as value.</summary>
+    /// <summary>Gets the mappings of the null strings. The dictionary uses the column index as key and null string as value.</summary>
     protected Dictionary<int, string> NullStringMappings { get; private set; }
 
-    /// <summary>Gets the mappings of the cultures. The dictionary uses the columnindex as key and culturename as value.</summary>
+    /// <summary>Gets the mappings of the cultures. The dictionary uses the column index as key and culture name as value.</summary>
     protected Dictionary<int, string> CultureMappings { get; private set; }
     #endregion
 
@@ -453,8 +444,8 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
-    /// <param name="cultureName">An optional culture-name that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
+    /// <param name="cultureName">An optional culture name that can be used to properly parse the value.</param>
     /// <exception cref="NotSupportedException">The type of the property that must be assigned is not supported.</exception>
     private static void SetPropertyValue(PropertyInfo propertyInfo, T obj, string value, string formatString, string cultureName) {
       CultureInfo culture = CultureInfo.InvariantCulture;
@@ -494,7 +485,7 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
     /// <param name="culture">An optional culture that can be used to properly parse the value.</param>
     /// <exception cref="NotSupportedException">The type of the property that must be assigned is not supported.</exception>
     private static void SetValueTypePropertyValue(PropertyInfo propertyInfo, T obj, string value, string formatString, CultureInfo culture) {
@@ -551,8 +542,8 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
-    /// <param name="culture">An optional culture-name that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
+    /// <param name="culture">An optional culture name that can be used to properly parse the value.</param>
     /// <exception cref="FormatException">The value cannot be recognized as a valid <see cref="Boolean"/>.</exception>
     private static void SetBooleanValue(PropertyInfo propertyInfo, T obj, string value, string formatString, CultureInfo culture) {
       /* Check if the format string is defined. If not, use the default parse-functionality */
@@ -602,7 +593,7 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
     /// <exception cref="InvalidOperationException">The format string contains an invalid formatting definition.</exception>
     private static void SetStringValue(PropertyInfo propertyInfo, T obj, string value, string formatString) {
       /* Check if the format string is defined. If not, simply assign the value to the property */
@@ -644,8 +635,8 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
-    /// <param name="culture">An optional culture-name that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
+    /// <param name="culture">An optional culture name that can be used to properly parse the value.</param>
     /// <exception cref="FormatException">The value cannot be recognized as a valid <see cref="DateTime"/>.</exception>
     /// <exception cref="InvalidOperationException">The format string contains an invalid formatting definition.</exception>
     private static void SetDateTimeValue(PropertyInfo propertyInfo, T obj, string value, string formatString, CultureInfo culture) {
@@ -732,8 +723,8 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
-    /// <param name="culture">An optional culture-name that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
+    /// <param name="culture">An optional culture name that can be used to properly parse the value.</param>
     /// <exception cref="FormatException">The value cannot be recognized as a valid enum value.</exception>
     /// <exception cref="InvalidOperationException">The format string contains an invalid formatting definition.</exception>
     private static void SetEnumValue(PropertyInfo propertyInfo, T obj, string value, string formatString, CultureInfo culture) {
@@ -818,8 +809,8 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
-    /// <param name="culture">An optional culture-name that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
+    /// <param name="culture">An optional culture name that can be used to properly parse the value.</param>
     /// <exception cref="FormatException">The value cannot be recognized as a valid <see cref="Char"/>.</exception>
     /// <exception cref="InvalidOperationException">The format string contains an invalid formatting definition.</exception>
     private static void SetCharValue(PropertyInfo propertyInfo, T obj, string value, string formatString, CultureInfo culture) {
@@ -904,8 +895,8 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="propertyInfo">The property that must be assigned.</param>
     /// <param name="obj">Reference to the object whose property must be assigned.</param>
     /// <param name="value">The value that must be assigned.</param>
-    /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
-    /// <param name="culture">An optional culture-name that can be used to properly parse the value.</param>
+    /// <param name="formatString">An optional format string that can be used to properly parse the value.</param>
+    /// <param name="culture">An optional culture name that can be used to properly parse the value.</param>
     /// <param name="parseFunc">The delegate that is used to perform the actual parsing.</param>
     /// <param name="parseFormattedFunc">The delegate that is used to perform the actual culture-aware parsing.</param>
     /// <exception cref="FormatException">The value cannot be recognized as a valid <see cref="Boolean"/>.</exception>

@@ -1,17 +1,8 @@
-﻿//--------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Transformer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a base for classes that are capable of transforming abritrary types into byte arrays or strings.
-// </summary>
-//--------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Text;
 
 namespace Enkoni.Framework.Serialization {
-  /// <summary>Represents a transformer that transforms an instance of <typeparamref name="T"/> into a byte artray or string 
+  /// <summary>Represents a transformer that transforms an instance of <typeparamref name="T"/> into a byte array or string 
   /// and vice versa.</summary>
   /// <typeparam name="T">The type that must be transformed.</typeparam>
   public abstract class Transformer<T> {

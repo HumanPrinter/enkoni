@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Extensions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds numerous extension-methods that extend the standard .NET Linq capabilities.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -117,7 +108,7 @@ namespace Enkoni.Framework.Linq {
       }
     }
 
-    /// <summary>Sorts the sequence according to the sortspecifications.</summary>
+    /// <summary>Sorts the sequence according to the sort specifications.</summary>
     /// <typeparam name="T">The type of object that must be sorted.</typeparam>
     /// <param name="source">The sequence that must be sorted.</param>
     /// <param name="sortSpecifications">The specifications for the sorting.</param>
@@ -229,7 +220,7 @@ namespace Enkoni.Framework.Linq {
       }
     }
 
-    /// <summary>Sorts the sequence according to the sortspecifications.</summary>
+    /// <summary>Sorts the sequence according to the sort specifications.</summary>
     /// <typeparam name="T">The type of object that must be sorted.</typeparam>
     /// <param name="source">The sequence that must be sorted.</param>
     /// <param name="sortSpecifications">The specifications for the sorting.</param>
