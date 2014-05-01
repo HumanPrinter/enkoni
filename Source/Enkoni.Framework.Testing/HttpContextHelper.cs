@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="HttpContextHelper.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a class that can be used to simulate an HTTP session.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.IO;
 using System.Web;
 using System.Web.SessionState;

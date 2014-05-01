@@ -479,7 +479,7 @@ namespace Enkoni.Framework.Serialization {
       /// <summary>Gets or sets the encoding that must be used.</summary>
       internal Encoding Encoding { get; set; }
 
-      /// <summary>Gets or sets the asyncronous result object.</summary>
+      /// <summary>Gets or sets the asynchronous result object.</summary>
       internal AsyncResult<ICollection<T>> AsyncResult { get; set; }
     }
 

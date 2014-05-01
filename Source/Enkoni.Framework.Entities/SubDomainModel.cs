@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This abstract class defines the public API of a class that represents the subdomain of the domain model.</summary>
-  /// <typeparam name="T">The type to which this subdomain applies.</typeparam>
+  /// <summary>This abstract class defines the public API of a class that represents the sub domain of the domain model.</summary>
+  /// <typeparam name="T">The type to which this sub domain applies.</typeparam>
   public abstract class SubDomainModel<T> where T : IEntity<T> {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="SubDomainModel{T}"/> class.</summary>
@@ -15,7 +15,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected properties
-    /// <summary>Gets the parent domainmodel.</summary>
+    /// <summary>Gets the parent domain model.</summary>
     protected virtual DomainModel ParentDomainModel { get; private set; }
     #endregion
 

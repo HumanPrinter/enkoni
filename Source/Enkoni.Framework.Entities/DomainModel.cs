@@ -1,14 +1,5 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DomainModel.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the basic functionality of a domainmodel-type.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-namespace Enkoni.Framework.Entities {
-  /// <summary>This class defines the public API of a class that represents a domainmodel.</summary>
+﻿namespace Enkoni.Framework.Entities {
+  /// <summary>This class defines the public API of a class that represents a domain model.</summary>
   public abstract class DomainModel {
     #region Constructors
     /// <summary>Initializes a new instance of the <see cref="DomainModel"/> class.</summary>
@@ -37,8 +28,8 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
-    /// <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
+    /// <summary>Returns the sub domain of a specific type that can be used to perform CRUD-operations on that type.</summary>
+    /// <typeparam name="T">The type for which the sub domain must be returned.</typeparam>
     /// <returns>The SubDomain.</returns>
     public SubDomainModel<T> GetSubDomain<T>() where T : IEntity<T> {
       return this.GetSubDomainCore<T>();
@@ -56,8 +47,8 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Clears the underlying persistency.</summary>
     protected abstract void ClearPersistencyCore();
 
-    /// <summary>Returns the subdomain of a specific type that can be used to perform CRUD-operations on that type.</summary>
-    /// <typeparam name="T">The type for which the subdomain must be returned.</typeparam>
+    /// <summary>Returns the sub domain of a specific type that can be used to perform CRUD-operations on that type.</summary>
+    /// <typeparam name="T">The type for which the sub domain must be returned.</typeparam>
     /// <returns>The appropriate SubDomainModel.</returns>
     protected abstract SubDomainModel<T> GetSubDomainCore<T>() where T : IEntity<T>;
     #endregion

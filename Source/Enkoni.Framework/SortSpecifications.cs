@@ -1,23 +1,13 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SortSpecifications.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a collection of sortspecifications.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Enkoni.Framework {
-  /// <summary>This class holds a collection of sortspecifications which can be used to sort a sequence of 
-  /// <typeparamref name="T"/>.</summary>
+  /// <summary>This class holds a collection of sort specifications which can be used to sort a sequence of <typeparamref name="T"/>.</summary>
   /// <typeparam name="T">The type of object that must be sorted.</typeparam>
   public class SortSpecifications<T> {
     #region Private instance variables
-    /// <summary>The collection of sortspecifications.</summary>
+    /// <summary>The collection of sort specifications.</summary>
     private List<ISortSpecification<T>> sortingSpecifications;
     #endregion
 
@@ -57,8 +47,8 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Internal methods
-    /// <summary>Adds a new sortspecification to the collection.</summary>
-    /// <param name="sortSpecification">The sortspecification that must be added.</param>
+    /// <summary>Adds a new sort specification to the collection.</summary>
+    /// <param name="sortSpecification">The sort specification that must be added.</param>
     internal void Add(ISortSpecification<T> sortSpecification) {
       if(sortSpecification == null) {
         throw new ArgumentNullException("sortSpecification", "The ISortSpecification is mandatory");
@@ -67,8 +57,8 @@ namespace Enkoni.Framework {
       this.sortingSpecifications.Add(sortSpecification);
     }
 
-    /// <summary>Adds a new collcetion of sortspecifications to the collection.</summary>
-    /// <param name="sortSpecifications">The sortspecifications that must be added.</param>
+    /// <summary>Adds a new collection of sort specifications to the collection.</summary>
+    /// <param name="sortSpecifications">The sort specifications that must be added.</param>
     internal void AddRange(SortSpecifications<T> sortSpecifications) {
       if(sortSpecifications == null) {
         throw new ArgumentNullException("sortSpecifications", "The SortSpecifications is mandatory");
@@ -77,7 +67,7 @@ namespace Enkoni.Framework {
       this.sortingSpecifications.AddRange(sortSpecifications.sortingSpecifications);
     }
 
-    /// <summary>Removes all the sortspecifications from the collection.</summary>
+    /// <summary>Removes all the sort specifications from the collection.</summary>
     internal void Clear() {
       this.sortingSpecifications.Clear();
     }

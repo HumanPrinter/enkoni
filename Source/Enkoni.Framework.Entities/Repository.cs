@@ -86,7 +86,7 @@ namespace Enkoni.Framework.Entities {
       return this.CreateNotExpressionCore(specification);
     }
 
-    /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+    /// <summary>Creates a LIKE-expression using the specified field and search pattern.</summary>
     /// <param name="field">The field of type <c>T</c> that must match the pattern.</param>
     /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
     /// <returns>The created expression.</returns>
@@ -595,7 +595,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the available entities that match the specified expression.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
@@ -606,7 +606,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the available entities that match the specified expression.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
@@ -635,7 +635,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
@@ -646,7 +646,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
@@ -672,7 +672,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the first single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     protected virtual T FindFirstCore(Expression<Func<T, bool>> expression, SortSpecifications<T> sortRules, DataSourceInfo dataSourceInfo) {
@@ -722,7 +722,7 @@ namespace Enkoni.Framework.Entities {
       return notExpression;
     }
 
-    /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+    /// <summary>Creates a LIKE-expression using the specified field and search pattern.</summary>
     /// <param name="field">The field of type <c>T</c> that must match the pattern.</param>
     /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
     /// <returns>The created expression.</returns>
@@ -774,7 +774,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Executes an expression. By default, the expression is passed to the <see cref="M:FindAllCore(Func{T,bool}, SortSpecification{T}, int, DataSourceInfo)"/> 
     /// method.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The result of the action. By default, this method returns <see langword="null"/>.</returns>

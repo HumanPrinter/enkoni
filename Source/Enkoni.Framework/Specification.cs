@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
   /// <summary>This class contains static members that would normally be part of the <see cref="Specification{T}"/> class, but since that class is 
-  /// generic the static members are placed in this non-generic counterpart to avoid possible confussion about the use of the methods.</summary>
+  /// generic the static members are placed in this non-generic counterpart to avoid possible confusion about the use of the methods.</summary>
   public static class Specification {
     #region Public static method
     /// <summary>Creates a specification that will return all available objects.</summary>
@@ -109,7 +109,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Occurs when the sortrules have been updated.</summary>
+    /// <summary>Occurs when the sort rules have been updated.</summary>
     public event EventHandler<SortSpecificationsEventArgs<T>> SortRulesUpdated {
       add {
         this.sortRulesUpdated += value;
@@ -147,18 +147,18 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Specifies the way the sequence must be sorted. It used a default sortorder of ascending.</summary>
+    /// <summary>Specifies the way the sequence must be sorted. It used a default sort order of ascending.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderBy<TKey>(Expression<Func<T, TKey>> keySelector) {
       return this.OrderBy(keySelector, SortOrder.Ascending);
     }
 
-    /// <summary>Specifies the way the sequence must be sorted. It used a default sortorder of descending.</summary>
+    /// <summary>Specifies the way the sequence must be sorted. It used a default sort order of descending.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector) {
       return this.OrderBy(keySelector, SortOrder.Descending);
     }
@@ -167,7 +167,7 @@ namespace Enkoni.Framework {
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
     /// <param name="direction">The direction that the ordering must take place in.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderBy<TKey>(Expression<Func<T, TKey>> keySelector, SortOrder direction) {
       SortSpecification<T, TKey> spec = new SortSpecification<T, TKey>(keySelector, direction);
       SortSpecifications<T> sortSpecifications = new SortSpecifications<T>();
@@ -177,7 +177,7 @@ namespace Enkoni.Framework {
 
     /// <summary>Specifies the way the sequence must be sorted.</summary>
     /// <param name="sortSpecifications">The specifications that define the way the sequence must be sorted.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderBy(SortSpecifications<T> sortSpecifications) {
       if(this.sortRulesUpdated != null) {
         this.sortRulesUpdated(this, new SortSpecificationsEventArgs<T>(sortSpecifications));
@@ -232,7 +232,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Protected eventhandlers
-    /// <summary>Handles the occurence of a changed maximum for the number of records that must be retrieved.</summary>
+    /// <summary>Handles the occurrence of a changed maximum for the number of records that must be retrieved.</summary>
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleMaximumResultsUpdated(object sender, EventArgs<int> args) {
@@ -243,7 +243,7 @@ namespace Enkoni.Framework {
       this.SetMaximumResults(args.EventValue);
     }
 
-    /// <summary>Handles the occurence of a changed set of sorting rules.</summary>
+    /// <summary>Handles the occurrence of a changed set of sorting rules.</summary>
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleOrderByRulesUpdated(object sender, SortSpecificationsEventArgs<T> args) {

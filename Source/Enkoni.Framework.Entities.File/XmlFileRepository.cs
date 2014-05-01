@@ -18,7 +18,7 @@ namespace Enkoni.Framework.Entities {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="XmlFileRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
-    /// <param name="dataSourceInfo">The data source information that must be used to access the sourcefile.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the source file.</param>
     public XmlFileRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
       this.serializer = new XmlSerializer(typeof(List<TEntity>));
@@ -26,7 +26,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region FileRepository<T> overrides
-    /// <summary>Reads all the available records from the sourcefile.</summary>
+    /// <summary>Reads all the available records from the source file.</summary>
     /// <param name="sourceFile">Information about the file that must be read.</param>
     /// <param name="dataSourceInfo">Optional information about the data source.</param>
     /// <returns>The entities that were read from the file.</returns>

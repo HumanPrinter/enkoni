@@ -6,13 +6,13 @@ namespace Enkoni.Framework.Entities {
   /// be used. This class is added for improved usability of the DataSourceInfo in combination with the DatabaseRepository.</summary>
   public class DatabaseSourceInfo : DataSourceInfo {
     #region Public constants
-    /// <summary>Defines the key that is used to store and retrieve the DbContext.</summary>
+    /// <summary>Defines the key that is used to store and retrieve the <see cref="DbContext"/>.</summary>
     public const string DbContextKey = "DbContext";
     #endregion
 
     #region Constructors
     /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using a default value of <see langword="null"/> for the 
-    /// DbContext.</summary>
+    /// <see cref="DbContext"/>.</summary>
     public DatabaseSourceInfo()
       : this((DbContext)null) {
     }
@@ -34,7 +34,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified default values. If the default values 
-    /// do not specify the DbContext using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
+    /// do not specify the <see cref="DbContext"/> using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     public DatabaseSourceInfo(Dictionary<string, object> defaultValues)
       : base(defaultValues) {
@@ -47,7 +47,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public properties
-    /// <summary>Gets or sets the DbContext that is to be used by the DatabaseRepository.</summary>
+    /// <summary>Gets or sets the <see cref="DbContext"/> that is to be used by the DatabaseRepository.</summary>
     public DbContext DbContext {
       get { return (DbContext)this[DbContextKey]; }
       set { this[DbContextKey] = value; }
@@ -55,16 +55,16 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public static methods
-    /// <summary>Determines if the DbContext is specified in the source information.</summary>
+    /// <summary>Determines if the <see cref="DbContext"/> is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
-    /// <returns><see langword="true"/> if the DbContext is defined; <see langword="false"/> otherwise.</returns>
+    /// <returns><see langword="true"/> if the <see cref="DbContext"/> is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsDbContextSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(DbContextKey);
     }
 
-    /// <summary>Selects the DbContext from the specified data source information.</summary>
+    /// <summary>Selects the <see cref="DbContext"/> from the specified data source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
-    /// <returns>The DbContext that is stored in the data source information or <see langword="null"/> if the DbContext could not be found.</returns>
+    /// <returns>The <see cref="DbContext"/> that is stored in the data source information or <see langword="null"/> if the <see cref="DbContext"/> could not be found.</returns>
     public static DbContext SelectDbContext(DataSourceInfo dataSourceInfo) {
       if(IsDbContextSpecified(dataSourceInfo)) {
         return dataSourceInfo[DbContextKey] as DbContext;
@@ -76,8 +76,8 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public methods
-    /// <summary>Determines if the DbContext is specified in the source information.</summary>
-    /// <returns><see langword="true"/> if the DbContext is defined; <see langword="false"/> otherwise.</returns>
+    /// <summary>Determines if the <see cref="DbContext"/> is specified in the source information.</summary>
+    /// <returns><see langword="true"/> if the <see cref="DbContext"/> is defined; <see langword="false"/> otherwise.</returns>
     public bool IsDbContextSpecified() {
       return this.IsValueSpecified(DbContextKey);
     }

@@ -8,10 +8,10 @@ namespace Enkoni.Framework.Entities {
   /// ServiceRepository.</summary>
   public class ServiceSourceInfo : DataSourceInfo {
     #region Public constants
-    /// <summary>Defines the key that is used to store and retrieve the endpointconfigurationname.</summary>
+    /// <summary>Defines the key that is used to store and retrieve the endpoint configuration.</summary>
     public const string EndpointConfigurationNameKey = "EndpointConfigurationName";
 
-    /// <summary>Defines the key that is used to store and retrieve the endpointaddress of the service.</summary>
+    /// <summary>Defines the key that is used to store and retrieve the endpoint address of the service.</summary>
     public const string RemoteAddressKey = "RemoteAddress";
 
     /// <summary>Defines the key that is used to store and retrieve the binding that is used to communicate with the service.</summary>
@@ -40,7 +40,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
     /// address.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's config file.</param>
+    /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     public ServiceSourceInfo(string endpointConfigurationName, EndpointAddress remoteAddress)
       : this(endpointConfigurationName, remoteAddress, DataSourceInfo.DefaultCloneDataSourceItems) {
@@ -48,7 +48,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
     /// address.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's config file.</param>
+    /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(string endpointConfigurationName, EndpointAddress remoteAddress, bool cloneDataSourceItems)
@@ -122,13 +122,13 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public properties
-    /// <summary>Gets or sets the name of the endpointconfiguration in the applicationconfig file.</summary>
+    /// <summary>Gets or sets the name of the endpoint configuration in the application config file.</summary>
     public string EndpointConfigurationName {
       get { return (string)this[EndpointConfigurationNameKey]; }
       set { this[EndpointConfigurationNameKey] = value; }
     }
 
-    /// <summary>Gets or sets the endpointaddress of the service.</summary>
+    /// <summary>Gets or sets the endpoint address of the service.</summary>
     public EndpointAddress RemoteAddress {
       get { return (EndpointAddress)this[RemoteAddressKey]; }
       set { this[RemoteAddressKey] = value; }
@@ -142,14 +142,14 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public static methods
-    /// <summary>Determines if the endpointconfigurationname is specified in the source information.</summary>
+    /// <summary>Determines if the endpoint configuration is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsEndpointConfigurationNameSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(EndpointConfigurationNameKey);
     }
 
-    /// <summary>Selects the endpointconfigurationname from the specified data source information.</summary>
+    /// <summary>Selects the endpoint configuration from the specified data source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns>The value that is stored in the data source information or <see langword="null"/> if the value could not be found.</returns>
     public static string SelectEndpointConfigurationName(DataSourceInfo dataSourceInfo) {
@@ -201,7 +201,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public methods
-    /// <summary>Determines if the endpointconfigurationname is specified in the source information.</summary>
+    /// <summary>Determines if the endpoint configuration name is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public bool IsEndpointConfigurationNameSpecified() {
       return this.IsValueSpecified(EndpointConfigurationNameKey);

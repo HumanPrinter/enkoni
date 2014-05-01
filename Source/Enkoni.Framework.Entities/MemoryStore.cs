@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="MemoryStore.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Describes the basic API of a class that holds entities in memory.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 
 namespace Enkoni.Framework.Entities {
@@ -31,46 +22,46 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public methods
-    /// <summary>Enters the readlock to synchronize read-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Enters the read lock to synchronize read-access to the <see cref="Storage"/>.</summary>
     public void EnterReadLock() {
       this.EnterReadLockCore();
     }
 
-    /// <summary>Exits the readlock to synchronize read-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Exits the read lock to synchronize read-access to the <see cref="Storage"/>.</summary>
     public void ExitReadLock() {
       this.ExitReadLockCore();
     }
 
-    /// <summary>Enters the writelock to synchronize write-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Enters the write lock to synchronize write-access to the <see cref="Storage"/>.</summary>
     public void EnterWriteLock() {
       this.EnterWriteLockCore();
     }
 
-    /// <summary>Exists the writelock to synchronize write-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Exists the write lock to synchronize write-access to the <see cref="Storage"/>.</summary>
     public void ExitWriteLock() {
       this.ExitWriteLockCore();
     }
     #endregion
 
     #region Protected extensibility methods
-    /// <summary>Enters the readlock to synchronize read-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Enters the read lock to synchronize read-access to the <see cref="Storage"/>.</summary>
     protected virtual void EnterReadLockCore() {
       storageLock.EnterReadLock();
     }
 
-    /// <summary>Exits the writelock to synchronize write-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Exits the write lock to synchronize write-access to the <see cref="Storage"/>.</summary>
     protected virtual void ExitReadLockCore() {
       if(storageLock.IsReadLockHeld) {
         storageLock.ExitReadLock();
       }
     }
 
-    /// <summary>Enters the writelock to synchronize write-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Enters the write lock to synchronize write-access to the <see cref="Storage"/>.</summary>
     protected virtual void EnterWriteLockCore() {
       storageLock.EnterWriteLock();
     }
 
-    /// <summary>Exists the writelock to synchronize write-access to the <see cref="Storage"/>.</summary>
+    /// <summary>Exists the write lock to synchronize write-access to the <see cref="Storage"/>.</summary>
     protected virtual void ExitWriteLockCore() {
       if(storageLock.IsWriteLockHeld) {
         storageLock.ExitWriteLock();

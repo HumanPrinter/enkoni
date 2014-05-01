@@ -41,7 +41,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     #endregion
 
     #region Helper methods
-    /// <summary>Invokes a delegate. If required, the call is transfered to the appropriate thread.</summary>
+    /// <summary>Invokes a delegate. If required, the call is transferred to the appropriate thread.</summary>
     /// <param name="del">The delegate that must be invoked.</param>
     /// <param name="args">The arguments that must be passed to the delegate.</param>
     private static void InvokeDelegate(Delegate del, object[] args) {

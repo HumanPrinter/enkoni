@@ -48,7 +48,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected properties
-    /// <summary>Gets the DbContext that is used to access the database.</summary>
+    /// <summary>Gets the <see cref="DbContext"/> that is used to access the database.</summary>
     protected DbContext DbContext { get; private set; }
     #endregion
 
@@ -138,7 +138,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache untill it is saved using the 
+    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the 
     /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the 
     /// entity is saved.</summary>
     /// <param name="entities">The entities that must be added.</param>
@@ -224,7 +224,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
-    /// or it is added to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
+    /// or it is added to the deletion-cache until it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entities">The entities that must be removed.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
@@ -246,7 +246,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the available entities that match the specified expression.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
@@ -364,7 +364,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
@@ -421,7 +421,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+    /// <summary>Creates a LIKE-expression using the specified field and search pattern.</summary>
     /// <param name="field">The field of type <c>T</c> that must match the pattern.</param>
     /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
     /// <returns>The created expression.</returns>
@@ -447,10 +447,10 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected overridable helper methods
-    /// <summary>Selects the DbContext that must be used. If the specified DataSourceInfo contains a valid DbContext, it is used; otherwise the value 
-    /// of the property 'DbContext' is used.</summary>
+    /// <summary>Selects the <see cref="DbContext"/> that must be used. If the specified DataSourceInfo contains a valid <see cref="DbContext"/>, it is used; otherwise the value 
+    /// of the property '<see cref="DbContext"/>' is used.</summary>
     /// <param name="dataSourceInfo">Any information regarding the database that is used as data source.</param>
-    /// <returns>The DbContext that must be used.</returns>
+    /// <returns>The <see cref="DbContext"/> that must be used.</returns>
     protected virtual DbContext SelectDbContext(DataSourceInfo dataSourceInfo) {
       if(DatabaseSourceInfo.IsDbContextSpecified(dataSourceInfo)) {
         return DatabaseSourceInfo.SelectDbContext(dataSourceInfo);
@@ -460,7 +460,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Resets the repository by undoing any unsaved changes. This implementation does not aquire a write lock on the local storage and can 
+    /// <summary>Resets the repository by undoing any unsaved changes. This implementation does not acquire a write lock on the local storage and can 
     /// therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected virtual void ResetDbContextNoLock(DataSourceInfo dataSourceInfo) {
@@ -490,7 +490,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Private helper methods
-    /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not aquire a write lock on the
+    /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not acquire a write lock on the
     /// local storage and can therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that was updated.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
@@ -536,7 +536,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Updates a collection of entities in the repository. This implementation does not aquire a write lock on the local storage and can 
+    /// <summary>Updates a collection of entities in the repository. This implementation does not acquire a write lock on the local storage and can 
     /// therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
@@ -610,7 +610,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Inserts a new entity to the repository. This implementation does not aquire a write lock on the local storage and can therefore be 
+    /// <summary>Inserts a new entity to the repository. This implementation does not acquire a write lock on the local storage and can therefore be 
     /// called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that must be added.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
@@ -645,9 +645,9 @@ namespace Enkoni.Framework.Entities {
       return entity;
     }
 
-    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache untill it is saved using the 
+    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the 
     /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the 
-    /// entity is saved. This implementation does not aquire a write lock on the local storage and can therefore be called from within a context that 
+    /// entity is saved. This implementation does not acquire a write lock on the local storage and can therefore be called from within a context that 
     /// already has a write lock on the internal storage.</summary>
     /// <param name="entities">The entities that must be added.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
@@ -717,7 +717,7 @@ namespace Enkoni.Framework.Entities {
       return entities;
     }
 
-    /// <summary>Deletes an entity from the repository. This implementation does not aquire a write lock on the local storage and can therefore be 
+    /// <summary>Deletes an entity from the repository. This implementation does not acquire a write lock on the local storage and can therefore be 
     /// called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
@@ -754,8 +754,8 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
-    /// or it is added to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method. This implementation does 
-    /// not aquire a write lock on the local storage and can therefore be called from within a context that already has a write lock on the internal 
+    /// or it is added to the deletion-cache until it is saved using the <see cref="Repository{T}.SaveChanges()"/> method. This implementation does 
+    /// not acquire a write lock on the local storage and can therefore be called from within a context that already has a write lock on the internal 
     /// storage.</summary>
     /// <param name="entities">The entities that must be removed.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
@@ -803,7 +803,7 @@ namespace Enkoni.Framework.Entities {
       this.deletionCache = tempDeletionCache;
     }
 
-    /// <summary>Resets the local addition and deletion cache. This implementation does not aquire a write lock on the local storage and can therefore 
+    /// <summary>Resets the local addition and deletion cache. This implementation does not acquire a write lock on the local storage and can therefore 
     /// be called from within a context that already has a write lock on the internal storage.</summary>
     private void ResetLocalCacheNoLock() {
       this.additionCache.Clear();

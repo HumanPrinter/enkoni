@@ -3,7 +3,7 @@ using System.ServiceModel.Channels;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the functionality using WCF 
-  /// datacommunication. This implementation can be used a base for any WCF-service repositories.</summary>
+  /// data communication. This implementation can be used a base for any WCF-service repositories.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
   public abstract class ServiceRepository<TEntity> : Repository<TEntity>
     where TEntity : class, new() {
@@ -29,7 +29,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected properties
-    /// <summary>Gets the endpointconfigurationname that references the used endpointconfiguration.</summary>
+    /// <summary>Gets the endpoint configuration name that references the used endpoint configuration.</summary>
     protected string EndpointConfigurationName { get; private set; }
 
     /// <summary>Gets the address of the remote service.</summary>

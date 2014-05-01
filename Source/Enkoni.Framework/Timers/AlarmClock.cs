@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="AlarmClock.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the class that is capable of raising events at a specified time of day.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Threading;
 
 using Microsoft.Win32;
@@ -165,7 +156,7 @@ namespace Enkoni.Framework.Timers {
       this.Start();
     }
 
-    /// <summary>Sets off the allarm when the timer has elapsed.</summary>
+    /// <summary>Sets off the alarm when the timer has elapsed.</summary>
     /// <param name="state">An optional state object that may have been passed in the constructor.</param>
     private void SettOffAlarm(object state) {
       this.onAlarmHandler.FireAsync(this, new EventArgs<object>(state));

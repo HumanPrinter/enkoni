@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="GlobalSuppressions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains the project's suppressions.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.IMessenger.#Deregister`1(System.Object)", Justification = "The method does require the type parameter, but there simply is no need for an aditional parameter")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.Messenger.#Deregister`1(System.Object)", Justification = "The method does require the type parameter, but there simply is no need for an aditional parameter")]

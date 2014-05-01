@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="LogManager.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the class that manages and gives access to a logger-instance.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
@@ -23,7 +14,7 @@ namespace Enkoni.Framework.Logging {
     #endregion
 
     #region Public static methods
-    /// <summary>Creates a new instance of <see cref="Logger"/> which can be used to send logmessages to the Logging Application Block.</summary>
+    /// <summary>Creates a new instance of <see cref="Logger"/> which can be used to send log messages to the Logging Application Block.</summary>
     /// <returns>The created <see cref="Logger"/>.</returns>
     public static Logger CreateLogger() {
       return new Logger(logWriter);

@@ -52,7 +52,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Since retrieval of these entities is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>Not applicable.</returns>
@@ -65,7 +65,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Since retrieval of the entity is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The parameter is not used.</param>
     /// <returns>Not applicable.</returns>

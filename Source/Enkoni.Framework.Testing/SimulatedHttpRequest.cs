@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SimulatedHttpRequest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2011. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a simulated HTTP request that is used by the HttpContextHelper.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.IO;
 using System.Web.Hosting;
 
@@ -39,7 +30,7 @@ namespace Enkoni.Framework.Testing {
       return this.host;
     }
 
-    /// <summary>Maps the path to a filesystem path.</summary>
+    /// <summary>Maps the path to a file system path.</summary>
     /// <param name="virtualPath">Virtual path.</param>
     /// <returns>The result of the operation.</returns>
     public override string MapPath(string virtualPath) {
