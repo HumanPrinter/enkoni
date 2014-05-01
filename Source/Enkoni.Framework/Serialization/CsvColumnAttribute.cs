@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CsvColumnAttribute.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines an attribute that is used for the CSV (de)serialization capabilities.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 namespace Enkoni.Framework.Serialization {
   /// <summary>This attribute defines how a property must be serialized and deserialized to and from a column in a CSV file.</summary>

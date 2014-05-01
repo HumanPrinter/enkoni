@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventToCommand.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a command that can be used with the MVVM pattern to bind events to commands.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interactivity;
@@ -102,7 +93,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     }
 
     /// <summary>Gets or sets an object that will be passed to the <see cref="Command" /> attached to this trigger. This property is here for 
-    /// compatibility with the Silverlight version. This is NOT a DependencyProperty. For databinding, use the <see cref="CommandParameter" /> 
+    /// compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the <see cref="CommandParameter" /> 
     /// property.</summary>
     public object CommandParameterValue {
       get {
@@ -135,7 +126,7 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     /// <summary>Gets or sets a value indicating whether the attached element must be disabled when the <see cref="Command" /> property's 
     /// CanExecuteChanged event fires. If this property is true, and the command's CanExecute  method returns false, the element will be disabled. 
-    /// This property is here for compatibility with the Silverlight version. This is NOT a DependencyProperty. For databinding, use the 
+    /// This property is here for compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the 
     /// <see cref="BindCanExecuteToIsEnabled" /> property.</summary>
     public bool BindCanExecuteToIsEnabledValue {
       get {
@@ -150,7 +141,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     #endregion
 
     #region Public methods
-    /// <summary>Provides a simple way to invoke this trigger programatically without any EventArgs.</summary>
+    /// <summary>Provides a simple way to invoke this trigger programmatically without any EventArgs.</summary>
     public void Invoke() {
       this.Invoke(null);
     }

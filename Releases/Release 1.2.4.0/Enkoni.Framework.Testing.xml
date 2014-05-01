@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.Testing</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.Testing.HttpContextHelper">
+            <summary>Can be used to create a mocked HttpContext.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Testing.HttpContextHelper.SetHttpContextWithSimulatedRequest(System.String,System.String)">
+            <summary>Sets the HTTP context with a valid simulated request.</summary>
+            <param name="host">The host that must be associated with the session. Normally 'localhost' will suffice.</param>
+            <param name="application">The name of the application that requires the session. Any name will do.</param>
+        </member>
+        <member name="T:Enkoni.Framework.Testing.SimulatedHttpRequest">
+            <summary>Used to simulate an HttpRequest.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Testing.SimulatedHttpRequest.host">
+            <summary>The simulated host.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Testing.SimulatedHttpRequest.#ctor(System.String,System.String,System.String,System.String,System.IO.TextWriter,System.String)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Testing.SimulatedHttpRequest"/> class.</summary>
+            <param name="appVirtualDir">The virtual directory of the application.</param>
+            <param name="appPhysicalDir">The physical directory of the application.</param>
+            <param name="page">The name of the page that is requested.</param>
+            <param name="query">The query that is passed in the request.</param>
+            <param name="output">The writer that must be used to write the output to.</param>
+            <param name="host">The host of the application.</param>
+        </member>
+        <member name="M:Enkoni.Framework.Testing.SimulatedHttpRequest.GetServerName">
+            <summary>Gets the name of the server.</summary>
+            <returns>The name of the server.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.Testing.SimulatedHttpRequest.MapPath(System.String)">
+            <summary>Maps the path to a file system path.</summary>
+            <param name="virtualPath">Virtual path.</param>
+            <returns>The result of the operation.</returns>
+        </member>
+    </members>
+</doc>

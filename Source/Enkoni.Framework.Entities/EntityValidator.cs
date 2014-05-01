@@ -1,15 +1,6 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EntityValidator.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//    Holds the generic implementation of an entity validator.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
-
-using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the public API of a class that can validate entities.</summary>
@@ -22,51 +13,51 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public API
-    /// <summary>Performs a shallow validation of the specified entity. This will only validate the consistency of the entity itself without looking 
-    /// at the references to other entities or the underlying persistency.</summary>
+    /// <summary>Performs a validation of the specified entity.</summary>
     /// <param name="entity">The entity that must be validated.</param>
     /// <returns>The results of the validation.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="entity"/> is null.</exception>
-    public EntLib.ValidationResults PerformShallowValidation(T entity) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
-
-      return this.PerformShallowValidationCore(entity);
+    public ICollection<ValidationResult> PerformValidation(T entity) {
+      return this.PerformValidation(entity, false);
     }
 
-    /// <summary>Performs a deep validation of the specified entity. Besides performing a shallow validation, it may also look at the underlying
-    /// persistency for instance to make sure that no uniqueness-rules are violated.</summary>
+    /// <summary>Performs a validation of the specified entity.</summary>
     /// <param name="entity">The entity that must be validated.</param>
+    /// <param name="throwOnError">Indicates whether an exception must be thrown in case of a validation violation.</param>
     /// <returns>The results of the validation.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="entity"/> is null.</exception>
-    public EntLib.ValidationResults PerformDeepValidation(T entity) {
+    /// <exception cref="ValidationException"><paramref name="throwOnError"/> is <see langword="true"/> and a property of <paramref name="entity"/> 
+    /// was found not to be valid.</exception>
+    public ICollection<ValidationResult> PerformValidation(T entity, bool throwOnError) {
       if(entity == null) {
         throw new ArgumentNullException("entity");
       }
 
-      EntLib.ValidationResults results = this.PerformShallowValidation(entity);
-      if(results.IsValid) {
-        results = this.PerformDeepValidationCore(entity);
-      }
-
+      ICollection<ValidationResult> results = this.PerformValidationCore(entity, throwOnError);
+      
       return results;
     }
     #endregion
 
     #region Extensibility methods
-    /// <summary>Performs a shallow validation of the entity.</summary>
+    /// <summary>Performs a validation of the entity.</summary>
     /// <param name="entity">The entity that must be validated.</param>
-    /// <returns>The result of the validation.</returns>
-    protected virtual EntLib.ValidationResults PerformShallowValidationCore(T entity) {
-      return EntLib.Validation.Validate<T>(entity, "shallow");
-    }
+    /// <param name="throwOnError">Indicates whether an exception must be thrown in case of a validation violation.</param>
+    /// <returns>The result of the validation. If no violations were found, an empty collection is returned.</returns>
+    /// <exception cref="ValidationException"><paramref name="throwOnError"/> is <see langword="true"/> and a property of <paramref name="entity"/> 
+    /// was found not to be valid.</exception>
+    protected virtual ICollection<ValidationResult> PerformValidationCore(T entity, bool throwOnError) {
+      ValidationContext validationContext = new ValidationContext(entity, null, null);
 
-    /// <summary>Performs a deep validation of the entity.</summary>
-    /// <param name="entity">The entity that must be validated.</param>
-    /// <returns>The result of the validation.</returns>
-    protected virtual EntLib.ValidationResults PerformDeepValidationCore(T entity) {
-      return EntLib.Validation.Validate<T>(entity, "deep");
+      if(throwOnError) {
+        Validator.ValidateObject(entity, validationContext, true);
+        return new List<ValidationResult>();
+      }
+      else {
+        ICollection<ValidationResult> validationResults = new List<ValidationResult>();
+        Validator.TryValidateObject(entity, validationContext, validationResults, true);
+        return validationResults;
+      }
     }
     #endregion
   }

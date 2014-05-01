@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CsvSerializer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the class that is capable of (de)serializing CSV data.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,7 +26,7 @@ namespace Enkoni.Framework.Serialization {
     #endregion
 
     #region Properties
-    /// <summary>Gets the mappings of the columnnames. The dictionary uses the columnindex as key and columnname as value.</summary>
+    /// <summary>Gets the mappings of the column names. The dictionary uses the column index as key and column name as value.</summary>
     protected Dictionary<int, string> ColumnNameMappings { get; private set; }
 
     /// <summary>Gets or sets a value indicating whether a header-line must be included when serializing the objects.</summary>
@@ -50,7 +41,7 @@ namespace Enkoni.Framework.Serialization {
 
     #region Protected methods
     /// <summary>Serializes a collection of items by transforming each item using the <see cref="Serializer{T}.Transformer"/> property and writing the 
-    /// transformed item to the <paramref name="stream"/>. Each item will be seperated using the new line character(s) of the current environment.
+    /// transformed item to the <paramref name="stream"/>. Each item will be separated using the new line character(s) of the current environment.
     /// </summary>
     /// <param name="objects">The objects that must be serialized.</param>
     /// <param name="encoding">The encoding that must be used.</param>
@@ -99,7 +90,7 @@ namespace Enkoni.Framework.Serialization {
       return writeCount;
     }
 
-    /// <summary>Deserializes a collection of objects using the data that is accesible through the specified stream reader.</summary>
+    /// <summary>Deserializes a collection of objects using the data that is accessible through the specified stream reader.</summary>
     /// <param name="reader">The object that gives access to the underlying stream.</param>
     /// <returns>The collection of deserialized objects.</returns>
     protected override ICollection<T> Deserialize(StreamReader reader) {

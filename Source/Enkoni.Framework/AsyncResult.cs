@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="AsyncResult.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Type that can be used to return a generic value from an asynchronous operation.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Threading;
 
 namespace Enkoni.Framework {
@@ -35,8 +26,7 @@ namespace Enkoni.Framework {
     /// <summary>The current state of the operation.</summary>
     private int currentState;
 
-    /// <summary>Notifies any waiting thread that an event has occured. This field may or may not be used depening on the
-    /// usage of this class.</summary>
+    /// <summary>Notifies any waiting thread that an event has occurred. This field may or may not be used depending on the usage of this class.</summary>
     private ManualResetEvent asyncWaitHandle;
 
     /// <summary>The pending exception (if any) that was thrown by the executed method.</summary>
@@ -104,11 +94,11 @@ namespace Enkoni.Framework {
     #region Methods
     /// <summary>Sets the status of the asynchronous call to completed.</summary>
     /// <param name="result">The result that returned by the asynchronous operation.</param>
-    /// <param name="exception">The <see cref="Exception"/> that was thrown by the executed method. If no pendingException was thrown, pass a 
-    /// <see langword="null"/> reference.</param>
-    /// <param name="completedSynchronously"><c>True</c> if the asynchronous operation completed synchronously; otherwise, <c>false</c>.</param>
-    /// <remarks>If the synchronous completion of the call is detected in the <see cref="AsyncCallback"/> delegate, it is probable that the thread 
-    /// that initiated the asynchronous operation is the current thread.<br/>
+    /// <param name="exception">The <see cref="Exception"/> that was thrown by the executed method. If no pending Exception was thrown, pass a <see langword="null"/> 
+    /// reference.</param>
+    /// <param name="completedSynchronously"><see langword="true"/> if the asynchronous operation completed synchronously; otherwise, <see langword="false"/>.</param>
+    /// <remarks>If the synchronous completion of the call is detected in the <see cref="AsyncCallback"/> delegate, it is probable that the thread that initiated the 
+    /// asynchronous operation is the current thread.<br/>
     /// <br/>
     /// <b>Notes to Implementers:</b><br/>
     /// Most implementers of the <see cref="IAsyncResult"/> interface will not use this property and should return <see langword="false"/>.</remarks>
@@ -142,11 +132,11 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Ends the invocation by waiting for the waithandle to finish.</summary>
-    /// <returns>The return-value of the asynchronous operation.</returns>
+    /// <summary>Ends the invocation by waiting for the wait handle to finish.</summary>
+    /// <returns>The return value of the asynchronous operation.</returns>
     public T EndInvoke() {
       if(!this.IsCompleted) {
-        /* Block untill the waithandle is finished */
+        /* Block untill the wait handle is finished */
         this.AsyncWaitHandle.WaitOne();
         /* Close and de-reference the waithandle */
         this.asyncWaitHandle.Close();

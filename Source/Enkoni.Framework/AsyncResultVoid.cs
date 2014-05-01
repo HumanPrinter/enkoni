@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="AsyncResultVoid.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Type that can be used to return 'void' from an asynchronous operation.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Threading;
 
 namespace Enkoni.Framework {
@@ -34,8 +25,7 @@ namespace Enkoni.Framework {
     /// <summary>The current state of the operation.</summary>
     private int currentState;
 
-    /// <summary>Notifies any waiting thread that an event has occured. This field may or may not be used depening on the
-    /// usage of this class.</summary>
+    /// <summary>Notifies any waiting thread that an event has occurred. This field may or may not be used depending on the usage of this class.</summary>
     private ManualResetEvent asyncWaitHandle;
 
     /// <summary>The pending exception (if any) that was thrown by the executed method.</summary>
@@ -135,7 +125,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Ends the invocation by waiting for the waithandle to finish.</summary>
+    /// <summary>Ends the invocation by waiting for the wait handle to finish.</summary>
     public void EndInvoke() {
       if(!this.IsCompleted) {
         /* Block untill the waithandle is finished */

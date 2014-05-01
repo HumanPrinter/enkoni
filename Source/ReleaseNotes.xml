@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
+    <release version="1.2.4.0" releasedate="2014-03-24">
+      <projects>
+        <project name="Enkoni.Framework" version="2.3.0">
+          <updates>
+            <update date="2014-04-30" type="addition">
+              <summary><![CDATA[Added a new CapitalizeSentence extension method]]></summary>
+              <comment>
+                <![CDATA[Added a new CapitalizeSentence extension method that can be used to capitalize the first word in a sentence and change the remaining words to lower case.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.DataAnnotations" version="1.0.1">
+          <updates>
+            <update date="2014-03-18" type="change">
+              <summary><![CDATA[Changed the behavior of the validations in case of an empty input value]]></summary>
+              <comment><![CDATA[Empty input values are now accepted by the validators. In order to reject empty input values, combine the attributes with the default 
+               RequiredAttribute.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities" version="3.1.0">
+          <updates>
+            <update date="2014-03-21" type="change">
+              <summary><![CDATA[Fixed a bug in the SubDomainModel class in the UpdateEntity method]]></summary>
+              <comment><![CDATA[A bug in the UpdateEntity method of the SubDomainModel class prevented the abstract method UpdateEntityCore from being called in case the updated 
+               entity and the database entity where the same reference.]]></comment>
+            </update>
+            <update date="2014-03-22" type="change">
+              <summary><![CDATA[Removed the dependency with the Enkoni.Framework.Validation-project and the Validation application block of the Microsoft Enterprise Library]]></summary>
+              <comment><![CDATA[The EntityValidator now relies on System.ComponentModel.DataAnnotations for the validation]]></comment>
+            </update>
+            <update date="2014-03-23" type="change">
+              <summary><![CDATA[Added a new Reset method to the Repository class]]></summary>
+              <comment><![CDATA[Added a new Reset method to the Repository class which can be used to revert any changes made to the repository.]]></comment>
+            </update>
+            <update date="2014-04-06" type="change">
+              <summary><![CDATA[Added a new Execute method to the Repository class]]></summary>
+              <comment><![CDATA[Added a new Execute method to the Repository class that can be used to execute custom actions that don't have to return one or more entities.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.1.0">
+          <updates>
+            <update date="2014-03-23" type="change">
+              <summary><![CDATA[Implemented the new Reset method of the Repository base class]]></summary>
+              <comment><![CDATA[The DatabaseRepository implements the new Reset method which reverts any unsaved changes to the repository.]]></comment>
+            </update>
+            <update date="2014-03-30" type="change">
+              <summary><![CDATA[Updated the reference to EntityFramework to version 6.1.0]]></summary>
+              <comment><![CDATA[The project now references EntityFramework 6.1.0 (old version was 5.0).]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="3.1.0">
+          <updates>
+            <update date="2014-03-23" type="change">
+              <summary><![CDATA[Implemented the new Reset method of the Repository base class]]></summary>
+              <comment><![CDATA[The FileRepository implements the new Reset method which reverts any unsaved changes to the repository.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.3.0" releasedate="2014-03-16">
       <projects>
         <project name="Enkoni.Framework.Validation" version="2.2.1.0">
@@ -16,8 +80,8 @@
             <update date="2014-03-16" type="addition">
               <summary><![CDATA[Added the Enkoni.Framework.DataAnnotations-project]]></summary>
               <comment><![CDATA[Added the Enkoni.Framework.DataAnnotations-project which holds extensions to the DataAnnotations subsystem of Microsoft .Net.
-              It basically is a copy of the existing Enkoni.Framework.Validation-project but without the dependency with the obsolete Validation Application 
-              Block of the Microsoft Enterprise Library.]]></comment>
+               It basically is a copy of the existing Enkoni.Framework.Validation-project but without the dependency with the obsolete Validation Application 
+               Block of the Microsoft Enterprise Library.]]></comment>
             </update>
           </updates>
         </project>
@@ -38,12 +102,12 @@
             <update date="2014-03-14" type="change">
               <summary><![CDATA[Fixed a bug in the configuration logic when used in a web application]]></summary>
               <comment><![CDATA[Bug 14: When used in a web application the EmailValidator and DutchPhoneNumberValidator throws an exception because 
-              no exe-configuration file can be found. This has been fixed.]]></comment>
+               no exe-configuration file can be found. This has been fixed.]]></comment>
             </update>
             <update date="2014-03-14" type="change">
               <summary><![CDATA[Added the 'RequireTopLevelDomain' property to the EmailValidator]]></summary>
               <comment><![CDATA[The EmailValidator class now contains a new property called 'RequireTopLevelDomain' to indicate if an e-mail address
-              must contain a top level domain in order to be valid]]></comment>
+               must contain a top level domain in order to be valid]]></comment>
             </update>
           </updates>
         </project>

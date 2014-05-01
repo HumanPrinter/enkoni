@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Enumerations.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains the enumerations that are defined in this project.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 namespace Enkoni.Framework.Validation.Validators {
   /// <summary>Defines the supported categories of phone numbers for the <see cref="DutchPhoneNumberValidator"/>.</summary>
@@ -40,7 +31,7 @@ namespace Enkoni.Framework.Validation.Validators {
 
   /// <summary>Defines the supported categories of e-mail addresses for the <see cref="EmailValidator"/>.</summary>
   public enum EmailCategory {
-    /// <summary>Match basic e-mail addresses only. Basic e-mail addresses may contain alfanumeric characters and the '-' and '_' characters.</summary>
+    /// <summary>Match basic e-mail addresses only. Basic e-mail addresses may contain alfa numeric characters and the '-' and '_' characters.</summary>
     Basic,
 
     /// <summary>Match all e-mail addresses except e-mail addresses that contain quoted strings.</summary>

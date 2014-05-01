@@ -1,17 +1,8 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ViewDialogMessage.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a default message that is used to show a dialog.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>Message for showing a View.</summary>
-  /// <typeparam name="T">The type of viewmodel that must be used by the view.</typeparam>
+  /// <typeparam name="T">The type of view model that must be used by the view.</typeparam>
   [Serializable]
   public class ViewDialogMessage<T> : Message, IViewDialogMessage where T : class/*ViewModel*/ {
     #region Constructors

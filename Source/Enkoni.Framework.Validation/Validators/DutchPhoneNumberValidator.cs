@@ -22,7 +22,7 @@ namespace Enkoni.Framework.Validation.Validators {
   /// To override the validated area codes, two approaches can be used.<br/>
   /// <h3>Code</h3>
   /// By setting the <see cref="IncludeAreaCodes"/> and/or <see cref="ExcludeAreaCodes"/> properties, the collection of valid area codes can be 
-  /// manipulated. To specify multiple area codes, seperate the area codes with a semi colon (';'). When setting the <see cref="IncludeAreaCodes"/> 
+  /// manipulated. To specify multiple area codes, separate the area codes with a semi colon (';'). When setting the <see cref="IncludeAreaCodes"/> 
   /// property, the default list of valid area codes will be ignored and only the specified area codes will be considered valid. Eg. when setting 
   /// <see cref="IncludeAreaCodes"/> to <c>"010;020;030"</c>, only phone numbers with those area codes will be considered valid.<br/>
   /// <br/>
@@ -166,11 +166,11 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <see langword="false"/>.</summary>
     public bool AllowCarrierPreselect { get; set; }
 
-    /// <summary>Gets or sets the semicolon-seperated area codes that are considered valid. This overrides the default area codes for this validator.
+    /// <summary>Gets or sets the semicolon separated area codes that are considered valid. This overrides the default area codes for this validator.
     /// </summary>
     public string IncludeAreaCodes { get; set; }
 
-    /// <summary>Gets or sets the semicolon-seperated area codes that are considered invalid.</summary>
+    /// <summary>Gets or sets the semicolon separated area codes that are considered invalid.</summary>
     public string ExcludeAreaCodes { get; set; }
 
     /// <summary>Gets the Default Message Template when the validator is non negated.</summary>

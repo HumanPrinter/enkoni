@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Messenger.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a default implementation of the IMessenger interface.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -49,7 +40,7 @@ namespace Enkoni.Framework.UI.Mvvm {
       /// <summary>Gets the owner (recipient).</summary>
       object Owner { get; }
 
-      /// <summary>Gets the token for additinal message filtering.</summary>
+      /// <summary>Gets the token for additional message filtering.</summary>
       object Token { get; }
 
       /// <summary>Gets the action called when a message is send.</summary>
@@ -68,7 +59,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <summary>Gets or sets the default instance of a messenger.</summary>
     public static IMessenger Default { get; set; }
 
-    /// <summary>Gets or sets the interval with which dereferenced recepients are removed from the cache.</summary>
+    /// <summary>Gets or sets the interval with which dereferenced recipients are removed from the cache.</summary>
     public int CleanupInterval {
       get {
         return this.cleanupInterval;
@@ -326,8 +317,8 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     #region Private static methods
     /// <summary>Collects and removes the dead reference inside a dictionary.</summary>
-    /// <param name="dictionary">The dictionary that must be analysed.</param>
-    /// <param name="key">The key that must be analysed (optional).</param>
+    /// <param name="dictionary">The dictionary that must be analyzed.</param>
+    /// <param name="key">The key that must be analyzed (optional).</param>
     private static void Cleanup(Dictionary<Type, List<IRecipient>> dictionary, Type key = null) {
       if(key == null) {
         lock(dictionary) {
@@ -383,7 +374,7 @@ namespace Enkoni.Framework.UI.Mvvm {
         get { return this.IsAlive ? this.reference.Target : null; }
       }
 
-      /// <summary>Gets the token for additinal message filtering.</summary>
+      /// <summary>Gets the token for additional message filtering.</summary>
       public object Token { get; private set; }
 
       /// <summary>Gets the action called when a message is send.</summary>

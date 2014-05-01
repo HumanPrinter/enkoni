@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Workflow.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains the generic Workflow functionality.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Threading;
 
 namespace Enkoni.Framework {
@@ -58,7 +49,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Workflow Synchronous Methods
-    /// <summary>Tries to start the workflow. It blocks untill the workflow is started.</summary>
+    /// <summary>Tries to start the workflow. It blocks until the workflow is started.</summary>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when the workflow is in the state 
     /// <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be started.</exception>
     public void Start() {
@@ -83,7 +74,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Tries to stop the workflow. It blocks untill the workflow is stopped.</summary>
+    /// <summary>Tries to stop the workflow. It blocks until the workflow is stopped.</summary>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when the workflow is in the state 
     /// <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or <see cref="WorkflowState.Continued"/>, it can be stopped.
     /// </exception>
@@ -110,7 +101,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Tries to pause the workflow. It blocks untill the workflow is paused.</summary>
+    /// <summary>Tries to pause the workflow. It blocks until the workflow is paused.</summary>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and resuming.</exception>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when the workflow is in the state 
     /// <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</exception>
@@ -142,7 +133,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Tries to continue the workflow. It blocks untill the workflow is continued.</summary>
+    /// <summary>Tries to continue the workflow. It blocks until the workflow is continued.</summary>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and continuing.</exception>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when the workflow is in the 
     /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
@@ -332,7 +323,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Private methods
-    /// <summary>Executes the <see cref="Start()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
+    /// <summary>Executes the <see cref="Start()"/> method in a separate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void StartWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
@@ -350,7 +341,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Executes the <see cref="Stop()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
+    /// <summary>Executes the <see cref="Stop()"/> method in a separate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void StopWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
@@ -368,7 +359,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Executes the <see cref="Pause()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
+    /// <summary>Executes the <see cref="Pause()"/> method in a separate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void PauseWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
@@ -386,7 +377,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Executes the <see cref="Continue()"/> method in a seperate thread. This is used to support asynchronous operations.</summary>
+    /// <summary>Executes the <see cref="Continue()"/> method in a separate thread. This is used to support asynchronous operations.</summary>
     /// <param name="asyncResult">The object that holds the status of the asynchronous operation.</param>
     private void ContinueWorkflowHelper(object asyncResult) {
       AsyncResultVoid result = asyncResult as AsyncResultVoid;

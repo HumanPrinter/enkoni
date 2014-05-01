@@ -14,11 +14,19 @@
   <xs:attribute name="version">
     <xs:simpleType>
       <xs:restriction base="xs:string">
-        <xs:pattern value="[1-9]\d*\.(0|([1-9]\d*))\.(0|([1-9]\d*))\.(0|([1-9]\d*))" />
+        <xs:pattern value="[1-9]\d*\.(0|([1-9]\d+))\.(0|([1-9]\d+))(\.(0|([1-9]\d+)))?" />
       </xs:restriction>
     </xs:simpleType>
   </xs:attribute>
 
+  <xs:attribute name="versionPostfix">
+    <xs:simpleType>
+	  <xs:restriction base="xs:string">
+		<xs:pattern value="((alpha)|(beta)|(rc))\d*" />
+	  </xs:restriction>
+	</xs:simpleType>
+  </xs:attribute>
+  
   <xs:attribute name="name">
     <xs:simpleType>
       <xs:restriction base="xs:string">
@@ -63,8 +71,9 @@
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:attribute ref="name" />
-      <xs:attribute ref="version" />
+      <xs:attribute ref="name" use="required" />
+      <xs:attribute ref="version" use="required" />
+	  <xs:attribute ref="versionPostfix" use="optional" />
     </xs:complexType>
   </xs:element>
 

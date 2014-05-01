@@ -20,17 +20,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase01_FindAll() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase01");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase01\", TestCategory.Retrieve);
       this.FindAll(sourceInfo);
     }
 
@@ -41,17 +34,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase02_FindAll_EmptySource() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase02");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase02\", TestCategory.RetrieveEmpty);
       this.FindAll_EmptySource(sourceInfo);
     }
 
@@ -62,17 +48,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase03_FindAllWithExpression() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase03");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase03\", TestCategory.Retrieve);
       this.FindAllWithExpression(sourceInfo);
     }
 
@@ -83,17 +62,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase04_FindAllWithExpression_EmptySource() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase04");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase04\", TestCategory.RetrieveEmpty);
       this.FindAllWithExpression_EmptySource(sourceInfo);
     }
 
@@ -104,17 +76,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase05_FindSingleWithExpression() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase05");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase05\", TestCategory.Retrieve);
       this.FindSingleWithExpression(sourceInfo);
     }
 
@@ -125,17 +90,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase06_FindSingleWithExpression_EmptySource() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase06");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase06\", TestCategory.RetrieveEmpty);
       this.FindSingleWithExpression_EmptySource(sourceInfo);
     }
 
@@ -146,17 +104,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase07_FindFirstWithExpression() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase07");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Retrieve));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase07\", TestCategory.Retrieve);
       this.FindFirstWithExpression(sourceInfo);
     }
 
@@ -167,17 +118,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase08_FindFirstWithExpression_EmptySource() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase08");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase08\", TestCategory.RetrieveEmpty);
       this.FindFirstWithExpression_EmptySource(sourceInfo);
     }
 
@@ -188,17 +132,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase09_RetrieveLessThenAvailable() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase09");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase09\", TestCategory.Sorting);
       this.RetrieveLessThenAvailable(sourceInfo);
     }
 
@@ -209,17 +146,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase10_RetrieveExactlyAvailable() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase10");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase10\", TestCategory.Sorting);
       this.RetrieveExactlyAvailable(sourceInfo);
     }
 
@@ -230,17 +160,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase11_RetrieveExactlyAvailable_EmptySource() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase11");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase11\", TestCategory.RetrieveEmpty);
       this.RetrieveExactlyAvailable_EmptySource(sourceInfo);
     }
 
@@ -251,17 +174,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase12_RetrieveMoreThenAvailable() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase12");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase12\", TestCategory.Sorting);
       this.RetrieveMoreThenAvailable(sourceInfo);
     }
 
@@ -272,17 +188,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase13_RetrieveMoreThenAvailable_EmptySource() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase13");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase13\", TestCategory.RetrieveEmpty);
       this.RetrieveMoreThenAvailable_EmptySource(sourceInfo);
     }
     #endregion
@@ -295,17 +204,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase14_OrderBy() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase14");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Sorting));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase14\", TestCategory.Sorting);
       this.OrderBy(sourceInfo);
     }
 
@@ -316,17 +218,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase15_OrderBy_EmptySource() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase15");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.RetrieveEmpty));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase15\", TestCategory.RetrieveEmpty);
       this.OrderBy_EmptySource(sourceInfo);
     }
     #endregion
@@ -339,17 +234,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase16_Add() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase16");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase16\", TestCategory.Storage);
       this.Add(sourceInfo);
     }
 
@@ -360,17 +248,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase17_Update() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase17");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase17\", TestCategory.Storage);
       this.Update(sourceInfo);
     }
 
@@ -381,17 +262,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase18_Delete() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase18");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase18\", TestCategory.Storage);
       this.Delete(sourceInfo);
     }
 
@@ -402,17 +276,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase19_AddMultiple_NormalUse() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase19");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase19\", TestCategory.Storage);
       this.AddMultiple_NormalUse(sourceInfo);
     }
 
@@ -423,17 +290,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase20_DeleteMultiple_NormalUse() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase20");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase20\", TestCategory.Storage);
       this.DeleteMultiple_NormalUse(sourceInfo);
     }
 
@@ -444,17 +304,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase21_DeleteMultiple_Exceptions() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase21");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase21\", TestCategory.Storage);
       this.DeleteMultiple_Exceptions(sourceInfo);
     }
 
@@ -465,17 +318,10 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase22_UpdateMultiple_NormalUse() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase22");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase22\", TestCategory.Storage);
       this.UpdateMultiple_NormalUse(sourceInfo);
     }
 
@@ -486,18 +332,50 @@ namespace Enkoni.Framework.Entities.Tests {
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
     public override void TestCase23_UpdateMultiple_Exceptions() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase23");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase23\", TestCategory.Storage);
       this.UpdateMultiple_Exceptions(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase24_Add_Reset() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase24\", TestCategory.Storage);
+      this.Add_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase25_Update_Reset() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase25\", TestCategory.Storage);
+      this.Update_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase26_Delete_Reset() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase26\", TestCategory.Storage);
+      this.Delete_Reset(sourceInfo);
     }
     #endregion
 
@@ -505,85 +383,86 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase24_AddUpdate() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase24");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase27_AddUpdate() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase27\", TestCategory.Storage);
       this.AddUpdate(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase25_AddUpdateDelete() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase25");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase28_AddUpdateDelete() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase28\", TestCategory.Storage);
       this.AddUpdateDelete(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase26_UpdateDelete() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase26");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase29_UpdateDelete() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase29\", TestCategory.Storage);
       this.UpdateDelete(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase30")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public override void TestCase27_DeleteAdd() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase27");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase30_DeleteAdd() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase30\", TestCategory.Storage);
       this.DeleteAdd(sourceInfo);
+    }
+    #endregion
+
+    #region Execute test-case contracts
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase31")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public override void TestCase31_ExecuteDefaultSpecification() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase31\", TestCategory.Storage);
+      this.ExecuteDefaultSpecification(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase32")]
+    [DeploymentItem(@"amd64\", @"amd64\")]
+    [DeploymentItem(@"x86\", @"x86\")]
+    [DeploymentItem("System.Data.SqlServerCe.dll")]
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    [ExpectedException(typeof(NotSupportedException))]
+    public override void TestCase32_ExecuteBusinessRule() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase32\", TestCategory.Storage);
+      this.ExecuteBusinessRule(sourceInfo);
     }
     #endregion
 
@@ -591,21 +470,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves a single result using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase33")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public void TestCase28_ExecuteBusinessRuleSingleResult() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase28");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public void TestCase33_ExecuteBusinessRuleSingleResult() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase33\", TestCategory.Storage);
       Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
 
       /* Add some ectra records to te database */
@@ -622,7 +494,7 @@ namespace Enkoni.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* Create the specification */
-      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase28_CustomQuery", "Hit");
+      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase31_CustomQuery", "Hit");
       Assert.IsNotNull(selectSpec);
 
       /* Execute the query */
@@ -635,21 +507,14 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves multiple results using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase34")]
     [DeploymentItem(@"amd64\", @"amd64\")]
     [DeploymentItem(@"x86\", @"x86\")]
     [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("System.Data.SqlServerCe.Entity.dll")]
-    public void TestCase29_ExecuteBusinessRuleMultipleResults() {
-      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-      databaseBasePath = Path.Combine(databaseBasePath, @"DatabaseRepositoryTest\TestCase29");
-      Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0", databaseBasePath, string.Empty);
-      Database.SetInitializer(new DatabaseRepositoryInitializer(TestCategory.Storage));
-
-      DbContext context = new DatabaseRepositoryTestContext();
-      context.Database.Initialize(false);
-
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+    [DeploymentItem("EntityFramework.SqlServer.dll")]
+    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    public void TestCase34_ExecuteBusinessRuleMultipleResults() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase34\", TestCategory.Storage);
       Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
 
       /* Add some ectra records to te database */
@@ -666,7 +531,7 @@ namespace Enkoni.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* Create the specification */
-      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase29_CustomQuery", 3, 2);
+      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase32_CustomQuery", 3, 2);
       Assert.IsNotNull(selectSpec);
 
       /* Execute the query */
@@ -686,8 +551,37 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <returns>The created repository.</returns>
     protected override Repository<T> CreateRepository<T>(DataSourceInfo sourceInfo) {
       /* Create a new DataSourceInfo, to make sure that the repository uses a fresh context and connection to the database */
-      DataSourceInfo newSourceInfo = new DatabaseSourceInfo(new DatabaseRepositoryTestContext(), true);
+      bool cloneDataSourceItems = sourceInfo.CloneDataSourceItems;
+      DbContext context = null;
+      DatabaseSourceInfo databaseSourceInfo = sourceInfo as DatabaseSourceInfo;
+      if(databaseSourceInfo != null && databaseSourceInfo.IsDbContextSpecified()) {
+        context = new DatabaseRepositoryTestContext(databaseSourceInfo.DbContext.Database.Connection.ConnectionString);
+      }
+      else {
+        context = new DatabaseRepositoryTestContext();
+      }
+
+      DataSourceInfo newSourceInfo = new DatabaseSourceInfo(context, cloneDataSourceItems);
       return new DatabaseRepository<T>(newSourceInfo);
+    }
+    #endregion
+
+    #region Private helper methods
+    /// <summary>Constructs a new instance of the <see cref="DataSourceInfo"/> class that can be used in a test case.</summary>
+    /// <param name="databaseSubPath">The sub path relative to the execution path where the database will be created.</param>
+    /// <param name="testCategory">The category of the test.</param>
+    /// <returns>The constructed source info.</returns>
+    private static DataSourceInfo ConstructDataSourceInfo(string databaseSubPath, TestCategory testCategory) {
+      string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+      databaseBasePath = Path.Combine(databaseBasePath, databaseSubPath, "Enkoni.Framework.Entities.Tests.DatabaseRepositoryTestContext.sdf");
+
+      Database.SetInitializer(new DatabaseRepositoryInitializer(testCategory));
+
+      DbContext context = new DatabaseRepositoryTestContext("Data Source=\"" + databaseBasePath + "\"");
+      context.Database.Initialize(true);
+
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      return sourceInfo;
     }
     #endregion
   }

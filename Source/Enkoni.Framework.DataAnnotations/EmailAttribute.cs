@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
+
 using Enkoni.Framework.DataAnnotations.Configuration;
 using Enkoni.Framework.Validation.RegularExpressions;
 
@@ -15,10 +16,10 @@ namespace Enkoni.Framework.DataAnnotations {
   /// <remarks>This validator can be configured through code or through the configuration file. By default all domains and /or IP addresses are considered valid
   /// as long as their syntax is correct (note that IP addresses will only be considered valid if <see cref="AllowIPAddresses"/> is set to <see langword="true"/>). 
   /// <br/>
-  /// To specificly include or exclude domains or IP addresses, two approaches can be used.<br/>
+  /// To specifically include or exclude domains or IP addresses, two approaches can be used.<br/>
   /// <h3>Code</h3>
   /// By setting the <see cref="IncludeDomains"/> and/or <see cref="ExcludeDomains"/> properties, the white and black list of valid domains or IP addresses can be 
-  /// manipulated. To specify multiple domains, seperate the domains with a semi colon (';'). When setting both the <see cref="IncludeDomains"/>  and the
+  /// manipulated. To specify multiple domains, separate the domains with a semi colon (';'). When setting both the <see cref="IncludeDomains"/>  and the
   /// <see cref="ExcludeDomains"/> properties, the values in <see cref="ExcludeDomains"/> takes precedence over the values in <see cref="IncludeDomains"/>.<br/>
   /// <br/>
   /// <h3>Configuration</h3>
@@ -28,7 +29,7 @@ namespace Enkoni.Framework.DataAnnotations {
   /// <![CDATA[
   /// <configuration>
   ///   <configSections>
-  ///     <section name="Enkoni.DataAnnotations" type="Enkoni.Framework.DataAnnotations.Configuration.ValidatorsSection, Enkoni.Framework.DataAnnotations"/>
+  ///     <section name="Enkoni.DataAnnotations" type="Enkoni.Framework.DataAnnotations.Configuration.ValidationSection, Enkoni.Framework.DataAnnotations"/>
   ///   </configSections>
   /// </configuration>
   /// ]]>
@@ -145,10 +146,10 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <summary>Gets or sets a value indicating whether the domain part of the e-mail address must contain a top level domain. Defaults to <see langword="false"/>.</summary>
     public bool RequireTopLevelDomain { get; set; }
 
-    /// <summary>Gets or sets the semicolon-seperated domains that are white listed.</summary>
+    /// <summary>Gets or sets the semicolon separated domains that are white listed.</summary>
     public string IncludeDomains { get; set; }
 
-    /// <summary>Gets or sets the semicolon-seperated domains that are black listed.</summary>
+    /// <summary>Gets or sets the semicolon separated domains that are black listed.</summary>
     public string ExcludeDomains { get; set; }
 
     /// <summary>Gets the values that were set through the configuration.</summary>
@@ -165,7 +166,8 @@ namespace Enkoni.Framework.DataAnnotations {
     public override bool IsValid(object value) {
       string valueToValidate = value as string;
       if(string.IsNullOrEmpty(valueToValidate)) {
-        return false;
+        /* This may seem strange, but in order to reject empty values the RequiredAttribute should be used */
+        return true;
       }
 
       bool isValid = false;
@@ -197,8 +199,8 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <param name="allowComments">Indicates whether comments are allowed in the e-mail address.</param>
     /// <param name="allowIPAddresses">Indicates whether IP addresses are allowed in the e-mail address.</param>
     /// <param name="requireTopLevelDomain">Indicates whether a top level domain is required.</param>
-    /// <param name="includeDomains">A semicolon seperated list of domains that are white listed.</param>
-    /// <param name="excludeDomains">A semicolon seperated list of domains that are black listed.</param>
+    /// <param name="includeDomains">A semicolon separated list of domains that are white listed.</param>
+    /// <param name="excludeDomains">A semicolon separated list of domains that are black listed.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateMailAddress(string input, Regex localPartRegex, bool allowComments, bool allowIPAddresses, bool requireTopLevelDomain, string includeDomains, string excludeDomains) {
       string[] parts = input.Split('@');
@@ -238,8 +240,8 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <param name="allowComments">Indicates whether comments are allowed in the domain part.</param>
     /// <param name="allowIPAddresses">Indicates whether an IP address is allowed in the domain part.</param>
     /// <param name="requireTopLevelDomain">Indicates if a top level domain is required.</param>
-    /// <param name="includeDomains">A semicolon seperated list of domains that are white listed.</param>
-    /// <param name="excludeDomains">A semicolon seperated list of domains that are black listed.</param>
+    /// <param name="includeDomains">A semicolon separated list of domains that are white listed.</param>
+    /// <param name="excludeDomains">A semicolon separated list of domains that are black listed.</param>
     /// <returns><see langword="true"/> if the domain part is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateDomainPart(string domainPart, bool allowComments, bool allowIPAddresses, bool requireTopLevelDomain, string includeDomains, string excludeDomains) {
       string fullDomain;

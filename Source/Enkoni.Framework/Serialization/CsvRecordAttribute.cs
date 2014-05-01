@@ -15,20 +15,20 @@ namespace Enkoni.Framework.Serialization {
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class CsvRecordAttribute : Attribute {
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="CsvRecordAttribute"/> class using a default seperator.</summary>
+    /// <summary>Initializes a new instance of the <see cref="CsvRecordAttribute"/> class using a default separator.</summary>
     public CsvRecordAttribute()
       : this(',') {
     }
 
     /// <summary>Initializes a new instance of the <see cref="CsvRecordAttribute"/> class.</summary>
-    /// <param name="separator">The separator that is used to seperate the fields.</param>
+    /// <param name="separator">The separator that is used to separate the fields.</param>
     public CsvRecordAttribute(char separator) {
       this.Separator = separator;
     }
     #endregion
 
     #region Properties
-    /// <summary>Gets the seperator character. Defaults to ','.</summary>
+    /// <summary>Gets the separator character. Defaults to ','.</summary>
     public char Separator { get; private set; }
 
     /// <summary>Gets or sets a value indicating whether the first line in the file must be ignored when deserializing the object.</summary>

@@ -1,19 +1,10 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Specification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the standard Specification class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
   /// <summary>This class contains static members that would normally be part of the <see cref="Specification{T}"/> class, but since that class is 
-  /// generic the static members are placed in this non-generic counterpart to avoid possible confussion about the use of the methods.</summary>
+  /// generic the static members are placed in this non-generic counterpart to avoid possible confusion about the use of the methods.</summary>
   public static class Specification {
     #region Public static method
     /// <summary>Creates a specification that will return all available objects.</summary>
@@ -65,11 +56,11 @@ namespace Enkoni.Framework {
       return new NotSpecification<T>(specification);
     }
 
-    /// <summary>Creates a specification that holds information about a businessrule that must be executed.</summary>
+    /// <summary>Creates a specification that holds information about a business rule that must be executed.</summary>
     /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
-    /// <param name="ruleArguments">The arguments that must be used by the businessrule.</param>
-    /// <returns>A specification that holds information about a businessrule.</returns>
+    /// <param name="ruleArguments">The arguments that must be used by the business rule.</param>
+    /// <returns>A specification that holds information about a business rule.</returns>
     public static ISpecification<T> BusinessRule<T>(string ruleName, params object[] ruleArguments) {
       return new BusinessRuleSpecification<T>(ruleName, ruleArguments);
     }
@@ -82,13 +73,13 @@ namespace Enkoni.Framework {
       Justification = "Since the static class is merely a container for the static members of the non-static class, they can be in the same file")]
   public abstract class Specification<T> : ISpecification<T> {
     #region Private event-delegates
-    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one handler.</summary>
+    /// <summary>The delegate that holds the references to the various event handlers. Normally, there will be at most one handler.</summary>
     private EventHandler<EventArgs<int>> maxResultsUpdated;
 
     /// <summary>Indicates if there is a change-event pending.</summary>
     private bool maxResultsChangePending;
 
-    /// <summary>The delegate that holds the references to the various eventhandlers. Normally, there will be at most one handler.</summary>
+    /// <summary>The delegate that holds the references to the various event handlers. Normally, there will be at most one handler.</summary>
     private EventHandler<SortSpecificationsEventArgs<T>> sortRulesUpdated;
 
     /// <summary>Indicates if there is a change-event pending.</summary>
@@ -118,7 +109,7 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Occurs when the sortrules have been updated.</summary>
+    /// <summary>Occurs when the sort rules have been updated.</summary>
     public event EventHandler<SortSpecificationsEventArgs<T>> SortRulesUpdated {
       add {
         this.sortRulesUpdated += value;
@@ -156,18 +147,18 @@ namespace Enkoni.Framework {
       }
     }
 
-    /// <summary>Specifies the way the sequence must be sorted. It used a default sortorder of ascending.</summary>
+    /// <summary>Specifies the way the sequence must be sorted. It used a default sort order of ascending.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderBy<TKey>(Expression<Func<T, TKey>> keySelector) {
       return this.OrderBy(keySelector, SortOrder.Ascending);
     }
 
-    /// <summary>Specifies the way the sequence must be sorted. It used a default sortorder of descending.</summary>
+    /// <summary>Specifies the way the sequence must be sorted. It used a default sort order of descending.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector) {
       return this.OrderBy(keySelector, SortOrder.Descending);
     }
@@ -176,7 +167,7 @@ namespace Enkoni.Framework {
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>
     /// <param name="keySelector">The expression that points to the field that must be used to perform the sorting.</param>
     /// <param name="direction">The direction that the ordering must take place in.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderBy<TKey>(Expression<Func<T, TKey>> keySelector, SortOrder direction) {
       SortSpecification<T, TKey> spec = new SortSpecification<T, TKey>(keySelector, direction);
       SortSpecifications<T> sortSpecifications = new SortSpecifications<T>();
@@ -186,7 +177,7 @@ namespace Enkoni.Framework {
 
     /// <summary>Specifies the way the sequence must be sorted.</summary>
     /// <param name="sortSpecifications">The specifications that define the way the sequence must be sorted.</param>
-    /// <returns>The specification with the sortingrules.</returns>
+    /// <returns>The specification with the sorting rules.</returns>
     public ISpecification<T> OrderBy(SortSpecifications<T> sortSpecifications) {
       if(this.sortRulesUpdated != null) {
         this.sortRulesUpdated(this, new SortSpecificationsEventArgs<T>(sortSpecifications));
@@ -241,7 +232,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Protected eventhandlers
-    /// <summary>Handles the occurence of a changed maximum for the number of records that must be retrieved.</summary>
+    /// <summary>Handles the occurrence of a changed maximum for the number of records that must be retrieved.</summary>
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleMaximumResultsUpdated(object sender, EventArgs<int> args) {
@@ -252,7 +243,7 @@ namespace Enkoni.Framework {
       this.SetMaximumResults(args.EventValue);
     }
 
-    /// <summary>Handles the occurence of a changed set of sorting rules.</summary>
+    /// <summary>Handles the occurrence of a changed set of sorting rules.</summary>
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleOrderByRulesUpdated(object sender, SortSpecificationsEventArgs<T> args) {

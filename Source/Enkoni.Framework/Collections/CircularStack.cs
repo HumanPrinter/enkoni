@@ -1,21 +1,11 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CircularStack.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a stack that is ciculair.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
 namespace Enkoni.Framework.Collections {
-  /// <summary>Represents a fixed size last-in-first-out (LIFO) collection of instances of the same arbitrary type that uses a circulair collection
-  /// as internal storage.</summary>
+  /// <summary>Represents a fixed size last-in-first-out (LIFO) collection of instances of the same arbitrary type that uses a circular collection as internal storage.</summary>
   /// <typeparam name="T">Specifies the type of elements in the stack.</typeparam>
   [Serializable]
   [DebuggerDisplay("Count = {Count}")]
@@ -438,7 +428,7 @@ namespace Enkoni.Framework.Collections {
       /// <summary>The collection that is enumerated.</summary>
       private CircularStack<T> enumeratorSource;
 
-      /// <summary>The index at which the enumerator is currenly looking.</summary>
+      /// <summary>The index at which the enumerator is currently looking.</summary>
       private int enumeratorIndex;
 
       /// <summary>The version of the stack at the time the enumerator was created.</summary>

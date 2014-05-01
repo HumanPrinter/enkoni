@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Microsoft.Practices.EnterpriseLibrary.Validation;
-
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>This specific databaserepository is used by the testcases to perform tests that cannot be performed on the default 
   /// <see cref="DatabaseRepository{TEntity}"/> class.</summary>
@@ -66,13 +64,6 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <returns>The found entities or an empty list if there were no results.</returns>
     protected override IList<TestDummy> FindEntitiesCore(ISpecification<TestDummy> specification) {
       return this.repository.FindAll(specification).ToList();
-    }
-
-    /// <summary>Validates the entity.</summary>
-    /// <param name="entity">The entity that must be validated.</param>
-    /// <returns>The result of the validation.</returns>
-    protected override ValidationResults ValidateEntity(TestDummy entity) {
-      return this.repository.Validator.PerformShallowValidation(entity);
     }
     #endregion
   }

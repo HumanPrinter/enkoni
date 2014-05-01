@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileSourceInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a class that contains information about a filebased datasource that is used by the FileRepository.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -19,10 +10,10 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Defines the key that is used to store and retrieve the FileInfo that points to the desired file.</summary>
     public const string SourceFileInfoKey = "SourceFileInfo";
 
-    /// <summary>Defines the key that is used to store and retrieve the boolean that indicates wheter or not to monitor the sourcefile.</summary>
+    /// <summary>Defines the key that is used to store and retrieve the boolean that indicates whether or not to monitor the source file.</summary>
     public const string MonitorSourceFileKey = "MonitorSourceFile";
 
-    /// <summary>Defines the key that is used to store and retrieve the numeric value that is used to determine if a change in the sourcefile is 
+    /// <summary>Defines the key that is used to store and retrieve the numeric value that is used to determine if a change in the source file is 
     /// finished.</summary>
     public const string ChangeCompleteTimeoutKey = "ChangeCompleteTimeout";
 
@@ -50,41 +41,41 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using default values for the properties.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
     public FileSourceInfo(FileInfo sourceFileInfo)
       : this(sourceFileInfo, DefaultMonitorSourceFile, FileSourceInfo.DefaultChangeCompleteTimeout, FileSourceInfo.DefaultSourceFileEncoding,
       DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using default values for the properties.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, bool cloneDataSourceItems)
       : this(sourceFileInfo, DefaultMonitorSourceFile, FileSourceInfo.DefaultChangeCompleteTimeout, FileSourceInfo.DefaultSourceFileEncoding,
       cloneDataSourceItems) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using default values for the properties.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
-    /// <param name="sourceFileEncoding">The encoding of the sourcefile.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
+    /// <param name="sourceFileEncoding">The encoding of the source file.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, Encoding sourceFileEncoding)
       : this(sourceFileInfo, DefaultMonitorSourceFile, FileSourceInfo.DefaultChangeCompleteTimeout, sourceFileEncoding,
       DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using default values for the properties.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
-    /// <param name="sourceFileEncoding">The encoding of the sourcefile.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
+    /// <param name="sourceFileEncoding">The encoding of the source file.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, Encoding sourceFileEncoding, bool cloneDataSourceItems)
       : this(sourceFileInfo, DefaultMonitorSourceFile, FileSourceInfo.DefaultChangeCompleteTimeout, sourceFileEncoding, cloneDataSourceItems) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
-    /// <param name="monitorSourceFile">Indicates if the monitor that watches the sourcefile must be started.</param>
-    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
+    /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
+    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a file change has completed or not.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, int changeCompleteTimeout)
       : this(sourceFileInfo, monitorSourceFile, changeCompleteTimeout, FileSourceInfo.DefaultSourceFileEncoding,
       DataSourceInfo.DefaultCloneDataSourceItems) {
@@ -92,31 +83,31 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
-    /// <param name="monitorSourceFile">Indicates if the monitor that watches the sourcefile must be started.</param>
-    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
+    /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
+    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a file change has completed or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, int changeCompleteTimeout, bool cloneDataSourceItems)
       : this(sourceFileInfo, monitorSourceFile, changeCompleteTimeout, FileSourceInfo.DefaultSourceFileEncoding, cloneDataSourceItems) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
-    /// <param name="monitorSourceFile">Indicates if the monitor that watches the sourcefile must be started.</param>
-    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.</param>
-    /// <param name="sourceFileEncoding">The encoding of the sourcefile.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
+    /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
+    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a file change has completed or not.</param>
+    /// <param name="sourceFileEncoding">The encoding of the source file.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, int changeCompleteTimeout, Encoding sourceFileEncoding)
       : this(sourceFileInfo, monitorSourceFile, changeCompleteTimeout, sourceFileEncoding, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
-    /// <param name="sourceFileInfo">The file information about the file that is used as datasource.</param>
-    /// <param name="monitorSourceFile">Indicates if the monitor that watches the sourcefile must be started.</param>
-    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a filechange has completed or not.</param>
-    /// <param name="sourceFileEncoding">The encoding of the sourcefile.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
+    /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
+    /// <param name="changeCompleteTimeout">The timeout that is used to determine if a file change has completed or not.</param>
+    /// <param name="sourceFileEncoding">The encoding of the source file.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public FileSourceInfo(FileInfo sourceFileInfo, bool monitorSourceFile, int changeCompleteTimeout, Encoding sourceFileEncoding,
       bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
@@ -155,25 +146,25 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public properties
-    /// <summary>Gets or sets the FileInfo that points to the file that is used as datasource.</summary>
+    /// <summary>Gets or sets the FileInfo that points to the file that is used as data source.</summary>
     public FileInfo SourceFileInfo {
       get { return (FileInfo)this[SourceFileInfoKey]; }
       set { this[SourceFileInfoKey] = value; }
     }
 
-    /// <summary>Gets or sets a value indicating whether the sourcefile must be monitored for any changes.</summary>
+    /// <summary>Gets or sets a value indicating whether the source file must be monitored for any changes.</summary>
     public bool MonitorSourceFile {
       get { return (bool)this[MonitorSourceFileKey]; }
       set { this[MonitorSourceFileKey] = value; }
     }
 
-    /// <summary>Gets or sets the timeout value that is used to determine if a filechange has been completed.</summary>
+    /// <summary>Gets or sets the timeout value that is used to determine if a file change has been completed.</summary>
     public int ChangeCompleteTimeout {
       get { return (int)this[ChangeCompleteTimeoutKey]; }
       set { this[ChangeCompleteTimeoutKey] = value; }
     }
 
-    /// <summary>Gets or sets the Encoding of the sourcefile.</summary>
+    /// <summary>Gets or sets the Encoding of the source file.</summary>
     public Encoding SourceFileEncoding {
       get { return (Encoding)this[SourceFileEncodingKey]; }
       set { this[SourceFileEncodingKey] = value; }
@@ -182,15 +173,15 @@ namespace Enkoni.Framework.Entities {
 
     #region Public static methods
     /// <summary>Determines if the source FileInfo is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the FileInfo is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsSourceFileInfoSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(SourceFileInfoKey);
     }
 
-    /// <summary>Selects the source FileInfo from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The FileInfo that is stored in the datasource information or <see langword="null"/> if the FileInfo could not be found.</returns>
+    /// <summary>Selects the source FileInfo from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The FileInfo that is stored in the data source information or <see langword="null"/> if the FileInfo could not be found.</returns>
     public static FileInfo SelectSourceFileInfo(DataSourceInfo dataSourceInfo) {
       if(IsSourceFileInfoSpecified(dataSourceInfo)) {
         return dataSourceInfo[SourceFileInfoKey] as FileInfo;
@@ -201,15 +192,15 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Determines if the monitor-flag is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsMonitorSourceFileSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(MonitorSourceFileKey);
     }
 
-    /// <summary>Selects the monitor-flag from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The monitor-flag that is stored in the datasource information or <see langword="true"/> if the flag could not be found.</returns>
+    /// <summary>Selects the monitor-flag from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The monitor-flag that is stored in the data source information or <see langword="true"/> if the flag could not be found.</returns>
     public static bool SelectMonitorSourceFile(DataSourceInfo dataSourceInfo) {
       if(IsMonitorSourceFileSpecified(dataSourceInfo)) {
         return (bool)dataSourceInfo[MonitorSourceFileKey];
@@ -219,16 +210,16 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Determines if the changecomplete timeout is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <summary>Determines if the change complete timeout is specified in the source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsChangeCompleteTimeoutSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(ChangeCompleteTimeoutKey);
     }
 
-    /// <summary>Selects the changecomplete timeout from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or the default value if the flag could not be found.</returns>
+    /// <summary>Selects the change complete timeout from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The value that is stored in the data source information or the default value if the flag could not be found.</returns>
     public static int SelectChangeCompleteTimeout(DataSourceInfo dataSourceInfo) {
       if(IsChangeCompleteTimeoutSpecified(dataSourceInfo)) {
         return (int)dataSourceInfo[ChangeCompleteTimeoutKey];
@@ -238,16 +229,16 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Determines if the sourcefile's encoding is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <summary>Determines if the source file's encoding is specified in the source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsSourceFileEncodingSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(SourceFileEncodingKey);
     }
 
-    /// <summary>Selects the sourcefile's encoding from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
+    /// <summary>Selects the source file's encoding from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The value that is stored in the data source information or <see langword="null"/> if the value could not be found.</returns>
     public static Encoding SelectSourceFileEncoding(DataSourceInfo dataSourceInfo) {
       if(IsSourceFileEncodingSpecified(dataSourceInfo)) {
         return dataSourceInfo[SourceFileEncodingKey] as Encoding;
@@ -271,13 +262,13 @@ namespace Enkoni.Framework.Entities {
       return this.IsValueSpecified(MonitorSourceFileKey);
     }
 
-    /// <summary>Determines if the changecomplete timeout is specified in the source information.</summary>
+    /// <summary>Determines if the change complete timeout is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public bool IsChangeCompleteTimeoutSpecified() {
       return this.IsValueSpecified(ChangeCompleteTimeoutKey);
     }
 
-    /// <summary>Determines if the sourcefile's encoding is specified in the source information.</summary>
+    /// <summary>Determines if the source file's encoding is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public bool IsSourceFileEncodingSpecified() {
       return this.IsValueSpecified(SourceFileEncodingKey);

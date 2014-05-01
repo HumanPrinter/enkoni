@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="IViewDialogMessage.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines an interface that can be used to show a dialog using a specific viewmodel.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>Interface to access the generic <see cref="ViewDialogMessage{T}"/> class in a non generic way.</summary>

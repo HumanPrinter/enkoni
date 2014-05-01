@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="KeyEventToCommand.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a command that can be used with the MVVM pattern to bind key events to commands.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
@@ -45,7 +36,7 @@ namespace Enkoni.Framework.UI.Mvvm {
       }
     }
 
-    /// <summary>Gets or sets a value indicating whether the <see cref="System.Windows.RoutedEventArgs.Handled"/> property must set to <see langword="true"/> after exection 
+    /// <summary>Gets or sets a value indicating whether the <see cref="System.Windows.RoutedEventArgs.Handled"/> property must set to <see langword="true"/> after execution 
     /// of the command.</summary>
     public bool MarkEventAsHandled { get; set; }
     #endregion

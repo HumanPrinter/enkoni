@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConfigurationException.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a specific exceptiontype that can be used when an configuration-related exception occurs.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
@@ -21,21 +12,21 @@ namespace Enkoni.Framework {
       : base() {
     }
 
-    /// <summary> Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified errormessage.</summary>
+    /// <summary> Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified error message.</summary>
     /// <param name="message">The message that describes the error.</param>
     public ConfigurationException(string message)
       : base(message) {
     }
 
-    /// <summary> Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified errormessage.</summary>
-    /// <param name="configurationParameter">The name of the configurationparameter that causes the problem.</param>
+    /// <summary> Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified error message.</summary>
+    /// <param name="configurationParameter">The name of the configuration parameter that causes the problem.</param>
     /// <param name="message">The message that describes the error.</param>
     public ConfigurationException(string configurationParameter, string message)
       : base(message) {
       this.ConfigurationParameter = configurationParameter;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified errormessage and a reference to the 
+    /// <summary>Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified error message and a reference to the 
     /// inner exception that is the cause of this exception.</summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a <see langword="null"/> reference if no inner 
@@ -44,9 +35,9 @@ namespace Enkoni.Framework {
       : base(message, innerException) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified errormessage and a reference to the 
+    /// <summary>Initializes a new instance of the <see cref="ConfigurationException"/> class with a specified error message and a reference to the 
     /// inner exception that is the cause of this exception.</summary>
-    /// <param name="configurationParameter">The name of the configurationparameter that causes the problem.</param>
+    /// <param name="configurationParameter">The name of the configuration parameter that causes the problem.</param>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="innerException">The exception that is the cause of the current exception, or a <see langword="null"/> reference if no inner 
     /// exception is specified.</param>
@@ -71,7 +62,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Properties
-    /// <summary>Gets the name of the configurationparameter that caused the problem.</summary>
+    /// <summary>Gets the name of the configuration parameter that caused the problem.</summary>
     public string ConfigurationParameter { get; private set; }
     #endregion
 

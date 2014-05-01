@@ -1,19 +1,10 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISpecificationVisitor.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the basic specification-visitor API.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
   /// <summary>This interface describes the public API of a visitor class that can be used to visit a specification using the visitor Design Pattern.
   /// </summary>
-  /// <typeparam name="T">The type of object that is ultimatilly selected using the specification.</typeparam>
+  /// <typeparam name="T">The type of object that is ultimately selected using the specification.</typeparam>
   public interface ISpecificationVisitor<T> {
     /// <summary>Creates a lambda-expression using the specified expression. Typically, this method simply returns the parameter.</summary>
     /// <param name="expression">The expression that was originally passed to the specification.</param>
@@ -25,7 +16,7 @@ namespace Enkoni.Framework {
     /// <returns>The created expression.</returns>
     Expression<Func<T, bool>> CreateNotExpression(ISpecification<T> specification);
 
-    /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+    /// <summary>Creates a LIKE-expression using the specified field and search pattern.</summary>
     /// <param name="field">The field of type <c>T</c> that must match the pattern.</param>
     /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
     /// <returns>The created expression.</returns>

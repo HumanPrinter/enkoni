@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Stopwatch.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a class that adds support for lap time recording to the default .Net stopwatch.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -78,13 +69,13 @@ namespace Enkoni.Framework.Timers {
 
     /// <summary>Resumes the stopwatch.</summary>
     /// <remarks><see cref="Resume()"/> and <see cref="Start()"/> provide the same functionality. The <see cref="Resume()"/> method has been added to 
-    /// make working with the <see cref="Stopwatch"/> class more intuïtive.</remarks>
+    /// make working with the <see cref="Stopwatch"/> class more intuitive.</remarks>
     public void Resume() {
       this.internalStopwatch.Start();
       this.state = WorkflowState.Started;
     }
 
-    /// <summary>Resets the stopwatch and clears the laptimes.</summary>
+    /// <summary>Resets the stopwatch and clears the lap times.</summary>
     public void Reset() {
       this.internalStopwatch.Reset();
       this.lapTimes.Clear();

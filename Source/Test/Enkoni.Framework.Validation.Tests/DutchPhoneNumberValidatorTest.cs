@@ -29,9 +29,9 @@ namespace Enkoni.Framework.Validation.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase01")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase01\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "RegularPhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase01_Regular() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Regular")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Regular\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "RegularPhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Regular() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = true, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool containsCarrierPreselect = Convert.ToBoolean(this.TestContext.DataRow["ContainsCarrierPreselect"]);
@@ -46,7 +46,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase02_Regular_IncludeAreaCodes() {
+    public void DutchPhoneNumberValidator_Regular_IncludeAreaCodes() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = true, IncludeAreaCodes = "012;013" };
       string input = "+31122151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -63,7 +63,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase03_Regular_ExcludeAreaCodes() {
+    public void DutchPhoneNumberValidator_Regular_ExcludeAreaCodes() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = true, ExcludeAreaCodes = "058;020", IncludeAreaCodes = null };
       string input = "+31502151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -86,7 +86,7 @@ namespace Enkoni.Framework.Validation.Tests {
     [TestMethod]
     [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase04")]
     [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase04\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "RegularPhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase04_Regular_NoCountryCode() {
+    public void DutchPhoneNumberValidator_Regular_NoCountryCode() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = false, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool containsCarrierPreselect = Convert.ToBoolean(this.TestContext.DataRow["ContainsCarrierPreselect"]);
@@ -101,7 +101,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase05_Regular_NoCountryCode_IncludeAreaCodes() {
+    public void DutchPhoneNumberValidator_Regular_NoCountryCode_IncludeAreaCodes() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, IncludeAreaCodes = "012;013", AllowCountryCallingCode = false };
       string input = "+31122151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -122,7 +122,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase06_Regular_NoCountryCode_ExcludeAreaCodes() {
+    public void DutchPhoneNumberValidator_Regular_NoCountryCode_ExcludeAreaCodes() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, ExcludeAreaCodes = "058;020", AllowCountryCallingCode = false, IncludeAreaCodes = null };
       string input = "+31502151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -143,9 +143,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase07")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase07\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "RegularPhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase07_Regular_WithCarrierPreselect() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Regular_WithCarrierPreselect")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Regular_WithCarrierPreselect\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "RegularPhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Regular_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = true, AllowCarrierPreselect = true, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]);
@@ -159,7 +159,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase08_Regular_IncludeAreaCodes_WithCarrierPreselect() {
+    public void DutchPhoneNumberValidator_Regular_IncludeAreaCodes_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = true, AllowCarrierPreselect = true, IncludeAreaCodes = "012;013" };
       string input = "+31122151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -176,7 +176,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase09_Regular_ExcludeAreaCodes_WithCarrierPreselect() {
+    public void DutchPhoneNumberValidator_Regular_ExcludeAreaCodes_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = true, AllowCarrierPreselect = true, ExcludeAreaCodes = "058;020", IncludeAreaCodes = null };
       string input = "+31502151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -193,9 +193,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase10")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase10\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "RegularPhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase10_Regular_NoCountryCode_WithCarrierPreselect() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Regular_NoCountryCode_WithCarrierPreselect")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Regular_NoCountryCode_WithCarrierPreselect\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "RegularPhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Regular_NoCountryCode_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, AllowCountryCallingCode = false, AllowCarrierPreselect = true, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]) && !Convert.ToBoolean(this.TestContext.DataRow["ContainsCountryAccessCode"]);
@@ -209,7 +209,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase11_Regular_NoCountryCode_IncludeAreaCodes_WithCarrierPreselect() {
+    public void DutchPhoneNumberValidator_Regular_NoCountryCode_IncludeAreaCodes_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, IncludeAreaCodes = "012;013", AllowCountryCallingCode = false, AllowCarrierPreselect = true };
       string input = "+31122151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -230,7 +230,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase12_Regular_NoCountryCode_ExcludeAreaCodes_WithCarrierPreselect() {
+    public void DutchPhoneNumberValidator_Regular_NoCountryCode_ExcludeAreaCodes_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Regular, ExcludeAreaCodes = "058;020", AllowCountryCallingCode = false, AllowCarrierPreselect = true, IncludeAreaCodes = null };
       string input = "+31502151740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -247,9 +247,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase13")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase13\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase13_Mobile() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Mobile")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Mobile\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Mobile() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Mobile, AllowCountryCallingCode = true, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool containsCarrierPreselect = Convert.ToBoolean(this.TestContext.DataRow["ContainsCarrierPreselect"]);
@@ -264,9 +264,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase14")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase14\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase14_Mobile_NoCountryCode() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Mobile_NoCountryCode")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Mobile_NoCountryCode\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Mobile_NoCountryCode() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Mobile, AllowCountryCallingCode = false, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool containsCarrierPreselect = Convert.ToBoolean(this.TestContext.DataRow["ContainsCarrierPreselect"]);
@@ -281,9 +281,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase15")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase15\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase15_Mobile_WithCarrierPreselect() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Mobile_WithCarrierPreselect")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Mobile_WithCarrierPreselect\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Mobile_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Mobile, AllowCountryCallingCode = true, AllowCarrierPreselect = true, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]);
@@ -297,9 +297,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase16")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase16\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase16_Mobile_NoCountryCode_WithCarrierPreselect() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Mobile_NoCountryCode_WithCarrierPreselect")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Mobile_NoCountryCode_WithCarrierPreselect\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Mobile_NoCountryCode_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Mobile, AllowCountryCallingCode = false, AllowCarrierPreselect = true, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]) && !Convert.ToBoolean(this.TestContext.DataRow["ContainsCountryAccessCode"]);
@@ -313,7 +313,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase17_Emergency_Valid() {
+    public void DutchPhoneNumberValidator_Emergency_Valid() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Emergency };
       EntLib.ValidationResults results = testSubject.Validate("112");
       Assert.IsTrue(results.IsValid);
@@ -337,7 +337,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase18_Emergency_Invalid() {
+    public void DutchPhoneNumberValidator_Emergency_Invalid() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Emergency };
       EntLib.ValidationResults results = testSubject.Validate("113");
       Assert.IsFalse(results.IsValid);
@@ -361,9 +361,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase19")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase19\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "ServicePhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase19_Service() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Service")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Service\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "ServicePhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Service() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Service };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]);
@@ -377,9 +377,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase20")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase20\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "OtherPhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase20_Other() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Other")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Other\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "OtherPhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Other() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Other, AllowCountryCallingCode = true };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool containsCarrierPreselect = Convert.ToBoolean(this.TestContext.DataRow["ContainsCarrierPreselect"]);
@@ -394,9 +394,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase21")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase21\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "OtherPhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase21_Other_WithCarrierPreselect() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Other_WithCarrierPreselect")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Other_WithCarrierPreselect\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "OtherPhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Other_WithCarrierPreselect() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Other, AllowCountryCallingCode = true, AllowCarrierPreselect = true };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]);
@@ -410,9 +410,9 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\TestCase22")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\TestCase22\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "DefaultPhoneNumber", DataAccessMethod.Sequential)]
-    public void TestCase22_Default() {
+    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"DutchPhoneNumberValidatorTest\Default")]
+    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|DutchPhoneNumberValidatorTest\Default\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "DefaultPhoneNumber", DataAccessMethod.Sequential)]
+    public void DutchPhoneNumberValidator_Default() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false) { Categories = PhoneNumberCategories.Default, AllowCountryCallingCode = true, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
       bool expected = Convert.ToBoolean(this.TestContext.DataRow["IsValid"]);
@@ -426,7 +426,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase23_Configuration() {
+    public void DutchPhoneNumberValidator_Configuration() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("message {0}", "tag", false);
       string input = "+31582141740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -447,7 +447,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidator"/> class.</summary>
     [TestMethod]
-    public void TestCase24_Configuration_NamedValidator() {
+    public void DutchPhoneNumberValidator_Configuration_NamedValidator() {
       DutchPhoneNumberValidator testSubject = new DutchPhoneNumberValidator("Custom Validator", "message {0}", "tag", false);
       string input = "+31582141740";
       EntLib.ValidationResults results = testSubject.Validate(input);
@@ -456,7 +456,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase25_Attribute_AllDefaults() {
+    public void DutchPhoneNumberValidator_Attribute_AllDefaults() {
       TestDummy_AllDefault dummy = new TestDummy_AllDefault { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
@@ -473,7 +473,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase26_Attribute_CustomCategory() {
+    public void DutchPhoneNumberValidator_Attribute_CustomCategory() {
       TestDummy_CustomCategory dummy = new TestDummy_CustomCategory { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
@@ -486,20 +486,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase27_Attribute_CustomCategory() {
-      TestDummy_CustomCategory dummy = new TestDummy_CustomCategory { PhoneNumber = "0582151740" };
-
-      EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
-      Assert.IsTrue(results.IsValid);
-
-      dummy.PhoneNumber = "0616070302";
-      results = EntLib.Validation.Validate(dummy, "ValidationTest");
-      Assert.IsFalse(results.IsValid);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
-    [TestMethod]
-    public void TestCase28_Attribute_IncludeAreaCodes() {
+    public void DutchPhoneNumberValidator_Attribute_IncludeAreaCodes() {
       TestDummy_IncludeAreaCodes dummy = new TestDummy_IncludeAreaCodes { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
@@ -512,7 +499,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase29_Attribute_ExcludeAreaCodes() {
+    public void DutchPhoneNumberValidator_Attribute_ExcludeAreaCodes() {
       TestDummy_ExcludeAreaCodes dummy = new TestDummy_ExcludeAreaCodes { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
@@ -525,7 +512,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase30_Attribute_AllowCarrierPreselect() {
+    public void DutchPhoneNumberValidator_Attribute_AllowCarrierPreselect() {
       TestDummy_AllowCarrierPreselect dummy = new TestDummy_AllowCarrierPreselect { PhoneNumber = "105630582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");
@@ -534,7 +521,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorAttribute"/> class.</summary>
     [TestMethod]
-    public void TestCase31_Attribute_NamedValidator() {
+    public void DutchPhoneNumberValidator_Attribute_NamedValidator() {
       TestDummy_NamedValidator dummy = new TestDummy_NamedValidator { PhoneNumber = "0582151740" };
 
       EntLib.ValidationResults results = EntLib.Validation.Validate(dummy, "ValidationTest");

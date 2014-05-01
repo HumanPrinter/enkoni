@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="IMessage.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines an interface for a message that can be used with the MVVM pattern.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Windows;
+﻿using System.Windows;
 
 namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>Interface that defines a message that can be used with the MVVM pattern.</summary>

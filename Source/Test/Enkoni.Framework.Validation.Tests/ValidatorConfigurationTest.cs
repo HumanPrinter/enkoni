@@ -21,7 +21,7 @@ namespace Enkoni.Framework.Validation.Tests {
     #region ValidatorsSection TestCases
     /// <summary>Tests the functionality of the <see cref="ValidatorsSection"/> class.</summary>
     [TestMethod]
-    public void TestCase00_ValidatorsSection() {
+    public void ValidatorConfiguration_ValidatorsSection() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators") as ValidatorsSection;
 
@@ -36,7 +36,7 @@ namespace Enkoni.Framework.Validation.Tests {
     #region DutchPhoneNumberValidatorConfiguration TestCases
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase01_ReadDutchPhoneNumberValidatorConfiguration_Default() {
+    public void ValidatorConfiguration_ReadDutchPhoneNumberValidatorConfiguration_Default() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase01") as ValidatorsSection;
 
@@ -56,7 +56,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase02_ReadDutchPhoneNumberValidatorConfiguration_ClearAreaCodes() {
+    public void ValidatorConfiguration_ReadDutchPhoneNumberValidatorConfiguration_ClearAreaCodes() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase02") as ValidatorsSection;
 
@@ -73,7 +73,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase03_ReadDutchPhoneNumberValidatorConfiguration_RemoveAreaCode() {
+    public void ValidatorConfiguration_ReadDutchPhoneNumberValidatorConfiguration_RemoveAreaCode() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase03") as ValidatorsSection;
 
@@ -91,7 +91,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase04_ReadDutchPhoneNumberValidatorConfiguration_MultipleValidators() {
+    public void ValidatorConfiguration_ReadDutchPhoneNumberValidatorConfiguration_MultipleValidators() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase04") as ValidatorsSection;
 
@@ -119,7 +119,7 @@ namespace Enkoni.Framework.Validation.Tests {
     #region EmailValidatorConfiguration TestCases
     /// <summary>Tests the functionality of the <see cref="EmailValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase05_ReadEmailValidatorConfiguration_Default() {
+    public void ValidatorConfiguration_ReadEmailValidatorConfiguration_Default() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase05") as ValidatorsSection;
 
@@ -137,7 +137,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase06_ReadEmailValidatorConfiguration_IncludeExcludeDomains() {
+    public void ValidatorConfiguration_ReadEmailValidatorConfiguration_IncludeExcludeDomains() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase06") as ValidatorsSection;
 
@@ -158,7 +158,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidatorConfigElement"/> class.</summary>
     [TestMethod]
-    public void TestCase07_ReadEmailValidatorConfiguration_MultipleValidators() {
+    public void ValidatorConfiguration_ReadEmailValidatorConfiguration_MultipleValidators() {
       Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
       ValidatorsSection validatorsSection = configuration.GetSection("Enkoni.Validators.TestCase07") as ValidatorsSection;
 

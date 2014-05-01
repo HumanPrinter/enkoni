@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Serializer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the class that is capable of (de)serializing arbitrary data.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +6,7 @@ using System.Text;
 using System.Threading;
 
 namespace Enkoni.Framework.Serialization {
-  /// <summary>Provides a baseclass for a type that is capable of (de)serializing data to and from a specific format.</summary>
+  /// <summary>Provides a base class for a type that is capable of (de)serializing data to and from a specific format.</summary>
   /// <typeparam name="T">Type of the object that has to be serialized.</typeparam>
   public abstract class Serializer<T> where T : new() {
     #region Constructor
@@ -43,7 +34,7 @@ namespace Enkoni.Framework.Serialization {
     #region Public asynchronous methods
     /// <summary>Begins to serialize the objects to the specified file using a default encoding.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
-    /// <param name="filePath">The name of the outputfile.</param>
+    /// <param name="filePath">The name of the output file.</param>
     /// <param name="callback">The method to be called when the asynchronous operation is completed.</param>
     /// <param name="state">A user-provided object that distinguishes this particular asynchronous request from other requests.</param>
     /// <returns>An <see cref="IAsyncResult"/> that references the asynchronous operation.</returns>
@@ -53,7 +44,7 @@ namespace Enkoni.Framework.Serialization {
 
     /// <summary>Begins to serialize the objects to the specified file using the specified encoding.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
-    /// <param name="filePath">The name of the outputfile.</param>
+    /// <param name="filePath">The name of the output file.</param>
     /// <param name="encoding">The encoding that must be used to serialize the data.</param>
     /// <param name="callback">The method to be called when the asynchronous operation is completed.</param>
     /// <param name="state">A user-provided object that distinguishes this particular asynchronous request from other requests.</param>
@@ -112,7 +103,7 @@ namespace Enkoni.Framework.Serialization {
     }
 
     /// <summary>Begins to deserialize the objects from the specified file using a default encoding.</summary>
-    /// <param name="filePath">The name of the inputfile.</param>
+    /// <param name="filePath">The name of the input file.</param>
     /// <param name="callback">The method to be called when the asynchronous operation is completed.</param>
     /// <param name="state">A user-provided object that distinguishes this particular asynchronous request from other requests.</param>
     /// <returns>An <see cref="IAsyncResult"/> that references the asynchronous operation.</returns>
@@ -121,7 +112,7 @@ namespace Enkoni.Framework.Serialization {
     }
 
     /// <summary>Begins to deserialize the objects from the specified file using the specified encoding.</summary>
-    /// <param name="filePath">The name of the inputfile.</param>
+    /// <param name="filePath">The name of the input file.</param>
     /// <param name="encoding">The encoding that must be used to deserialize the data.</param>
     /// <param name="callback">The method to be called when the asynchronous operation is completed.</param>
     /// <param name="state">A user-provided object that distinguishes this particular asynchronous request from other requests.</param>
@@ -181,7 +172,7 @@ namespace Enkoni.Framework.Serialization {
     #region Public synchronous methods
     /// <summary>Serializes a list of objects to a file using a default encoding.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
-    /// <param name="filePath">The name of the outputfile.</param>
+    /// <param name="filePath">The name of the output file.</param>
     /// <returns>The number of bytes that have been written to the file.</returns>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
     /// <exception cref="ArgumentException">The file path is empty or contains illegal characters.</exception>
@@ -191,7 +182,7 @@ namespace Enkoni.Framework.Serialization {
 
     /// <summary>Serializes a list of objects to a file.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
-    /// <param name="filePath">The name of the outputfile.</param>
+    /// <param name="filePath">The name of the output file.</param>
     /// <param name="encoding">The encoding that must be used to serialize the data.</param>
     /// <returns>The number of bytes that have been written to the file.</returns>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
@@ -268,14 +259,14 @@ namespace Enkoni.Framework.Serialization {
     }
 
     /// <summary>Deserializes a CSV to a list of objects using a default encoding of UTF-8.</summary>
-    /// <param name="filePath">Filepath to csv file.</param>
+    /// <param name="filePath">File path to csv file.</param>
     /// <returns>List with objects.</returns>
     public ICollection<T> Deserialize(string filePath) {
       return this.Deserialize(filePath, this.DefaultEncoding);
     }
 
     /// <summary>Deserializes a CSV to a list of objects.</summary>
-    /// <param name="filePath">Filepath to csv file.</param>
+    /// <param name="filePath">File path to csv file.</param>
     /// <param name="encoding">The encoding that must be used to deserialize the data.</param>
     /// <returns>List with objects.</returns>
     public ICollection<T> Deserialize(string filePath, Encoding encoding) {
@@ -342,7 +333,7 @@ namespace Enkoni.Framework.Serialization {
 
     #region Protected methods
     /// <summary>Serializes a collection of items by transforming each item using the <see cref="Transformer"/> property and writing the 
-    /// transformed item to the <paramref name="stream"/>. Each item will be seperated using the new line character(s) of the current environment.
+    /// transformed item to the <paramref name="stream"/>. Each item will be separated using the new line character(s) of the current environment.
     /// </summary>
     /// <param name="objects">The objects that must be serialized.</param>
     /// <param name="encoding">The encoding that must be used.</param>
@@ -372,7 +363,7 @@ namespace Enkoni.Framework.Serialization {
       return writeCount;
     }
 
-    /// <summary>Deserializes a collection of objects using the data that is accesible through the specified stream reader.</summary>
+    /// <summary>Deserializes a collection of objects using the data that is accessible through the specified stream reader.</summary>
     /// <param name="reader">The object that gives access to the underlying stream.</param>
     /// <returns>The collection of deserialized objects.</returns>
     protected virtual ICollection<T> Deserialize(StreamReader reader) {
@@ -393,7 +384,7 @@ namespace Enkoni.Framework.Serialization {
     #endregion
 
     #region Private methods
-    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},string,Encoding)"/> method in a seperate thread. This is used to support 
+    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},string,Encoding)"/> method in a separate thread. This is used to support 
     /// asynchronous operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void SerializeToFileHelper(object propertyContainer) {
@@ -412,7 +403,7 @@ namespace Enkoni.Framework.Serialization {
       }
     }
 
-    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},Stream,Encoding)"/> method in a seperate thread. This is used to support 
+    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},Stream,Encoding)"/> method in a separate thread. This is used to support 
     /// asynchronous operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void SerializeToStreamHelper(object propertyContainer) {
@@ -431,7 +422,7 @@ namespace Enkoni.Framework.Serialization {
       }
     }
 
-    /// <summary>Executes the <see cref="Deserialize(string,Encoding)"/> method in a seperate thread. This is used to support asynchronous 
+    /// <summary>Executes the <see cref="Deserialize(string,Encoding)"/> method in a separate thread. This is used to support asynchronous 
     /// operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void DeserializeToFileHelper(object propertyContainer) {
@@ -450,7 +441,7 @@ namespace Enkoni.Framework.Serialization {
       }
     }
 
-    /// <summary>Executes the <see cref="Deserialize(Stream,Encoding)"/> method in a seperate thread. This is used to support asynchronous 
+    /// <summary>Executes the <see cref="Deserialize(Stream,Encoding)"/> method in a separate thread. This is used to support asynchronous 
     /// operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void DeserializeToStreamHelper(object propertyContainer) {
@@ -488,7 +479,7 @@ namespace Enkoni.Framework.Serialization {
       /// <summary>Gets or sets the encoding that must be used.</summary>
       internal Encoding Encoding { get; set; }
 
-      /// <summary>Gets or sets the asyncrounous result object.</summary>
+      /// <summary>Gets or sets the asynchronous result object.</summary>
       internal AsyncResult<ICollection<T>> AsyncResult { get; set; }
     }
 

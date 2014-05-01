@@ -90,20 +90,37 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method when it should throw an 
     /// exception and rollback the operation.</summary>
     public abstract void TestCase23_UpdateMultiple_Exceptions();
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    public abstract void TestCase24_Add_Reset();
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved updates to the repository.</summary>
+    public abstract void TestCase25_Update_Reset();
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved deletions from the repository.</summary>
+    public abstract void TestCase26_Delete_Reset();
     #endregion
 
     #region Combined storage test-case contracts
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase24_AddUpdate();
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
+    public abstract void TestCase27_AddUpdate();
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase25_AddUpdateDelete();
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
+    public abstract void TestCase28_AddUpdateDelete();
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase26_UpdateDelete();
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
+    public abstract void TestCase29_UpdateDelete();
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase27_DeleteAdd();
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
+    public abstract void TestCase30_DeleteAdd();
+    #endregion
+
+    #region Execute test-case contracts
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    public abstract void TestCase31_ExecuteDefaultSpecification();
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    public abstract void TestCase32_ExecuteBusinessRule();
     #endregion
 
     #region Retrieve test-cases
@@ -1172,7 +1189,7 @@ namespace Enkoni.Framework.Entities.Tests {
       }
 
       /*************************************************************************************************/
-      /* SCENARIO 6: Update three entities of which one has RecordId >0 but is does not exist          */
+      /* SCENARIO 4: Update three entities of which one has RecordId >0 but is does not exist          */
       /*************************************************************************************************/
       /* Retrieve and change three entities */
       updateDummyA = retrievedDummies.ElementAt(3);
@@ -1197,10 +1214,90 @@ namespace Enkoni.Framework.Entities.Tests {
         Assert.IsNull(retrievedDummies.SingleOrDefault(td => td.TextValue.Equals("RowC", StringComparison.Ordinal)));
       }
     }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void Add_Reset(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Add some additional entities */
+      TestDummy newDummyA = new TestDummy { TextValue = "Row3", NumericValue = 3, BooleanValue = true };
+      TestDummy newDummyB = new TestDummy { TextValue = "Row4", NumericValue = 3, BooleanValue = true };
+      TestDummy newDummyC = new TestDummy { TextValue = "Row5", NumericValue = 3, BooleanValue = true };
+      TestDummy[] newDummies = new TestDummy[] { newDummyA, newDummyB, newDummyC };
+      repository.AddEntities(newDummies);
+
+      repository.Reset();
+
+      TestDummy newDummyD = new TestDummy { TextValue = "Row6", NumericValue = 3, BooleanValue = true };
+      TestDummy newDummyE = new TestDummy { TextValue = "Row7", NumericValue = 3, BooleanValue = true };
+      newDummies = new TestDummy[] { newDummyD, newDummyE };
+      repository.AddEntities(newDummies);
+
+      repository.SaveChanges();
+
+      IEnumerable<TestDummy> results = repository.FindAll();
+      Assert.AreEqual(4, results.Count());
+      Assert.IsNull(results.SingleOrDefault(td => td.TextValue == "Row3"));
+      Assert.IsNull(results.SingleOrDefault(td => td.TextValue == "Row4"));
+      Assert.IsNull(results.SingleOrDefault(td => td.TextValue == "Row5"));
+      Assert.IsNotNull(results.SingleOrDefault(td => td.TextValue == "Row6"));
+      Assert.IsNotNull(results.SingleOrDefault(td => td.TextValue == "Row7"));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved updates to the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void Update_Reset(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Add some additional entities */
+      TestDummy newDummyA = new TestDummy { TextValue = "Row3", NumericValue = 3, BooleanValue = true };
+      TestDummy newDummyB = new TestDummy { TextValue = "Row4", NumericValue = 3, BooleanValue = true };
+      TestDummy newDummyC = new TestDummy { TextValue = "Row5", NumericValue = 3, BooleanValue = true };
+      TestDummy[] newDummies = new TestDummy[] { newDummyA, newDummyB, newDummyC };
+      repository.AddEntities(newDummies);
+      repository.SaveChanges();
+
+      TestDummy entity = repository.FindFirst(Specification.Lambda<TestDummy>(td => td.TextValue == "Row4"));
+      entity.TextValue = "Row4a";
+      repository.UpdateEntity(entity);
+      repository.Reset();
+
+      IEnumerable<TestDummy> results = repository.FindAll();
+      Assert.AreEqual(5, results.Count());
+      Assert.IsNull(results.SingleOrDefault(td => td.TextValue == "Row4a"));
+      Assert.IsNotNull(results.SingleOrDefault(td => td.TextValue == "Row4"));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved deletions from the repository.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void Delete_Reset(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Add some additional entities */
+      TestDummy newDummyA = new TestDummy { TextValue = "Row3", NumericValue = 3, BooleanValue = true };
+      TestDummy newDummyB = new TestDummy { TextValue = "Row4", NumericValue = 3, BooleanValue = true };
+      TestDummy newDummyC = new TestDummy { TextValue = "Row5", NumericValue = 3, BooleanValue = true };
+      TestDummy[] newDummies = new TestDummy[] { newDummyA, newDummyB, newDummyC };
+      repository.AddEntities(newDummies);
+      repository.SaveChanges();
+
+      TestDummy entity = repository.FindFirst(Specification.Lambda<TestDummy>(td => td.TextValue == "Row4"));
+      
+      repository.DeleteEntity(entity);
+      repository.Reset();
+
+      IEnumerable<TestDummy> results = repository.FindAll();
+      Assert.AreEqual(5, results.Count());
+      Assert.IsNotNull(results.SingleOrDefault(td => td.TextValue == "Row4"));
+    }
     #endregion
 
     #region Combined storage test-cases
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void AddUpdate(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1256,7 +1353,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
     }
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void AddUpdateDelete(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1294,7 +1391,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void UpdateDelete(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1339,7 +1436,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNull(retrievedDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}"/> when doing multiple storage-actions.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void DeleteAdd(DataSourceInfo sourceInfo) {
       /* Create the repository */
@@ -1397,6 +1494,32 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual("\"Row2\"", retrievedDummy.TextValue, false);
       Assert.AreEqual(4, retrievedDummy.NumericValue);
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
+    }
+    #endregion
+
+    #region Execute test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void ExecuteDefaultSpecification(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.BooleanValue);
+      /* Execute the specification */
+      object result = repository.Execute(spec);
+      
+      Assert.IsNull(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void ExecuteBusinessRule(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      ISpecification<TestDummy> spec = Specification.BusinessRule<TestDummy>("SomeRule");
+      /* Execute the specification */
+      object result = repository.Execute(spec);
     }
     #endregion
 

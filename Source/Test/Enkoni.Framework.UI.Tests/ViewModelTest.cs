@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ViewModelTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the ViewModel class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading;
 
 using Enkoni.Framework.UI.Mvvm;
@@ -21,7 +12,7 @@ namespace Enkoni.Framework.UI.Tests {
     #region Events Testcases
     /// <summary>Tests the functionality of the <see cref="ViewModel.PropertyChanged"/> event.</summary>
     [TestMethod]
-    public void TestCase01_PropertyChanged() {
+    public void ViewModel_PropertyChanged() {
       /* First, create an instance of the viewmodel */
       DummyViewModel testSubject = new DummyViewModel();
 
@@ -72,7 +63,7 @@ namespace Enkoni.Framework.UI.Tests {
     #region Validation Testcases
     /// <summary>Tests the validation functionality of the <see cref="ViewModel"/> class.</summary>
     [TestMethod]
-    public void TestCase02_Validation() {
+    public void ViewModel_Validation() {
       /* First, create an instance of the viewmodel */
       ValidatedDummyViewModel testSubject = new ValidatedDummyViewModel();
 

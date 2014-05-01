@@ -1,19 +1,10 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Comparer.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds a class that can be used to compare a tree of objects.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework.Collections {
-  /// <summary>Provides a generic implementation of <see cref="IComparer{T}"/> that is able to compare two objects based on a specified fieldname, 
+  /// <summary>Provides a generic implementation of <see cref="IComparer{T}"/> that is able to compare two objects based on a specified field name, 
   /// which can even be concatenated using the '.' character. The final field by which the objects must be compared must implement the 
   /// <c>CompareTo</c> method which is defined by the <see cref="IComparable"/> and <see cref="IComparable{T}"/> interfaces.</summary>
   /// <typeparam name="T">The type of object that must be compared.</typeparam>
@@ -22,7 +13,7 @@ namespace Enkoni.Framework.Collections {
     /// <summary>The field by which the objects must be ordered.</summary>
     private string fieldName;
 
-    /// <summary>The directtion of the order.</summary>
+    /// <summary>The direction of the order.</summary>
     private SortOrder order = SortOrder.Ascending;
 
     /// <summary>The Func-delegate that does the actual work.</summary>
@@ -32,14 +23,14 @@ namespace Enkoni.Framework.Collections {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="Comparer{T}"/> class that compares objects in an ascending order.</summary>
     /// <param name="fieldName">The field that must be used to compare two objects. Use the '.' character to specify a field that is deeper in the
-    /// chain of hierachy.</param>
+    /// chain of hierarchy.</param>
     public Comparer(string fieldName)
       : this(fieldName, SortOrder.Ascending) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Comparer{T}"/> class.</summary>
     /// <param name="fieldName">The field that must be used to compare two objects. Use the '.' character to specify a field that is deeper in the 
-    /// chain of hierachy.</param>
+    /// chain of hierarchy.</param>
     /// <param name="order">The ordering direction that must be used.</param>
     public Comparer(string fieldName, SortOrder order) {
       if(string.IsNullOrEmpty(fieldName)) {

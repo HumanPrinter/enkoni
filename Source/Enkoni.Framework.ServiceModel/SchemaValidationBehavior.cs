@@ -1,27 +1,15 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SchemaValidationBehavior.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//   Implementatie van een behavior waarmee het ontvangen bericht op basis van een los XSD-schema gevalideerd kan worden.
-// </summary>
-// <remark>
-//   Implementatie gebaseerd op de code van Microsoft (http://msdn.microsoft.com/en-us/library/ff647820.aspx)
-// </remark>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Linq;
+﻿using System.Linq;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using System.Xml.Schema;
 
 namespace Enkoni.Framework.ServiceModel {
-  /// <summary>This class implements a custom endpoint behavior that validates the received message using a seperate XSD schema.</summary>
+  /// <summary>This class implements a custom endpoint behavior that validates the received message using a separate XSD schema.</summary>
   /// <remarks>The implementation is based on the code of Microsoft (http://msdn.microsoft.com/en-us/library/ff647820.aspx).</remarks>
   public class SchemaValidationBehavior : IEndpointBehavior {
     #region Instance variables
-    /// <summary>De set van schemas die gebruikt wordt voor het valideren van ontvangen berichten.</summary>
+    /// <summary>The set of schemas that are used for the validation of received messages.</summary>
     private readonly XmlSchemaSet schemaSet;
     #endregion
 

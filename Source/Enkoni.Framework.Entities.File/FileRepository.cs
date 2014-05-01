@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the default implementation of a repository that uses a file as datasource.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -23,24 +14,24 @@ namespace Enkoni.Framework.Entities {
   using System.Timers;
 
   /// <summary>This abstract class extends the abstract <see cref="Repository{T}"/> class and implements some of the functionality using basic file 
-  /// I/O. This implementation can be used a base for any fileformat-specific filerepositories.</summary>
+  /// I/O. This implementation can be used a base for any file format-specific file repositories.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
   public abstract class FileRepository<TEntity> : Repository<TEntity>
     where TEntity : class, IEntity<TEntity>, new() {
     #region Instance variables
-    /// <summary>The instance that is used to monitor changes in the sourcefile.</summary>
+    /// <summary>The instance that is used to monitor changes in the source file.</summary>
     private FileSystemWatcher sourceFileMonitor;
 
     /// <summary>The internal cache that is used to cache the entities from the file.</summary>
     private List<TEntity> internalCache;
 
-    /// <summary>The collection of entities that are to be added to the datasource. </summary>
+    /// <summary>The collection of entities that are to be added to the data source. </summary>
     private List<TEntity> additionCache;
 
-    /// <summary>The collection of entities that are to be updated in the datasource.</summary>
+    /// <summary>The collection of entities that are to be updated in the data source.</summary>
     private List<TEntity> updateCache;
 
-    /// <summary>The collection of entities that are to be removed from the datasource.</summary>
+    /// <summary>The collection of entities that are to be removed from the data source.</summary>
     private List<TEntity> deletionCache;
 
     /// <summary>A lock that is used to synchronize access to the internal storage.</summary>
@@ -53,7 +44,7 @@ namespace Enkoni.Framework.Entities {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="FileRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
-    /// <param name="dataSourceInfo">The datasource information that must be used to access the sourcefile.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the source file.</param>
     /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> does not specify a valid source file.</exception>
     protected FileRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
@@ -66,7 +57,7 @@ namespace Enkoni.Framework.Entities {
       this.ChangeCompleteTimeout = FileSourceInfo.SelectChangeCompleteTimeout(dataSourceInfo);
       this.SourceFileEncoding = FileSourceInfo.SelectSourceFileEncoding(dataSourceInfo);
 
-      /* Determine if the sourcefile has been specified */
+      /* Determine if the source file has been specified */
       if(FileSourceInfo.IsSourceFileInfoSpecified(dataSourceInfo)) {
         this.SourceFile = FileSourceInfo.SelectSourceFileInfo(dataSourceInfo);
       }
@@ -75,7 +66,7 @@ namespace Enkoni.Framework.Entities {
         throw new InvalidOperationException("The source file must be specified when creating a FileRepository.");
       }
 
-      /* If the sourcefile has been specified, create a monitor to watch the sourcefile. */
+      /* If the source file has been specified, create a monitor to watch the source file. */
       this.CreateSourceFileMonitor();
 
       if(FileSourceInfo.SelectMonitorSourceFile(dataSourceInfo)) {
@@ -86,16 +77,16 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected properties
-    /// <summary>Gets the FileInfo that references the used sourcefile.</summary>
+    /// <summary>Gets the FileInfo that references the used source file.</summary>
     protected FileInfo SourceFile { get; private set; }
 
-    /// <summary>Gets a value indicating whether the filemonitor is currently running.</summary>
+    /// <summary>Gets a value indicating whether the file monitor is currently running.</summary>
     protected bool SourceFileMonitorIsRunning { get; private set; }
 
-    /// <summary>Gets the timeout value that is used to determine if a filechange has finished or not.</summary>
+    /// <summary>Gets the timeout value that is used to determine if a file change has finished or not.</summary>
     protected int ChangeCompleteTimeout { get; private set; }
 
-    /// <summary>Gets the encoding of the sourcefile.</summary>
+    /// <summary>Gets the encoding of the source file.</summary>
     protected Encoding SourceFileEncoding { get; private set; }
 
     /// <summary>Gets the entities that are available through the caching mechanism.</summary>
@@ -105,11 +96,21 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Repository<T> overrides
-    /// <summary>Save the changes that were made to the repository. It is possible to supply datasource information that specifies a specific 
-    /// destinationfile. In that case, the contents will be written to that file and the internal cache is untouched. Otherwise, the changes are 
-    /// written back to the sourcefile and the internal cache will be refresehed.</summary>
-    /// <param name="dataSourceInfo">Optional datasourceinformation that may contain a reference to a destinationfile other than the original 
-    /// sourcefile.</param>
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    protected override void ResetCore(DataSourceInfo dataSourceInfo) {
+      this.additionCache.Clear();
+      this.deletionCache.Clear();
+      this.updateCache.Clear();
+      
+      this.ClearCache();
+    }
+
+    /// <summary>Save the changes that were made to the repository. It is possible to supply data source information that specifies a specific 
+    /// destination file. In that case, the contents will be written to that file and the internal cache is untouched. Otherwise, the changes are 
+    /// written back to the source file and the internal cache will be refreshed.</summary>
+    /// <param name="dataSourceInfo">Optional data source information that may contain a reference to a destination file other than the original 
+    /// source file.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {
       bool useGlobalSourceFile = this.UseGlobalSourceFile(dataSourceInfo);
 
@@ -120,7 +121,7 @@ namespace Enkoni.Framework.Entities {
         /* Prepare a copy of the internal cache */
         List<TEntity> tempInternalCache = null;
         if(!useGlobalSourceFile) {
-          /* Since the output is different from the global sourcefile, make a copy of the internal cache */
+          /* Since the output is different from the global source file, make a copy of the internal cache */
           tempInternalCache = this.internalCache.ToList();
         }
 
@@ -136,7 +137,7 @@ namespace Enkoni.Framework.Entities {
         /* Build the new contents */
         IEnumerable<TEntity> newContent;
         if(!this.UseGlobalSourceFile(dataSourceInfo)) {
-          /* The destination file is different from the sourcefile, so just write the contents and leave it at that. */
+          /* The destination file is different from the source file, so just write the contents and leave it at that. */
           newContent = this.WriteAllRecordsToFile(this.SelectSourceFileInfo(dataSourceInfo), dataSourceInfo, this.internalCache);
           /* Set the cache back to its original contents */
           this.internalCache = tempInternalCache;
@@ -145,7 +146,7 @@ namespace Enkoni.Framework.Entities {
           bool useFileMonitor = this.SourceFileMonitorIsRunning;
           this.PauseSourceFileMonitor();
 
-          /* Otherwise, write the changes back to the sourcefile and refresh the cache. */
+          /* Otherwise, write the changes back to the source file and refresh the cache. */
           newContent = this.WriteAllRecordsToFile(this.SourceFile, dataSourceInfo, this.internalCache);
 
           if(useFileMonitor) {
@@ -169,7 +170,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Creates a new entity of type <typeparamref name="TEntity"/>. This is done by calling the default constructor of 
     /// <typeparamref name="TEntity"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The created entity.</returns>
     protected override TEntity CreateEntityCore(DataSourceInfo dataSourceInfo) {
@@ -179,10 +180,10 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the entities of type <typeparamref name="TEntity"/> that match the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
-    /// <br/>If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache. Otherwise, the 
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
+    /// <br/>If the cache is empty but the source file exists, the file is read first and its contents are placed in the cache. Otherwise, the 
     /// concatenated cache is simply returned.</param>
     /// <returns>All the available entities that match the expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, int maximumResults,
@@ -223,10 +224,10 @@ namespace Enkoni.Framework.Entities {
         /* Find the entities in the in-memory cache */
         IEnumerable<TEntity> result = this.ConcatCache().Where(expression).OrderBy(sortRules);
         if(maximumResults == -1) {
-          return result;
+          return result.ToList();
         }
         else {
-          return result.Take(maximumResults);
+          return result.Take(maximumResults).ToList();
         }
       }
       finally {
@@ -236,12 +237,12 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the first entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
-    /// <br/>If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache. Otherwise, the 
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
+    /// <br/>If the cache is empty but the source file exists, the file is read first and its contents are placed in the cache. Otherwise, the 
     /// concatenated cache is simply returned.</param>
     /// <param name="defaultValue">The value that must be returned if the query yielded no results.</param>
-    /// <returns>The first entity that matches the expression or the defaultvalue if there were no results.</returns>
+    /// <returns>The first entity that matches the expression or the default value if there were no results.</returns>
     protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, DataSourceInfo dataSourceInfo,
       TEntity defaultValue) {
       bool useGlobalSourceFile = this.UseGlobalSourceFile(dataSourceInfo);
@@ -281,11 +282,11 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the single entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
-    /// <br/>If the cache is empty but the sourcefile exists, the file is read first and its contents are placed in the cache. Otherwise, the 
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
+    /// <br/>If the cache is empty but the source file exists, the file is read first and its contents are placed in the cache. Otherwise, the 
     /// concatenated cache is simply returned.</param>
     /// <param name="defaultValue">The value that must be returned if the query yielded no results.</param>
-    /// <returns>The single entity that matches the expression or the defaultvalue if there were no results.</returns>
+    /// <returns>The single entity that matches the expression or the default value if there were no results.</returns>
     protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo,
       TEntity defaultValue) {
       bool useGlobalSourceFile = this.UseGlobalSourceFile(dataSourceInfo);
@@ -323,11 +324,11 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Adds a new entity to the repository. It is added to the addition cache untill it is saved using the 
+    /// <summary>Adds a new entity to the repository. It is added to the addition cache until it is saved using the 
     /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entity. This will be reset when the 
     /// entity is saved.</summary>
     /// <param name="entity">The entity that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entity as it was added to the repository.</returns>
     protected override TEntity AddEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
@@ -336,7 +337,7 @@ namespace Enkoni.Framework.Entities {
       this.storageLock.EnterWriteLock();
       try {
         if(entity.RecordId > 0) {
-          /* The entity already has an ID which suggests that it came from the original datasource */
+          /* The entity already has an ID which suggests that it came from the original data source */
           if(this.deletionCache.Contains(entity, entityComparer)) {
             /* The entity has been marked for deletion, undelete it... */
             this.deletionCache.Remove(entity, entityComparer);
@@ -346,7 +347,7 @@ namespace Enkoni.Framework.Entities {
           }
         }
 
-        /* The entity is either new or came from another datasource */
+        /* The entity is either new or came from another data source */
         /* Determine the new temporary ID for the entity */
         int newRecordId = -1;
 
@@ -366,11 +367,11 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache untill it is saved using the 
+    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the 
     /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when 
     /// the entity is saved.</summary>
     /// <param name="entities">The entities that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they were added to the repository.</returns>
     protected override IEnumerable<TEntity> AddEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -390,7 +391,7 @@ namespace Enkoni.Framework.Entities {
         if(entities.Any(e => e.RecordId > 0)) {
           IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
           ReferenceEqualityComparer<TEntity> referenceComparer = new ReferenceEqualityComparer<TEntity>();
-          /* At least some of the entities already have an ID which suggests that they came from the original datasource */
+          /* At least some of the entities already have an ID which suggests that they came from the original data source */
           foreach(TEntity existingEntity in existingEntities) {
             if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
               /* The entity has been marked for deletion, undelete it... */
@@ -405,7 +406,7 @@ namespace Enkoni.Framework.Entities {
         }
 
         if(unhandledEntities.Count > 0) {
-          /* At least some of the entities are either new or came from another datasource */
+          /* At least some of the entities are either new or came from another data source */
           /* Determine the new temporary ID for the entities */
           int newRecordId = -1;
           if(tempAdditionCache.Count > 0) {
@@ -433,9 +434,9 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Removes an entity from the repository. Depending on the status of the entity, it is removed from the addition-cache or it is added 
-    /// to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
+    /// to the deletion-cache until it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entity">The entity that must be removed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     protected override void DeleteEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       if(entity.RecordId == 0) {
@@ -461,7 +462,7 @@ namespace Enkoni.Framework.Entities {
             this.updateCache.Remove(entity, entityComparer);
           }
 
-          /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
+          /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
           if(this.internalCache.Contains(entity, entityComparer)) {
             if(!this.deletionCache.Contains(entity, entityComparer)) {
               this.deletionCache.Add(entity);
@@ -481,9 +482,9 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
-    /// or it is added to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
+    /// or it is added to the deletion-cache until it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entities">The entities that must be removed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     protected override void DeleteEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
       EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
@@ -519,7 +520,7 @@ namespace Enkoni.Framework.Entities {
             tempUpdateCache.Remove(existingEntity, entityComparer);
           }
 
-          /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
+          /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
           if(this.internalCache.Contains(existingEntity, entityComparer)) {
             if(!tempDeletionCache.Contains(existingEntity, entityComparer)) {
               tempDeletionCache.Add(existingEntity);
@@ -546,7 +547,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates an entity in the repository. Depending on the status of the entity, it is updated in the addition-cache or it is added to 
     /// the update-cache.</summary>
     /// <param name="entity">The entity that contains the updated values.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entity as it was stored in the repository.</returns>
     protected override TEntity UpdateEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
@@ -597,7 +598,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates a collection of entities in the repository. Depending on the status of each entity, it is updated in the addition-cache or 
     /// it is added to the update-cache.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they are stored in the repository.</returns>
     protected override IEnumerable<TEntity> UpdateEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -665,15 +666,15 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region FileRepository extensibility methods
-    /// <summary>Reads all the available records from the sourcefile.</summary>
+    /// <summary>Reads all the available records from the source file.</summary>
     /// <param name="sourceFile">Information about the file that must be read.</param>
-    /// <param name="dataSourceInfo">Optional information about the datasource.</param>
+    /// <param name="dataSourceInfo">Optional information about the data source.</param>
     /// <returns>The entities that were read from the file.</returns>
     protected abstract IEnumerable<TEntity> ReadAllRecordsFromFile(FileInfo sourceFile, DataSourceInfo dataSourceInfo);
 
     /// <summary>Writes the specified records to the destination file.</summary>
     /// <param name="destinationFile">Information about the file in which the contents must be saved.</param>
-    /// <param name="dataSourceInfo">Optional information about the datasource.</param>
+    /// <param name="dataSourceInfo">Optional information about the data source.</param>
     /// <param name="contents">The new contents of the file.</param>
     /// <returns>The entities after they have been written to the file (in case the saving resulted in some updated values).</returns>
     protected abstract IEnumerable<TEntity> WriteAllRecordsToFile(FileInfo destinationFile, DataSourceInfo dataSourceInfo,
@@ -695,9 +696,9 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected methods
-    /// <summary>Determines wheter or not the globally specified source file must be used during an operation or if the specified source information 
+    /// <summary>Determines whether or not the globally specified source file must be used during an operation or if the specified source information 
     /// specifies a different file.</summary>
-    /// <param name="dataSourceInfo">The datasource information that must be examined.</param>
+    /// <param name="dataSourceInfo">The data source information that must be examined.</param>
     /// <returns><see langword="true"/> if the global source file must be used, <see langword="false"/> otherwise.</returns>
     protected virtual bool UseGlobalSourceFile(DataSourceInfo dataSourceInfo) {
       return !FileSourceInfo.IsSourceFileInfoSpecified(dataSourceInfo) ||
@@ -706,7 +707,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Selects the FileInfo that must be used. If the specified DataSourceInfo contains a valid FileInfo, it is used; otherwise the value 
     /// of the property 'SourceFile' is used.</summary>
-    /// <param name="dataSourceInfo">Any information regarding the file that is used as datasource.</param>
+    /// <param name="dataSourceInfo">Any information regarding the file that is used as data source.</param>
     /// <returns>The FileInfo that must be used.</returns>
     protected virtual FileInfo SelectSourceFileInfo(DataSourceInfo dataSourceInfo) {
       if(FileSourceInfo.IsSourceFileInfoSpecified(dataSourceInfo)) {
@@ -720,7 +721,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Reads all the records from the file that match a specific criteria. The default implementation simply reads all the records from the 
     /// file and selects the records that match the criteria. Override this method if a more efficient approach is feasible.</summary>
     /// <param name="sourceFile">The file that must be read.</param>
-    /// <param name="dataSourceInfo">Optional information about the datasource.</param>
+    /// <param name="dataSourceInfo">Optional information about the data source.</param>
     /// <param name="expression">The expression that must be used to select the correct records.</param>
     /// <returns>The entities that match the expression or an empty collection if there were no results.</returns>
     protected virtual IEnumerable<TEntity> ReadMultipleRecordsFromFile(FileInfo sourceFile, DataSourceInfo dataSourceInfo,
@@ -733,7 +734,7 @@ namespace Enkoni.Framework.Entities {
     /// from the file and selects the first record that matches the criteria. Override this 
     /// method if a more efficient approach is feasible.</summary>
     /// <param name="sourceFile">The file that must be read.</param>
-    /// <param name="dataSourceInfo">Optional information about the datasource.</param>
+    /// <param name="dataSourceInfo">Optional information about the data source.</param>
     /// <param name="expression">The expression that must be used to select the correct records.</param>
     /// <returns>The entity that matches the expression or <see langword="null"/> if there were no results.</returns>
     protected virtual TEntity ReadSingleRecordFromFile(FileInfo sourceFile, DataSourceInfo dataSourceInfo, Func<TEntity, bool> expression) {
@@ -742,16 +743,16 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Applies new identifiers to the entities starting with identifier '1'. More often then not, entities that are read from a file do not 
-    /// have any identifiers. Therefore, they are applied here. If the sourcefile already specifies identifiers for each record, override this method 
-    /// with an empty implementation to disable this behaviour.</summary>
+    /// have any identifiers. Therefore, they are applied here. If the source file already specifies identifiers for each record, override this method 
+    /// with an empty implementation to disable this behavior.</summary>
     /// <param name="entities">The entities to which the identifiers must be applied.</param>
     protected virtual void ApplyIdentifiers(IEnumerable<TEntity> entities) {
       this.ApplyIdentifiers(entities, 1);
     }
 
-    /// <summary>Applies new identifiers to the entities starting with the specified startvalue. More often then not, entities that are read from a 
-    /// file do not have any identifiers. Therefore, they are applied here. If the sourcefile already specifies identifiers for each record, override 
-    /// this method with an empty implementation to disable this behaviour.</summary>
+    /// <summary>Applies new identifiers to the entities starting with the specified start value. More often then not, entities that are read from a 
+    /// file do not have any identifiers. Therefore, they are applied here. If the source file already specifies identifiers for each record, override 
+    /// this method with an empty implementation to disable this behavior.</summary>
     /// <param name="entities">The entities to which the identifiers must be applied.</param>
     /// <param name="startIdentifier">The first identifier that must be applied.</param>
     protected virtual void ApplyIdentifiers(IEnumerable<TEntity> entities, int startIdentifier) {
@@ -764,7 +765,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Performs some actions in response to the sourcefile being deleted. This will normally result in clearing the cache.</summary>
+    /// <summary>Performs some actions in response to the source file being deleted. This will normally result in clearing the cache.</summary>
     protected virtual void OnSourceFileDeleted() {
       this.storageLock.EnterWriteLock();
       try {
@@ -775,7 +776,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Performs some actions in response to the sourcefile being created. This will normally result in filling the cache.</summary>
+    /// <summary>Performs some actions in response to the source file being created. This will normally result in filling the cache.</summary>
     protected virtual void OnSourceFileCreated() {
       this.storageLock.EnterWriteLock();
       try {
@@ -787,7 +788,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Performs some actions in response to the sourcefile being changed. This will normally result in refreshing the cache.</summary>
+    /// <summary>Performs some actions in response to the source file being changed. This will normally result in refreshing the cache.</summary>
     protected virtual void OnSourceFileChanged() {
       this.storageLock.EnterWriteLock();
       try {
@@ -799,8 +800,8 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Starts the monitor that monitors the sourcefile. It is save to call this method multiple times.</summary>
-    /// <exception cref="InvalidOperationException">If both the filemonitor and sourcefile have not yet been set.</exception>
+    /// <summary>Starts the monitor that monitors the source file. It is save to call this method multiple times.</summary>
+    /// <exception cref="InvalidOperationException">If both the file monitor and source file have not yet been set.</exception>
     protected void StartSourceFileMonitor() {
       if(this.sourceFileMonitor == null && this.SourceFile == null) {
         throw new InvalidOperationException("Cannot start the file monitor if there is no source file specified.");
@@ -815,7 +816,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Stops the monitor that monitors the sourcefile. It is save to call this method multiple times.</summary>
+    /// <summary>Stops the monitor that monitors the source file. It is save to call this method multiple times.</summary>
     protected void StopSourceFileMonitor() {
       if(this.sourceFileMonitor != null && this.sourceFileMonitor.EnableRaisingEvents) {
         this.sourceFileMonitor.EnableRaisingEvents = false;
@@ -823,15 +824,15 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Resumes the monitor that monitors the sourcefile. This method is added as a counterpart for the 
-    /// <see cref="PauseSourceFileMonitor()"/> method, however since the filemonitor does not have any specific pause/resume behaviour, calling 
+    /// <summary>Resumes the monitor that monitors the source file. This method is added as a counterpart for the 
+    /// <see cref="PauseSourceFileMonitor()"/> method, however since the file monitor does not have any specific pause/resume behavior, calling 
     /// this method is the same as calling <see cref="StartSourceFileMonitor()"/>.</summary>
     protected void ResumeSourceFileMonitor() {
       this.StartSourceFileMonitor();
     }
 
-    /// <summary>Pauses the monitor that monitors the sourcefile. This method is added as a counterpart for the 
-    /// <see cref="ResumeSourceFileMonitor()"/> method, however since the filemonitor does not have any specific pause/resume behaviour, calling 
+    /// <summary>Pauses the monitor that monitors the source file. This method is added as a counterpart for the 
+    /// <see cref="ResumeSourceFileMonitor()"/> method, however since the file monitor does not have any specific pause/resume behavior, calling 
     /// this method is the same as calling <see cref="StopSourceFileMonitor()"/>.</summary>
     protected void PauseSourceFileMonitor() {
       this.StopSourceFileMonitor();
@@ -851,7 +852,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Private helper methods
-    /// <summary>Create the filemonitor and hooks all the event-handlers.</summary>
+    /// <summary>Create the file monitor and hooks all the event-handlers.</summary>
     private void CreateSourceFileMonitor() {
       this.sourceFileMonitor = new FileSystemWatcher(this.SourceFile.DirectoryName, this.SourceFile.Name);
       this.sourceFileMonitor.IncludeSubdirectories = false;
@@ -887,7 +888,7 @@ namespace Enkoni.Framework.Entities {
       return totalCache.OrderBy(t => t.RecordId);
     }
 
-    /// <summary>Prepares the new contents for the datasource file by checking the consistency of the caches and merging the caches.</summary>
+    /// <summary>Prepares the new contents for the data source file by checking the consistency of the caches and merging the caches.</summary>
     /// <param name="dataSourceInfo">Any information regarding the used data source.</param>
     private void PrepareNewContent(DataSourceInfo dataSourceInfo) {
       /* First, check if all the updated entities still exist in the global storage */
@@ -953,7 +954,7 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Private event handlers
-    /// <summary>Handles the situation in which the used sourcefile is renamed. If the file is renamed to something other then the original filename, 
+    /// <summary>Handles the situation in which the used source file is renamed. If the file is renamed to something other then the original file name, 
     /// it is regarded to be the same as deleting the file, since the file can no longer be found under its original name. Otherwise, the event is 
     /// treated as a created-event.</summary>
     /// <param name="sender">The instance that raised the event.</param>
@@ -967,21 +968,21 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Handles the situation in which the used sourcefile is deleted.</summary>
+    /// <summary>Handles the situation in which the used source file is deleted.</summary>
     /// <param name="sender">The instance that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     private void HandleSourceFileDeleted(object sender, FileSystemEventArgs args) {
       this.OnSourceFileDeleted();
     }
 
-    /// <summary>Handles the situation in which the used sourcefile is created.</summary>
+    /// <summary>Handles the situation in which the used source file is created.</summary>
     /// <param name="sender">The instance that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     private void HandleSourceFileCreated(object sender, FileSystemEventArgs args) {
       this.OnSourceFileCreated();
     }
 
-    /// <summary>Handles the situation in which the used sourcefile is changed.</summary>
+    /// <summary>Handles the situation in which the used source file is changed.</summary>
     /// <param name="sender">The instance that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     private void HandleSourceFileChanged(object sender, FileSystemEventArgs args) {
@@ -991,7 +992,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Handles the elapsed event of the change-eventtimer. If the timer elapsed, the assumption is made that the filechange has finished 
+    /// <summary>Handles the elapsed event of the change-event timer. If the timer elapsed, the assumption is made that the file change has finished 
     /// and it is safe to call the <see cref="OnSourceFileChanged()"/> method.</summary>
     /// <param name="sender">The instance that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>

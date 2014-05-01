@@ -1,17 +1,8 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ISortSpecification.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the basic sortspecification API.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Enkoni.Framework {
-  /// <summary>Defines a type that is able to sort a collection using the specificationsystem.</summary>
+  /// <summary>Defines a type that is able to sort a collection using the specification system.</summary>
   /// <typeparam name="T">The type of object that must be sorted.</typeparam>
   internal interface ISortSpecification<T> {
     /// <summary>Sorts the elements of a sequence.</summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -20,10 +21,10 @@ namespace Enkoni.Framework.Entities {
   public class DatabaseRepository<TEntity> : Repository<TEntity>, IDatabaseRepository
     where TEntity : class, IEntity<TEntity>, new() {
     #region Private instance variables
-    /// <summary>The collection of entities that are to be added to the datasource. </summary>
+    /// <summary>The collection of entities that are to be added to the data source. </summary>
     private List<TEntity> additionCache;
 
-    /// <summary>The collection of entities that are to be removed from the datasource.</summary>
+    /// <summary>The collection of entities that are to be removed from the data source.</summary>
     private List<TEntity> deletionCache;
 
     /// <summary>A lock that is used to synchronize access to the internal storage.</summary>
@@ -33,7 +34,7 @@ namespace Enkoni.Framework.Entities {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="DatabaseRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
-    /// <param name="dataSourceInfo">The datasource information that must be used to access the database.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the database.</param>
     public DatabaseRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
       if(DatabaseSourceInfo.IsDbContextSpecified(dataSourceInfo)) {
@@ -47,13 +48,13 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected properties
-    /// <summary>Gets the DbContext that is used to access the database.</summary>
+    /// <summary>Gets the <see cref="DbContext"/> that is used to access the database.</summary>
     protected DbContext DbContext { get; private set; }
     #endregion
 
     #region IDatabaseRepository methods
-    /// <summary>Replaces the current DbContext with the specified one. The current DbContext is first disposed.</summary>
-    /// <param name="dbContext">The new DbContext that must be used.</param>
+    /// <summary>Replaces the current <see cref="DbContext"/> with the specified one. The current <see cref="DbContext"/> is first disposed.</summary>
+    /// <param name="dbContext">The new <see cref="DbContext"/> that must be used.</param>
     public void ReloadObjectContext(DbContext dbContext) {
       this.DbContext.Dispose();
       this.DbContext = dbContext;
@@ -61,8 +62,25 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Repository<T> overrides
+    /// <summary>Resets the repository by undoing any unsaved changes.</summary>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    protected override void ResetCore(DataSourceInfo dataSourceInfo) {
+      try {
+        this.storageLock.EnterWriteLock();
+
+        this.ResetLocalCacheNoLock();
+
+        this.ResetDbContextNoLock(dataSourceInfo);
+      }
+      finally {
+        if(this.storageLock.IsWriteLockHeld) {
+          this.storageLock.ExitWriteLock();
+        }
+      }
+    }
+
     /// <summary>Submits all the changes to the database.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {
       DbContext context = this.SelectDbContext(dataSourceInfo);
 
@@ -79,8 +97,7 @@ namespace Enkoni.Framework.Entities {
           }
 
           context.SaveChanges();
-          this.additionCache.Clear();
-          this.deletionCache.Clear();
+          this.ResetLocalCacheNoLock();
           transaction.Complete();
         }
         catch(DataException ex) {
@@ -96,7 +113,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Creates a new entity of type <typeparamref name="TEntity"/>. This is done by calling the default constructor of 
     /// <typeparamref name="TEntity"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The created entity.</returns>
     protected override TEntity CreateEntityCore(DataSourceInfo dataSourceInfo) {
       TEntity entity = new TEntity();
@@ -105,38 +122,14 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Inserts a new entity to the repository.</summary>
     /// <param name="entity">The entity that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity AddEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
-      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
-
       try {
         this.storageLock.EnterWriteLock();
-        if(entity.RecordId > 0) {
-          /* The entity already has an ID which suggests that it came from the original datasource */
-          if(this.deletionCache.Contains(entity, entityComparer)) {
-            /* The entity has been marked for deletion, undelete it... */
-            this.deletionCache.Remove(entity, entityComparer);
-            /* ...and mark it as updated in case any of the fields have been altered. */
-            return this.UpdateEntityNoLock(entity, dataSourceInfo);
-          }
-        }
 
-        /* The entity is either new or came from another datasource */
-        /* Determine the new temporary ID for the entity */
-        int newRecordId = -1;
-
-        if(this.additionCache.Count > 0) {
-          newRecordId = this.additionCache.Min(t => t.RecordId) - 1;
-        }
-
-        entity.RecordId = newRecordId;
-
-        /* Add it to the addition cache */
-        this.additionCache.Add(entity);
-
-        return entity;
+        return this.AddEntityNoLock(entity, dataSourceInfo);
       }
       finally {
         if(this.storageLock.IsWriteLockHeld) {
@@ -145,78 +138,18 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache untill it is saved using the 
+    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the 
     /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the 
     /// entity is saved.</summary>
     /// <param name="entities">The entities that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they were added to the repository.</returns>
     protected override IEnumerable<TEntity> AddEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
-      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
-
-      /* Place the entities in a list to keep track of the entities that have been handled */
-      List<TEntity> unhandledEntities = entities.ToList();
-
-      DbContext context = this.SelectDbContext(dataSourceInfo);
-
-      this.storageLock.EnterWriteLock();
-
-      /* Make a copy of the caches. That way, if any thing goes wrong all the changes can be made undone */
-      List<TEntity> tempDeletionCache = this.deletionCache.ToList();
-      List<TEntity> tempAdditionCache = this.additionCache.ToList();
-
       try {
-        if(entities.Any(e => e.RecordId > 0)) {
-          List<TEntity> updatableEntities = new List<TEntity>();
-          IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
-          ReferenceEqualityComparer<TEntity> referenceComparer = new ReferenceEqualityComparer<TEntity>();
-          /* At least some of the entities already have an ID which suggests that they came from the original datasource */
-          foreach(TEntity existingEntity in existingEntities) {
-            if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
-              /* The entity has been marked for deletion, undelete it... */
-              tempDeletionCache.Remove(existingEntity, entityComparer);
-              /* ...and mark it as updated in case any of the fields have been altered. */
-              updatableEntities.Add(existingEntity);
+        this.storageLock.EnterWriteLock();
 
-              bool removeResult = unhandledEntities.Remove(existingEntity, referenceComparer);
-              Debug.Assert(removeResult, "Somehow the result could not be removed from the collection of handled entities.");
-            }
-          }
-
-          foreach(TEntity updatableEntity in updatableEntities) {
-            TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == updatableEntity.RecordId);
-            if(storedEntity == null) {
-              /* This is not very likely, otherwise how could the entity exist in the deleteion cache */
-              throw new InvalidOperationException("Could not find the entity in the internal cache.");
-            }
-            else {
-              storedEntity.CopyFrom(updatableEntity);
-            }
-          }
-        }
-
-        if(unhandledEntities.Count > 0) {
-          /* At least some of the entities are either new or came from another datasource */
-          /* Determine the new temporary ID for the entities */
-          int newRecordId = -1;
-          if(tempAdditionCache.Count > 0) {
-            newRecordId = tempAdditionCache.Min(t => t.RecordId) - 1;
-          }
-
-          foreach(TEntity unhandledEntity in unhandledEntities) {
-            unhandledEntity.RecordId = newRecordId;
-            --newRecordId;
-            /* Add it to the addition cache */
-            tempAdditionCache.Add(unhandledEntity);
-          }
-        }
-
-        /* Replace the original caches to complete the 'transaction' */
-        this.deletionCache = tempDeletionCache;
-        this.additionCache = tempAdditionCache;
-
-        return entities;
+        return this.AddEntitiesNoLock(entities, dataSourceInfo);
       }
       finally {
         if(this.storageLock.IsWriteLockHeld) {
@@ -228,7 +161,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. Since the entity framework already monitors the state of 
     /// entities, no additional functionality is required. This method is therefore empty.</summary>
     /// <param name="entity">The entity that was updated.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity UpdateEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       if(entity.RecordId == 0) {
@@ -250,7 +183,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates a collection of entities in the repository. Depending on the status of each entity, it is updated in the addition-cache or 
     /// it is added to the update-cache.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they are stored in the repository.</returns>
     protected override IEnumerable<TEntity> UpdateEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -271,43 +204,17 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Deletes an entity from the repository.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     protected override void DeleteEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       if(entity.RecordId == 0) {
         throw new InvalidOperationException("Cannot delete an entity whose identifier is zero.");
       }
 
-      DbContext context = this.SelectDbContext(dataSourceInfo);
-      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
-
       try {
         this.storageLock.EnterWriteLock();
-        if(entity.RecordId < 0) {
-          /* If the ID is negative, it should be marked for addition */
-          if(this.additionCache.Contains(entity, entityComparer)) {
-            this.additionCache.Remove(entity, entityComparer);
-          }
-          else {
-            throw new InvalidOperationException("Could not find the entity in the addition-cache.");
-          }
-        }
-        else {
-          /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
-          Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == entity.RecordId);
-          TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(queryById);
-          if(existingEntity != null) {
-            if(!this.deletionCache.Contains(existingEntity, entityComparer)) {
-              this.deletionCache.Add(existingEntity);
-            }
-            else {
-              throw new InvalidOperationException("Cannot delete the same entity more then once.");
-            }
-          }
-          else {
-            throw new InvalidOperationException("The entity seems to be new and can therefore not be deleted.");
-          }
-        }
+
+        this.DeleteEntityNoLock(entity, dataSourceInfo);
       }
       finally {
         if(this.storageLock.IsWriteLockHeld) {
@@ -317,58 +224,18 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
-    /// or it is added to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
+    /// or it is added to the deletion-cache until it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entities">The entities that must be removed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     protected override void DeleteEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
       if(entities.Any(e => e.RecordId == 0)) {
         throw new InvalidOperationException("Cannot delete an entity whose identifier is zero.");
       }
 
-      DbContext context = this.SelectDbContext(dataSourceInfo);
-      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
-
-      this.storageLock.EnterWriteLock();
-
-      IEnumerable<TEntity> addedEntities = entities.Where(e => e.RecordId < 0);
-      IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
-
-      /* Make a copy of the caches. That way, if any thing goes wrong all the changes can be made undone */
-      List<TEntity> tempAdditionCache = this.additionCache.ToList();
-      List<TEntity> tempDeletionCache = this.deletionCache.ToList();
-
       try {
-        foreach(TEntity addedEntity in addedEntities) {
-          /* If the ID is negative, it should be marked for addition */
-          if(tempAdditionCache.Contains(addedEntity, entityComparer)) {
-            tempAdditionCache.Remove(addedEntity, entityComparer);
-          }
-          else {
-            throw new InvalidOperationException("Could not find the entity in the addition-cache.");
-          }
-        }
-
-        foreach(TEntity existingEntity in existingEntities) {
-          /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
-          Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == existingEntity.RecordId);
-          TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(queryById);
-          if(storedEntity != null) {
-            if(!tempDeletionCache.Contains(storedEntity, entityComparer)) {
-              tempDeletionCache.Add(storedEntity);
-            }
-            else {
-              throw new InvalidOperationException("Cannot delete the same entity more then once.");
-            }
-          }
-          else {
-            throw new InvalidOperationException("The entity seems to be new and can therefore not be deleted.");
-          }
-        }
-
-        /* Replace the original caches to complete the 'transaction' */
-        this.additionCache = tempAdditionCache;
-        this.deletionCache = tempDeletionCache;
+        this.storageLock.EnterWriteLock();
+        this.DeleteEntitiesNoLock(entities, dataSourceInfo);
       }
       finally {
         if(this.storageLock.IsWriteLockHeld) {
@@ -379,9 +246,9 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the available entities that match the specified expression.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Expression<Func<TEntity, bool>> expression,
       SortSpecifications<TEntity> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
@@ -431,7 +298,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected override TEntity FindSingleCore(Expression<Func<TEntity, bool>> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
@@ -497,8 +364,8 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected override TEntity FindFirstCore(Expression<Func<TEntity, bool>> expression, SortSpecifications<TEntity> sortRules,
@@ -554,7 +421,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Creates a LIKE-expression using the specified field and searchpattern.</summary>
+    /// <summary>Creates a LIKE-expression using the specified field and search pattern.</summary>
     /// <param name="field">The field of type <c>T</c> that must match the pattern.</param>
     /// <param name="pattern">The pattern to which the field must apply. The pattern may contain a '*' and '?' wildcard.</param>
     /// <returns>The created expression.</returns>
@@ -580,10 +447,10 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Protected overridable helper methods
-    /// <summary>Selects the DbContext that must be used. If the specified DataSourceInfo contains a valid DbContext, it is used; otherwise the value 
-    /// of the property 'DbContext' is used.</summary>
-    /// <param name="dataSourceInfo">Any information regarding the database that is used as datasource.</param>
-    /// <returns>The DbContext that must be used.</returns>
+    /// <summary>Selects the <see cref="DbContext"/> that must be used. If the specified DataSourceInfo contains a valid <see cref="DbContext"/>, it is used; otherwise the value 
+    /// of the property '<see cref="DbContext"/>' is used.</summary>
+    /// <param name="dataSourceInfo">Any information regarding the database that is used as data source.</param>
+    /// <returns>The <see cref="DbContext"/> that must be used.</returns>
     protected virtual DbContext SelectDbContext(DataSourceInfo dataSourceInfo) {
       if(DatabaseSourceInfo.IsDbContextSpecified(dataSourceInfo)) {
         return DatabaseSourceInfo.SelectDbContext(dataSourceInfo);
@@ -592,13 +459,41 @@ namespace Enkoni.Framework.Entities {
         return this.DbContext;
       }
     }
+
+    /// <summary>Resets the repository by undoing any unsaved changes. This implementation does not acquire a write lock on the local storage and can 
+    /// therefore be called from within a context that already has a write lock on the internal storage.</summary>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    protected virtual void ResetDbContextNoLock(DataSourceInfo dataSourceInfo) {
+      DbContext context = this.SelectDbContext(dataSourceInfo);
+
+      /* Retrieve the unsaved changes */
+      context.ChangeTracker.DetectChanges();
+      List<DbEntityEntry<TEntity>> changedEntries = context.ChangeTracker.Entries<TEntity>().Where(x => x.State != EntityState.Unchanged).ToList();
+
+      /* Undo any modifications */
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Modified)) {
+        entry.CurrentValues.SetValues(entry.OriginalValues);
+        entry.State = EntityState.Unchanged;
+      }
+
+      /* Undo any additions */
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Added)) {
+        entry.State = EntityState.Detached;
+      }
+
+      /* Undo any deletions */
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Deleted)) {
+        entry.State = EntityState.Unchanged;
+        entry.CurrentValues.SetValues(entry.OriginalValues);
+      }
+    }
     #endregion
 
     #region Private helper methods
-    /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not aquire a write lock on the
+    /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not acquire a write lock on the
     /// local storage and can therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that was updated.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     private TEntity UpdateEntityNoLock(TEntity entity, DataSourceInfo dataSourceInfo) {
       if(entity.RecordId == 0) {
@@ -641,10 +536,10 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Updates a collection of entities in the repository. This implementation does not aquire a write lock on the local storage and can 
+    /// <summary>Updates a collection of entities in the repository. This implementation does not acquire a write lock on the local storage and can 
     /// therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they are stored in the repository.</returns>
     private IEnumerable<TEntity> UpdateEntitiesNoLock(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -713,6 +608,206 @@ namespace Enkoni.Framework.Entities {
       else {
         return newlyAddedEntities.Concat(updatableEntities.Select(kvp => kvp.Value)).ToList();
       }
+    }
+
+    /// <summary>Inserts a new entity to the repository. This implementation does not acquire a write lock on the local storage and can therefore be 
+    /// called from within a context that already has a write lock on the internal storage.</summary>
+    /// <param name="entity">The entity that must be added.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+    /// <returns>The entity with the most recent values.</returns>
+    private TEntity AddEntityNoLock(TEntity entity, DataSourceInfo dataSourceInfo) {
+      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
+
+      if(entity.RecordId > 0) {
+        /* The entity already has an ID which suggests that it came from the original data source */
+        if(this.deletionCache.Contains(entity, entityComparer)) {
+          /* The entity has been marked for deletion, undelete it... */
+          this.deletionCache.Remove(entity, entityComparer);
+          /* ...and mark it as updated in case any of the fields have been altered. */
+          return this.UpdateEntityNoLock(entity, dataSourceInfo);
+        }
+      }
+
+      /* The entity is either new or came from another data source */
+      /* Determine the new temporary ID for the entity */
+      int newRecordId = -1;
+
+      if(this.additionCache.Count > 0) {
+        newRecordId = this.additionCache.Min(t => t.RecordId) - 1;
+      }
+
+      entity.RecordId = newRecordId;
+
+      /* Add it to the addition cache */
+      this.additionCache.Add(entity);
+
+      return entity;
+    }
+
+    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the 
+    /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the 
+    /// entity is saved. This implementation does not acquire a write lock on the local storage and can therefore be called from within a context that 
+    /// already has a write lock on the internal storage.</summary>
+    /// <param name="entities">The entities that must be added.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
+    /// </param>
+    /// <returns>The entities as they were added to the repository.</returns>
+    private IEnumerable<TEntity> AddEntitiesNoLock(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
+      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
+
+      /* Place the entities in a list to keep track of the entities that have been handled */
+      List<TEntity> unhandledEntities = entities.ToList();
+
+      DbContext context = this.SelectDbContext(dataSourceInfo);
+
+      /* Make a copy of the caches. That way, if any thing goes wrong all the changes can be made undone */
+      List<TEntity> tempDeletionCache = this.deletionCache.ToList();
+      List<TEntity> tempAdditionCache = this.additionCache.ToList();
+
+      if(entities.Any(e => e.RecordId > 0)) {
+        List<TEntity> updatableEntities = new List<TEntity>();
+        IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
+        ReferenceEqualityComparer<TEntity> referenceComparer = new ReferenceEqualityComparer<TEntity>();
+        /* At least some of the entities already have an ID which suggests that they came from the original data source */
+        foreach(TEntity existingEntity in existingEntities) {
+          if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
+            /* The entity has been marked for deletion, undelete it... */
+            tempDeletionCache.Remove(existingEntity, entityComparer);
+            /* ...and mark it as updated in case any of the fields have been altered. */
+            updatableEntities.Add(existingEntity);
+
+            bool removeResult = unhandledEntities.Remove(existingEntity, referenceComparer);
+            Debug.Assert(removeResult, "Somehow the result could not be removed from the collection of handled entities.");
+          }
+        }
+
+        foreach(TEntity updatableEntity in updatableEntities) {
+          TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == updatableEntity.RecordId);
+          if(storedEntity == null) {
+            /* This is not very likely, otherwise how could the entity exist in the deleteion cache */
+            throw new InvalidOperationException("Could not find the entity in the internal cache.");
+          }
+          else {
+            storedEntity.CopyFrom(updatableEntity);
+          }
+        }
+      }
+
+      if(unhandledEntities.Count > 0) {
+        /* At least some of the entities are either new or came from another data source */
+        /* Determine the new temporary ID for the entities */
+        int newRecordId = -1;
+        if(tempAdditionCache.Count > 0) {
+          newRecordId = tempAdditionCache.Min(t => t.RecordId) - 1;
+        }
+
+        foreach(TEntity unhandledEntity in unhandledEntities) {
+          unhandledEntity.RecordId = newRecordId;
+          --newRecordId;
+          /* Add it to the addition cache */
+          tempAdditionCache.Add(unhandledEntity);
+        }
+      }
+
+      /* Replace the original caches to complete the 'transaction' */
+      this.deletionCache = tempDeletionCache;
+      this.additionCache = tempAdditionCache;
+
+      return entities;
+    }
+
+    /// <summary>Deletes an entity from the repository. This implementation does not acquire a write lock on the local storage and can therefore be 
+    /// called from within a context that already has a write lock on the internal storage.</summary>
+    /// <param name="entity">The entity that must be deleted.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
+    private void DeleteEntityNoLock(TEntity entity, DataSourceInfo dataSourceInfo) {
+      DbContext context = this.SelectDbContext(dataSourceInfo);
+      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
+
+      if(entity.RecordId < 0) {
+        /* If the ID is negative, it should be marked for addition */
+        if(this.additionCache.Contains(entity, entityComparer)) {
+          this.additionCache.Remove(entity, entityComparer);
+        }
+        else {
+          throw new InvalidOperationException("Could not find the entity in the addition-cache.");
+        }
+      }
+      else {
+        /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
+        Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == entity.RecordId);
+        TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(queryById);
+        if(existingEntity != null) {
+          if(!this.deletionCache.Contains(existingEntity, entityComparer)) {
+            this.deletionCache.Add(existingEntity);
+          }
+          else {
+            throw new InvalidOperationException("Cannot delete the same entity more then once.");
+          }
+        }
+        else {
+          throw new InvalidOperationException("The entity seems to be new and can therefore not be deleted.");
+        }
+      }
+    }
+
+    /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
+    /// or it is added to the deletion-cache until it is saved using the <see cref="Repository{T}.SaveChanges()"/> method. This implementation does 
+    /// not acquire a write lock on the local storage and can therefore be called from within a context that already has a write lock on the internal 
+    /// storage.</summary>
+    /// <param name="entities">The entities that must be removed.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
+    /// </param>
+    private void DeleteEntitiesNoLock(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
+      DbContext context = this.SelectDbContext(dataSourceInfo);
+      EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
+
+      IEnumerable<TEntity> addedEntities = entities.Where(e => e.RecordId < 0);
+      IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
+
+      /* Make a copy of the caches. That way, if any thing goes wrong all the changes can be made undone */
+      List<TEntity> tempAdditionCache = this.additionCache.ToList();
+      List<TEntity> tempDeletionCache = this.deletionCache.ToList();
+
+      foreach(TEntity addedEntity in addedEntities) {
+        /* If the ID is negative, it should be marked for addition */
+        if(tempAdditionCache.Contains(addedEntity, entityComparer)) {
+          tempAdditionCache.Remove(addedEntity, entityComparer);
+        }
+        else {
+          throw new InvalidOperationException("Could not find the entity in the addition-cache.");
+        }
+      }
+
+      foreach(TEntity existingEntity in existingEntities) {
+        /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
+        Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == existingEntity.RecordId);
+        TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(queryById);
+        if(storedEntity != null) {
+          if(!tempDeletionCache.Contains(storedEntity, entityComparer)) {
+            tempDeletionCache.Add(storedEntity);
+          }
+          else {
+            throw new InvalidOperationException("Cannot delete the same entity more then once.");
+          }
+        }
+        else {
+          throw new InvalidOperationException("The entity seems to be new and can therefore not be deleted.");
+        }
+      }
+
+      /* Replace the original caches to complete the 'transaction' */
+      this.additionCache = tempAdditionCache;
+      this.deletionCache = tempDeletionCache;
+    }
+
+    /// <summary>Resets the local addition and deletion cache. This implementation does not acquire a write lock on the local storage and can therefore 
+    /// be called from within a context that already has a write lock on the internal storage.</summary>
+    private void ResetLocalCacheNoLock() {
+      this.additionCache.Clear();
+      this.deletionCache.Clear();
     }
     #endregion
 

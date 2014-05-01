@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Extensions.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines several all-purpose extension methods.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -42,67 +33,67 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Event extensions
-    /// <summary>Fires an event in a sequential way. An eventhandler needs to finish before the next eventhandler will be called. This method will 
-    /// return when all the eventhandlers have finished. <br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
-    /// propagate the call the the appropriate thread.</summary>
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will return when all 
+    /// the event handlers have finished. <br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically propagate the call 
+    /// the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void Fire(this EventHandler handler, object sender, EventArgs e) {
       UnsafeFire(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a sequential way. An eventhandler needs to finish before the next eventhandler will be called. This method will 
-    /// return when all the eventhandlers have finished. <br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will 
+    /// return when all the event handlers have finished. <br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
-    /// <typeparam name="T">The type of eventargs that is passed with the event.</typeparam>
+    /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void Fire<T>(this EventHandler<T> handler, object sender, T e) where T : EventArgs {
       UnsafeFire(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a parallel way. This method will return when all the eventhandlers have finished.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireInParallel(this EventHandler handler, object sender, EventArgs e) {
       UnsafeFireInParallel(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a parallel way. This method will return when all the eventhandlers have finished.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
-    /// <typeparam name="T">The type of eventargs that is passed with the event.</typeparam>
+    /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireInParallel<T>(this EventHandler<T> handler, object sender, T e) where T : EventArgs {
       UnsafeFireInParallel(handler, sender, e);
     }
 
-    /// <summary>Fires an event in an asynchronous way. When this method returns, the eventhandlers may still be running.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireAsync(this EventHandler handler, object sender, EventArgs e) {
       UnsafeFireAsync(handler, sender, e);
     }
 
-    /// <summary>Fires an event in an asynchronous way. When this method returns, the eventhandlers may still be running.<br/>
-    /// This method will automatically check if there are any eventhandlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
     /// propagate the call the the appropriate thread.</summary>
-    /// <typeparam name="T">The type of eventargs that is passed with the event.</typeparam>
+    /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
-    /// <param name="e">Any metadata that must be passed to the eventhandlers.</param>
+    /// <param name="e">Any metadata that must be passed to the event handlers.</param>
     public static void FireAsync<T>(this EventHandler<T> handler, object sender, T e) where T : EventArgs {
       UnsafeFireAsync(handler, sender, e);
     }
@@ -167,6 +158,69 @@ namespace Enkoni.Framework {
         return string.Join(" ", capitalizedStrings.ToArray());
       }
     }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source) {
+      return source.CapitalizeSentence(null);
+    }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <param name="keepExistingCapitals">Indicates if any capitals that are already in the string must be preserved or must be lowered.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source, bool keepExistingCapitals) {
+      return source.CapitalizeSentence(keepExistingCapitals, null);
+    }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <param name="culture">A <see cref="CultureInfo"/> object that supplies culture-specific casing rules.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source, CultureInfo culture) {
+      return source.CapitalizeSentence(false, culture);
+    }
+
+    /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
+    /// <param name="source">The sentence that must be capitalized.</param>
+    /// <param name="keepExistingCapitals">Indicates if any capitals that are already in the string must be preserved or must be lowered.</param>
+    /// <param name="culture">A <see cref="CultureInfo"/> object that supplies culture-specific casing rules.</param>
+    /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
+    /// modifications.</returns>
+    public static string CapitalizeSentence(this string source, bool keepExistingCapitals, CultureInfo culture) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
+      if(string.IsNullOrEmpty(source.Trim())) {
+        return source;
+      }
+
+      if(culture == null) {
+        culture = CultureInfo.CurrentCulture;
+      }
+
+      if(keepExistingCapitals) {
+        IEnumerable<string> capitalizedStrings = source.Split(' ')
+          .Select((str, i) => i == 0
+              ? new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character of the first word */
+                new string(str.Skip(1).ToArray())                         /* Keep the remaining characters of the first word as they are */
+              : str);                                                     /* Keep the remaining words as they are */
+        return string.Join(" ", capitalizedStrings.ToArray());
+      }
+      else {
+        IEnumerable<string> capitalizedStrings = source.Split(' ')
+          .Select((str, i) => i == 0
+              ? new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character of the first word */
+                new string(str.Skip(1).ToArray()).ToLower(culture)        /* Lower the remaining characters of the first word*/
+              : str.ToLower(culture));                                    /* Lower the remaining characters of the remaining words*/
+        return string.Join(" ", capitalizedStrings.ToArray());
+      }
+    }
     #endregion
 
     #region Double extensions
@@ -206,9 +260,9 @@ namespace Enkoni.Framework {
     #endregion
 
     #region DateTime extensions
-    /// <summary>Determines the weeknumber of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
-    /// <param name="source">The datetime of which the weeknumber must be determined.</param>
-    /// <returns>The determined weeknumber.</returns>
+    /// <summary>Determines the week number of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
+    /// <param name="source">The date time of which the week number must be determined.</param>
+    /// <returns>The determined week number.</returns>
     public static int GetWeekNumber(this DateTime source) {
       /* This implementation is inspired on the article written by Shawn Steele which is available on 
        * http://blogs.msdn.com/b/shawnste/archive/2006/01/24/517178.aspx */
@@ -354,7 +408,7 @@ namespace Enkoni.Framework {
     #endregion
 
     #region Helper methods
-    /// <summary>Invokes a delegate. If required, the call is transfered to the appropriate thread.</summary>
+    /// <summary>Invokes a delegate. If required, the call is transferred to the appropriate thread.</summary>
     /// <param name="del">The delegate that must be invoked.</param>
     /// <param name="args">The arguments that must be passed to the delegate.</param>
     private static void InvokeDelegate(Delegate del, object[] args) {

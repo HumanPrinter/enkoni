@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ViewModel.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a base class for all view models.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -87,7 +78,7 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     #region Public methods
     /// <summary>Determines whether the specified property contains a valid value.</summary>
-    /// <typeparam name="TViewModel">The type of viewmodel whose property is validated.</typeparam>
+    /// <typeparam name="TViewModel">The type of view model whose property is validated.</typeparam>
     /// <typeparam name="TProperty">The type of property that is validated.</typeparam>
     /// <param name="property">The property that must be evaluated.</param>
     /// <returns><see langword="true"/> if the specified property is valid; otherwise, <see langword="false"/>.</returns>

@@ -105,8 +105,8 @@ namespace Enkoni.Framework.Collections {
     /// <summary>Compares two doubles by looking only at the significant digits.</summary>
     /// <param name="x">The left operand.</param>
     /// <param name="y">The right operand.</param>
-    /// <param name="digits">The siginificant digits that must be taken into account.</param>
-    /// <returns><see langword="true"/> if the two numbers are equal upto their significant digits; otherwise, <see langword="false"/>.</returns>
+    /// <param name="digits">The significant digits that must be taken into account.</param>
+    /// <returns><see langword="true"/> if the two numbers are equal up to their significant digits; otherwise, <see langword="false"/>.</returns>
     private static bool EqualsBySignificantDigits(double x, double y, int digits) {
       int roundedX = (int)Math.Round(x * Math.Pow(10, digits));
       int roundedY = (int)Math.Round(y * Math.Pow(10, digits));

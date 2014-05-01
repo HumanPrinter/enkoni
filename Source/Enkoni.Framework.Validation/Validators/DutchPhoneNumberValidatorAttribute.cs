@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DutchPhoneNumberValidatorAttribute.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains an attribute for the validation capabilities.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
@@ -66,7 +57,7 @@ namespace Enkoni.Framework.Validation.Validators {
       set { this.allowCarrierPreselect = value; }
     }
 
-    /// <summary>Gets or sets the semicolon-seperated area codes that are considered valid. This overrides the default area codes for this validator.
+    /// <summary>Gets or sets the semicolon-separated area codes that are considered valid. This overrides the default area codes for this validator.
     /// </summary>
     public string IncludeAreaCodes {
       get { 
@@ -79,7 +70,7 @@ namespace Enkoni.Framework.Validation.Validators {
       } 
     }
 
-    /// <summary>Gets or sets the semicolon-seperated area codes that are considered invalid.</summary>
+    /// <summary>Gets or sets the semicolon separated area codes that are considered invalid.</summary>
     public string ExcludeAreaCodes {
       get {
         return this.excludeAreaCodes;

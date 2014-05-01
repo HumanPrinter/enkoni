@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ITestService.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a service that is used during the tests.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.ServiceModel;
+﻿using System.ServiceModel;
 
 namespace Enkoni.Framework.ServiceModel.Tests {
   /// <summary>This interface describes a service that is used by the ServiceModel test cases.</summary>

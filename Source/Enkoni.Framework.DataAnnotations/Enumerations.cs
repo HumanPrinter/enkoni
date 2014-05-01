@@ -31,7 +31,7 @@ namespace Enkoni.Framework.DataAnnotations {
 
   /// <summary>Defines the supported categories of e-mail addresses for the <see cref="EmailAttribute"/>.</summary>
   public enum EmailCategory {
-    /// <summary>Match basic e-mail addresses only. Basic e-mail addresses may contain alfanumeric characters and the '-' and '_' characters.</summary>
+    /// <summary>Match basic e-mail addresses only. Basic e-mail addresses may contain alfa numeric characters and the '-' and '_' characters.</summary>
     Basic,
 
     /// <summary>Match all e-mail addresses except e-mail addresses that contain quoted strings.</summary>
