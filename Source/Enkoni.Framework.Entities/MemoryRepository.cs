@@ -470,7 +470,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Updates an entity in the storage.</summary>
-    /// <param name="entity">The enity that must be updated.</param>
+    /// <param name="entity">The entity that must be updated.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <returns>The updated entity.</returns>
     protected override TEntity UpdateEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
@@ -636,7 +636,7 @@ namespace Enkoni.Framework.Entities {
     #region Private helper methods
     /// <summary>Selects the MemoryStore that must be used. If the specified DataSourceInfo contains a valid MemoryStore, it is used; otherwise the 
     /// value of the property 'MemoryStore' is used.</summary>
-    /// <param name="dataSourceInfo">Any information regarding the datastore that is used as data source.</param>
+    /// <param name="dataSourceInfo">Any information regarding the data store that is used as data source.</param>
     /// <returns>The MemoryStore that must be used.</returns>
     private MemoryStore<TEntity> SelectMemoryStore(DataSourceInfo dataSourceInfo) {
       if(MemorySourceInfo.IsMemoryStoreSpecified(dataSourceInfo)) {
@@ -648,7 +648,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Concatenates the global caches and local cache into one complete and up-to-date cache.</summary>
-    /// <param name="dataSourceInfo">Any information regarding the datastore that is used as data source.</param>
+    /// <param name="dataSourceInfo">Any information regarding the data store that is used as data source.</param>
     /// <returns>The concatenated cache-values.</returns>
     private IEnumerable<TEntity> ConcatStorage(DataSourceInfo dataSourceInfo) {
       EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();

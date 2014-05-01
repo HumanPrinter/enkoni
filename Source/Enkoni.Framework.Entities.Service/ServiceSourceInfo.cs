@@ -24,31 +24,31 @@ namespace Enkoni.Framework.Entities {
       : base() {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name.</summary>
+    /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     public ServiceSourceInfo(string endpointConfigurationName)
       : this(endpointConfigurationName, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name.</summary>
+    /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(string endpointConfigurationName, bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
       this.EndpointConfigurationName = endpointConfigurationName;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
     /// address.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     public ServiceSourceInfo(string endpointConfigurationName, EndpointAddress remoteAddress)
       : this(endpointConfigurationName, remoteAddress, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
     /// address.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(string endpointConfigurationName, EndpointAddress remoteAddress, bool cloneDataSourceItems)
@@ -57,17 +57,17 @@ namespace Enkoni.Framework.Entities {
       this.RemoteAddress = remoteAddress;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
     /// address.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+    /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     public ServiceSourceInfo(string endpointConfigurationName, string remoteAddress)
       : this(endpointConfigurationName, remoteAddress, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
     /// address.</summary>
-    /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
+    /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
     /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(string endpointConfigurationName, string remoteAddress, bool cloneDataSourceItems)

@@ -107,10 +107,10 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Save the changes that were made to the repository. It is possible to supply data source information that specifies a specific 
-    /// destinationfile. In that case, the contents will be written to that file and the internal cache is untouched. Otherwise, the changes are 
-    /// written back to the sourcefile and the internal cache will be refresehed.</summary>
-    /// <param name="dataSourceInfo">Optional datasourceinformation that may contain a reference to a destinationfile other than the original 
-    /// sourcefile.</param>
+    /// destination file. In that case, the contents will be written to that file and the internal cache is untouched. Otherwise, the changes are 
+    /// written back to the source file and the internal cache will be refresehed.</summary>
+    /// <param name="dataSourceInfo">Optional data source information that may contain a reference to a destination file other than the original 
+    /// source file.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {
       bool useGlobalSourceFile = this.UseGlobalSourceFile(dataSourceInfo);
 

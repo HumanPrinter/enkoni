@@ -27,7 +27,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Finds all the entities that match the specified specification.</summary>
-    /// <param name="searchSpecification">The specification that desribes the query that must be performed.</param>
+    /// <param name="searchSpecification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
     public IList<T> FindEntities(ISpecification<T> searchSpecification) {
       if(searchSpecification == null) {
@@ -38,7 +38,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Finds one entities that matches the specified specification.</summary>
-    /// <param name="searchSpecification">The specification that desribes the query that must be performed.</param>
+    /// <param name="searchSpecification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     public T FindEntity(ISpecification<T> searchSpecification) {
       if(searchSpecification == null) {
@@ -122,12 +122,12 @@ namespace Enkoni.Framework.Entities {
     protected abstract T CreateEmptyEntityCore();
 
     /// <summary>Finds all the entities that match the specified specification.</summary>
-    /// <param name="specification">The specification that desribes the query that must be performed.</param>
+    /// <param name="specification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
     protected abstract IList<T> FindEntitiesCore(ISpecification<T> specification);
 
     /// <summary>Finds one entities that matches the specified specification.</summary>
-    /// <param name="specification">The specification that desribes the query that must be performed.</param>
+    /// <param name="specification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     protected abstract T FindEntityCore(ISpecification<T> specification);
 

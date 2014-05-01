@@ -261,7 +261,7 @@ namespace Enkoni.Framework {
 
     #region DateTime extensions
     /// <summary>Determines the weeknumber of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
-    /// <param name="source">The datetime of which the weeknumber must be determined.</param>
+    /// <param name="source">The date time of which the week number must be determined.</param>
     /// <returns>The determined weeknumber.</returns>
     public static int GetWeekNumber(this DateTime source) {
       /* This implementation is inspired on the article written by Shawn Steele which is available on 
