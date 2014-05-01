@@ -3,7 +3,7 @@
   <releases>
     <release version="1.2.4.0" releasedate="2014-03-24">
       <projects>
-        <project name="Enkoni.Framework" version="2.3.0" versionPostfix="beta01">
+        <project name="Enkoni.Framework" version="2.3.0">
           <updates>
             <update date="2014-04-30" type="addition">
               <summary><![CDATA[Added a new CapitalizeSentence extension method]]></summary>
@@ -13,7 +13,7 @@
             </update>
           </updates>
         </project>
-        <project name="Enkoni.Framework.DataAnnotations" version="1.0.1" versionPostfix="beta04">
+        <project name="Enkoni.Framework.DataAnnotations" version="1.0.1">
           <updates>
             <update date="2014-03-18" type="change">
               <summary><![CDATA[Changed the behavior of the validations in case of an empty input value]]></summary>
@@ -22,7 +22,7 @@
             </update>
           </updates>
         </project>
-        <project name="Enkoni.Framework.Entities" version="3.1.0" versionPostfix="beta04">
+        <project name="Enkoni.Framework.Entities" version="3.1.0">
           <updates>
             <update date="2014-03-21" type="change">
               <summary><![CDATA[Fixed a bug in the SubDomainModel class in the UpdateEntity method]]></summary>
@@ -37,25 +37,25 @@
               <summary><![CDATA[Added a new Reset method to the Repository class]]></summary>
               <comment><![CDATA[Added a new Reset method to the Repository class which can be used to revert any changes made to the repository.]]></comment>
             </update>
-            <update date="2014-03-30" type="change">
-              <summary><![CDATA[Updated the reference to EntityFramework to version 6.1.0]]></summary>
-              <comment><![CDATA[The project now references EntityFramework 6.1.0 (old version was 5.0).]]></comment>
-            </update>
             <update date="2014-04-06" type="change">
               <summary><![CDATA[Added a new Execute method to the Repository class]]></summary>
               <comment><![CDATA[Added a new Execute method to the Repository class that can be used to execute custom actions that don't have to return one or more entities.]]></comment>
             </update>
           </updates>
         </project>
-        <project name="Enkoni.Framework.Entities.Database" version="2.1.0" versionPostfix="beta04">
+        <project name="Enkoni.Framework.Entities.Database" version="2.1.0">
           <updates>
             <update date="2014-03-23" type="change">
               <summary><![CDATA[Implemented the new Reset method of the Repository base class]]></summary>
               <comment><![CDATA[The DatabaseRepository implements the new Reset method which reverts any unsaved changes to the repository.]]></comment>
             </update>
+            <update date="2014-03-30" type="change">
+              <summary><![CDATA[Updated the reference to EntityFramework to version 6.1.0]]></summary>
+              <comment><![CDATA[The project now references EntityFramework 6.1.0 (old version was 5.0).]]></comment>
+            </update>
           </updates>
         </project>
-        <project name="Enkoni.Framework.Entities.File" version="3.1.0" versionPostfix="beta04">
+        <project name="Enkoni.Framework.Entities.File" version="3.1.0">
           <updates>
             <update date="2014-03-23" type="change">
               <summary><![CDATA[Implemented the new Reset method of the Repository base class]]></summary>
