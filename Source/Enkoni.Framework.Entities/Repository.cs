@@ -32,7 +32,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Repository{T}"/> class.</summary>
-    /// <param name="dataSourceInfo">The datasource information that must be used to access the datasource.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the data source.</param>
     /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> specifies that data source items must be cloned, but 
     /// <typeparamref name="T"/> does not implement <see cref="ICloneable"/>.</exception>
     protected Repository(DataSourceInfo dataSourceInfo)
@@ -49,7 +49,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Gets or sets the instance that must be used to validate the entities before adding or updating them in the repository.</summary>
     public EntityValidator<T> Validator { get; set; }
 
-    /// <summary>Gets a value indicating whether entities retrieved from the datasource must be cloned or not.</summary>
+    /// <summary>Gets a value indicating whether entities retrieved from the data source must be cloned or not.</summary>
     public bool CloneDataSourceItems { get; private set; }
     #endregion
 
@@ -111,7 +111,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Saves all the changes to the underlying persistency.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     public void SaveChanges(DataSourceInfo dataSourceInfo) {
       this.SaveChangesCore(dataSourceInfo);
     }
@@ -122,7 +122,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Resets the repository by undoing any unsaved changes.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     public void Reset(DataSourceInfo dataSourceInfo) {
       this.ResetCore(dataSourceInfo);
     }
@@ -136,7 +136,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Creates a new entity. To add the entity to the repository, use the <see cref="AddEntity(T)"/> method with the returned value.
     /// </summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The newly created entity.</returns>
     public T CreateEntity(DataSourceInfo dataSourceInfo) {
       return this.CreateEntityCore(dataSourceInfo);
@@ -153,7 +153,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Adds a new entity to the repository. Call <see cref="SaveChanges()"/> to make the addition permanent.</summary>
     /// <param name="entity">The entity that must be added to the repository.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
@@ -186,7 +186,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Adds a collection of new entities to the repository.</summary>
     /// <param name="entities">The entities that must be added to the repository.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
     /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
@@ -227,7 +227,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates the repository with the changes made to the entity. Call <see cref="SaveChanges()"/> to make the changes permanent.
     /// </summary>
     /// <param name="entity">The entity whose members are updated.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
@@ -260,7 +260,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Updates the repository with the changes made to the entities.</summary>
     /// <param name="entities">The entities whose members have changed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
     /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
@@ -297,7 +297,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Deletes the entity from the repository. Call <see cref="SaveChanges()"/> to make the changes permanent.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     public void DeleteEntity(T entity, DataSourceInfo dataSourceInfo) {
       if(entity == null) {
@@ -317,7 +317,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Deletes the entities from the repository. Call <see cref="SaveChanges()"/> to make the changes permanent.</summary>
     /// <param name="entities">The entities that must be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
     public void DeleteEntities(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
@@ -343,7 +343,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
     /// <param name="specification">The specification that indicates the action that must be executed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>An object describing the result of the action.</returns>
     public object Execute(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
       if(specification == null) {
@@ -368,7 +368,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>All the available entities.</returns>
     public IEnumerable<T> FindAll(DataSourceInfo dataSourceInfo) {
       return this.FindAllCore(dataSourceInfo);
@@ -384,7 +384,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds all the available entities that match the specification.</summary>
     /// <param name="specification">The specification to which the entities must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specification.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public IEnumerable<T> FindAll(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
@@ -411,7 +411,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds a single entity that matches the specification.</summary>
     /// <param name="specification">The specification to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindSingle(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
@@ -440,7 +440,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds a single entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
     /// <param name="specification">The specification to which the entity must match.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindSingle(ISpecification<T> specification, T defaultValue, DataSourceInfo dataSourceInfo) {
@@ -467,7 +467,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the first entity that matches the specification.</summary>
     /// <param name="specification">The specification to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindFirst(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
@@ -496,7 +496,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
     /// <param name="specification">The specification to which the entity must match.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindFirst(ISpecification<T> specification, T defaultValue, DataSourceInfo dataSourceInfo) {
@@ -528,39 +528,39 @@ namespace Enkoni.Framework.Entities {
 
     #region Extensibility methods
     /// <summary>Saves all the changes to the underlying persistency.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected abstract void SaveChangesCore(DataSourceInfo dataSourceInfo);
 
     /// <summary>Creates a new entity.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The newly created entity.</returns>
     protected abstract T CreateEntityCore(DataSourceInfo dataSourceInfo);
 
     /// <summary>Adds a new entity to the repository.</summary>
     /// <param name="entity">The entity that must be added to the repository.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     protected abstract T AddEntityCore(T entity, DataSourceInfo dataSourceInfo);
 
     /// <summary>Updates the repository with the changes made to the entity.</summary>
     /// <param name="entity">The entity whose members are updated.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     protected abstract T UpdateEntityCore(T entity, DataSourceInfo dataSourceInfo);
 
     /// <summary>Deletes the entity from the repository.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected abstract void DeleteEntityCore(T entity, DataSourceInfo dataSourceInfo);
 
     /// <summary>Resets the repository by undoing any unsaved changes.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected virtual void ResetCore(DataSourceInfo dataSourceInfo) {
     }
 
     /// <summary>Adds a collection of new entities to the repository.</summary>
     /// <param name="entities">The entities that must be added to the repository.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities with the most recent values.</returns>
     protected virtual IEnumerable<T> AddEntitiesCore(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
       List<T> addedEntities = new List<T>(entities.Count());
@@ -573,7 +573,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Updates the repository with the changes made to the entities.</summary>
     /// <param name="entities">The entities whose members have changed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities with the most recent values.</returns>
     protected virtual IEnumerable<T> UpdateEntitiesCore(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
       List<T> updatedEntities = new List<T>(entities.Count());
@@ -586,7 +586,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Deletes the entities from the repository.</summary>
     /// <param name="entities">The entities that must be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected virtual void DeleteEntitiesCore(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
       foreach(T entity in entities) {
         this.DeleteEntityCore(entity, dataSourceInfo);
@@ -597,7 +597,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
     protected virtual IEnumerable<T> FindAllCore(Expression<Func<T, bool>> expression, SortSpecifications<T> sortRules,
       int maximumResults, DataSourceInfo dataSourceInfo) {
@@ -608,7 +608,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
     protected virtual IEnumerable<T> FindAllCore(Func<T, bool> expression, SortSpecifications<T> sortRules,
       int maximumResults, DataSourceInfo dataSourceInfo) {
@@ -617,7 +617,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected virtual T FindSingleCore(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo, T defaultValue) {
@@ -626,7 +626,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected virtual T FindSingleCore(Func<T, bool> expression, DataSourceInfo dataSourceInfo, T defaultValue) {
@@ -636,7 +636,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected virtual T FindFirstCore(Expression<Func<T, bool>> expression, SortSpecifications<T> sortRules, DataSourceInfo dataSourceInfo,
@@ -647,7 +647,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected virtual T FindFirstCore(Func<T, bool> expression, SortSpecifications<T> sortRules, DataSourceInfo dataSourceInfo, T defaultValue) {
@@ -655,7 +655,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>All the available entities.</returns>
     protected virtual IEnumerable<T> FindAllCore(DataSourceInfo dataSourceInfo) {
       Expression<Func<T, bool>> expression = t => true;
@@ -664,7 +664,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds a single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     protected virtual T FindSingleCore(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo) {
       return this.FindSingleCore(expression, dataSourceInfo, null);
@@ -673,7 +673,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     protected virtual T FindFirstCore(Expression<Func<T, bool>> expression, SortSpecifications<T> sortRules, DataSourceInfo dataSourceInfo) {
       return this.FindFirstCore(expression, sortRules, dataSourceInfo, null);
@@ -745,7 +745,7 @@ namespace Enkoni.Framework.Entities {
     /// Override this method to deal with special business rules.</summary>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="ruleArguments">The arguments that were passed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The result of the business rule.</returns>
     protected virtual T ExecuteBusinessRuleWithSingleResult(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository does not support business rules.");
@@ -755,7 +755,7 @@ namespace Enkoni.Framework.Entities {
     /// Override this method to deal with special business rules.</summary>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="ruleArguments">The arguments that were passed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The result of the business rule.</returns>
     protected virtual IEnumerable<T> ExecuteBusinessRuleWithMultipleResults(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository does not support business rules.");
@@ -765,7 +765,7 @@ namespace Enkoni.Framework.Entities {
     /// Override this method to deal with special business rules.</summary>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="ruleArguments">The arguments that were passed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The result of the business rule.</returns>
     protected virtual object ExecuteBusinessRule(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
       throw new NotSupportedException("This repository does not support business rules.");
@@ -776,7 +776,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The result of the action. By default, this method returns <see langword="null"/>.</returns>
     protected virtual object ExecuteCore(Func<T, bool> expression, SortSpecifications<T> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
       this.FindAllCore(expression, sortRules, maximumResults, dataSourceInfo);
@@ -788,7 +788,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Selects the flag that indicates if any entity that originates from the data source must be cloned or not. If 
     /// <paramref name="dataSourceInfo"/> contains a valid flag, it is used; otherwise the value of <see cref="CloneDataSourceItems"/> is used.
     /// </summary>
-    /// <param name="dataSourceInfo">Any information regarding the datasource.</param>
+    /// <param name="dataSourceInfo">Any information regarding the data source.</param>
     /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> indicates that entities must be cloned, but 
     /// <typeparamref name="T"/> does not implement <see cref="ICloneable"/>.</exception>
     /// <returns><see langword="true"/> if entities must be cloned; <see langword="false"/> otherwise.</returns>

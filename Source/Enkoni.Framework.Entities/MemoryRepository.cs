@@ -40,7 +40,7 @@ namespace Enkoni.Framework.Entities {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="MemoryRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
-    /// <param name="dataSourceInfo">The datasource information that must be used to access the datasource.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the data source.</param>
     /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> does not specify a valid <see cref="T:MemoryStore{T}"/>.
     /// </exception>
     public MemoryRepository(DataSourceInfo dataSourceInfo)
@@ -65,7 +65,7 @@ namespace Enkoni.Framework.Entities {
 
     #region Repository<T> overrides
     /// <summary>Resets the repository by undoing any unsaved changes.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected override void ResetCore(DataSourceInfo dataSourceInfo) {
       this.additionCache.Clear();
       this.deletionCache.Clear();
@@ -259,7 +259,7 @@ namespace Enkoni.Framework.Entities {
           }
         }
 
-        /* The entity is either new or came from another datasource */
+        /* The entity is either new or came from another data source */
         /* Determine the new temporary ID for the entity */
         int newRecordId = -1;
         if(this.additionCache.Count > 0) {
@@ -284,7 +284,7 @@ namespace Enkoni.Framework.Entities {
     /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the entity is 
     /// saved.</summary>
     /// <param name="entities">The entities that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they were added to the repository.</returns>
     protected override IEnumerable<TEntity> AddEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -319,7 +319,7 @@ namespace Enkoni.Framework.Entities {
         }
 
         if(unhandledEntities.Count > 0) {
-          /* At least some of the entities are either new or came from another datasource */
+          /* At least some of the entities are either new or came from another data source */
           /* Determine the new temporary ID for the entities */
           int newRecordId = -1;
           if(tempAdditionCache.Count > 0) {
@@ -378,7 +378,7 @@ namespace Enkoni.Framework.Entities {
             this.updateCache.Remove(entity, entityComparer);
           }
 
-          /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
+          /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
           if(memoryStore.Storage.Contains(entity, entityComparer)) {
             if(!this.deletionCache.Contains(entity, entityComparer)) {
               this.deletionCache.Add(entity);
@@ -404,7 +404,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
     /// or it is added to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entities">The entities that must be removed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     protected override void DeleteEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
       if(entities.Any(e => e.RecordId == 0)) {
@@ -442,7 +442,7 @@ namespace Enkoni.Framework.Entities {
             tempUpdateCache.Remove(existingEntity, entityComparer);
           }
 
-          /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
+          /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
           if(memoryStore.Storage.Contains(existingEntity, entityComparer)) {
             if(!tempDeletionCache.Contains(existingEntity, entityComparer)) {
               tempDeletionCache.Add(existingEntity);
@@ -528,7 +528,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates a collection of entities in the repository. Depending on the status of each entity, it is updated in the addition-cache or 
     /// it is added to the update-cache.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they are stored in the repository.</returns>
     protected override IEnumerable<TEntity> UpdateEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -636,7 +636,7 @@ namespace Enkoni.Framework.Entities {
     #region Private helper methods
     /// <summary>Selects the MemoryStore that must be used. If the specified DataSourceInfo contains a valid MemoryStore, it is used; otherwise the 
     /// value of the property 'MemoryStore' is used.</summary>
-    /// <param name="dataSourceInfo">Any information regarding the datastore that is used as datasource.</param>
+    /// <param name="dataSourceInfo">Any information regarding the datastore that is used as data source.</param>
     /// <returns>The MemoryStore that must be used.</returns>
     private MemoryStore<TEntity> SelectMemoryStore(DataSourceInfo dataSourceInfo) {
       if(MemorySourceInfo.IsMemoryStoreSpecified(dataSourceInfo)) {
@@ -648,7 +648,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Concatenates the global caches and local cache into one complete and up-to-date cache.</summary>
-    /// <param name="dataSourceInfo">Any information regarding the datastore that is used as datasource.</param>
+    /// <param name="dataSourceInfo">Any information regarding the datastore that is used as data source.</param>
     /// <returns>The concatenated cache-values.</returns>
     private IEnumerable<TEntity> ConcatStorage(DataSourceInfo dataSourceInfo) {
       EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();

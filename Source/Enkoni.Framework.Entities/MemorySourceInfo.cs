@@ -3,7 +3,7 @@
 //     Copyright (c) Oscar Brouwer 2013. All rights reserved.
 // </copyright>
 // <summary>
-//     Defines a class that contains information about a memory datasource that is used by the MemoryRepository.
+//     Defines a class that contains information about a memory data source that is used by the MemoryRepository.
 //     Note: Since the static MemorySourceInfo class is only a container for the static members of the generic MemorySourceInfo class, they are both 
 //     placed in the same file.
 // </summary>
@@ -23,16 +23,16 @@ namespace Enkoni.Framework.Entities {
 
     #region Public static methods
     /// <summary>Determines if the MemoryStore is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsMemoryStoreSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(MemoryStoreKey);
     }
 
-    /// <summary>Selects the MemoryStore from the specified datasource information.</summary>
+    /// <summary>Selects the MemoryStore from the specified data source information.</summary>
     /// <typeparam name="T">The type of object that is stored in the memorystore.</typeparam>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The MemoryStore that is stored in the datasource information or <see langword="null"/> if the MemoryStore could not be found.
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The MemoryStore that is stored in the data source information or <see langword="null"/> if the MemoryStore could not be found.
     /// </returns>
     public static MemoryStore<T> SelectMemoryStore<T>(DataSourceInfo dataSourceInfo) where T : class {
       if(IsMemoryStoreSpecified(dataSourceInfo)) {
@@ -46,7 +46,7 @@ namespace Enkoni.Framework.Entities {
   }
 
   /// <summary>This class can be used by the <see cref="MemoryRepository{TEntity}"/> to retrieve valuable information about the datastore that is to 
-  /// be used. This class is added for improved usability of the DataSourceInfo in combination with the MemoryRepository.</summary>
+  /// be used. This class is added for improved usability of the <see cref="DataSourceInfo"/> in combination with the MemoryRepository.</summary>
   /// <typeparam name="T">The type of object that is stored in memory.</typeparam>
   [SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass",
       Justification = "Since the static class is merely a container for the static members of the non-static class, they can be in the same file")]
@@ -67,7 +67,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Initializes a new instance of the <see cref="MemorySourceInfo{T}"/> class using the specified memorystore instance.</summary>
     /// <param name="memoryStore">The memorystore that must be use to store the entities.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public MemorySourceInfo(MemoryStore<T> memoryStore, bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
       this.MemoryStore = memoryStore;

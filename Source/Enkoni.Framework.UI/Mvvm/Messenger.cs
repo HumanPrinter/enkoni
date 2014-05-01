@@ -326,8 +326,8 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     #region Private static methods
     /// <summary>Collects and removes the dead reference inside a dictionary.</summary>
-    /// <param name="dictionary">The dictionary that must be analysed.</param>
-    /// <param name="key">The key that must be analysed (optional).</param>
+    /// <param name="dictionary">The dictionary that must be analyzed.</param>
+    /// <param name="key">The key that must be analyzed (optional).</param>
     private static void Cleanup(Dictionary<Type, List<IRecipient>> dictionary, Type key = null) {
       if(key == null) {
         lock(dictionary) {

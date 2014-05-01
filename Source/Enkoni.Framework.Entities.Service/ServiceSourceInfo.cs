@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceSourceInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a class that contains information about a servicebased datasource that is used by the ServiceRepository.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
@@ -41,7 +32,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpointconfigurationname.</summary>
     /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(string endpointConfigurationName, bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
       this.EndpointConfigurationName = endpointConfigurationName;
@@ -59,7 +50,7 @@ namespace Enkoni.Framework.Entities {
     /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(string endpointConfigurationName, EndpointAddress remoteAddress, bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
       this.EndpointConfigurationName = endpointConfigurationName;
@@ -78,7 +69,7 @@ namespace Enkoni.Framework.Entities {
     /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpointconfiguration in the application's configfile.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(string endpointConfigurationName, string remoteAddress, bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
       this.EndpointConfigurationName = endpointConfigurationName;
@@ -95,7 +86,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified binding and service address.</summary>
     /// <param name="binding">The binding that must be used to communicate with the service.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public ServiceSourceInfo(Binding binding, EndpointAddress remoteAddress, bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
       this.Binding = binding;
@@ -152,15 +143,15 @@ namespace Enkoni.Framework.Entities {
 
     #region Public static methods
     /// <summary>Determines if the endpointconfigurationname is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsEndpointConfigurationNameSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(EndpointConfigurationNameKey);
     }
 
-    /// <summary>Selects the endpointconfigurationname from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
+    /// <summary>Selects the endpointconfigurationname from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The value that is stored in the data source information or <see langword="null"/> if the value could not be found.</returns>
     public static string SelectEndpointConfigurationName(DataSourceInfo dataSourceInfo) {
       if(IsEndpointConfigurationNameSpecified(dataSourceInfo)) {
         return dataSourceInfo[EndpointConfigurationNameKey] as string;
@@ -171,15 +162,15 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Determines if the remote address is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsRemoteAddressSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(RemoteAddressKey);
     }
 
-    /// <summary>Selects the remote address from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
+    /// <summary>Selects the remote address from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The value that is stored in the data source information or <see langword="null"/> if the value could not be found.</returns>
     public static EndpointAddress SelectRemoteAddress(DataSourceInfo dataSourceInfo) {
       if(IsRemoteAddressSpecified(dataSourceInfo)) {
         return dataSourceInfo[RemoteAddressKey] as EndpointAddress;
@@ -190,15 +181,15 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Determines if the binding is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsBindingSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(BindingKey);
     }
 
-    /// <summary>Selects the binding from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The value that is stored in the datasource information or <see langword="null"/> if the value could not be found.</returns>
+    /// <summary>Selects the binding from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The value that is stored in the data source information or <see langword="null"/> if the value could not be found.</returns>
     public static Binding SelectBinding(DataSourceInfo dataSourceInfo) {
       if(IsBindingSpecified(dataSourceInfo)) {
         return dataSourceInfo[BindingKey] as Binding;

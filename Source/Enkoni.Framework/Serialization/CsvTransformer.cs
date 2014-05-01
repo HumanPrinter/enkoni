@@ -907,7 +907,7 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="formatString">An optional formatstring that can be used to properly parse the value.</param>
     /// <param name="culture">An optional culture-name that can be used to properly parse the value.</param>
     /// <param name="parseFunc">The delegate that is used to perform the actual parsing.</param>
-    /// <param name="parseFormattedFunc">The delegate that is used to perform the actuel culture-aware parsing.</param>
+    /// <param name="parseFormattedFunc">The delegate that is used to perform the actual culture-aware parsing.</param>
     /// <exception cref="FormatException">The value cannot be recognized as a valid <see cref="Boolean"/>.</exception>
     /// <exception cref="InvalidOperationException">The format string contains an invalid formatting definition.</exception>
     private static void SetPropertyValue<TPropertyType>(PropertyInfo propertyInfo, T obj, string value, string formatString, CultureInfo culture, TryParse<TPropertyType> parseFunc, TryParseFormatted<TPropertyType> parseFormattedFunc) {

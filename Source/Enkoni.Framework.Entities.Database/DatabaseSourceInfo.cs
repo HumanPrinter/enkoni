@@ -27,7 +27,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified <see cref="DbContext"/> instance.
     /// </summary>
     /// <param name="dbContext">The database context that must be use to communicate with the database.</param>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public DatabaseSourceInfo(DbContext dbContext, bool cloneDataSourceItems)
       : base(cloneDataSourceItems) {
       this.DbContext = dbContext;
@@ -56,15 +56,15 @@ namespace Enkoni.Framework.Entities {
 
     #region Public static methods
     /// <summary>Determines if the DbContext is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the DbContext is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsDbContextSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(DbContextKey);
     }
 
-    /// <summary>Selects the DbContext from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The DbContext that is stored in the datasource information or <see langword="null"/> if the DbContext could not be found.</returns>
+    /// <summary>Selects the DbContext from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The DbContext that is stored in the data source information or <see langword="null"/> if the DbContext could not be found.</returns>
     public static DbContext SelectDbContext(DataSourceInfo dataSourceInfo) {
       if(IsDbContextSpecified(dataSourceInfo)) {
         return dataSourceInfo[DbContextKey] as DbContext;

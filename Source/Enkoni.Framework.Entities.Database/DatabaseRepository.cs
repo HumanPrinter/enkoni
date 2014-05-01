@@ -21,10 +21,10 @@ namespace Enkoni.Framework.Entities {
   public class DatabaseRepository<TEntity> : Repository<TEntity>, IDatabaseRepository
     where TEntity : class, IEntity<TEntity>, new() {
     #region Private instance variables
-    /// <summary>The collection of entities that are to be added to the datasource. </summary>
+    /// <summary>The collection of entities that are to be added to the data source. </summary>
     private List<TEntity> additionCache;
 
-    /// <summary>The collection of entities that are to be removed from the datasource.</summary>
+    /// <summary>The collection of entities that are to be removed from the data source.</summary>
     private List<TEntity> deletionCache;
 
     /// <summary>A lock that is used to synchronize access to the internal storage.</summary>
@@ -34,7 +34,7 @@ namespace Enkoni.Framework.Entities {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="DatabaseRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
-    /// <param name="dataSourceInfo">The datasource information that must be used to access the database.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the database.</param>
     public DatabaseRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
       if(DatabaseSourceInfo.IsDbContextSpecified(dataSourceInfo)) {
@@ -63,7 +63,7 @@ namespace Enkoni.Framework.Entities {
 
     #region Repository<T> overrides
     /// <summary>Resets the repository by undoing any unsaved changes.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected override void ResetCore(DataSourceInfo dataSourceInfo) {
       try {
         this.storageLock.EnterWriteLock();
@@ -80,7 +80,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Submits all the changes to the database.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {
       DbContext context = this.SelectDbContext(dataSourceInfo);
 
@@ -113,7 +113,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Creates a new entity of type <typeparamref name="TEntity"/>. This is done by calling the default constructor of 
     /// <typeparamref name="TEntity"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The created entity.</returns>
     protected override TEntity CreateEntityCore(DataSourceInfo dataSourceInfo) {
       TEntity entity = new TEntity();
@@ -122,7 +122,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Inserts a new entity to the repository.</summary>
     /// <param name="entity">The entity that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity AddEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
@@ -142,7 +142,7 @@ namespace Enkoni.Framework.Entities {
     /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the 
     /// entity is saved.</summary>
     /// <param name="entities">The entities that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they were added to the repository.</returns>
     protected override IEnumerable<TEntity> AddEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -161,7 +161,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. Since the entity framework already monitors the state of 
     /// entities, no additional functionality is required. This method is therefore empty.</summary>
     /// <param name="entity">The entity that was updated.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity UpdateEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       if(entity.RecordId == 0) {
@@ -183,7 +183,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates a collection of entities in the repository. Depending on the status of each entity, it is updated in the addition-cache or 
     /// it is added to the update-cache.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they are stored in the repository.</returns>
     protected override IEnumerable<TEntity> UpdateEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -204,7 +204,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Deletes an entity from the repository.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     protected override void DeleteEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       if(entity.RecordId == 0) {
@@ -226,7 +226,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
     /// or it is added to the deletion-cache untill it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entities">The entities that must be removed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     protected override void DeleteEntitiesCore(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
       if(entities.Any(e => e.RecordId == 0)) {
@@ -248,7 +248,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Expression<Func<TEntity, bool>> expression,
       SortSpecifications<TEntity> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
@@ -298,7 +298,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected override TEntity FindSingleCore(Expression<Func<TEntity, bool>> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
@@ -365,7 +365,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     protected override TEntity FindFirstCore(Expression<Func<TEntity, bool>> expression, SortSpecifications<TEntity> sortRules,
@@ -449,7 +449,7 @@ namespace Enkoni.Framework.Entities {
     #region Protected overridable helper methods
     /// <summary>Selects the DbContext that must be used. If the specified DataSourceInfo contains a valid DbContext, it is used; otherwise the value 
     /// of the property 'DbContext' is used.</summary>
-    /// <param name="dataSourceInfo">Any information regarding the database that is used as datasource.</param>
+    /// <param name="dataSourceInfo">Any information regarding the database that is used as data source.</param>
     /// <returns>The DbContext that must be used.</returns>
     protected virtual DbContext SelectDbContext(DataSourceInfo dataSourceInfo) {
       if(DatabaseSourceInfo.IsDbContextSpecified(dataSourceInfo)) {
@@ -462,7 +462,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Resets the repository by undoing any unsaved changes. This implementation does not aquire a write lock on the local storage and can 
     /// therefore be called from within a context that already has a write lock on the internal storage.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected virtual void ResetDbContextNoLock(DataSourceInfo dataSourceInfo) {
       DbContext context = this.SelectDbContext(dataSourceInfo);
 
@@ -493,7 +493,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not aquire a write lock on the
     /// local storage and can therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that was updated.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     private TEntity UpdateEntityNoLock(TEntity entity, DataSourceInfo dataSourceInfo) {
       if(entity.RecordId == 0) {
@@ -539,7 +539,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Updates a collection of entities in the repository. This implementation does not aquire a write lock on the local storage and can 
     /// therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they are stored in the repository.</returns>
     private IEnumerable<TEntity> UpdateEntitiesNoLock(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -613,14 +613,14 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Inserts a new entity to the repository. This implementation does not aquire a write lock on the local storage and can therefore be 
     /// called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     /// <returns>The entity with the most recent values.</returns>
     private TEntity AddEntityNoLock(TEntity entity, DataSourceInfo dataSourceInfo) {
       EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
 
       if(entity.RecordId > 0) {
-        /* The entity already has an ID which suggests that it came from the original datasource */
+        /* The entity already has an ID which suggests that it came from the original data source */
         if(this.deletionCache.Contains(entity, entityComparer)) {
           /* The entity has been marked for deletion, undelete it... */
           this.deletionCache.Remove(entity, entityComparer);
@@ -629,7 +629,7 @@ namespace Enkoni.Framework.Entities {
         }
       }
 
-      /* The entity is either new or came from another datasource */
+      /* The entity is either new or came from another data source */
       /* Determine the new temporary ID for the entity */
       int newRecordId = -1;
 
@@ -650,7 +650,7 @@ namespace Enkoni.Framework.Entities {
     /// entity is saved. This implementation does not aquire a write lock on the local storage and can therefore be called from within a context that 
     /// already has a write lock on the internal storage.</summary>
     /// <param name="entities">The entities that must be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     /// <returns>The entities as they were added to the repository.</returns>
     private IEnumerable<TEntity> AddEntitiesNoLock(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
@@ -669,7 +669,7 @@ namespace Enkoni.Framework.Entities {
         List<TEntity> updatableEntities = new List<TEntity>();
         IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
         ReferenceEqualityComparer<TEntity> referenceComparer = new ReferenceEqualityComparer<TEntity>();
-        /* At least some of the entities already have an ID which suggests that they came from the original datasource */
+        /* At least some of the entities already have an ID which suggests that they came from the original data source */
         foreach(TEntity existingEntity in existingEntities) {
           if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
             /* The entity has been marked for deletion, undelete it... */
@@ -695,7 +695,7 @@ namespace Enkoni.Framework.Entities {
       }
 
       if(unhandledEntities.Count > 0) {
-        /* At least some of the entities are either new or came from another datasource */
+        /* At least some of the entities are either new or came from another data source */
         /* Determine the new temporary ID for the entities */
         int newRecordId = -1;
         if(tempAdditionCache.Count > 0) {
@@ -720,7 +720,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Deletes an entity from the repository. This implementation does not aquire a write lock on the local storage and can therefore be 
     /// called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that must be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     private void DeleteEntityNoLock(TEntity entity, DataSourceInfo dataSourceInfo) {
       DbContext context = this.SelectDbContext(dataSourceInfo);
@@ -736,7 +736,7 @@ namespace Enkoni.Framework.Entities {
         }
       }
       else {
-        /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
+        /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
         Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == entity.RecordId);
         TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(queryById);
         if(existingEntity != null) {
@@ -758,7 +758,7 @@ namespace Enkoni.Framework.Entities {
     /// not aquire a write lock on the local storage and can therefore be called from within a context that already has a write lock on the internal 
     /// storage.</summary>
     /// <param name="entities">The entities that must be removed.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage. This parameter is not used.
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// </param>
     private void DeleteEntitiesNoLock(IEnumerable<TEntity> entities, DataSourceInfo dataSourceInfo) {
       DbContext context = this.SelectDbContext(dataSourceInfo);
@@ -782,7 +782,7 @@ namespace Enkoni.Framework.Entities {
       }
 
       foreach(TEntity existingEntity in existingEntities) {
-        /* If the entity exists in the original datasource and has not yet been marked for deletion, mark it now */
+        /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
         Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == existingEntity.RecordId);
         TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(queryById);
         if(storedEntity != null) {

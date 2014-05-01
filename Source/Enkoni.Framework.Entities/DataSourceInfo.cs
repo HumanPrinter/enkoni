@@ -1,22 +1,13 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DataSourceInfo.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines a class that contains information about a certain datasource that is used by a repository.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class contains information about a specific datasource. This can be any kind of datasource. This class is utilized by the various 
-  /// repositories. Check the documentation of the used repository for more information about the required or supported datasource-information.
+  /// <summary>This class contains information about a specific data source. This can be any kind of data source. This class is utilized by the various 
+  /// repositories. Check the documentation of the used repository for more information about the required or supported data source-information.
   /// </summary>
   public class DataSourceInfo {
     #region Public constants
-    /// <summary>Defines the key that is used to store and retrieve the boolean that indicates if any entity that originates from the datasource must 
+    /// <summary>Defines the key that is used to store and retrieve the boolean that indicates if any entity that originates from the data source must 
     /// be cloned or not.</summary>
     public const string CloneDataSourceItemsKey = "CloneDataSourceItems";
 
@@ -36,7 +27,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Initializes a new instance of the <see cref="DataSourceInfo"/> class.</summary>
-    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the datasource should be cloned or not.</param>
+    /// <param name="cloneDataSourceItems">Indicates whether or not any entity that originate from the data source should be cloned or not.</param>
     public DataSourceInfo(bool cloneDataSourceItems) {
       this.sourceInfoItems = new Dictionary<string, object>();
       this.CloneDataSourceItems = cloneDataSourceItems;
@@ -80,16 +71,16 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Public static methods
-    /// <summary>Determines if the 'clone datasource items'-flag is specified in the source information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
+    /// <summary>Determines if the 'clone data source items'-flag is specified in the source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
     public static bool IsCloneDataSourceItemsSpecified(DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(CloneDataSourceItemsKey);
     }
 
-    /// <summary>Selects the 'clone datasource items'-flag from the specified datasource information.</summary>
-    /// <param name="dataSourceInfo">The datasource information that is queried.</param>
-    /// <returns>The flag that is stored in the datasource information or <see langword="false"/> if the flag could not be found.</returns>
+    /// <summary>Selects the 'clone data source items'-flag from the specified data source information.</summary>
+    /// <param name="dataSourceInfo">The data source information that is queried.</param>
+    /// <returns>The flag that is stored in the data source information or <see langword="false"/> if the flag could not be found.</returns>
     public static bool SelectCloneDataSourceItems(DataSourceInfo dataSourceInfo) {
       if(IsCloneDataSourceItemsSpecified(dataSourceInfo)) {
         return (bool)dataSourceInfo[CloneDataSourceItemsKey];

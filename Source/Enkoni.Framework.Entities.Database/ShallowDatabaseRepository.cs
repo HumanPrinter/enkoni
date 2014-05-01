@@ -11,7 +11,7 @@ namespace Enkoni.Framework.Entities {
     #region Constructors
     /// <summary>Initializes a new instance of the <see cref="ShallowDatabaseRepository{TEntity}"/> class using the specified
     /// <see cref="DataSourceInfo"/>.</summary>
-    /// <param name="dataSourceInfo">The datasource information that must be used to access the database.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the database.</param>
     public ShallowDatabaseRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
     }
@@ -20,7 +20,7 @@ namespace Enkoni.Framework.Entities {
     #region ShallowDatabaseRepository overrides
     /// <summary>Since addition of entities will be handled by the parent entity's repository, nothing is done here.</summary>
     /// <param name="entity">The entity that is to be added.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity AddEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       /* Adding will be done by the parent-entity's repository */
@@ -29,7 +29,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Since updating of entities will be handled by the parent entity's repository, nothing is done here.</summary>
     /// <param name="entity">The entity that is to be updated.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entity with the most recent values.</returns>
     protected override TEntity UpdateEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       /* Updating will be done by the parent-entity's repository */
@@ -38,13 +38,13 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Since deletion of entities will be handled by the parent entity's repository, nothing is done here.</summary>
     /// <param name="entity">The entity that is to be deleted.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected override void DeleteEntityCore(TEntity entity, DataSourceInfo dataSourceInfo) {
       /* Deleting will be done by the parent-entity's repository */
     }
 
     /// <summary>Since any changes to these entities will be handled by the parent entity's repository, nothing is done here.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected override void SaveChangesCore(DataSourceInfo dataSourceInfo) {
       /* Saving will be done by the parent-entity's repository */
     }
@@ -54,7 +54,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The parameter is not used.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always, since this operation is not supported by this type of repository.</exception>
     protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, int maximumResults,
@@ -66,7 +66,7 @@ namespace Enkoni.Framework.Entities {
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
     /// <param name="sortRules">The specification of the sortrules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The parameter is not used.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always, since this operation is not supported by this type of repository.</exception>
@@ -78,7 +78,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Since retrieval of the entity is handled by the parent entity's repository, this method throws a
     /// <see cref="NotSupportedException"/>.</summary>
     /// <param name="expression">The parameter is not used.</param>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The parameter is not used.</param>
     /// <returns>Not applicable.</returns>
     /// <exception cref="NotSupportedException">Always, since this operation is not supported by this type of repository.</exception>

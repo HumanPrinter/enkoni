@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceRepository.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the default implementation of a repository that uses a WCF-service as datasource.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.ServiceModel.Channels;
 
 namespace Enkoni.Framework.Entities {
@@ -19,7 +10,7 @@ namespace Enkoni.Framework.Entities {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="ServiceRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
-    /// <param name="dataSourceInfo">The datasource information that must be used to access the sourcefile.</param>
+    /// <param name="dataSourceInfo">The data source information that must be used to access the source file.</param>
     protected ServiceRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
       /* Determine if the supported properties have been specified */
@@ -51,7 +42,7 @@ namespace Enkoni.Framework.Entities {
     #region Repository<T> overrides
     /// <summary>Creates a new entity of type <typeparamref name="TEntity"/>. This is done by calling the default constructor of 
     /// <typeparamref name="TEntity"/>.</summary>
-    /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The created entity.</returns>
     protected override TEntity CreateEntityCore(DataSourceInfo dataSourceInfo) {
       TEntity entity = new TEntity();

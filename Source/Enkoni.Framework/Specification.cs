@@ -65,11 +65,11 @@ namespace Enkoni.Framework {
       return new NotSpecification<T>(specification);
     }
 
-    /// <summary>Creates a specification that holds information about a businessrule that must be executed.</summary>
+    /// <summary>Creates a specification that holds information about a business rule that must be executed.</summary>
     /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
-    /// <param name="ruleArguments">The arguments that must be used by the businessrule.</param>
-    /// <returns>A specification that holds information about a businessrule.</returns>
+    /// <param name="ruleArguments">The arguments that must be used by the business rule.</param>
+    /// <returns>A specification that holds information about a business rule.</returns>
     public static ISpecification<T> BusinessRule<T>(string ruleName, params object[] ruleArguments) {
       return new BusinessRuleSpecification<T>(ruleName, ruleArguments);
     }
