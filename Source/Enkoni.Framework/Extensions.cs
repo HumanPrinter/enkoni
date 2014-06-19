@@ -145,18 +145,19 @@ namespace Enkoni.Framework {
         culture = CultureInfo.CurrentCulture;
       }
 
-      if(keepExistingCapitals) {
-        IEnumerable<string> capitalizedStrings = source.Split(' ')
-          .Select(str => new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character */
-          new string(str.Skip(1).ToArray()));                                      /* Keep the remaining characters as they are */
-        return string.Join(" ", capitalizedStrings.ToArray());
+      string[] words = source.Split(' ');
+      for(int wordIndex = 0; wordIndex < words.Length; ++wordIndex) {
+        if(string.IsNullOrEmpty(words[wordIndex])) {
+          continue;
+        }
+
+        words[wordIndex] = new string(new char[] { words[wordIndex].First() }).ToUpper(culture)  /* Capitalize the first character */
+            + ((keepExistingCapitals)
+              ? new string(words[wordIndex].Skip(1).ToArray())                                   /* Keep the remaining characters as they are */
+              : new string(words[wordIndex].Skip(1).ToArray()).ToLower(culture));                /* Lower the remaining characters */
       }
-      else {
-        IEnumerable<string> capitalizedStrings = source.Split(' ')
-          .Select(str => new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character */
-          new string(str.Skip(1).ToArray()).ToLower(culture));                     /* Lower the remaining characters */
-        return string.Join(" ", capitalizedStrings.ToArray());
-      }
+
+      return string.Join(" ", words);
     }
 
     /// <summary>Capitalizes the first letter of a sentence assuming that words are separated by a single space.</summary>
@@ -204,22 +205,31 @@ namespace Enkoni.Framework {
         culture = CultureInfo.CurrentCulture;
       }
 
-      if(keepExistingCapitals) {
-        IEnumerable<string> capitalizedStrings = source.Split(' ')
-          .Select((str, i) => i == 0
-              ? new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character of the first word */
-                new string(str.Skip(1).ToArray())                         /* Keep the remaining characters of the first word as they are */
-              : str);                                                     /* Keep the remaining words as they are */
-        return string.Join(" ", capitalizedStrings.ToArray());
+      string[] words = source.Split(' ');
+      bool firstWordFound = false;
+      for(int wordIndex = 0; wordIndex < words.Length; ++wordIndex) {
+        if(string.IsNullOrEmpty(words[wordIndex])) {
+          continue;
+        }
+
+        if(string.IsNullOrEmpty(words[wordIndex].Trim())) {
+          continue;
+        }
+
+        words[wordIndex] = 
+          firstWordFound 
+          ? (keepExistingCapitals
+            ? words[wordIndex]                                                      /* Keep the remaining words as they are */
+            : words[wordIndex].ToLower(culture))                                    /* Lower the remaining characters of the remaining words*/
+          : new string(new char[] { words[wordIndex].First() }).ToUpper(culture)    /* Capitalize the first character of the first word */
+            + (keepExistingCapitals
+              ? new string(words[wordIndex].Skip(1).ToArray())                      /* Keep the remaining characters of the first word as they are */
+              : new string(words[wordIndex].Skip(1).ToArray()).ToLower(culture));   /* Lower the remaining characters of the first word*/
+        
+        firstWordFound = true;
       }
-      else {
-        IEnumerable<string> capitalizedStrings = source.Split(' ')
-          .Select((str, i) => i == 0
-              ? new string(new char[] { str.First() }).ToUpper(culture) + /* Capitalize the first character of the first word */
-                new string(str.Skip(1).ToArray()).ToLower(culture)        /* Lower the remaining characters of the first word*/
-              : str.ToLower(culture));                                    /* Lower the remaining characters of the remaining words*/
-        return string.Join(" ", capitalizedStrings.ToArray());
-      }
+
+      return string.Join(" ", words);
     }
     #endregion
 
