@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
+    <release version="1.2.4.1" releasedate="2014-06-19">
+      <projects>
+        <project name="Enkoni.Framework" version="2.3.1">
+          <updates>
+            <update date="2014-06-19" type="addition">
+              <summary><![CDATA[Fixed a bug in the Capitalize and CapitalizeSentence extension methods]]></summary>
+              <comment>
+                <![CDATA[Fixed a bug in the Capitalize and CapitalizeSentence extension methods that caused the methods to break when the input value either starts or ends with spaces or contains adjacent spaces.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.4.0" releasedate="2014-03-24">
       <projects>
         <project name="Enkoni.Framework" version="2.3.0">
