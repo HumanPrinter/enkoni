@@ -38,6 +38,98 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
+    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeMultipleSpacesNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world  and goodmorning";
+        string result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello World  And Goodmorning", result, false);
+
+        startValue = "hello World  And goodmorning";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello World  And Goodmorning", result, false);
+
+        startValue = "hello woRld  aNd goodmorning";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello WoRld  ANd Goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.Capitalize(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeStartWithSpacesNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = " hello world and goodmorning";
+        string result = startValue.Capitalize(true);
+        Assert.AreEqual(" Hello World And Goodmorning", result, false);
+
+        startValue = "  hello World And goodmorning";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("  Hello World And Goodmorning", result, false);
+
+        startValue = "   hello woRld aNd goodmorning";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("   Hello WoRld ANd Goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.Capitalize(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeEndWithSpacesNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world and goodmorning ";
+        string result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello World And Goodmorning ", result, false);
+
+        startValue = "hello World And goodmorning  ";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello World And Goodmorning  ", result, false);
+
+        startValue = "hello woRld aNd goodmorning   ";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello WoRld ANd Goodmorning   ", result, false);
+
+        startValue = string.Empty;
+        result = startValue.Capitalize(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeSingleCharacterNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world and a goodmorning";
+        string result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello World And A Goodmorning", result, false);
+
+        startValue = "hello World And a goodmorning";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello World And A Goodmorning", result, false);
+
+        startValue = "hello woRld aNd a goodmorning";
+        result = startValue.Capitalize(true);
+        Assert.AreEqual("Hello WoRld ANd A Goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.Capitalize(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
     /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeNoCultureResetCapitals() {
@@ -58,6 +150,75 @@ namespace Enkoni.Framework.Tests {
       startValue = string.Empty;
       result = startValue.Capitalize();
       Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeMultipleSpacesNoCultureResetCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world and  goodmorning";
+        string result = startValue.Capitalize();
+        Assert.AreEqual("Hello World And  Goodmorning", result, false);
+
+        startValue = "hello World And  goodmorning";
+        result = startValue.Capitalize();
+        Assert.AreEqual("Hello World And  Goodmorning", result, false);
+
+        startValue = "hello woRld aNd  goodmorning";
+        result = startValue.Capitalize();
+        Assert.AreEqual("Hello World And  Goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.Capitalize();
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeStartWithSpacesNoCultureResetCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = " hello world and goodmorning";
+        string result = startValue.Capitalize();
+        Assert.AreEqual(" Hello World And Goodmorning", result, false);
+
+        startValue = "  hello World And goodmorning";
+        result = startValue.Capitalize();
+        Assert.AreEqual("  Hello World And Goodmorning", result, false);
+
+        startValue = "   hello woRld aNd goodmorning";
+        result = startValue.Capitalize();
+        Assert.AreEqual("   Hello World And Goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.Capitalize();
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeEndWithSpacesNoCultureResetCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world and goodmorning ";
+        string result = startValue.Capitalize();
+        Assert.AreEqual("Hello World And Goodmorning ", result, false);
+
+        startValue = "hello World And goodmorning  ";
+        result = startValue.Capitalize();
+        Assert.AreEqual("Hello World And Goodmorning  ", result, false);
+
+        startValue = "hello woRld aNd goodmorning   ";
+        result = startValue.Capitalize();
+        Assert.AreEqual("Hello World And Goodmorning   ", result, false);
+
+        startValue = string.Empty;
+        result = startValue.Capitalize();
+        Assert.AreEqual(string.Empty, result, false);
     }
 
     /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool, CultureInfo)"/> extension method.</summary>
@@ -132,6 +293,98 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
+    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeSentenceMultipleSpacesNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world  and goodmorning";
+        string result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello world  and goodmorning", result, false);
+
+        startValue = "hello World  And goodmorning";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello World  And goodmorning", result, false);
+
+        startValue = "hello woRld  aNd goodmorning";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello woRld  aNd goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeSentenceStartWithSpacesNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = " hello world and goodmorning";
+        string result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual(" Hello world and goodmorning", result, false);
+
+        startValue = "  hello World And goodmorning";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("  Hello World And goodmorning", result, false);
+
+        startValue = "   hello woRld aNd goodmorning";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("   Hello woRld aNd goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeSentenceEndWithSpacesNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world and goodmorning ";
+        string result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello world and goodmorning ", result, false);
+
+        startValue = "hello World And goodmorning  ";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello World And goodmorning  ", result, false);
+
+        startValue = "hello woRld aNd goodmorning   ";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello woRld aNd goodmorning   ", result, false);
+
+        startValue = string.Empty;
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeSentenceSingleCharacterNoCultureKeepCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world and a goodmorning";
+        string result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello world and a goodmorning", result, false);
+
+        startValue = "hello World And A goodmorning";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello World And A goodmorning", result, false);
+
+        startValue = "hello woRld aNd a goodmorning";
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual("Hello woRld aNd a goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.CapitalizeSentence(true);
+        Assert.AreEqual(string.Empty, result, false);
+    }
+
     /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceNoCultureResetCapitals() {
@@ -152,6 +405,29 @@ namespace Enkoni.Framework.Tests {
       startValue = string.Empty;
       result = startValue.CapitalizeSentence();
       Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_CapitalizeSentenceSingleCharacterNoCultureResetCapitals()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+
+        string startValue = "hello world and a goodmorning";
+        string result = startValue.CapitalizeSentence();
+        Assert.AreEqual("Hello world and a goodmorning", result, false);
+
+        startValue = "hello World And A goodmorning";
+        result = startValue.CapitalizeSentence();
+        Assert.AreEqual("Hello world and a goodmorning", result, false);
+
+        startValue = "hello woRld aNd a goodmorning";
+        result = startValue.CapitalizeSentence();
+        Assert.AreEqual("Hello world and a goodmorning", result, false);
+
+        startValue = string.Empty;
+        result = startValue.CapitalizeSentence();
+        Assert.AreEqual(string.Empty, result, false);
     }
 
     /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool, CultureInfo)"/> extension method.</summary>
