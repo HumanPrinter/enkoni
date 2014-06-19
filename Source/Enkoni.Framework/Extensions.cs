@@ -152,7 +152,7 @@ namespace Enkoni.Framework {
         }
 
         words[wordIndex] = new string(new char[] { words[wordIndex].First() }).ToUpper(culture)  /* Capitalize the first character */
-            + ((keepExistingCapitals)
+            + (keepExistingCapitals
               ? new string(words[wordIndex].Skip(1).ToArray())                                   /* Keep the remaining characters as they are */
               : new string(words[wordIndex].Skip(1).ToArray()).ToLower(culture));                /* Lower the remaining characters */
       }
