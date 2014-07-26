@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -294,6 +294,14 @@ namespace Enkoni.Framework {
 
       /* Now the GetWeekOfYear method can be used and it will return the correct value in accordance with the ISO 8601 specification. */
       return calendar.GetWeekOfYear(source, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+    }
+    
+    public static bool Between(this DateTime source, DateTime lowerLimit, DateTime upperLimit) {
+      return source > lowerLimit && source < upperLimit;
+    }
+    
+    public static bool Between(this DateTime? source, DateTime? lowerLimit, DateTime? upperLimit) {
+      return source > lowerLimit && source < upperLimit;
     }
     #endregion
 
