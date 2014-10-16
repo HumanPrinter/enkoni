@@ -320,8 +320,8 @@ namespace Enkoni.Framework {
     /// <param name="upperLimit">The upper bound (exclusive) of the equation.</param>
     /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>; 
     /// otherwise, <see langword="false"/>.</returns>
-    public static bool Between(this DateTime source, DateTime lowerLimit, DateTime upperLimit) {
-      return source > lowerLimit && source < upperLimit;
+    public static bool Between(this DateTime source, DateTime? lowerLimit, DateTime? upperLimit) {
+      return (lowerLimit.HasValue ? source > lowerLimit : true) && (upperLimit.HasValue ? source < upperLimit : true);
     }
 
     /// <summary>Determines whether or not a <see cref="DateTime"/> value is between to specified <see cref="DateTime"/> boundaries.</summary>
@@ -331,7 +331,12 @@ namespace Enkoni.Framework {
     /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>; 
     /// otherwise, <see langword="false"/>.</returns>
     public static bool Between(this DateTime? source, DateTime? lowerLimit, DateTime? upperLimit) {
-      return source > lowerLimit && source < upperLimit;
+      if(source.HasValue) {
+        return Between(source.Value, lowerLimit, upperLimit);
+      }
+      else {
+        return !lowerLimit.HasValue;
+      }
     }
     #endregion
 

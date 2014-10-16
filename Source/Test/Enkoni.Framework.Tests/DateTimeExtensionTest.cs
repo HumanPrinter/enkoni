@@ -95,5 +95,214 @@ namespace Enkoni.Framework.Tests {
       int result = startValue.GetWeekNumber();
       Assert.AreEqual(1, result);
     }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueBetweenBoundariesReturnsTrue() {
+      DateTime inputValue = new DateTime(2014, 10, 16);
+      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueBelowLowerBoundaryReturnsFalse() {
+      DateTime inputValue = new DateTime(2014, 10, 14);
+      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueEqualToLowerBoundaryReturnsFalse() {
+      DateTime inputValue = new DateTime(2014, 10, 15);
+      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueAboveUpperBoundaryReturnsFalse() {
+      DateTime inputValue = new DateTime(2014, 10, 18);
+      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueEqualToUpperBoundaryReturnsFalse() {
+      DateTime inputValue = new DateTime(2014, 10, 17);
+      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueWithNullLowerBoundaryReturnsTrue() {
+      DateTime inputValue = new DateTime(2014, 10, 16);
+      DateTime? lowerBound = null;
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueWithNullUpperBoundaryReturnsTrue() {
+      DateTime inputValue = new DateTime(2014, 10, 16);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = null;
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_ValueWithNullLowerAndUpperBoundaryReturnsTrue() {
+      DateTime inputValue = new DateTime(2014, 10, 16);
+      DateTime? lowerBound = null;
+      DateTime? upperBound = null;
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullableValueBetweenBoundariesReturnsTrue() {
+      DateTime? inputValue = new DateTime(2014, 10, 16);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullableValueBelowLowerBoundaryReturnsFalse() {
+      DateTime? inputValue = new DateTime(2014, 10, 14);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullableValueEqualToLowerBoundaryReturnsFalse() {
+      DateTime? inputValue = new DateTime(2014, 10, 15);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullableValueAboveUpperBoundaryReturnsFalse() {
+      DateTime? inputValue = new DateTime(2014, 10, 18);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullableValueEqualToUpperBoundaryReturnsFalse() {
+      DateTime? inputValue = new DateTime(2014, 10, 17);
+      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullableValueWithNullLowerBoundaryReturnsTrue() {
+      DateTime? inputValue = new DateTime(2014, 10, 16);
+      DateTime? lowerBound = null;
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullableValueWithNullUpperBoundaryReturnsTrue() {
+      DateTime? inputValue = new DateTime(2014, 10, 16);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = null;
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullValueBetweenBoundariesReturnsFalse() {
+      DateTime? inputValue = null;
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullValueWithNullLowerBoundaryReturnsTrue() {
+      DateTime? inputValue = null;
+      DateTime? lowerBound = null;
+      DateTime? upperBound = new DateTime(2014, 10, 17);
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullValueWithNullUpperBoundaryReturnsFalse() {
+      DateTime? inputValue = null;
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
+      DateTime? upperBound = null;
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsFalse(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Between(DateTime, Nullable{DateTime}, Nullable{DateTime})"/> extension method.</summary>
+    [TestMethod]
+    public void DateTimeExtensions_Between_NullValueWithNullLowerAndUpperBoundaryReturnsTrue() {
+      DateTime? inputValue = null;
+      DateTime? lowerBound = null;
+      DateTime? upperBound = null;
+
+      bool result = inputValue.Between(lowerBound, upperBound);
+      Assert.IsTrue(result);
+    }
   }
 }
