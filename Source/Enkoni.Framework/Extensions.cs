@@ -314,10 +314,22 @@ namespace Enkoni.Framework {
       return calendar.GetWeekOfYear(source, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
     }
     
+    /// <summary>Determines whether or not a <see cref="DateTime"/> value is between to specified <see cref="DateTime"/> boundaries.</summary>
+    /// <param name="source">The date time that must be tested.</param>
+    /// <param name="lowerLimit">The lower bound (exclusive) of the equation.</param>
+    /// <param name="upperLimit">The upper bound (exclusive) of the equation.</param>
+    /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>; 
+    /// otherwise, <see langword="false"/>.</returns>
     public static bool Between(this DateTime source, DateTime lowerLimit, DateTime upperLimit) {
       return source > lowerLimit && source < upperLimit;
     }
-    
+
+    /// <summary>Determines whether or not a <see cref="DateTime"/> value is between to specified <see cref="DateTime"/> boundaries.</summary>
+    /// <param name="source">The date time that must be tested.</param>
+    /// <param name="lowerLimit">The lower bound (exclusive) of the equation.</param>
+    /// <param name="upperLimit">The upper bound (exclusive) of the equation.</param>
+    /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>; 
+    /// otherwise, <see langword="false"/>.</returns>
     public static bool Between(this DateTime? source, DateTime? lowerLimit, DateTime? upperLimit) {
       return source > lowerLimit && source < upperLimit;
     }
