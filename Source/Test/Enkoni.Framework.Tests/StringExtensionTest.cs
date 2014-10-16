@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="StringExtensionTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the extension methods for the string-class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Globalization;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
