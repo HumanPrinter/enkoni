@@ -231,6 +231,24 @@ namespace Enkoni.Framework {
 
       return string.Join(" ", words);
     }
+
+    /// <summary>Truncates a string value to a maximum length. If the length of the string value is already less or equal to <paramref name="maxLength"/> the
+    /// original string value is returned.</summary>
+    /// <param name="source">The string value that must be truncated.</param>
+    /// <param name="maxLength">The maximum length of the returned string.</param>
+    /// <returns>The string value truncated to the specified length or the original string if the length is already less then or equal to the maximum length.</returns>
+    public static string Truncate(this string source, int maxLength) {
+      if(maxLength < 0) {
+        throw new ArgumentOutOfRangeException("maxLength", maxLength, "The maximum length cannot be negative");
+      }
+
+      if(string.IsNullOrEmpty(source)) {
+        return source;
+      }
+      else {
+        return source.Length <= maxLength ? source : source.Substring(0, maxLength);
+      }
+    }
     #endregion
 
     #region Double extensions

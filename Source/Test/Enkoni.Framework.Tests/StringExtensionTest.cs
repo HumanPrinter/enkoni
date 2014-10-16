@@ -7,9 +7,9 @@
 // </summary>
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Globalization;
 using System.Threading;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {
@@ -478,6 +478,67 @@ namespace Enkoni.Framework.Tests {
       startValue = string.Empty;
       result = startValue.CapitalizeSentence(culture);
       Assert.AreEqual(string.Empty, result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_Truncate_NullValueReturnsNullValue() {
+      string inputValue = null;
+      string result = inputValue.Truncate(10);
+
+      Assert.IsNull(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_Truncate_EmptyStringReturnsEmptyString() {
+      string inputValue = string.Empty;
+      string result = inputValue.Truncate(10);
+
+      Assert.AreEqual(string.Empty, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void StringExtensions_Truncate_NegativeMaxLengthThrowsError() {
+      string inputValue = "Hello world";
+      string result = inputValue.Truncate(-2);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_Truncate_ZeroMaxLengthReturnsEmptyString() {
+      string inputValue = "Hello world";
+      string result = inputValue.Truncate(0);
+
+      Assert.AreEqual(string.Empty, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_Truncate_StringLessThenMaxLengthReturnsOriginalString() {
+      string inputValue = "Hello world";
+      string result = inputValue.Truncate(15);
+
+      Assert.AreEqual("Hello world", result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_Truncate_StringEqualToMaxLengthReturnsOriginalString() {
+      string inputValue = "Hello world";
+      string result = inputValue.Truncate(11);
+
+      Assert.AreEqual("Hello world", result, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    [TestMethod]
+    public void StringExtensions_Truncate_StringMoreThenMaxLengthReturnsTruncatedString() {
+      string inputValue = "Hello world";
+      string result = inputValue.Truncate(8);
+
+      Assert.AreEqual("Hello wo", result, false);
     }
   }
 }
