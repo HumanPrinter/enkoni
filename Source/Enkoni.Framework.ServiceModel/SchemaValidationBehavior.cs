@@ -43,7 +43,7 @@ namespace Enkoni.Framework.ServiceModel {
       }
 
       if(!endpointDispatcher.DispatchRuntime.MessageInspectors.OfType<SchemaValidationMessageInspector>().Any()) {
-        SchemaValidationMessageInspector inspector = new SchemaValidationMessageInspector(this.schemaSet);
+        SchemaValidationMessageInspector inspector = this.CreateMessageInspector(this.schemaSet);
         endpointDispatcher.DispatchRuntime.MessageInspectors.Add(inspector);
       }
     }
@@ -66,6 +66,15 @@ namespace Enkoni.Framework.ServiceModel {
     /// <param name="endpoint">The endpoint to validate.</param>
     public void Validate(ServiceEndpoint endpoint) {
       /* Nothing to do here */
+    }
+    #endregion
+
+    #region Protected extension points
+    /// <summary>Returns a new instance of the <see cref="SchemaValidationMessageInspector"/> class or a subclass.</summary>
+    /// <param name="schemaSet">The schemas that must be used.</param>
+    /// <returns>The created instance.</returns>
+    protected virtual SchemaValidationMessageInspector CreateMessageInspector(XmlSchemaSet schemaSet) {
+      return new SchemaValidationMessageInspector(schemaSet);
     }
     #endregion
   }

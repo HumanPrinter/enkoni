@@ -100,7 +100,7 @@ namespace Enkoni.Framework.Tests {
     [TestMethod]
     public void DateTimeExtensions_Between_ValueBetweenBoundariesReturnsTrue() {
       DateTime inputValue = new DateTime(2014, 10, 16);
-      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
       DateTime upperBound = new DateTime(2014, 10, 17);
 
       bool result = inputValue.Between(lowerBound, upperBound);
@@ -111,7 +111,7 @@ namespace Enkoni.Framework.Tests {
     [TestMethod]
     public void DateTimeExtensions_Between_ValueBelowLowerBoundaryReturnsFalse() {
       DateTime inputValue = new DateTime(2014, 10, 14);
-      DateTime lowerBound = new DateTime(2014, 10, 15);
+      DateTime? lowerBound = new DateTime(2014, 10, 15);
       DateTime upperBound = new DateTime(2014, 10, 17);
 
       bool result = inputValue.Between(lowerBound, upperBound);

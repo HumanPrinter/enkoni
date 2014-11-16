@@ -35,9 +35,11 @@ namespace Enkoni.Framework.ServiceModel {
       if(request == null) {
         return null;
       }
-
+      
       /* Create a buffer in order to make it possible to work with copies of the message */
       MessageBuffer buffer = request.CreateBufferedCopy(int.MaxValue);
+
+      this.OnPreValidation(buffer.CreateMessage(), channel, instanceContext);
 
       /* Create a copy of the message and send it to the validation */
       request = buffer.CreateMessage();
@@ -45,12 +47,13 @@ namespace Enkoni.Framework.ServiceModel {
         this.ValidateMessage(request);
       }
       catch(XmlSchemaValidationException ex) {
-        Logger logger = LogManager.CreateLogger();
-        logger.Warn(LogMessages.WarningReceivedMessageIsInvalid, "enkoni.framework", ex);
+        this.OnValidationError(buffer.CreateMessage(), channel, instanceContext, ex);
 
         FaultReasonText reasonText = new FaultReasonText(Resources.MessageDoesNotComplyWithSchema, CultureInfo.InvariantCulture);
         throw new FaultException<string>(ex.Message, new FaultReason(reasonText), FaultCode.CreateSenderFaultCode(new FaultCode("InvalidMessage")));
       }
+
+      this.OnValidationSuccess(buffer.CreateMessage(), channel, instanceContext);
 
       /* Validation was succesfull. Create a new copy of the message and pass it to the WCF process. */
       request = buffer.CreateMessage();
@@ -65,6 +68,32 @@ namespace Enkoni.Framework.ServiceModel {
     /// </param>
     public void BeforeSendReply(ref Message reply, object correlationState) {
       /* Nothing to do */
+    }
+    #endregion
+
+    #region Protected extension methods
+    /// <summary>When overriden executes some logic before starting the validation.</summary>
+    /// <param name="receivedMessage">The request message.</param>
+    /// <param name="channel">The incoming channel.</param>
+    /// <param name="instanceContext">The current service instance.</param>
+    protected virtual void OnPreValidation(Message receivedMessage, IClientChannel channel, InstanceContext instanceContext) {
+    }
+
+    /// <summary>Executes some logic when the validation of the received message failed. By default a warning logmessage is emitted.</summary>
+    /// <param name="receivedMessage">The request message.</param>
+    /// <param name="channel">The incoming channel.</param>
+    /// <param name="instanceContext">The current service instance.</param>
+    /// <param name="validationException">The exception that was thrown by the validation logic.</param>
+    protected virtual void OnValidationError(Message receivedMessage, IClientChannel channel, InstanceContext instanceContext, XmlSchemaValidationException validationException) {
+      Logger logger = LogManager.CreateLogger();
+      logger.Warn(LogMessages.WarningReceivedMessageIsInvalid, "enkoni.framework", validationException);
+    }
+
+    /// <summary>When overriden executes some logic after the validation was completed succesfully.</summary>
+    /// <param name="receivedMessage">The request message.</param>
+    /// <param name="channel">The incoming channel.</param>
+    /// <param name="instanceContext">The current service instance.</param>
+    protected virtual void OnValidationSuccess(Message receivedMessage, IClientChannel channel, InstanceContext instanceContext) {
     }
     #endregion
 

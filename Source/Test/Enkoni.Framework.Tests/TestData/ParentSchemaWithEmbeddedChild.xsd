@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://unittests.defriesland.nl/parent/2014/09" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://unittests.defriesland.nl/child/2014/09">
+  <xsd:import schemaLocation="EmbeddedChildSchema.xsd" namespace="http://unittests.defriesland.nl/child/2014/09" />
+  
+  <xsd:element name="rootElement">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" name="childElement" type="tns:ChildElement"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

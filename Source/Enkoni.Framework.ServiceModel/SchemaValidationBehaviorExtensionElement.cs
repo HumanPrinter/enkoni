@@ -6,6 +6,8 @@ using System.ServiceModel.Configuration;
 using System.Xml;
 using System.Xml.Schema;
 
+using Enkoni.Framework.Xml;
+
 namespace Enkoni.Framework.ServiceModel {
   /// <summary>Implements a behavior extension element with which a <see cref="SchemaValidationBehavior"/> can be connected to an endpoint through 
   /// configuration.</summary>
@@ -53,7 +55,7 @@ namespace Enkoni.Framework.ServiceModel {
       XmlSchemaSet schemaSet = new XmlSchemaSet();
 
       if(!this.Enabled) {
-        return new SchemaValidationBehavior(this.Enabled, null);
+        return this.CreateBehavior(this.Enabled, null);
       }
 
       if(this.SchemaFile == null || string.IsNullOrEmpty(this.SchemaFile)) {
@@ -72,6 +74,15 @@ namespace Enkoni.Framework.ServiceModel {
             assembly = Assembly.ReflectionOnlyLoad(resourcenameParts[1]);
           }
 
+          string resourceName = resourcenameParts[0];
+          int index = resourceName.LastIndexOf(".", resourceName.IndexOf(".xsd") - 1);
+          string resourceNamespace = string.Empty;
+          if(index != -1) {
+            resourceNamespace = resourceName.Substring(0, index);
+          }
+
+          schemaSet.XmlResolver = new XmlResourceResolver(assembly, resourceNamespace);
+
           stream = assembly.GetManifestResourceStream(resourcenameParts[0]);
         }
         else {
@@ -89,7 +100,19 @@ namespace Enkoni.Framework.ServiceModel {
         }
       }
 
-      return new SchemaValidationBehavior(this.Enabled, schemaSet);
+      schemaSet.Compile();
+
+      return this.CreateBehavior(this.Enabled, schemaSet);
+    }
+    #endregion
+
+    #region Protected extention points
+    /// <summary>Returns a new instance of the <see cref="SchemaValidationBehavior"/> class or a subclass.</summary>
+    /// <param name="enabled">Indicates whether or not the behavior is enabled.</param>
+    /// <param name="schemaSet">Defines the schemas that must be used.</param>
+    /// <returns>The created instance of the behavior.</returns>
+    protected virtual SchemaValidationBehavior CreateBehavior(bool enabled, XmlSchemaSet schemas) {
+      return new SchemaValidationBehavior(enabled, schemas);
     }
     #endregion
   }
