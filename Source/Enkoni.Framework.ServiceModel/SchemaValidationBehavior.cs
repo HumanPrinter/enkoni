@@ -71,10 +71,10 @@ namespace Enkoni.Framework.ServiceModel {
 
     #region Protected extension points
     /// <summary>Returns a new instance of the <see cref="SchemaValidationMessageInspector"/> class or a subclass.</summary>
-    /// <param name="schemaSet">The schemas that must be used.</param>
+    /// <param name="schemas">The schemas that must be used.</param>
     /// <returns>The created instance.</returns>
-    protected virtual SchemaValidationMessageInspector CreateMessageInspector(XmlSchemaSet schemaSet) {
-      return new SchemaValidationMessageInspector(schemaSet);
+    protected virtual SchemaValidationMessageInspector CreateMessageInspector(XmlSchemaSet schemas) {
+      return new SchemaValidationMessageInspector(schemas);
     }
     #endregion
   }

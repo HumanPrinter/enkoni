@@ -75,7 +75,7 @@ namespace Enkoni.Framework.ServiceModel {
           }
 
           string resourceName = resourcenameParts[0];
-          int index = resourceName.LastIndexOf(".", resourceName.IndexOf(".xsd") - 1);
+          int index = resourceName.LastIndexOf(".", resourceName.IndexOf(".xsd", StringComparison.OrdinalIgnoreCase) - 1, StringComparison.OrdinalIgnoreCase);
           string resourceNamespace = string.Empty;
           if(index != -1) {
             resourceNamespace = resourceName.Substring(0, index);
@@ -109,7 +109,7 @@ namespace Enkoni.Framework.ServiceModel {
     #region Protected extention points
     /// <summary>Returns a new instance of the <see cref="SchemaValidationBehavior"/> class or a subclass.</summary>
     /// <param name="enabled">Indicates whether or not the behavior is enabled.</param>
-    /// <param name="schemaSet">Defines the schemas that must be used.</param>
+    /// <param name="schemas">Defines the schemas that must be used.</param>
     /// <returns>The created instance of the behavior.</returns>
     protected virtual SchemaValidationBehavior CreateBehavior(bool enabled, XmlSchemaSet schemas) {
       return new SchemaValidationBehavior(enabled, schemas);

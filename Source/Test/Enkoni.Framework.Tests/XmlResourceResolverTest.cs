@@ -39,7 +39,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNotNull(testSubject);
     }
 
-    /// <summary>Tests the functionality of the <see cref="XmlResourceResolver.ctor(Assembly, string)"/> method.</summary>
+    /// <summary>Tests the functionality of the <see cref="XmlResourceResolver(Assembly, string)"/> method.</summary>
     [TestMethod]
     public void Constructor_EmptyValueForNamespace_DoesNotThrowException() {
       /* Arrange */

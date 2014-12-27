@@ -39,6 +39,7 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Linq", Justification = "The types in this namespace extend the functionality of the default Linq library")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Timers", Justification = "The types in this namespace extend the functionality of the default Timers library")]
+[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Xml", Justification = "The types in this namespace extend the functionality of the default Xml library")]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Scope = "member", Target = "Enkoni.Framework.Collections.CircularStack`1.#GetEnumeratorCore()", Justification = "A method is more appropriate here")]
 

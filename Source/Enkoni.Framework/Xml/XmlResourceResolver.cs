@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Xml;
 
 namespace Enkoni.Framework.Xml {
+  /// <summary>Implements a xml resolver that is capable of resolving xml namespaces from embedded resources.</summary>
   public class XmlResourceResolver : XmlUrlResolver {
     #region Instance variables
     /// <summary>The assembly that contains the embedded resources.</summary>
@@ -24,7 +26,7 @@ namespace Enkoni.Framework.Xml {
       }
 
       this.resourceAssembly = resourceAssembly;
-      this.resourceNamespace = string.IsNullOrEmpty(resourceNamespace) ? string.Empty : string.Format("{0}.", resourceNamespace);
+      this.resourceNamespace = string.IsNullOrEmpty(resourceNamespace) ? string.Empty : string.Format(CultureInfo.InvariantCulture, "{0}.", resourceNamespace);
     }
     #endregion
 
