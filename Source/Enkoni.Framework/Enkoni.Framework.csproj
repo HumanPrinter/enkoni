@@ -54,6 +54,9 @@
     <Compile Include="AndSpecification.cs" />
     <Compile Include="BusinessRuleSpecification.cs" />
     <Compile Include="AsyncResult.cs" />
+    <Compile Include="FixedDateTimeProvider.cs" />
+    <Compile Include="OffsetDateTimeProvider.cs" />
+    <Compile Include="DateTimeProvider.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,7 +104,9 @@
     <None Include="..\Enkoni.Framework.snk">
       <Link>Enkoni.Framework.snk</Link>
     </None>
-    <None Include="Settings.StyleCop" />
+    <None Include="Settings.StyleCop">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />

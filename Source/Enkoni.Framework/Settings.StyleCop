@@ -22,6 +22,7 @@
         <CollectionProperty Name="Hungarian">
           <Value>is</Value>
           <Value>on</Value>
+          <Value>of</Value>
         </CollectionProperty>
       </AnalyzerSettings>
     </Analyzer>
