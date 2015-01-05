@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni>
   <releases>
+    <release version="1.2.5.0" releasedate="2015-01-01">
+      <projects>
+        <project name="Enkoni.Framework" version="2.4.0">
+          <updates>
+            <update date="2014-10-16" type="addition">
+              <summary><![CDATA[Added a new Between extension method]]></summary>
+              <comment>
+                <![CDATA[Added a new Between extension method that can be used to determine if a DateTime value is between to other DateTime values.]]>
+              </comment>
+            </update>
+            <update date="2014-10-16" type="addition">
+              <summary><![CDATA[Added a new Truncate extension method]]></summary>
+              <comment>
+                <![CDATA[Added a new Truncate extension method that can be used to truncate a string to a maximum length even if the string is shorter.]]>
+              </comment>
+            </update>
+            <update date="2014-12-27" type="addition">
+              <summary><![CDATA[Added a new XmlResourceResolver class]]></summary>
+              <comment>
+                <![CDATA[Added a new XmlResourceResolver class that can be used to resolve xml schemas from embedded resources.]]>
+              </comment>
+            </update>
+            <update date="2014-12-27" type="addition">
+              <summary><![CDATA[Added new DateTimeProvider classes]]></summary>
+              <comment>
+                <![CDATA[Added a DateTimeProvider, OffsetDateTimeProvider and FixedDateTimeProvider class that can be used to determine the current time and or date with support for dependency injection.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.ServiceModel" version="2.2.0">
+          <updates>
+            <update date="2014-12-27" type="change">
+              <summary><![CDATA[Improved the SchemaValidationBehavior class]]></summary>
+              <comment>
+                <![CDATA[Integrated the new XmlResourceResolver and added some extension points.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.4.1" releasedate="2014-06-19">
       <projects>
         <project name="Enkoni.Framework" version="2.3.1">
           <updates>
-            <update date="2014-06-19" type="addition">
+            <update date="2014-06-19" type="change">
               <summary><![CDATA[Fixed a bug in the Capitalize and CapitalizeSentence extension methods]]></summary>
               <comment>
                 <![CDATA[Fixed a bug in the Capitalize and CapitalizeSentence extension methods that caused the methods to break when the input value either starts or ends with spaces or contains adjacent spaces.]]>
