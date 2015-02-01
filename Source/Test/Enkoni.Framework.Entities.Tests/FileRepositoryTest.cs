@@ -12,25 +12,6 @@ namespace Enkoni.Framework.Entities.Tests {
   /// overloads. These tests use the <see cref="CsvFileRepository{TEntity}"/> for the concrete implementation since it relies more on custom code then the 
   /// <see cref="XmlFileRepository{TEntity}"/> which can only result in a more ridgid test of that same custom code..</summary>
   public abstract class FileRepositoryTest : RepositoryTest {
-    #region Read test-case contracts
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
-    public abstract void TestCase33_ReadFile();
-
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method when reading
-    /// an empty file.</summary>
-    public abstract void TestCase34_ReadEmptyFile();
-    #endregion
-
-    #region Write test-case contracts
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
-    /// method.</summary>
-    public abstract void TestCase35_WriteFile();
-
-    /// <summary>Tests the functionality of the <see cref="FileRepository{T}.WriteAllRecordsToFile(FileInfo,DataSourceInfo,IEnumerable{T})"/> 
-    /// method when writing an empty file.</summary>
-    public abstract void TestCase36_WriteEmptyFile();
-    #endregion
-
     #region Read test-cases
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>

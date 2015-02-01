@@ -6,14 +6,11 @@ using Enkoni.Framework.Serialization;
 
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>A helper class to support the testcases.</summary>
-  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot, DebuggerDisplay("RecordId: {RecordId} TextValue: {TextValue}")]
-  public class TestDummy : Entity<TestDummy>, ICloneable {
-    /// <summary>Gets or sets the unique ID for this entity.</summary>
+  [CsvRecord(IgnoreHeaderOnRead = true, WriteHeader = true, CultureName = "en-US"), XmlRoot("ArrayOfTestDummy"), XmlType("TestDummy"), DebuggerDisplay("RecordId: {RecordId} TextValue: {TextValue}")]
+  public class CustomMappedTestDummy : Entity<CustomMappedTestDummy>, ICloneable {
+    /// <summary>Gets or sets a unique record ID.</summary>
     [XmlIgnore]
-    public override int RecordId {
-      get { return base.RecordId; }
-      set { base.RecordId = value; }
-    }
+    public override int RecordId { get; set; }
 
     /// <summary>Gets or sets a text value.</summary>
     [CsvColumn(0), XmlElement]

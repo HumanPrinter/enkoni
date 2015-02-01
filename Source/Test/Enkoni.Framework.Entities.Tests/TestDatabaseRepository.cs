@@ -22,7 +22,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The results of the business rule, or an empty collection if there were no results.</returns>
     protected override IEnumerable<TestDummy> ExecuteBusinessRuleWithMultipleResults(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
-      if(ruleName.Equals("TestCase32_CustomQuery", StringComparison.OrdinalIgnoreCase)) {
+      if(ruleName.Equals("CustomQuery_MultipleResults", StringComparison.OrdinalIgnoreCase)) {
         int divider = (int)ruleArguments.ElementAt(0);
         int desiredResult = (int)ruleArguments.ElementAt(1);
         string query = "SELECT * FROM TestDummy WHERE (NumericValue / @divider) = @desiredResult";
@@ -44,7 +44,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <param name="dataSourceInfo">Information about the datasource that may not have been set at an earlier stage.</param>
     /// <returns>The result of the business rule, or <see langword="null"/> if there were no results.</returns>
     protected override TestDummy ExecuteBusinessRuleWithSingleResult(string ruleName, IEnumerable<object> ruleArguments, DataSourceInfo dataSourceInfo) {
-      if(ruleName.Equals("TestCase31_CustomQuery", StringComparison.OrdinalIgnoreCase)) {
+      if(ruleName.Equals("CustomQuery_SingleResult", StringComparison.OrdinalIgnoreCase)) {
         string desiredResult = (string)ruleArguments.ElementAt(0);
         string query = "SELECT TOP 1 * FROM TestDummy WHERE (TextValue = @desiredResult)";
 

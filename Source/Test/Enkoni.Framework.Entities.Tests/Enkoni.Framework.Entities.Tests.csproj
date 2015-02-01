@@ -37,6 +37,13 @@
     <DocumentationFile>bin\Release\Enkoni.Framework.Entities.Tests.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\packages\AutoMapper.3.3.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.dll</HintPath>
@@ -67,6 +74,7 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="BugScenarios.cs" />
     <Compile Include="DatabaseRepositoryTestDbConfiguration.cs" />
     <Compile Include="RepositoryTest.cs" />
@@ -79,10 +87,12 @@
     <Compile Include="StaticMemoryRepositoryTest.cs" />
     <Compile Include="TestDatabaseRepository.cs" />
     <Compile Include="TestDomainModel.cs" />
+    <Compile Include="CustomMappedTestDummy.cs" />
     <Compile Include="TestDummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityValidatorTest.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
+    <Compile Include="CustomMappedTestDummyConfiguration.cs" />
     <Compile Include="TestDummyConfiguration.cs" />
     <Compile Include="TestSubDomainModel.cs" />
     <Compile Include="XmlFileRepositoryTest.cs" />
@@ -163,6 +173,7 @@ xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\Nativ
 if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
 xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.3.0\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

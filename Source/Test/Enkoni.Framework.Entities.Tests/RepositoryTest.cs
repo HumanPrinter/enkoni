@@ -7,120 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of a specific <see cref="Repository{TEntity}"/> class. By using this test class, any repository can be tested
   /// in a consistent way.</summary>
+  [TestClass]
   public abstract class RepositoryTest {
-    #region Retrieve test-case contracts
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
-    public abstract void TestCase01_FindAll();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method based on an empty file.</summary>
-    public abstract void TestCase02_FindAll_EmptySource();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method.</summary>
-    public abstract void TestCase03_FindAllWithExpression();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method based on an empty file.</summary>
-    public abstract void TestCase04_FindAllWithExpression_EmptySource();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
-    public abstract void TestCase05_FindSingleWithExpression();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method based on an empty file.</summary>
-    public abstract void TestCase06_FindSingleWithExpression_EmptySource();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
-    public abstract void TestCase07_FindFirstWithExpression();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method based on an empty file.</summary>
-    public abstract void TestCase08_FindFirstWithExpression_EmptySource();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
-    /// </summary>
-    public abstract void TestCase09_RetrieveLessThenAvailable();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
-    /// </summary>
-    public abstract void TestCase10_RetrieveExactlyAvailable();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
-    /// number of results.</summary>
-    public abstract void TestCase11_RetrieveExactlyAvailable_EmptySource();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
-    /// </summary>
-    public abstract void TestCase12_RetrieveMoreThenAvailable();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
-    /// number of results.</summary>
-    public abstract void TestCase13_RetrieveMoreThenAvailable_EmptySource();
-    #endregion
-
-    #region Sorting test-case contracts
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a specific ordering 
-    /// specification.</summary>
-    public abstract void TestCase14_OrderBy();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a specific
-    /// ordering specification.</summary>
-    public abstract void TestCase15_OrderBy_EmptySource();
-    #endregion
-
-    #region Storage test-case contracts
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
-    public abstract void TestCase16_Add();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
-    public abstract void TestCase17_Update();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method.</summary>
-    public abstract void TestCase18_Delete();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method.</summary>
-    public abstract void TestCase19_AddMultiple_NormalUse();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntities(IEnumerable{T})"/> method.</summary>
-    public abstract void TestCase20_DeleteMultiple_NormalUse();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntities(IEnumerable{T})"/> method when it should throw an 
-    /// exception and rollback the operation.</summary>
-    public abstract void TestCase21_DeleteMultiple_Exceptions();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
-    public abstract void TestCase22_UpdateMultiple_NormalUse();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method when it should throw an 
-    /// exception and rollback the operation.</summary>
-    public abstract void TestCase23_UpdateMultiple_Exceptions();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
-    public abstract void TestCase24_Add_Reset();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved updates to the repository.</summary>
-    public abstract void TestCase25_Update_Reset();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved deletions from the repository.</summary>
-    public abstract void TestCase26_Delete_Reset();
-    #endregion
-
-    #region Combined storage test-case contracts
-    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase27_AddUpdate();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase28_AddUpdateDelete();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase29_UpdateDelete();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions.</summary>
-    public abstract void TestCase30_DeleteAdd();
-    #endregion
-
-    #region Execute test-case contracts
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
-    public abstract void TestCase31_ExecuteDefaultSpecification();
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
-    public abstract void TestCase32_ExecuteBusinessRule();
+    #region Test initialization
+    /// <summary>Performs custom initialization tasks.</summary>
+    [TestInitialize]
+    public void Initialize() {
+      AutoMapperConfiguration.Initialize();
+    }
     #endregion
 
     #region Retrieve test-cases
@@ -476,6 +370,171 @@ namespace Enkoni.Framework.Entities.Tests {
       /* Check the results */
       Assert.AreEqual(0, results.Count());
     }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
+    /// </summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void RetrieveTypesWithCustomMapping(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<CustomMappedTestDummy> repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Set maximumresults on top-most specification */
+      ISpecification<CustomMappedTestDummy> specA = Specification.Lambda((CustomMappedTestDummy td) => td.TextValue.StartsWith("a"));
+      ISpecification<CustomMappedTestDummy> specB = specA.And(Specification.Lambda((CustomMappedTestDummy td) => td.TextValue.Length == 7));
+      specB.SetMaximumResults(10);
+
+      /* Retrieve the entities */
+      IEnumerable<CustomMappedTestDummy> results = repository.FindAll(specB);
+
+      /* Check the results */
+      Assert.AreEqual(6, results.Count());
+      Assert.AreEqual("aabcdef", results.First().TextValue, false);
+      Assert.AreEqual("abcdefg", results.Skip(1).First().TextValue, false);
+      Assert.AreEqual("aadefgh", results.Skip(2).First().TextValue, false);
+      Assert.AreEqual("abefghi", results.Skip(3).First().TextValue, false);
+      Assert.AreEqual("acdefgh", results.Skip(4).First().TextValue, false);
+      Assert.AreEqual("acfghij", results.Skip(5).First().TextValue, false);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void FindFirstWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Retrieve an entity */
+      ISpecification<TestDummy> spec = Specification.Lambda<TestDummy>(td => td.RecordId == 3);
+      TestDummy firstDummy = repository.FindFirst(spec);
+      
+      /* Retrieve the entity again */
+      TestDummy secondDummy = repository.FindFirst(spec);
+
+      Assert.AreSame(firstDummy, secondDummy);
+
+      /* Make a change in the entity */
+      firstDummy.TextValue = "NewValue";
+
+      /* Because cloning is disabled, retrieving the entity again should return the updated value */
+      secondDummy = repository.FindFirst(spec);
+      Assert.AreEqual("NewValue", secondDummy.TextValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void FindFirstWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Retrieve an entity */
+      ISpecification<TestDummy> spec = Specification.Lambda<TestDummy>(td => td.RecordId == 3);
+      TestDummy firstDummy = repository.FindFirst(spec);
+
+      /* Retrieve the entity again */
+      TestDummy secondDummy = repository.FindFirst(spec);
+
+      Assert.AreNotSame(firstDummy, secondDummy);
+
+      /* Make a change in the entity */
+      firstDummy.TextValue = "NewValue";
+
+      /* Because cloning is enabled, retrieving the entity again should return the original value */
+      secondDummy = repository.FindFirst(spec);
+      Assert.AreEqual("\"Row3\"", secondDummy.TextValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void FindSingleWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Retrieve an entity */
+      ISpecification<TestDummy> spec = Specification.Lambda<TestDummy>(td => td.RecordId == 3);
+      TestDummy firstDummy = repository.FindSingle(spec);
+
+      /* Retrieve the entity again */
+      TestDummy secondDummy = repository.FindSingle(spec);
+
+      Assert.AreSame(firstDummy, secondDummy);
+
+      /* Make a change in the entity */
+      firstDummy.TextValue = "NewValue";
+
+      /* Because cloning is disabled, retrieving the entity again should return the updated value */
+      secondDummy = repository.FindSingle(spec);
+      Assert.AreEqual("NewValue", secondDummy.TextValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void FindSingleWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Retrieve an entity */
+      ISpecification<TestDummy> spec = Specification.Lambda<TestDummy>(td => td.RecordId == 3);
+      TestDummy firstDummy = repository.FindSingle(spec);
+
+      /* Retrieve the entity again */
+      TestDummy secondDummy = repository.FindSingle(spec);
+
+      Assert.AreNotSame(firstDummy, secondDummy);
+
+      /* Make a change in the entity */
+      firstDummy.TextValue = "NewValue";
+
+      /* Because cloning is enabled, retrieving the entity again should return the original value */
+      secondDummy = repository.FindSingle(spec);
+      Assert.AreEqual("\"Row3\"", secondDummy.TextValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void FindAllWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Retrieve some entities */
+      ISpecification<TestDummy> spec = Specification.Lambda<TestDummy>(td => td.BooleanValue == false).OrderBy(td => td.RecordId);
+      IEnumerable<TestDummy> firstRetrieval = repository.FindAll(spec);
+
+      /* Retrieve the entities again */
+      IEnumerable<TestDummy> secondRetrieval = repository.FindAll(spec);
+
+      Assert.AreSame(firstRetrieval.ElementAt(0), secondRetrieval.ElementAt(0));
+      Assert.AreSame(firstRetrieval.ElementAt(1), secondRetrieval.ElementAt(1));
+      
+      /* Make a change in the entity */
+      firstRetrieval.ElementAt(0).TextValue = "NewValue";
+
+      /* Because cloning is disabled, retrieving the entities again should return the updated values */
+      secondRetrieval = repository.FindAll(spec);
+      Assert.AreEqual("NewValue", secondRetrieval.ElementAt(0).TextValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void FindAllWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Retrieve some entities */
+      ISpecification<TestDummy> spec = Specification.Lambda<TestDummy>(td => td.BooleanValue == false).OrderBy(td => td.RecordId);
+      IEnumerable<TestDummy> firstRetrieval = repository.FindAll(spec);
+
+      /* Retrieve the entities again */
+      IEnumerable<TestDummy> secondRetrieval = repository.FindAll(spec);
+
+      Assert.AreNotSame(firstRetrieval.ElementAt(0), secondRetrieval.ElementAt(0));
+      Assert.AreNotSame(firstRetrieval.ElementAt(1), secondRetrieval.ElementAt(1));
+
+      /* Make a change in the entity */
+      firstRetrieval.ElementAt(0).TextValue = "NewValue";
+
+      /* Because cloning is enabled, retrieving the entity again should return the original value */
+      secondRetrieval = repository.FindAll(spec);
+      Assert.AreEqual("\"Row1\"", secondRetrieval.ElementAt(0).TextValue);
+    }
     #endregion
 
     #region Sorting test-cases
@@ -571,7 +630,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
       Assert.AreEqual("RowX", retrievedDummy.TextValue, false);
       Assert.AreEqual(12, retrievedDummy.NumericValue);
-      Assert.AreEqual(true, retrievedDummy.BooleanValue);
+      Assert.IsTrue(retrievedDummy.BooleanValue);
 
       /* Re-create the repository and try to retrieve previous added entity */
       repository = this.CreateRepository<TestDummy>(sourceInfo);
@@ -593,10 +652,60 @@ namespace Enkoni.Framework.Entities.Tests {
 
       /* Check the result */
       Assert.IsNotNull(retrievedDummy);
+      Assert.AreEqual("RowX", retrievedDummy.TextValue, false);
+      Assert.AreEqual(12, retrievedDummy.NumericValue);
+      Assert.IsTrue(retrievedDummy.BooleanValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddCustomMappedType(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<CustomMappedTestDummy> repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Add a new entity without saving changes or re-creating the repository */
+      CustomMappedTestDummy newDummy = new CustomMappedTestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
+      CustomMappedTestDummy addedDummy = repository.AddEntity(newDummy);
+
+      /* Check the result */
+      Assert.IsNotNull(addedDummy);
+      Assert.IsTrue(addedDummy.RecordId <= 0);
+
+      /* Retrieve the unsaved entity */
+      Func<CustomMappedTestDummy, string> field = td => td.TextValue;
+      ISpecification<CustomMappedTestDummy> spec = Specification.Lambda((CustomMappedTestDummy td) => td.TextValue == "RowX");
+      CustomMappedTestDummy retrievedDummy = repository.FindSingle(spec);
+
+      /* Check the result */
+      Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
       Assert.AreEqual("RowX", retrievedDummy.TextValue, false);
       Assert.AreEqual(12, retrievedDummy.NumericValue);
-      Assert.AreEqual(true, retrievedDummy.BooleanValue);
+      Assert.IsTrue(retrievedDummy.BooleanValue);
+
+      /* Re-create the repository and try to retrieve previous added entity */
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(spec);
+
+      /* Check the result */
+      Assert.IsNull(retrievedDummy);
+
+      /* Add a new entity followed by saving changes and re-creating the repository */
+      newDummy = new CustomMappedTestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
+      addedDummy = repository.AddEntity(newDummy);
+
+      repository.SaveChanges();
+
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Retrieve the entity */
+      retrievedDummy = repository.FindSingle(spec);
+
+      /* Check the result */
+      Assert.IsNotNull(retrievedDummy);
+      Assert.AreEqual("RowX", retrievedDummy.TextValue, false);
+      Assert.AreEqual(12, retrievedDummy.NumericValue);
+      Assert.IsTrue(retrievedDummy.BooleanValue);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
@@ -650,6 +759,61 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsNotNull(retrievedDummy);
       Assert.AreEqual(originalDummy.RecordId, retrievedDummy.RecordId);
       Assert.AreEqual("RowY", retrievedDummy.TextValue, false);
+      Assert.AreEqual(3, retrievedDummy.NumericValue);
+      Assert.AreEqual(false, retrievedDummy.BooleanValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void UpdateCustomMappedType(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<CustomMappedTestDummy> repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Update an entity without saving changes or re-creating the repository */
+      CustomMappedTestDummy originalDummy = repository.FindFirst(Specification.Lambda((CustomMappedTestDummy td) => td.TextValue == "\"Row1\""));
+      originalDummy.TextValue = "RowY";
+      CustomMappedTestDummy updatedDummy = repository.UpdateEntity(originalDummy);
+
+      /* Check the result */
+      Assert.IsNotNull(updatedDummy);
+      Assert.IsTrue(updatedDummy.RecordId > 0);
+
+      /* Retrieve the updated entity */
+      CustomMappedTestDummy retrievedDummy = repository.FindSingle(Specification.Lambda((CustomMappedTestDummy td) => td.RecordId == 1));
+
+      /* Check the result */
+      Assert.IsNotNull(retrievedDummy);
+      Assert.AreEqual(updatedDummy.RecordId, updatedDummy.RecordId);
+      Assert.AreEqual("RowY_mapped", retrievedDummy.TextValue, false);
+      Assert.AreEqual(3, retrievedDummy.NumericValue);
+      Assert.AreEqual(false, retrievedDummy.BooleanValue);
+
+      /* Re-create the repository and try to retrieve previous updated entity */
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+      retrievedDummy = repository.FindSingle(Specification.Lambda((CustomMappedTestDummy td) => td.RecordId == 1));
+
+      /* Check the result */
+      Assert.IsNotNull(retrievedDummy);
+      Assert.AreEqual(originalDummy.RecordId, updatedDummy.RecordId);
+      Assert.AreEqual("\"Row1\"", retrievedDummy.TextValue, false);
+      Assert.AreEqual(3, retrievedDummy.NumericValue);
+      Assert.AreEqual(false, retrievedDummy.BooleanValue);
+
+      /* Update an entity followed by saving changes and re-creating the repository */
+      originalDummy.TextValue = "RowY";
+      updatedDummy = repository.UpdateEntity(originalDummy);
+
+      repository.SaveChanges();
+
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Retrieve the entity */
+      retrievedDummy = repository.FindSingle(Specification.Lambda((CustomMappedTestDummy td) => td.RecordId == 1));
+
+      /* Check the result */
+      Assert.IsNotNull(retrievedDummy);
+      Assert.AreEqual(originalDummy.RecordId, retrievedDummy.RecordId);
+      Assert.AreEqual("RowY_mapped", retrievedDummy.TextValue, false);
       Assert.AreEqual(3, retrievedDummy.NumericValue);
       Assert.AreEqual(false, retrievedDummy.BooleanValue);
     }
@@ -778,6 +942,89 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.IsTrue(retrievedDummies.All(td => td.RecordId > 0));
     }
 
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddMultipleCustomMappedTypes_NormalUse(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<CustomMappedTestDummy> repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /*************************************************************************************************/
+      /* SCENARIO 1: Add three completely new entities to the repository                               */
+      /*************************************************************************************************/
+      /* Create three new entities */
+      CustomMappedTestDummy newDummyA = new CustomMappedTestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
+      CustomMappedTestDummy newDummyB = new CustomMappedTestDummy { TextValue = "RowY", NumericValue = 13, BooleanValue = true };
+      CustomMappedTestDummy newDummyC = new CustomMappedTestDummy { TextValue = "RowZ", NumericValue = 14, BooleanValue = true };
+      CustomMappedTestDummy[] newDummies = new CustomMappedTestDummy[] { newDummyA, newDummyB, newDummyC };
+
+      /* Add the entities */
+      IEnumerable<CustomMappedTestDummy> addedDummies = repository.AddEntities(newDummies);
+
+      /* Check the results */
+      Assert.IsNotNull(addedDummies);
+      Assert.AreEqual(3, addedDummies.Count());
+      Assert.IsTrue(addedDummies.All(td => td.RecordId <= 0));
+
+      /* Retrieve all the entities */
+      IEnumerable<CustomMappedTestDummy> retrievedDummies = repository.FindAll();
+
+      /* Check the results */
+      Assert.AreEqual(5, retrievedDummies.Count());
+      Assert.AreEqual(2, retrievedDummies.Where(td => td.RecordId > 0).Count());
+      Assert.AreEqual(3, retrievedDummies.Where(td => td.RecordId <= 0).Count());
+
+      /* Save the changes/additions and recreate the repository */
+      repository.SaveChanges();
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Retrieve all the entities */
+      retrievedDummies = repository.FindAll();
+
+      /* Check the results */
+      Assert.AreEqual(5, retrievedDummies.Count());
+      Assert.IsTrue(retrievedDummies.All(td => td.RecordId > 0));
+
+      /****************************************************************************************************/
+      /* SCENARIO 2: Add three ne entities to the repository of which one was deleted (but not yet saved) */
+      /****************************************************************************************************/
+      /* Retrieve and delete an entity */
+      CustomMappedTestDummy obsoleteDummy = repository.FindSingle(Specification.Lambda((CustomMappedTestDummy td) => td.RecordId == 3));
+      repository.DeleteEntity(obsoleteDummy);
+
+      /* Create two new entites */
+      newDummyA = new CustomMappedTestDummy { TextValue = "RowV", NumericValue = 15, BooleanValue = true };
+      newDummyB = new CustomMappedTestDummy { TextValue = "RowW", NumericValue = 16, BooleanValue = true };
+      newDummies = new CustomMappedTestDummy[] { newDummyA, obsoleteDummy, newDummyB };
+
+      /* Add the dummies (including the deleted one). The deletion shouldbe made undone */
+      addedDummies = repository.AddEntities(newDummies);
+
+      /* Check the results */
+      Assert.IsNotNull(addedDummies);
+      Assert.AreEqual(3, addedDummies.Count());
+      Assert.AreEqual(2, addedDummies.Where(td => td.RecordId <= 0).Count());
+      Assert.AreEqual(1, addedDummies.Where(td => td.RecordId > 0).Count());
+
+      /* Retrieve all the entities */
+      retrievedDummies = repository.FindAll();
+
+      /* Check the results */
+      Assert.AreEqual(7, retrievedDummies.Count());
+      Assert.AreEqual(5, retrievedDummies.Where(td => td.RecordId > 0).Count());
+      Assert.AreEqual(2, retrievedDummies.Where(td => td.RecordId <= 0).Count());
+
+      /* Save the changes/additions and recreate the repository */
+      repository.SaveChanges();
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Retrieve all the entities */
+      retrievedDummies = repository.FindAll();
+
+      /* Check the results */
+      Assert.AreEqual(7, retrievedDummies.Count());
+      Assert.IsTrue(retrievedDummies.All(td => td.RecordId > 0));
+    }
+
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntities(IEnumerable{T})"/> method.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
     protected void DeleteMultiple_NormalUse(DataSourceInfo sourceInfo) {
@@ -836,7 +1083,7 @@ namespace Enkoni.Framework.Entities.Tests {
       /* Retrieve all the entities and add a new one */
       retrievedDummies = repository.FindAll();
       TestDummy newDummyD = new TestDummy { TextValue = "RowX", NumericValue = 4, BooleanValue = true };
-      repository.AddEntity(newDummyD);
+      newDummyD = repository.AddEntity(newDummyD);
 
       /* Delete the three entities (including the new entity) */
       obsoleteDummies = new TestDummy[] { retrievedDummies.ElementAt(2), newDummyD, retrievedDummies.ElementAt(3) };
@@ -1088,6 +1335,161 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowN", StringComparison.Ordinal)).Count());
     }
 
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void UpdateMultipleCustomMappedTypes_NormalUse(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<CustomMappedTestDummy> repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+      /* Retrieve all the entities to force the repository to read the sourcefile */
+
+      /* Add some additional entities */
+      CustomMappedTestDummy newDummyA = new CustomMappedTestDummy { TextValue = "Row3", NumericValue = 3, BooleanValue = true };
+      CustomMappedTestDummy newDummyB = new CustomMappedTestDummy { TextValue = "Row4", NumericValue = 3, BooleanValue = true };
+      CustomMappedTestDummy newDummyC = new CustomMappedTestDummy { TextValue = "Row5", NumericValue = 3, BooleanValue = true };
+      CustomMappedTestDummy[] newDummies = new CustomMappedTestDummy[] { newDummyA, newDummyB, newDummyC };
+      repository.AddEntities(newDummies);
+      repository.SaveChanges();
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+      /* The repository now contains 5 entities */
+
+      /*************************************************************************************************/
+      /* SCENARIO 1: Update three entities that are already in the repository                          */
+      /*************************************************************************************************/
+      /* Retrieve and change three entities */
+      IEnumerable<CustomMappedTestDummy> retrievedDummies = repository.FindAll();
+      CustomMappedTestDummy updateDummyA = retrievedDummies.ElementAt(3);
+      CustomMappedTestDummy updateDummyB = retrievedDummies.ElementAt(4);
+      CustomMappedTestDummy updateDummyC = retrievedDummies.ElementAt(1);
+      updateDummyA.TextValue = "RowX";
+      updateDummyB.TextValue = "RowY";
+      updateDummyC.TextValue = "RowZ";
+      CustomMappedTestDummy[] updateDummies = new CustomMappedTestDummy[] { updateDummyA, updateDummyB, updateDummyC };
+
+      /* Update the entities */
+      IEnumerable<CustomMappedTestDummy> updatedDummies = repository.UpdateEntities(updateDummies);
+
+      /* Check: Make sure the returned value is not null */
+      Assert.IsNotNull(updatedDummies);
+      /* Check: Make sure the returned value contains three items */
+      Assert.AreEqual(3, updatedDummies.Count());
+      /* Check: Make sure the returned values are the same as the updated entities */
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyA.RecordId));
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyB.RecordId));
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyC.RecordId));
+      Assert.AreEqual("RowX_mapped", updatedDummies.Single(td => td.RecordId == updateDummyA.RecordId).TextValue, false);
+      Assert.AreEqual("RowY_mapped", updatedDummies.Single(td => td.RecordId == updateDummyB.RecordId).TextValue, false);
+      Assert.AreEqual("RowZ_mapped", updatedDummies.Single(td => td.RecordId == updateDummyC.RecordId).TextValue, false);
+
+      /* Save the changes and recreate the repository */
+      repository.SaveChanges();
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Retrieve all the entities */
+      retrievedDummies = repository.FindAll();
+
+      /* Check: Make sure the updates were saved correctly */
+      Assert.AreEqual(5, retrievedDummies.Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowX_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowY_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowZ_mapped", StringComparison.Ordinal)).Count());
+
+      /*************************************************************************************************/
+      /* SCENARIO 2: Update three entities of which one was already updated                            */
+      /*************************************************************************************************/
+      /* Retrieve and change three entities */
+      updateDummyA = retrievedDummies.ElementAt(3);
+      updateDummyB = retrievedDummies.ElementAt(4);
+      updateDummyC = retrievedDummies.ElementAt(1);
+      updateDummyA.TextValue = "RowT";
+      updateDummyB.TextValue = "RowV";
+      updateDummyC.TextValue = "RowW";
+
+      /* Make the first (single) update */
+      updateDummyA = repository.UpdateEntity(updateDummyA);
+
+      /* Make another change to the entity */
+      updateDummyA.TextValue = "RowU";
+      updateDummies = new CustomMappedTestDummy[] { updateDummyA, updateDummyB, updateDummyC };
+
+      /* Update the entities */
+      updatedDummies = repository.UpdateEntities(updateDummies);
+
+      /* Check: Make sure the returned value is not null */
+      Assert.IsNotNull(updatedDummies);
+      /* Check: Make sure the returned value contains three items */
+      Assert.AreEqual(3, updatedDummies.Count());
+      /* Check: Make sure the returned values are the same as the updated entities */
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyA.RecordId));
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyB.RecordId));
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyC.RecordId));
+      Assert.IsNull(updatedDummies.SingleOrDefault(td => td.TextValue.Equals("RowT", StringComparison.Ordinal)));
+      Assert.AreEqual("RowU_mapped", updatedDummies.Single(td => td.RecordId == updateDummyA.RecordId).TextValue, false);
+      Assert.AreEqual("RowV_mapped", updatedDummies.Single(td => td.RecordId == updateDummyB.RecordId).TextValue, false);
+      Assert.AreEqual("RowW_mapped", updatedDummies.Single(td => td.RecordId == updateDummyC.RecordId).TextValue, false);
+
+      /* Save the changes and recreate the repository */
+      repository.SaveChanges();
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      /* Retrieve all the entities */
+      retrievedDummies = repository.FindAll();
+
+      /* Check: Make sure the updates were saved correctly */
+      Assert.AreEqual(5, retrievedDummies.Count());
+      Assert.AreEqual(0, retrievedDummies.Where(td => td.TextValue.Equals("RowT", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(0, retrievedDummies.Where(td => td.TextValue.Equals("RowT_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowU_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowV_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowW_mapped", StringComparison.Ordinal)).Count());
+
+      /*************************************************************************************************/
+      /* SCENARIO 3: Update three entities of which one was added but not yet saved                    */
+      /*************************************************************************************************/
+      /* Retrieve and change three entities */
+      updateDummyA = retrievedDummies.ElementAt(3);
+      updateDummyB = retrievedDummies.ElementAt(2);
+      CustomMappedTestDummy newDummyD = new CustomMappedTestDummy { TextValue = "RowM", NumericValue = 2, BooleanValue = true };
+      updateDummyA.TextValue = "RowB";
+      updateDummyB.TextValue = "RowC";
+
+      newDummyD = repository.AddEntity(newDummyD);
+      /* The repository now contains 6 entities */
+
+      newDummyD.TextValue = "RowN";
+      updateDummies = new CustomMappedTestDummy[] { updateDummyA, newDummyD, updateDummyB };
+
+      /* Update the entities */
+      updatedDummies = repository.UpdateEntities(updateDummies);
+
+      /* Check: Make sure the returned value is not null */
+      Assert.IsNotNull(updatedDummies);
+      /* Check: Make sure the returned value contains three items */
+      Assert.AreEqual(3, updatedDummies.Count());
+      /* Check: Make sure the returned values are the same as the updated entities */
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyA.RecordId));
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == updateDummyB.RecordId));
+      Assert.IsNotNull(updatedDummies.SingleOrDefault(td => td.RecordId == newDummyD.RecordId));
+      Assert.IsNull(updatedDummies.SingleOrDefault(td => td.TextValue.Equals("RowM", StringComparison.Ordinal)));
+      Assert.IsNull(updatedDummies.SingleOrDefault(td => td.TextValue.Equals("RowM_mapped", StringComparison.Ordinal)));
+      Assert.AreEqual("RowB_mapped", updatedDummies.Single(td => td.RecordId == updateDummyA.RecordId).TextValue, false);
+      Assert.AreEqual("RowC_mapped", updatedDummies.Single(td => td.RecordId == updateDummyB.RecordId).TextValue, false);
+      Assert.AreEqual("RowN_mapped", updatedDummies.Single(td => td.RecordId == newDummyD.RecordId).TextValue, false);
+
+      /* Save the changes */
+      repository.SaveChanges();
+      repository = this.CreateRepository<CustomMappedTestDummy>(sourceInfo);
+
+      retrievedDummies = repository.FindAll();
+
+      /* Check: Make sure the updates were saved correctly */
+      Assert.AreEqual(6, retrievedDummies.Count());
+      Assert.AreEqual(0, retrievedDummies.Where(td => td.TextValue.Equals("RowM", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(0, retrievedDummies.Where(td => td.TextValue.Equals("RowM_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowB_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowC_mapped", StringComparison.Ordinal)).Count());
+      Assert.AreEqual(1, retrievedDummies.Where(td => td.TextValue.Equals("RowN_mapped", StringComparison.Ordinal)).Count());
+    }
+
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method when it should throw an 
     /// exception and rollback the operation.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>
@@ -1294,6 +1696,188 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(5, results.Count());
       Assert.IsNotNull(results.SingleOrDefault(td => td.TextValue == "Row4"));
     }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Add new entities */
+      TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
+      TestDummy addedDummy = repository.AddEntity(newDummy);
+
+      /* Check the result */
+      Assert.AreSame(newDummy, addedDummy);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Add new entities */
+      TestDummy newDummy = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
+      TestDummy addedDummy = repository.AddEntity(newDummy);
+
+      /* Check the result */
+      Assert.AreNotSame(newDummy, addedDummy);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddDeletedItemWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      IEnumerable<TestDummy> retrievedDummies = repository.FindAll();
+      TestDummy deletedItem = retrievedDummies.ElementAt(0);
+
+      /* Delete an item */
+      repository.DeleteEntity(deletedItem);
+
+      /* Add the item again */
+      TestDummy addedEntity = repository.AddEntity(deletedItem);
+      
+      /* Check the result */
+      Assert.AreSame(deletedItem, addedEntity);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddDeletedItemWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      IEnumerable<TestDummy> retrievedDummies = repository.FindAll();
+      TestDummy deletedItem = retrievedDummies.ElementAt(0);
+
+      /* Delete an item */
+      repository.DeleteEntity(deletedItem);
+
+      /* Add the item again */
+      TestDummy addedEntity = repository.AddEntity(deletedItem);
+
+      /* Check the result */
+      Assert.AreNotSame(deletedItem, addedEntity);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddMultipleWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Create three new entities */
+      TestDummy newDummyA = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
+      TestDummy newDummyB = new TestDummy { TextValue = "RowY", NumericValue = 13, BooleanValue = true };
+      TestDummy newDummyC = new TestDummy { TextValue = "RowZ", NumericValue = 14, BooleanValue = true };
+      TestDummy[] newDummies = new TestDummy[] { newDummyA, newDummyB, newDummyC };
+
+      /* Add the entities */
+      IEnumerable<TestDummy> addedDummies = repository.AddEntities(newDummies);
+
+      /* Check the results */
+      Assert.AreSame(newDummyA, addedDummies.ElementAt(0));
+      Assert.AreSame(newDummyB, addedDummies.ElementAt(1));
+      Assert.AreSame(newDummyC, addedDummies.ElementAt(2));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void AddMultipleWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Create three new entities */
+      TestDummy newDummyA = new TestDummy { TextValue = "RowX", NumericValue = 12, BooleanValue = true };
+      TestDummy newDummyB = new TestDummy { TextValue = "RowY", NumericValue = 13, BooleanValue = true };
+      TestDummy newDummyC = new TestDummy { TextValue = "RowZ", NumericValue = 14, BooleanValue = true };
+      TestDummy[] newDummies = new TestDummy[] { newDummyA, newDummyB, newDummyC };
+
+      /* Add the entities */
+      IEnumerable<TestDummy> addedDummies = repository.AddEntities(newDummies);
+
+      /* Check the results */
+      Assert.AreNotSame(newDummyA, addedDummies.ElementAt(0));
+      Assert.AreNotSame(newDummyB, addedDummies.ElementAt(1));
+      Assert.AreNotSame(newDummyC, addedDummies.ElementAt(2));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void UpdateWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Update an entity without saving changes or re-creating the repository */
+      TestDummy originalDummy = repository.FindFirst(Specification.Lambda((TestDummy td) => td.TextValue == "\"Row1\""));
+      originalDummy.TextValue = "RowY";
+      TestDummy updatedDummy = repository.UpdateEntity(originalDummy);
+
+      /* Check the result */
+      Assert.AreSame(originalDummy, updatedDummy);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void UpdateWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+
+      /* Update an entity without saving changes or re-creating the repository */
+      TestDummy originalDummy = repository.FindFirst(Specification.Lambda((TestDummy td) => td.TextValue == "\"Row1\""));
+      originalDummy.TextValue = "RowY";
+      TestDummy updatedDummy = repository.UpdateEntity(originalDummy);
+
+      /* Check the result */
+      Assert.AreNotSame(originalDummy, updatedDummy);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void UpdateMultipleWithoutCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+      /* Retrieve all the entities to force the repository to read the sourcefile */
+
+      /* Retrieve and change some entities */
+      IEnumerable<TestDummy> retrievedDummies = repository.FindAll();
+      TestDummy updateDummyA = retrievedDummies.ElementAt(0);
+      TestDummy updateDummyB = retrievedDummies.ElementAt(1);
+      updateDummyA.TextValue = "RowX";
+      updateDummyB.TextValue = "RowY";
+      TestDummy[] updateDummies = new TestDummy[] { updateDummyA, updateDummyB };
+
+      /* Update the entities */
+      IEnumerable<TestDummy> updatedDummies = repository.UpdateEntities(updateDummies);
+
+      Assert.AreSame(updateDummyA, updatedDummies.ElementAt(0));
+      Assert.AreSame(updateDummyB, updatedDummies.ElementAt(1));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
+    /// <param name="sourceInfo">The source info that is used to create the repository.</param>
+    protected void UpdateMultipleWithCloning(DataSourceInfo sourceInfo) {
+      /* Create the repository */
+      Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
+      /* Retrieve all the entities to force the repository to read the sourcefile */
+
+      /* Retrieve and change some entities */
+      IEnumerable<TestDummy> retrievedDummies = repository.FindAll();
+      TestDummy updateDummyA = retrievedDummies.ElementAt(0);
+      TestDummy updateDummyB = retrievedDummies.ElementAt(1);
+      updateDummyA.TextValue = "RowX";
+      updateDummyB.TextValue = "RowY";
+      TestDummy[] updateDummies = new TestDummy[] { updateDummyA, updateDummyB };
+
+      /* Update the entities */
+      IEnumerable<TestDummy> updatedDummies = repository.UpdateEntities(updateDummies);
+
+      Assert.AreNotSame(updateDummyA, updatedDummies.ElementAt(0));
+      Assert.AreNotSame(updateDummyB, updatedDummies.ElementAt(1));
+    }
     #endregion
 
     #region Combined storage test-cases
@@ -1337,7 +1921,7 @@ namespace Enkoni.Framework.Entities.Tests {
       /* First retrieve without re-creating the repository */
       retrievedDummy = repository.FindSingle(spec);
       Assert.IsNotNull(retrievedDummy);
-      Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
+      Assert.AreNotEqual(addedDummy.RecordId, retrievedDummy.RecordId);
       Assert.AreEqual("RowY", retrievedDummy.TextValue, false);
       Assert.AreEqual(12, retrievedDummy.NumericValue);
       Assert.AreEqual(true, retrievedDummy.BooleanValue);
@@ -1347,7 +1931,7 @@ namespace Enkoni.Framework.Entities.Tests {
       retrievedDummy = repository.FindSingle(spec);
 
       Assert.IsNotNull(retrievedDummy);
-      Assert.AreEqual(addedDummy.RecordId, retrievedDummy.RecordId);
+      Assert.AreNotEqual(addedDummy.RecordId, retrievedDummy.RecordId);
       Assert.AreEqual("RowY", retrievedDummy.TextValue, false);
       Assert.AreEqual(12, retrievedDummy.NumericValue);
       Assert.AreEqual(true, retrievedDummy.BooleanValue);

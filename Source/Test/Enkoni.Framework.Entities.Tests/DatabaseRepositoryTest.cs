@@ -11,188 +11,186 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of the <see cref="DatabaseRepository{TEntity}"/> class.</summary>
   [TestClass]
+  [DeploymentItem(@"amd64\", @"amd64\")]
+  [DeploymentItem(@"x86\", @"x86\")]
+  [DeploymentItem("System.Data.SqlServerCe.dll")]
+  [DeploymentItem("EntityFramework.SqlServer.dll")]
+  [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
   public class DatabaseRepositoryTest : RepositoryTest {
     #region Retrieve test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase01")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase01_FindAll() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase01\", TestCategory.Retrieve);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve01")]
+    public void DatabaseRepository_FindAll_NoSpecification_AllAvailableRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve01\", TestCategory.Retrieve, false);
       this.FindAll(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase02")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase02_FindAll_EmptySource() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase02\", TestCategory.RetrieveEmpty);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve02")]
+    public void DatabaseRepository_FindAll_NoSpecificationEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve02\", TestCategory.RetrieveEmpty, false);
       this.FindAll_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase03")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase03_FindAllWithExpression() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase03\", TestCategory.Retrieve);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve03")]
+    public void DatabaseRepository_FindAll_WithSpecification_OnlyMatchingRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve03\", TestCategory.Retrieve, false);
       this.FindAllWithExpression(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase04")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase04_FindAllWithExpression_EmptySource() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase04\", TestCategory.RetrieveEmpty);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve04")]
+    public void DatabaseRepository_FindAll_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve04\", TestCategory.RetrieveEmpty, false);
       this.FindAllWithExpression_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase05")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase05_FindSingleWithExpression() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase05\", TestCategory.Retrieve);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve05")]
+    public void DatabaseRepository_FindSingle_WithSpecification_OnlyMatchingRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve05\", TestCategory.Retrieve, false);
       this.FindSingleWithExpression(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase06")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase06_FindSingleWithExpression_EmptySource() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase06\", TestCategory.RetrieveEmpty);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve06")]
+    public void DatabaseRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve06\", TestCategory.RetrieveEmpty, false);
       this.FindSingleWithExpression_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase07")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase07_FindFirstWithExpression() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase07\", TestCategory.Retrieve);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve07")]
+    public void DatabaseRepository_FindFirst_WithSpecification_FirstMatchingRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve07\", TestCategory.Retrieve, false);
       this.FindFirstWithExpression(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase08")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase08_FindFirstWithExpression_EmptySource() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase08\", TestCategory.RetrieveEmpty);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve08")]
+    public void DatabaseRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve08\", TestCategory.RetrieveEmpty, false);
       this.FindFirstWithExpression_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase09")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase09_RetrieveLessThenAvailable() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase09\", TestCategory.Sorting);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve09")]
+    public void DatabaseRepository_FindAll_SpecificationWithMaxResultsLessThanAvailable_MaxResultsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve09\", TestCategory.Sorting, false);
       this.RetrieveLessThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase10")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase10_RetrieveExactlyAvailable() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase10\", TestCategory.Sorting);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve10")]
+    public void DatabaseRepository_FindAll_SpecificationWithMaxResultsExactlyAvailable_AvailableRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve10\", TestCategory.Sorting, false);
       this.RetrieveExactlyAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase11")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase11_RetrieveExactlyAvailable_EmptySource() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase11\", TestCategory.RetrieveEmpty);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve11")]
+    public void DatabaseRepository_FindAll_SpecificationWithMaxResultsExactlyAvailableEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve11\", TestCategory.RetrieveEmpty, false);
       this.RetrieveExactlyAvailable_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase12")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase12_RetrieveMoreThenAvailable() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase12\", TestCategory.Sorting);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve12")]
+    public void DatabaseRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailable_AvailableRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve12\", TestCategory.Sorting, false);
       this.RetrieveMoreThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase13")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase13_RetrieveMoreThenAvailable_EmptySource() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase13\", TestCategory.RetrieveEmpty);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve13")]
+    public void DatabaseRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailableEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve13\", TestCategory.RetrieveEmpty, false);
       this.RetrieveMoreThenAvailable_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using type for which a custom mapping is 
+    /// available.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve14")]
+    public void DatabaseRepository_FindAll_CustomMappedType_AvailableRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve14\", TestCategory.Sorting, false);
+      this.RetrieveTypesWithCustomMapping(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve15")]
+    public void DatabaseRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve15\", TestCategory.Retrieve, false);
+      this.FindFirstWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve16")]
+    public void HttpSessionMemoryRepository_FindFirstWithCloning_CopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve16\", TestCategory.Retrieve, true);
+      this.FindFirstWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve17")]
+    public void HttpSessionMemoryRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve17\", TestCategory.Retrieve, false);
+      this.FindSingleWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve18")]
+    public void HttpSessionMemoryRepository_FindSingleWithCloning_CopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve18\", TestCategory.Retrieve, true);
+      this.FindSingleWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve19")]
+    public void HttpSessionMemoryRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve19\", TestCategory.Retrieve, false);
+      this.FindAllWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve20")]
+    public void HttpSessionMemoryRepository_FindAllWithCloning_CopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve20\", TestCategory.Retrieve, true);
+      this.FindAllWithCloning(sourceInfo);
     }
     #endregion
 
@@ -200,28 +198,18 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase14")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase14_OrderBy() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase14\", TestCategory.Sorting);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Sorting01")]
+    public void DatabaseRepository_SpecificationWithOrderBy_ItemsAreCorrectlyOrdered() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Sorting01\", TestCategory.Sorting, false);
       this.OrderBy(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase15")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase15_OrderBy_EmptySource() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase15\", TestCategory.RetrieveEmpty);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Sorting02")]
+    public void DatabaseRepository_SpecificationWithOrderByEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Sorting02\", TestCategory.RetrieveEmpty, false);
       this.OrderBy_EmptySource(sourceInfo);
     }
     #endregion
@@ -230,152 +218,213 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase16")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase16_Add() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase16\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage01")]
+    public void DatabaseRepository_Add_ItemIsStored() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage01\", TestCategory.Storage, true);
       this.Add(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
+    /// implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage02")]
+    public void DatabaseRepository_AddCustomMappedType_ItemIsStored() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage02\", TestCategory.Storage, true);
+      this.AddCustomMappedType(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase17")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase17_Update() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase17\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage03")]
+    public void DatabaseRepository_Update_ItemIsUpdated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage03\", TestCategory.Storage, true);
       this.Update(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage04")]
+    public void DatabaseRepository_UpdateCustomMappedType_ItemIsUpdated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage04\", TestCategory.Storage, true);
+      this.UpdateCustomMappedType(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase18")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase18_Delete() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase18\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage05")]
+    public void DatabaseRepository_Delete_ItemIsDeleted() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage05\", TestCategory.Storage, true);
       this.Delete(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase19")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase19_AddMultiple_NormalUse() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase19\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage06")]
+    public void DatabaseRepository_AddMultiple_ItemsAreAdded() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage06\", TestCategory.Storage, true);
       this.AddMultiple_NormalUse(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage07")]
+    public void DatabaseRepository_AddMultipleCustomMappedTypes_ItemsAreAdded() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage07\", TestCategory.Storage, true);
+      this.AddMultipleCustomMappedTypes_NormalUse(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntities(IEnumerable{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase20")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase20_DeleteMultiple_NormalUse() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase20\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage08")]
+    public void DatabaseRepository_DeleteMultiple_ItemsAreDeleted() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage08\", TestCategory.Storage, true);
       this.DeleteMultiple_NormalUse(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method when is should throw an exeption using 
     /// the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase21")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase21_DeleteMultiple_Exceptions() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase21\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage09")]
+    public void DatabaseRepository_DeleteMultipleDeleteEntityTwice_OperationIsRolledBack() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage09\", TestCategory.Storage, true);
       this.DeleteMultiple_Exceptions(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase22")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase22_UpdateMultiple_NormalUse() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase22\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage10")]
+    public void DatabaseRepository_UpdateMultiple_ItemsAreUpdated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage10\", TestCategory.Storage, true);
       this.UpdateMultiple_NormalUse(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage11")]
+    public void DatabaseRepository_UpdateMultipleCustomMappedTypes_ItemsAreUpdated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage11\", TestCategory.Storage, true);
+      this.UpdateMultipleCustomMappedTypes_NormalUse(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method when it should throw an exception
     /// using the <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase23")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase23_UpdateMultiple_Exceptions() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase23\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage12")]
+    public void DatabaseRepository_UpdateMultipleUpdateUnaddedEntity_OperationIsRolledBack() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage12\", TestCategory.Storage, true);
       this.UpdateMultiple_Exceptions(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase24")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase24_Add_Reset() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase24\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage13")]
+    public void DatabaseRepository_AddAndReset_AdditionIsUndone() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage13\", TestCategory.Storage, true);
       this.Add_Reset(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase25")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase25_Update_Reset() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase25\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage14")]
+    public void DatabaseRepository_UpdateAndReset_UpdateIsUndone() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage14\", TestCategory.Storage, true);
       this.Update_Reset(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Reset(DataSourceInfo)"/> method after unsaved additions to the repository.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase26")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase26_Delete_Reset() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase26\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage15")]
+    public void DatabaseRepository_DeleteAndReset_DeletionIsUndone() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage15\", TestCategory.Storage, true);
       this.Delete_Reset(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage16")]
+    public void DatabaseRepository_AddWithoutCloning_NoCopyIsCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage16\", TestCategory.Storage, false);
+      this.AddWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage17")]
+    public void DatabaseRepository_AddWithCloning_CopyIsCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage17\", TestCategory.Storage, true);
+      this.AddWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage18")]
+    public void DatabaseRepository_AddDeletedItemWithoutCloning_NoCopyIsCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage18\", TestCategory.Storage, false);
+      this.AddDeletedItemWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage19")]
+    public void DatabaseRepository_AddDeletedItemWithCloning_CopyIsCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage19\", TestCategory.Storage, true);
+      this.AddDeletedItemWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage20")]
+    public void DatabaseRepository_AddMultipleWithoutCloning_NoCopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage20\", TestCategory.Storage, false);
+      this.AddMultipleWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntities(IEnumerable{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage21")]
+    public void DatabaseRepository_AddMultipleWithCloning_CopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage21\", TestCategory.Storage, true);
+      this.AddMultipleWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage22")]
+    public void DatabaseRepository_UpdateWithoutCloning_NoCopyIsCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage22\", TestCategory.Storage, false);
+      this.UpdateWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage23")]
+    public void DatabaseRepository_UpdateWithCloning_CopyIsCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage23\", TestCategory.Storage, true);
+      this.UpdateWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage24")]
+    public void DatabaseRepository_UpdateMultipleWithoutCloning_NoCopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage24\", TestCategory.Storage, false);
+      this.UpdateMultipleWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntities(IEnumerable{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Storage25")]
+    public void DatabaseRepository_UpdateMultipleWithCloning_CopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Storage25\", TestCategory.Storage, true); 
+      this.UpdateMultipleWithCloning(sourceInfo);
     }
     #endregion
 
@@ -383,56 +432,36 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase27")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase27_AddUpdate() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase27\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\CombinedStorage01")]
+    public void DatabaseRepository_AddAndUpdate_ItemsAreStored() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\CombinedStorage01\", TestCategory.Storage, true);
       this.AddUpdate(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase28")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase28_AddUpdateDelete() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase28\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\CombinedStorage02")]
+    public void DatabaseRepository_AddUpdateAndDelete_ItemsAreStored() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\CombinedStorage02\", TestCategory.Storage, true);
       this.AddUpdateDelete(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase29")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase29_UpdateDelete() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase29\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\CombinedStorage03")]
+    public void DatabaseRepository_UpdateAndDelete_ItemsAreStored() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\CombinedStorage03\", TestCategory.Storage, true);
       this.UpdateDelete(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase30")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase30_DeleteAdd() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase30\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\CombinedStorage04")]
+    public void DatabaseRepository_DeleteAndAdd_ItemsAreStored() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\CombinedStorage04\", TestCategory.Storage, true);
       this.DeleteAdd(sourceInfo);
     }
     #endregion
@@ -440,28 +469,18 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Execute test-case contracts
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase31")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public override void TestCase31_ExecuteDefaultSpecification() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase31\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Execute01")]
+    public void DatabaseRepository_ExecuteWithDefaultSpecification_NullIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Execute01\", TestCategory.Storage, false);
       this.ExecuteDefaultSpecification(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.Execute(ISpecification{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase32")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Execute02")]
     [ExpectedException(typeof(NotSupportedException))]
-    public override void TestCase32_ExecuteBusinessRule() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase32\", TestCategory.Storage);
+    public void DatabaseRepository_ExecuteWithBusinessRule_ExceptionIsThrown() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Execute02\", TestCategory.Storage, false);
       this.ExecuteBusinessRule(sourceInfo);
     }
     #endregion
@@ -470,14 +489,9 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves a single result using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase33")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public void TestCase33_ExecuteBusinessRuleSingleResult() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase33\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Custom01")]
+    public void DatabaseRepository_ExecuteBusinessRuleWithSingleResult_ResultIsRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Custom01\", TestCategory.Storage, false);
       Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
 
       /* Add some ectra records to te database */
@@ -494,7 +508,7 @@ namespace Enkoni.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* Create the specification */
-      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase31_CustomQuery", "Hit");
+      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("CustomQuery_SingleResult", "Hit");
       Assert.IsNotNull(selectSpec);
 
       /* Execute the query */
@@ -507,14 +521,9 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when executing a business rule that retrieves multiple results using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\TestCase34")]
-    [DeploymentItem(@"amd64\", @"amd64\")]
-    [DeploymentItem(@"x86\", @"x86\")]
-    [DeploymentItem("System.Data.SqlServerCe.dll")]
-    [DeploymentItem("EntityFramework.SqlServer.dll")]
-    [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-    public void TestCase34_ExecuteBusinessRuleMultipleResults() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\TestCase34\", TestCategory.Storage);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Custom02")]
+    public void DatabaseRepository_ExecuteBusinessRuleWithMultipleResults_ResultsAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Custom02\", TestCategory.Storage, false);
       Repository<TestDummy> repository = new TestDatabaseRepository(sourceInfo);
 
       /* Add some ectra records to te database */
@@ -531,7 +540,7 @@ namespace Enkoni.Framework.Entities.Tests {
       repository.SaveChanges();
 
       /* Create the specification */
-      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("TestCase32_CustomQuery", 3, 2);
+      ISpecification<TestDummy> selectSpec = Specification.BusinessRule<TestDummy>("CustomQuery_MultipleResults", 3, 2);
       Assert.IsNotNull(selectSpec);
 
       /* Execute the query */
@@ -570,8 +579,9 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Constructs a new instance of the <see cref="DataSourceInfo"/> class that can be used in a test case.</summary>
     /// <param name="databaseSubPath">The sub path relative to the execution path where the database will be created.</param>
     /// <param name="testCategory">The category of the test.</param>
+    /// <param name="cloneDataSourceItems">Indicates if the retrieved items must be cloned before returning them.</param>
     /// <returns>The constructed source info.</returns>
-    private static DataSourceInfo ConstructDataSourceInfo(string databaseSubPath, TestCategory testCategory) {
+    private static DataSourceInfo ConstructDataSourceInfo(string databaseSubPath, TestCategory testCategory, bool cloneDataSourceItems) {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, databaseSubPath, "Enkoni.Framework.Entities.Tests.DatabaseRepositoryTestContext.sdf");
 
@@ -580,7 +590,7 @@ namespace Enkoni.Framework.Entities.Tests {
       DbContext context = new DatabaseRepositoryTestContext("Data Source=\"" + databaseBasePath + "\"");
       context.Database.Initialize(true);
 
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, true);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, cloneDataSourceItems);
       return sourceInfo;
     }
     #endregion

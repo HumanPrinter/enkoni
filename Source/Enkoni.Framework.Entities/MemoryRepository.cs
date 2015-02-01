@@ -245,8 +245,15 @@ namespace Enkoni.Framework.Entities {
             /* The entity has been marked for deletion, undelete it... */
             this.deletionCache.Remove(entity, entityComparer);
             /* ...and mark it as updated in case any of the fields have been altered. */
-            this.updateCache.Add(entity);
-            return entity;
+            TEntity repositoryEntity = entity.CreateCopyOrClone();
+            this.updateCache.Add(repositoryEntity);
+            if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+              return ((ICloneable)repositoryEntity).Clone() as TEntity;
+            }
+            else {
+              entity.CopyFrom(repositoryEntity);
+              return entity;
+            }
           }
         }
 
@@ -257,12 +264,19 @@ namespace Enkoni.Framework.Entities {
           newRecordId = this.additionCache.Min(t => t.RecordId) - 1;
         }
 
-        entity.RecordId = newRecordId;
+        TEntity copyOfEntity = entity.CreateCopyOrClone();
+        copyOfEntity.RecordId = newRecordId;
 
         /* Add it to the addition cache */
-        this.additionCache.Add(entity);
+        this.additionCache.Add(copyOfEntity);
 
-        return entity;
+        if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+          return ((ICloneable)copyOfEntity).Clone() as TEntity;
+        }
+        else {
+          entity.CopyFrom(copyOfEntity);
+          return entity;
+        }
       }
       finally {
         if(this.temporaryStorageLock.IsWriteLockHeld) {
@@ -291,6 +305,10 @@ namespace Enkoni.Framework.Entities {
       List<TEntity> tempUpdateCache = this.updateCache.ToList();
       List<TEntity> tempAdditionCache = this.additionCache.ToList();
 
+      List<TEntity> updatedEntities = new List<TEntity>();
+      List<TEntity> addedEntities = new List<TEntity>();
+
+      Dictionary<TEntity, TEntity> handledEntities = new Dictionary<TEntity, TEntity>();
       try {
         if(entities.Any(e => e.RecordId > 0)) {
           IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
@@ -301,8 +319,11 @@ namespace Enkoni.Framework.Entities {
               /* The entity has been marked for deletion, undelete it... */
               tempDeletionCache.Remove(existingEntity, entityComparer);
               /* ...and mark it as updated in case any of the fields have been altered. */
-              tempUpdateCache.Add(existingEntity);
+              TEntity repositoryEntity = existingEntity.CreateCopyOrClone();
+              tempUpdateCache.Add(repositoryEntity);
+              updatedEntities.Add(repositoryEntity);
 
+              handledEntities.Add(existingEntity, repositoryEntity);
               bool removeResult = unhandledEntities.Remove(existingEntity, referenceComparer);
               Debug.Assert(removeResult, "Somehow the result could not be removed from the collection of handled entities.");
             }
@@ -318,10 +339,14 @@ namespace Enkoni.Framework.Entities {
           }
 
           foreach(TEntity unhandledEntity in unhandledEntities) {
-            unhandledEntity.RecordId = newRecordId;
+            TEntity copyOfEntity = unhandledEntity.CreateCopyOrClone();
+
+            copyOfEntity.RecordId = newRecordId;
             --newRecordId;
             /* Add it to the addition cache */
-            tempAdditionCache.Add(unhandledEntity);
+            tempAdditionCache.Add(copyOfEntity);
+            addedEntities.Add(copyOfEntity);
+            handledEntities.Add(unhandledEntity, copyOfEntity);
           }
         }
 
@@ -330,7 +355,13 @@ namespace Enkoni.Framework.Entities {
         this.updateCache = tempUpdateCache;
         this.additionCache = tempAdditionCache;
 
-        return entities;
+        if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+          return addedEntities.Concat(updatedEntities).Select(entity => ((ICloneable)entity).Clone() as TEntity).ToList();
+        }
+        else {
+          handledEntities.ForEach(kvp => kvp.Key.CopyFrom(kvp.Value));
+          return entities;
+        }
       }
       finally {
         this.temporaryStorageLock.ExitWriteLock();
@@ -480,8 +511,18 @@ namespace Enkoni.Framework.Entities {
         if(entity.RecordId < 0) {
           if(this.additionCache.Contains(entity, entityComparer)) {
             int indexOfEntity = this.additionCache.IndexOf(entity, entityComparer);
-            this.additionCache[indexOfEntity] = entity;
-            return entity;
+            TEntity repositoryEntity = this.additionCache[indexOfEntity];
+
+            /* Copy the  values of the updated entity into the cached entity */
+            repositoryEntity.CopyFrom(entity);
+
+            if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+              return ((ICloneable)repositoryEntity).Clone() as TEntity;
+            }
+            else {
+              entity.CopyFrom(repositoryEntity);
+              return entity;
+            }
           }
           else {
             throw new InvalidOperationException("Could not find the entity in the addition-cache.");
@@ -493,15 +534,36 @@ namespace Enkoni.Framework.Entities {
               throw new InvalidOperationException("Cannot update the entity since it already marked for deletion.");
             }
 
+            TEntity repositoryEntity;
             if(this.updateCache.Contains(entity, entityComparer)) {
+              /* Retrieve the previous updated version of the entity from the cache */
               int indexOfEntity = this.updateCache.IndexOf(entity, entityComparer);
-              this.updateCache[indexOfEntity] = entity;
+              repositoryEntity = this.updateCache[indexOfEntity];
+
+              /* Copy the  values of the updated entity into the cached entity */
+              repositoryEntity.CopyFrom(entity);
             }
             else {
-              this.updateCache.Add(entity);
+              /* Retrieve the original version of the entity from the storage */
+              TEntity originalEntity = memoryStore.Storage[memoryStore.Storage.IndexOf(entity, entityComparer)];
+              /* Create a copy of the original entity to avoid any unwanted updates of the original entity */
+              repositoryEntity = originalEntity.CreateCopyOrClone();
+
+              /* Copy the  values of the updated entity into the (copy of) original entity */
+              repositoryEntity.CopyFrom(entity);
+              /* Store the updated entity in the update cache */
+              this.updateCache.Add(repositoryEntity);
             }
 
-            return entity;
+            /* Return an instance of TEntity that reflects the changes, but is disconnected from the instance that is stored in the cache 
+               * (to avoid unwanted updates from outside the repository) */
+            if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+              return ((ICloneable)repositoryEntity).Clone() as TEntity;
+            }
+            else {
+              entity.CopyFrom(repositoryEntity);
+              return entity;
+            }
           }
           else {
             throw new InvalidOperationException("Could not find the entity in the internal cache.");
@@ -531,7 +593,7 @@ namespace Enkoni.Framework.Entities {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
       IEnumerable<TEntity> addedEntities = entities.Where(e => e.RecordId < 0);
-      IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
+      IEnumerable<TEntity> updatedEntities = entities.Where(e => e.RecordId > 0);
 
       this.temporaryStorageLock.EnterWriteLock();
       memoryStore.EnterReadLock();
@@ -541,34 +603,54 @@ namespace Enkoni.Framework.Entities {
       List<TEntity> tempUpdateCache = this.updateCache.ToList();
       List<TEntity> tempDeletionCache = this.deletionCache.ToList();
 
+      List<TEntity> newlyAddedEntities = new List<TEntity>();
+      List<TEntity> currentUpdatedEntities = new List<TEntity>();
+
       try {
         foreach(TEntity addedEntity in addedEntities) {
           /* If the entity is marked for addition, update the entity in the addition cache */
           if(tempAdditionCache.Contains(addedEntity, entityComparer)) {
             int indexOfEntity = tempAdditionCache.IndexOf(addedEntity, entityComparer);
-            tempAdditionCache[indexOfEntity] = addedEntity;
+            TEntity repositoryEntity = tempAdditionCache[indexOfEntity];
+
+            /* Copy the  values of the updated entity into the cached entity */
+            repositoryEntity.CopyFrom(addedEntity);
+            newlyAddedEntities.Add(repositoryEntity);
           }
           else {
             throw new InvalidOperationException("Could not find the entity in the addition-cache.");
           }
         }
 
-        foreach(TEntity existingEntity in existingEntities) {
-          if(memoryStore.Storage.Contains(existingEntity, entityComparer)) {
+        foreach(TEntity updatedEntity in updatedEntities) {
+          if(memoryStore.Storage.Contains(updatedEntity, entityComparer)) {
             /* If the entity is already marked for deletion, it can no longer be updated. */
-            if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
+            if(tempDeletionCache.Contains(updatedEntity, entityComparer)) {
               throw new InvalidOperationException("Cannot update the entity since it already marked for deletion.");
             }
 
-            if(tempUpdateCache.Contains(existingEntity, entityComparer)) {
+            TEntity repositoryEntity;
+            if(tempUpdateCache.Contains(updatedEntity, entityComparer)) {
               /* If the entity was already marked for update, replace it in the update cache */
-              int indexOfEntity = tempUpdateCache.IndexOf(existingEntity, entityComparer);
-              tempUpdateCache[indexOfEntity] = existingEntity;
+              int indexOfEntity = tempUpdateCache.IndexOf(updatedEntity, entityComparer);
+              repositoryEntity = tempUpdateCache[indexOfEntity];
+
+              /* Copy the  values of the updated entity into the cached entity */
+              repositoryEntity.CopyFrom(updatedEntity);
             }
             else {
-              /* otherwise, simply add it to the update cache */
-              tempUpdateCache.Add(existingEntity);
+              /* Retrieve the original version of the entity from the storage */
+              TEntity originalEntity = memoryStore.Storage[memoryStore.Storage.IndexOf(updatedEntity, entityComparer)];
+              /* Create a copy of the original entity to avoid any unwanted updates of the original entity */
+              repositoryEntity = originalEntity.CreateCopyOrClone();
+
+              /* Copy the  values of the updated entity into the (copy of) original entity */
+              repositoryEntity.CopyFrom(updatedEntity);
+              /* Store the updated entity in the update cache */
+              tempUpdateCache.Add(repositoryEntity);
             }
+
+            currentUpdatedEntities.Add(repositoryEntity);
           }
           else {
             throw new InvalidOperationException("Could not find the entity in the internal cache.");
@@ -580,7 +662,14 @@ namespace Enkoni.Framework.Entities {
         this.updateCache = tempUpdateCache;
         this.deletionCache = tempDeletionCache;
 
-        return entities;
+        if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+          return newlyAddedEntities.Concat(currentUpdatedEntities).Select(entity => ((ICloneable)entity).Clone() as TEntity).ToList();
+        }
+        else {
+          IEnumerable<TEntity> resultList = newlyAddedEntities.Concat(currentUpdatedEntities);
+          resultList.ForEach(entity => entities.Single(e => e.RecordId == entity.RecordId).CopyFrom(entity));
+          return entities;
+        }
       }
       finally {
         memoryStore.ExitReadLock();

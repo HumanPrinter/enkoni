@@ -24,6 +24,9 @@ namespace Enkoni.Framework.Entities {
     /// <summary>The collection of entities that are to be added to the data source. </summary>
     private List<TEntity> additionCache;
 
+    /// <summary>The collection of entities that are to be updated in the data source.</summary>
+    private List<TEntity> updateCache;
+
     /// <summary>The collection of entities that are to be removed from the data source.</summary>
     private List<TEntity> deletionCache;
 
@@ -43,6 +46,7 @@ namespace Enkoni.Framework.Entities {
 
       /* Initializes the internal collections */
       this.additionCache = new List<TEntity>();
+      this.updateCache = new List<TEntity>();
       this.deletionCache = new List<TEntity>();
     }
     #endregion
@@ -94,6 +98,21 @@ namespace Enkoni.Framework.Entities {
 
           foreach(TEntity deletedEntity in this.deletionCache) {
             context.Set<TEntity>().Remove(deletedEntity);
+          }
+
+          IEnumerable<DbEntityEntry> modifiedEntries = context.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);
+          IEnumerable<DbEntityEntry> unwantedChanges = modifiedEntries.Where(entry => !(entry.Entity is TEntity));
+          IEnumerable<DbEntityEntry<TEntity>> modifiedEntities = modifiedEntries.Except(unwantedChanges).Select(entry => entry.Cast<TEntity>());
+          List<int> updatedRecordIds = this.updateCache.Select(entity => entity.RecordId).ToList();
+          IEnumerable<DbEntityEntry<TEntity>> unwantedEntityChanges = modifiedEntities.Where(entry => !updatedRecordIds.Contains(entry.Entity.RecordId));
+          unwantedChanges = unwantedChanges.Concat(unwantedEntityChanges.Select(entity => (DbEntityEntry)entity));
+          foreach(DbEntityEntry entry in unwantedChanges) {
+            entry.State = EntityState.Unchanged;
+          }
+
+          IEnumerable<DbEntityEntry<TEntity>> updatedEntries = context.ChangeTracker.Entries<TEntity>().Where(entry => updatedRecordIds.Contains(entry.Entity.RecordId));
+          foreach(DbEntityEntry<TEntity> updatedEntry in updatedEntries) {
+            updatedEntry.State = EntityState.Modified;
           }
 
           context.SaveChanges();
@@ -267,14 +286,10 @@ namespace Enkoni.Framework.Entities {
       }
 
       /* Force the execution of the query */
-      IEnumerable<TEntity> databaseData = databaseQuery.AsEnumerable().ToList();
+      IEnumerable<TEntity> result = databaseQuery.AsEnumerable().ToList();
 
-      /* Then query the local cache */
-      IEnumerable<TEntity> cachedData = context.Set<TEntity>().Local.Where(expression.Compile());
-
-      /* Combine the databasedata and the local cache using the cache as the master (since it may contain unsaved updates) */
       IEqualityComparer<TEntity> comparer = new EntityEqualityComparer<TEntity>();
-      IEnumerable<TEntity> result = cachedData.Union(databaseData, comparer);
+      
       /* Remove the unsaved deletions from the the result */
       result = result.Except(this.deletionCache, comparer);
 
@@ -311,53 +326,46 @@ namespace Enkoni.Framework.Entities {
         return result;
       }
 
-      DbContext context = this.SelectDbContext(dataSourceInfo);
+      /* Then, query the update cache */
+      result = this.updateCache.SingleOrDefault(compiledExpression, null);
+
+      if(result != null) {
+        return result;
+      }
 
       /* Then, query the deletion cache */
       result = this.deletionCache.SingleOrDefault(compiledExpression, null);
       if(result != null) {
-        /* An entity matching the expression, has been marked for deletion, check the local cache */
-        TEntity cachedResult = context.Set<TEntity>().Local.SingleOrDefault(compiledExpression, null);
-        if(cachedResult != null) {
-          /* An entity that matches the expression exists both in the deletion cache and the local cache. */
-          if(cachedResult.RecordId == result.RecordId) {
-            /* Both results denote the same entity. Since it was marked for deletion, return the default value */
-            return defaultValue;
-          }
-          else {
-            /* The local cahche takes precedence over the deletion cache (perhaps an update caused an other entity to also match the expression), 
-             * return the cached result */
-            if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
-              return ((ICloneable)cachedResult).Clone() as TEntity;
-            }
-            else {
-              return cachedResult;
-            }
-          }
-        }
-        else {
-          /* The entity only lives in the deletion cache. Since it was marked for deletion, return the default value */
-          return defaultValue;
-        }
+        /* An entity matching the expression, has been marked for deletion, return the default value */
+        return defaultValue;
       }
 
-      /* No entity in either the addition cache or the deletion cache matches the expression, continue the search */
-      /* First query the database directly (this will also populate the local cache) */
-      TEntity databaseData = context.Set<TEntity>().AsExpandable().SingleOrDefault(expression, null);
-      /* Then query the local cache */
-      TEntity cachedData = context.Set<TEntity>().Local.SingleOrDefault(compiledExpression, null);
+      DbContext context = this.SelectDbContext(dataSourceInfo);
+      IQueryable<TEntity> databaseQuery = context.Set<TEntity>().AsExpandable();
 
-      if(databaseData == null && cachedData == null) {
-        /* Both the database ans cache drew a blank, there is no such object */
+      TEntity foundEntity = null;
+
+      /* Check if any matching entities are marked for deletion. If so, we need to select more elements from the database
+       * to make up for the deleted entities. */
+      IEnumerable<TEntity> deletedEntities = this.deletionCache.Where(compiledExpression);
+      if(deletedEntities.Count() > 0) {
+        IEnumerable<TEntity> databaseEntities = databaseQuery.Where(expression).Take(deletedEntities.Count() + 1);
+        foundEntity = databaseEntities.Except(deletedEntities, new EntityEqualityComparer<TEntity>()).SingleOrDefault();
+      }
+      else {
+        /* No matching entity has been marked for deletion. Therefore, simply get the first from the database */
+        foundEntity = databaseQuery.SingleOrDefault(expression);
+      }
+
+      if(foundEntity == null) {
         return defaultValue;
       }
       else {
-        /* The object exists in both the database and the cache. Return the cached-value because it may contain unsaved updates */
         if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
-          return ((ICloneable)cachedData).Clone() as TEntity;
+          return ((ICloneable)foundEntity).Clone() as TEntity;
         }
         else {
-          return cachedData;
+          return foundEntity;
         }
       }
     }
@@ -381,10 +389,14 @@ namespace Enkoni.Framework.Entities {
         return result;
       }
 
-      DbContext context = this.SelectDbContext(dataSourceInfo);
+      /* The update cache is queried second */
+      result = this.updateCache.OrderBy(sortRules).FirstOrDefault(compiledExpression, null);
 
-      /* There is no entity in the addition cache matching the expression, continue */
-      /* First query the database directly (this will also populate the local cache) */
+      if(result != null) {
+        return result;
+      }
+
+      DbContext context = this.SelectDbContext(dataSourceInfo);
       IQueryable<TEntity> databaseQuery = context.Set<TEntity>().AsExpandable();
 
       /* Add the ordering to the query */
@@ -392,31 +404,29 @@ namespace Enkoni.Framework.Entities {
         databaseQuery = databaseQuery.OrderBy(sortRules);
       }
 
-      TEntity databaseData = databaseQuery.FirstOrDefault(expression, null);
+      TEntity foundEntity = null;
 
-      /* Then query the local cache */
-      IEnumerable<TEntity> cacheQuery = context.Set<TEntity>().Local;
-      cacheQuery = cacheQuery.OrderBy(sortRules);
+      /* Check if any matching entities are marked for deletion. If so, we need to select more elements from the database
+       * to make up for the deleted entities. */
+      IEnumerable<TEntity> deletedEntities = this.deletionCache.Where(compiledExpression);
+      if(deletedEntities.Count() > 0) {
+        IEnumerable<TEntity> databaseEntities = databaseQuery.Where(expression).Take(deletedEntities.Count() + 1);
+        foundEntity = databaseEntities.Except(deletedEntities, new EntityEqualityComparer<TEntity>()).FirstOrDefault();
+      }
+      else {
+        /* No matching entity has been marked for deletion. Therefore, simply get the first from the database */
+        foundEntity = databaseQuery.FirstOrDefault(expression);
+      }
 
-      TEntity cachedData = cacheQuery.FirstOrDefault(compiledExpression, null);
-
-      if(databaseData == null && cachedData == null) {
-        /* Both the database ans cache drew a blank, there is no such object */
+      if(foundEntity == null) {
         return defaultValue;
       }
       else {
-        /* The entity exists in the database (or local cache). Check if it has been marked for deletion */
-        if(this.deletionCache.Contains(cachedData, new EntityEqualityComparer<TEntity>())) {
-          /* The entity has been marked for deletion */
-          return defaultValue;
+        if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+          return ((ICloneable)foundEntity).Clone() as TEntity;
         }
         else {
-          if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
-            return ((ICloneable)cachedData).Clone() as TEntity;
-          }
-          else {
-            return cachedData;
-          }
+          return foundEntity;
         }
       }
     }
@@ -468,28 +478,132 @@ namespace Enkoni.Framework.Entities {
 
       /* Retrieve the unsaved changes */
       context.ChangeTracker.DetectChanges();
-      List<DbEntityEntry<TEntity>> changedEntries = context.ChangeTracker.Entries<TEntity>().Where(x => x.State != EntityState.Unchanged).ToList();
+      List<DbEntityEntry<TEntity>> changedEntries = context.ChangeTracker.Entries<TEntity>().Where(x => x.State != System.Data.Entity.EntityState.Unchanged).ToList();
 
       /* Undo any modifications */
-      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Modified)) {
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == System.Data.Entity.EntityState.Modified)) {
         entry.CurrentValues.SetValues(entry.OriginalValues);
-        entry.State = EntityState.Unchanged;
+        entry.State = System.Data.Entity.EntityState.Unchanged;
       }
 
       /* Undo any additions */
-      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Added)) {
-        entry.State = EntityState.Detached;
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == System.Data.Entity.EntityState.Added)) {
+        entry.State = System.Data.Entity.EntityState.Detached;
       }
 
       /* Undo any deletions */
-      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == EntityState.Deleted)) {
-        entry.State = EntityState.Unchanged;
+      foreach(DbEntityEntry<TEntity> entry in changedEntries.Where(x => x.State == System.Data.Entity.EntityState.Deleted)) {
+        entry.State = System.Data.Entity.EntityState.Unchanged;
         entry.CurrentValues.SetValues(entry.OriginalValues);
       }
     }
     #endregion
 
     #region Private helper methods
+    /// <summary>Handles the update of entities that are added to this repository but are not yet saved.</summary>
+    /// <param name="entities">The entities that are updated.</param>
+    /// <param name="tempAdditionCache">A copy of the addition cache.</param>
+    /// <param name="entityComparer">The comparer that is used to compare the entities based on their record ID.</param>
+    /// <returns>The entities from the addition cache that already have the updates applied.</returns>
+    private static List<TEntity> UpdateAddedEntities(IEnumerable<TEntity> entities, List<TEntity> tempAdditionCache, EntityEqualityComparer<TEntity> entityComparer) {
+      List<TEntity> newlyAddedEntities = new List<TEntity>();
+
+      IEnumerable<TEntity> addedEntities = entities.Where(e => e.RecordId < 0);
+      foreach(TEntity addedEntity in addedEntities) {
+        /* If the entity is marked for addition, update the entity in the addition cache */
+        if(tempAdditionCache.Contains(addedEntity, entityComparer)) {
+          int indexOfEntity = tempAdditionCache.IndexOf(addedEntity, entityComparer);
+          TEntity repositoryEntity = tempAdditionCache[indexOfEntity];
+
+          /* Copy the  values of the updated entity into the cached entity */
+          repositoryEntity.CopyFrom(addedEntity);
+          newlyAddedEntities.Add(repositoryEntity);
+        }
+        else {
+          throw new InvalidOperationException("Could not find the entity in the addition-cache.");
+        }
+      }
+
+      return newlyAddedEntities;
+    }
+
+    /// <summary>Adds new entities that, based on their record ID, appear to already exist in the repository.</summary>
+    /// <param name="entities">The entities that must be added.</param>
+    /// <param name="unhandledEntities">The entities that have not yet been analysed.</param>
+    /// <param name="tempUpdateCache">A copy of the update cache.</param>
+    /// <param name="tempDeletionCache">A copy of the deletion cache.</param>
+    /// <param name="entityComparer">The comparer that is used to compare the entities based on their record ID.</param>
+    /// <param name="context">The database context that gives access to the persistency.</param>
+    /// <param name="handledEntities">Holds the combination of entities that have been added.</param>
+    /// <returns>The entities from the repository that already have the updates applied.</returns>
+    private static List<TEntity> AddExistingEntities(IEnumerable<TEntity> entities, List<TEntity> unhandledEntities, List<TEntity> tempUpdateCache, List<TEntity> tempDeletionCache, 
+        EntityEqualityComparer<TEntity> entityComparer, DbContext context, Dictionary<TEntity, TEntity> handledEntities) {
+      List<TEntity> updatedEntities = new List<TEntity>();
+      if(entities.Any(e => e.RecordId > 0)) {
+        List<TEntity> updatableEntities = new List<TEntity>();
+        IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
+        ReferenceEqualityComparer<TEntity> referenceComparer = new ReferenceEqualityComparer<TEntity>();
+        /* At least some of the entities already have an ID which suggests that they came from the original data source */
+        foreach(TEntity existingEntity in existingEntities) {
+          if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
+            /* The entity has been marked for deletion, undelete it... */
+            tempDeletionCache.Remove(existingEntity, entityComparer);
+            /* ...and mark it as updated in case any of the fields have been altered. */
+            updatableEntities.Add(existingEntity);
+
+            bool removeResult = unhandledEntities.Remove(existingEntity, referenceComparer);
+            Debug.Assert(removeResult, "Somehow the result could not be removed from the collection of handled entities.");
+          }
+        }
+
+        foreach(TEntity updatableEntity in updatableEntities) {
+          TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == updatableEntity.RecordId);
+          if(storedEntity == null) {
+            /* This is not very likely, otherwise how could the entity exist in the deletion cache */
+            throw new InvalidOperationException("Could not find the entity in the internal cache.");
+          }
+          else {
+            storedEntity.CopyFrom(updatableEntity);
+            updatedEntities.Add(storedEntity);
+            tempUpdateCache.Add(storedEntity);
+            handledEntities.Add(updatableEntity, storedEntity);
+          }
+        }
+      }
+
+      return updatedEntities;
+    }
+
+    /// <summary>Adds new entities to the repository.</summary>
+    /// <param name="unhandledEntities">The entities that have not yet been analysed.</param>
+    /// <param name="tempAdditionCache">A copy of the addition cache.</param>
+    /// <param name="handledEntities">Holds the combination of entities that have been added.</param>
+    /// <returns>The entities that have been added.</returns>
+    private static List<TEntity> AddNewEntities(List<TEntity> unhandledEntities, List<TEntity> tempAdditionCache, Dictionary<TEntity, TEntity> handledEntities) {
+      List<TEntity> addedEntities = new List<TEntity>();
+      if(unhandledEntities.Count > 0) {
+        /* At least some of the entities are either new or came from another data source */
+        /* Determine the new temporary ID for the entities */
+        int newRecordId = -1;
+        if(tempAdditionCache.Count > 0) {
+          newRecordId = tempAdditionCache.Min(t => t.RecordId) - 1;
+        }
+
+        foreach(TEntity unhandledEntity in unhandledEntities) {
+          TEntity copyOfEntity = unhandledEntity.CreateCopyOrClone();
+
+          copyOfEntity.RecordId = newRecordId;
+          --newRecordId;
+          /* Add it to the addition cache */
+          tempAdditionCache.Add(copyOfEntity);
+          addedEntities.Add(copyOfEntity);
+          handledEntities.Add(unhandledEntity, copyOfEntity);
+        }
+      }
+
+      return addedEntities;
+    }
+
     /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not acquire a write lock on the
     /// local storage and can therefore be called from within a context that already has a write lock on the internal storage.</summary>
     /// <param name="entity">The entity that was updated.</param>
@@ -506,8 +620,18 @@ namespace Enkoni.Framework.Entities {
       if(entity.RecordId < 0) {
         if(this.additionCache.Contains(entity, entityComparer)) {
           int indexOfEntity = this.additionCache.IndexOf(entity, entityComparer);
-          this.additionCache[indexOfEntity] = entity;
-          return entity;
+          TEntity repositoryEntity = this.additionCache[indexOfEntity];
+
+          /* Copy the  values of the updated entity into the cached entity */
+          repositoryEntity.CopyFrom(entity);
+
+          if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+            return ((ICloneable)repositoryEntity).Clone() as TEntity;
+          }
+          else {
+            entity.CopyFrom(repositoryEntity);
+            return entity;
+          }
         }
         else {
           throw new InvalidOperationException("Could not find the entity in the addition-cache.");
@@ -522,12 +646,25 @@ namespace Enkoni.Framework.Entities {
             throw new InvalidOperationException("Cannot update the entity since it already marked for deletion.");
           }
 
-          existingEntity.CopyFrom(entity);
+          if(this.updateCache.Contains(entity, entityComparer)) {
+            /* Retrieve the previous updated version of the entity from the cache */
+            int indexOfEntity = this.updateCache.IndexOf(entity, entityComparer);
+            existingEntity = this.updateCache[indexOfEntity];
+
+            /* Copy the  values of the updated entity into the cached entity */
+            existingEntity.CopyFrom(entity);
+          }
+          else {
+            existingEntity.CopyFrom(entity);
+            this.updateCache.Add(existingEntity);
+          }
+
           if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
             return ((ICloneable)existingEntity).Clone() as TEntity;
           }
           else {
-            return existingEntity;
+            entity.CopyFrom(existingEntity);
+            return entity;
           }
         }
         else {
@@ -551,31 +688,47 @@ namespace Enkoni.Framework.Entities {
 
       EntityEqualityComparer<TEntity> entityComparer = new EntityEqualityComparer<TEntity>();
 
-      IEnumerable<TEntity> addedEntities = entities.Where(e => e.RecordId < 0);
-      IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
-
       /* Make a copy of the caches. That way, if any thing goes wrong all the changes can be made undone */
       List<TEntity> tempAdditionCache = this.additionCache.ToList();
       List<TEntity> tempDeletionCache = this.deletionCache.ToList();
 
-      List<TEntity> newlyAddedEntities = new List<TEntity>();
-
-      foreach(TEntity addedEntity in addedEntities) {
-        /* If the entity is marked for addition, update the entity in the addition cache */
-        if(tempAdditionCache.Contains(addedEntity, entityComparer)) {
-          int indexOfEntity = tempAdditionCache.IndexOf(addedEntity, entityComparer);
-          tempAdditionCache[indexOfEntity] = addedEntity;
-          newlyAddedEntities.Add(addedEntity);
-        }
-        else {
-          throw new InvalidOperationException("Could not find the entity in the addition-cache.");
-        }
-      }
+      List<TEntity> newlyAddedEntities = UpdateAddedEntities(entities, tempAdditionCache, entityComparer);
 
       /* Create a collection for all the entities that can be updated 
         * Key: updated entity
         * Value: stored entity */
+      Dictionary<TEntity, TEntity> updatableEntities = this.UpdateExistingEntities(entities, tempDeletionCache, context, entityComparer);
+
+      /* Everything checks out, start the update-process */
+      List<TEntity> updatedEntities = new List<TEntity>(updatableEntities.Count);
+      foreach(KeyValuePair<TEntity, TEntity> kvp in updatableEntities) {
+        kvp.Value.CopyFrom(kvp.Key);
+        updatedEntities.Add(kvp.Value);
+      }
+
+      /* Replace the original caches to complete the 'transaction' */
+      this.additionCache = tempAdditionCache;
+      this.deletionCache = tempDeletionCache;
+
+      if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+        return newlyAddedEntities.Concat(updatedEntities).Select(entity => ((ICloneable)entity).Clone() as TEntity).ToList();
+      }
+      else {
+        IEnumerable<TEntity> resultList = newlyAddedEntities.Concat(updatedEntities);
+        Linq.Extensions.ForEach(resultList, entity => entities.Single(e => e.RecordId == entity.RecordId).CopyFrom(entity));
+        return entities;
+      }
+    }
+
+    /// <summary>Handles the update of entities that are already present in this repository.</summary>
+    /// <param name="entities">The entities that are updated.</param>
+    /// <param name="tempDeletionCache">A copy of the deletion cache.</param>
+    /// <param name="context">The database context that gives access to the persistency.</param>
+    /// <param name="entityComparer">The comparer that is used to compare the entities based on their record ID.</param>
+    /// <returns>The entities from the repository that already have the updates applied.</returns>
+    private Dictionary<TEntity, TEntity> UpdateExistingEntities(IEnumerable<TEntity> entities, List<TEntity> tempDeletionCache, DbContext context, EntityEqualityComparer<TEntity> entityComparer) {
       Dictionary<TEntity, TEntity> updatableEntities = new Dictionary<TEntity, TEntity>();
+      IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
       foreach(TEntity existingEntity in existingEntities) {
         /* Check if the entity already exists, by querying the context directly */
         Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == existingEntity.RecordId);
@@ -586,28 +739,23 @@ namespace Enkoni.Framework.Entities {
             throw new InvalidOperationException("Cannot update the entity since it already marked for deletion.");
           }
 
-          updatableEntities.Add(existingEntity, storedEntity);
+          if(this.updateCache.Contains(existingEntity, entityComparer)) {
+            /* Retrieve the previous updated version of the entity from the cache */
+            int indexOfEntity = this.updateCache.IndexOf(existingEntity, entityComparer);
+            storedEntity = this.updateCache[indexOfEntity];
+            updatableEntities.Add(existingEntity, storedEntity);
+          }
+          else {
+            this.updateCache.Add(storedEntity);
+            updatableEntities.Add(existingEntity, storedEntity);
+          }
         }
         else {
           throw new InvalidOperationException("Could not find the entity in the internal cache.");
         }
       }
 
-      /* Everything checks out, start the update-process */
-      foreach(KeyValuePair<TEntity, TEntity> kvp in updatableEntities) {
-        kvp.Value.CopyFrom(kvp.Key);
-      }
-
-      /* Replace the original caches to complete the 'transaction' */
-      this.additionCache = tempAdditionCache;
-      this.deletionCache = tempDeletionCache;
-
-      if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
-        return newlyAddedEntities.Concat(updatableEntities.Select(kvp => ((ICloneable)kvp.Value).Clone() as TEntity)).ToList();
-      }
-      else {
-        return newlyAddedEntities.Concat(updatableEntities.Select(kvp => kvp.Value)).ToList();
-      }
+      return updatableEntities;
     }
 
     /// <summary>Inserts a new entity to the repository. This implementation does not acquire a write lock on the local storage and can therefore be 
@@ -637,12 +785,19 @@ namespace Enkoni.Framework.Entities {
         newRecordId = this.additionCache.Min(t => t.RecordId) - 1;
       }
 
-      entity.RecordId = newRecordId;
+      TEntity copyOfEntity = entity.CreateCopyOrClone();
+      copyOfEntity.RecordId = newRecordId;
 
       /* Add it to the addition cache */
-      this.additionCache.Add(entity);
+      this.additionCache.Add(copyOfEntity);
 
-      return entity;
+      if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+        return ((ICloneable)copyOfEntity).Clone() as TEntity;
+      }
+      else {
+        entity.CopyFrom(copyOfEntity);
+        return entity;
+      }
     }
 
     /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the 
@@ -663,58 +818,26 @@ namespace Enkoni.Framework.Entities {
 
       /* Make a copy of the caches. That way, if any thing goes wrong all the changes can be made undone */
       List<TEntity> tempDeletionCache = this.deletionCache.ToList();
+      List<TEntity> tempUpdateCache = this.updateCache.ToList();
       List<TEntity> tempAdditionCache = this.additionCache.ToList();
 
-      if(entities.Any(e => e.RecordId > 0)) {
-        List<TEntity> updatableEntities = new List<TEntity>();
-        IEnumerable<TEntity> existingEntities = entities.Where(e => e.RecordId > 0);
-        ReferenceEqualityComparer<TEntity> referenceComparer = new ReferenceEqualityComparer<TEntity>();
-        /* At least some of the entities already have an ID which suggests that they came from the original data source */
-        foreach(TEntity existingEntity in existingEntities) {
-          if(tempDeletionCache.Contains(existingEntity, entityComparer)) {
-            /* The entity has been marked for deletion, undelete it... */
-            tempDeletionCache.Remove(existingEntity, entityComparer);
-            /* ...and mark it as updated in case any of the fields have been altered. */
-            updatableEntities.Add(existingEntity);
+      Dictionary<TEntity, TEntity> handledEntities = new Dictionary<TEntity, TEntity>();
 
-            bool removeResult = unhandledEntities.Remove(existingEntity, referenceComparer);
-            Debug.Assert(removeResult, "Somehow the result could not be removed from the collection of handled entities.");
-          }
-        }
-
-        foreach(TEntity updatableEntity in updatableEntities) {
-          TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(t => t.RecordId == updatableEntity.RecordId);
-          if(storedEntity == null) {
-            /* This is not very likely, otherwise how could the entity exist in the deleteion cache */
-            throw new InvalidOperationException("Could not find the entity in the internal cache.");
-          }
-          else {
-            storedEntity.CopyFrom(updatableEntity);
-          }
-        }
-      }
-
-      if(unhandledEntities.Count > 0) {
-        /* At least some of the entities are either new or came from another data source */
-        /* Determine the new temporary ID for the entities */
-        int newRecordId = -1;
-        if(tempAdditionCache.Count > 0) {
-          newRecordId = tempAdditionCache.Min(t => t.RecordId) - 1;
-        }
-
-        foreach(TEntity unhandledEntity in unhandledEntities) {
-          unhandledEntity.RecordId = newRecordId;
-          --newRecordId;
-          /* Add it to the addition cache */
-          tempAdditionCache.Add(unhandledEntity);
-        }
-      }
+      List<TEntity> updatedEntities = AddExistingEntities(entities, unhandledEntities, tempUpdateCache, tempDeletionCache, entityComparer, context, handledEntities);
+      List<TEntity> addedEntities = AddNewEntities(unhandledEntities, tempAdditionCache, handledEntities);
 
       /* Replace the original caches to complete the 'transaction' */
       this.deletionCache = tempDeletionCache;
+      this.updateCache = tempUpdateCache;
       this.additionCache = tempAdditionCache;
 
-      return entities;
+      if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
+        return addedEntities.Concat(updatedEntities).Select(entity => ((ICloneable)entity).Clone() as TEntity).ToList();
+      }
+      else {
+        Linq.Extensions.ForEach(handledEntities, kvp => kvp.Key.CopyFrom(kvp.Value));
+        return entities;
+      }
     }
 
     /// <summary>Deletes an entity from the repository. This implementation does not acquire a write lock on the local storage and can therefore be 
@@ -736,6 +859,11 @@ namespace Enkoni.Framework.Entities {
         }
       }
       else {
+        /* If the entity was marked for update, remove that mark */
+        if(this.updateCache.Contains(entity, entityComparer)) {
+          this.updateCache.Remove(entity, entityComparer);
+        }
+
         /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
         Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == entity.RecordId);
         TEntity existingEntity = context.Set<TEntity>().SingleOrDefault(queryById);
@@ -782,6 +910,11 @@ namespace Enkoni.Framework.Entities {
       }
 
       foreach(TEntity existingEntity in existingEntities) {
+        /* If the entity was marked for update, remove that mark */
+        if(this.updateCache.Contains(existingEntity, entityComparer)) {
+          this.updateCache.Remove(existingEntity, entityComparer);
+        }
+
         /* If the entity exists in the original data source and has not yet been marked for deletion, mark it now */
         Expression<Func<TEntity, bool>> queryById = EntityCastRemoverVisitor.Convert((TEntity t) => t.RecordId == existingEntity.RecordId);
         TEntity storedEntity = context.Set<TEntity>().SingleOrDefault(queryById);
@@ -807,6 +940,7 @@ namespace Enkoni.Framework.Entities {
     /// be called from within a context that already has a write lock on the internal storage.</summary>
     private void ResetLocalCacheNoLock() {
       this.additionCache.Clear();
+      this.updateCache.Clear();
       this.deletionCache.Clear();
     }
     #endregion

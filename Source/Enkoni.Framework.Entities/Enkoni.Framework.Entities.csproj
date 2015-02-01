@@ -49,6 +49,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Entity.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="MemorySourceInfo.cs" />
     <Compile Include="MemoryRepository.cs" />
     <Compile Include="HttpSessionMemoryStore.cs" />

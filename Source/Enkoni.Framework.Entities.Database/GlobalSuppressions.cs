@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
+[assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Entities", Justification = "A typical false positive from FxCop")]
+
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.DatabaseSourceInfo.#SelectDbContext(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The parameter is checked through the Is*Specified method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.DatabaseSourceInfo.#.ctor(System.Collections.Generic.Dictionary`2<System.String,System.Object>)", Justification = "Validation is done by the base constructor.")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.DatabaseRepository`1.#FindAllCore(System.Linq.Expressions.Expression`1<System.Func`2<!0,System.Boolean>>,Enkoni.Framework.SortSpecifications`1<!0>,System.Int32,Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The parameter is checked in the public method")]

@@ -35,6 +35,10 @@ namespace Enkoni.Framework.Tests {
       DateTime testvalue = testSubject.Now;
       DateTime expectedValue = DateTime.Now.AddHours(2).AddMinutes(35).AddSeconds(42);
 
+      /* Because test executions are not always performed with the same speed, the milliseconds are not considered in the equation */
+      expectedValue = new DateTime(expectedValue.Year, expectedValue.Month, expectedValue.Day, expectedValue.Hour, expectedValue.Minute, expectedValue.Second);
+      testvalue = new DateTime(testvalue.Year, testvalue.Month, testvalue.Day, testvalue.Hour, testvalue.Minute, testvalue.Second);
+
       Assert.AreEqual(expectedValue, testvalue);
     }
 
@@ -61,6 +65,10 @@ namespace Enkoni.Framework.Tests {
       DateTime testvalue = testSubject.UtcNow;
       DateTime expectedValue = DateTime.UtcNow.AddHours(2).AddMinutes(35).AddSeconds(42);
 
+      /* Because test executions are not always performed with the same speed, the milliseconds are not considered in the equation */
+      expectedValue = new DateTime(expectedValue.Year, expectedValue.Month, expectedValue.Day, expectedValue.Hour, expectedValue.Minute, expectedValue.Second);
+      testvalue = new DateTime(testvalue.Year, testvalue.Month, testvalue.Day, testvalue.Hour, testvalue.Minute, testvalue.Second);
+
       Assert.AreEqual(expectedValue, testvalue);
     }
 
@@ -73,6 +81,10 @@ namespace Enkoni.Framework.Tests {
 
       DateTime testvalue = testSubject.Now;
       DateTime expectedValue = DateTime.Now.AddHours(-2).AddMinutes(35).AddSeconds(42);
+
+      /* Because test executions are not always performed with the same speed, the milliseconds are not considered in the equation */
+      expectedValue = new DateTime(expectedValue.Year, expectedValue.Month, expectedValue.Day, expectedValue.Hour, expectedValue.Minute, expectedValue.Second);
+      testvalue = new DateTime(testvalue.Year, testvalue.Month, testvalue.Day, testvalue.Hour, testvalue.Minute, testvalue.Second);
 
       Assert.AreEqual(expectedValue, testvalue);
     }
@@ -100,6 +112,10 @@ namespace Enkoni.Framework.Tests {
       DateTime testvalue = testSubject.UtcNow;
       DateTime expectedValue = DateTime.UtcNow.AddHours(-2).AddMinutes(35).AddSeconds(42);
 
+      /* Because test executions are not always performed with the same speed, the milliseconds are not considered in the equation */
+      expectedValue = new DateTime(expectedValue.Year, expectedValue.Month, expectedValue.Day, expectedValue.Hour, expectedValue.Minute, expectedValue.Second);
+      testvalue = new DateTime(testvalue.Year, testvalue.Month, testvalue.Day, testvalue.Hour, testvalue.Minute, testvalue.Second);
+
       Assert.AreEqual(expectedValue, testvalue);
     }
 
@@ -112,6 +128,10 @@ namespace Enkoni.Framework.Tests {
 
       DateTime testvalue = testSubject.Now;
       DateTime expectedValue = DateTime.Now;
+
+      /* Because test executions are not always performed with the same speed, the milliseconds are not considered in the equation */
+      expectedValue = new DateTime(expectedValue.Year, expectedValue.Month, expectedValue.Day, expectedValue.Hour, expectedValue.Minute, expectedValue.Second);
+      testvalue = new DateTime(testvalue.Year, testvalue.Month, testvalue.Day, testvalue.Hour, testvalue.Minute, testvalue.Second);
 
       Assert.AreEqual(expectedValue, testvalue);
     }
@@ -138,6 +158,10 @@ namespace Enkoni.Framework.Tests {
 
       DateTime testvalue = testSubject.UtcNow;
       DateTime expectedValue = DateTime.UtcNow;
+
+      /* Because test executions are not always performed with the same speed, the milliseconds are not considered in the equation */
+      expectedValue = new DateTime(expectedValue.Year, expectedValue.Month, expectedValue.Day, expectedValue.Hour, expectedValue.Minute, expectedValue.Second);
+      testvalue = new DateTime(testvalue.Year, testvalue.Month, testvalue.Day, testvalue.Hour, testvalue.Minute, testvalue.Second);
 
       Assert.AreEqual(expectedValue, testvalue);
     }
