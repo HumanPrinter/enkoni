@@ -10,18 +10,21 @@
     <TargetPlatform>x86</TargetPlatform>
 
     <!-- Framework35 | [Framework40] | Framework45 -->
-    <TargetFrameworkVersion>Framework40</TargetFrameworkVersion>
+    <TargetFrameworkVersion>Framework45</TargetFrameworkVersion>
   </RunConfiguration>
   
   <!-- Configurations for data collectors -->
-  <!--<DataCollectionRunSettings>
+  <DataCollectionRunSettings>
     <DataCollectors>
       <DataCollector friendlyName="Code Coverage" uri="datacollector://Microsoft/CodeCoverage/2.0" assemblyQualifiedName="Microsoft.VisualStudio.Coverage.DynamicCoverageDataCollector, Microsoft.VisualStudio.TraceCollector, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
         <Configuration>
           <CodeCoverage>
             <ModulePaths>
+              <Include>
+                <ModulePath>.*Enkoni.*</ModulePath>
+              </Include>
               <Exclude>
-                <ModulePath>.*CPPUnitTestFramework.*</ModulePath>
+                <ModulePath>.*Tests.*</ModulePath>
               </Exclude>
             </ModulePaths>
           </CodeCoverage>
@@ -29,7 +32,7 @@
       </DataCollector>
       
     </DataCollectors>
-  </DataCollectionRunSettings>-->
+  </DataCollectionRunSettings>
   
   <!-- Adapter Specific sections -->
   
