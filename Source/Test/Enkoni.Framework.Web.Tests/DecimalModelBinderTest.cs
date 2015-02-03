@@ -7,12 +7,11 @@
 // </summary>
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Web.Mvc;
-
 using Enkoni.Framework.Web.Mvc;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Web.Tests {
@@ -23,97 +22,211 @@ namespace Enkoni.Framework.Web.Tests {
     /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
     /// without a specific format provider.</summary>
     [TestMethod]
-    public void TestCase01_BindModel_DefaultFormatProvider() {
+    public void DecimalModelBinder_BindModelPositiveDecimalTwoDecimalsWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
       /* Create the test subject */
       DecimalModelBinder testSubject = new DecimalModelBinder();
 
       /* Test if the model binder can convert a default decimal */
       decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2.13"));
       Assert.AreEqual(2.13M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// without a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelPositiveDecimalOneDecimalWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder();
 
       /* Test if the model binder can convert a decimal with one decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2.1"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2.1"));
       Assert.AreEqual(2.10M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// without a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelPositiveDecimalNoDecimalsWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder();
 
       /* Test if the model binder can convert a decimal without a decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2"));
       Assert.AreEqual(2.00M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// without a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelNegativeDecimalTwoDecimalsWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder();
 
       /* Test if the model binder can convert a default negative decimal */
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2.13"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2.13"));
       Assert.AreEqual(-2.13M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// without a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelNegativeDecimalOneDecimalWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder();
 
       /* Test if the model binder can convert a negative decimal with one decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2.1"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2.1"));
       Assert.AreEqual(-2.10M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// without a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelNegativeDecimalNoDecimalsWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder();
 
       /* Test if the model binder can convert a negative decimal without a decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2"));
       Assert.AreEqual(-2.00M, result);
     }
 
     /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
-    /// with a cultural neutral format provider.</summary>
+    /// without a specific format provider.</summary>
     [TestMethod]
-    public void TestCase02_BindModel_NeutralFormatProvider() {
+    public void DecimalModelBinder_BindModelNullValueWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
       /* Create the test subject */
-      DecimalModelBinder testSubject = new DecimalModelBinder(CultureInfo.InvariantCulture);
-
-      /* Test if the model binder can convert a default decimal */
-      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2.13"));
-      Assert.AreEqual(2.13M, result);
-
-      /* Test if the model binder can convert a decimal with one decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2.1"));
-      Assert.AreEqual(2.10M, result);
-
-      /* Test if the model binder can convert a decimal without a decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2"));
-      Assert.AreEqual(2.00M, result);
-
-      /* Test if the model binder can convert a default negative decimal */
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2.13"));
-      Assert.AreEqual(-2.13M, result);
-
-      /* Test if the model binder can convert a negative decimal with one decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2.1"));
-      Assert.AreEqual(-2.10M, result);
+      DecimalModelBinder testSubject = new DecimalModelBinder();
 
       /* Test if the model binder can convert a negative decimal without a decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2"));
-      Assert.AreEqual(-2.00M, result);
+      object result = testSubject.BindModel(null, CreateModelBindingContext(null));
+      Assert.IsNull(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// without a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelEmptyValueWithDefaultFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder();
+
+      /* Test if the model binder can convert a negative decimal without a decimal position*/
+      object result = testSubject.BindModel(null, CreateModelBindingContext(string.Empty));
+      Assert.IsNull(result);
     }
 
     /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
     /// with a specific format provider.</summary>
     [TestMethod]
-    public void TestCase03_BindModel_SpecificFormatProvider() {
+    public void DecimalModelBinder_BindModelPositiveDecimalTwoDecimalsWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
       /* Create the test subject */
       DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
 
       /* Test if the model binder can convert a default decimal */
       decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2,13"));
       Assert.AreEqual(2.13M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// with a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelPositiveDecimalOneDecimalWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
 
       /* Test if the model binder can convert a decimal with one decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2,1"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2,1"));
       Assert.AreEqual(2.10M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// with a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelPositiveDecimalNoDecimalsWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
 
       /* Test if the model binder can convert a decimal without a decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("2"));
       Assert.AreEqual(2.00M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// with a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelNegativeDecimalTwoDecimalsWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
 
       /* Test if the model binder can convert a default negative decimal */
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2,13"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2,13"));
       Assert.AreEqual(-2.13M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// with a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelNegativeDecimalOneDecimalWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
 
       /* Test if the model binder can convert a negative decimal with one decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2,1"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2,1"));
       Assert.AreEqual(-2.10M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// with a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelNegativeDecimalNoDecimalsWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
 
       /* Test if the model binder can convert a negative decimal without a decimal position*/
-      result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2"));
+      decimal result = (decimal)testSubject.BindModel(null, CreateModelBindingContext("-2"));
       Assert.AreEqual(-2.00M, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// with a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelNullValueWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
+
+      /* Test if the model binder can convert a negative decimal without a decimal position*/
+      object result = testSubject.BindModel(null, CreateModelBindingContext(null));
+      Assert.IsNull(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when initialized
+    /// with a specific format provider.</summary>
+    [TestMethod]
+    public void DecimalModelBinder_BindModelEmptyValueWithSpecificFormatProvider_ValueIsCorrectlyParsed() {
+      /* Create the test subject */
+      DecimalModelBinder testSubject = new DecimalModelBinder(new CultureInfo("nl-NL"));
+
+      /* Test if the model binder can convert a negative decimal without a decimal position*/
+      object result = testSubject.BindModel(null, CreateModelBindingContext(string.Empty));
+      Assert.IsNull(result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder(IFormatProvider)"/> when initialized
+    /// with a null value.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void DecimalModelBinder_CtorWithNullFormatProvider_ExceptionIsThrown() {
+      DecimalModelBinder testSubject = new DecimalModelBinder(null);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="DecimalModelBinder.BindModel(ControllerContext,ModelBindingContext)"/> when called with
+    /// a null-modelbindingcontext.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void DecimalModelBinder_BindModelWithNullBindingContext_ExceptionIsThrown() {
+      DecimalModelBinder testSubject = new DecimalModelBinder();
+
+      testSubject.BindModel(null, null);
     }
     #endregion
 

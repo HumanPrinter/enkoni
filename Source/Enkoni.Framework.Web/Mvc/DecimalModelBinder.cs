@@ -46,7 +46,7 @@ namespace Enkoni.Framework.Web.Mvc {
       ModelState modelState = new ModelState { Value = providerValue };
 
       object actualValue = null;
-      if(providerValue != null && providerValue.RawValue != null) {
+      if(providerValue != null && providerValue.RawValue != null && !string.Empty.Equals(providerValue.RawValue)) {
         /* Retrieve the raw value and convert it to a decimal */
         actualValue = Convert.ToDecimal(providerValue.RawValue, this.formatProvider);
       }
