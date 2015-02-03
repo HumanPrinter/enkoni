@@ -12,10 +12,10 @@ namespace Enkoni.Framework.Logging {
     private LogWriter logWriter;
     #endregion
 
-    #region Internal constructors
+    #region Public constructors
     /// <summary>Initializes a new instance of the <see cref="Logger"/> class using the specified <see cref="LogWriter"/>.</summary>
     /// <param name="logWriter">The actual logger that mist be used. Use <see langword="null"/> to disable logging.</param>
-    internal Logger(LogWriter logWriter) {
+    public Logger(LogWriter logWriter) {
       this.logWriter = logWriter;
     }
     #endregion
@@ -41,19 +41,19 @@ namespace Enkoni.Framework.Logging {
     /// <param name="relatedActivityId">The Id of the related activity. Use <see langword="null"/> to ignore the value and use the default.</param>
     public void Log(string message, TraceEventType severity, string category, int priority, string title, int eventId, Guid activityId,
       Guid? relatedActivityId) {
-      if(this.logWriter == null || string.IsNullOrEmpty(message) || Enum.IsDefined(typeof(TraceEventType), severity)) {
+      if(this.logWriter == null || string.IsNullOrEmpty(message) || !Enum.IsDefined(typeof(TraceEventType), severity)) {
         return;
       }
 
       LogEntry logEntry = new LogEntry();
       logEntry.Message = message;
       logEntry.Severity = severity;
+      logEntry.Priority = priority;
+      logEntry.ActivityId = activityId;
+      logEntry.RelatedActivityId = relatedActivityId;
+
       if(category != null) {
         logEntry.Categories.Add(category);
-      }
-
-      if(priority != -1) {
-        logEntry.Priority = priority;
       }
 
       if(title != null) {
@@ -62,14 +62,6 @@ namespace Enkoni.Framework.Logging {
 
       if(eventId != -1) {
         logEntry.EventId = eventId;
-      }
-
-      if(activityId != Guid.Empty) {
-        logEntry.ActivityId = activityId;
-      }
-
-      if(relatedActivityId.HasValue) {
-        logEntry.RelatedActivityId = relatedActivityId;
       }
 
       this.Log(logEntry);
