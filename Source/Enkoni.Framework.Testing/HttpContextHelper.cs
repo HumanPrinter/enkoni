@@ -12,11 +12,11 @@ namespace Enkoni.Framework.Testing {
     /// <exception cref="ArgumentNullException"><paramref name="host"/> or <paramref name="application"/> is <see langword="null"/> or empty.</exception>
     public static void SetHttpContextWithSimulatedRequest(string host, string application) {
       if(string.IsNullOrEmpty(host)) {
-        throw new ArgumentNullException("Specify a valid host", "host");
+        throw new ArgumentNullException("host", "Specify a valid host");
       }
 
       if(string.IsNullOrEmpty(application)) {
-        throw new ArgumentNullException("Specify a valid application", "application");
+        throw new ArgumentNullException("application", "Specify a valid application");
       }
 
       if(HttpContext.Current != null) {
