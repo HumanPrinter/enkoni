@@ -82,6 +82,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Logging.Tests", "Test\Enkoni.Framework.Logging.Tests\Enkoni.Framework.Logging.Tests.csproj", "{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Testing.Tests", "Test\Enkoni.Framework.Testing.Tests\Enkoni.Framework.Testing.Tests.csproj", "{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -470,6 +472,21 @@ Global
 		{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D}.Release|x86.ActiveCfg = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Public Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Public Release|Any CPU.Build.0 = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Public Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Public Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Public Release|x86.ActiveCfg = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -488,6 +505,7 @@ Global
 		{1F419682-2E46-48C4-8A91-2B9F8B58DB75} = {27909F13-6E89-440B-832A-513838262B98}
 		{026371D2-B13C-43C4-A84D-73278DB15C2F} = {27909F13-6E89-440B-832A-513838262B98}
 		{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35

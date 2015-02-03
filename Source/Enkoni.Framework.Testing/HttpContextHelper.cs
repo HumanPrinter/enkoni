@@ -9,13 +9,14 @@ namespace Enkoni.Framework.Testing {
     /// <summary>Sets the HTTP context with a valid simulated request.</summary>
     /// <param name="host">The host that must be associated with the session. Normally 'localhost' will suffice.</param>
     /// <param name="application">The name of the application that requires the session. Any name will do.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="host"/> or <paramref name="application"/> is <see langword="null"/> or empty.</exception>
     public static void SetHttpContextWithSimulatedRequest(string host, string application) {
       if(string.IsNullOrEmpty(host)) {
-        throw new ArgumentException("Specify a valid host", "host");
+        throw new ArgumentNullException("Specify a valid host", "host");
       }
 
       if(string.IsNullOrEmpty(application)) {
-        throw new ArgumentException("Specify a valid application", "application");
+        throw new ArgumentNullException("Specify a valid application", "application");
       }
 
       if(HttpContext.Current != null) {

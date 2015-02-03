@@ -79,6 +79,10 @@ Source/Test/Enkoni.Framework.Logging.Tests/*.user
 Source/Test/Enkoni.Framework.Logging.Tests/*.Cache
 Source/Test/Enkoni.Framework.Logging.Tests/bin/
 Source/Test/Enkoni.Framework.Logging.Tests/obj/
+Source/Test/Enkoni.Framework.Testing.Tests/*.user
+Source/Test/Enkoni.Framework.Testing.Tests/*.Cache
+Source/Test/Enkoni.Framework.Testing.Tests/bin/
+Source/Test/Enkoni.Framework.Testing.Tests/obj/
 Source/Test/Enkoni.Framework.ServiceModel.Tests/*.user
 Source/Test/Enkoni.Framework.ServiceModel.Tests/*.Cache
 Source/Test/Enkoni.Framework.ServiceModel.Tests/bin/

@@ -17,7 +17,7 @@ namespace Enkoni.Framework.Testing {
     /// <param name="host">The host of the application.</param>
     public SimulatedHttpRequest(string appVirtualDir, string appPhysicalDir, string page, string query, TextWriter output, string host)
       : base(appVirtualDir, appPhysicalDir, page, query, output) {
-      if(host == null || host.Length == 0) {
+      if(string.IsNullOrEmpty(host)) {
         throw new ArgumentNullException("host", "Host cannot be null nor empty.");
       }
 
