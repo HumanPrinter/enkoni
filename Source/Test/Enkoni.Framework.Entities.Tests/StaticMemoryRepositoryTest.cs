@@ -7,94 +7,101 @@ namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of the <see cref="MemoryRepository{TEntity}"/> class in combination with the 
   /// <see cref="StaticMemoryStore{T}"/> class.</summary>
   [TestClass]
-  public class StaticMemoryRepositoryTest : RepositoryTest {
-    #region Retrieve test-cases
+  public class StaticMemoryRepositoryTest : RepositoryTestBase {
+    #region FindAll test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="MemoryRepository{TEntity}"/> 
-    /// implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_FindAll_NoSpecification_AllAvailableRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindAll(sourceInfo);
+      this.FindAllWithoutSpecification_AllRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="MemoryRepository{TEntity}"/> 
-    /// implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_FindAll_NoSpecificationEmptySource_NoRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindAll_EmptySource(sourceInfo);
+      this.FindAllWithoutSpecificationAndWithEmptySource_NoRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindAll_WithSpecification_OnlyMatchingRecordsAreReturned() {
+    public void StaticMemoryRepository_FindAll_WithMatchingSpecification_OnlyMatchingRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindAllWithExpression(sourceInfo);
+      this.FindAllWithSpecification_WithResults(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindAll_WithNotMatchingSpecification_NoRecordsAreReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindAllWithSpecification_WithoutResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_FindAll_WithSpecificationEmptySource_NoRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindAllWithExpression_EmptySource(sourceInfo);
+      this.FindAllWithSpecification_EmptySource(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindSingle_WithSpecification_OnlyMatchingRecordIsReturned() {
+    public void StaticMemoryRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindSingleWithExpression(sourceInfo);
+      this.FindAllWithoutCloning(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
+    public void StaticMemoryRepository_FindAllWithCloning_CopiesAreCreated() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
-      PrepareTests(store);
+      PrepareInputTests(store);
 
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindSingleWithExpression_EmptySource(sourceInfo);
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindAllWithCloning(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindFirst_WithSpecification_FirstMatchingRecordIsReturned() {
+    public void StaticMemoryRepository_FindAll_WithMatchingExpression_OnlyMatchingRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindFirstWithExpression(sourceInfo);
+      this.FindAllWithExpression_WithResults(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
+    public void StaticMemoryRepository_FindAll_WithNotMatchingExpression_NoRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
-      PrepareTests(store);
+      PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindFirstWithExpression_EmptySource(sourceInfo);
+      this.FindAllWithExpression_WithoutResults(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
@@ -120,7 +127,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_FindAll_SpecificationWithMaxResultsExactlyAvailableEmptySource_NoRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -142,7 +149,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StticMemoryRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailableEmptySource_NoRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -161,6 +168,151 @@ namespace Enkoni.Framework.Entities.Tests {
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<CustomMappedTestDummy>(store, false);
       this.RetrieveTypesWithCustomMapping(sourceInfo);
+    }
+    #endregion
+
+    #region FindSingle test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingle_WithMatchingSpecification_OnlyMatchingRecordIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithMatchingSpecification_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingle_WithNotMatchingSpecification_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingle_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingle_WithSpecificationEmptySource_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingle_WithMatchingExpression_OnlyMatchingRecordIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithMatchingExpression_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingle_WithNotMatchingExpression_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingle_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindSingleWithCloning_CopiesAreCreated() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindSingleWithCloning(sourceInfo);
+    }
+    #endregion
+
+    #region FindFirst test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindFirst_WithMatchingSpecification_FirstMatchingRecordIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindFirstWithMatchingSpecification_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindFirst_WithNotMatchingSpecification_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindFirstWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindFirst_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindFirstWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void StaticMemoryRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
+      PrepareTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindFirstWithSpecification_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
@@ -183,50 +335,43 @@ namespace Enkoni.Framework.Entities.Tests {
       this.FindFirstWithCloning(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
+    public void StaticMemoryRepository_FindFirst_WithMatchingExpression_FirstMatchingRecordIsReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindSingleWithoutCloning(sourceInfo);
+      this.FindFirstWithMatchingExpression_FirstMatchingRecordIsReturned(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindSingleWithCloning_CopiesAreCreated() {
-      MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
-      PrepareInputTests(store);
-
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindSingleWithCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
-    [TestMethod]
-    public void StaticMemoryRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
+    public void StaticMemoryRepository_FindFirst_WithNotMatchingExpression_NoRecordIsReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindAllWithoutCloning(sourceInfo);
+      this.FindFirstWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public void StaticMemoryRepository_FindAllWithCloning_CopiesAreCreated() {
+    public void StaticMemoryRepository_FindFirst_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindAllWithCloning(sourceInfo);
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindFirstWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
     }
     #endregion
 
     #region Sorting test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_SpecificationWithOrderBy_ItemsAreCorrectlyOrdered() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -237,7 +382,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_SpecificationWithOrderByEmptySource_NoRecordsAreReturned() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -294,7 +439,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method using the <see cref="MemoryRepository{TEntity}"/> 
-    /// implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_Delete_ItemIsDeleted() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -529,7 +674,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     #region Combined storage test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_AddAndUpdate_ItemsAreStored() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -540,7 +685,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_AddUpdateAndDelete_ItemsAreStored() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -551,7 +696,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_UpdateAndDelete_ItemsAreStored() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();
@@ -562,7 +707,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}"/> when doing multiple storage-actions using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="StaticMemoryStore{T}"/>.</summary>
     [TestMethod]
     public void StaticMemoryRepository_DeleteAndAdd_ItemsAreStored() {
       MemoryStore<TestDummy> store = new StaticMemoryStore<TestDummy>();

@@ -383,6 +383,31 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Finds all the available entities that match the specification.</summary>
+    /// <param name="expression">The expression to which entities must match.</param>
+    /// <returns>The entities that match the specification.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules or maximum results. When that level
+    /// of control is required, use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
+    public IEnumerable<T> FindAll(Expression<Func<T, bool>> expression) {
+      return this.FindAll(expression, null);
+    }
+
+    /// <summary>Finds all the available entities that match the specification.</summary>
+    /// <param name="expression">The expression to which entities must match.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The entities that match the specification.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules or maximum results. When that level
+    /// of control is required, use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
+    public IEnumerable<T> FindAll(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo) {
+      if(expression == null) {
+        throw new ArgumentNullException("expression");
+      }
+
+      return this.FindAllCore(expression, null, -1, dataSourceInfo);
+    }
+
+    /// <summary>Finds all the available entities that match the specification.</summary>
     /// <param name="specification">The specification to which the entities must match.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specification.</returns>
@@ -407,6 +432,27 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindSingle(ISpecification<T> specification) {
       return this.FindSingle(specification, (DataSourceInfo)null);
+    }
+
+    /// <summary>Finds a single entity that matches the expression.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <returns>The found entity.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    public T FindSingle(Expression<Func<T, bool>> expression) {
+      return FindSingle(expression, (DataSourceInfo)null);
+    }
+
+    /// <summary>Finds a single entity that matches the expression.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    public T FindSingle(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo) {
+      if(expression == null) {
+        throw new ArgumentNullException("expression");
+      }
+
+      return this.FindSingleCore(expression, dataSourceInfo);
     }
 
     /// <summary>Finds a single entity that matches the specification.</summary>
@@ -437,6 +483,29 @@ namespace Enkoni.Framework.Entities {
       return this.FindSingle(specification, defaultValue, null);
     }
 
+    /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="defaultValue">The value that will be returned when no match was found.</param>
+    /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    public T FindSingle(Expression<Func<T, bool>> expression, T defaultValue) {
+      return this.FindSingle(expression, defaultValue, null);
+    }
+
+    /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="defaultValue">The value that will be returned when no match was found.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    public T FindSingle(Expression<Func<T, bool>> expression, T defaultValue, DataSourceInfo dataSourceInfo) {
+      if(expression == null) {
+        throw new ArgumentNullException("expression");
+      }
+
+      return this.FindSingleCore(expression, dataSourceInfo, defaultValue);
+    }
+
     /// <summary>Finds a single entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
     /// <param name="specification">The specification to which the entity must match.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
@@ -465,6 +534,31 @@ namespace Enkoni.Framework.Entities {
       return this.FindFirst(specification, (DataSourceInfo)null);
     }
 
+    /// <summary>Finds the first entity that matches the expression.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <returns>The found entity.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
+    public T FindFirst(Expression<Func<T, bool>> expression) {
+      return this.FindFirst(expression, (DataSourceInfo)null);
+    }
+
+    /// <summary>Finds the first entity that matches the expression.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
+    public T FindFirst(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo) {
+      if(expression == null) {
+        throw new ArgumentNullException("expression");
+      }
+
+      return this.FindFirstCore(expression, null, dataSourceInfo);
+    }
+
     /// <summary>Finds the first entity that matches the specification.</summary>
     /// <param name="specification">The specification to which the entity must match.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
@@ -491,6 +585,33 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindFirst(ISpecification<T> specification, T defaultValue) {
       return this.FindFirst(specification, defaultValue, null);
+    }
+
+    /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="defaultValue">The value that will be returned when no match was found.</param>
+    /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
+    public T FindFirst(Expression<Func<T, bool>> expression, T defaultValue) {
+      return this.FindFirst(expression, defaultValue, null);
+    }
+
+    /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
+    /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="defaultValue">The value that will be returned when no match was found.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
+    public T FindFirst(Expression<Func<T, bool>> expression, T defaultValue, DataSourceInfo dataSourceInfo) {
+      if(expression == null) {
+        throw new ArgumentNullException("expression");
+      }
+
+      return this.FindFirstCore(expression, null, dataSourceInfo, defaultValue);
     }
 
     /// <summary>Finds the first entity that matches the specification. If no result was found, the specified default-value is returned.</summary>

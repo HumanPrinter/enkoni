@@ -9,211 +9,345 @@ namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of the <see cref="CsvFileRepository{TEntity}"/> class.</summary>
   [TestClass]
   public class CsvFileRepositoryTest : FileRepositoryTest {
-    #region Retrieve test-cases
+    #region FindAll test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve01")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindAll01")]
     public void CsvFileRepository_FindAll_NoSpecification_AllAvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve01\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindAll(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll01\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithoutSpecification_AllRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\Retrieve02")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\FindAll02")]
     public void CsvFileRepository_FindAll_NoSpecificationEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve02\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindAll_EmptySource(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll02\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithoutSpecificationAndWithEmptySource_NoRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve03")]
-    public void CsvFileRepository_FindAll_WithSpecification_OnlyMatchingRecordsAreReturned() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindAll03")]
+    public void CsvFileRepository_FindAll_WithMatchingSpecification_OnlyMatchingRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve03\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindAllWithExpression(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll03\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithSpecification_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindAll04")]
+    public void CsvFileRepository_FindAll_WithNotMatchingSpecification_NoRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll04\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithSpecification_WithoutResults(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\Retrieve04")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\FindAll05")]
     public void CsvFileRepository_FindAll_WithSpecificationEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve04\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindAllWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve05")]
-    public void CsvFileRepository_FindSingle_WithSpecification_OnlyMatchingRecordIsReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve05\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindSingleWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method based on an empty file.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\Retrieve06")]
-    public void CsvFileRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve06\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindSingleWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve07")]
-    public void CsvFileRepository_FindFirst_WithSpecification_FirstMatchingRecordIsReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve07\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindFirstWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method based on an empty file.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\Retrieve08")]
-    public void CsvFileRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve08\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindFirstWithExpression_EmptySource(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll05\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithSpecification_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\Retrieve09")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\FindAll06")]
     public void CsvFileRepository_FindAll_SpecificationWithMaxResultsLessThanAvailable_MaxResultsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve09\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll06\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
       this.RetrieveLessThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\Retrieve10")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\FindAll07")]
     public void CsvFileRepository_FindAll_SpecificationWithMaxResultsExactlyAvailable_AvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve10\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll07\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
       this.RetrieveExactlyAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
     /// number of results.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\Retrieve11")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\FindAll08")]
     public void CsvFileRepository_FindAll_SpecificationWithMaxResultsExactlyAvailableEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve11\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll08\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
       this.RetrieveExactlyAvailable_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\Retrieve12")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\FindAll09")]
     public void CsvFileRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailable_AvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve12\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll09\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
       this.RetrieveMoreThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
     /// number of results.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\Retrieve13")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\FindAll10")]
     public void CsvFileRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailableAndEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve13\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll10\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
       this.RetrieveMoreThenAvailable_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using type for which a custom mapping is 
     /// available.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\Retrieve14")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.csv", @"CsvFileRepositoryTest\FindAll11")]
     public void CsvFileRepository_FindAll_CustomMappedType_AvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve14\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll11\ReposTest_SortingFile.csv"), true, 3000, Encoding.UTF8, false);
       this.RetrieveTypesWithCustomMapping(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve15")]
-    public void CsvFileRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve15\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindFirstWithoutCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve16")]
-    public void CsvFileRepository_FindFirstWithCloning_CopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve16\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
-      this.FindFirstWithCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve17")]
-    public void CsvFileRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve17\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
-      this.FindSingleWithoutCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve18")]
-    public void CsvFileRepository_FindSingleWithCloning_CopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve18\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
-      this.FindSingleWithCloning(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve19")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindAll12")]
     public void CsvFileRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve19\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll12\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
       this.FindAllWithoutCloning(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\Retrieve20")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindAll13")]
     public void CsvFileRepository_FindAllWithCloning_CopiesAreCreated() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\Retrieve20\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll13\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
       this.FindAllWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindAll14")]
+    public void CsvFileRepository_FindAll_WithMatchingExpression_OnlyMatchingRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll14\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.FindAllWithExpression_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindAll15")]
+    public void CsvFileRepository_FindAll_WithNotMatchingExpression_NoRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindAll15\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.FindAllWithExpression_WithoutResults(sourceInfo);
+    }
+    #endregion
+
+    #region FindSingle test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle01")]
+    public void CsvFileRepository_FindSingle_WithSpecification_OnlyMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle01\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithMatchingSpecification_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle02")]
+    public void CsvFileRepository_FindSingle_WithNotMatchingSpecification_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle02\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle03")]
+    public void CsvFileRepository_FindSingle_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle03\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method based on an empty file.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\FindSingle04")]
+    public void CsvFileRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle04\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle05")]
+    public void CsvFileRepository_FindSingle_WithMatchingExpression_OnlyMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle05\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithMatchingExpression_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle06")]
+    public void CsvFileRepository_FindSingle_WithNotMatchingExpression_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle06\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle07")]
+    public void CsvFileRepository_FindSingle_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle07\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle08")]
+    public void CsvFileRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle08\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindSingle09")]
+    public void CsvFileRepository_FindSingleWithCloning_CopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindSingle09\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.FindSingleWithCloning(sourceInfo);
+    }
+    #endregion
+
+    #region FindFirst test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindFirst01")]
+    public void CsvFileRepository_FindFirst_WithMatchingSpecification_FirstMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst01\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithMatchingSpecification_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindFirst02")]
+    public void CsvFileRepository_FindFirst_WithNotMatchingSpecification_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst02\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindFirst03")]
+    public void CsvFileRepository_FindFirst_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst03\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method based on an empty file.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.csv", @"CsvFileRepositoryTest\FindFirst04")]
+    public void CsvFileRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst04\ReposTest_EmptyInputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindFirst05")]
+    public void CsvFileRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst05\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindFirst06")]
+    public void CsvFileRepository_FindFirstWithCloning_CopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst06\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, true);
+      this.FindFirstWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.csv", @"CsvFileRepositoryTest\FindFirst07")]
+    public void CsvFileRepository_FindFirst_WithMatchingExpression_FirstMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst07\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithMatchingExpression_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"CsvFileRepositoryTest\FindFirst08")]
+    public void CsvFileRepository_FindFirst_WithNotMatchingExpression_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst08\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"CsvFileRepositoryTest\FindFirst09")]
+    public void CsvFileRepository_FindFirst_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"CsvFileRepositoryTest\FindFirst09\ReposTest_InputFile.csv"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
     }
     #endregion
 

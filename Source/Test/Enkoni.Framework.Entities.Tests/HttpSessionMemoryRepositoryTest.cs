@@ -9,7 +9,7 @@ namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of the <see cref="MemoryRepository{TEntity}"/> class in combination with the 
   /// <see cref="HttpSessionMemoryStore{T}"/> class.</summary>
   [TestClass]
-  public class HttpSessionMemoryRepositoryTest : RepositoryTest {
+  public class HttpSessionMemoryRepositoryTest : RepositoryTestBase {
     #region Test-case setup
     /// <summary>Initialzes the testcases by simulating an HTTP session.</summary>
     [TestInitialize]
@@ -18,7 +18,7 @@ namespace Enkoni.Framework.Entities.Tests {
     }
     #endregion
 
-    #region Retrieve test-cases
+    #region FindAll test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="MemoryRepository{TEntity}"/> 
     /// implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
@@ -27,7 +27,7 @@ namespace Enkoni.Framework.Entities.Tests {
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindAll(sourceInfo);
+      this.FindAllWithoutSpecification_AllRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="MemoryRepository{TEntity}"/> 
@@ -38,18 +38,29 @@ namespace Enkoni.Framework.Entities.Tests {
       PrepareTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindAll_EmptySource(sourceInfo);
+      this.FindAllWithoutSpecificationAndWithEmptySource_NoRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public void HttpSessionMemoryRepository_FindAll_WithSpecification_OnlyMatchingRecordsAreReturned() {
+    public void HttpSessionRepository_FindAll_WithMatchingSpecification_OnlyMatchingRecordsAreReturned() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindAllWithExpression(sourceInfo);
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindAllWithSpecification_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindAll_WithNotMatchingSpecification_NoRecordsAreReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindAllWithSpecification_WithoutResults(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
@@ -60,51 +71,7 @@ namespace Enkoni.Framework.Entities.Tests {
       PrepareTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindAllWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
-    [TestMethod]
-    public void HttpSessionMemoryRepository_FindSingle_WithSpecification_OnlyMatchingRecordIsReturned() {
-      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
-      PrepareInputTests(store);
-
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindSingleWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
-    [TestMethod]
-    public void HttpSessionMemoryRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
-      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
-      PrepareTests(store);
-
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindSingleWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
-    [TestMethod]
-    public void HttpSessionMemoryRepository_FindFirst_WithSpecification_FirstMatchingRecordIsReturned() {
-      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
-      PrepareInputTests(store);
-
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindFirstWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
-    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
-    [TestMethod]
-    public void HttpSessionMemoryRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
-      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
-      PrepareTests(store);
-
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindFirstWithExpression_EmptySource(sourceInfo);
+      this.FindAllWithSpecification_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
@@ -173,24 +140,123 @@ namespace Enkoni.Framework.Entities.Tests {
       this.RetrieveTypesWithCustomMapping(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
     [TestMethod]
-    public void HttpSessionMemoryRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
+    public void HttpSessionMemoryRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindFirstWithoutCloning(sourceInfo);
+      this.FindAllWithoutCloning(sourceInfo);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
     [TestMethod]
-    public void HttpSessionMemoryRepository_FindFirstWithCloning_CopiesAreCreated() {
+    public void HttpSessionMemoryRepository_FindAllWithCloning_CopiesAreCreated() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindFirstWithCloning(sourceInfo);
+      this.FindAllWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindAll_WithMatchingExpression_OnlyMatchingRecordsAreReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindAllWithExpression_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindAll_WithNotMatchingExpression_NoRecordsAreReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindAllWithExpression_WithoutResults(sourceInfo);
+    }
+    #endregion
+
+    #region FindSingle test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindSingle_WithMatchingSpecification_OnlyMatchingRecordIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindSingleWithMatchingSpecification_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindSingle_WithNotMatchingSpecification_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindSingle_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindSingleWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindSingle_WithMatchingExpression_OnlyMatchingRecordIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithMatchingExpression_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindSingle_WithNotMatchingExpression_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindSingle_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindSingleWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
@@ -212,25 +278,104 @@ namespace Enkoni.Framework.Entities.Tests {
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
       this.FindSingleWithCloning(sourceInfo);
     }
+    #endregion
 
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
+    #region FindFirst test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
-    public void HttpSessionMemoryRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
-      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
-      PrepareInputTests(store);
-
-      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
-      this.FindAllWithoutCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
-    [TestMethod]
-    public void HttpSessionMemoryRepository_FindAllWithCloning_CopiesAreCreated() {
+    public void HttpSessionMemoryRepository_FindFirst_WithMatchingSpecification_FirstMatchingRecordIsReturned() {
       MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
       PrepareInputTests(store);
 
       DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
-      this.FindAllWithCloning(sourceInfo);
+      this.FindFirstWithMatchingSpecification_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirst_WithNotMatchingSpecification_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindFirstWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirst_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindFirstWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with an empty <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindFirstWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, false);
+      this.FindFirstWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirstWithCloning_CopiesAreCreated() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindFirstWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirst_WithMatchingExpression_FirstMatchingRecordIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindFirstWithMatchingExpression_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirst_WithNotMatchingExpression_NoRecordIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindFirstWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    public void HttpSessionMemoryRepository_FindFirst_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      MemoryStore<TestDummy> store = new HttpSessionMemoryStore<TestDummy>();
+      PrepareInputTests(store);
+
+      DataSourceInfo sourceInfo = new MemorySourceInfo<TestDummy>(store, true);
+      this.FindFirstWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
     }
     #endregion
 

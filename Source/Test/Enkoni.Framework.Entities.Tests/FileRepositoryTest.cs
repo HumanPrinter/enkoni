@@ -11,7 +11,7 @@ namespace Enkoni.Framework.Entities.Tests {
   /// sufficient to test this class thoroughly and just a more global approach for the implementing classes (unless they contain non-standard 
   /// overloads. These tests use the <see cref="CsvFileRepository{TEntity}"/> for the concrete implementation since it relies more on custom code then the 
   /// <see cref="XmlFileRepository{TEntity}"/> which can only result in a more ridgid test of that same custom code..</summary>
-  public abstract class FileRepositoryTest : RepositoryTest {
+  public abstract class FileRepositoryTest : RepositoryTestBase {
     #region Read test-cases
     /// <summary>Tests the functionality of the <see cref="FileRepository{T}.ReadAllRecordsFromFile(FileInfo,DataSourceInfo)"/> method.</summary>
     /// <param name="sourceInfo">The source info that is used to create the repository.</param>

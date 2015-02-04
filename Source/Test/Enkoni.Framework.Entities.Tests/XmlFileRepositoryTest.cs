@@ -9,211 +9,345 @@ namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Tests the functionality of the <see cref="XmlFileRepository{TEntity}"/> class.</summary>
   [TestClass]
   public class XmlFileRepositoryTest : FileRepositoryTest {
-    #region Retrieve test-cases
+    #region FindAll test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve01")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindAll01")]
     public void XmlFileRepository_FindAll_NoSpecification_AllAvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve01\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindAll(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll01\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithoutSpecification_AllRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\Retrieve02")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\FindAll02")]
     public void XmlFileRepository_FindAll_NoSpecificationEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve02\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindAll_EmptySource(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll02\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithoutSpecificationAndWithEmptySource_NoRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve03")]
-    public void XmlFileRepository_FindAll_WithSpecification_OnlyMatchingRecordsAreReturned() {
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindAll03")]
+    public void XmlFileRepository_FindAll_WithMatchingSpecification_OnlyMatchingRecordsAreReturned() {
+      /* Create the repository */
+        DataSourceInfo sourceInfo =
+          new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll03\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithSpecification_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindAll04")]
+    public void XmlFileRepository_FindAll_WithNotMatchingSpecification_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve03\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindAllWithExpression(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll04\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithSpecification_WithoutResults(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method based on an empty file.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\Retrieve04")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\FindAll05")]
     public void XmlFileRepository_FindAll_WithExpressionEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve04\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindAllWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve05")]
-    public void XmlFileRepository_FindSingle_WithExpression_OnlyMatchingRecordIsReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve05\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindSingleWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method based on an empty file.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\Retrieve06")]
-    public void XmlFileRepository_FindSingle_WithExpressionEmptySource_NoRecordsAreReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve06\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindSingleWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve07")]
-    public void XmlFileRepository_FindFirst_WithExpression_FirstMatchingRecordIsReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve07\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindFirstWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method based on an empty file.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\Retrieve08")]
-    public void XmlFileRepository_FindFirst_WithExpressionEmptySource_NoRecordsAreReturned() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve08\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindFirstWithExpression_EmptySource(sourceInfo);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll05\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindAllWithSpecification_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\Retrieve09")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\FindAll06")]
     public void XmlFileRepository_FindAll_SpecificationWithMaxResultsLessThanAvailable_MaxResultsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve09\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll06\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
       this.RetrieveLessThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\Retrieve10")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\FindAll07")]
     public void XmlFileRepository_FindAll_SpecificationWithMaxResultsExactlyAvailable_AvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve10\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll07\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
       this.RetrieveExactlyAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
     /// number of results.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\Retrieve11")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\FindAll08")]
     public void XmlFileRepository_FindAll_SpecificationWithMaxResultsExactlyAvailableAndEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve11\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll08\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
       this.RetrieveExactlyAvailable_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using a maximum number of results.
     /// </summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\Retrieve12")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\FindAll09")]
     public void XmlFileRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailable_AvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve12\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll09\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
       this.RetrieveMoreThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using an empty file and a maximum 
     /// number of results.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\Retrieve13")]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\FindAll10")]
     public void XmlFileRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailableEmptySource_NoRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve13\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll10\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, true);
       this.RetrieveMoreThenAvailable_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using type for which a custom mapping is 
     /// available.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\Retrieve14")]
+    [DeploymentItem(@"TestData\ReposTest_SortingFile.xml", @"XmlFileRepositoryTest\FindAll11")]
     public void XmlFileRepository_FindAll_CustomMappedType_AvailableRecordsAreReturned() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve14\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll11\ReposTest_SortingFile.xml"), true, 3000, Encoding.UTF8, false);
       this.RetrieveTypesWithCustomMapping(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve15")]
-    public void XmlFileRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve15\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindFirstWithoutCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve16")]
-    public void XmlFileRepository_FindFirstWithCloning_CopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve16\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
-      this.FindFirstWithCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve17")]
-    public void XmlFileRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve17\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
-      this.FindSingleWithoutCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve18")]
-    public void XmlFileRepository_FindSingleWithCloning_CopiesAreCreated() {
-      /* Create the repository */
-      DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve18\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
-      this.FindSingleWithCloning(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve19")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindAll12")]
     public void XmlFileRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve19\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll12\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
       this.FindAllWithoutCloning(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\Retrieve20")]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindAll13")]
     public void XmlFileRepository_FindAllWithCloning_CopiesAreCreated() {
       /* Create the repository */
       DataSourceInfo sourceInfo =
-        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\Retrieve20\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll13\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
       this.FindAllWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindAll14")]
+    public void XmlFileRepository_FindAll_WithMatchingExpression_OnlyMatchingRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll14\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.FindAllWithExpression_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindAll15")]
+    public void XmlFileRepository_FindAll_WithNotMatchingExpression_NoRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindAll15\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.FindAllWithExpression_WithoutResults(sourceInfo);
+    }
+    #endregion
+
+    #region FindSingle test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle01")]
+    public void XmlFileRepository_FindSingle_WithExpression_OnlyMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle01\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithMatchingSpecification_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle02")]
+    public void XmlFileRepository_FindSingle_WithNotMatchingSpecification_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle02\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle03")]
+    public void XmlFileRepository_FindSingle_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle03\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method based on an empty file.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\FindSingle04")]
+    public void XmlFileRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle04\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle05")]
+    public void XmlFileRepository_FindSingle_WithMatchingExpression_OnlyMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle05\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithMatchingExpression_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle06")]
+    public void XmlFileRepository_FindSingle_WithNotMatchingExpression_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle06\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle07")]
+    public void XmlFileRepository_FindSingle_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle07\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle08")]
+    public void XmlFileRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle08\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindSingleWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindSingle09")]
+    public void XmlFileRepository_FindSingleWithCloning_CopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindSingle09\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.FindSingleWithCloning(sourceInfo);
+    }
+    #endregion
+
+    #region FindFirst test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst01")]
+    public void XmlFileRepository_FindFirst_WithMatchingSpecification_FirstMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst01\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithMatchingSpecification_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst02")]
+    public void XmlFileRepository_FindFirst_WithNotMatchingSpecification_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst02\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst03")]
+    public void XmlFileRepository_FindFirst_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst03\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method based on an empty file.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_EmptyInputFile.xml", @"XmlFileRepositoryTest\FindFirst04")]
+    public void XmlFileRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst04\ReposTest_EmptyInputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst05")]
+    public void XmlFileRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst05\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst06")]
+    public void XmlFileRepository_FindFirstWithCloning_CopiesAreCreated() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst06\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, true);
+      this.FindFirstWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst07")]
+    public void XmlFileRepository_FindFirst_WithMatchingExpression_FirstMatchingRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst07\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithMatchingExpression_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst08")]
+    public void XmlFileRepository_FindFirst_WithNotMatchingExpression_NoRecordIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst08\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method .</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\ReposTest_InputFile.xml", @"XmlFileRepositoryTest\FindFirst09")]
+    public void XmlFileRepository_FindFirst_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      /* Create the repository */
+      DataSourceInfo sourceInfo =
+        new FileSourceInfo(new FileInfo(@"XmlFileRepositoryTest\FindFirst09\ReposTest_InputFile.xml"), true, 3000, Encoding.UTF8, false);
+      this.FindFirstWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
     }
     #endregion
 

@@ -16,181 +16,300 @@ namespace Enkoni.Framework.Entities.Tests {
   [DeploymentItem("System.Data.SqlServerCe.dll")]
   [DeploymentItem("EntityFramework.SqlServer.dll")]
   [DeploymentItem("EntityFramework.SqlServerCompact.dll")]
-  public class DatabaseRepositoryTest : RepositoryTest {
-    #region Retrieve test-cases
+  public class DatabaseRepositoryTest : RepositoryTestBase {
+    #region FindAll test-cases
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve01")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll01")]
     public void DatabaseRepository_FindAll_NoSpecification_AllAvailableRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve01\", TestCategory.Retrieve, false);
-      this.FindAll(sourceInfo);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll01\", TestCategory.Retrieve, false);
+      this.FindAllWithoutSpecification_AllRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method using the <see cref="DatabaseRepository{TEntity}"/> 
     /// implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve02")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll02")]
     public void DatabaseRepository_FindAll_NoSpecificationEmptySource_NoRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve02\", TestCategory.RetrieveEmpty, false);
-      this.FindAll_EmptySource(sourceInfo);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll02\", TestCategory.RetrieveEmpty, false);
+      this.FindAllWithoutSpecificationAndWithEmptySource_NoRecordsAreReturned(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve03")]
-    public void DatabaseRepository_FindAll_WithSpecification_OnlyMatchingRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve03\", TestCategory.Retrieve, false);
-      this.FindAllWithExpression(sourceInfo);
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll03")]
+    public void DatabaseRepository_FindAll_WithMatchingSpecification_OnlyMatchingRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll03\", TestCategory.Retrieve, false);
+      this.FindAllWithSpecification_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
+    /// <see cref="MemoryRepository{TEntity}"/> implementation in combination with a <see cref="HttpSessionMemoryStore{T}"/>.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll04")]
+    public void DatabaseRepository_FindAll_WithNotMatchingSpecification_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll04\", TestCategory.Retrieve, false);
+      this.FindAllWithSpecification_WithoutResults(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve04")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll05")]
     public void DatabaseRepository_FindAll_WithSpecificationEmptySource_NoRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve04\", TestCategory.RetrieveEmpty, false);
-      this.FindAllWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve05")]
-    public void DatabaseRepository_FindSingle_WithSpecification_OnlyMatchingRecordIsReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve05\", TestCategory.Retrieve, false);
-      this.FindSingleWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve06")]
-    public void DatabaseRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve06\", TestCategory.RetrieveEmpty, false);
-      this.FindSingleWithExpression_EmptySource(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve07")]
-    public void DatabaseRepository_FindFirst_WithSpecification_FirstMatchingRecordIsReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve07\", TestCategory.Retrieve, false);
-      this.FindFirstWithExpression(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
-    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve08")]
-    public void DatabaseRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve08\", TestCategory.RetrieveEmpty, false);
-      this.FindFirstWithExpression_EmptySource(sourceInfo);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll05\", TestCategory.RetrieveEmpty, false);
+      this.FindAllWithSpecification_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve09")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll06")]
     public void DatabaseRepository_FindAll_SpecificationWithMaxResultsLessThanAvailable_MaxResultsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve09\", TestCategory.Sorting, false);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll06\", TestCategory.Sorting, false);
       this.RetrieveLessThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve10")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll07")]
     public void DatabaseRepository_FindAll_SpecificationWithMaxResultsExactlyAvailable_AvailableRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve10\", TestCategory.Sorting, false);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll07\", TestCategory.Sorting, false);
       this.RetrieveExactlyAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve11")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll08")]
     public void DatabaseRepository_FindAll_SpecificationWithMaxResultsExactlyAvailableEmptySource_NoRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve11\", TestCategory.RetrieveEmpty, false);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll08\", TestCategory.RetrieveEmpty, false);
       this.RetrieveExactlyAvailable_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the 
     /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve12")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll09")]
     public void DatabaseRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailable_AvailableRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve12\", TestCategory.Sorting, false);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll09\", TestCategory.Sorting, false);
       this.RetrieveMoreThenAvailable(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using the
     /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve13")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll10")]
     public void DatabaseRepository_FindAll_SpecificationWithMaxResultsMoreThenAvailableEmptySource_NoRecordsAreReturned() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve13\", TestCategory.RetrieveEmpty, false);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll10\", TestCategory.RetrieveEmpty, false);
       this.RetrieveMoreThenAvailable_EmptySource(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method using type for which a custom mapping is 
     /// available.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve14")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll11")]
     public void DatabaseRepository_FindAll_CustomMappedType_AvailableRecordsAreReturned() {
       /* Create the repository */
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve14\", TestCategory.Sorting, false);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll11\", TestCategory.Sorting, false);
       this.RetrieveTypesWithCustomMapping(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve15")]
-    public void DatabaseRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve15\", TestCategory.Retrieve, false);
-      this.FindFirstWithoutCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve16")]
-    public void HttpSessionMemoryRepository_FindFirstWithCloning_CopiesAreCreated() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve16\", TestCategory.Retrieve, true);
-      this.FindFirstWithCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve17")]
-    public void HttpSessionMemoryRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve17\", TestCategory.Retrieve, false);
-      this.FindSingleWithoutCloning(sourceInfo);
-    }
-
-    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
-    [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve18")]
-    public void HttpSessionMemoryRepository_FindSingleWithCloning_CopiesAreCreated() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve18\", TestCategory.Retrieve, true);
-      this.FindSingleWithCloning(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method without cloning.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve19")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll12")]
     public void HttpSessionMemoryRepository_FindAllWithoutCloning_NoCopiesAreCreated() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve19\", TestCategory.Retrieve, false);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll12\", TestCategory.Retrieve, false);
       this.FindAllWithoutCloning(sourceInfo);
     }
 
     /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(ISpecification{T})"/> method with cloning.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\Retrieve20")]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll13")]
     public void HttpSessionMemoryRepository_FindAllWithCloning_CopiesAreCreated() {
-      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\Retrieve20\", TestCategory.Retrieve, true);
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll13\", TestCategory.Retrieve, true);
       this.FindAllWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll14")]
+    public void DatabaseRepository_FindAll_WithMatchingExpression_OnlyMatchingRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll14\", TestCategory.Retrieve, true);
+      this.FindAllWithExpression_WithResults(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll()"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindAll15")]
+    public void DatabaseRepository_FindAll_WithNotMatchingExpression_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindAll15\", TestCategory.Retrieve, true);
+      this.FindAllWithExpression_WithoutResults(sourceInfo);
+    }
+    #endregion
+
+    #region FindSingle test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle01")]
+    public void DatabaseRepository_FindSingle_WithMatchingSpecification_OnlyMatchingRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle01\", TestCategory.Retrieve, false);
+      this.FindSingleWithMatchingSpecification_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle02")]
+    public void DatabaseRepository_FindSingle_WithNotMatchingSpecification_NoRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle02\", TestCategory.Retrieve, false);
+      this.FindSingleWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle03")]
+    public void DatabaseRepository_FindSingle_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle03\", TestCategory.Retrieve, false);
+      this.FindSingleWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle04")]
+    public void DatabaseRepository_FindSingle_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle04\", TestCategory.RetrieveEmpty, false);
+      this.FindSingleWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle05")]
+    public void DatabaseRepository_FindSingle_WithMatchingExpression_OnlyMatchingRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle05\", TestCategory.Retrieve, false);
+      this.FindSingleWithMatchingExpression_OnlyMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle06")]
+    public void DatabaseRepository_FindSingle_WithNotMatchingExpression_NoRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle06\", TestCategory.Retrieve, false);
+      this.FindSingleWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle07")]
+    public void DatabaseRepository_FindSingle_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle07\", TestCategory.Retrieve, false);
+      this.FindSingleWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle08")]
+    public void HttpSessionMemoryRepository_FindSingleWithoutCloning_NoCopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle08\", TestCategory.Retrieve, false);
+      this.FindSingleWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindSingle09")]
+    public void HttpSessionMemoryRepository_FindSingleWithCloning_CopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindSingle09\", TestCategory.Retrieve, true);
+      this.FindSingleWithCloning(sourceInfo);
+    }
+    #endregion
+
+    #region FindFirst test-cases
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst01")]
+    public void DatabaseRepository_FindFirst_WithMatchingSpecification_FirstMatchingRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst01\", TestCategory.Retrieve, false);
+      this.FindFirstWithMatchingSpecification_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst02")]
+    public void DatabaseRepository_FindFirst_WithNotMatchingSpecification_NoRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst02\", TestCategory.Retrieve, false);
+      this.FindFirstWithNotMatchingSpecification_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst03")]
+    public void DatabaseRepository_FindFirst_WithNotMatchingSpecificationAndDefault_DefaultIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst03\", TestCategory.Retrieve, false);
+      this.FindFirstWithNotMatchingSpecificationAndDefault_DefaultIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation based on an empty database.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst04")]
+    public void DatabaseRepository_FindFirst_WithSpecificationEmptySource_NoRecordsAreReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst04\", TestCategory.RetrieveEmpty, false);
+      this.FindFirstWithSpecification_EmptySource(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method without cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst05")]
+    public void DatabaseRepository_FindFirstWithoutCloning_NoCopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst05\", TestCategory.Retrieve, false);
+      this.FindFirstWithoutCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method with cloning.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst06")]
+    public void HttpSessionMemoryRepository_FindFirstWithCloning_CopiesAreCreated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst06\", TestCategory.Retrieve, true);
+      this.FindFirstWithCloning(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst07")]
+    public void DatabaseRepository_FindFirst_WithMatchingExpression_FirstMatchingRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst07\", TestCategory.Retrieve, false);
+      this.FindFirstWithMatchingExpression_FirstMatchingRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst08")]
+    public void DatabaseRepository_FindFirst_WithNotMatchingExpression_NoRecordIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst08\", TestCategory.Retrieve, false);
+      this.FindFirstWithNotMatchingExpression_NoRecordIsReturned(sourceInfo);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method using the 
+    /// <see cref="DatabaseRepository{TEntity}"/> implementation.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\FindFirst09")]
+    public void DatabaseRepository_FindFirst_WithNotMatchingExpressionAndDefault_DefaultIsReturned() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\FindFirst09\", TestCategory.Retrieve, false);
+      this.FindFirstWithNotMatchingExpressionAndDefault_DefaultIsReturned(sourceInfo);
     }
     #endregion
 
