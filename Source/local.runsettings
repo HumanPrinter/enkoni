@@ -25,6 +25,7 @@
               </Include>
               <Exclude>
                 <ModulePath>.*Tests.*</ModulePath>
+              <ModulePath>.*Microsoft.*</ModulePath>
               </Exclude>
             </ModulePaths>
           </CodeCoverage>
