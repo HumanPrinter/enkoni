@@ -385,7 +385,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds all the available entities that match the specification.</summary>
     /// <param name="expression">The expression to which entities must match.</param>
     /// <returns>The entities that match the specification.</returns>
-    /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
     /// <remarks>This method is added for convenience. It does not support the specification of sort rules or maximum results. When that level
     /// of control is required, use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public IEnumerable<T> FindAll(Expression<Func<T, bool>> expression) {
@@ -396,7 +396,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression to which entities must match.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specification.</returns>
-    /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
     /// <remarks>This method is added for convenience. It does not support the specification of sort rules or maximum results. When that level
     /// of control is required, use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public IEnumerable<T> FindAll(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo) {
@@ -439,7 +439,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
     public T FindSingle(Expression<Func<T, bool>> expression) {
-      return FindSingle(expression, (DataSourceInfo)null);
+      return this.FindSingle(expression, (DataSourceInfo)null);
     }
 
     /// <summary>Finds a single entity that matches the expression.</summary>
