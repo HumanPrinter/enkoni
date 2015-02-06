@@ -26,25 +26,42 @@ namespace Enkoni.Framework.Timers {
 
     /// <summary>Indicates if the alarm must go off each time the alarm time has been reached, or just once.</summary>
     private bool repeat;
+
+    /// <summary>The object that provides the current date and time.</summary>
+    private DateTimeProvider dateTimeProvider;
     #endregion
 
     #region Constructors
     /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
     public AlarmClock()
-      : this(null) {
+      : this((object)null) {
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
+    /// <param name="dateTimeProvider">The provider that is used to retrieve the current date and time.</param>
+    public AlarmClock(DateTimeProvider dateTimeProvider)
+      : this((object)null, dateTimeProvider) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
     /// <param name="state">An object containing information to be used by the callback method, or <see langword="null"/>.</param>
-    public AlarmClock(object state) {
+    public AlarmClock(object state) 
+        : this(state, new DateTimeProvider()) {
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
+    /// <param name="state">An object containing information to be used by the callback method, or <see langword="null"/>.</param>
+    /// <param name="dateTimeProvider">The provider that is used to retrieve the current date and time.</param>
+    public AlarmClock(object state, DateTimeProvider dateTimeProvider) {
       this.timer = new Timer(this.SettOffAlarm, state, Timeout.Infinite, Timeout.Infinite);
       SystemEvents.TimeChanged += this.AdjustTimer;
+      this.dateTimeProvider = dateTimeProvider ?? new DateTimeProvider();
     }
 
     /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
     /// <param name="alarmTime">The time of day at which the alarm must go off. The time must be in the local time zone.</param>
     public AlarmClock(TimeSpan alarmTime)
-      : this(alarmTime, null) {
+      : this(alarmTime, (object)null) {
     }
 
     /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
@@ -52,6 +69,15 @@ namespace Enkoni.Framework.Timers {
     /// <param name="state">An object containing information to be used by the callback method, or <see langword="null"/>.</param>
     public AlarmClock(TimeSpan alarmTime, object state)
       : this(state) {
+      this.alarmTime = alarmTime;
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
+    /// <param name="alarmTime">The time of day at which the alarm must go off. The time must be in the local time zone.</param>
+    /// <param name="state">An object containing information to be used by the callback method, or <see langword="null"/>.</param>
+    /// <param name="dateTimeProvider">The provider that is used to retrieve the current date and time.</param>
+    public AlarmClock(TimeSpan alarmTime, object state, DateTimeProvider dateTimeProvider)
+      : this(state, dateTimeProvider) {
       this.alarmTime = alarmTime;
     }
     #endregion
@@ -107,14 +133,14 @@ namespace Enkoni.Framework.Timers {
       /* Check if the alarm time will happen today of tomorrow for the first time. */
       int period = this.Repeat ? NumberOfMillisecondsPerDay : Timeout.Infinite;
       DateTime alarmDate;
-      if(this.AlarmTime > DateTime.Now.TimeOfDay) {
-        alarmDate = DateTime.Today.AddTicks(this.AlarmTime.Ticks);
+      if(this.AlarmTime > this.dateTimeProvider.Now.TimeOfDay) {
+        alarmDate = this.dateTimeProvider.Today.AddTicks(this.AlarmTime.Ticks);
       }
       else {
-        alarmDate = DateTime.Today.AddDays(1).AddTicks(this.AlarmTime.Ticks);
+        alarmDate = this.dateTimeProvider.Today.AddDays(1).AddTicks(this.AlarmTime.Ticks);
       }
 
-      this.timer.Change((int)(alarmDate - DateTime.Now).TotalMilliseconds, period);
+      this.timer.Change((int)(alarmDate - this.dateTimeProvider.Now).TotalMilliseconds, period);
       this.isActive = true;
     }
 
