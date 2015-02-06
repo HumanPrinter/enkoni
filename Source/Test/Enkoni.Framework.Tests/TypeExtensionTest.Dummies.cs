@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="TypeExtensionTest.Dummies.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains dummy types that can be used by the test classes..
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-namespace Enkoni.Framework.Tests {
+﻿namespace Enkoni.Framework.Tests {
   #region Dummy interfaces
   /// <summary>Defines dummy interface <see cref="IInterfaceA"/>.</summary>
   public interface IInterfaceA {
@@ -19,6 +10,10 @@ namespace Enkoni.Framework.Tests {
   public interface IInterfaceC {
     /// <summary>A dummy method.</summary>
     void SomeMethodByInterfaceC();
+  }
+
+  /// <summary>Defines dummy interface <see cref="IInterfaceX"/>.</summary>
+  public interface IInterfaceX : IInterfaceA {
   }
   #endregion
 
@@ -50,6 +45,22 @@ namespace Enkoni.Framework.Tests {
     /// <summary>A dummy method.</summary>
     public override void SomeMethodByClassA() {
     }
+  }
+
+  /// <summary>Defines dummy class <see cref="ClassE{T}"/>.</summary>
+  public class ClassE<T> : ClassB {
+    /// <summary>A dummy method.</summary>
+    /// <param name="input">A dummy parameter.</param>
+    public void SomeGenericMethod(T input) {
+    }
+  }
+
+  /// <summary>Defines dummy class <see cref="ClassF"/>.</summary>
+  public class ClassF : ClassE<int> {
+  }
+
+  /// <summary>Defines dummy class <see cref="ClassX"/>.</summary>
+  public class ClassX {
   }
   #endregion
 }
