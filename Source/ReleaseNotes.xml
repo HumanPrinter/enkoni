@@ -29,6 +29,12 @@
                 and prevents them from being stored.]]>
               </comment>
             </update>
+            <update date="2015-02-05" type="change">
+              <summary><![CDATA[Added overloads for the find-methods that take an expression directly.]]></summary>
+              <comment>
+                <![CDATA[Added overloads for the find-methods that take an expression directly in order to make it even easier to use the repositories.]]>
+              </comment>
+            </update>
           </updates>
         </project>
         <project name="Enkoni.Framework.Entities.File" version="3.2.0">
@@ -48,6 +54,17 @@
               <summary><![CDATA[The Logger can now directly be initialised.]]></summary>
               <comment>
                 <![CDATA[An instance of the Logger-class can now be directly initialised.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.ServiceModel" version="2.3.0">
+          <updates>
+            <update date="2015-02-06" type="change">
+              <summary><![CDATA[Removed the dependency with the Enkoni.Framework.Logging project.]]></summary>
+              <comment>
+                <![CDATA[The dependency with the Enkoni.Framework.Logging project (and thereby the dependency with the Enterprise Library Logging Application Block)
+                has been removed. By default, logging is now done through the .NET tracing functionality.]]>
               </comment>
             </update>
           </updates>
