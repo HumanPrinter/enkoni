@@ -14,7 +14,6 @@
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Enkoni" version="2.4.0" />
-      <dependency id="Enkoni.Logging" version="1.2.0.6" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

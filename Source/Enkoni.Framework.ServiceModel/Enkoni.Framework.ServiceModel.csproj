@@ -80,10 +80,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj">
-      <Project>{693634C2-8378-4716-B7C2-07903422C06F}</Project>
-      <Name>Enkoni.Framework.Logging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Enkoni.Framework\Enkoni.Framework.csproj">
       <Project>{849ba8ba-a061-4278-85bd-90910680462e}</Project>
       <Name>Enkoni.Framework</Name>

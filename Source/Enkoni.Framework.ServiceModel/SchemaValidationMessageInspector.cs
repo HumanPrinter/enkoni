@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -6,7 +8,6 @@ using System.ServiceModel.Dispatcher;
 using System.Xml;
 using System.Xml.Schema;
 
-using Enkoni.Framework.Logging;
 using Enkoni.Framework.ServiceModel.Properties;
 
 namespace Enkoni.Framework.ServiceModel {
@@ -85,8 +86,9 @@ namespace Enkoni.Framework.ServiceModel {
     /// <param name="instanceContext">The current service instance.</param>
     /// <param name="validationException">The exception that was thrown by the validation logic.</param>
     protected virtual void OnValidationError(Message receivedMessage, IClientChannel channel, InstanceContext instanceContext, XmlSchemaValidationException validationException) {
-      Logger logger = LogManager.CreateLogger();
-      logger.Warn(LogMessages.WarningReceivedMessageIsInvalid, "enkoni.framework", validationException);
+      TraceSource traceSource = new TraceSource("enkoni.framework.servicemodel");
+      traceSource.TraceEvent(TraceEventType.Warning, 1200, LogMessages.WarningReceivedMessageIsInvalid + Environment.NewLine + validationException);
+      traceSource.Flush();
     }
 
     /// <summary>When overriden executes some logic after the validation was completed succesfully.</summary>
