@@ -18,6 +18,14 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The single element of the input sequence that satisfies the condition, or 
     /// <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T SingleOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
+      if(predicate == null) {
+        throw new ArgumentNullException("predicate");
+      }
+
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).Single();
       return result;
     }
@@ -31,6 +39,14 @@ namespace Enkoni.Framework.Linq {
     /// <returns><paramref name="defaultValue"/> if the index is outside the bounds of the source sequence; otherwise, the element at the specified 
     /// position in the source sequence.</returns>
     public static T ElementAtOrDefault<T>(this IEnumerable<T> source, int index, T defaultValue) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
+      if(index < 0) {
+        throw new ArgumentOutOfRangeException("index", index, "The index must be a positive integer");
+      }
+
       T result = source.ElementAtOrDefault(index);
 
       if(object.Equals(result, default(T))) {
@@ -48,6 +64,10 @@ namespace Enkoni.Framework.Linq {
     /// <param name="defaultValue">The default value that must be used.</param>
     /// <returns>The first element of the input sequence, or <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T FirstOrDefault<T>(this IEnumerable<T> source, T defaultValue) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
       T result = source.DefaultIfEmpty(defaultValue).First();
       return result;
     }
@@ -61,6 +81,14 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The first element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is 
     /// found.</returns>
     public static T FirstOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
+      if(predicate == null) {
+        throw new ArgumentNullException("predicate");
+      }
+
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).First();
       return result;
     }
@@ -72,6 +100,10 @@ namespace Enkoni.Framework.Linq {
     /// <param name="defaultValue">The default value that must be used.</param>
     /// <returns>The last element of the input sequence, or <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T LastOrDefault<T>(this IEnumerable<T> source, T defaultValue) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
       T result = source.DefaultIfEmpty(defaultValue).Last();
       return result;
     }
@@ -85,6 +117,14 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The last element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is found.
     /// </returns>
     public static T LastOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
+      if(source == null) {
+        throw new ArgumentNullException("source");
+      }
+
+      if(predicate == null) {
+        throw new ArgumentNullException("predicate");
+      }
+
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).Last();
       return result;
     }
