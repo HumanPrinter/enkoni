@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the public API of a class that represents the sub domain of the domain model.</summary>
@@ -37,6 +38,19 @@ namespace Enkoni.Framework.Entities {
       return this.FindEntitiesCore(searchSpecification);
     }
 
+    /// <summary>Finds all the entities that match the specified expression.</summary>
+    /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
+    /// <returns>The found entities or an empty list if there were no results.</returns>
+    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
+    public IList<T> FindEntities(Expression<Func<T, bool>> searchExpression) {
+      if(searchExpression == null) {
+        throw new ArgumentNullException("searchExpression");
+      }
+
+      return this.FindEntitiesCore(Specification.Lambda(searchExpression));
+    }
+
     /// <summary>Finds one entities that matches the specified specification.</summary>
     /// <param name="searchSpecification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
@@ -46,6 +60,19 @@ namespace Enkoni.Framework.Entities {
       }
 
       return this.FindEntityCore(searchSpecification);
+    }
+
+    /// <summary>Finds one entities that matches the specified expression.</summary>
+    /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
+    /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
+    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
+    public T FindEntity(Expression<Func<T, bool>> searchExpression) {
+      if(searchExpression == null) {
+        throw new ArgumentNullException("searchExpression");
+      }
+
+      return this.FindEntityCore(Specification.Lambda(searchExpression));
     }
 
     /// <summary>Finds a single entity with the specified entity-ID.</summary>
