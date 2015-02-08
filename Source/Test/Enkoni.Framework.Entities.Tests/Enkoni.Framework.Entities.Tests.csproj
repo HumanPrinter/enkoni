@@ -54,6 +54,7 @@
     <Reference Include="EntityFramework.SqlServerCompact">
       <HintPath>..\..\packages\EntityFramework.SqlServerCompact.6.1.0\lib\net40\EntityFramework.SqlServerCompact.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Rhino.Mocks">
       <HintPath>..\..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
@@ -80,6 +81,7 @@
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="BugScenarios.cs" />
     <Compile Include="DatabaseRepositoryTestDbConfiguration.cs" />
+    <Compile Include="SubDomainModelTest.cs" />
     <Compile Include="RepositoryTest.cs" />
     <Compile Include="RepositoryTestBase.cs" />
     <Compile Include="FileRepositoryTest.cs" />
