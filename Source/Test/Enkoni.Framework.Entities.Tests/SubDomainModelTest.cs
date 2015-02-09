@@ -280,10 +280,15 @@ namespace Enkoni.Framework.Entities.Tests {
         return null;
       }
 
+      /// <summary>Test implementation.</summary>
+      /// <param name="entity">The entity.</param>
+      /// <returns>No real value.</returns>
       protected override TestDummy UpdateEntityCore(TestDummy entity) {
  	      throw new System.NotImplementedException();
       }
 
+      /// <summary>Test implementation.</summary>
+      /// <param name="entity">The entity.</param>
       protected override void DeleteEntityCore(TestDummy entity) {
  	      throw new System.NotImplementedException();
       }

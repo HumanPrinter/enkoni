@@ -7,10 +7,8 @@
           <updates>
             <update date="2015-02-09" type="addition">
               <summary><![CDATA[Added the class PropertyChangedEventArgs<T>.]]></summary>
-              <comment>
-                <![CDATA[Added a new class PropertyChangedEventArgs<T> which extends the default PropertyChangedEventArgs-class and can be used to pass the old and 
-                new value of the changed property with the event.]]>
-              </comment>
+              <comment><![CDATA[Added a new class PropertyChangedEventArgs<T> which extends the default PropertyChangedEventArgs-class and can be used to pass the old and 
+               new value of the changed property with the event.]]></comment>
             </update>
           </updates>
         </project>
@@ -18,22 +16,16 @@
           <updates>
             <update date="2015-02-01" type="addition">
               <summary><![CDATA[Added the base class Entity<TEntity> to provide a base implementation for entities.]]></summary>
-              <comment>
-                <![CDATA[Added a new base class Entity<TEntity> which implements IEntity<TEntity> to provide a default implementation for the CopyFrom-method.]]>
-              </comment>
+              <comment><![CDATA[Added a new base class Entity<TEntity> which implements IEntity<TEntity> to provide a default implementation for the CopyFrom-method.]]></comment>
             </update>
             <update date="2015-02-01" type="change">
               <summary><![CDATA[Improved the behavior of the MemoryRepository class.]]></summary>
-              <comment>
-                <![CDATA[Improved the behavior of the MemoryRepository class. It now better detects any changes that were made in entities from outside the repository 
-                and prevents them from being stored.]]>
-              </comment>
+              <comment><![CDATA[Improved the behavior of the MemoryRepository class. It now better detects any changes that were made in entities from outside the repository 
+               and prevents them from being stored.]]></comment>
             </update>
             <update date="2015-02-07" type="change">
               <summary><![CDATA[Added overloads for the find-methods that take an expression directly.]]></summary>
-              <comment>
-                <![CDATA[Added overloads for the find-methods that take an expression directly in order to make it even easier to use the repositories.]]>
-              </comment>
+              <comment><![CDATA[Added overloads for the find-methods that take an expression directly in order to make it even easier to use the repositories.]]></comment>
             </update>
           </updates>
         </project>
@@ -41,10 +33,8 @@
           <updates>
             <update date="2015-02-01" type="change">
               <summary><![CDATA[Improved the behavior of the DatabaseRepository class.]]></summary>
-              <comment>
-                <![CDATA[Improved the behavior of the DatabaseRepository class. It now better detects any changes that were made in entities from outside the repository 
-                and prevents them from being stored.]]>
-              </comment>
+              <comment><![CDATA[Improved the behavior of the DatabaseRepository class. It now better detects any changes that were made in entities from outside the repository 
+               and prevents them from being stored.]]></comment>
             </update>
           </updates>
         </project>
@@ -52,10 +42,8 @@
           <updates>
             <update date="2015-02-01" type="change">
               <summary><![CDATA[Improved the behavior of the FileRepository class.]]></summary>
-              <comment>
-                <![CDATA[Improved the behavior of the FileRepository class. It now better detects any changes that were made in entities from outside the repository 
-                and prevents them from being stored.]]>
-              </comment>
+              <comment><![CDATA[Improved the behavior of the FileRepository class. It now better detects any changes that were made in entities from outside the repository 
+               and prevents them from being stored.]]></comment>
             </update>
           </updates>
         </project>
@@ -63,9 +51,7 @@
           <updates>
             <update date="2015-02-03" type="change">
               <summary><![CDATA[The Logger can now directly be initialised.]]></summary>
-              <comment>
-                <![CDATA[An instance of the Logger-class can now be directly initialised.]]>
-              </comment>
+              <comment><![CDATA[An instance of the Logger-class can now be directly initialised.]]></comment>
             </update>
           </updates>
         </project>
@@ -73,10 +59,8 @@
           <updates>
             <update date="2015-02-06" type="change">
               <summary><![CDATA[Removed the dependency with the Enkoni.Framework.Logging project.]]></summary>
-              <comment>
-                <![CDATA[The dependency with the Enkoni.Framework.Logging project (and thereby the dependency with the Enterprise Library Logging Application Block)
-                has been removed. By default, logging is now done through the .NET tracing functionality.]]>
-              </comment>
+              <comment><![CDATA[The dependency with the Enkoni.Framework.Logging project (and thereby the dependency with the Enterprise Library Logging Application Block)
+               has been removed. By default, logging is now done through the .NET tracing functionality.]]></comment>
             </update>
           </updates>
         </project>
@@ -88,27 +72,20 @@
           <updates>
             <update date="2014-10-16" type="addition">
               <summary><![CDATA[Added a new Between extension method]]></summary>
-              <comment>
-                <![CDATA[Added a new Between extension method that can be used to determine if a DateTime value is between to other DateTime values.]]>
-              </comment>
+              <comment><![CDATA[Added a new Between extension method that can be used to determine if a DateTime value is between to other DateTime values.]]></comment>
             </update>
             <update date="2014-10-16" type="addition">
               <summary><![CDATA[Added a new Truncate extension method]]></summary>
-              <comment>
-                <![CDATA[Added a new Truncate extension method that can be used to truncate a string to a maximum length even if the string is shorter.]]>
-              </comment>
+              <comment><![CDATA[Added a new Truncate extension method that can be used to truncate a string to a maximum length even if the string is shorter.]]></comment>
             </update>
             <update date="2014-12-27" type="addition">
               <summary><![CDATA[Added a new XmlResourceResolver class]]></summary>
-              <comment>
-                <![CDATA[Added a new XmlResourceResolver class that can be used to resolve xml schemas from embedded resources.]]>
-              </comment>
+              <comment><![CDATA[Added a new XmlResourceResolver class that can be used to resolve xml schemas from embedded resources.]]></comment>
             </update>
             <update date="2014-12-27" type="addition">
               <summary><![CDATA[Added new DateTimeProvider classes]]></summary>
-              <comment>
-                <![CDATA[Added a DateTimeProvider, OffsetDateTimeProvider and FixedDateTimeProvider class that can be used to determine the current time and or date with support for dependency injection.]]>
-              </comment>
+              <comment><![CDATA[Added a DateTimeProvider, OffsetDateTimeProvider and FixedDateTimeProvider class that can be used to determine the current time and
+               or date with support for dependency injection.]]></comment>
             </update>
           </updates>
         </project>
@@ -116,9 +93,7 @@
           <updates>
             <update date="2014-12-27" type="change">
               <summary><![CDATA[Improved the SchemaValidationBehavior class]]></summary>
-              <comment>
-                <![CDATA[Integrated the new XmlResourceResolver and added some extension points.]]>
-              </comment>
+              <comment><![CDATA[Integrated the new XmlResourceResolver and added some extension points.]]></comment>
             </update>
           </updates>
         </project>
@@ -130,9 +105,8 @@
           <updates>
             <update date="2014-06-19" type="change">
               <summary><![CDATA[Fixed a bug in the Capitalize and CapitalizeSentence extension methods]]></summary>
-              <comment>
-                <![CDATA[Fixed a bug in the Capitalize and CapitalizeSentence extension methods that caused the methods to break when the input value either starts or ends with spaces or contains adjacent spaces.]]>
-              </comment>
+              <comment><![CDATA[Fixed a bug in the Capitalize and CapitalizeSentence extension methods that caused the methods to break when 
+               the input value either starts or ends with spaces or contains adjacent spaces.]]></comment>
             </update>
           </updates>
         </project>
@@ -144,9 +118,8 @@
           <updates>
             <update date="2014-04-30" type="addition">
               <summary><![CDATA[Added a new CapitalizeSentence extension method]]></summary>
-              <comment>
-                <![CDATA[Added a new CapitalizeSentence extension method that can be used to capitalize the first word in a sentence and change the remaining words to lower case.]]>
-              </comment>
+              <comment><![CDATA[Added a new CapitalizeSentence extension method that can be used to capitalize the first word in a sentence and
+               change the remaining words to lower case.]]></comment>
             </update>
           </updates>
         </project>

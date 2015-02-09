@@ -10,7 +10,7 @@ namespace Enkoni.Framework {
     /// <param name="oldValue">The old (previous) value of the property.</param>
     /// <param name="newValue">The new (current) value of the property.</param>
     public PropertyChangedEventArgs(string propertyName, T oldValue, T newValue)
-        :base(propertyName) {
+        : base(propertyName) {
       this.OldValue = oldValue;
       this.NewValue = newValue;
     }
