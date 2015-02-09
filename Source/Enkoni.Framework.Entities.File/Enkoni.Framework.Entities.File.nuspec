@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities.File</id>
-    <version>3.1.0</version>
+    <version>3.2.0-rc1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,11 +10,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[The FileRepository implements the new Reset method which reverts any unsaved changes to the repository.]]></releaseNotes>
+    <releaseNotes><![CDATA[Improved the behavior of the FileRepository class. It now better detects any changes that were made in entities from outside the repository
+and prevents them from being stored.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.3.0" />
-      <dependency id="Enkoni.Entities" version="3.1.0" />
+      <dependency id="Enkoni" version="2.5.0-rc1" />
+      <dependency id="Enkoni.Entities" version="3.2.0-rc1" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />

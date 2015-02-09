@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni</id>
-    <version>2.4.0</version>
+    <version>2.5.0-rc1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,10 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added a new Between extension method that can be used to determine if a DateTime value is between to other DateTime values.
-Added a new Truncate extension method that can be used to truncate a string to a maximum length even if the string is shorter.
-Added a new XmlResourceResolver class that can be used to resolve xml schemas from embedded resources.
-Added a DateTimeProvider, OffsetDateTimeProvider and FixedDateTimeProvider class that can be used to determine the current time and or date with support for dependency injection.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added a new class PropertyChangedEventArgs<T> which extends the default PropertyChangedEventArgs-class and can be used to pass the old and
+new value of the changed property with the event.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
