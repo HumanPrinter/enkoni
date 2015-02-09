@@ -49,6 +49,8 @@
     <Compile Include="..\..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="EventArgsTest.cs" />
+    <Compile Include="PropertyChangedEventArgsTest.cs" />
     <Compile Include="CsvTransformerTest.cs" />
     <Compile Include="FixedDateTimeProviderTest.cs" />
     <Compile Include="OffsetDateTimeProviderTest.cs" />

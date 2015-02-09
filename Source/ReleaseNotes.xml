@@ -3,6 +3,17 @@
   <releases>
     <release version="X.X.X.X" releasedate="9999-12-31">
       <projects>
+        <project name="Enkoni.Framework" version="2.5.0">
+          <updates>
+            <update date="2015-02-09" type="addition">
+              <summary><![CDATA[Added the class PropertyChangedEventArgs<T>.]]></summary>
+              <comment>
+                <![CDATA[Added a new class PropertyChangedEventArgs<T> which extends the default PropertyChangedEventArgs-class and can be used to pass the old and 
+                new value of the changed property with the event.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
         <project name="Enkoni.Framework.Entities" version="3.2.0">
           <updates>
             <update date="2015-02-01" type="addition">

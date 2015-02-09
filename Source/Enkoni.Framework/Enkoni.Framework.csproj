@@ -62,6 +62,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PropertyChangedEventArgs.cs" />
     <Compile Include="Timers\AlarmClock.cs" />
     <Compile Include="Timers\Stopwatch.cs" />
     <Compile Include="Collections\DoubleEqualityComparer.cs" />
