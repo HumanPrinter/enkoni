@@ -8,13 +8,13 @@
 ###################################################
 
 Version 1.2.6.0
-  Enkoni.Framework (2.5.0-rc1)
+  Enkoni.Framework (2.5.0)
   [+] Added the class PropertyChangedEventArgs<T>.
       Date:    2015-02-09
       Comment: Added a new class PropertyChangedEventArgs<T> which extends the default PropertyChangedEventArgs-class and can be used to pass the old and 
                new value of the changed property with the event.
 
-  Enkoni.Framework.Entities (3.2.0-rc1)
+  Enkoni.Framework.Entities (3.2.0)
   [*] Added overloads for the find-methods that take an expression directly.
       Date:    2015-02-07
       Comment: Added overloads for the find-methods that take an expression directly in order to make it even easier to use the repositories.
@@ -28,24 +28,24 @@ Version 1.2.6.0
       Comment: Improved the behavior of the MemoryRepository class. It now better detects any changes that were made in entities from outside the repository 
                and prevents them from being stored.
 
-  Enkoni.Framework.Entities.Database (2.2.0-rc1)
+  Enkoni.Framework.Entities.Database (2.2.0)
   [*] Improved the behavior of the DatabaseRepository class.
       Date:    2015-02-01
       Comment: Improved the behavior of the DatabaseRepository class. It now better detects any changes that were made in entities from outside the repository 
                and prevents them from being stored.
 
-  Enkoni.Framework.Entities.File (3.2.0-rc1)
+  Enkoni.Framework.Entities.File (3.2.0)
   [*] Improved the behavior of the FileRepository class.
       Date:    2015-02-01
       Comment: Improved the behavior of the FileRepository class. It now better detects any changes that were made in entities from outside the repository 
                and prevents them from being stored.
 
-  Enkoni.Framework.Logging (1.3.0-rc1)
+  Enkoni.Framework.Logging (1.3.0)
   [*] The Logger can now directly be initialised.
       Date:    2015-02-03
       Comment: An instance of the Logger-class can now be directly initialised.
 
-  Enkoni.Framework.ServiceModel (2.3.0-rc1)
+  Enkoni.Framework.ServiceModel (2.3.0)
   [*] Removed the dependency with the Enkoni.Framework.Logging project.
       Date:    2015-02-06
       Comment: The dependency with the Enkoni.Framework.Logging project (and thereby the dependency with the Enterprise Library Logging Application Block)
