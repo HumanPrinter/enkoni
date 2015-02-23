@@ -64,7 +64,7 @@ if(!(Test-Path $releaseDir)) {
 #    $server = 'http://localhost/nuget/api/v2/package'
 #  }
 #  2 {
-    $apiKey = '37d6d849-3ba7-4481-a091-1bb1a1dacb4b'
+    $apiKey = '49ed90f8-34ef-4a2a-8766-fc0670735d0d'
 #    $server = 'https://nuget.org/api/v2/package'
 #  }
 #  default {
