@@ -24,17 +24,17 @@
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
     <DocumentationSources>
       <DocumentationSource sourceFile="Enkoni.Framework\Enkoni.Framework.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" />
-      <DocumentationSource sourceFile="Enkoni.Framework.Web\Enkoni.Framework.Web.csproj" />
-    </DocumentationSources>
+<DocumentationSource sourceFile="Enkoni.Framework.DataAnnotations\Enkoni.Framework.DataAnnotations.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" />
+<DocumentationSource sourceFile="Enkoni.Framework.Web\Enkoni.Framework.Web.csproj" /></DocumentationSources>
     <PlugInConfigurations>
       <PlugInConfig id="Hierarchical Table of Contents" enabled="True">
         <configuration>
@@ -45,7 +45,7 @@
     <FrameworkVersion>.NET Framework 4.0</FrameworkVersion>
     <PresentationStyle>VS2010</PresentationStyle>
     <ProjectSummary>The Enkoni Framework contains numerous types and methods that typically are written over and over again for specific projects.</ProjectSummary>
-    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2014. All rights reserved.</CopyrightText>
+    <CopyrightText>Copyright %28c%29 Oscar Brouwer 2015. All rights reserved.</CopyrightText>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="Enkoni.Framework" isDocumented="True">Contains numerous easy-to-use types and operations that can be utilized in any kind of project or application.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="Enkoni.Framework.Entities" isDocumented="True">Contains functionality of a generic data-access layer which can be utilized in a typical multi-tier application.</NamespaceSummaryItem>
@@ -59,6 +59,7 @@
       <NamespaceSummaryItem name="Enkoni.Framework.UI" isDocumented="True">Contains a number of classes that provide multi-purpose functionality for WPF applications.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="Enkoni.Framework.UI.Mvvm" isDocumented="True">Contains a number of classes that provide multi-purpose functionality for WPF-MVVM applications.</NamespaceSummaryItem>
       <NamespaceSummaryItem name="Enkoni.Framework.Logging" isDocumented="True">Contains functionality to add logging to an application using the Microsoft Enterprise Library's Logging Application Block</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Enkoni.Framework.Collections" isDocumented="True" />
     </NamespaceSummaries>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="Microsoft.Practices.EnterpriseLibrary.Validation" isExposed="False">
@@ -83,6 +84,12 @@
     <Preliminary>False</Preliminary>
     <NamingMethod>Guid</NamingMethod>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <BuildAssemblerVerbosity>AllMessages</BuildAssemblerVerbosity>
+    <IndentHtml>False</IndentHtml>
+    <KeepLogFile>False</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <CleanIntermediates>True</CleanIntermediates>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in
        order for Visual Studio to perform the build.  The others are optional
@@ -104,8 +111,17 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>packages\AutoMapper.3.3.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>packages\AutoMapper.3.3.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>packages\EntityFramework.6.1.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="LinqKit">
       <HintPath>packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
