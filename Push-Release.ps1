@@ -1,3 +1,18 @@
+param([string]$ApiKey='')
+
+if($ApiKey -eq '') {
+    if(Test-Path variable:global:NuGetApiKey_Enkoni) {
+        $ApiKey = $NuGetApiKey_Enkoni
+    }
+    elseif(Test-Path variable:global:NuGetApiKey) {
+        $ApiKey = $NuGetApiKey
+    }
+    else {
+        Write-Host -ForegroundColor Red "The NuGet API key has not been specified. Specify the key as a parameter for this script or as a global variable called 'NuGetApiKey_Enkoni' or 'NuGetApiKey'"
+        return
+    }
+}
+
 $LastExitCode = 0
 
 # Load the functions
@@ -60,11 +75,9 @@ if(!(Test-Path $releaseDir)) {
 #$repositoryChoice = Read-Host
 #switch($repositoryChoice) {
 #  1 {
-#    $apiKey = 'd2addced-c1be-4220-8b87-568ae8e952c3'
 #    $server = 'http://localhost/nuget/api/v2/package'
 #  }
 #  2 {
-    $apiKey = '49ed90f8-34ef-4a2a-8766-fc0670735d0d'
 #    $server = 'https://nuget.org/api/v2/package'
 #  }
 #  default {
@@ -73,7 +86,7 @@ if(!(Test-Path $releaseDir)) {
 #  }
 #}
 
-Push-NuGet -inputDirectory $releaseDir -apiKey $apiKey -server $server
+Push-NuGet -inputDirectory $releaseDir -apiKey $ApiKey -server $server
 
 [System.DateTime]$endTime = [System.DateTime]::Now
 
