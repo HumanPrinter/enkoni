@@ -267,15 +267,23 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Expression<Func<TEntity, bool>> expression,
-      SortSpecifications<TEntity> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
+      SortSpecifications<TEntity> sortRules, int maximumResults, string[] includePaths, DataSourceInfo dataSourceInfo) {
       DbContext context = this.SelectDbContext(dataSourceInfo);
 
       /* First query the database directly (this will also populate the local cache) */
       expression = EntityCastRemoverVisitor.Convert(expression);
-      IQueryable<TEntity> databaseQuery = context.Set<TEntity>().AsExpandable().Where(expression);
+      IQueryable<TEntity> databaseQuery = context.Set<TEntity>();
+      if(includePaths != null && includePaths.Length > 0) {
+        foreach(string path in includePaths) {
+          databaseQuery = databaseQuery.Include(path);
+        }
+      }
+      
+      databaseQuery = databaseQuery.AsExpandable().Where(expression);
 
       /* Add the ordering to the query */
       databaseQuery = databaseQuery.OrderBy(sortRules);
@@ -313,10 +321,11 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds a single entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    protected override TEntity FindSingleCore(Expression<Func<TEntity, bool>> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+    protected override TEntity FindSingleCore(Expression<Func<TEntity, bool>> expression, string[] includePaths, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       expression = EntityCastRemoverVisitor.Convert(expression);
       Func<TEntity, bool> compiledExpression = expression.Compile();
       /* First, query the addition cache */
@@ -341,7 +350,14 @@ namespace Enkoni.Framework.Entities {
       }
 
       DbContext context = this.SelectDbContext(dataSourceInfo);
-      IQueryable<TEntity> databaseQuery = context.Set<TEntity>().AsExpandable();
+      IQueryable<TEntity> databaseQuery = context.Set<TEntity>();
+      if(includePaths != null && includePaths.Length > 0) {
+        foreach(string path in includePaths) {
+          databaseQuery = databaseQuery.Include(path);
+        }
+      }
+      
+      databaseQuery = databaseQuery.AsExpandable();
 
       TEntity foundEntity = null;
 
@@ -373,10 +389,11 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first entity that matches the expression. If no result was found, the specified default-value is returned.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    protected override TEntity FindFirstCore(Expression<Func<TEntity, bool>> expression, SortSpecifications<TEntity> sortRules,
+    protected override TEntity FindFirstCore(Expression<Func<TEntity, bool>> expression, SortSpecifications<TEntity> sortRules, string[] includePaths,
       DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       expression = EntityCastRemoverVisitor.Convert(expression);
       Func<TEntity, bool> compiledExpression = expression.Compile();
@@ -397,7 +414,14 @@ namespace Enkoni.Framework.Entities {
       }
 
       DbContext context = this.SelectDbContext(dataSourceInfo);
-      IQueryable<TEntity> databaseQuery = context.Set<TEntity>().AsExpandable();
+      IQueryable<TEntity> databaseQuery = context.Set<TEntity>();
+      if(includePaths != null && includePaths.Length > 0) {
+        foreach(string path in includePaths) {
+          databaseQuery = databaseQuery.Include(path);
+        }
+      }
+
+      databaseQuery = databaseQuery.AsExpandable();
 
       /* Add the ordering to the query */
       if(sortRules != null) {

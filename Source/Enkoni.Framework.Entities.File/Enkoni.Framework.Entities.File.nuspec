@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities.File</id>
-    <version>3.2.0</version>
+    <version>3.3.0-beta1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,12 +10,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Improved the behavior of the FileRepository class. It now better detects any changes that were made in entities from outside the repository
-and prevents them from being stored.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added overloads that take an extra string parameter to specify include paths.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.5.0" />
-      <dependency id="Enkoni.Entities" version="3.2.0" />
+      <dependency id="Enkoni" version="2.6.0-beta1" />
+      <dependency id="Enkoni.Entities" version="3.3.0-beta1" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />

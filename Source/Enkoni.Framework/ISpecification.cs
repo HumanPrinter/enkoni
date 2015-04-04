@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
@@ -12,6 +13,9 @@ namespace Enkoni.Framework {
 
     /// <summary>Occurs when the sorting rules have changed.</summary>
     event EventHandler<SortSpecificationsEventArgs<T>> SortRulesUpdated;
+
+    /// <summary>Occurs when the inlude path has changed.</summary>
+    event EventHandler<EventArgs<string>> IncludePathUpdated;
     #endregion
 
     #region Properties
@@ -20,6 +24,9 @@ namespace Enkoni.Framework {
 
     /// <summary>Gets the sorting rules.</summary>
     SortSpecifications<T> SortRules { get; }
+
+    /// <summary>Gets the dot-separated lists of related objects to return in the query results.</summary>
+    IEnumerable<string> IncludePath { get; }
     #endregion
 
     #region Methods
@@ -37,6 +44,10 @@ namespace Enkoni.Framework {
     /// <summary>Sets the maximum number of records that must be retrieved using the specification.</summary>
     /// <param name="maximum">The maximum number. A value of '-1' means 'retrieve all'.</param>
     void SetMaximumResults(int maximum);
+
+    /// <summary>Sets the include path that must be considered when using the specification.</summary>
+    /// <param name="includePath">The dot-separated list of related objects to return in the query results.</param>
+    void Include(string includePath);
 
     /// <summary>Specifies the way the sequence must be sorted. It used a default sort order of ascending.</summary>
     /// <typeparam name="TKey">The type of object that must be used to perform the sorting.</typeparam>

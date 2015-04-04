@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
+    <release version="1.2.7.0" releasedate="2015-04-04">
+      <projects>
+        <project name="Enkoni.Framework" version="2.6.0" versionPostfix="beta1">
+          <updates>
+            <update date="2015-04-04" type="change">
+              <summary><![CDATA[Added the IncludePath to the Specification{T} class.]]></summary>
+              <comment><![CDATA[Added a new property IncludePath to the Specification{T} class which can be used to specify specific includes (primarily used for database 
+               interaction).]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities" version="3.3.0" versionPostfix="beta1">
+          <updates>
+            <update date="2015-04-04" type="change">
+              <summary><![CDATA[Added overloads that take an extra string parameter to specify include paths.]]></summary>
+              <comment><![CDATA[Added overloads that take an extra string parameter to specify include paths.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.3.0" versionPostfix="beta1">
+          <updates>
+            <update date="2015-04-04" type="change">
+              <summary><![CDATA[Added overloads that take an extra string parameter to specify include paths.]]></summary>
+              <comment><![CDATA[Added overloads that take an extra string parameter to specify include paths.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="3.3.0" versionPostfix="beta1">
+          <updates>
+            <update date="2015-04-04" type="change">
+              <summary><![CDATA[Added overloads that take an extra string parameter to specify include paths.]]></summary>
+              <comment><![CDATA[Added overloads that take an extra string parameter to specify include paths.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.6.0" releasedate="2015-02-09">
       <projects>
         <project name="Enkoni.Framework" version="2.5.0">

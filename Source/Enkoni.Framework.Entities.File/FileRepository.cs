@@ -182,12 +182,13 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression that is used as a filter.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// <br/>If the cache is empty but the source file exists, the file is read first and its contents are placed in the cache. Otherwise, the 
     /// concatenated cache is simply returned.</param>
     /// <returns>All the available entities that match the expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, int maximumResults,
-      DataSourceInfo dataSourceInfo) {
+      string[] includePaths, DataSourceInfo dataSourceInfo) {
       bool useGlobalSourceFile = this.UseGlobalSourceFile(dataSourceInfo);
 
       if(!useGlobalSourceFile) {
@@ -238,12 +239,13 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// <br/>If the cache is empty but the source file exists, the file is read first and its contents are placed in the cache. Otherwise, the 
     /// concatenated cache is simply returned.</param>
     /// <param name="defaultValue">The value that must be returned if the query yielded no results.</param>
     /// <returns>The first entity that matches the expression or the default value if there were no results.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, DataSourceInfo dataSourceInfo,
+    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, string[] includePaths, DataSourceInfo dataSourceInfo,
       TEntity defaultValue) {
       bool useGlobalSourceFile = this.UseGlobalSourceFile(dataSourceInfo);
 
@@ -282,12 +284,13 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the single entity of type <typeparamref name="TEntity"/> that matches the expression.</summary>
     /// <param name="expression">The expression that is used as a filter.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
     /// <br/>If the cache is empty but the source file exists, the file is read first and its contents are placed in the cache. Otherwise, the 
     /// concatenated cache is simply returned.</param>
     /// <param name="defaultValue">The value that must be returned if the query yielded no results.</param>
     /// <returns>The single entity that matches the expression or the default value if there were no results.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo,
+    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, string[] includePaths, DataSourceInfo dataSourceInfo,
       TEntity defaultValue) {
       bool useGlobalSourceFile = this.UseGlobalSourceFile(dataSourceInfo);
 
