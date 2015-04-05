@@ -25,12 +25,42 @@ namespace Enkoni.Framework.Entities.Tests {
     #endregion
 
     #region FindEntities test cases
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities(string[])"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void SubDomainModel_FindEntities_NullIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
+
+      IList<TestDummy> result = testSubject.FindEntities((string[])null);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities(string[])"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void SubDomainModel_FindEntities_EmptyIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
+
+      IList<TestDummy> result = testSubject.FindEntities(new string[0]);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities(string[])"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void SubDomainModel_FindEntities_InvalidIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
+
+      IList<TestDummy> result = testSubject.FindEntities(new string[] { "", "PropA.PropB", "dummy" });
+    }
+
     /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities(ISpecification{T})"/> method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntities_NullSpecification_ExceptionIsThrown() {
       DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
-      SubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>(parentModel);
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
 
       IList<TestDummy> result = testSubject.FindEntities((ISpecification<TestDummy>)null);
     }
@@ -40,9 +70,51 @@ namespace Enkoni.Framework.Entities.Tests {
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntities_NullExpression_ExceptionIsThrown() {
       DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
-      SubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>(parentModel);
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
 
       IList<TestDummy> result = testSubject.FindEntities((Expression<Func<TestDummy, bool>>)null);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities()"/> method.</summary>
+    [TestMethod]
+    public void SubDomainModel_FindEntities_NoSpecificationNoIncludePaths_TemplateMethodIsCalled() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      TestSubDomainModel testSubject = new TestSubDomainModel(parentModel);
+      Repository<TestDummy> mockedRepository = MockRepository.GeneratePartialMock<Repository<TestDummy>>();
+
+      IList<TestDummy> result = testSubject.FindEntities();
+
+      ISpecification<TestDummy> specificationResult = testSubject.FindEntitiesCoreParameter;
+      Expression<Func<TestDummy, bool>> expressionResult = specificationResult.Visit(mockedRepository);
+      Assert.IsTrue(testSubject.FindEntitiesCoreWasCalled);
+
+      Assert.AreEqual(ExpressionType.Lambda, expressionResult.NodeType);
+      Assert.AreEqual(typeof(bool), expressionResult.ReturnType);
+
+      bool constantValue = (bool)((ConstantExpression)expressionResult.Body).Value;
+      Assert.AreEqual(true, constantValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities()"/> method.</summary>
+    [TestMethod]
+    public void SubDomainModel_FindEntities_NoSpecificationIncludePaths_TemplateMethodIsCalled() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      TestSubDomainModel testSubject = new TestSubDomainModel(parentModel);
+      Repository<TestDummy> mockedRepository = MockRepository.GeneratePartialMock<Repository<TestDummy>>();
+
+      IList<TestDummy> result = testSubject.FindEntities(new string[] { "PropA.PropB" });
+
+      ISpecification<TestDummy> specificationResult = testSubject.FindEntitiesCoreParameter;
+      CollectionAssert.AreEquivalent(new string[] { "PropA.PropB" }, specificationResult.IncludePaths.ToList());
+
+      Expression<Func<TestDummy, bool>> expressionResult = specificationResult.Visit(mockedRepository);
+      Assert.IsTrue(testSubject.FindEntitiesCoreWasCalled);
+
+      Assert.AreEqual(ExpressionType.Lambda, expressionResult.NodeType);
+      Assert.AreEqual(typeof(bool), expressionResult.ReturnType);
+
+      bool constantValue = (bool)((ConstantExpression)expressionResult.Body).Value;
+      Assert.AreEqual(true, constantValue);
     }
 
     /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities(ISpecification{T})"/> method.</summary>
@@ -81,7 +153,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntity_NullSpecification_ExceptionIsThrown() {
       DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
-      SubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>(parentModel);
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
 
       TestDummy result = testSubject.FindEntity((ISpecification<TestDummy>)null);
     }
@@ -91,7 +163,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntity_NullExpression_ExceptionIsThrown() {
       DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
-      SubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>(parentModel);
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
 
       TestDummy result = testSubject.FindEntity((Expression<Func<TestDummy, bool>>)null);
     }
@@ -124,6 +196,59 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual(ExpressionType.Lambda, expressionResult.NodeType);
       Assert.AreEqual(typeof(bool), expressionResult.ReturnType);
     }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntity(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    public void SubDomainModel_FindEntity_ExpressionWithIncludePaths_TemplateMethodIsCalled() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      TestSubDomainModel testSubject = new TestSubDomainModel(parentModel);
+      Repository<TestDummy> mockedRepository = MockRepository.GeneratePartialMock<Repository<TestDummy>>();
+
+      TestDummy result = testSubject.FindEntity(td => td.RecordId > 1, new string[] { "PropA.PropB", "dummy" });
+
+      Assert.IsTrue(testSubject.FindEntityCoreWasCalled);
+
+      ISpecification<TestDummy> specificationResult = testSubject.FindEntityCoreParameter;
+      Assert.AreEqual(2, specificationResult.IncludePaths.Count());
+      CollectionAssert.AreEquivalent(new string[] { "dummy", "PropA.PropB" }, specificationResult.IncludePaths.ToList());
+
+      Expression<Func<TestDummy, bool>> expressionResult = specificationResult.Visit(mockedRepository);
+      Assert.AreEqual(ExpressionType.Lambda, expressionResult.NodeType);
+      Assert.AreEqual(typeof(bool), expressionResult.ReturnType);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntity(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void SubDomainModel_FindEntity_ExpressionWithNullIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      TestSubDomainModel testSubject = new TestSubDomainModel(parentModel);
+      Repository<TestDummy> mockedRepository = MockRepository.GeneratePartialMock<Repository<TestDummy>>();
+
+      TestDummy result = testSubject.FindEntity(td => td.RecordId > 1, null);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntity(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void SubDomainModel_FindEntity_ExpressionWithEmptyIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      TestSubDomainModel testSubject = new TestSubDomainModel(parentModel);
+      Repository<TestDummy> mockedRepository = MockRepository.GeneratePartialMock<Repository<TestDummy>>();
+
+      TestDummy result = testSubject.FindEntity(td => td.RecordId > 1, new string[0]);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntity(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void SubDomainModel_FindEntity_ExpressionWithInvalidIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      TestSubDomainModel testSubject = new TestSubDomainModel(parentModel);
+      Repository<TestDummy> mockedRepository = MockRepository.GeneratePartialMock<Repository<TestDummy>>();
+
+      TestDummy result = testSubject.FindEntity(td => td.RecordId > 1, new string[] { "PropA.PropB", null, "dummy" });
+    }
     #endregion
 
     #region FindEntityById test-cases
@@ -145,6 +270,36 @@ namespace Enkoni.Framework.Entities.Tests {
       object container = ((ConstantExpression)((MemberExpression)((BinaryExpression)expressionResult.Body).Right).Expression).Value;
       int constantValue = (int)((FieldInfo)((MemberExpression)((BinaryExpression)expressionResult.Body).Right).Member).GetValue(container);
       Assert.AreEqual(42, constantValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntityById(int, string[])"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void SubDomainModel_FindEntityByIdWithNullIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
+      
+      TestDummy result = testSubject.FindEntityById(42, null);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntityById(int, string[])"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void SubDomainModel_FindEntityByIdWithEmptyIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
+
+      TestDummy result = testSubject.FindEntityById(42, new string[0]);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntityById(int, string[])"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void SubDomainModel_FindEntityByIdWithInvalidIncludePaths_ExceptionIsThrown() {
+      DomainModel parentModel = MockRepository.GenerateMock<DomainModel>();
+      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>(parentModel);
+
+      TestDummy result = testSubject.FindEntityById(42, new string[] { "PropA.PropB", null, "dummy" });
     }
     #endregion
 

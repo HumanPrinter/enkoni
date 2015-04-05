@@ -26,7 +26,7 @@ namespace Enkoni.Framework {
     SortSpecifications<T> SortRules { get; }
 
     /// <summary>Gets the dot-separated lists of related objects to return in the query results.</summary>
-    IEnumerable<string> IncludePath { get; }
+    IEnumerable<string> IncludePaths { get; }
     #endregion
 
     #region Methods

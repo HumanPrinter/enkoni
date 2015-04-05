@@ -499,7 +499,7 @@ namespace Enkoni.Framework.Entities {
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindAllCore(expression, specification.SortRules, specification.MaximumResults, specification.IncludePath.ToArray(), dataSourceInfo);
+      return this.FindAllCore(expression, specification.SortRules, specification.MaximumResults, specification.IncludePaths.ToArray(), dataSourceInfo);
     }
     #endregion
 
@@ -656,7 +656,7 @@ namespace Enkoni.Framework.Entities {
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindSingleCore(expression, specification.IncludePath.ToArray(), dataSourceInfo);
+      return this.FindSingleCore(expression, specification.IncludePaths.ToArray(), dataSourceInfo);
     }
 
     /// <summary>Finds a single entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
@@ -685,7 +685,7 @@ namespace Enkoni.Framework.Entities {
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindSingleCore(expression, specification.IncludePath.ToArray(), dataSourceInfo, defaultValue);
+      return this.FindSingleCore(expression, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
     }
     #endregion
 
@@ -866,7 +866,7 @@ namespace Enkoni.Framework.Entities {
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePath.ToArray(), dataSourceInfo);
+      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePaths.ToArray(), dataSourceInfo);
     }
 
     /// <summary>Finds the first entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
@@ -895,7 +895,7 @@ namespace Enkoni.Framework.Entities {
       }
 
       Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePath.ToArray(), dataSourceInfo, defaultValue);
+      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
     }
     #endregion
 
@@ -983,7 +983,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>All the available entities.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual IEnumerable<T> FindAllCore(DataSourceInfo dataSourceInfo) {
       return this.FindAllCore(null, dataSourceInfo);
     }
@@ -1003,7 +1003,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual IEnumerable<T> FindAllCore(Expression<Func<T, bool>> expression, SortSpecifications<T> sortRules,
       int maximumResults, DataSourceInfo dataSourceInfo) {
       return this.FindAllCore(expression, sortRules, maximumResults, null, dataSourceInfo);
@@ -1027,7 +1027,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The entities that match the specified expression.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual IEnumerable<T> FindAllCore(Func<T, bool> expression, SortSpecifications<T> sortRules,
       int maximumResults, DataSourceInfo dataSourceInfo) {
         return this.FindAllCore(expression, sortRules, maximumResults, null, dataSourceInfo);
@@ -1051,7 +1051,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual T FindSingleCore(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo) {
       return this.FindSingleCore(expression, null, dataSourceInfo, null);
     }
@@ -1070,7 +1070,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual T FindSingleCore(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo, T defaultValue) {
       return this.FindSingleCore(expression, null, dataSourceInfo, defaultValue);
     }
@@ -1090,7 +1090,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual T FindSingleCore(Func<T, bool> expression, DataSourceInfo dataSourceInfo, T defaultValue) {
       return this.FindSingleCore(expression, null, dataSourceInfo, defaultValue);
     }
@@ -1112,7 +1112,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual T FindFirstCore(Expression<Func<T, bool>> expression, SortSpecifications<T> sortRules, DataSourceInfo dataSourceInfo) {
       return this.FindFirstCore(expression, sortRules, null, dataSourceInfo);
     }
@@ -1133,7 +1133,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual T FindFirstCore(Expression<Func<T, bool>> expression, SortSpecifications<T> sortRules, DataSourceInfo dataSourceInfo,
       T defaultValue) {
       return this.FindFirstCore(expression, sortRules, null, dataSourceInfo, defaultValue);
@@ -1157,7 +1157,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
-    [Obsolete("Use the overload that takes an 'IncludePath' instead.")]
+    [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual T FindFirstCore(Func<T, bool> expression, SortSpecifications<T> sortRules, DataSourceInfo dataSourceInfo, T defaultValue) {
       return this.FindFirstCore(expression, sortRules, null, dataSourceInfo, defaultValue);
     }

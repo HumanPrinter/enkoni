@@ -98,7 +98,7 @@ namespace Enkoni.Framework {
     /// <summary>Initializes a new instance of the <see cref="Specification{T}"/> class.</summary>
     protected Specification() {
       this.MaximumResults = -1;
-      this.IncludePath = Enumerable.Empty<string>();
+      this.IncludePaths = Enumerable.Empty<string>();
     }
     #endregion
 
@@ -139,7 +139,7 @@ namespace Enkoni.Framework {
       add {
         this.includePathUpdated += value;
         if(this.includePathChangePending) {
-          this.includePathUpdated(this, new EventArgs<string>(this.IncludePath.Aggregate(string.Empty, (workingLine, element) => workingLine + ";" + element)));
+          this.includePathUpdated(this, new EventArgs<string>(this.IncludePaths.Aggregate(string.Empty, (workingLine, element) => workingLine + ";" + element)));
           this.includePathChangePending = false;
         }
       }
@@ -158,7 +158,7 @@ namespace Enkoni.Framework {
     public SortSpecifications<T> SortRules { get; private set; }
 
     /// <summary>Gets the dot-separated lists of related objects to return in the query results.</summary>
-    public IEnumerable<string> IncludePath { get; private set; }
+    public IEnumerable<string> IncludePaths { get; private set; }
     #endregion
 
     #region Public methods
@@ -186,7 +186,7 @@ namespace Enkoni.Framework {
       }
       else {
         string[] paths = includePath.Split(';');
-        this.IncludePath = this.IncludePath.Concat(paths).Distinct();
+        this.IncludePaths = this.IncludePaths.Concat(paths).Distinct();
         this.includePathChangePending = true;
       }
     }
