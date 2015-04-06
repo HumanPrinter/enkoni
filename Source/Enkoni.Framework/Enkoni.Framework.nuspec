@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni</id>
-    <version>2.5.0</version>
+    <version>2.6.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,8 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added a new class PropertyChangedEventArgs<T> which extends the default PropertyChangedEventArgs-class and can be used to pass the old and
-new value of the changed property with the event.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added a new property IncludePaths to the Specification{T} class which can be used to specify specific includes (primarily used for database
+interaction).]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

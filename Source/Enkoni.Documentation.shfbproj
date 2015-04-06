@@ -24,17 +24,18 @@
     <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
     <DocumentationSources>
       <DocumentationSource sourceFile="Enkoni.Framework\Enkoni.Framework.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.DataAnnotations\Enkoni.Framework.DataAnnotations.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" />
-<DocumentationSource sourceFile="Enkoni.Framework.Web\Enkoni.Framework.Web.csproj" /></DocumentationSources>
+      <DocumentationSource sourceFile="Enkoni.Framework.DataAnnotations\Enkoni.Framework.DataAnnotations.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities.Database\Enkoni.Framework.Entities.Database.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities.File\Enkoni.Framework.Entities.File.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Entities.Service\Enkoni.Framework.Entities.Service.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Logging\Enkoni.Framework.Logging.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.ServiceModel\Enkoni.Framework.ServiceModel.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.UI\Enkoni.Framework.UI.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Validation\Enkoni.Framework.Validation.csproj" />
+      <DocumentationSource sourceFile="Enkoni.Framework.Web\Enkoni.Framework.Web.csproj" />
+    </DocumentationSources>
     <PlugInConfigurations>
       <PlugInConfig id="Hierarchical Table of Contents" enabled="True">
         <configuration>
@@ -77,7 +78,7 @@
         <Filter entryType="Class" fullName="System.Attribute" filterName="Attribute" isExposed="False" />
       </Filter>
     </ApiFilter>
-    <HelpFileVersion>1.2.6.0</HelpFileVersion>
+    <HelpFileVersion>1.2.7.0</HelpFileVersion>
     <HelpAttributes />
     <SyntaxFilters>Standard</SyntaxFilters>
     <RootNamespaceContainer>False</RootNamespaceContainer>
@@ -97,18 +98,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">

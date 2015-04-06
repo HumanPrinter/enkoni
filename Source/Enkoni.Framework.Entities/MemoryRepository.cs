@@ -155,10 +155,11 @@ namespace Enkoni.Framework.Entities {
     /// <param name="expression">The search-specification.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
     /// <param name="maximumResults">The maximum number of results that must be retrieved. Use '-1' to retrieve all results.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <returns>The items that match the expression.</returns>
     protected override IEnumerable<TEntity> FindAllCore(Func<TEntity, bool> expression,
-      SortSpecifications<TEntity> sortRules, int maximumResults, DataSourceInfo dataSourceInfo) {
+      SortSpecifications<TEntity> sortRules, int maximumResults, string[] includePaths, DataSourceInfo dataSourceInfo) {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
       try {
@@ -184,10 +185,11 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds the first entity that matches the expression or returns the default value if there were no matches.</summary>
     /// <param name="expression">The search-specification.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <param name="defaultValue">The value that must be returned if there were no matches.</param>
     /// <returns>The first result or the default value.</returns>
-    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, DataSourceInfo dataSourceInfo,
+    protected override TEntity FindFirstCore(Func<TEntity, bool> expression, SortSpecifications<TEntity> sortRules, string[] includePaths, DataSourceInfo dataSourceInfo,
       TEntity defaultValue) {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
@@ -208,10 +210,11 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Finds the single entity that matches the expression or returns the default value if there were no matches.</summary>
     /// <param name="expression">The search-specification.</param>
+    /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <param name="dataSourceInfo">The parameter is not used.</param>
     /// <param name="defaultValue">The value that must be returned if there were no matches.</param>
     /// <returns>The single result or the default value.</returns>
-    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
+    protected override TEntity FindSingleCore(Func<TEntity, bool> expression, string[] includePaths, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       MemoryStore<TEntity> memoryStore = this.SelectMemoryStore(dataSourceInfo);
 
       try {

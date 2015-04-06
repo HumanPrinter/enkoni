@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
@@ -84,12 +86,19 @@ namespace Enkoni.Framework {
 
     /// <summary>Indicates if there is a change-event pending.</summary>
     private bool sortRulesChangePending;
+
+    /// <summary>The delegate that holds the references to the various event handlers. Normally, there will be at most one handler.</summary>
+    private EventHandler<EventArgs<string>> includePathUpdated;
+
+    /// <summary>Indicates if there is a change-event pending.</summary>
+    private bool includePathChangePending;
     #endregion
 
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="Specification{T}"/> class.</summary>
     protected Specification() {
       this.MaximumResults = -1;
+      this.IncludePaths = Enumerable.Empty<string>();
     }
     #endregion
 
@@ -124,6 +133,21 @@ namespace Enkoni.Framework {
         this.sortRulesUpdated -= value;
       }
     }
+
+    /// <summary>Occurs when the include path has changed.</summary>
+    public event EventHandler<EventArgs<string>> IncludePathUpdated {
+      add {
+        this.includePathUpdated += value;
+        if(this.includePathChangePending) {
+          this.includePathUpdated(this, new EventArgs<string>(this.IncludePaths.Aggregate(string.Empty, (workingLine, element) => workingLine + ";" + element)));
+          this.includePathChangePending = false;
+        }
+      }
+
+      remove {
+        this.includePathUpdated -= value;
+      }
+    }
     #endregion
 
     #region Public properties
@@ -132,6 +156,9 @@ namespace Enkoni.Framework {
 
     /// <summary>Gets the sorting rules that are specified.</summary>
     public SortSpecifications<T> SortRules { get; private set; }
+
+    /// <summary>Gets the dot-separated lists of related objects to return in the query results.</summary>
+    public IEnumerable<string> IncludePaths { get; private set; }
     #endregion
 
     #region Public methods
@@ -144,6 +171,23 @@ namespace Enkoni.Framework {
       else {
         this.MaximumResults = maximum;
         this.maxResultsChangePending = true;
+      }
+    }
+
+    /// <summary>Sets the include path that must be considered when using the specification.</summary>
+    /// <param name="includePath">The dot-separated list of related objects to return in the query results.</param>
+    public void Include(string includePath) {
+      if(string.IsNullOrEmpty(includePath)) {
+        throw new ArgumentException("Specified path cannot be null or empty", "includePath");
+      }
+
+      if(this.includePathUpdated != null) {
+        this.includePathUpdated(this, new EventArgs<string>(includePath));
+      }
+      else {
+        string[] paths = includePath.Split(';');
+        this.IncludePaths = this.IncludePaths.Concat(paths).Distinct();
+        this.includePathChangePending = true;
       }
     }
 
@@ -252,6 +296,17 @@ namespace Enkoni.Framework {
       }
 
       this.OrderBy(args.EventValue);
+    }
+
+    /// <summary>Handles the occurrence of a changed include path.</summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="args">Some additional information regarding the event.</param>
+    protected void HandleIncludePathUpdated(object sender, EventArgs<string> args) {
+      if(args == null) {
+        throw new ArgumentNullException("args");
+      }
+
+      this.Include(args.EventValue);
     }
     #endregion
 

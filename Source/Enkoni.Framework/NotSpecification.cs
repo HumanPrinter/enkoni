@@ -30,6 +30,7 @@ namespace Enkoni.Framework {
       }
 
       specification.MaximumResultsUpdated += this.HandleMaximumResultsUpdated;
+      specification.IncludePathUpdated += this.HandleIncludePathUpdated;
       this.Specification = specification;
     }
     #endregion
