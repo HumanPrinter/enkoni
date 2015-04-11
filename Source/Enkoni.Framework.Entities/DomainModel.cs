@@ -1,5 +1,8 @@
-﻿namespace Enkoni.Framework.Entities {
+﻿using System;
+
+namespace Enkoni.Framework.Entities {
   /// <summary>This class defines the public API of a class that represents a domain model.</summary>
+  [Obsolete("This class will be removed in a future version of this framework. The recommended way of retrieving SubDomainModels is using the standard IoC techniques")]
   public abstract class DomainModel {
     #region Constructors
     /// <summary>Initializes a new instance of the <see cref="DomainModel"/> class.</summary>

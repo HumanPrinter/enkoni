@@ -12,7 +12,12 @@ namespace Enkoni.Framework.Entities {
   public abstract class SubDomainModel<T> where T : IEntity<T> {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="SubDomainModel{T}"/> class.</summary>
+    protected SubDomainModel() {
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="SubDomainModel{T}"/> class.</summary>
     /// <param name="parentDomainModel">The parent model that gives access to the other subdomains.</param>
+    [Obsolete("Since the DomainModel-class is marked obsolete, so is this constructor. Use the parameterless constructor instead")]
     protected SubDomainModel(DomainModel parentDomainModel) {
       this.ParentDomainModel = parentDomainModel;
     }
@@ -20,6 +25,7 @@ namespace Enkoni.Framework.Entities {
 
     #region Protected properties
     /// <summary>Gets the parent domain model.</summary>
+    [Obsolete("Since the DomainModel-class is marked obsolete, so is this property. It will be removed in a future version of this framework")]
     protected virtual DomainModel ParentDomainModel { get; private set; }
     #endregion
 

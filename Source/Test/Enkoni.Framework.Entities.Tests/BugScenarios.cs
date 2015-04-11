@@ -17,8 +17,7 @@ namespace Enkoni.Framework.Entities.Tests {
       DbContext context = new DatabaseRepositoryTestContext("BugScenarios");
       DataSourceInfo sourceInfo = new DatabaseSourceInfo(context);
 
-      TestDomainModel domainModel = new TestDomainModel(sourceInfo);
-      SubDomainModel<TestDummy> subDomain = domainModel.GetSubDomain<TestDummy>();
+      SubDomainModel<TestDummy> subDomain = new TestSubDomainModel(new TestDatabaseRepository(sourceInfo));
 
       TestDummy result = subDomain.FindEntityById(2);
       

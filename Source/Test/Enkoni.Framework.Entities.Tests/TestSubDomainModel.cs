@@ -13,10 +13,10 @@ namespace Enkoni.Framework.Entities.Tests {
 
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="TestSubDomainModel"/> class.</summary>
-    /// <param name="parentDomainModel">The parent model that gives access to the other subdomains.</param>
-    public TestSubDomainModel(TestDomainModel parentDomainModel)
-      : base(parentDomainModel) {
-      this.repository = new TestDatabaseRepository(parentDomainModel.DataSourceInfo);
+    /// <param name="repository">The repository that is used to access the entities.</param>
+    public TestSubDomainModel(Repository<TestDummy> repository)
+      : base() {
+      this.repository = repository;
     }
     #endregion
 
