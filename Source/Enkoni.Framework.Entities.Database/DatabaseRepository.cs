@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading;
 using System.Transactions;
 
@@ -30,6 +31,9 @@ namespace Enkoni.Framework.Entities {
     /// <summary>The collection of entities that are to be removed from the data source.</summary>
     private List<TEntity> deletionCache;
 
+    /// <summary>The types that are part of the graph of the entity type that is handled by this repository.</summary>
+    private List<Type> graphMembers;
+
     /// <summary>A lock that is used to synchronize access to the internal storage.</summary>
     private ReaderWriterLockSlim storageLock = new ReaderWriterLockSlim();
     #endregion
@@ -48,6 +52,10 @@ namespace Enkoni.Framework.Entities {
       this.additionCache = new List<TEntity>();
       this.updateCache = new List<TEntity>();
       this.deletionCache = new List<TEntity>();
+
+      if(DatabaseSourceInfo.IsSaveGraphSpecified(dataSourceInfo)) {
+        this.graphMembers = DetermineGraphTypes();
+      }
     }
     #endregion
 
@@ -92,28 +100,11 @@ namespace Enkoni.Framework.Entities {
         try {
           this.storageLock.EnterWriteLock();
 
-          foreach(TEntity addedEntity in this.additionCache) {
-            context.Set<TEntity>().Add(addedEntity);
-          }
+          this.PrepareAdditions(context);
 
-          foreach(TEntity deletedEntity in this.deletionCache) {
-            context.Set<TEntity>().Remove(deletedEntity);
-          }
+          this.PrepareDeletions(context);
 
-          IEnumerable<DbEntityEntry> modifiedEntries = context.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);
-          IEnumerable<DbEntityEntry> unwantedChanges = modifiedEntries.Where(entry => !(entry.Entity is TEntity));
-          IEnumerable<DbEntityEntry<TEntity>> modifiedEntities = modifiedEntries.Except(unwantedChanges).Select(entry => entry.Cast<TEntity>());
-          List<int> updatedRecordIds = this.updateCache.Select(entity => entity.RecordId).ToList();
-          IEnumerable<DbEntityEntry<TEntity>> unwantedEntityChanges = modifiedEntities.Where(entry => !updatedRecordIds.Contains(entry.Entity.RecordId));
-          unwantedChanges = unwantedChanges.Concat(unwantedEntityChanges.Select(entity => (DbEntityEntry)entity));
-          foreach(DbEntityEntry entry in unwantedChanges) {
-            entry.State = EntityState.Unchanged;
-          }
-
-          IEnumerable<DbEntityEntry<TEntity>> updatedEntries = context.ChangeTracker.Entries<TEntity>().Where(entry => updatedRecordIds.Contains(entry.Entity.RecordId));
-          foreach(DbEntityEntry<TEntity> updatedEntry in updatedEntries) {
-            updatedEntry.State = EntityState.Modified;
-          }
+          this.PrepareUpdates(context);
 
           context.SaveChanges();
           this.ResetLocalCacheNoLock();
@@ -524,6 +515,45 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Private helper methods
+    /// <summary>Determines which types make up the graph of this entity.</summary>
+    /// <returns>The list of types that make up the graph.</returns>
+    private static List<Type> DetermineGraphTypes() {
+      List<Type> graphTypes = new List<Type> { typeof(TEntity) };
+
+      graphTypes = DetermineGraphTypes(typeof(TEntity), graphTypes);
+      
+      return graphTypes;
+    }
+
+    /// <summary>Recursively determines the types that make up the graph of this entity.</summary>
+    /// <param name="objectType">The type whose graph types must be determined.</param>
+    /// <param name="graphTypes">The types that have already been discovered.</param>
+    /// <returns>The list of types that make up the graph.</returns>
+    private static List<Type> DetermineGraphTypes(Type objectType, List<Type> graphTypes) {
+      Type entityType = typeof(IEntity<>);
+      Type collectionType = typeof(IEnumerable<>);
+
+      IEnumerable<PropertyInfo> properties = objectType.GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(propInfo => !graphTypes.Contains(propInfo.PropertyType));
+      properties = properties.Where(propInfo => propInfo.PropertyType.Implements(entityType) || propInfo.PropertyType.Implements(collectionType)).ToArray();
+      
+      graphTypes.AddRange(properties.Where(propInfo => propInfo.PropertyType.Implements(entityType)).Select(propInfo => propInfo.PropertyType));
+      
+      foreach(PropertyInfo propertyInfo in properties) {
+        if(propertyInfo.PropertyType.Implements(collectionType)) {
+          Type genericType = propertyInfo.PropertyType.GetGenericArguments().FirstOrDefault();
+          if(genericType != null && genericType.Implements(entityType) && !graphTypes.Contains(genericType)) {
+            graphTypes.Add(genericType);
+            graphTypes = DetermineGraphTypes(genericType, graphTypes);
+          }
+        }
+        else {
+          graphTypes = DetermineGraphTypes(propertyInfo.PropertyType, graphTypes);
+        }
+      }
+
+      return graphTypes;
+    }
+
     /// <summary>Handles the update of entities that are added to this repository but are not yet saved.</summary>
     /// <param name="entities">The entities that are updated.</param>
     /// <param name="tempAdditionCache">A copy of the addition cache.</param>
@@ -626,6 +656,57 @@ namespace Enkoni.Framework.Entities {
       }
 
       return addedEntities;
+    }
+
+    /// <summary>Prepares the context with the registered additions of the entities.</summary>
+    /// <param name="context">The context that keeps track of the entities.</param>
+    private void PrepareDeletions(DbContext context) {
+      foreach(TEntity deletedEntity in this.deletionCache) {
+        context.Set<TEntity>().Remove(deletedEntity);
+      }
+    }
+
+    /// <summary>Prepares the context with the registered deletions of the entities.</summary>
+    /// <param name="context">The context that keeps track of the entities.</param>
+    private void PrepareAdditions(DbContext context) {
+      foreach(TEntity addedEntity in this.additionCache) {
+        context.Set<TEntity>().Add(addedEntity);
+      }
+    }
+
+    /// <summary>Prepares the context with the registered updates of the entities.</summary>
+    /// <param name="context">The context that keeps track of the entities.</param>
+    private void PrepareUpdates(DbContext context) {
+      /* Get all the modified entries from the context */
+      IEnumerable<DbEntityEntry> modifiedEntries = context.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);
+
+      /* Filter out any modified entities that are not part of the responsibility of this repository */
+      IEnumerable<DbEntityEntry> unwantedChanges;
+      if(this.graphMembers == null || this.graphMembers.Count == 0) {
+        unwantedChanges = modifiedEntries.Where(entry => !(entry.Entity is TEntity));
+      }
+      else {
+        unwantedChanges = modifiedEntries.Where(entry => !this.graphMembers.Contains(entry.Entity.GetType()));
+      }
+
+      /* Get the modified entries that belong to this repository directly */
+      IEnumerable<DbEntityEntry<TEntity>> modifiedEntities = modifiedEntries.Except(unwantedChanges).Where(entry => entry.Entity.GetType() == typeof(TEntity)).Select(entry => entry.Cast<TEntity>());
+      List<int> updatedRecordIds = this.updateCache.Select(entity => entity.RecordId).ToList();
+
+      /* If an entry was modified, but its record ID is not known by this repository, it must have been modified from outside this repository. Therefore the change must be ignored */
+      IEnumerable<DbEntityEntry<TEntity>> unwantedEntityChanges = modifiedEntities.Where(entry => !updatedRecordIds.Contains(entry.Entity.RecordId));
+      unwantedChanges = unwantedChanges.Concat(unwantedEntityChanges.Select(entity => (DbEntityEntry)entity));
+
+      /* Force the state of the unwanted changes to Unchanged to avoid them from being saved automatically */
+      foreach(DbEntityEntry entry in unwantedChanges) {
+        entry.State = EntityState.Unchanged;
+      }
+
+      /* In case some of the updated entries where forced to Unchanged (either by this repository or another repository), force them back to Modified */
+      IEnumerable<DbEntityEntry<TEntity>> updatedEntries = context.ChangeTracker.Entries<TEntity>().Where(entry => updatedRecordIds.Contains(entry.Entity.RecordId));
+      foreach(DbEntityEntry<TEntity> updatedEntry in updatedEntries) {
+        updatedEntry.State = EntityState.Modified;
+      }
     }
 
     /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not acquire a write lock on the

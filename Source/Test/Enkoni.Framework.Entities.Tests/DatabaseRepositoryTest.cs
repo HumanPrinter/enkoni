@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -672,6 +671,241 @@ namespace Enkoni.Framework.Entities.Tests {
     }
     #endregion
 
+    #region Retrieve graph operations
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(string)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\RetrieveGraph01")]
+    public void DatabaseRepository_RetrieveGraphAll_SubentitiesAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\RetrieveGraph01\", TestCategory.Retrieve, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      IEnumerable<TestParentDummy> result = repository.FindAll("Children");
+      Assert.AreEqual(6, result.Count());
+      Assert.IsNotNull(result.ElementAt(0).Children);
+      Assert.AreEqual(3, result.ElementAt(0).Children.Count);
+      Assert.IsNotNull(result.ElementAt(1).Children);
+      Assert.AreEqual(1, result.ElementAt(1).Children.Count);
+      Assert.IsNotNull(result.ElementAt(2).Children);
+      Assert.AreEqual(2, result.ElementAt(2).Children.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(string)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\RetrieveGraph02")]
+    public void DatabaseRepository_RetrieveGraphAllUsingSpecification_SubentitiesAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\RetrieveGraph02\", TestCategory.Retrieve, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      ISpecification<TestParentDummy> spec = Specification.Lambda<TestParentDummy>(td => td.BooleanValue).OrderBy(td => td.RecordId);
+      spec.Include("Children");
+      IEnumerable<TestParentDummy> result = repository.FindAll(spec);
+      Assert.AreEqual(4, result.Count());
+      Assert.IsNotNull(result.ElementAt(0).Children);
+      Assert.AreEqual(1, result.ElementAt(0).Children.Count);
+      Assert.IsNotNull(result.ElementAt(1).Children);
+      Assert.AreEqual(2, result.ElementAt(1).Children.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindAll(string)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\RetrieveGraph03")]
+    public void DatabaseRepository_RetrieveGraphAllUsingExpression_SubentitiesAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\RetrieveGraph03\", TestCategory.Retrieve, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      IEnumerable<TestParentDummy> result = repository.FindAll(td => td.BooleanValue, "Children");
+      Assert.AreEqual(4, result.Count());
+      Assert.IsNotNull(result.ElementAt(0).Children);
+      Assert.AreEqual(1, result.ElementAt(0).Children.Count);
+      Assert.IsNotNull(result.ElementAt(1).Children);
+      Assert.AreEqual(2, result.ElementAt(1).Children.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\RetrieveGraph04")]
+    public void DatabaseRepository_RetrieveGraphFirstUsingSpecification_SubentitiesAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\RetrieveGraph04\", TestCategory.Retrieve, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      ISpecification<TestParentDummy> spec = Specification.Lambda<TestParentDummy>(td => td.BooleanValue).OrderBy(td => td.RecordId);
+      spec.Include("Children");
+      TestParentDummy result = repository.FindFirst(spec);
+      Assert.IsNotNull(result);
+      Assert.IsNotNull(result.Children);
+      Assert.AreEqual(1, result.Children.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindFirst(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\RetrieveGraph05")]
+    public void DatabaseRepository_RetrieveGraphFirstUsingExpression_SubentitiesAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\RetrieveGraph05\", TestCategory.Retrieve, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = repository.FindFirst(td => td.BooleanValue, "Children");
+      Assert.IsNotNull(result);
+      Assert.IsNotNull(result.Children);
+      Assert.AreEqual(1, result.Children.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\RetrieveGraph06")]
+    public void DatabaseRepository_RetrieveGraphSingleUsingSpecification_SubentitiesAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\RetrieveGraph06\", TestCategory.Retrieve, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      ISpecification<TestParentDummy> spec = Specification.Lambda<TestParentDummy>(td => td.RecordId == 1);
+      spec.Include("Children");
+      TestParentDummy result = repository.FindSingle(spec);
+      Assert.IsNotNull(result);
+      Assert.IsNotNull(result.Children);
+      Assert.AreEqual(3, result.Children.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.FindSingle(ISpecification{T})"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\RetrieveGraph07")]
+    public void DatabaseRepository_RetrieveGraphSingleUsingExpression_SubentitiesAreRetrieved() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\RetrieveGraph07\", TestCategory.Retrieve, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = repository.FindFirst(td => td.RecordId == 1, "Children");
+      Assert.IsNotNull(result);
+      Assert.IsNotNull(result.Children);
+      Assert.AreEqual(3, result.Children.Count);
+    }
+    #endregion
+
+    #region Save graph operations
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.AddEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\SaveGraph01")]
+    public void DatabaseRepository_AddGraphEntireGraph_SubentitiesAreAdded() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\SaveGraph01\", TestCategory.Storage, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy newDummy = new TestParentDummy {
+        TextValue = "Row X",
+        NumericValue = 42,
+        BooleanValue = true,
+        Children = new List<TestSubDummy> { 
+          new TestSubDummy { TextValue = "Subrow X_1" }, 
+          new TestSubDummy { TextValue = "Subrow X_2" } 
+        }
+      };
+
+      TestParentDummy addedDummy = repository.AddEntity(newDummy);
+      repository.SaveChanges();
+
+      repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = repository.FindSingle(td => td.TextValue == "Row X", "Children");
+      Assert.IsNotNull(result);
+      Assert.IsNotNull(result.Children);
+      Assert.AreEqual(2, result.Children.Count);
+      Assert.IsTrue(result.Children.ElementAt(0).RecordId > 0);
+      Assert.IsTrue(result.Children.ElementAt(1).RecordId > 0);
+      Assert.AreEqual(result.RecordId, result.Children.ElementAt(0).ParentId);
+      Assert.AreEqual(result.RecordId, result.Children.ElementAt(1).ParentId);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.DeleteEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\SaveGraph02")]
+    public void DatabaseRepository_DeleteGraphEntireGraph_SubentitiesAreDeleted() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\SaveGraph02\", TestCategory.Storage, false);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy obsoleteDummy = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.AreEqual(3, obsoleteDummy.Children.Count);
+
+      repository.DeleteEntity(obsoleteDummy);
+      repository.SaveChanges();
+
+      repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.IsNull(result);
+
+      List<TestSubDummy> subDummies = (sourceInfo as DatabaseSourceInfo).DbContext.Set<TestSubDummy>().ToList();
+      Assert.AreEqual(0, subDummies.Count);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\SaveGraph03")]
+    public void DatabaseRepository_UpdateGraphEntireGraph_SubentitiesAreUpdated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\SaveGraph03\", TestCategory.Storage, false, true);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy targetDummy = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.AreEqual(3, targetDummy.Children.Count);
+
+      targetDummy.NumericValue = 999;
+      targetDummy.Children.ElementAt(1).TextValue = "New value";
+      
+      repository.UpdateEntity(targetDummy);
+      repository.SaveChanges();
+
+      repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.IsNotNull(result);
+      Assert.AreEqual(3, result.Children.Count);
+      Assert.AreEqual(999, result.NumericValue);
+      Assert.AreEqual("New value", result.Children.ElementAt(1).TextValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\SaveGraph04")]
+    public void DatabaseRepository_UpdateGraphUpdateChild_SubentityIsUpdated() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\SaveGraph04\", TestCategory.Storage, false, true);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy targetDummy = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.AreEqual(3, targetDummy.Children.Count);
+
+      targetDummy.Children.ElementAt(1).TextValue = "New value";
+
+      repository.UpdateEntity(targetDummy);
+      repository.SaveChanges();
+
+      repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.IsNotNull(result);
+      Assert.AreEqual(3, result.Children.Count);
+      Assert.AreEqual("New value", result.Children.ElementAt(1).TextValue);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\SaveGraph05")]
+    public void DatabaseRepository_UpdateGraphAddChild_SubentityIsAdded() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\SaveGraph05\", TestCategory.Storage, false, true);
+      Repository<TestParentDummy> repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy targetDummy = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.AreEqual(3, targetDummy.Children.Count);
+
+      targetDummy.Children.Add(new TestSubDummy { TextValue = "New value" });
+
+      repository.UpdateEntity(targetDummy);
+      repository.SaveChanges();
+
+      repository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = repository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.IsNotNull(result);
+      Assert.AreEqual(4, result.Children.Count);
+      Assert.AreEqual("New value", result.Children.ElementAt(3).TextValue);
+      Assert.AreEqual(result.RecordId, result.Children.ElementAt(3).ParentId);
+    }
+    #endregion
+
     #region Implementation of RepositoryTest
     /// <summary>Creates a new repository using the specified <see cref="DataSourceInfo"/>.</summary>
     /// <typeparam name="T">The type of entity that must be handled by the repository.</typeparam>
@@ -699,8 +933,9 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <param name="databaseSubPath">The sub path relative to the execution path where the database will be created.</param>
     /// <param name="testCategory">The category of the test.</param>
     /// <param name="cloneDataSourceItems">Indicates if the retrieved items must be cloned before returning them.</param>
+    /// <param name="saveGraph">Indicates if the entire graph shuld be saved when saving an entity.</param>
     /// <returns>The constructed source info.</returns>
-    private static DataSourceInfo ConstructDataSourceInfo(string databaseSubPath, TestCategory testCategory, bool cloneDataSourceItems) {
+    private static DataSourceInfo ConstructDataSourceInfo(string databaseSubPath, TestCategory testCategory, bool cloneDataSourceItems, bool saveGraph = false) {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
       databaseBasePath = Path.Combine(databaseBasePath, databaseSubPath, "Enkoni.Framework.Entities.Tests.DatabaseRepositoryTestContext.sdf");
 
@@ -709,7 +944,7 @@ namespace Enkoni.Framework.Entities.Tests {
       DbContext context = new DatabaseRepositoryTestContext("Data Source=\"" + databaseBasePath + "\"");
       context.Database.Initialize(true);
 
-      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, cloneDataSourceItems);
+      DataSourceInfo sourceInfo = new DatabaseSourceInfo(context, cloneDataSourceItems, saveGraph);
       return sourceInfo;
     }
     #endregion
