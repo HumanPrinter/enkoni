@@ -4,7 +4,7 @@
 // information associated with an assembly.
 [assembly: AssemblyCompany("Oscar Brouwer")]
 [assembly: AssemblyProduct("Multi-purposes framework")]
-[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2014")]
+[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

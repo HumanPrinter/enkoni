@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EmailDomainConfigElement.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains a custom configurationelement used to include or exclude domains in or from the list of supported domains.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// <summary>Defines the configuration element that holds a single domain that should either be included or excluded from the list of domains

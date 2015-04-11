@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DutchPhoneNumberAreaCodeConfigElement.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains a custom configurationelement used to add or remove area codes to or from the list of supported area codes.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// <summary>Defines the configuration element that holds a single area code that should either be added or removed from the list of area codes

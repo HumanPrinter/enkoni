@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="IEntity.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Defines the basic entity API.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-namespace Enkoni.Framework.Entities {
+﻿namespace Enkoni.Framework.Entities {
   /// <summary>Defines the basic signature of an entity-type.</summary>
   /// <typeparam name="T">The actual entity type.</typeparam>
   public interface IEntity<T> {

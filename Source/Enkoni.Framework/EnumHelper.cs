@@ -1,13 +1,4 @@
-﻿// -------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EnumHelper.cs" company="Oscar Brouwer">
-//   Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//   Contains numerous helper methods for enum values.
-// </summary>
-// -------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;

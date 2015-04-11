@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DutchPhoneNumberValidatorConfigElement.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains a custom configuration element used to configure the Dutch phone number validator.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Configuration;
+﻿using System.Configuration;
 using System.Xml;
 
 using Enkoni.Framework.Validation.Properties;

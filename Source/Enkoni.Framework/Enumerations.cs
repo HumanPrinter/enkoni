@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="Enumerations.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Holds the enumerations of this project.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-namespace Enkoni.Framework {
+﻿namespace Enkoni.Framework {
   #region SortOrder enum
   /// <summary>Defines the supported sort orders.</summary>
   public enum SortOrder {
