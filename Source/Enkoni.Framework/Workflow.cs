@@ -105,7 +105,7 @@ namespace Enkoni.Framework {
     /// <exception cref="NotSupportedException">The workflow does not support pausing and resuming.</exception>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when the workflow is in the state 
     /// <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</exception>
-    /// <seealso cref="P:CanPauseAndContinue"/>
+    /// <seealso cref="CanPauseAndContinue"/>
     public void Pause() {
       if(this.CanPauseAndContinue) {
         if(this.State == WorkflowState.Started || this.State == WorkflowState.Continued) {
@@ -137,7 +137,7 @@ namespace Enkoni.Framework {
     /// <exception cref="NotSupportedException">The workflow does not support pausing and continuing.</exception>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when the workflow is in the 
     /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
-    /// <seealso cref="P:CanPauseAndContinue"/>
+    /// <seealso cref="CanPauseAndContinue"/>
     public void Continue() {
       if(this.CanPauseAndContinue) {
         if(this.State == WorkflowState.Paused) {
@@ -238,7 +238,7 @@ namespace Enkoni.Framework {
     /// <exception cref="NotSupportedException">The workflow does not support pausing and resuming.</exception>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when the workflow is in the state 
     /// <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</exception>
-    /// <seealso cref="P:CanPauseAndContinue"/>
+    /// <seealso cref="CanPauseAndContinue"/>
     public void EndPause(IAsyncResult asyncResult) {
       if(asyncResult == null) {
         throw new ArgumentNullException("asyncResult");
@@ -268,7 +268,7 @@ namespace Enkoni.Framework {
     /// <exception cref="NotSupportedException">The workflow does not support pausing and continuing.</exception>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when the workflow is in the 
     /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
-    /// <seealso cref="P:CanPauseAndContinue"/>
+    /// <seealso cref="CanPauseAndContinue"/>
     public void EndContinue(IAsyncResult asyncResult) {
       if(asyncResult == null) {
         throw new ArgumentNullException("asyncResult");

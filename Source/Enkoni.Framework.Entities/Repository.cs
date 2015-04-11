@@ -1269,7 +1269,7 @@ namespace Enkoni.Framework.Entities {
       throw new NotSupportedException("This repository does not support business rules.");
     }
 
-    /// <summary>Executes an expression. By default, the expression is passed to the <see cref="M:FindAllCore(Func{T,bool}, SortSpecification{T}, int, DataSourceInfo)"/> 
+    /// <summary>Executes an expression. By default, the expression is passed to the <see cref="FindAllCore(Func{T,bool}, SortSpecifications{T}, int, string[], DataSourceInfo)"/> 
     /// method.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>

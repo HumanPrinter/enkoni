@@ -6,6 +6,10 @@ namespace Enkoni.Framework.Entities {
   /// <summary>Provides a basic implementation of an entity-type.</summary>
   /// <typeparam name="T">The actual entity type.</typeparam>
   public abstract class Entity<T> : IEntity<T> {
+    /// <summary>Initializes a new instance of the <see cref="Entity"/> class.</summary>
+    protected Entity() {
+    }
+
     /// <summary>Gets or sets the record-ID of the entity.</summary>
     public virtual int RecordId { get; set; }
 
