@@ -32,7 +32,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Initializes a new instance of the <see cref="MemoryRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
     /// <param name="dataSourceInfo">The data source information that must be used to access the data source.</param>
-    /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> does not specify a valid <see cref="MemoryStore{T}"/>.
+    /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> does not specify a valid <see cref="Enkoni.Framework.Entities.MemoryStore{T}"/>.
     /// </exception>
     public MemoryRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {

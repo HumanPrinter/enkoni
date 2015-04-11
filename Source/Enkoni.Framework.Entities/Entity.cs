@@ -6,7 +6,7 @@ namespace Enkoni.Framework.Entities {
   /// <summary>Provides a basic implementation of an entity-type.</summary>
   /// <typeparam name="T">The actual entity type.</typeparam>
   public abstract class Entity<T> : IEntity<T> {
-    /// <summary>Initializes a new instance of the <see cref="Entity"/> class.</summary>
+    /// <summary>Initializes a new instance of the <see cref="Entity{T}"/> class.</summary>
     protected Entity() {
     }
 
