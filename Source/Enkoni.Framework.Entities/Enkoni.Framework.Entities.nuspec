@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities</id>
-    <version>3.3.0</version>
+    <version>3.4.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,8 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added overloads to the SubDomainModel and Repository classes for the retrieve methods that take an extra string parameter to specify
-include paths.]]></releaseNotes>
+    <releaseNotes><![CDATA[The DomainModel class has been marked as obsolete. Checking and creating the persistency layer is not part of the responsibility of the
+framework. Also, creating instances of the SubDomainModel classes shuld be done using IoC-techniques.
+Added the new ISubDomainModel<T> interface which makes it easier to initialize an instance of the SubDomainModel using dependency injection.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />

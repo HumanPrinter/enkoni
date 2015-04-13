@@ -1,5 +1,6 @@
 $LastExitCode = 0
 
+Start-Transcript -Path release.log
 # Load the functions
 . .\Release-Functions.ps1
 
@@ -122,7 +123,7 @@ if(!$aliasExists) {
   Set-Alias msbuild "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe"
 }
 
-msbuild /p:Configuration=Release`;DumpLogOnFailure=True (Join-Path $projectDir '\Source\Enkoni.Documentation.shfbproj')
+msbuild /p:Configuration=Release`;Platform=AnyCPU`;DumpLogOnFailure=True (Join-Path $projectDir '\Source\Enkoni.Documentation.shfbproj')
 $exitCode = $LastExitCode
 if($exitCode -ne 0) {
   Write-Host -ForegroundColor Red 'MSBuild failed. Review MSBuild-output and try again'
@@ -167,3 +168,5 @@ Write-Host "  - Copying to release directory:`t"($copyTime - $docuTime) -Foregro
 Write-Host "  - Compressing documentation:`t`t"($zipTime - $copyTime) -ForegroundColor Green
 #TODO: Push NuGet (seperate script)
 #TODO: Find Releasenotes editor
+
+Stop-Transcript
