@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.Web.Mvc.Mvc3FixedModelBinder">
+            <summary>Provides an override for <see cref="T:System.Web.Mvc.DefaultModelBinder"/> in order to implement fixes to its behavior. The MVC3 library from 
+            Microsoft contains a couple of bugs that cause runtime exceptions when binding received data to the model. The default translation of an enum 
+            from server to client is enum-to-int. However, the default translation of an enum from client to server is string-to-enum. This bug has been 
+            fixed in MVC4.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.Mvc3FixedModelBinder.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Web.Mvc.Mvc3FixedModelBinder"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.Mvc3FixedModelBinder.GetPropertyValue(System.Web.Mvc.ControllerContext,System.Web.Mvc.ModelBindingContext,System.ComponentModel.PropertyDescriptor,System.Web.Mvc.IModelBinder)">
+            <summary>Returns the value of a property using the specified controller context, binding context, property descriptor, and property binder. 
+            It implements a fix for the default model binder's failure to decode enum types when binding to JSON.</summary>
+            <param name="controllerContext">The context within which the controller operates. The context information includes the controller, HTTP 
+            content, request context, and route data.</param>
+            <param name="bindingContext">The context within which the model is bound. The context includes information such as the model object, model 
+            name, model type, property filter, and value provider.</param>
+            <param name="propertyDescriptor">The descriptor for the property to access. The descriptor provides information such as the component type, 
+            property type, and property value. It also provides methods to get or set the property value.</param>
+            <param name="propertyBinder">An object that provides a way to bind the property.</param>
+            <returns>An object that represents the property value.</returns>
+        </member>
+        <member name="T:Enkoni.Framework.Web.Mvc.DecimalModelBinder">
+            <summary>Provides a custom model binder that is capable of binding decimal values using a configurable format. It also allows
+            for binding decimal values that do not contain a decimal point.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.Web.Mvc.DecimalModelBinder.formatProvider">
+            <summary>The format provider that is used to convert the decimals.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.DecimalModelBinder.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Web.Mvc.DecimalModelBinder"/> class that will use a default culture invariant formatting to
+            convert the <see langword="decimal"/> values.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.DecimalModelBinder.#ctor(System.IFormatProvider)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.Web.Mvc.DecimalModelBinder"/> class that will use the specified <see cref="T:System.IFormatProvider"/>
+            instance to convert the <see langword="decimal"/> values.</summary>
+            <param name="provider">The <see cref="T:System.IFormatProvider"/> that will be used to convert the <see langword="decimal"/> values.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="provider"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.Web.Mvc.DecimalModelBinder.BindModel(System.Web.Mvc.ControllerContext,System.Web.Mvc.ModelBindingContext)">
+            <summary>Binds a received decimal value to the view model.</summary>
+            <param name="controllerContext">An instance that encapsulates information about the HTTP request.</param>
+            <param name="bindingContext">The context for the model binder.</param>
+            <returns>The converted decimal value.</returns>
+        </member>
+    </members>
+</doc>
