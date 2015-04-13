@@ -29,7 +29,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntities_NullIncludePaths_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       IList<TestDummy> result = testSubject.FindEntities((string[])null);
     }
@@ -38,7 +38,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void SubDomainModel_FindEntities_EmptyIncludePaths_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       IList<TestDummy> result = testSubject.FindEntities(new string[0]);
     }
@@ -47,7 +47,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void SubDomainModel_FindEntities_InvalidIncludePaths_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       IList<TestDummy> result = testSubject.FindEntities(new string[] { "", "PropA.PropB", "dummy" });
     }
@@ -56,7 +56,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntities_NullSpecification_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       IList<TestDummy> result = testSubject.FindEntities((ISpecification<TestDummy>)null);
     }
@@ -65,7 +65,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntities_NullExpression_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       IList<TestDummy> result = testSubject.FindEntities((Expression<Func<TestDummy, bool>>)null);
     }
@@ -143,7 +143,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntity_NullSpecification_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       TestDummy result = testSubject.FindEntity((ISpecification<TestDummy>)null);
     }
@@ -152,7 +152,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntity_NullExpression_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       TestDummy result = testSubject.FindEntity((Expression<Func<TestDummy, bool>>)null);
     }
@@ -258,7 +258,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_FindEntityByIdWithNullIncludePaths_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
       
       TestDummy result = testSubject.FindEntityById(42, null);
     }
@@ -267,7 +267,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void SubDomainModel_FindEntityByIdWithEmptyIncludePaths_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       TestDummy result = testSubject.FindEntityById(42, new string[0]);
     }
@@ -276,7 +276,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void SubDomainModel_FindEntityByIdWithInvalidIncludePaths_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       TestDummy result = testSubject.FindEntityById(42, new string[] { "PropA.PropB", null, "dummy" });
     }
@@ -287,7 +287,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_ValidateEntity_NullEntity_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>();
 
       ICollection<ValidationResult> result = testSubject.ValidateEntity(null);
     }
@@ -295,7 +295,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.ValidateEntity(T)"/> method.</summary>
     [TestMethod]
     public void SubDomainModel_ValidateEntity_ValidEntity_NoValidationResult() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       TestDummy entity = new TestDummy { TestNumber = 30 };
       ICollection<ValidationResult> result = testSubject.ValidateEntity(entity);
@@ -306,7 +306,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.ValidateEntity(T)"/> method.</summary>
     [TestMethod]
     public void SubDomainModel_ValidateEntity_InvalidEntity_ValidationResultIsReturned() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
       TestDummy entity = new TestDummy { TestNumber = 50 };
       ICollection<ValidationResult> result = testSubject.ValidateEntity(entity);
@@ -320,7 +320,7 @@ namespace Enkoni.Framework.Entities.Tests {
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void SubDomainModel_AddEntity_NullEntity_ExceptionIsThrown() {
-      SubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>();
+      ISubDomainModel<TestDummy> testSubject = MockRepository.GenerateMock<SubDomainModel<TestDummy>>();
 
       TestDummy result = testSubject.AddEntity(null);
     }
