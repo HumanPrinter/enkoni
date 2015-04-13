@@ -9,7 +9,7 @@ using Enkoni.Framework.Linq;
 namespace Enkoni.Framework.Entities {
   /// <summary>This abstract class defines the public API of a class that represents the sub domain of the domain model.</summary>
   /// <typeparam name="T">The type to which this sub domain applies.</typeparam>
-  public abstract class SubDomainModel<T> where T : IEntity<T> {
+  public abstract class SubDomainModel<T> : ISubDomainModel<T> where T : IEntity<T> {
     #region Constructor
     /// <summary>Initializes a new instance of the <see cref="SubDomainModel{T}"/> class.</summary>
     protected SubDomainModel() {
