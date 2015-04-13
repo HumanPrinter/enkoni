@@ -16,6 +16,9 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <summary>Gets or sets the db-set for the TestDummy-table.</summary>
     public DbSet<TestDummy> TestDummies { get; set; }
 
+    /// <summary>Gets or sets the db-set for the TestParentDummy-table.</summary>
+    public DbSet<TestParentDummy> TestParentDummies { get; set; }
+
     /// <summary>Gets or sets the db-set for the TestDummy-table.</summary>
     public DbSet<CustomMappedTestDummy> CustomMappedTestDummies { get; set; }
 
@@ -26,6 +29,8 @@ namespace Enkoni.Framework.Entities.Tests {
       base.OnModelCreating(modelBuilder);
 
       modelBuilder.Configurations.Add(new TestDummyConfiguration());
+      modelBuilder.Configurations.Add(new TestParentDummyConfiguration());
+      modelBuilder.Configurations.Add(new TestSubDummyConfiguration());
       modelBuilder.Configurations.Add(new CustomMappedTestDummyConfiguration());
     }
   }

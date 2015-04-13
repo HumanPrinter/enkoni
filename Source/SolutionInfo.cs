@@ -4,7 +4,7 @@
 // information associated with an assembly.
 [assembly: AssemblyCompany("Oscar Brouwer")]
 [assembly: AssemblyProduct("Multi-purposes framework")]
-[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2014")]
+[assembly: AssemblyCopyright("Copyright © Oscar Brouwer 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -17,4 +17,4 @@
 //
 // You can specify all the values or you can default the Build and Revision Numbers by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyInformationalVersion("1.2.7.0")]
+[assembly: AssemblyInformationalVersion("1.2.8.0")]

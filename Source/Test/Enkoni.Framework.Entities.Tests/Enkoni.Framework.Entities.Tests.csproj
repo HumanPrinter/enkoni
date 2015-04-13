@@ -92,8 +92,11 @@
     <Compile Include="HttpSessionMemoryRepositoryTest.cs" />
     <Compile Include="StaticMemoryRepositoryTest.cs" />
     <Compile Include="TestDatabaseRepository.cs" />
-    <Compile Include="TestDomainModel.cs" />
     <Compile Include="CustomMappedTestDummy.cs" />
+    <Compile Include="TestParentDummyConfiguration.cs" />
+    <Compile Include="TestParentDummy.cs" />
+    <Compile Include="TestSubDummyConfiguration.cs" />
+    <Compile Include="TestSubDummy.cs" />
     <Compile Include="TestDummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityValidatorTest.cs" />

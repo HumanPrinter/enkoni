@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
+    <release version="1.2.8.0" releasedate="2015-04-13">
+      <projects>
+        <project name="Enkoni.Framework.Entities" version="3.4.0">
+          <updates>
+            <update date="2015-04-11" type="change">
+              <summary><![CDATA[Marked the DomainModel class as obsolete.]]></summary>
+              <comment><![CDATA[The DomainModel class has been marked as obsolete. Checking and creating the persistency layer is not part of the responsibility of the 
+                framework. Also, creating instances of the SubDomainModel classes shuld be done using IoC-techniques.]]>
+              </comment>
+            </update>
+            <update date="2015-04-13" type="addition">
+              <summary><![CDATA[Added the new ISubDomainModel<T> interface.]]></summary>
+              <comment>
+                <![CDATA[Added the new ISubDomainModel<T> interface which makes it easier to initialize an instance of the SubDomainModel using dependency injection.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.4.0">
+          <updates>
+            <update date="2015-04-11" type="change">
+              <summary><![CDATA[The DatabaseRepository now supports updating entire graphs]]></summary>
+              <comment><![CDATA[When updating an entity, the database repository now updates the entire graph provided the subtypes also implement the IEntity<T>
+                interface. To disable this behavior set the new SaveGraph property in the DatabaseSourceInfo class to false.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.7.0" releasedate="2015-04-06">
       <projects>
         <project name="Enkoni.Framework" version="2.6.0">
