@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
+    <release version="1.2.8.1" releasedate="2015-04-17">
+      <projects>
+        <project name="Enkoni.Framework.Entities.Database" version="2.4.1">
+          <updates>
+            <update date="2015-04-17" type="change">
+              <summary><![CDATA[Fixed a bug related to updating graphs]]></summary>
+              <comment>
+                <![CDATA[Fixed a bug that ocurred when updating a graph where a related entity was deleted and another related entity was updated. The changes to the
+                updated enityt whould be lost after saving the deletion. This has now been fixed.]]>
+              </comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.8.0" releasedate="2015-04-13">
       <projects>
         <project name="Enkoni.Framework.Entities" version="3.4.0">

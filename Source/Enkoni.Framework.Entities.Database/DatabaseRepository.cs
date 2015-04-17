@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
@@ -9,10 +10,8 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Transactions;
-
 using Enkoni.Framework.Collections;
 using Enkoni.Framework.Linq;
-
 using LinqKit;
 
 namespace Enkoni.Framework.Entities {
@@ -104,9 +103,14 @@ namespace Enkoni.Framework.Entities {
 
           this.PrepareDeletions(context);
 
-          this.PrepareUpdates(context);
+          Dictionary<DbEntityEntry, EntityState> detachedObjects = this.PrepareUpdates(context);
 
           context.SaveChanges();
+
+          foreach(KeyValuePair<DbEntityEntry, EntityState> kvp in detachedObjects) {
+            kvp.Key.State = kvp.Value;
+          }
+
           this.ResetLocalCacheNoLock();
           transaction.Complete();
         }
@@ -676,7 +680,8 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Prepares the context with the registered updates of the entities.</summary>
     /// <param name="context">The context that keeps track of the entities.</param>
-    private void PrepareUpdates(DbContext context) {
+    /// <returns>The objects and thare original state that were set to Unchanged to prevent them from being saved.</returns>
+    private Dictionary<DbEntityEntry, EntityState> PrepareUpdates(DbContext context) {
       /* Get all the modified entries from the context */
       IEnumerable<DbEntityEntry> modifiedEntries = context.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);
 
@@ -698,8 +703,14 @@ namespace Enkoni.Framework.Entities {
       unwantedChanges = unwantedChanges.Concat(unwantedEntityChanges.Select(entity => (DbEntityEntry)entity));
 
       /* Force the state of the unwanted changes to Unchanged to avoid them from being saved automatically */
+      Dictionary<DbEntityEntry, EntityState> detachedObjects = new Dictionary<DbEntityEntry, EntityState>();
+      ObjectContext objectContext = ((IObjectContextAdapter)context).ObjectContext;
       foreach(DbEntityEntry entry in unwantedChanges) {
-        entry.State = EntityState.Unchanged;
+        /* Add the entry to the collection of detachedObjects */
+        detachedObjects.Add(entry, entry.State);
+        
+        /* Set the state to Unchanged. By setting the state using the Object STate Manager, the changed property values are preserved */
+        objectContext.ObjectStateManager.GetObjectStateEntry(entry.Entity).ChangeState(EntityState.Unchanged);
       }
 
       /* In case some of the updated entries where forced to Unchanged (either by this repository or another repository), force them back to Modified */
@@ -707,6 +718,8 @@ namespace Enkoni.Framework.Entities {
       foreach(DbEntityEntry<TEntity> updatedEntry in updatedEntries) {
         updatedEntry.State = EntityState.Modified;
       }
+
+      return detachedObjects;
     }
 
     /// <summary>Updates the repository with the changes made to <paramref name="entity"/>. This implementation does not acquire a write lock on the

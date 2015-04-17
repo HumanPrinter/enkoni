@@ -904,6 +904,35 @@ namespace Enkoni.Framework.Entities.Tests {
       Assert.AreEqual("New value", result.Children.ElementAt(3).TextValue);
       Assert.AreEqual(result.RecordId, result.Children.ElementAt(3).ParentId);
     }
+
+    /// <summary>Tests the functionality of the <see cref="Repository{T}.UpdateEntity(T)"/> method.</summary>
+    [TestMethod]
+    [DeploymentItem(@"TestData\placeholder.txt", @"DatabaseRepositoryTest\SaveGraph06")]
+    public void DatabaseRepository_UpdateGraphDeleteAndUpdateChild_SubentityIsUpdatedAndDeleted() {
+      DataSourceInfo sourceInfo = ConstructDataSourceInfo(@"DatabaseRepositoryTest\SaveGraph06\", TestCategory.Storage, false, true);
+      Repository<TestParentDummy> parentRepository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+      Repository<TestSubDummy> childRepository = new DatabaseRepository<TestSubDummy>(sourceInfo);
+
+      TestParentDummy targetDummy = parentRepository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.AreEqual(3, targetDummy.Children.Count);
+
+      TestSubDummy obsoleteDummy = targetDummy.Children.ElementAt(1);
+      targetDummy.Children.Remove(obsoleteDummy);
+      targetDummy.Children.ElementAt(0).TextValue = "New value";
+
+      childRepository.DeleteEntity(obsoleteDummy);
+      parentRepository.UpdateEntity(targetDummy);
+      childRepository.SaveChanges();
+      parentRepository.SaveChanges();
+
+      parentRepository = new DatabaseRepository<TestParentDummy>(sourceInfo);
+
+      TestParentDummy result = parentRepository.FindSingle(td => td.RecordId == 1, "Children");
+      Assert.IsNotNull(result);
+      Assert.AreEqual(2, result.Children.Count);
+      Assert.AreEqual("New value", result.Children.ElementAt(0).TextValue);
+      Assert.AreEqual(result.RecordId, result.Children.ElementAt(0).ParentId);
+    }
     #endregion
 
     #region Implementation of RepositoryTest

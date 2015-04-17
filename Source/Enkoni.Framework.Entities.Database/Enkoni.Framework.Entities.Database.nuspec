@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities.Database</id>
-    <version>2.4.0</version>
+    <version>2.4.1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,8 +10,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[When updating an entity, the database repository now updates the entire graph provided the subtypes also implement the IEntity<T>
-interface. To disable this behavior set the new SaveGraph property in the DatabaseSourceInfo class to false.]]></releaseNotes>
+    <releaseNotes><![CDATA[Fixed a bug that ocurred when updating a graph where a related entity was deleted and another related entity was updated. The changes to the
+updated enityt whould be lost after saving the deletion. This has now been fixed.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />
