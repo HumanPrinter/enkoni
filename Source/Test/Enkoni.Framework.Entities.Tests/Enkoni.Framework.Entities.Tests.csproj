@@ -81,6 +81,7 @@
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="BugScenarios.cs" />
     <Compile Include="DatabaseRepositoryTestDbConfiguration.cs" />
+    <Compile Include="InstanceMemoryRepositoryTest.cs" />
     <Compile Include="SubDomainModelTest.cs" />
     <Compile Include="RepositoryTest.cs" />
     <Compile Include="RepositoryTestBase.cs" />

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
+    <release version="1.2.9.0" releasedate="0001-01-01">
+      <projects>
+        <project name="Enkoni.Framework.Entities" version="2.5.0">
+          <updates>
+            <update date="2015-08-11" type="addition">
+              <summary><![CDATA[Added the new InstanceMemoryStore class]]></summary>
+              <comment><![CDATA[Added a new InstanceMemoryStore class that can be used when a memory backing store is required but static behavior is not desired.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.8.1" releasedate="2015-04-17">
       <projects>
         <project name="Enkoni.Framework.Entities.Database" version="2.4.1">
