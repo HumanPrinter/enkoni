@@ -19,7 +19,7 @@ namespace Enkoni.Framework.Entities {
     #region Properties
     /// <summary>Gets the storage that holds the saved instances.</summary>
     public override IList<T> Storage {
-      get { return storage; }
+      get { return this.storage; }
     }
     #endregion
   }
