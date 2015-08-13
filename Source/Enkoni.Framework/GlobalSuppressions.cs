@@ -28,6 +28,8 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Scope = "member", Target = "Enkoni.Framework.Specification`1.#HandleOrderByRulesUpdated(System.Object,Enkoni.Framework.SortSpecificationsEventArgs`1<!0>)", Justification = "This type is more understandable than the basetype.")]
 
+[assembly: SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments", Scope = "type", Target = "Enkoni.Framework.Serialization.CsvRecordAttribute", Justification = "The is a property, it is just of another type (string vs char)")]
+
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Linq", Justification = "The types in this namespace extend the functionality of the default Linq library")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Timers", Justification = "The types in this namespace extend the functionality of the default Timers library")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Enkoni.Framework.Xml", Justification = "The types in this namespace extend the functionality of the default Xml library")]
