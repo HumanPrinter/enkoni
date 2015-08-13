@@ -13,12 +13,20 @@ namespace Enkoni.Framework.Serialization {
   /// <summary>Transforms an instance of type <typeparamref name="T"/> to and from CSV data.</summary>
   /// <typeparam name="T">Type of the object that has to be serialized.</typeparam>
   public class CsvTransformer<T> : Transformer<T> where T : new() {
-    #region Private constants;
+    #region Private constants
     /// <summary>The regex that is used to determine if a format string matches the default format string.</summary>
     private static readonly Regex DefaultFormatRegex = new Regex(@"^.*(\{0\})?.*$", RegexOptions.Compiled);
 
     /// <summary>The regex that is used to determine if a format string matches a special true/false format string.</summary>
     private static readonly Regex TrueFalseFormatRegex = new Regex(@"^true:(?<trueString>.*)\|false:(?<falseString>.*)$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    #endregion
+
+    #region Private instance variables
+    /// <summary>The actual separator.</summary>
+    private string separator;
+
+    /// <summary>The separator wrapped in an array for performance purposes.</summary>
+    private string[] separatorArray;
     #endregion
 
     #region Constructor
@@ -123,8 +131,17 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Gets or sets a value indicating whether the header should be ignored when reading the file.</summary>
     protected internal bool IgnoreHeaderOnRead { get; set; }
 
-    /// <summary>Gets or sets the separator-character.</summary>
-    protected internal char Separator { get; set; }
+    /// <summary>Gets or sets the separator-string.</summary>
+    protected internal string Separator {
+      get { 
+        return this.separator; 
+      }
+
+      set {
+        this.separator = value;
+        this.separatorArray = new string[] { this.separator };
+      }
+    }
 
     /// <summary>Gets the delegates that give access to the properties of the instances that need to be serialized and deserialized.</summary>
     protected Dictionary<int, Delegate> PropertyDelegates { get; private set; }
@@ -250,7 +267,7 @@ namespace Enkoni.Framework.Serialization {
     /// <returns>The transformed instance.</returns>
     protected override T FromStringCore(string input) {
       T obj = new T();
-      string[] columns = input.Split(this.Separator);
+      string[] columns = input.Split(this.separatorArray, StringSplitOptions.None);
       for(int colIndex = 0; colIndex < columns.Count(); colIndex++) {
         if(this.ColumnNameMappings.ContainsKey(colIndex)) {
           string cultureName;

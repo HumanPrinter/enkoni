@@ -1,17 +1,9 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CsvTransformerTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the CsvTransformer class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-using System;
+﻿using System;
 using System.Globalization;
 using System.Text;
+
 using Enkoni.Framework.Serialization;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {
@@ -21,7 +13,7 @@ namespace Enkoni.Framework.Tests {
     #region FromString testcases
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase01_FromString_Int32() {
+    public void CsvTransformer_FromStringOnTypeWithInt32Properties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithIntProperties> testSubject = new CsvTransformer<TestDummyWithIntProperties>();
 
       string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,\"39\"";
@@ -55,7 +47,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase02_FromString_Boolean() {
+    public void CsvTransformer_FromStringOnTypeWithBooleanProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithBoolProperties> testSubject = new CsvTransformer<TestDummyWithBoolProperties>();
 
       string inputValue = "True,1,\"False\",\"N\",False,0,\"True\",\"J\",True,J,\"True\"";
@@ -92,7 +84,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase03_FromString_Byte() {
+    public void CsvTransformer_FromStringOnTypeWithByteProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithByteProperties> testSubject = new CsvTransformer<TestDummyWithByteProperties>();
 
       string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,039";
@@ -126,7 +118,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase04_FromString_Float() {
+    public void CsvTransformer_FromStringOnTypeWithFloatProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithFloatProperties> testSubject = new CsvTransformer<TestDummyWithFloatProperties>();
 
       string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\";2.34;\"3.45\"";
@@ -160,7 +152,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase05_FromString_Double() {
+    public void CsvTransformer_FromStringOnTypeWithDoubleProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithDoubleProperties> testSubject = new CsvTransformer<TestDummyWithDoubleProperties>();
 
       string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\";2.34;\"3.45\"";
@@ -194,7 +186,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase06_FromString_Decimal() {
+    public void CsvTransformer_FromStringOnTypeWithDecimalProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithDecimalProperties> testSubject = new CsvTransformer<TestDummyWithDecimalProperties>();
 
       string inputValue = "12.1;01,41;\"42.3\";\"03,26\";13.2;01.50;\"43.5\";\"03.77\";2.34;3.45";
@@ -228,7 +220,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase07_FromString_Short() {
+    public void CsvTransformer_FromStringOnTypeWithInt16Properties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithShortProperties> testSubject = new CsvTransformer<TestDummyWithShortProperties>();
 
       string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,39";
@@ -262,7 +254,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase08_FromString_Long() {
+    public void CsvTransformer_FromStringOnTypeWithInt64Properties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithLongProperties> testSubject = new CsvTransformer<TestDummyWithLongProperties>();
 
       string inputValue = "12,014,\"42\",\"036\",13,015,\"43\",\"037\",38,039";
@@ -296,7 +288,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase09_FromString_Char() {
+    public void CsvTransformer_FromStringOnTypeWithCharProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithCharProperties> testSubject = new CsvTransformer<TestDummyWithCharProperties>();
 
       string inputValue = "d,097,\"e\",\"105\",e,098,\"f\",\"106\",A,B";
@@ -330,7 +322,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase10_FromString_String() {
+    public void CsvTransformer_FromStringOnTypeWithStringProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithStringProperties> testSubject = new CsvTransformer<TestDummyWithStringProperties>();
 
       string inputValue = "abc,def  ,\"ghi\",\"jk \",lm,\"no\"";
@@ -356,7 +348,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase11_FromString_DateTime() {
+    public void CsvTransformer_FromStringOnTypeWithDateTimeProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithDateTimeProperties> testSubject = new CsvTransformer<TestDummyWithDateTimeProperties>();
 
       string inputValue = "12-07-2013,20130713,\"14-07-2013\",\"20130715\",16-07-2013,20130717,\"18-07-2013\",\"20130719\",13-08-2014,20140914";
@@ -390,7 +382,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
-    public void TestCase12_FromString_Enum() {
+    public void CsvTransformer_FromStringOnTypeWithEnumProperties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithEnumProperties> testSubject = new CsvTransformer<TestDummyWithEnumProperties>();
 
       string inputValue = "ValueB,003,\"ValueE\",\"004\",ValueC,004,\"ValueD\",\"001\",ValueB,1";
@@ -421,12 +413,54 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result.ColumnI);
       Assert.IsNull(result.ColumnJ);
     }
+
+    /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
+    [TestMethod]
+    public void CsvTransformer_FromStringOnTypeWithSimpleStringSeparator_AllFieldsAreDeserialized() {
+      Transformer<TestDummyWithStringSeparator> testSubject = new CsvTransformer<TestDummyWithStringSeparator>();
+
+      string inputValue = "42[SEP]SomeValue[SEP]True";
+      TestDummyWithStringSeparator result = testSubject.FromString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual(42, result.ColumnA);
+      Assert.AreEqual("SomeValue", result.ColumnB);
+      Assert.AreEqual(true, result.ColumnC);
+      
+      inputValue = "42[SEP][SEP]True";
+      result = testSubject.FromString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual(42, result.ColumnA);
+      Assert.AreEqual(string.Empty, result.ColumnB);
+      Assert.AreEqual(true, result.ColumnC);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
+    [TestMethod]
+    public void CsvTransformer_FromStringOnTypeWithComplexStringSeparator_AllFieldsAreDeserialized() {
+      Transformer<TestDummyWithComplexStringSeparator> testSubject = new CsvTransformer<TestDummyWithComplexStringSeparator>();
+
+      string inputValue = "\"SomeValue\",\"Other,Value\",\"True\",\"42\"";
+      TestDummyWithComplexStringSeparator result = testSubject.FromString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual("SomeValue", result.ColumnA);
+      Assert.AreEqual("Other,Value", result.ColumnB);
+      Assert.AreEqual(true, result.ColumnC);
+      Assert.AreEqual(42, result.ColumnD);
+
+      inputValue = "\"Some,Value\",\"\",\"True\",\"42\"";
+      result = testSubject.FromString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual("Some,Value", result.ColumnA);
+      Assert.AreEqual(string.Empty, result.ColumnB);
+      Assert.AreEqual(true, result.ColumnC);
+      Assert.AreEqual(42, result.ColumnD);
+    }
     #endregion
 
     #region ToString testcases
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase13_ToString_Int32() {
+    public void CsvTransformer_ToStringOnTypeWithInt32Properties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithIntProperties> testSubject = new CsvTransformer<TestDummyWithIntProperties>();
 
       TestDummyWithIntProperties inputValue = new TestDummyWithIntProperties {
@@ -459,7 +493,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase14_ToString_Boolean() {
+    public void CsvTransformer_ToStringOnTypeWithBooleanProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithBoolProperties> testSubject = new CsvTransformer<TestDummyWithBoolProperties>();
 
       TestDummyWithBoolProperties inputValue = new TestDummyWithBoolProperties {
@@ -494,7 +528,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase15_ToString_Byte() {
+    public void CsvTransformer_ToStringOnTypeWithByteProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithByteProperties> testSubject = new CsvTransformer<TestDummyWithByteProperties>();
 
       TestDummyWithByteProperties inputValue = new TestDummyWithByteProperties {
@@ -527,7 +561,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase16_ToString_Float() {
+    public void CsvTransformer_ToStringOnTypeWithFloatProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithFloatProperties> testSubject = new CsvTransformer<TestDummyWithFloatProperties>();
 
       TestDummyWithFloatProperties inputValue = new TestDummyWithFloatProperties {
@@ -564,7 +598,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase17_ToString_Double() {
+    public void CsvTransformer_ToStringOnTypeWithDoubleProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithDoubleProperties> testSubject = new CsvTransformer<TestDummyWithDoubleProperties>();
 
       TestDummyWithDoubleProperties inputValue = new TestDummyWithDoubleProperties {
@@ -601,7 +635,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase18_ToString_Decimal() {
+    public void CsvTransformer_ToStringOnTypeWithDecimalProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithDecimalProperties> testSubject = new CsvTransformer<TestDummyWithDecimalProperties>();
 
       TestDummyWithDecimalProperties inputValue = new TestDummyWithDecimalProperties {
@@ -638,7 +672,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase19_ToString_Short() {
+    public void CsvTransformer_ToStringOnTypeWithInt16Properties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithShortProperties> testSubject = new CsvTransformer<TestDummyWithShortProperties>();
 
       TestDummyWithShortProperties inputValue = new TestDummyWithShortProperties {
@@ -671,7 +705,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase20_ToString_Long() {
+    public void CsvTransformer_ToStringOnTypeWithInt64Properties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithLongProperties> testSubject = new CsvTransformer<TestDummyWithLongProperties>();
 
       TestDummyWithLongProperties inputValue = new TestDummyWithLongProperties {
@@ -704,7 +738,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase21_ToString_Char() {
+    public void CsvTransformer_ToStringOnTypeWithCharProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithCharProperties> testSubject = new CsvTransformer<TestDummyWithCharProperties>();
 
       TestDummyWithCharProperties inputValue = new TestDummyWithCharProperties {
@@ -737,7 +771,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase22_ToString_String() {
+    public void CsvTransformer_ToStringOnTypeWithStringProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithStringProperties> testSubject = new CsvTransformer<TestDummyWithStringProperties>();
 
       TestDummyWithStringProperties inputValue = new TestDummyWithStringProperties {
@@ -767,7 +801,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase23_ToString_DateTime() {
+    public void CsvTransformer_ToStringOnTypeWithDateTimeProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithDateTimeProperties> testSubject = new CsvTransformer<TestDummyWithDateTimeProperties>();
 
       TestDummyWithDateTimeProperties inputValue = new TestDummyWithDateTimeProperties {
@@ -819,7 +853,7 @@ namespace Enkoni.Framework.Tests {
 
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
-    public void TestCase24_ToString_Enum() {
+    public void CsvTransformer_ToStringOnTypeWithEnumProperties_AllFieldsAreSerialized() {
       Transformer<TestDummyWithEnumProperties> testSubject = new CsvTransformer<TestDummyWithEnumProperties>();
 
       TestDummyWithEnumProperties inputValue = new TestDummyWithEnumProperties {
@@ -849,6 +883,58 @@ namespace Enkoni.Framework.Tests {
       result = testSubject.ToString(inputValue);
       Assert.IsNotNull(result);
       Assert.AreEqual("ValueB,003,\"ValueE\",\"004\",,,\"\",\"\",X,X", result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
+    [TestMethod]
+    public void CsvTransformer_ToStringOnTypeWithSimpleStringSeparator_AllFieldsAreSerialized() {
+      Transformer<TestDummyWithStringSeparator> testSubject = new CsvTransformer<TestDummyWithStringSeparator>();
+
+      TestDummyWithStringSeparator inputValue = new TestDummyWithStringSeparator {
+        ColumnA = 42,
+        ColumnB = "SomeValue",
+        ColumnC = true
+      };
+      
+      string result = testSubject.ToString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual("42[SEP]SomeValue[SEP]True", result);
+
+      inputValue = new TestDummyWithStringSeparator {
+        ColumnA = 42,
+        ColumnC = true
+      };
+
+      result = testSubject.ToString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual("42[SEP][SEP]True", result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
+    [TestMethod]
+    public void CsvTransformer_ToStringOnTypeWithComplexStringSeparator_AllFieldsAreSerialized() {
+      Transformer<TestDummyWithComplexStringSeparator> testSubject = new CsvTransformer<TestDummyWithComplexStringSeparator>();
+
+      TestDummyWithComplexStringSeparator inputValue = new TestDummyWithComplexStringSeparator {
+        ColumnA = "SomeValue",
+        ColumnB = "Other,Value",
+        ColumnC = true,
+        ColumnD = 42
+      };
+
+      string result = testSubject.ToString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual("\"SomeValue\",\"Other,Value\",\"True\",\"42\"", result);
+
+      inputValue = new TestDummyWithComplexStringSeparator {
+        ColumnA = "Some,Value",
+        ColumnC = true,
+        ColumnD = 42
+      };
+
+      result = testSubject.ToString(inputValue);
+      Assert.IsNotNull(result);
+      Assert.AreEqual("\"Some,Value\",\"\",\"True\",\"42\"", result);
     }
     #endregion
 
@@ -1367,6 +1453,42 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets the value of the tenth column.</summary>
       [CsvColumn(9, NullString = "X", FormatString = "0")]
       public TestEnum? ColumnJ { get; set; }
+    }
+
+    /// <summary>A basic dummy class with a string separator to support the testcases.</summary>
+    [CsvRecord("[SEP]")]
+    private class TestDummyWithStringSeparator {
+      /// <summary>Gets or sets the value of the first column.</summary>
+      [CsvColumn(0)]
+      public int ColumnA { get; set; }
+
+      /// <summary>Gets or sets the value of the second column.</summary>
+      [CsvColumn(1)]
+      public string ColumnB { get; set; }
+
+      /// <summary>Gets or sets the value of the third column.</summary>
+      [CsvColumn(2)]
+      public bool ColumnC { get; set; }
+    }
+
+    /// <summary>A basic dummy class with a complex string separator to support the testcases.</summary>
+    [CsvRecord("\",\"")]
+    private class TestDummyWithComplexStringSeparator {
+      /// <summary>Gets or sets the value of the first column.</summary>
+      [CsvColumn(0, FormatString = "\"{0}")]
+      public string ColumnA { get; set; }
+
+      /// <summary>Gets or sets the value of the second column.</summary>
+      [CsvColumn(1)]
+      public string ColumnB { get; set; }
+
+      /// <summary>Gets or sets the value of the third column.</summary>
+      [CsvColumn(2)]
+      public bool ColumnC { get; set; }
+
+      /// <summary>Gets or sets the value of the fourth column.</summary>
+      [CsvColumn(3, FormatString = "{0}\"")]
+      public int ColumnD { get; set; }
     }
 
     /// <summary>A basic dummy enum to support the testcases.</summary>

@@ -35,8 +35,8 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Gets or sets a value indicating whether the header should be ignored when reading the file.</summary>
     protected bool IgnoreHeaderOnRead { get; set; }
 
-    /// <summary>Gets or sets the separator-character.</summary>
-    protected char Separator { get; set; }
+    /// <summary>Gets or sets the separator-string.</summary>
+    protected string Separator { get; set; }
     #endregion
 
     #region Protected methods
