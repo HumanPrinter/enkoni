@@ -4,6 +4,7 @@
   <xs:simpleType name="changetype">
     <xs:restriction base="xs:string">
       <xs:enumeration value="addition" />
+      <xs:enumeration value="bugfix" />
       <xs:enumeration value="change" />
       <xs:enumeration value="removal" />
     </xs:restriction>
