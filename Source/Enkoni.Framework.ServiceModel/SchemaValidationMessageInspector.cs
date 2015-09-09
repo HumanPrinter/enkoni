@@ -80,7 +80,7 @@ namespace Enkoni.Framework.ServiceModel {
     protected virtual void OnPreValidation(Message receivedMessage, IClientChannel channel, InstanceContext instanceContext) {
     }
 
-    /// <summary>Executes some logic when the validation of the received message failed. By default a warning logmessage is emitted.</summary>
+    /// <summary>Executes some logic when the validation of the received message failed. By default a warning log message is emitted.</summary>
     /// <param name="receivedMessage">The request message.</param>
     /// <param name="channel">The incoming channel.</param>
     /// <param name="instanceContext">The current service instance.</param>
@@ -91,7 +91,7 @@ namespace Enkoni.Framework.ServiceModel {
       traceSource.Flush();
     }
 
-    /// <summary>When overriden executes some logic after the validation was completed succesfully.</summary>
+    /// <summary>When overriden executes some logic after the validation was completed successfully.</summary>
     /// <param name="receivedMessage">The request message.</param>
     /// <param name="channel">The incoming channel.</param>
     /// <param name="instanceContext">The current service instance.</param>

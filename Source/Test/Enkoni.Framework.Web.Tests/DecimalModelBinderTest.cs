@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DecimalModelBinderTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the DecimalModelBinder class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Web.Mvc;

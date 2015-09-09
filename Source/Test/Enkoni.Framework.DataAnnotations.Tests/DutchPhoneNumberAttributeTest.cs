@@ -593,6 +593,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
       [DutchPhoneNumber(Categories = PhoneNumberCategories.Default, AllowCarrierPreselect = false, AllowCountryCallingCode = true, IncludeAreaCodes = null, ErrorMessage = "The property {0} is not a valid Dutch phone number.")]
       public string PhoneNumber { get; set; }
     }
+
     /// <summary>A helper class to support the testcases.</summary>
     public class TestDummy_AllDefault {
       /// <summary>Gets or sets a phone number.</summary>

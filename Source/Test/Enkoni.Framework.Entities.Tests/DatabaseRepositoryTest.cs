@@ -962,7 +962,7 @@ namespace Enkoni.Framework.Entities.Tests {
     /// <param name="databaseSubPath">The sub path relative to the execution path where the database will be created.</param>
     /// <param name="testCategory">The category of the test.</param>
     /// <param name="cloneDataSourceItems">Indicates if the retrieved items must be cloned before returning them.</param>
-    /// <param name="saveGraph">Indicates if the entire graph shuld be saved when saving an entity.</param>
+    /// <param name="saveGraph">Indicates if the entire graph should be saved when saving an entity.</param>
     /// <returns>The constructed source info.</returns>
     private static DataSourceInfo ConstructDataSourceInfo(string databaseSubPath, TestCategory testCategory, bool cloneDataSourceItems, bool saveGraph = false) {
       string databaseBasePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);

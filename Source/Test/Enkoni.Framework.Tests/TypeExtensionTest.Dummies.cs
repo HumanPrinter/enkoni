@@ -48,6 +48,7 @@
   }
 
   /// <summary>Defines dummy class <see cref="ClassE{T}"/>.</summary>
+  /// <typeparam name="T">The generic type.</typeparam>
   public class ClassE<T> : ClassB {
     /// <summary>A dummy method.</summary>
     /// <param name="input">A dummy parameter.</param>

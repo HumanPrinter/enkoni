@@ -680,7 +680,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Prepares the context with the registered updates of the entities.</summary>
     /// <param name="context">The context that keeps track of the entities.</param>
-    /// <returns>The objects and thare original state that were set to Unchanged to prevent them from being saved.</returns>
+    /// <returns>The objects and their original state that were set to Unchanged to prevent them from being saved.</returns>
     private Dictionary<DbEntityEntry, EntityState> PrepareUpdates(DbContext context) {
       /* Get all the modified entries from the context */
       IEnumerable<DbEntityEntry> modifiedEntries = context.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);

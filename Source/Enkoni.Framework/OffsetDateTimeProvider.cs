@@ -4,7 +4,7 @@ namespace Enkoni.Framework {
   /// <summary>A provider that can be used to retrieve the current date and time but with a specified offset applied.</summary>
   public class OffsetDateTimeProvider : DateTimeProvider {
     #region Private fields
-    /// <summary>The offset that is aplied to the current date and time.</summary>
+    /// <summary>The offset that is applied to the current date and time.</summary>
     private TimeSpan offset;
     #endregion
 
@@ -42,7 +42,7 @@ namespace Enkoni.Framework {
     }
 
     /// <summary>Gets a <see cref="DateTime"/> object that is set to the current date and time on this computer, expressed as the Coordinated Universal Time (UTC).</summary>
-    /// <exception cref="ArgumentOutOfRangeException">The sum of the current date and time and the offsaet results in a value that is less than <see cref="DateTime.MinValue"/> or 
+    /// <exception cref="ArgumentOutOfRangeException">The sum of the current date and time and the offset results in a value that is less than <see cref="DateTime.MinValue"/> or 
     /// greater than <see cref="DateTime.MaxValue"/>.</exception>
     public override DateTime UtcNow {
       get { return DateTime.UtcNow + this.offset; }

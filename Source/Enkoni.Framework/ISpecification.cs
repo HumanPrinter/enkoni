@@ -14,7 +14,7 @@ namespace Enkoni.Framework {
     /// <summary>Occurs when the sorting rules have changed.</summary>
     event EventHandler<SortSpecificationsEventArgs<T>> SortRulesUpdated;
 
-    /// <summary>Occurs when the inlude path has changed.</summary>
+    /// <summary>Occurs when the include path has changed.</summary>
     event EventHandler<EventArgs<string>> IncludePathUpdated;
     #endregion
 

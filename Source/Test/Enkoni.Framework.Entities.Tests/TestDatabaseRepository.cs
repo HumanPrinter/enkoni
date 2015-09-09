@@ -4,7 +4,7 @@ using System.Data.SqlServerCe;
 using System.Linq;
 
 namespace Enkoni.Framework.Entities.Tests {
-  /// <summary>This specific databaserepository is used by the testcases to perform tests that cannot be performed on the default 
+  /// <summary>This specific database repository is used by the test cases to perform tests that cannot be performed on the default 
   /// <see cref="DatabaseRepository{TEntity}"/> class.</summary>
   public class TestDatabaseRepository : DatabaseRepository<TestDummy> {
     #region Constructor
