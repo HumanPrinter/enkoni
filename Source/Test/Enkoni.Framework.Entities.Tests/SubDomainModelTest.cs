@@ -49,7 +49,7 @@ namespace Enkoni.Framework.Entities.Tests {
     public void SubDomainModel_FindEntities_InvalidIncludePaths_ExceptionIsThrown() {
       ISubDomainModel<TestDummy> testSubject = MockRepository.GeneratePartialMock<SubDomainModel<TestDummy>>();
 
-      IList<TestDummy> result = testSubject.FindEntities(new string[] { "", "PropA.PropB", "dummy" });
+      IList<TestDummy> result = testSubject.FindEntities(new string[] { string.Empty, "PropA.PropB", "dummy" });
     }
 
     /// <summary>Tests the functionality of the <see cref="SubDomainModel{T}.FindEntities(ISpecification{T})"/> method.</summary>
@@ -341,7 +341,7 @@ namespace Enkoni.Framework.Entities.Tests {
     #region Private helper classes
     /// <summary>A helper class to support the testcases.</summary>
     public class TestDummy : Entity<TestDummy> {
-      /// <summary>A test property.</summary>
+      /// <summary>Gets or sets a test property.</summary>
       [Range(12, 42)]
       public int TestNumber { get; set; }
     }
@@ -350,7 +350,7 @@ namespace Enkoni.Framework.Entities.Tests {
     public class TestSubDomainModel : SubDomainModel<TestDummy> {
       /// <summary>Initializes a new instance of the <see cref="TestSubDomainModel"/> class.</summary>
       public TestSubDomainModel() 
-        :base() {
+        : base() {
       }
 
       /// <summary>Gets a value indicating whether the CreateEmptyEntityCore-method was called.</summary>

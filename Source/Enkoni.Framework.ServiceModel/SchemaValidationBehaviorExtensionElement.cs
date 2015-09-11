@@ -11,7 +11,7 @@ using Enkoni.Framework.Xml;
 namespace Enkoni.Framework.ServiceModel {
   /// <summary>Implements a behavior extension element with which a <see cref="SchemaValidationBehavior"/> can be connected to an endpoint through 
   /// configuration.</summary>
-  /// <remarks>The implementation is based on the code of Microsoft (http://msdn.microsoft.com/en-us/library/ff647820.aspx).</remarks>
+  /// <remarks>The implementation is based on the code of Microsoft (<see href="http://msdn.microsoft.com/en-us/library/ff647820.aspx"/>).</remarks>
   public class SchemaValidationBehaviorExtensionElement : BehaviorExtensionElement {
     #region Constants
     /// <summary>Defines the name of the 'enabled'-configuration attribute.</summary>

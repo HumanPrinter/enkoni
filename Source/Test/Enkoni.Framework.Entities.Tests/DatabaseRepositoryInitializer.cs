@@ -17,13 +17,13 @@ namespace Enkoni.Framework.Entities.Tests {
     Storage
   }
 
-  /// <summary>A helper class to support the testcases.</summary>
+  /// <summary>A helper class to support the test cases.</summary>
   public class DatabaseRepositoryInitializer : DropCreateDatabaseAlways<DatabaseRepositoryTestContext> {
     /// <summary>Defines the testcategory for which the database must be initialized.</summary>
     private TestCategory category;
 
     /// <summary>Initializes a new instance of the <see cref="DatabaseRepositoryInitializer"/> class.</summary>
-    /// <param name="category">The testcategory.</param>
+    /// <param name="category">The test category.</param>
     public DatabaseRepositoryInitializer(TestCategory category) {
       this.category = category;
     }

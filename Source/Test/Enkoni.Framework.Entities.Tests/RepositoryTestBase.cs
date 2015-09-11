@@ -161,7 +161,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
 
       /* Build a specification that will not produce a result */
-      ISpecification<TestDummy>  spec = Specification.Lambda((TestDummy td) => td.NumericValue == 500);
+      ISpecification<TestDummy> spec = Specification.Lambda((TestDummy td) => td.NumericValue == 500);
 
       /* Retrieve the entity */
       TestDummy result = repository.FindSingle(spec);
@@ -222,7 +222,7 @@ namespace Enkoni.Framework.Entities.Tests {
       Repository<TestDummy> repository = this.CreateRepository<TestDummy>(sourceInfo);
 
       /* Retrieve the entity */
-      TestDummy result = repository.FindSingle(td =>td.NumericValue == 7);
+      TestDummy result = repository.FindSingle(td => td.NumericValue == 7);
 
       /* Check the result */
       Assert.IsNotNull(result);

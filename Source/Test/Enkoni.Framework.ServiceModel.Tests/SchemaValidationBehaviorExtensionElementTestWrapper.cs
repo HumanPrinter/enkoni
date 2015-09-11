@@ -11,7 +11,7 @@
     /// <summary>Creates a new instance of the behavior.</summary>
     /// <returns>The created behavior.</returns>
     public object ExecuteCreateBehavior() {
-      return base.CreateBehavior();
+      return this.CreateBehavior();
     }
     #endregion
   }

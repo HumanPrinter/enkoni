@@ -1,14 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CollectionExtensionTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the extension methods for the ICollection and IList-interfaces and
-//     the List class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Enkoni.Framework.Collections;
 
@@ -164,7 +154,7 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets a numeric value.</summary>
       public int NumericValue { get; set; }
 
-      /// <summary>Return the value of the TexValue property.</summary>
+      /// <summary>Return the value of the TextValue property.</summary>
       /// <returns>The value of the TextValue property.</returns>
       public string RetrieveTestValue() {
         return this.TextValue;

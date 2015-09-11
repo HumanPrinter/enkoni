@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ValidatorConfigurationTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2013. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the validator configuration classes.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System.Configuration;
+﻿using System.Configuration;
 
 using Enkoni.Framework.Validation.Validators;
 using Enkoni.Framework.Validation.Validators.Configuration;

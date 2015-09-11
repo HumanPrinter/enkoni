@@ -88,7 +88,7 @@ namespace Enkoni.Framework.Entities {
 
     #region Private helper methods
     /// <summary>Constructs an instance of the <see cref="XmlAttributeOverrides"/> class that is used to instruct an <see cref="XmlSerializer"/> how to (de)serialize 
-    /// en entity.</summary>
+    /// an entity.</summary>
     /// <returns>The constructed instance.</returns>
     private static XmlAttributeOverrides ConstructAttributeOverrides() {
       /* Construct the attribute overrides */

@@ -587,7 +587,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Adds new entities that, based on their record ID, appear to already exist in the repository.</summary>
     /// <param name="entities">The entities that must be added.</param>
-    /// <param name="unhandledEntities">The entities that have not yet been analysed.</param>
+    /// <param name="unhandledEntities">The entities that have not yet been analyzed.</param>
     /// <param name="tempUpdateCache">A copy of the update cache.</param>
     /// <param name="tempDeletionCache">A copy of the deletion cache.</param>
     /// <param name="entityComparer">The comparer that is used to compare the entities based on their record ID.</param>
@@ -633,7 +633,7 @@ namespace Enkoni.Framework.Entities {
     }
 
     /// <summary>Adds new entities to the repository.</summary>
-    /// <param name="unhandledEntities">The entities that have not yet been analysed.</param>
+    /// <param name="unhandledEntities">The entities that have not yet been analyzed.</param>
     /// <param name="tempAdditionCache">A copy of the addition cache.</param>
     /// <param name="handledEntities">Holds the combination of entities that have been added.</param>
     /// <returns>The entities that have been added.</returns>
@@ -680,7 +680,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Prepares the context with the registered updates of the entities.</summary>
     /// <param name="context">The context that keeps track of the entities.</param>
-    /// <returns>The objects and thare original state that were set to Unchanged to prevent them from being saved.</returns>
+    /// <returns>The objects and their original state that were set to Unchanged to prevent them from being saved.</returns>
     private Dictionary<DbEntityEntry, EntityState> PrepareUpdates(DbContext context) {
       /* Get all the modified entries from the context */
       IEnumerable<DbEntityEntry> modifiedEntries = context.ChangeTracker.Entries().Where(x => x.State == EntityState.Modified);

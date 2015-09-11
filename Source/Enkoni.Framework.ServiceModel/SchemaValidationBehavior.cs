@@ -6,7 +6,7 @@ using System.Xml.Schema;
 
 namespace Enkoni.Framework.ServiceModel {
   /// <summary>This class implements a custom endpoint behavior that validates the received message using a separate XSD schema.</summary>
-  /// <remarks>The implementation is based on the code of Microsoft (http://msdn.microsoft.com/en-us/library/ff647820.aspx).</remarks>
+  /// <remarks>The implementation is based on the code of Microsoft (<see href="http://msdn.microsoft.com/en-us/library/ff647820.aspx"/>).</remarks>
   public class SchemaValidationBehavior : IEndpointBehavior {
     #region Instance variables
     /// <summary>The set of schemas that are used for the validation of received messages.</summary>

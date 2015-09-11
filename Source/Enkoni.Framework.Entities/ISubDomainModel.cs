@@ -29,7 +29,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds all the entities that match the specified expression.</summary>
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     IList<T> FindEntities(Expression<Func<T, bool>> searchExpression);
 
@@ -37,7 +37,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     IList<T> FindEntities(Expression<Func<T, bool>> searchExpression, string[] includePaths);
 
@@ -49,7 +49,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Finds one entities that matches the specified expression.</summary>
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     T FindEntity(Expression<Func<T, bool>> searchExpression);
 
@@ -57,7 +57,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     T FindEntity(Expression<Func<T, bool>> searchExpression, string[] includePaths);
 

@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ComparerTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the Comparer-class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using Enkoni.Framework.Collections;
+﻿using Enkoni.Framework.Collections;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -132,7 +123,7 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets a reference value.</summary>
       public SubTestDummy Leaf { get; set; }
 
-      /// <summary>Return the value of the TexValue property.</summary>
+      /// <summary>Return the value of the TextValue property.</summary>
       /// <returns>The value of the TextValue property.</returns>
       public string RetrieveTestValue() {
         return this.TextValue;
@@ -150,7 +141,7 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets a reference value.</summary>
       public SubTestDummy Leaf { get; set; }
 
-      /// <summary>Return the value of the TexValue property.</summary>
+      /// <summary>Return the value of the TextValue property.</summary>
       /// <returns>The value of the TextValue property.</returns>
       public string RetrieveTestValue() {
         return this.TextValue;
