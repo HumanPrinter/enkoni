@@ -203,6 +203,60 @@ namespace Enkoni.Framework.Linq {
 
       return source.Distinct(source.CreateEqualityComparer(field));
     }
+
+    /// <summary>Partitions a collection into groups based on a key value. This methods differs from the default <see cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/> 
+    /// method in the sense that it will create groups of elements with the same key, only if those elements are adjacent.</summary>
+    /// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+    /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
+    /// <param name="source">An <see cref="IEnumerable{TSource}"/> whose elements to partition.</param>
+    /// <param name="keySelector">A function to extract the key for each element.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="IGrouping{TKey, TSource}"/> where each <see cref="IGrouping{TKey,TSource}"/> object contains a sequence of objects and a key.</returns>
+    public static IEnumerable<IGrouping<TKey, TSource>> Partition<TKey, TSource>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector) {
+      return Partition(source, keySelector, EqualityComparer<TKey>.Default);
+    }
+
+    /// <summary>Partitions a collection into groups based on a key value. This methods differs from the default <see cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/> 
+    /// method in the sense that it will create groups of elements with the same key, only if those elements are adjacent.</summary>
+    /// <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+    /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
+    /// <param name="source">An <see cref="IEnumerable{TSource}"/> whose elements to partition.</param>
+    /// <param name="keySelector">A function to extract the key for each element.</param>
+    /// <param name="comparer">An <see cref="IEqualityComparer{T}"/> to compare keys.</param>
+    /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="IGrouping{TKey, TSource}"/> where each <see cref="IGrouping{TKey,TSource}"/> object contains a sequence of objects and a key.</returns>
+    public static IEnumerable<IGrouping<TKey, TSource>> Partition<TKey, TSource>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer) {
+      if(source == null) {
+        throw new ArgumentNullException("source", "The IEnumerable-instance is mandatory.");
+      }
+
+      if(keySelector == null) {
+        throw new ArgumentNullException("keySelector");
+      }
+      
+      if(comparer == null) {
+        throw new ArgumentNullException("comparer");
+      }
+
+      List<TSource> sourceList = source.ToList();
+      if(sourceList.Count <= 1) {
+        return source.GroupBy(keySelector);
+      }
+
+      var indexedCollection = source.Select((item, index) => new { Index = index, Item = item }).ToList();
+      IEnumerable<IGrouping<TKey, TSource>> result = Enumerable.Empty<IGrouping<TKey, TSource>>();
+
+      int startOfNextPart = 0;
+      while(startOfNextPart < sourceList.Count) {
+        List<TSource> partition = indexedCollection
+            .Skip(startOfNextPart)
+            .TakeWhile(indexedItem => indexedItem.Index - startOfNextPart == 0 || comparer.Equals(keySelector(indexedItem.Item), keySelector(sourceList.ElementAt(indexedItem.Index - 1))))
+            .Select(a => a.Item)
+            .ToList();
+        startOfNextPart += partition.Count;
+        result = result.Concat(partition.GroupBy(keySelector));
+      }
+
+      return result;
+    }
     #endregion
 
     #region IQueryable<T> extension methods

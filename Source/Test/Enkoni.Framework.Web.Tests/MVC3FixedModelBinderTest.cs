@@ -183,9 +183,9 @@ namespace Enkoni.Framework.Web.Tests {
 
       ControllerContext controllerContext = new ControllerContext();
 
-      IValueProvider valueProvider = new DictionaryValueProvider<string>(new Dictionary<string, string> { { "SomeValue", "ValueC" }, {"SomeOtherValue", "42"} }, null);
+      IValueProvider valueProvider = new DictionaryValueProvider<string>(new Dictionary<string, string> { { "SomeValue", "ValueC" }, { "SomeOtherValue", "42" } }, null);
       ModelMetadata metadata = ModelMetadataProviders.Current.GetMetadataForType(null, typeof(MyModel));
-      ModelBindingContext bindingContext = new ModelBindingContext { ModelName = "", ValueProvider = valueProvider, ModelMetadata = metadata };
+      ModelBindingContext bindingContext = new ModelBindingContext { ModelName = string.Empty, ValueProvider = valueProvider, ModelMetadata = metadata };
 
       MyModel model = (MyModel)testSubject.BindModel(controllerContext, bindingContext);
       Assert.IsNotNull(model);
@@ -204,7 +204,7 @@ namespace Enkoni.Framework.Web.Tests {
 
       IValueProvider valueProvider = new DictionaryValueProvider<object>(new Dictionary<string, object> { { "SomeValue", 3 }, { "SomeOtherValue", "42" } }, null);
       ModelMetadata metadata = ModelMetadataProviders.Current.GetMetadataForType(null, typeof(MyModel));
-      ModelBindingContext bindingContext = new ModelBindingContext { ModelName = "", ValueProvider = valueProvider, ModelMetadata = metadata };
+      ModelBindingContext bindingContext = new ModelBindingContext { ModelName = string.Empty, ValueProvider = valueProvider, ModelMetadata = metadata };
 
       MyModel model = (MyModel)testSubject.BindModel(controllerContext, bindingContext);
       Assert.IsNotNull(model);
@@ -216,6 +216,7 @@ namespace Enkoni.Framework.Web.Tests {
     #region Private static helper methods
     /// <summary>Creates a <see cref="ModelBindingContext"/> that is used to pass to the model binder that is being tested.</summary>
     /// <param name="formValue">The value that is &quot;send&quot; to the binder.</param>
+    /// <param name="destinationType">The destination type.</param>
     /// <returns>The created context.</returns>
     private static ModelBindingContext CreateModelBindingContext(object formValue, Type destinationType) {
       IValueProvider valueProvider = new DictionaryValueProvider<object>(new Dictionary<string, object> { { "SomeValue", formValue } }, null);

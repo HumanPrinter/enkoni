@@ -53,6 +53,7 @@
     <Compile Include="MemorySourceInfo.cs" />
     <Compile Include="MemoryRepository.cs" />
     <Compile Include="HttpSessionMemoryStore.cs" />
+    <Compile Include="InstanceMemoryStore.cs" />
     <Compile Include="StaticMemoryStore.cs" />
     <Compile Include="MemoryStore.cs" />
     <Compile Include="EntityEqualityComparer.cs" />

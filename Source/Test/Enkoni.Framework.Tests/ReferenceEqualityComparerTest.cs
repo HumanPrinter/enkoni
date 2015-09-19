@@ -1,13 +1,4 @@
-﻿//---------------------------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ReferenceEqualityComparerTest.cs" company="Oscar Brouwer">
-//     Copyright (c) Oscar Brouwer 2012. All rights reserved.
-// </copyright>
-// <summary>
-//     Contains testcases that test the functionality of the ReferenceEqualityComparer-class.
-// </summary>
-//---------------------------------------------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 
 using Enkoni.Framework.Collections;
 
@@ -145,14 +136,14 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets a reference value.</summary>
       public SubTestDummy Leaf { get; set; }
 
-      /// <summary>Return the value of the TexValue property.</summary>
+      /// <summary>Return the value of the TextValue property.</summary>
       /// <returns>The value of the TextValue property.</returns>
       public string RetrieveTestValue() {
         return this.TextValue;
       }
 
       /// <summary>Creates and returns a clone of this instance.</summary>
-      /// <returns>The copy of this instnce.</returns>
+      /// <returns>The copy of this instance.</returns>
       public object Clone() {
         TestDummy clone = this.MemberwiseClone() as TestDummy;
         if(this.Leaf != null) {
@@ -171,7 +162,7 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets a numeric value.</summary>
       public int NumericValue { get; set; }
 
-      /// <summary>Return the value of the TexValue property.</summary>
+      /// <summary>Return the value of the TextValue property.</summary>
       /// <returns>The value of the TextValue property.</returns>
       public string RetrieveTestValue() {
         return this.TextValue;

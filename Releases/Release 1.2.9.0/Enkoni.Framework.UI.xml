@@ -1,0 +1,754 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Enkoni.Framework.UI</name>
+    </assembly>
+    <members>
+        <member name="T:Enkoni.Framework.UI.Mvvm.Extensions">
+            <summary>This class contains some all-purpose extension-methods.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Extensions.Fire(System.ComponentModel.PropertyChangedEventHandler,System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will 
+            return when all the event handlers have finished. <br/>
+            This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+            propagate the call the the appropriate thread.</summary>
+            <param name="handler">The multicast delegate that must be executed.</param>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Any metadata that must be passed to the event handlers.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Extensions.FireInParallel(System.ComponentModel.PropertyChangedEventHandler,System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
+            This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+            propagate the call the the appropriate thread.</summary>
+            <param name="handler">The multicast delegate that must be executed.</param>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Any metadata that must be passed to the event handlers.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Extensions.FireAsync(System.ComponentModel.PropertyChangedEventHandler,System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
+            This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+            propagate the call the the appropriate thread.</summary>
+            <param name="handler">The multicast delegate that must be executed.</param>
+            <param name="sender">The object that triggered the event.</param>
+            <param name="e">Any metadata that must be passed to the event handlers.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Extensions.InvokeDelegate(System.Delegate,System.Object[])">
+            <summary>Invokes a delegate. If required, the call is transferred to the appropriate thread.</summary>
+            <param name="del">The delegate that must be invoked.</param>
+            <param name="args">The arguments that must be passed to the delegate.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Extensions.UnsafeFire(System.Delegate,System.Object[])">
+            <summary>Invokes the subscribers of the specified delegate in a sequential way.</summary>
+            <param name="del">The delegate whose subscribers must be invoked.</param>
+            <param name="args">The arguments that must be passed to the delegate-subscribers.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Extensions.UnsafeFireInParallel(System.Delegate,System.Object[])">
+            <summary>Invokes the subscribers of the specified delegate in a parallel way.</summary>
+            <param name="del">The delegate whose subscribers must be invoked.</param>
+            <param name="args">The arguments that must be passed to the delegate-subscribers.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Extensions.UnsafeFireAsync(System.Delegate,System.Object[])">
+            <summary>Invokes the subscribers of the specified delegate in an asynchronous way.</summary>
+            <param name="del">The delegate whose subscribers must be invoked.</param>
+            <param name="args">The arguments that must be passed to the delegate-subscribers.</param>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.DialogMessage">
+            <summary>Default message for showing dialog messages.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.Message">
+            <summary>Default implementation of the <see cref="T:Enkoni.Framework.UI.Mvvm.IMessage"/> interface.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.IMessage">
+            <summary>Interface that defines a message that can be used with the MVVM pattern.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessage.GetWindow">
+            <summary>Searches for the owner window of the message sender.</summary>
+            <returns>The window that owns the sender.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.IMessage.Sender">
+            <summary>Gets the message's sender.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Message.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.Message"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Message.#ctor(System.Object)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.Message"/> class.</summary>
+            <param name="sender">The sender.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Message.GetWindow">
+            <summary>Searches for the Window that owns the sender.</summary>
+            <returns>The window that owns the sender.</returns>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Message.Sender">
+            <summary>Gets or sets the message's sender.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.DialogMessage.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.DialogMessage"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.DialogMessage.#ctor(System.Object)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.DialogMessage"/> class.</summary>
+            <param name="sender">The sender.</param>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.DialogMessage.Caption">
+            <summary>Gets or sets the caption for the message box.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.DialogMessage.Message">
+            <summary>Gets or sets the message to show.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.DialogMessage.Buttons">
+            <summary>Gets or sets the buttons displayed by the message box.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.DialogMessage.DefaultResult">
+            <summary>Gets or sets which result is the default in the message box.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.DialogMessage.Callback">
+            <summary>Gets or sets a callback method that should be executed to deliver the result of the message box to the object that sent the message.
+            </summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.DialogMessage.Icon">
+            <summary>Gets or sets the icon for the message box.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.EventToCommand">
+            <summary>This <see cref="T:System.Windows.Interactivity.TriggerAction`1"/> can be used to bind any event on any <see cref="T:System.Windows.FrameworkElement"/> to an <see cref="T:System.Windows.Input.ICommand"/>.
+            Typically, this element is used in XAML to connect the attached element to a command located in a ViewModel. This trigger can only be attached
+            to a <see cref="T:System.Windows.FrameworkElement"/> or a class deriving from <see cref="T:System.Windows.FrameworkElement"/>.
+            <para>To access the EventArgs of the fired event, use a <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand`1"/> and leave the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameter"/> and 
+            <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameterValue"/> empty.</para></summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandProperty">
+            <summary>Identifies the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.Command"/> dependency property.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameterProperty">
+            <summary>Identifies the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameter"/> dependency property.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.EventToCommand.BindCanExecuteToIsEnabledProperty">
+            <summary>Identifies the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.BindCanExecuteToIsEnabled"/> dependency property.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.EventToCommand.bindCanExecuteToIsEnabled">
+            <summary>Indicates if the CanExecute must be evaluated by the object.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.EventToCommand.commandParameter">
+            <summary>The parameter that will be passed to the command.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.EventToCommand"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.Invoke">
+            <summary>Provides a simple way to invoke this trigger programmatically without any EventArgs.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.OnAttached">
+            <summary>Called when a FrameworkElement/Control is attached.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.Invoke(System.Object)">
+            <summary>Executes the trigger.
+            <para>To access the EventArgs of the fired event, use a <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand`1"/> and leave the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameter"/> and 
+            <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameterValue"/> empty.</para></summary>
+            <param name="parameter">The EventArgs of the fired event.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.GetAssociatedObject">
+            <summary>This method is here for compatibility with the Silverlight version.</summary>
+            <returns>The FrameworkElement/Control to which this trigger is attached.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.IsAssociatedObjectDisabled">
+            <summary>Determines whether the associated object is disabled.</summary>
+            <returns><see langword="true"/> if the associated object is disabled; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.ValidateAssociatedObjectEnabled">
+            <summary>Validates whether the associated object needs to be enabled.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.EventToCommand.OnCommandCanExecuteChanged(System.Object,System.EventArgs)">
+            <summary>Called when the outcome of the CanExecute changed.</summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.EventToCommand.Command">
+            <summary>Gets or sets the <see cref="T:System.Windows.Input.ICommand"/> that this trigger is bound to. This is a DependencyProperty.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameter">
+            <summary>Gets or sets an object that will be passed to the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.Command"/> attached to this trigger. This is a DependencyProperty.
+            </summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameterValue">
+            <summary>Gets or sets an object that will be passed to the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.Command"/> attached to this trigger. This property is here for 
+            compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameter"/> 
+            property.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.EventToCommand.PassEventArgsToCommand">
+            <summary>Gets or sets a value indicating whether the EventArgs passed to the event handler will be forwarded to the 
+            <see cref="M:System.Windows.Input.ICommand.Execute(System.Object)"/> method, when the event is fired (if the bound ICommand accepts an argument of type EventArgs).
+            <para>For example, use a <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand`1"/> to get the arguments of a MouseMove event.</para></summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.EventToCommand.BindCanExecuteToIsEnabled">
+            <summary>Gets or sets a value indicating whether the attached element must be disabled when the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.Command"/> property's 
+            CanExecuteChanged event fires. If this property is true, and the command's CanExecute method returns false, the element will be disabled. If 
+            this property is false, the element will not be disabled when the command's CanExecute method changes. This is a DependencyProperty.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.EventToCommand.BindCanExecuteToIsEnabledValue">
+            <summary>Gets or sets a value indicating whether the attached element must be disabled when the <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.Command"/> property's 
+            CanExecuteChanged event fires. If this property is true, and the command's CanExecute  method returns false, the element will be disabled. 
+            This property is here for compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the 
+            <see cref="P:Enkoni.Framework.UI.Mvvm.EventToCommand.BindCanExecuteToIsEnabled"/> property.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.IMessenger">
+            <summary>Interface to define a Messenger.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Register``1(System.Object,System.Action{``0})">
+            <summary>Registers a recipient for a type of <typeparamref name="TMessage"/>. The action parameter will be executed when a corresponding 
+            message is sent.
+            <para>Registering a recipient does not create a hard reference to it, so if this recipient is deleted, no memory leak is caused.</para>
+            </summary>
+            <typeparam name="TMessage">The type of message that the recipient registers for.</typeparam>
+            <param name="recipient">The recipient that will receive the messages.</param>
+            <param name="action">The action that will be executed when a <typeparamref name="TMessage"/> is sent.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Register``1(System.Object,System.Action{``0},System.Boolean)">
+            <summary>Registers a recipient for a type of <typeparamref name="TMessage"/>. The action parameter will be executed when a corresponding 
+            message is sent.
+            <para>Registering a recipient does not create a hard reference to it, so if this recipient is deleted, no memory leak is caused.</para>
+            </summary>
+            <typeparam name="TMessage">The type of message that the recipient registers for.</typeparam>
+            <param name="recipient">The recipient that will receive the messages.</param>
+            <param name="action">The action that will be executed when a <typeparamref name="TMessage"/> is sent.</param>
+            <param name="includeDerivedMessages">If <see langword="true"/>, message types deriving from <typeparamref name="TMessage"/> will also be 
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> derive from <c>OrderMessage</c>, 
+            registering for <c>OrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to <see langword="true"/> will send 
+            <c>SendOrderMessage</c> and <c>ExecuteOrderMessage</c> to the recipient that registered.
+            <para>Also, if <typeparamref name="TMessage"/> is an interface, message types implementing <typeparamref name="TMessage"/> will also be
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> implement <c>IOrderMessage</c>, 
+            registering for <c>IOrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to true will send <c>SendOrderMessage</c> and 
+            <c>ExecuteOrderMessage</c> to the recipient that registered.</para></param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Register``1(System.Object,System.Action{``0},System.Boolean,System.Object)">
+            <summary>Registers a recipient for a type of <typeparamref name="TMessage"/>. The action parameter will be executed when a corresponding 
+            message is sent.
+            <para>Registering a recipient does not create a hard reference to it, so if this recipient is deleted, no memory leak is caused.</para>
+            </summary>
+            <typeparam name="TMessage">The type of message that the recipient registers for.</typeparam>
+            <param name="recipient">The recipient that will receive the messages.</param>
+            <param name="action">The action that will be executed when a <typeparamref name="TMessage"/> is sent.</param>
+            <param name="includeDerivedMessages">If <see langword="true"/>, message types deriving from <typeparamref name="TMessage"/> will also be 
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> derive from <c>OrderMessage</c>, 
+            registering for <c>OrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to <see langword="true"/> will send 
+            <c>SendOrderMessage</c> and <c>ExecuteOrderMessage</c> to the recipient that registered.
+            <para>Also, if <typeparamref name="TMessage"/> is an interface, message types implementing <typeparamref name="TMessage"/> will also be
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> implement <c>IOrderMessage</c>, 
+            registering for <c>IOrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to true will send <c>SendOrderMessage</c> and 
+            <c>ExecuteOrderMessage</c> to the recipient that registered.</para></param>
+            <param name="token">A token for a messaging channel. If a recipient registers using a token, and a sender sends a message using the same 
+            token, then this message will be delivered to the recipient. Other recipients who did not use a token when registering (or who used a 
+            different token) will not get the message. Similarly, messages sent without any token, or with a different token, will not be delivered to 
+            that recipient.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Deregister``1(System.Object)">
+            <summary>Deregisters a message recipient for a given type of messages. Other message types will still be transmitted to the recipient (if it 
+            registered for them previously).</summary>
+            <typeparam name="TMessage">The type of messages that the recipient wants to unregister from.</typeparam>
+            <param name="recipient">The recipient that must be unregistered.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Deregister``1(System.Object,System.Action{``0})">
+            <summary>Deregisters a message recipient for a given type of messages, for a given action. Other message types will still be transmitted to 
+            the recipient (if it registered for them previously).</summary>
+            <typeparam name="TMessage">The type of messages that the recipient wants to unregister from.</typeparam>
+            <param name="recipient">The recipient that must be unregistered.</param>
+            <param name="action">The action that must be unregistered for the recipient and for the message type <typeparamref name="TMessage"/>.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Deregister``1(System.Object,System.Action{``0},System.Object)">
+            <summary>Deregisters a message recipient for a given type of messages, for a given action and a given token. Other message types will still 
+            be transmitted to the recipient (if it registered for them previously). Other actions that have been registered for the message type 
+            <typeparamref name="TMessage"/>, for the given recipient and other tokens (if available) will also remain available.</summary>
+            <typeparam name="TMessage">The type of messages that the recipient wants to unregister from.</typeparam>
+            <param name="recipient">The recipient that must be unregistered.</param>
+            <param name="action">The action that must be unregistered for the recipient and for the message type <typeparamref name="TMessage"/>.</param>
+            <param name="token">The token for which the recipient must be unregistered.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Send``1(``0)">
+            <summary>Sends a message to registered recipients. The message will reach only recipients that registered for this message type using one of 
+            the Register methods.</summary>
+            <typeparam name="TMessage">The type of message that will be sent.</typeparam>
+            <param name="message">The message to send to registered recipients.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.IMessenger.Send``1(``0,System.Object)">
+            <summary>Sends a message to registered recipients. The message will reach only recipients that registered for this message type using one of 
+            the Register methods.</summary>
+            <typeparam name="TMessage">The type of message that will be sent.</typeparam>
+            <param name="message">The message to send to registered recipients.</param>
+            <param name="token">A token for a messaging channel. If a recipient registers using a token, and a sender sends a message using the same 
+            token, then this message will be delivered to the recipient. Other recipients who did not use a token when registering (or who used a 
+            different token) will not get the message. Similarly, messages sent without any token, or with a different token, will not be delivered to 
+            that recipient.</param>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.IPropertyChangedMessage">
+            <summary>Interface to access the generic <see cref="T:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1"/> class in a non generic way.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.IPropertyChangedMessage.PropertyName">
+            <summary>Gets the name of the property whose value changed.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.IPropertyChangedMessage.OldValue">
+            <summary>Gets the old value of the property.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.IPropertyChangedMessage.NewValue">
+            <summary>Gets the new value of the property.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.IViewDialogMessage">
+            <summary>Interface to access the generic <see cref="T:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1"/> class in a non generic way.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.IViewDialogMessage.ViewModel">
+            <summary>Gets or sets the ViewModel source for the View.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.IViewDialogMessage.Callback">
+            <summary>Gets or sets the callback called when a View is closed.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.KeyEventToCommand">
+            <summary>Derived class from EventToCommand to map key events to a command.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.KeyEventToCommand.associatedKeys">
+            <summary>The collection of associated keys.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.KeyEventToCommand.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.KeyEventToCommand"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.KeyEventToCommand.Invoke(System.Object)">
+            <summary>Executes the trigger.
+            <para>To access the EventArgs of the fired event, use a <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand`1"/> and leave the CommandParameter and 
+            CommandParameterValue empty.</para></summary>
+            <param name="parameter">The EventArgs of the fired event.</param>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.KeyEventToCommand.AssociatedKeys">
+            <summary>Gets or sets the associated keys.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.KeyEventToCommand.MarkEventAsHandled">
+            <summary>Gets or sets a value indicating whether the <see cref="P:System.Windows.RoutedEventArgs.Handled"/> property must set to <see langword="true"/> after execution 
+            of the command.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.Messenger">
+            <summary>Default implementation of the <see cref="T:Enkoni.Framework.UI.Mvvm.IMessenger"/> interface.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.Messenger.cleanupInterval">
+            <summary>The interval which the garbage will be collected.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.Messenger.cleanupTimer">
+            <summary>The timer that controls the garbage collection.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.Messenger.recipients">
+            <summary>Contains the recipients that listen for a specific message type.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.Messenger.derivedRecipients">
+            <summary>Contains the recipients that listen for a specific message type including derived messages.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.#cctor">
+            <summary>Initializes static members of the <see cref="T:Enkoni.Framework.UI.Mvvm.Messenger"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.Messenger"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Register``1(System.Object,System.Action{``0})">
+            <summary>Registers a recipient for a type of <typeparamref name="TMessage"/>. The action parameter will be executed when a corresponding 
+            message is sent.
+            <para>Registering a recipient does not create a hard reference to it, so if this recipient is deleted, no memory leak is caused.</para>
+            </summary>
+            <typeparam name="TMessage">The type of message that the recipient registers for.</typeparam>
+            <param name="recipient">The recipient that will receive the messages.</param>
+            <param name="action">The action that will be executed when a <typeparamref name="TMessage"/> is sent.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Register``1(System.Object,System.Action{``0},System.Boolean)">
+            <summary>Registers a recipient for a type of <typeparamref name="TMessage"/>. The action parameter will be executed when a corresponding 
+            message is sent.
+            <para>Registering a recipient does not create a hard reference to it, so if this recipient is deleted, no memory leak is caused.</para>
+            </summary>
+            <typeparam name="TMessage">The type of message that the recipient registers for.</typeparam>
+            <param name="recipient">The recipient that will receive the messages.</param>
+            <param name="action">The action that will be executed when a <typeparamref name="TMessage"/> is sent.</param>
+            <param name="includeDerivedMessages">If <see langword="true"/>, message types deriving from <typeparamref name="TMessage"/> will also be 
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> derive from <c>OrderMessage</c>, 
+            registering for <c>OrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to <see langword="true"/> will send 
+            <c>SendOrderMessage</c> and <c>ExecuteOrderMessage</c> to the recipient that registered.
+            <para>Also, if <typeparamref name="TMessage"/> is an interface, message types implementing <typeparamref name="TMessage"/> will also be
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> implement <c>IOrderMessage</c>, 
+            registering for <c>IOrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to true will send <c>SendOrderMessage</c> and 
+            <c>ExecuteOrderMessage</c> to the recipient that registered.</para></param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Register``1(System.Object,System.Action{``0},System.Boolean,System.Object)">
+            <summary>Registers a recipient for a type of <typeparamref name="TMessage"/>. The action parameter will be executed when a corresponding 
+            message is sent.
+            <para>Registering a recipient does not create a hard reference to it, so if this recipient is deleted, no memory leak is caused.</para>
+            </summary>
+            <typeparam name="TMessage">The type of message that the recipient registers for.</typeparam>
+            <param name="recipient">The recipient that will receive the messages.</param>
+            <param name="action">The action that will be executed when a <typeparamref name="TMessage"/> is sent.</param>
+            <param name="includeDerivedMessages">If <see langword="true"/>, message types deriving from <typeparamref name="TMessage"/> will also be 
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> derive from <c>OrderMessage</c>, 
+            registering for <c>OrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to <see langword="true"/> will send 
+            <c>SendOrderMessage</c> and <c>ExecuteOrderMessage</c> to the recipient that registered.
+            <para>Also, if <typeparamref name="TMessage"/> is an interface, message types implementing <typeparamref name="TMessage"/> will also be
+            transmitted to the recipient. For example, if a <c>SendOrderMessage</c> and an <c>ExecuteOrderMessage</c> implement <c>IOrderMessage</c>, 
+            registering for <c>IOrderMessage</c> and setting <paramref name="includeDerivedMessages"/> to true will send <c>SendOrderMessage</c> and 
+            <c>ExecuteOrderMessage</c> to the recipient that registered.</para></param>
+            <param name="token">A token for a messaging channel. If a recipient registers using a token, and a sender sends a message using the same 
+            token, then this message will be delivered to the recipient. Other recipients who did not use a token when registering (or who used a 
+            different token) will not get the message. Similarly, messages sent without any token, or with a different token, will not be delivered to 
+            that recipient.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Deregister``1(System.Object)">
+            <summary>Deregisters a message recipient for a given type of messages. Other message types will still be transmitted to the recipient (if it 
+            registered for them previously).</summary>
+            <typeparam name="TMessage">The type of messages that the recipient wants to unregister from.</typeparam>
+            <param name="recipient">The recipient that must be unregistered.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Deregister``1(System.Object,System.Action{``0})">
+            <summary>Deregisters a message recipient for a given type of messages, for a given action. Other message types will still be transmitted to 
+            the recipient (if it registered for them previously).</summary>
+            <typeparam name="TMessage">The type of messages that the recipient wants to unregister from.</typeparam>
+            <param name="recipient">The recipient that must be unregistered.</param>
+            <param name="action">The action that must be unregistered for the recipient and for the message type <typeparamref name="TMessage"/>.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Deregister``1(System.Object,System.Action{``0},System.Object)">
+            <summary>Deregisters a message recipient for a given type of messages, for a given action and a given token. Other message types will still 
+            be transmitted to the recipient (if it registered for them previously). Other actions that have been registered for the message type 
+            <typeparamref name="TMessage"/>, for the given recipient and other tokens (if available) will also remain available.</summary>
+            <typeparam name="TMessage">The type of messages that the recipient wants to unregister from.</typeparam>
+            <param name="recipient">The recipient that must be unregistered.</param>
+            <param name="action">The action that must be unregistered for the recipient and for the message type <typeparamref name="TMessage"/>.</param>
+            <param name="token">The token for which the recipient must be unregistered.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Send``1(``0)">
+            <summary>Sends a message to registered recipients. The message will reach only recipients that registered for this message type using one of 
+            the Register methods.</summary>
+            <typeparam name="TMessage">The type of message that will be sent.</typeparam>
+            <param name="message">The message to send to registered recipients.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Send``1(``0,System.Object)">
+            <summary>Sends a message to registered recipients. The message will reach only recipients that registered for this message type using one of 
+            the Register methods.</summary>
+            <typeparam name="TMessage">The type of message that will be sent.</typeparam>
+            <param name="message">The message to send to registered recipients.</param>
+            <param name="token">A token for a messaging channel. If a recipient registers using a token, and a sender sends a message using the same 
+            token, then this message will be delivered to the recipient. Other recipients who did not use a token when registering (or who used a 
+            different token) will not get the message. Similarly, messages sent without any token, or with a different token, will not be delivered to 
+            that recipient.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Cleanup">
+            <summary>Collects the dead references registered by the messenger and removes them from the recipients list. This method will be called 
+            automatically if <see cref="P:Enkoni.Framework.UI.Mvvm.Messenger.CleanupInterval"/> is greater then 0.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Dispose">
+            <summary>Disposes any resources held by this instance.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.DisposeManagedResources">
+            <summary>Disposes all the managed resources that are held by this instance.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Cleanup(System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{Enkoni.Framework.UI.Mvvm.Messenger.IRecipient}},System.Type)">
+            <summary>Collects and removes the dead reference inside a dictionary.</summary>
+            <param name="dictionary">The dictionary that must be analyzed.</param>
+            <param name="key">The key that must be analyzed (optional).</param>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.Default">
+            <summary>Gets or sets the default instance of a messenger.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.CleanupInterval">
+            <summary>Gets or sets the interval with which dereferenced recipients are removed from the cache.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.Messenger.IRecipient">
+            <summary>Private interface for accessing the generic <see cref="T:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1"/> class in a non generic way.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.IRecipient.Process(System.Object)">
+            <summary>Processes the specified message.</summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.IRecipient.MarkForDeletion">
+            <summary>Marks an object for deletion.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.IRecipient.IsAlive">
+            <summary>Gets a value indicating whether the owner is still alive.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.IRecipient.Owner">
+            <summary>Gets the owner (recipient).</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.IRecipient.Token">
+            <summary>Gets the token for additional message filtering.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.IRecipient.Action">
+            <summary>Gets the action called when a message is send.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1">
+            <summary>Private class for storing recipient settings.</summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.action">
+            <summary>The action that must be executed when a message is received.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.reference">
+            <summary>The actual reference to the recipient.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.#ctor(System.Object,System.Action{`0},System.Object)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1"/> class.</summary>
+            <param name="owner">The owner or actual recipient.</param>
+            <param name="action">The action that must be executed when a message is received.</param>
+            <param name="token">The token that was used while sending the message.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.Process(System.Object)">
+            <summary>Processes the specified message.</summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.MarkForDeletion">
+            <summary>Marks this instance for deletion.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.IsAlive">
+            <summary>Gets a value indicating whether the owner is still alive.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.Owner">
+            <summary>Gets the owner (recipient).</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.Token">
+            <summary>Gets the token for additional message filtering.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.Messenger.Recipient`1.Action">
+            <summary>Gets the action called when a message is send.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1">
+            <summary>Defines a message that can be used to inform about a changed property value.</summary>
+            <typeparam name="T">The type of the property that changed.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1.#ctor(System.String,`0,`0)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1"/> class.</summary>
+            <param name="propertyName">The name of the property that changed.</param>
+            <param name="oldValue">The old value of the property.</param>
+            <param name="newValue">The new value of the property.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1.#ctor(System.Object,System.String,`0,`0)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1"/> class.</summary>
+            <param name="sender">The sender of the message.</param>
+            <param name="propertyName">The name of the property that changed.</param>
+            <param name="oldValue">The old value of the property.</param>
+            <param name="newValue">The new value of the property.</param>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1.PropertyName">
+            <summary>Gets or sets the name of the property.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1.OldValue">
+            <summary>Gets or sets the old value.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1.Enkoni#Framework#UI#Mvvm#IPropertyChangedMessage#OldValue">
+            <summary>Gets the old value.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1.NewValue">
+            <summary>Gets or sets the new value.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1.Enkoni#Framework#UI#Mvvm#IPropertyChangedMessage#NewValue">
+            <summary>Gets the new value.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.RelayCommand">
+            <summary>A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the 
+            <see cref="M:Enkoni.Framework.UI.Mvvm.RelayCommand.CanExecute(System.Object)"/> method is <see langword="true"/>. This class does not allow you to accept command parameters in the 
+            <see cref="M:Enkoni.Framework.UI.Mvvm.RelayCommand.Execute(System.Object)"/> and <see cref="M:Enkoni.Framework.UI.Mvvm.RelayCommand.CanExecute(System.Object)"/> callback methods.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.RelayCommand.action">
+            <summary>The action that is executed by this command.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.RelayCommand.canExecute">
+            <summary>The function that is used to determine if the command can be executed.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.RelayCommand.canExecuteChangedHandler">
+            <summary>The handler that is executed when the outcome of the 'CanExecute' function changes.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand.#ctor(System.Action)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand"/> class.</summary>
+            <param name="action">The action that will be executed when the command is invoked.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand"/> class.</summary>
+            <param name="action">The action that will be executed when the command is invoked.</param>
+            <param name="canExecute">The function that will be used to determine if the command can be executed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand.RaiseCanExecuteChanged">
+            <summary>Raises the <see cref="E:Enkoni.Framework.UI.Mvvm.RelayCommand.CanExecuteChanged"/> event on the UI thread.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand.CanExecute(System.Object)">
+            <summary>Determines if the command can execute in its current state.</summary>
+            <param name="parameter">This parameter will always be ignored.</param>
+            <returns><see langword="true"/> if this command can be executed; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand.Execute(System.Object)">
+            <summary>Executes the action behind this command.</summary>
+            <param name="parameter">This parameter will always be ignored.</param>
+        </member>
+        <member name="E:Enkoni.Framework.UI.Mvvm.RelayCommand.CanExecuteChanged">
+            <summary>Occurs when changes occur that affect whether the command should execute.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.RelayCommand`1">
+            <summary>A command whose sole purpose is to relay its functionality to other objects by invoking delegates. The default return value for the 
+            <see cref="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.CanExecute(System.Object)"/> method is <see langword="true"/>. This class allows you to accept command parameters in the <see cref="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.Execute(System.Object)"/> 
+            and <see cref="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.CanExecute(System.Object)"/> callback methods.</summary>
+            <typeparam name="T">The type of command parameter that is handled by this command.</typeparam>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.RelayCommand`1.action">
+            <summary>The action that is executed by this command.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.RelayCommand`1.canExecute">
+            <summary>The function that is used to determine if the command can be executed.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.RelayCommand`1.canExecuteChangedHandler">
+            <summary>The handler that is executed when the outcome of the 'CanExecute' function changes.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.#ctor(System.Action{`0})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand`1"/> class.</summary>
+            <param name="action">The action that will be executed when the command is invoked.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.#ctor(System.Action{`0},System.Func{`0,System.Boolean})">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.RelayCommand`1"/> class.</summary>
+            <param name="action">The action that will be executed when the command is invoked.</param>
+            <param name="canExecute">The function that will be used to determine if the command can be executed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="action"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.RaiseCanExecuteChanged">
+            <summary>Raises the <see cref="E:Enkoni.Framework.UI.Mvvm.RelayCommand`1.CanExecuteChanged"/> event on the UI thread.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.CanExecute(System.Object)">
+            <summary>Determines if the command can execute in its current state.</summary>
+            <param name="parameter">Data used by the command.</param>
+            <returns><see langword="true"/> if this command can be executed; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.RelayCommand`1.Execute(System.Object)">
+            <summary>Executes the action behind this command.</summary>
+            <param name="parameter">Data used by the command.</param>
+        </member>
+        <member name="E:Enkoni.Framework.UI.Mvvm.RelayCommand`1.CanExecuteChanged">
+            <summary>Occurs when changes occur that affect whether the command should execute.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1">
+            <summary>Message for showing a View.</summary>
+            <typeparam name="T">The type of view model that must be used by the view.</typeparam>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1.#ctor(System.Object)">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1"/> class.</summary>
+            <param name="sender">The sender.</param>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1.ViewModel">
+            <summary>Gets or sets the ViewModel source for the View.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1.Enkoni#Framework#UI#Mvvm#IViewDialogMessage#ViewModel">
+            <summary>Gets or sets the ViewModel source for the View.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.ViewDialogMessage`1.Callback">
+            <summary>Gets or sets the callback called when a ViewModelDialog is closed.</summary>
+        </member>
+        <member name="T:Enkoni.Framework.UI.Mvvm.ViewModel">
+            <summary>Base class for all ViewModel classes implementing the <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.ViewModel.IsInDesignMode">
+            <summary>Gets a value indicating whether the control is in design mode (running in Blend or Visual Studio).</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.ViewModel.messenger">
+            <summary>The messenger that manages the messages.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.ViewModel.validationRules">
+            <summary>The registered validation rules.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.Mvvm.ViewModel.propertyChangedHandler">
+            <summary>The multicast delegate that is invoked when a property changes.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.#ctor">
+            <summary>Initializes a new instance of the <see cref="T:Enkoni.Framework.UI.Mvvm.ViewModel"/> class.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.IsPropertyValid``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>Determines whether the specified property contains a valid value.</summary>
+            <typeparam name="TViewModel">The type of view model whose property is validated.</typeparam>
+            <typeparam name="TProperty">The type of property that is validated.</typeparam>
+            <param name="property">The property that must be evaluated.</param>
+            <returns><see langword="true"/> if the specified property is valid; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.IsEachPropertyValid">
+            <summary>Determines whether each property is valid.</summary>
+            <returns><see langword="true"/> if each property is valid; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.AddValidationRule``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Func{System.String})">
+            <summary>Adds a validation rule for a property.</summary>
+            <typeparam name="T">The type of the property.</typeparam>
+            <param name="property">The property that is validated by the rule.</param>
+            <param name="rule">The rule. (The parameter added to the function is the name of the property).</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.RemoveValidationRule``1(System.Linq.Expressions.Expression{System.Func{``0}},System.Func{System.String})">
+            <summary>Removes a validation rule from a property.</summary>
+            <typeparam name="T">The type of the property.</typeparam>
+            <param name="property">The property that is validated by the rule.</param>
+            <param name="rule">The rule that must be removed.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.IsPropertyValid``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>Determines whether the property is valid or not.</summary>
+            <typeparam name="T">The type of property.</typeparam>
+            <param name="property">The property that is checked.</param>
+            <returns><see langword="true"/> if the specified property is valid; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.RaisePropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>Raises the PropertyChanged event.</summary>
+            <typeparam name="T">The type of the property.</typeparam>
+            <param name="property">The property expression.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.RaisePropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}},``0,``0)">
+            <summary>Raises the PropertyChanged event and sends a PropertyChanged message.</summary>
+            <typeparam name="T">The type of the property that changed.</typeparam>
+            <param name="property">The property expression.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.RaisePropertyChanged(System.String)">
+            <summary>Raises the PropertyChanged event.</summary>
+            <param name="property">Name of the property.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.RaiseAllPropertiesChanged">
+            <summary>Raises the PropertyChanged event with string.Empty. (Indicates all properties on the object have changed).</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.SendPropertyChangedMessage``1(System.Linq.Expressions.Expression{System.Func{``0}},``0,``0)">
+            <summary>Sends a <see cref="T:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1"/> using either the instance of the Messenger that was passed to this class 
+            (if available) or the Messenger's default instance.</summary>
+            <typeparam name="T">The type of the property that changed.</typeparam>
+            <param name="property">The name of the property that changed.</param>
+            <param name="oldValue">The value of the property before it changed.</param>
+            <param name="newValue">The value of the property after it changed.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.SendPropertyChangedMessage``1(System.String,``0,``0)">
+            <summary>Sends a <see cref="T:Enkoni.Framework.UI.Mvvm.PropertyChangedMessage`1"/> using either the instance of the Messenger that was passed to this class 
+            (if available) or the Messenger's default instance.</summary>
+            <typeparam name="T">The type of the property that changed.</typeparam>
+            <param name="property">The name of the property that changed.</param>
+            <param name="oldValue">The value of the property before it changed.</param>
+            <param name="newValue">The value of the property after it changed.</param>
+        </member>
+        <member name="M:Enkoni.Framework.UI.Mvvm.ViewModel.VerifyProperty(System.String)">
+            <summary>Warns the developer if this object does not have a public property with the specified name. This method does not exist in a 
+            Release build.</summary>
+            <param name="property">The name of property.</param>
+        </member>
+        <member name="E:Enkoni.Framework.UI.Mvvm.ViewModel.PropertyChanged">
+            <summary>Occurs when a property value changes.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.ViewModel.Messenger">
+            <summary>Gets or sets an instance of a <see cref="T:Enkoni.Framework.UI.Mvvm.IMessenger"/> used to send messages to other objects. If <see langword="null"/>, this 
+            class will attempt to broadcast using the Messenger's default instance.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.ViewModel.Error">
+            <summary>Gets an error message indicating what is wrong with this object.</summary>
+        </member>
+        <member name="P:Enkoni.Framework.UI.Mvvm.ViewModel.Item(System.String)">
+            <summary>Gets the error message for the property with the given name.</summary>
+            <param name="property">The name of the property whose error message to get.</param>
+            <returns>The error messages for the specified property.</returns>
+        </member>
+        <member name="T:Enkoni.Framework.UI.UIDispatcher">
+            <summary>Provides services for managing the queue of work items for the UI thread.</summary>
+        </member>
+        <member name="F:Enkoni.Framework.UI.UIDispatcher.Dispatcher">
+            <summary>The actual UI Dispatcher.</summary>
+        </member>
+        <member name="M:Enkoni.Framework.UI.UIDispatcher.BeginInvoke(System.Action)">
+            <summary>Executes an action on the UI thread. If this method is called from the UI thread, the action is executed immediately. If the method 
+            is called from another thread, the action will be enqueued on the UI thread's dispatcher and executed asynchronously.</summary>
+            <param name="action">The action that is to be executed.</param>
+        </member>
+    </members>
+</doc>

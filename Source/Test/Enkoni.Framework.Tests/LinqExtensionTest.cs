@@ -52,7 +52,7 @@ namespace Enkoni.Framework.Tests {
     /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     public void LinqExtensions_SingleOrDefaultOnIEnumerable_EmptySource_DefaultIsReturned() {
-      IEnumerable<TestDummy> collection = new List<TestDummy> ();
+      IEnumerable<TestDummy> collection = new List<TestDummy>();
       TestDummy defaultDummy = new TestDummy { TextValue = "DefaultDummy" };
 
       TestDummy result = collection.SingleOrDefault(td => td.TextValue == "DummyG", defaultDummy);
@@ -829,6 +829,297 @@ namespace Enkoni.Framework.Tests {
     }
     #endregion
 
+    #region Partition test-cases
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_EmtyCollectionConcreteType_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using an empty collection as source */
+      List<TestDummy> collection = new List<TestDummy>();
+      IEnumerable<IGrouping<int, TestDummy>> partitionedCollection = collection.Partition(td => td.NumericValue);
+
+      Assert.IsNotNull(partitionedCollection);
+      Assert.AreEqual(0, partitionedCollection.Count());
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_EmtyCollectionAnonymousType_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using an empty collection as source */
+      List<TestDummy> collection = new List<TestDummy>();
+      var anonymousCollection = collection.Select(td => new { OtherTextValue = td.TextValue.Reverse(), Length = td.TextValue.Length });
+      var partitionedAnonymousCollection = anonymousCollection.Partition(a => a.Length);
+
+      Assert.IsNotNull(partitionedAnonymousCollection);
+      Assert.AreEqual(0, partitionedAnonymousCollection.Count());
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_CollectionWithOneConcreteTypeInstance_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using a filled collection as source */
+      TestDummy dummyA = new TestDummy { NumericValue = 1, TextValue = "TestValue" };
+      IEnumerable<TestDummy> collection = new List<TestDummy> { dummyA };
+      IEnumerable<IGrouping<int, TestDummy>> partitionedCollection = collection.Partition(td => td.NumericValue);
+
+      Assert.IsNotNull(partitionedCollection);
+
+      Assert.AreEqual(1, partitionedCollection.Count());
+      Assert.AreEqual(1, partitionedCollection.ElementAt(0).Key);
+      Assert.AreEqual(1, partitionedCollection.ElementAt(0).Count());
+      Assert.AreEqual(1, partitionedCollection.ElementAt(0).ElementAt(0).NumericValue);
+      Assert.AreEqual("TestValue", partitionedCollection.ElementAt(0).ElementAt(0).TextValue);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_CollectionWithOneAnonymousTypeInstance_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using a filled collection as source */
+      TestDummy dummyA = new TestDummy { NumericValue = 1, TextValue = "TestValue" };
+      IEnumerable<TestDummy> collection = new List<TestDummy> { dummyA };
+      var anonymousCollection = collection.Select(td => new { OtherTextValue = new string(td.TextValue.Reverse().ToArray()), Length = td.TextValue.Length });
+      var partitionedAnonymousCollection = anonymousCollection.Partition(a => a.Length);
+
+      Assert.IsNotNull(partitionedAnonymousCollection);
+
+      Assert.AreEqual(1, partitionedAnonymousCollection.Count());
+      Assert.AreEqual(9, partitionedAnonymousCollection.ElementAt(0).Key);
+      Assert.AreEqual(1, partitionedAnonymousCollection.ElementAt(0).Count());
+      Assert.AreEqual(9, partitionedAnonymousCollection.ElementAt(0).ElementAt(0).Length);
+      Assert.AreEqual("eulaVtseT", partitionedAnonymousCollection.ElementAt(0).ElementAt(0).OtherTextValue);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_CollectionWithMultipleConcreteTypeInstancesAdjacent_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using a filled collection as source */
+      TestDummy dummyA = new TestDummy { NumericValue = 1, TextValue = "TestValueA" };
+      TestDummy dummyB = new TestDummy { NumericValue = 1, TextValue = "TestValueB" };
+      TestDummy dummyC = new TestDummy { NumericValue = 2, TextValue = "TestValueC" };
+      TestDummy dummyD = new TestDummy { NumericValue = 3, TextValue = "TestValueD" };
+      TestDummy dummyE = new TestDummy { NumericValue = 3, TextValue = "TestValueE" };
+      TestDummy dummyF = new TestDummy { NumericValue = 3, TextValue = "TestValueF" };
+      IEnumerable<TestDummy> collection = new List<TestDummy> { dummyA, dummyB, dummyC, dummyD, dummyE, dummyF };
+      IEnumerable<IGrouping<int, TestDummy>> partitionedCollection = collection.Partition(td => td.NumericValue);
+
+      Assert.IsNotNull(partitionedCollection);
+
+      Assert.AreEqual(3, partitionedCollection.Count());
+
+      Assert.AreEqual(1, partitionedCollection.ElementAt(0).Key);
+      Assert.AreEqual(2, partitionedCollection.ElementAt(1).Key);
+      Assert.AreEqual(3, partitionedCollection.ElementAt(2).Key);
+
+      Assert.AreEqual(2, partitionedCollection.ElementAt(0).Count());
+      Assert.AreEqual(1, partitionedCollection.ElementAt(1).Count());
+      Assert.AreEqual(3, partitionedCollection.ElementAt(2).Count());
+
+      Assert.AreEqual("TestValueA", partitionedCollection.ElementAt(0).ElementAt(0).TextValue);
+      Assert.AreEqual("TestValueB", partitionedCollection.ElementAt(0).ElementAt(1).TextValue);
+      Assert.AreEqual("TestValueC", partitionedCollection.ElementAt(1).ElementAt(0).TextValue);
+      Assert.AreEqual("TestValueD", partitionedCollection.ElementAt(2).ElementAt(0).TextValue);
+      Assert.AreEqual("TestValueE", partitionedCollection.ElementAt(2).ElementAt(1).TextValue);
+      Assert.AreEqual("TestValueF", partitionedCollection.ElementAt(2).ElementAt(2).TextValue);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_CollectionWithMultipleAnonymousTypeInstancesAdjacent_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using a filled collection as source */
+      TestDummy dummyA = new TestDummy { NumericValue = 1, TextValue = "TestValueA" };
+      TestDummy dummyB = new TestDummy { NumericValue = 1, TextValue = "TestValueB" };
+      TestDummy dummyC = new TestDummy { NumericValue = 2, TextValue = "TestValue0C" };
+      TestDummy dummyD = new TestDummy { NumericValue = 3, TextValue = "TestValue00D" };
+      TestDummy dummyE = new TestDummy { NumericValue = 3, TextValue = "TestValue00E" };
+      TestDummy dummyF = new TestDummy { NumericValue = 3, TextValue = "TestValue00F" };
+      IEnumerable<TestDummy> collection = new List<TestDummy> { dummyA, dummyB, dummyC, dummyD, dummyE, dummyF };
+      var anonymousCollection = collection.Select(td => new { OtherTextValue = new string(td.TextValue.Reverse().ToArray()), Length = td.TextValue.Length });
+      var partitionedAnonymousCollection = anonymousCollection.Partition(a => a.Length);
+
+      Assert.IsNotNull(partitionedAnonymousCollection);
+
+      Assert.AreEqual(3, partitionedAnonymousCollection.Count());
+
+      Assert.AreEqual(10, partitionedAnonymousCollection.ElementAt(0).Key);
+      Assert.AreEqual(11, partitionedAnonymousCollection.ElementAt(1).Key);
+      Assert.AreEqual(12, partitionedAnonymousCollection.ElementAt(2).Key);
+
+      Assert.AreEqual(2, partitionedAnonymousCollection.ElementAt(0).Count());
+      Assert.AreEqual(1, partitionedAnonymousCollection.ElementAt(1).Count());
+      Assert.AreEqual(3, partitionedAnonymousCollection.ElementAt(2).Count());
+
+      Assert.AreEqual("AeulaVtseT", partitionedAnonymousCollection.ElementAt(0).ElementAt(0).OtherTextValue);
+      Assert.AreEqual("BeulaVtseT", partitionedAnonymousCollection.ElementAt(0).ElementAt(1).OtherTextValue);
+      Assert.AreEqual("C0eulaVtseT", partitionedAnonymousCollection.ElementAt(1).ElementAt(0).OtherTextValue);
+      Assert.AreEqual("D00eulaVtseT", partitionedAnonymousCollection.ElementAt(2).ElementAt(0).OtherTextValue);
+      Assert.AreEqual("E00eulaVtseT", partitionedAnonymousCollection.ElementAt(2).ElementAt(1).OtherTextValue);
+      Assert.AreEqual("F00eulaVtseT", partitionedAnonymousCollection.ElementAt(2).ElementAt(2).OtherTextValue);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_CollectionWithMultipleConcreteTypeInstancesNotAdjacent_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using a filled collection as source */
+      TestDummy dummyA = new TestDummy { NumericValue = 1, TextValue = "TestValueA" };
+      TestDummy dummyB = new TestDummy { NumericValue = 3, TextValue = "TestValueB" };
+      TestDummy dummyC = new TestDummy { NumericValue = 2, TextValue = "TestValueC" };
+      TestDummy dummyD = new TestDummy { NumericValue = 2, TextValue = "TestValueD" };
+      TestDummy dummyE = new TestDummy { NumericValue = 3, TextValue = "TestValueE" };
+      TestDummy dummyF = new TestDummy { NumericValue = 3, TextValue = "TestValueF" };
+      IEnumerable<TestDummy> collection = new List<TestDummy> { dummyA, dummyB, dummyC, dummyD, dummyE, dummyF };
+      IEnumerable<IGrouping<int, TestDummy>> partitionedCollection = collection.Partition(td => td.NumericValue);
+
+      Assert.IsNotNull(partitionedCollection);
+
+      Assert.AreEqual(4, partitionedCollection.Count());
+
+      Assert.AreEqual(1, partitionedCollection.ElementAt(0).Key);
+      Assert.AreEqual(3, partitionedCollection.ElementAt(1).Key);
+      Assert.AreEqual(2, partitionedCollection.ElementAt(2).Key);
+      Assert.AreEqual(3, partitionedCollection.ElementAt(3).Key);
+
+      Assert.AreEqual(1, partitionedCollection.ElementAt(0).Count());
+      Assert.AreEqual(1, partitionedCollection.ElementAt(1).Count());
+      Assert.AreEqual(2, partitionedCollection.ElementAt(2).Count());
+      Assert.AreEqual(2, partitionedCollection.ElementAt(3).Count());
+
+      Assert.AreEqual("TestValueA", partitionedCollection.ElementAt(0).ElementAt(0).TextValue);
+      Assert.AreEqual("TestValueB", partitionedCollection.ElementAt(1).ElementAt(0).TextValue);
+      Assert.AreEqual("TestValueC", partitionedCollection.ElementAt(2).ElementAt(0).TextValue);
+      Assert.AreEqual("TestValueD", partitionedCollection.ElementAt(2).ElementAt(1).TextValue);
+      Assert.AreEqual("TestValueE", partitionedCollection.ElementAt(3).ElementAt(0).TextValue);
+      Assert.AreEqual("TestValueF", partitionedCollection.ElementAt(3).ElementAt(1).TextValue);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    public void LinqExtensions_Partition_CollectionWithMultipleAnonymousTypeInstancesNotAdjacent_CollectionIsPartitioned() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using a filled collection as source */
+      TestDummy dummyA = new TestDummy { NumericValue = 1, TextValue = "TestValueA" };
+      TestDummy dummyB = new TestDummy { NumericValue = 1, TextValue = "TestValue00B" };
+      TestDummy dummyC = new TestDummy { NumericValue = 2, TextValue = "TestValue0C" };
+      TestDummy dummyD = new TestDummy { NumericValue = 3, TextValue = "TestValue0D" };
+      TestDummy dummyE = new TestDummy { NumericValue = 3, TextValue = "TestValue00E" };
+      TestDummy dummyF = new TestDummy { NumericValue = 3, TextValue = "TestValue00F" };
+      IEnumerable<TestDummy> collection = new List<TestDummy> { dummyA, dummyB, dummyC, dummyD, dummyE, dummyF };
+      var anonymousCollection = collection.Select(td => new { OtherTextValue = new string(td.TextValue.Reverse().ToArray()), Length = td.TextValue.Length });
+      var partitionedAnonymousCollection = anonymousCollection.Partition(a => a.Length);
+
+      Assert.IsNotNull(partitionedAnonymousCollection);
+
+      Assert.AreEqual(4, partitionedAnonymousCollection.Count());
+
+      Assert.AreEqual(10, partitionedAnonymousCollection.ElementAt(0).Key);
+      Assert.AreEqual(12, partitionedAnonymousCollection.ElementAt(1).Key);
+      Assert.AreEqual(11, partitionedAnonymousCollection.ElementAt(2).Key);
+      Assert.AreEqual(12, partitionedAnonymousCollection.ElementAt(3).Key);
+
+      Assert.AreEqual(1, partitionedAnonymousCollection.ElementAt(0).Count());
+      Assert.AreEqual(1, partitionedAnonymousCollection.ElementAt(1).Count());
+      Assert.AreEqual(2, partitionedAnonymousCollection.ElementAt(2).Count());
+      Assert.AreEqual(2, partitionedAnonymousCollection.ElementAt(3).Count());
+
+      Assert.AreEqual("AeulaVtseT", partitionedAnonymousCollection.ElementAt(0).ElementAt(0).OtherTextValue);
+      Assert.AreEqual("B00eulaVtseT", partitionedAnonymousCollection.ElementAt(1).ElementAt(0).OtherTextValue);
+      Assert.AreEqual("C0eulaVtseT", partitionedAnonymousCollection.ElementAt(2).ElementAt(0).OtherTextValue);
+      Assert.AreEqual("D0eulaVtseT", partitionedAnonymousCollection.ElementAt(2).ElementAt(1).OtherTextValue);
+      Assert.AreEqual("E00eulaVtseT", partitionedAnonymousCollection.ElementAt(3).ElementAt(0).OtherTextValue);
+      Assert.AreEqual("F00eulaVtseT", partitionedAnonymousCollection.ElementAt(3).ElementAt(1).OtherTextValue);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LinqExtensions_Partition_NullSource_ExceptionIsThrown() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using an empty collection as source */
+      IEnumerable<TestDummy> collection = null;
+      IEnumerable<IGrouping<int, TestDummy>> partitionedCollection = collection.Partition(td => td.NumericValue);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LinqExtensions_Partition_NullKeySelector_ExceptionIsThrown() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using an empty collection as source */
+      IEnumerable<TestDummy> collection = new List<TestDummy>();
+      IEnumerable<IGrouping<object, TestDummy>> partitionedCollection = collection.Partition((Func<TestDummy, object>)null);
+    }
+
+    /// <summary>Tests the functionality of the 
+    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// extension method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void LinqExtensions_Partition_NullComparer_ExceptionIsThrown() {
+      /* Note: This testcase does not fully test the functionality of the created comparer as this is already done by the 
+       * 'LambdaEqualityComparerTest' class. It only verifies that the test subject returns a working collection that contains 
+       * the expected instances */
+
+      /* Test the method using an empty collection as source */
+      IEnumerable<TestDummy> collection = new List<TestDummy>();
+      IEnumerable<IGrouping<int, TestDummy>> partitionedCollection = collection.Partition(td => td.NumericValue, null);
+    }
+    #endregion
+
     #region Private helper classes
     /// <summary>A basic dummy class to support the testcases.</summary>
     private class TestDummy {
@@ -838,7 +1129,7 @@ namespace Enkoni.Framework.Tests {
       /// <summary>Gets or sets a numeric value.</summary>
       public int NumericValue { get; set; }
 
-      /// <summary>Return the value of the TexValue property.</summary>
+      /// <summary>Return the value of the TextValue property.</summary>
       /// <returns>The value of the TextValue property.</returns>
       public string RetrieveTestValue() {
         return this.TextValue;

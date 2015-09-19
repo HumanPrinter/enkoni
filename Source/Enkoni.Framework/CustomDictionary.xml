@@ -10,6 +10,7 @@
       <Word>Startable</Word>
       <Word>Validators</Word>
       <Word>BusinessRuleSpecification</Word>
+      <Word>flag</Word>
     </Recognized>
     <Compound>
       <Term CompoundAlternate="CompareTo">Compareto</Term>

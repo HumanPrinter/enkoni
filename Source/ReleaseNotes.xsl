@@ -8,6 +8,7 @@
 # Legend:                                         #
 # [*]: Change                                     #
 # [+]: Addition                                   #
+# [!]: Bugfix                                     #
 # [-]: Removal                                    #
 ###################################################&#10;&#10;</xsl:text>
     <xsl:for-each select="e:enkoni/e:releases/e:release">
@@ -36,6 +37,7 @@
             <xsl:text xml:space="preserve">  </xsl:text>
             <xsl:choose>
               <xsl:when test="@type = 'addition'"><xsl:text>[+] </xsl:text></xsl:when>
+              <xsl:when test="@type = 'bugfix'"><xsl:text>[!] </xsl:text></xsl:when>
               <xsl:when test="@type = 'change'"><xsl:text>[*] </xsl:text></xsl:when>
               <xsl:when test="@type = 'removal'"><xsl:text>[-] </xsl:text></xsl:when>
             </xsl:choose>
