@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
-    <release version="1.2.9.0" releasedate="0001-01-01">
+    <release version="1.2.9.0" releasedate="2015-09-19">
       <projects>
         <project name="Enkoni.Framework" version="2.7.0">
           <updates>
             <update date="2015-08-13" type="change">
               <summary><![CDATA[Added support for a string-separator for the CSV serialization functionality]]></summary>
               <comment><![CDATA[The CsvRecordAttribute now also supports string separators (in addition to char-separators) for more complex CSV scenarios.]]></comment>
+            </update>
+            <update date="2015-09-11" type="addition">
+              <summary><![CDATA[Added a new Partition method that groups a collection into partions]]></summary>
+              <comment><![CDATA[Added a new extension method called Partition that partions a collection based on a specified key.]]></comment>
             </update>
           </updates>
         </project>
