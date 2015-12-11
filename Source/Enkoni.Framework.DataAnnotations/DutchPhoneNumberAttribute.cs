@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
 
 using Enkoni.Framework.DataAnnotations.Configuration;
 using Enkoni.Framework.DataAnnotations.Properties;
@@ -92,7 +93,7 @@ namespace Enkoni.Framework.DataAnnotations {
   /// </remarks>
   [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true,
     Inherited = false)]
-  public sealed class DutchPhoneNumberAttribute : ValidationAttribute {
+  public sealed class DutchPhoneNumberAttribute : ValidationAttribute, IClientValidatable {
     #region Constants
     /// <summary>Defines the default name for the validator.</summary>
     internal const string DefaultName = "00661f4a-faa2-452f-8fd9-af6c776bfc49";
@@ -215,6 +216,53 @@ namespace Enkoni.Framework.DataAnnotations {
     }
     #endregion
 
+    #region IClientValidatable implementation
+    /// <summary>Returns client validation rules for IBAN validation.</summary>
+    /// <param name="metadata">The model metadata.</param>
+    /// <param name="context">The controller context.</param>
+    /// <returns>The client validation rules that apply to this validator.</returns>
+    public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context) {
+      string name = metadata == null ? string.Empty : metadata.GetDisplayName();
+      
+      List<string> patterns = new List<string>();
+      if((this.Categories & PhoneNumberCategories.Regular) == PhoneNumberCategories.Regular) {
+        string pattern = ConstructRegularNumberRegex(this.AllowCountryCallingCode, this.AllowCarrierPreselect, this.IncludeAreaCodes, this.ExcludeAreaCodes).ToString();
+        patterns.Add(pattern.TrimStart('^').TrimEnd('$'));
+      }
+
+      if((this.Categories & PhoneNumberCategories.Mobile) == PhoneNumberCategories.Mobile) {
+        string pattern = ConstructMobileNumberRegex(this.AllowCountryCallingCode, this.AllowCarrierPreselect).ToString();
+        patterns.Add(pattern.TrimStart('^').TrimEnd('$'));
+      }
+
+      if((this.Categories & PhoneNumberCategories.Emergency) == PhoneNumberCategories.Emergency) {
+        string pattern = new DutchPhoneValidatorEmergencyRegex().ToString();
+        patterns.Add(pattern.TrimStart('^').TrimEnd('$'));
+      }
+
+      if((this.Categories & PhoneNumberCategories.Service) == PhoneNumberCategories.Service) {
+        string pattern = new DutchPhoneValidatorServiceRegex().ToString();
+        patterns.Add(pattern.TrimStart('^').TrimEnd('$'));
+      }
+
+      if((this.Categories & PhoneNumberCategories.Other) == PhoneNumberCategories.Other) {
+        string pattern = ConstructOtherNumber(this.AllowCarrierPreselect).ToString();
+        patterns.Add(pattern.TrimStart('^').TrimEnd('$'));
+      }
+
+      if(patterns.Count == 0) {
+        yield return new ModelClientValidationRegexRule(this.FormatErrorMessage(name), "^.*$");
+      }
+      else if(patterns.Count == 1) {
+        yield return new ModelClientValidationRegexRule(this.FormatErrorMessage(name), "^" + patterns[0] + "$");
+      }
+      else {
+        string completePattern = "^((" + string.Join(")|(", patterns) + "))$";
+        yield return new ModelClientValidationRegexRule(this.FormatErrorMessage(name), completePattern);
+      }
+    }
+    #endregion
+
     #region Private helper methods
     /// <summary>Validates whether the input is a valid Dutch service phone number.</summary>
     /// <param name="input">The string that must be validated.</param>
@@ -236,15 +284,24 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateMobileNumber(string input, bool allowCountryCallingCode, bool allowCarrierPreselect) {
+      Regex expression = ConstructMobileNumberRegex(allowCountryCallingCode, allowCarrierPreselect);
+      return expression.IsMatch(input);
+    }
+
+    /// <summary>Constructs a regex that validates a valid Dutch mobile phone number.</summary>
+    /// <param name="allowCountryCallingCode">Indicates whether the country calling code is allowed in the phone number.</param>
+    /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
+    /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
+    private static Regex ConstructMobileNumberRegex(bool allowCountryCallingCode, bool allowCarrierPreselect) {
       if(allowCarrierPreselect) {
         return allowCountryCallingCode
-          ? new DutchPhoneValidatorMobileRegexWithCarrierPreselect().IsMatch(input)
-          : new DutchPhoneValidatorMobileRegexNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
+          ? (Regex)new DutchPhoneValidatorMobileRegexWithCarrierPreselect()
+          : (Regex)new DutchPhoneValidatorMobileRegexNoCountryAccessCodeWithCarrierPreselect();
       }
       else {
         return allowCountryCallingCode
-          ? new DutchPhoneValidatorMobileRegex().IsMatch(input)
-          : new DutchPhoneValidatorMobileRegexNoCountryAccessCode().IsMatch(input);
+          ? (Regex)new DutchPhoneValidatorMobileRegex()
+          : (Regex)new DutchPhoneValidatorMobileRegexNoCountryAccessCode();
       }
     }
 
@@ -253,9 +310,17 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateOtherNumber(string input, bool allowCarrierPreselect) {
+      Regex expression = ConstructOtherNumber(allowCarrierPreselect);
+      return expression.IsMatch(input);
+    }
+
+    /// <summary>Constructs a regex that validates a valid Dutch phone number.</summary>
+    /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
+    /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
+    private static Regex ConstructOtherNumber(bool allowCarrierPreselect) {
       return allowCarrierPreselect
-        ? new DutchPhoneValidatorOtherRegexWithCarrierPreselect().IsMatch(input)
-        : new DutchPhoneValidatorOtherRegex().IsMatch(input);
+        ? (Regex)new DutchPhoneValidatorOtherRegexWithCarrierPreselect()
+        : (Regex)new DutchPhoneValidatorOtherRegex();
     }
 
     /// <summary>Validates whether the input is a valid Dutch regular phone number.</summary>
@@ -266,16 +331,27 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <param name="excludeAreaCodes">The area codes that must be excluded from the standard list of area codes.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
     private static bool ValidateRegularNumber(string input, bool allowCountryCallingCode, bool allowCarrierPreselect, string includeAreaCodes, string excludeAreaCodes) {
+      Regex expression = ConstructRegularNumberRegex(allowCountryCallingCode, allowCarrierPreselect, includeAreaCodes, excludeAreaCodes);
+      return expression.IsMatch(input);
+    }
+
+    /// <summary>Constructs a regex that validates a valid Dutch regular phone number.</summary>
+    /// <param name="allowCountryCallingCode">Indicates whether the country calling code is allowed in the phone number.</param>
+    /// <param name="allowCarrierPreselect">Indicates whether a carrier preselect code is allowed in the phone number.</param>
+    /// <param name="includeAreaCodes">Overrides the area codes that are part of the regular expression.</param>
+    /// <param name="excludeAreaCodes">The area codes that must be excluded from the standard list of area codes.</param>
+    /// <returns>The constructed regular expression.</returns>
+    private static Regex ConstructRegularNumberRegex(bool allowCountryCallingCode, bool allowCarrierPreselect, string includeAreaCodes, string excludeAreaCodes) {
       if(string.IsNullOrEmpty(includeAreaCodes) && string.IsNullOrEmpty(excludeAreaCodes)) {
         if(allowCarrierPreselect) {
           return allowCountryCallingCode
-            ? new DutchPhoneValidatorDefaultRegularRegexWithCarrierPreselect().IsMatch(input)
-            : new DutchPhoneValidatorDefaultRegularRegexNoCountryAccessCodeWithCarrierPreselect().IsMatch(input);
+            ? (Regex)new DutchPhoneValidatorDefaultRegularRegexWithCarrierPreselect()
+            : (Regex)new DutchPhoneValidatorDefaultRegularRegexNoCountryAccessCodeWithCarrierPreselect();
         }
         else {
           return allowCountryCallingCode
-            ? new DutchPhoneValidatorDefaultRegularRegex().IsMatch(input)
-            : new DutchPhoneValidatorDefaultRegularRegexNoCountryAccessCode().IsMatch(input);
+            ? (Regex)new DutchPhoneValidatorDefaultRegularRegex()
+            : (Regex)new DutchPhoneValidatorDefaultRegularRegexNoCountryAccessCode();
         }
       }
 
@@ -311,7 +387,7 @@ namespace Enkoni.Framework.DataAnnotations {
         }
       }
 
-      return Regex.IsMatch(input, pattern, RegexOptions.Singleline);
+      return new Regex(pattern, RegexOptions.Singleline);
     }
 
     /// <summary>Initializes the properties with the values from the configuration.</summary>
