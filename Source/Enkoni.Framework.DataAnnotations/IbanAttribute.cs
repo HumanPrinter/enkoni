@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
 
 using Enkoni.Framework.Validation.RegularExpressions;
 
@@ -11,7 +13,7 @@ namespace Enkoni.Framework.DataAnnotations {
   /// <summary>Attribute to specify IBAN account number validation on a property, method or field.</summary>
   [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true,
     Inherited = false)]
-  public sealed class IbanAttribute : ValidationAttribute {
+  public sealed class IbanAttribute : ValidationAttribute, IClientValidatable {
     #region Constructors
     /// <summary>Initializes a new instance of the <see cref="IbanAttribute"/> class.</summary>
     public IbanAttribute() {
@@ -58,6 +60,17 @@ namespace Enkoni.Framework.DataAnnotations {
       bool isValid = remainder == 1;
 
       return isValid;
+    }
+    #endregion
+
+    #region IClientValidatable implementation
+    /// <summary>Returns client validation rules for IBAN validation.</summary>
+    /// <param name="metadata">The model metadata.</param>
+    /// <param name="context">The controller context.</param>
+    /// <returns>The client validation rules that apply to this validator.</returns>
+    public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context) {
+      string name = metadata == null ? string.Empty : metadata.GetDisplayName();
+      yield return new ModelClientValidationRule { ErrorMessage = this.FormatErrorMessage(name), ValidationType = "iban" };
     }
     #endregion
 

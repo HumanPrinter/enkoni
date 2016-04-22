@@ -15,6 +15,7 @@ RequiredAttribute.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Numerics" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
   </metadata>
   <files>

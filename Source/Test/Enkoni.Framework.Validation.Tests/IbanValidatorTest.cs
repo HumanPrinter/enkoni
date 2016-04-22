@@ -10,6 +10,7 @@ using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
 namespace Enkoni.Framework.Validation.Tests {
   /// <summary>Tests the functionality of the <see cref="IbanValidator"/> and <see cref="IbanValidatorAttribute"/> classes.</summary>
   [TestClass]
+  [DeploymentItem("Enkoni.Framework.Validation.Tests.Database.dacpac")]
   public class IbanValidatorTest {
     #region Properties
     /// <summary>Gets or sets the context that gives access to the input data for the test cases.</summary>
@@ -19,8 +20,7 @@ namespace Enkoni.Framework.Validation.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"IbanValidatorTest\Validator")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|IbanValidatorTest\Validator\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "IbanAccountNumber", DataAccessMethod.Sequential)]
+    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
     public void IbanValidator_Validator() {
       IbanValidator testSubject = new IbanValidator("message {0}", "tag", false);
       string input = this.TestContext.DataRow["AccountNumber"].ToString();

@@ -26,6 +26,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="Enkoni.Framework" />
       <xs:enumeration value="Enkoni.Framework.DataAnnotations" />
+      <xs:enumeration value="Enkoni.Framework.DataAnnotations.Client" />
       <xs:enumeration value="Enkoni.Framework.Entities" />
       <xs:enumeration value="Enkoni.Framework.Entities.Database" />
       <xs:enumeration value="Enkoni.Framework.Entities.File" />
