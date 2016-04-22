@@ -7,6 +7,3 @@
     [ContainsTopLevelDomain] BIT            NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
-
-GO
-GRANT SELECT ON [dbo].[BasicEmail] TO UnitTester

@@ -107,8 +107,6 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
-    <Folder Include="dbo\Users" />
-    <Folder Include="dbo\Logins" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\RegularPhoneNumber.sql">
@@ -155,13 +153,11 @@
     <None Include="PopulateExtendedEmail.sql" />
     <None Include="PopulateCompleteEmail.sql" />
     <None Include="PopulateIbanAccountNumber.sql" />
-    <Build Include="dbo\Logins\UnitTester.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PopulateRegularPhoneNumber.sql" />
-    <Build Include="dbo\Users\UnitTester.sql" />
   </ItemGroup>
 </Project>
