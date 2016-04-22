@@ -24,8 +24,8 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
-    <AnsiNulls>False</AnsiNulls>
-    <QuotedIdentifier>False</QuotedIdentifier>
+    <AnsiNulls>True</AnsiNulls>
+    <QuotedIdentifier>True</QuotedIdentifier>
     <Containment>None</Containment>
     <IsNestedTriggersOn>True</IsNestedTriggersOn>
     <IsTransformNoiseWordsOn>False</IsTransformNoiseWordsOn>
@@ -51,11 +51,11 @@
     <SupplementalLoggingOn>False</SupplementalLoggingOn>
     <CompatibilityMode>110</CompatibilityMode>
     <AnsiNullDefault>False</AnsiNullDefault>
-    <AnsiPadding>False</AnsiPadding>
-    <AnsiWarnings>False</AnsiWarnings>
-    <ArithAbort>False</ArithAbort>
-    <ConcatNullYieldsNull>False</ConcatNullYieldsNull>
-    <NumericRoundAbort>False</NumericRoundAbort>
+    <AnsiPadding>True</AnsiPadding>
+    <AnsiWarnings>True</AnsiWarnings>
+    <ArithAbort>True</ArithAbort>
+    <ConcatNullYieldsNull>True</ConcatNullYieldsNull>
+    <NumericRoundAbort>True</NumericRoundAbort>
     <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
     <DatabaseChaining>False</DatabaseChaining>
     <DatabaseState>ONLINE</DatabaseState>
@@ -107,6 +107,8 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Users" />
+    <Folder Include="dbo\Logins" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\RegularPhoneNumber.sql">
@@ -153,11 +155,13 @@
     <None Include="PopulateExtendedEmail.sql" />
     <None Include="PopulateCompleteEmail.sql" />
     <None Include="PopulateIbanAccountNumber.sql" />
+    <Build Include="dbo\Logins\UnitTester.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PopulateRegularPhoneNumber.sql" />
+    <Build Include="dbo\Users\UnitTester.sql" />
   </ItemGroup>
 </Project>
