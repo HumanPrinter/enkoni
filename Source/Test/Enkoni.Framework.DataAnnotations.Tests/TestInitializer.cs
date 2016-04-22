@@ -6,7 +6,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
   [TestClass]
   public class TestInitializer {
     /// <summary>The connection string that is used by the test cases.</summary>
-    public const string ConnectionString = @"Data Source=(LocalDB)\v11.0;Initial Catalog=Enkoni_DataAnnotations_Tests;Integrated Security=True;Connect Timeout=30";
+    public const string ConnectionString = @"Data Source=(LocalDB)\v11.0;Initial Catalog=Enkoni_DataAnnotations_Tests;Integrated Security=True;MultipleActiveResultSets=True";
 
     /// <summary>Initializes the unit tests.</summary>
     /// <param name="context"></param>
@@ -19,7 +19,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
         DeployDatabaseInSingleUserMode = true
       };
 
-      DacServices dacServices = new DacServices(@"Data Source=(LocalDB)\v11.0;Integrated Security=True;Connect Timeout=30");
+      DacServices dacServices = new DacServices(@"Data Source=(LocalDB)\v11.0;Integrated Security=True");
       dacServices.Deploy(package, "Enkoni_DataAnnotations_Tests", true, deployOptions);
     }
   }
