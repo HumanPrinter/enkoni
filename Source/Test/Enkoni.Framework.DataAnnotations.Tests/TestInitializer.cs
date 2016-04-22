@@ -6,9 +6,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
   [TestClass]
   public class TestInitializer {
     /// <summary>The connection string that is used by the test cases.</summary>
-    //public const string ConnectionString = @"Data Source=(LocalDB)\v11.0;Initial Catalog=Enkoni_DataAnnotations_Tests;Integrated Security=True;MultipleActiveResultSets=True";
-    public const string ConnectionString = @"Data Source=(LocalDB)\v11.0;Initial Catalog=Enkoni_DataAnnotations_Tests;Integrated Security=SSPI";
-
+    public const string ConnectionString = @"Data Source=(LocalDB)\v11.0;Initial Catalog=Enkoni_DataAnnotations_Tests;Integrated Security=True;MultipleActiveResultSets=True";
+    
     /// <summary>Initializes the unit tests.</summary>
     /// <param name="context"></param>
     [AssemblyInitialize]
