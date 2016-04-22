@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[BasicEmail] (
     [Id]                     INT            IDENTITY (1, 1) NOT NULL,
-    [MailAddress]            NVARCHAR (MAX) NOT NULL,
+    [MailAddress]            NVARCHAR (70)  NOT NULL,
     [IsValid]                BIT            NOT NULL,
     [ContainsComment]        BIT            NOT NULL,
     [ContainsIPAddress]      BIT            NOT NULL,
