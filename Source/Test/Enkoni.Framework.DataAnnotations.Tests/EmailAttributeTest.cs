@@ -10,6 +10,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
   /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.
   /// </summary>
   [TestClass]
+  [DeploymentItem("Enkoni.Framework.DataAnnotations.Tests.Database.dacpac")]
   public class EmailAttributeTest {
     #region Properties
     /// <summary>Gets or sets the context that gives access to the input data for the test cases.</summary>
@@ -200,7 +201,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
     [TestMethod]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
-    public void EmailAttribute_Complete_RequireTopLevelDOmain() {
+    public void EmailAttribute_Complete_RequireTopLevelDomain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
       bool containsTopLevelDomain = Convert.ToBoolean(this.TestContext.DataRow["ContainsTopLevelDomain"]);
