@@ -20,8 +20,8 @@ namespace Enkoni.Framework.Validation.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -35,8 +35,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic_AllowComments() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -52,8 +52,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic_AllowIPAddresses() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -68,8 +68,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic_RequireTopLevelDomain() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -84,8 +84,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -99,8 +99,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended_AllowComments() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -115,8 +115,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended_AllowIPAddresses() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -131,8 +131,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended_RequireTopLevelDomain() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -147,8 +147,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -162,8 +162,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete_AllowComments() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -178,8 +178,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete_AllowIPAddresses() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -194,8 +194,8 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete_RequireTopLevelDomain() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
