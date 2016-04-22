@@ -18,8 +18,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Regular() {
       TestDummy_Regular_OverrideAll dummy = new TestDummy_Regular_OverrideAll { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -79,8 +79,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Regular_NoCountryCode() {
       TestDummy_Regular_NoCountryCode dummy = new TestDummy_Regular_NoCountryCode { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -144,8 +144,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Regular_WithCarrierPreselect() {
       TestDummy_Regular_WithCarrierPreselect dummy = new TestDummy_Regular_WithCarrierPreselect { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -200,8 +200,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "RegularPhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Regular_NoCountryCode_WithCarrierPreselect() {
       TestDummy_Regular_NoCountryCode_WithCarrierPreselect dummy = new TestDummy_Regular_NoCountryCode_WithCarrierPreselect { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -260,8 +260,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Mobile() {
       TestDummy_Mobile_OverrideAll dummy = new TestDummy_Mobile_OverrideAll { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -283,8 +283,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Mobile_NoCountryCode() {
       DutchPhoneNumberAttribute testSubject = new DutchPhoneNumberAttribute { Categories = PhoneNumberCategories.Mobile, AllowCountryCallingCode = false, IncludeAreaCodes = null };
       string input = this.TestContext.DataRow["PhoneNumber"].ToString();
@@ -295,8 +295,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Mobile_WithCarrierPreselect() {
       TestDummy_Mobile_WithCarrierPreselect dummy = new TestDummy_Mobile_WithCarrierPreselect { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -317,8 +317,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "MobilePhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Mobile_NoCountryCode_WithCarrierPreselect() {
       TestDummy_Mobile_NoCountryCode_WithCarrierPreselect dummy = new TestDummy_Mobile_NoCountryCode_WithCarrierPreselect { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -367,8 +367,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ServicePhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ServicePhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Service() {
       TestDummy_Service_OverrideAll dummy = new TestDummy_Service_OverrideAll { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -389,8 +389,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "OtherPhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "OtherPhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Other() {
       TestDummy_Other_OverrideAll dummy = new TestDummy_Other_OverrideAll { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -412,8 +412,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "OtherPhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "OtherPhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Other_WithCarrierPreselect() {
       TestDummy_Other_WithCarrierPreselect dummy = new TestDummy_Other_WithCarrierPreselect { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
@@ -434,8 +434,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
-    [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "DefaultPhoneNumber", DataAccessMethod.Sequential)]
+    //[TestMethod]
+    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "DefaultPhoneNumber", DataAccessMethod.Sequential)]
     public void DutchPhoneNumberAttribute_Default() {
       TestDummy_Default_OverrideAll dummy = new TestDummy_Default_OverrideAll { PhoneNumber = this.TestContext.DataRow["PhoneNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
