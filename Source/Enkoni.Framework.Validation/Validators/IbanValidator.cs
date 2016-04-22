@@ -48,7 +48,7 @@ namespace Enkoni.Framework.Validation.Validators {
     protected override void DoValidate(string objectToValidate, object currentTarget, string key, ValidationResults validationResults) {
       /* First, check if the account number has a value. */
       if(string.IsNullOrEmpty(objectToValidate)) {
-        if(!this.Negated) {
+        if(this.Negated) {
           this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
         }
 

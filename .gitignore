@@ -1,6 +1,7 @@
 Source/*.suo
 Source/*.sdf
 Source/*.Cache
+Source/.vs/
 Source/Enkoni.Documentation.shfbproj_Oscar
 Source/Enkoni.Framework/*.user
 Source/Enkoni.Framework/*.Cache
@@ -75,6 +76,11 @@ Source/Test/Enkoni.Framework.DataAnnotations.Tests/*.user
 Source/Test/Enkoni.Framework.DataAnnotations.Tests/*.Cache
 Source/Test/Enkoni.Framework.DataAnnotations.Tests/bin/
 Source/Test/Enkoni.Framework.DataAnnotations.Tests/obj/
+Source/Test/Enkoni.Framework.DataAnnotations.Tests.Database/*.dbmdl
+Source/Test/Enkoni.Framework.DataAnnotations.Tests.Database/*.user
+Source/Test/Enkoni.Framework.DataAnnotations.Tests.Database/bin/
+Source/Test/Enkoni.Framework.DataAnnotations.Tests.Database/obj/
+Source/Test/Enkoni.Framework.DataAnnotations.Tests.Database/Import Schema Logs/
 Source/Test/Enkoni.Framework.Entities.Tests/*.user
 Source/Test/Enkoni.Framework.Entities.Tests/*.Cache
 Source/Test/Enkoni.Framework.Entities.Tests/bin/
@@ -99,6 +105,11 @@ Source/Test/Enkoni.Framework.Validation.Tests/*.user
 Source/Test/Enkoni.Framework.Validation.Tests/*.Cache
 Source/Test/Enkoni.Framework.Validation.Tests/bin/
 Source/Test/Enkoni.Framework.Validation.Tests/obj/
+Source/Test/Enkoni.Framework.Validation.Tests.Database/*.dbmdl
+Source/Test/Enkoni.Framework.Validation.Tests.Database/*.user
+Source/Test/Enkoni.Framework.Validation.Tests.Database/bin/
+Source/Test/Enkoni.Framework.Validation.Tests.Database/obj/
+Source/Test/Enkoni.Framework.Validation.Tests.Database/Import Schema Logs/
 Source/Test/Enkoni.Framework.Web.Tests/*.user
 Source/Test/Enkoni.Framework.Web.Tests/*.Cache
 Source/Test/Enkoni.Framework.Web.Tests/bin/

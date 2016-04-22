@@ -16,9 +16,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanAttribute"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\DataAnnotationsTestData.mdf", @"IbanValidatorTest\TestCase01")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|IbanValidatorTest\TestCase01\DataAnnotationsTestData.mdf;Integrated Security=True;Connect Timeout=30", "IbanAccountNumber", DataAccessMethod.Sequential)]
-    public void TestCase01_Attribute() {
+    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
+    public void IbanAttribute_Attribute() {
       TestDummy dummy = new TestDummy { AccountNumber = this.TestContext.DataRow["AccountNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
       List<ValidationResult> validationResults = new List<ValidationResult>();

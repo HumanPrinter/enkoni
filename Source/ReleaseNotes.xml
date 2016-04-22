@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
+    <release version ="X.X.X.X" releasedate="YYYY-MM-DD">
+      <projects>
+        <project name="Enkoni.Framework.Validation" version="2.2.1.1">
+          <updates>
+            <update date="2016-04-22" type="bugfix">
+              <summary><![CDATA[Fixed a bug in IbanValidator where an empty string would be incorrectly validated.]]></summary>
+              <comment><![CDATA[Fixed a bug in IbanValidator where an empty string would be incorrectly validated.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.9.0" releasedate="2015-09-19">
       <projects>
         <project name="Enkoni.Framework" version="2.7.0">
