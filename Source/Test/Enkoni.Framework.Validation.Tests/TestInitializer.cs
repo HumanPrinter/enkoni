@@ -10,7 +10,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Initializes the unit tests.</summary>
     /// <param name="context"></param>
-    [AssemblyInitialize]
+    //[AssemblyInitialize]
     public static void Initialize(TestContext context) {
       DacPackage package = DacPackage.Load("Enkoni.Framework.Validation.Tests.Database.dacpac");
       DacDeployOptions deployOptions = new DacDeployOptions {
