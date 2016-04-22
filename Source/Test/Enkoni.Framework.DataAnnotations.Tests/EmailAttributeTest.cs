@@ -41,7 +41,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod]
+    [TestMethod, Ignore]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Basic_AllowComments() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Basic, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
@@ -56,7 +56,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod]
+    [TestMethod, Ignore]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
 
     public void EmailAttribute_Basic_AllowIPAddresses() {
@@ -71,7 +71,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod]
+    [TestMethod, Ignore]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Basic_RequireTopLevelDomain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };

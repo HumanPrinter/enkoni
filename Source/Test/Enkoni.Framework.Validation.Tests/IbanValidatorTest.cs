@@ -47,7 +47,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
       dummy.AccountNumber = null;
       results = EntLib.Validation.Validate(dummy, "ValidationTest");
-      Assert.IsFalse(results.IsValid);
+      Assert.IsTrue(results.IsValid);
     }
     #endregion
 
