@@ -6,110 +6,223 @@ namespace Enkoni.Framework.Tests {
   /// <summary>This class defines the testcases that test the functionality of the <see cref="Comparer{T}"/> class.</summary>
   [TestClass]
   public class ComparerTest {
+    #region Compare - FirstLevel Property Access
     /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a first-level property.</summary>
     [TestMethod]
-    public void TestCase01_FirstLevelPropertyAccess() {
-      Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("TextValue");
-      Comparer<TestDummy> descendingComparer = new Comparer<TestDummy>("TextValue", SortOrder.Descending);
+    public void Compare_FirstLevelPropertyAscending_LeftEqualToRight_ZeroIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("TextValue");
 
-      /* Situation 1: TextValue is equal */
       TestDummy dummyA = new TestDummy { TextValue = "Hello World", NumericValue = 5 };
       TestDummy dummyB = new TestDummy { TextValue = "Hello World", NumericValue = 6 };
-      int result = ascendingComparer.Compare(dummyA, dummyB);
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreEqual(0, result);
-      result = descendingComparer.Compare(dummyA, dummyB);
-      Assert.AreEqual(0, result);
+    }
 
-      /* Situation 2: First TextValue is less than second TextValue */
-      dummyA = new TestDummy { TextValue = "abc", NumericValue = 5 };
-      dummyB = new TestDummy { TextValue = "def", NumericValue = 6 };
-      result = ascendingComparer.Compare(dummyA, dummyB);
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a first-level property.</summary>
+    [TestMethod]
+    public void Compare_FirstLevelPropertyAscending_LeftLowerThanRight_NegativeNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("TextValue");
+
+      TestDummy dummyA = new TestDummy { TextValue = "abc", NumericValue = 5 };
+      TestDummy dummyB = new TestDummy { TextValue = "def", NumericValue = 6 };
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreNotEqual(0, result);
       Assert.IsTrue(result < 0);
-      result = descendingComparer.Compare(dummyA, dummyB);
-      Assert.AreNotEqual(0, result);
-      Assert.IsTrue(result > 0);
+    }
 
-      /* Situation 3: First TextValue is greater than second TextValue */
-      dummyA = new TestDummy { TextValue = "def", NumericValue = 5 };
-      dummyB = new TestDummy { TextValue = "abc", NumericValue = 6 };
-      result = ascendingComparer.Compare(dummyA, dummyB);
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a first-level property.</summary>
+    [TestMethod]
+    public void Compare_FirstLevelPropertyAscending_LeftGreaterThanRight_PositiveNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("TextValue");
+
+      TestDummy dummyA = new TestDummy { TextValue = "def", NumericValue = 5 };
+      TestDummy dummyB = new TestDummy { TextValue = "abc", NumericValue = 6 };
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreNotEqual(0, result);
       Assert.IsTrue(result > 0);
-      result = descendingComparer.Compare(dummyA, dummyB);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a first-level property.</summary>
+    [TestMethod]
+    public void Compare_FirstLevelPropertyDescending_LeftEqualToRight_ZeroIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("TextValue", SortOrder.Descending);
+
+      TestDummy dummyA = new TestDummy { TextValue = "Hello World", NumericValue = 5 };
+      TestDummy dummyB = new TestDummy { TextValue = "Hello World", NumericValue = 6 };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreEqual(0, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a first-level property.</summary>
+    [TestMethod]
+    public void Compare_FirstLevelPropertyDescending_LeftLowerThanRight_PositiveNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("TextValue", SortOrder.Descending);
+
+      TestDummy dummyA = new TestDummy { TextValue = "abc", NumericValue = 5 };
+      TestDummy dummyB = new TestDummy { TextValue = "def", NumericValue = 6 };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreNotEqual(0, result);
+      Assert.IsTrue(result > 0);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a first-level property.</summary>
+    [TestMethod]
+    public void Compare_FirstLevelPropertyDescending_LeftGreaterThanRight_NegativeNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("TextValue", SortOrder.Descending);
+
+      TestDummy dummyA = new TestDummy { TextValue = "def", NumericValue = 5 };
+      TestDummy dummyB = new TestDummy { TextValue = "abc", NumericValue = 6 };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreNotEqual(0, result);
+      Assert.IsTrue(result < 0);
+    }
+    #endregion
+
+    #region Compare - SecondLevel Property Access
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a second-level property.</summary>
+    [TestMethod]
+    public void Compare_SecondLevelPropertyAscending_LeftEqualToRight_ZeroIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.TextValue");
+
+      /* Situation 1: TextValue is equal */
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreEqual(0, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a second-level property.</summary>
+    [TestMethod]
+    public void Compare_SecondLevelPropertyAscending_LeftLowerThanRight_NegativeNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.TextValue");
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "abc" } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "def" } };
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreNotEqual(0, result);
       Assert.IsTrue(result < 0);
     }
 
     /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a second-level property.</summary>
     [TestMethod]
-    public void TestCase02_SecondLevelPropertyAccess() {
-      Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("Leaf.TextValue");
-      Comparer<TestDummy> descendingComparer = new Comparer<TestDummy>("Leaf.TextValue", SortOrder.Descending);
+    public void Compare_SecondLevelPropertyAscending_LeftGreaterThanRight_PositiveNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.TextValue");
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "def" } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "abc" } };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreNotEqual(0, result);
+      Assert.IsTrue(result > 0);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a second-level property.</summary>
+    [TestMethod]
+    public void Compare_SecondLevelPropertyDescending_LeftEqualToRight_ZeroIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.TextValue", SortOrder.Descending);
 
       /* Situation 1: TextValue is equal */
       TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } };
       TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } };
-      int result = ascendingComparer.Compare(dummyA, dummyB);
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreEqual(0, result);
-      result = descendingComparer.Compare(dummyA, dummyB);
-      Assert.AreEqual(0, result);
+    }
 
-      /* Situation 2: First TextValue is less than second TextValue */
-      dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "abc" } };
-      dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "def" } };
-      result = ascendingComparer.Compare(dummyA, dummyB);
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a second-level property.</summary>
+    [TestMethod]
+    public void Compare_SecondLevelPropertyDescending_LeftLowerThanRight_PositiveNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.TextValue", SortOrder.Descending);
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "abc" } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "def" } };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreNotEqual(0, result);
+      Assert.IsTrue(result > 0);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a second-level property.</summary>
+    [TestMethod]
+    public void Compare_SecondLevelPropertyDescending_LeftGreaterThanRight_NegativeNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.TextValue", SortOrder.Descending);
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "def" } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "abc" } };
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreNotEqual(0, result);
       Assert.IsTrue(result < 0);
-      result = descendingComparer.Compare(dummyA, dummyB);
-      Assert.AreNotEqual(0, result);
-      Assert.IsTrue(result > 0);
+    }
+    #endregion
 
-      /* Situation 3: First TextValue is greater than second TextValue */
-      dummyA = new TestDummy { Leaf = new SubTestDummy { TextValue = "def" } };
-      dummyB = new TestDummy { Leaf = new SubTestDummy { TextValue = "abc" } };
-      result = ascendingComparer.Compare(dummyA, dummyB);
-      Assert.AreNotEqual(0, result);
-      Assert.IsTrue(result > 0);
-      result = descendingComparer.Compare(dummyA, dummyB);
+    #region Compare - ThirdLevel Property Access
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a third-level property.</summary>
+    [TestMethod]
+    public void Compare_ThirdLevelPropertyAscending_LeftEqualToRight_ZeroIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.Leaf.TextValue");
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } } };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreEqual(0, result);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a third-level property.</summary>
+    [TestMethod]
+    public void Compare_ThirdLevelPropertyAscending_LeftLowerThanRight_NegativeNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.Leaf.TextValue");
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "abc" } } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "def" } } };
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreNotEqual(0, result);
       Assert.IsTrue(result < 0);
     }
 
     /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a third-level property.</summary>
     [TestMethod]
-    public void TestCase03_ThirdLevelPropertyAccess() {
-      Comparer<TestDummy> ascendingComparer = new Comparer<TestDummy>("Leaf.Leaf.TextValue");
-      Comparer<TestDummy> descendingComparer = new Comparer<TestDummy>("Leaf.Leaf.TextValue", SortOrder.Descending);
+    public void Compare_ThirdLevelPropertyAscending_LeftGreaterThanRight_PositiveNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.Leaf.TextValue");
 
-      /* Situation 1: TextValue is equal */
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "def" } } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "abc" } } };
+      int result = testSubject.Compare(dummyA, dummyB);
+      Assert.AreNotEqual(0, result);
+      Assert.IsTrue(result > 0);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a third-level property.</summary>
+    [TestMethod]
+    public void Compare_ThirdLevelPropertyDescending_LeftEqualToRight_ZeroIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.Leaf.TextValue", SortOrder.Descending);
+
       TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } } };
       TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "Hello World" } } };
-      int result = ascendingComparer.Compare(dummyA, dummyB);
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreEqual(0, result);
-      result = descendingComparer.Compare(dummyA, dummyB);
-      Assert.AreEqual(0, result);
+    }
 
-      /* Situation 2: First TextValue is less than second TextValue */
-      dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "abc" } } };
-      dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "def" } } };
-      result = ascendingComparer.Compare(dummyA, dummyB);
-      Assert.AreNotEqual(0, result);
-      Assert.IsTrue(result < 0);
-      result = descendingComparer.Compare(dummyA, dummyB);
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a third-level property.</summary>
+    [TestMethod]
+    public void Compare_ThirdLevelPropertyDescending_LeftLowerThanRight_PostiveNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.Leaf.TextValue", SortOrder.Descending);
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "abc" } } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "def" } } };
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreNotEqual(0, result);
       Assert.IsTrue(result > 0);
+    }
 
-      /* Situation 3: First TextValue is greater than second TextValue */
-      dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "def" } } };
-      dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "abc" } } };
-      result = ascendingComparer.Compare(dummyA, dummyB);
-      Assert.AreNotEqual(0, result);
-      Assert.IsTrue(result > 0);
-      result = descendingComparer.Compare(dummyA, dummyB);
+    /// <summary>Tests the functionality of the <see cref="Comparer{T}"/> class when comparing to objects based on a third-level property.</summary>
+    [TestMethod]
+    public void Compare_ThirdLevelPropertyDescending_LeftGreaterThanRight_NegativeNumberIsReturned() {
+      Comparer<TestDummy> testSubject = new Comparer<TestDummy>("Leaf.Leaf.TextValue", SortOrder.Descending);
+
+      TestDummy dummyA = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "def" } } };
+      TestDummy dummyB = new TestDummy { Leaf = new SubTestDummy { Leaf = new SubTestDummy { TextValue = "abc" } } };
+      int result = testSubject.Compare(dummyA, dummyB);
       Assert.AreNotEqual(0, result);
       Assert.IsTrue(result < 0);
     }
+    #endregion
 
     #region Private helper classes
     /// <summary>A basic dummy class to support the testcases.</summary>

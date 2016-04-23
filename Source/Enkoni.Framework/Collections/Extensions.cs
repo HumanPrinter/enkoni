@@ -6,7 +6,7 @@ namespace Enkoni.Framework.Collections {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {
     #region ICollection<T> extension methods
-    /// <summary>Adds an overload for the ICollection-method 'Remove(T)' which lets the user define a comparer that must be used.</summary>
+    /// <summary>Removes the first occurrence of a specific object from the <see cref="ICollection{T}"/>.</summary>
     /// <typeparam name="T">The type of element that is stored in the collection.</typeparam>
     /// <param name="source">An <see cref="ICollection{T}"/> to remove the item from.</param>
     /// <param name="item">The item that must be removed.</param>

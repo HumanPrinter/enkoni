@@ -19,8 +19,8 @@ namespace Enkoni.Framework.Validation.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanValidator"/> class.</summary>
-    //[TestMethod]
-    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
+    [TestMethod]
+    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
     public void IbanValidator_Validator() {
       IbanValidator testSubject = new IbanValidator("message {0}", "tag", false);
       string input = this.TestContext.DataRow["AccountNumber"].ToString();
