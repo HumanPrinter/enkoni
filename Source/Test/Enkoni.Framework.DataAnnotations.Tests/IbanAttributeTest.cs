@@ -16,8 +16,8 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanAttribute"/> class.</summary>
-    //[TestMethod]
-    //[DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
+    [TestMethod]
+    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
     public void IbanAttribute_Attribute() {
       TestDummy dummy = new TestDummy { AccountNumber = this.TestContext.DataRow["AccountNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);
