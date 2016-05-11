@@ -68,6 +68,142 @@ namespace Enkoni.Framework.Tests {
     }
     #endregion
 
+    #region ToString test cases
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_DefaultCulture_ResourceValidKeyAndDefaultStringDefined_ResourceStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = Resources.ResourceManager.GetString("ValueB");
+      string actual = EnumHelper.ToString(TestEnum.ValueB);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_SpecificCulture_ResourceValidKeyAndDefaultStringDefined_ResourceStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+      CultureInfo dutch = new CultureInfo("nl-NL");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = Resources.ResourceManager.GetString("ValueB", dutch);
+      string actual = EnumHelper.ToString(TestEnum.ValueB, dutch);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_DefaultCulture_ResourceUndefinedKeyAndDefaultStringDefined_DefaultStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = "Default B and D";
+      string actual = EnumHelper.ToString(TestEnum.ValueBD);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_SpecificCulture_ResourceUndefinedKeyAndDefaultStringDefined_DefaultStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+      CultureInfo dutch = new CultureInfo("nl-NL");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = "Default B and D";
+      string actual = EnumHelper.ToString(TestEnum.ValueBD, dutch);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_DefaultCultureAlternativeResources_ValidKeyAndDefaultStringSpecified_ResourceStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = AlternateResources.ResourceManager.GetString("ValueA");
+      string actual = EnumHelper.ToString(TestEnum.ValueA, AlternateResources.ResourceManager);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_SpecificCultureAlternativeResources_ValidKeySpecifiedAndDefaultString_ResourceStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+      CultureInfo dutch = new CultureInfo("nl-NL");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = AlternateResources.ResourceManager.GetString("ValueA", dutch);
+      string actual = EnumHelper.ToString(TestEnum.ValueA, AlternateResources.ResourceManager, dutch);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_DefaultCultureAlternativeResources_ResourceUndefinedKeyAndDefaultStringSpecified_DefaultStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = "Default B and D";
+      string actual = EnumHelper.ToString(TestEnum.ValueBD, AlternateResources.ResourceManager);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_SpecificCultureAlternativeResources_ResourceUndefinedKeyAndDefaultStringSpecified_DefaultStringIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+      CultureInfo dutch = new CultureInfo("nl-NL");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = "Default B and D";
+      string actual = EnumHelper.ToString(TestEnum.ValueBD, AlternateResources.ResourceManager, dutch);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_DefaultCultureAlternativeResources_UndefinedKeySpecified_EnumNameIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = Enum.GetName(typeof(TestEnum), TestEnum.ValueC);
+      string actual = EnumHelper.ToString(TestEnum.ValueC, AlternateResources.ResourceManager);
+      Assert.AreEqual(expected, actual, false);
+    }
+
+    /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
+    [TestMethod]
+    public void ToString_SpecificCultureAlternativeResources_UndefinedKeySpecified_EnumNameIsReturned() {
+      CultureInfo english = new CultureInfo("en-GB");
+      CultureInfo dutch = new CultureInfo("nl-NL");
+
+      Thread.CurrentThread.CurrentCulture = english;
+      Thread.CurrentThread.CurrentUICulture = english;
+
+      string expected = Enum.GetName(typeof(TestEnum), TestEnum.ValueC);
+      string actual = EnumHelper.ToString(TestEnum.ValueC, AlternateResources.ResourceManager, dutch);
+      Assert.AreEqual(expected, actual, false);
+    }
+    #endregion
     /// <summary>Tests the functionality ToString methods of the <see cref="EnumHelper"/> class.</summary>
     [TestMethod]
     public void TestCase01_ToString() {
@@ -77,63 +213,17 @@ namespace Enkoni.Framework.Tests {
       Thread.CurrentThread.CurrentCulture = english;
       Thread.CurrentThread.CurrentUICulture = english;
 
-      /* Test ToString using the pre-specified resources and default culture */
-      string expected = Resources.ResourceManager.GetString("ValueB");
-      string actual = EnumHelper.ToString(TestEnum.ValueB);
-      Assert.AreEqual(expected, actual, false);
-
-      /* Test ToString using the pre-specified resources and specific culture */
-      expected = Resources.ResourceManager.GetString("ValueB", dutch);
-      actual = EnumHelper.ToString(TestEnum.ValueB, dutch);
-      Assert.AreEqual(expected, actual, false);
-
-      /* Test ToString using an invalid resource key */
-      expected = "Default B and D";
-      actual = EnumHelper.ToString(TestEnum.ValueBD);
-      Assert.AreEqual(expected, actual, false);
-      actual = EnumHelper.ToString(TestEnum.ValueBD, dutch);
-      Assert.AreEqual(expected, actual, false);
       /*=============================================================*/
-      /* Test ToString using a specific resource and default culture */
-      expected = AlternateResources.ResourceManager.GetString("ValueA");
-      actual = EnumHelper.ToString(TestEnum.ValueA, AlternateResources.ResourceManager);
+      /* With resources, with default string, with defined key, using other resources => resource string is expected */
+      string expected = AlternateResources.ResourceManager.GetString("ValueB");
+      string actual = EnumHelper.ToString(TestEnum.ValueB, AlternateResources.ResourceManager);
       Assert.AreEqual(expected, actual, false);
 
-      /* Test ToString using a specific resource and specific culture */
-      expected = AlternateResources.ResourceManager.GetString("ValueA", dutch);
-      actual = EnumHelper.ToString(TestEnum.ValueA, AlternateResources.ResourceManager, dutch);
-      Assert.AreEqual(expected, actual, false);
-
-      /* Test ToString using an invalid resource key */
-      expected = "Default B and D";
-      actual = EnumHelper.ToString(TestEnum.ValueBD, AlternateResources.ResourceManager);
-      Assert.AreEqual(expected, actual, false);
-      actual = EnumHelper.ToString(TestEnum.ValueBD, AlternateResources.ResourceManager, dutch);
-      Assert.AreEqual(expected, actual, false);
-
-      expected = "ValueC";
-      actual = EnumHelper.ToString(TestEnum.ValueC, AlternateResources.ResourceManager);
-      Assert.AreEqual(expected, actual, false);
-      actual = EnumHelper.ToString(TestEnum.ValueC, AlternateResources.ResourceManager);
-      Assert.AreEqual(expected, actual, false);
-      /*=============================================================*/
-      /* Test ToString using a different resource and default culture */
-      expected = AlternateResources.ResourceManager.GetString("ValueB");
-      actual = EnumHelper.ToString(TestEnum.ValueB, AlternateResources.ResourceManager);
-      Assert.AreEqual(expected, actual, false);
-
-      /* Test ToString using a specific resource and specific culture */
       expected = AlternateResources.ResourceManager.GetString("ValueB", dutch);
       actual = EnumHelper.ToString(TestEnum.ValueB, AlternateResources.ResourceManager, dutch);
       Assert.AreEqual(expected, actual, false);
-
-      /* Test ToString using an invalid resource key */
-      expected = "Default B and D";
-      actual = EnumHelper.ToString(TestEnum.ValueBD, AlternateResources.ResourceManager);
-      Assert.AreEqual(expected, actual, false);
-      actual = EnumHelper.ToString(TestEnum.ValueBD, AlternateResources.ResourceManager, dutch);
-      Assert.AreEqual(expected, actual, false);
-
+      /*=============================================================*/
+      
       expected = "ValueD";
       actual = EnumHelper.ToString(TestEnum.ValueD, AlternateResources.ResourceManager);
       Assert.AreEqual(expected, actual, false);

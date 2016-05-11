@@ -19,7 +19,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("OnlyThis")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Basic() {
       TestDummy_Basic_OverrideAll dummy = new TestDummy_Basic_OverrideAll { MailAddress = this.TestContext.DataRow["MailAddress"].ToString() };
