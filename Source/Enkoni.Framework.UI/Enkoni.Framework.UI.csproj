@@ -90,6 +90,12 @@
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Enkoni.Framework\Enkoni.Framework.csproj">
+      <Project>{849BA8BA-A061-4278-85BD-90910680462E}</Project>
+      <Name>Enkoni.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\MSBuildExtensions\Common\Common.Targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

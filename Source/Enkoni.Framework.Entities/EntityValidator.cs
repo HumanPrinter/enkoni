@@ -29,10 +29,8 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ValidationException"><paramref name="throwOnError"/> is <see langword="true"/> and a property of <paramref name="entity"/> 
     /// was found not to be valid.</exception>
     public ICollection<ValidationResult> PerformValidation(T entity, bool throwOnError) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
-
+      Guard.ArgumentIsNotNull(entity, nameof(entity));
+      
       ICollection<ValidationResult> results = this.PerformValidationCore(entity, throwOnError);
       
       return results;

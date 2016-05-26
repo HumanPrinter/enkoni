@@ -182,9 +182,7 @@ namespace Enkoni.Framework {
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when the workflow is in the state 
     /// <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be started.</exception>
     public void EndStart(IAsyncResult asyncResult) {
-      if(asyncResult == null) {
-        throw new ArgumentNullException("asyncResult");
-      }
+      Guard.ArgumentIsNotNull(asyncResult, nameof(asyncResult));
 
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
       if(result == null) {
@@ -210,10 +208,8 @@ namespace Enkoni.Framework {
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when the workflow is in the state 
     /// <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or <see cref="WorkflowState.Continued"/>, it can be stopped.</exception>
     public void EndStop(IAsyncResult asyncResult) {
-      if(asyncResult == null) {
-        throw new ArgumentNullException("asyncResult");
-      }
-
+      Guard.ArgumentIsNotNull(asyncResult, nameof(asyncResult));
+      
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
       if(result == null) {
         throw new ArgumentException("The specified IAsyncResult was not of the expected type AsyncResultVoid", "asyncResult");
@@ -240,9 +236,7 @@ namespace Enkoni.Framework {
     /// <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</exception>
     /// <seealso cref="CanPauseAndContinue"/>
     public void EndPause(IAsyncResult asyncResult) {
-      if(asyncResult == null) {
-        throw new ArgumentNullException("asyncResult");
-      }
+      Guard.ArgumentIsNotNull(asyncResult, nameof(asyncResult));
 
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
       if(result == null) {
@@ -270,9 +264,7 @@ namespace Enkoni.Framework {
     /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
     /// <seealso cref="CanPauseAndContinue"/>
     public void EndContinue(IAsyncResult asyncResult) {
-      if(asyncResult == null) {
-        throw new ArgumentNullException("asyncResult");
-      }
+      Guard.ArgumentIsNotNull(asyncResult, nameof(asyncResult));
 
       AsyncResultVoid result = asyncResult as AsyncResultVoid;
       if(result == null) {

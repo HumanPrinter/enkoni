@@ -50,19 +50,15 @@ namespace Enkoni.Framework {
     /// <summary>Adds a new sort specification to the collection.</summary>
     /// <param name="sortSpecification">The sort specification that must be added.</param>
     internal void Add(ISortSpecification<T> sortSpecification) {
-      if(sortSpecification == null) {
-        throw new ArgumentNullException("sortSpecification", "The ISortSpecification is mandatory");
-      }
-
+      Guard.ArgumentIsNotNull(sortSpecification, nameof(sortSpecification), "The sort specification is mandatory");
+      
       this.sortingSpecifications.Add(sortSpecification);
     }
 
     /// <summary>Adds a new collection of sort specifications to the collection.</summary>
     /// <param name="sortSpecifications">The sort specifications that must be added.</param>
     internal void AddRange(SortSpecifications<T> sortSpecifications) {
-      if(sortSpecifications == null) {
-        throw new ArgumentNullException("sortSpecifications", "The SortSpecifications is mandatory");
-      }
+      Guard.ArgumentIsNotNull(sortSpecifications, nameof(sortSpecifications), "The sort specifications are mandatory");
 
       this.sortingSpecifications.AddRange(sortSpecifications.sortingSpecifications);
     }

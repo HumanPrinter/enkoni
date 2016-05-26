@@ -11,6 +11,9 @@
     <description>$description$</description>
     <summary>$description$</summary>
     <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
+    <dependencies>
+      <dependency id="Enkoni" version="2.7.0" />
+    </dependencies>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

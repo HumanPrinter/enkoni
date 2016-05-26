@@ -133,10 +133,8 @@ namespace Enkoni.Framework {
     /// <returns>The capitalized string. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
     /// modifications.</returns>
     public static string Capitalize(this string source, bool keepExistingCapitals, CultureInfo culture) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      
       if(string.IsNullOrEmpty(source.Trim())) {
         return source;
       }
@@ -193,11 +191,9 @@ namespace Enkoni.Framework {
     /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
     /// modifications.</returns>
     public static string CapitalizeSentence(this string source, bool keepExistingCapitals, CultureInfo culture) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
-      if(string.IsNullOrEmpty(source.Trim())) {
+      if (string.IsNullOrEmpty(source.Trim())) {
         return source;
       }
 
@@ -238,9 +234,7 @@ namespace Enkoni.Framework {
     /// <param name="maxLength">The maximum length of the returned string.</param>
     /// <returns>The string value truncated to the specified length or the original string if the length is already less then or equal to the maximum length.</returns>
     public static string Truncate(this string source, int maxLength) {
-      if(maxLength < 0) {
-        throw new ArgumentOutOfRangeException("maxLength", maxLength, "The maximum length cannot be negative");
-      }
+      Guard.ArgumentIsGreaterOrEqualThan(0, maxLength, nameof(maxLength), "The maximum length cannot be negative");
 
       if(string.IsNullOrEmpty(source)) {
         return source;
@@ -347,10 +341,8 @@ namespace Enkoni.Framework {
     /// otherwise.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
     public static bool IsNullable(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      
       return source.IsGenericType && source.GetGenericTypeDefinition() == typeof(Nullable<>);
     }
 
@@ -361,10 +353,8 @@ namespace Enkoni.Framework {
     /// nullable.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
     public static Type ActualType(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      
       if(source.IsNullable()) {
         NullableConverter converter = new NullableConverter(source);
         return converter.UnderlyingType;
@@ -378,9 +368,7 @@ namespace Enkoni.Framework {
     /// <param name="source">The <see cref="Type"/> whose base classes must be retrieved.</param>
     /// <returns>The base classes that are extended or inherited by the current <see cref="Type"/>.</returns>
     public static Type[] GetBaseClasses(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       List<Type> baseTypes = new List<Type>();
 
@@ -401,10 +389,8 @@ namespace Enkoni.Framework {
     /// <param name="source">The <see cref="Type"/> whose base types must be retrieved.</param>
     /// <returns>The base types that are extended, implemented or inherited by the current <see cref="Type"/>.</returns>
     public static Type[] GetBaseTypes(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      
       Type[] interfaces = source.GetInterfaces();
       Type[] baseClasses = source.GetBaseClasses();
       if(interfaces.Length == 0) {
@@ -428,13 +414,8 @@ namespace Enkoni.Framework {
     /// <returns><see langword="true"/> if <paramref name="source"/> implements <paramref name="baseType"/>;
     /// <see langword="false"/> otherwise.</returns>
     public static bool Implements(this Type source, Type baseType) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(baseType == null) {
-        throw new ArgumentNullException("baseType");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsNotNull(baseType, nameof(baseType));
 
       return source.Equals(baseType) || source.GetBaseTypes().Contains(baseType, new TypeEqualityComparer());
     }
@@ -452,9 +433,7 @@ namespace Enkoni.Framework {
     /// <param name="forceRescan">Forces to ignore the previous scan-results and rescan the loaded assemblies.</param>
     /// <returns>The detected types that derive from <paramref name="source"/>.</returns>
     public static Type[] GetDerivedTypes(this Type source, bool forceRescan) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       return Find(source, forceRescan);
     }

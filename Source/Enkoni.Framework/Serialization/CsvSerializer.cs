@@ -48,14 +48,9 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="stream">The stream to which the serialized items must be sent.</param>
     /// <returns>The number of bytes that have been written to the stream.</returns>
     protected override int Serialize(IEnumerable<T> objects, Encoding encoding, Stream stream) {
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding");
-      }
-
-      if(stream == null) {
-        throw new ArgumentNullException("stream");
-      }
-
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding));
+      Guard.ArgumentIsNotNull(stream, nameof(stream));
+      
       int writeCount = 0;
       if(this.EmitHeader) {
         StringBuilder headerBuilder = new StringBuilder();
@@ -94,10 +89,8 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="reader">The object that gives access to the underlying stream.</param>
     /// <returns>The collection of deserialized objects.</returns>
     protected override ICollection<T> Deserialize(StreamReader reader) {
-      if(reader == null) {
-        throw new ArgumentNullException("reader");
-      }
-
+      Guard.ArgumentIsNotNull(reader, nameof(reader));
+      
       if(this.IgnoreHeaderOnRead) {
         /* Discard the first line */
         reader.ReadLine();

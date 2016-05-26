@@ -73,7 +73,6 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(true, result.ColumnJ);
       Assert.AreEqual(true, result.ColumnK);
 
-
       inputValue = "True,1,\"False\",\"N\",,,\"\",,A,A,A";
       result = testSubject.FromString(inputValue);
       Assert.IsNotNull(result);

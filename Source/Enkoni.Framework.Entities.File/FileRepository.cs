@@ -846,10 +846,8 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entities">The entities to which the identifiers must be applied.</param>
     /// <param name="startIdentifier">The first identifier that must be applied.</param>
     protected virtual void ApplyIdentifiers(IEnumerable<TEntity> entities, int startIdentifier) {
-      if(entities == null) {
-        throw new ArgumentNullException("entities");
-      }
-
+      Guard.ArgumentIsNotNull(entities, nameof(entities));
+      
       foreach(TEntity entity in entities) {
         entity.RecordId = startIdentifier++;
       }

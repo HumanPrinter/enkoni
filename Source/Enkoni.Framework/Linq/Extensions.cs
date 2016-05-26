@@ -18,13 +18,8 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The single element of the input sequence that satisfies the condition, or 
     /// <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T SingleOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(predicate == null) {
-        throw new ArgumentNullException("predicate");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsNotNull(predicate, nameof(predicate));
 
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).Single();
       return result;
@@ -39,13 +34,8 @@ namespace Enkoni.Framework.Linq {
     /// <returns><paramref name="defaultValue"/> if the index is outside the bounds of the source sequence; otherwise, the element at the specified 
     /// position in the source sequence.</returns>
     public static T ElementAtOrDefault<T>(this IEnumerable<T> source, int index, T defaultValue) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(index < 0) {
-        throw new ArgumentOutOfRangeException("index", index, "The index must be a positive integer");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsGreaterOrEqualThan(0, index, nameof(index), "The index must be a positive integer");
 
       T result = source.ElementAtOrDefault(index);
 
@@ -64,9 +54,7 @@ namespace Enkoni.Framework.Linq {
     /// <param name="defaultValue">The default value that must be used.</param>
     /// <returns>The first element of the input sequence, or <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T FirstOrDefault<T>(this IEnumerable<T> source, T defaultValue) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       T result = source.DefaultIfEmpty(defaultValue).First();
       return result;
@@ -81,13 +69,8 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The first element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is 
     /// found.</returns>
     public static T FirstOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(predicate == null) {
-        throw new ArgumentNullException("predicate");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsNotNull(predicate, nameof(predicate));
 
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).First();
       return result;
@@ -100,9 +83,7 @@ namespace Enkoni.Framework.Linq {
     /// <param name="defaultValue">The default value that must be used.</param>
     /// <returns>The last element of the input sequence, or <paramref name="defaultValue"/> if no such element is found.</returns>
     public static T LastOrDefault<T>(this IEnumerable<T> source, T defaultValue) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       T result = source.DefaultIfEmpty(defaultValue).Last();
       return result;
@@ -117,13 +98,8 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The last element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is found.
     /// </returns>
     public static T LastOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate, T defaultValue) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(predicate == null) {
-        throw new ArgumentNullException("predicate");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsNotNull(predicate, nameof(predicate));
 
       T result = source.Where(predicate).DefaultIfEmpty(defaultValue).Last();
       return result;
@@ -135,13 +111,8 @@ namespace Enkoni.Framework.Linq {
     /// <param name="action">The operation that must be performed for each item in the enumerable.</param>
     /// <exception cref="ArgumentNullException">One or more of the parameters are null.</exception>
     public static void ForEach<T>(this IEnumerable<T> source, Action<T> action) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(action == null) {
-        throw new ArgumentNullException("action");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsNotNull(action, nameof(action));
 
       foreach(T item in source) {
         action(item);
@@ -154,9 +125,7 @@ namespace Enkoni.Framework.Linq {
     /// <param name="sortSpecifications">The specifications for the sorting.</param>
     /// <returns>The sorted sequence.</returns>
     public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> source, SortSpecifications<T> sortSpecifications) {
-      if(source == null) {
-        throw new ArgumentNullException("source", "The IEnumerable-instance is mandatory.");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source), "The IEnumerable instance is mandatory.");
 
       if(sortSpecifications == null) {
         return source;
@@ -176,9 +145,7 @@ namespace Enkoni.Framework.Linq {
     /// <param name="field">The function that gives access to the field that must be used in the comparison.</param>
     /// <returns>An <see cref="IEqualityComparer{T}"/> that compares objects of type <typeparamref name="T"/>.</returns>
     public static IEqualityComparer<T> CreateEqualityComparer<T, TField>(this IEnumerable<T> source, Func<T, TField> field) {
-      if(field == null) {
-        throw new ArgumentNullException("field");
-      }
+      Guard.ArgumentIsNotNull(field, nameof(field));
 
       return new LambdaEqualityComparer<T, TField>(field);
     }
@@ -193,14 +160,9 @@ namespace Enkoni.Framework.Linq {
     /// <exception cref="ArgumentNullException"><paramref name="source"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="field"/> is <see langword="null"/>.</exception>
     public static IEnumerable<T> Distinct<T, TField>(this IEnumerable<T> source, Func<T, TField> field) {
-      if(source == null) {
-        throw new ArgumentNullException("source", "The IEnumerable-instance is mandatory.");
-      }
-
-      if(field == null) {
-        throw new ArgumentNullException("field");
-      }
-
+      Guard.ArgumentIsNotNull(source, nameof(source), "The IEnumerable instance is mandatory.");
+      Guard.ArgumentIsNotNull(field, nameof(field));
+      
       return source.Distinct(source.CreateEqualityComparer(field));
     }
 
@@ -224,18 +186,10 @@ namespace Enkoni.Framework.Linq {
     /// <param name="comparer">An <see cref="IEqualityComparer{T}"/> to compare keys.</param>
     /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="IGrouping{TKey, TSource}"/> where each <see cref="IGrouping{TKey,TSource}"/> object contains a sequence of objects and a key.</returns>
     public static IEnumerable<IGrouping<TKey, TSource>> Partition<TKey, TSource>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IEqualityComparer<TKey> comparer) {
-      if(source == null) {
-        throw new ArgumentNullException("source", "The IEnumerable-instance is mandatory.");
-      }
-
-      if(keySelector == null) {
-        throw new ArgumentNullException("keySelector");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source), "The IEnumerable instance is mandatory.");
+      Guard.ArgumentIsNotNull(keySelector, nameof(keySelector));
+      Guard.ArgumentIsNotNull(comparer, nameof(comparer));
       
-      if(comparer == null) {
-        throw new ArgumentNullException("comparer");
-      }
-
       List<TSource> sourceList = source.ToList();
       if(sourceList.Count <= 1) {
         return source.GroupBy(keySelector);
@@ -269,6 +223,8 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The single element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is 
     /// found.</returns>
     public static T SingleOrDefault<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate, T defaultValue) {
+      Guard.ArgumentIsNotNull(source, nameof(source), "The IQueryable instance is mandatory.");
+
       IQueryable<T> queryResult = source.Where(predicate);
       if(queryResult.Any()) {
         return queryResult.Single();
@@ -287,6 +243,8 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The first element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is 
     /// found.</returns>
     public static T FirstOrDefault<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate, T defaultValue) {
+      Guard.ArgumentIsNotNull(source, nameof(source), "The IQueryable instance is mandatory.");
+
       IQueryable<T> queryResult = source.Where(predicate);
       if(queryResult.Any()) {
         return queryResult.First();
@@ -305,6 +263,8 @@ namespace Enkoni.Framework.Linq {
     /// <returns>The last element of the input sequence that satisfies the condition, or <paramref name="defaultValue"/> if no such element is found.
     /// </returns>
     public static T LastOrDefault<T>(this IQueryable<T> source, Expression<Func<T, bool>> predicate, T defaultValue) {
+      Guard.ArgumentIsNotNull(source, nameof(source), "The IQueryable instance is mandatory.");
+
       IQueryable<T> queryResult = source.Where(predicate);
       if(queryResult.Any()) {
         return queryResult.Last();
@@ -320,9 +280,7 @@ namespace Enkoni.Framework.Linq {
     /// <param name="sortSpecifications">The specifications for the sorting.</param>
     /// <returns>The sorted sequence.</returns>
     public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, SortSpecifications<T> sortSpecifications) {
-      if(source == null) {
-        throw new ArgumentNullException("source", "The IQueryable-instance is mandatory.");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source), "The IQueryable instance is mandatory.");
 
       if(sortSpecifications == null) {
         return source;
@@ -339,9 +297,7 @@ namespace Enkoni.Framework.Linq {
     /// <param name="source">An <see cref="Expression{TDelegate}"/> whose result must be inverted.</param>
     /// <returns>An expression that will invert the result of <paramref name="source"/>.</returns>
     public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       return Expression.Lambda<Func<T, bool>>(Expression.Not(source.Body), source.Parameters[0]);
     }

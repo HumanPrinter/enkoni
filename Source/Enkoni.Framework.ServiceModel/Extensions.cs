@@ -11,9 +11,7 @@ namespace Enkoni.Framework.ServiceModel {
     /// <param name="source">The communication object that must be closed.</param>
     /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
     public static void SafeClose(this ICommunicationObject source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       try {
         if(source.State != CommunicationState.Created && source.State != CommunicationState.Closed) {

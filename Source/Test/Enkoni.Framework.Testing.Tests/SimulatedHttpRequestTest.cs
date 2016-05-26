@@ -16,7 +16,7 @@ namespace Enkoni.Framework.Testing.Tests {
 
     /// <summary>Tests the functionality of the <see cref="SimulatedHttpRequest(string, string, string, string, TextWriter, string)"/> constructor.</summary>
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(ArgumentException))]
     public void SimulatedHttpRequest_CtorWithEmptyHost_ExceptionIsThrown() {
       SimulatedHttpRequest testSubject = new SimulatedHttpRequest("appVirtualDir", "appPhysicalDir", "page", "query", new StringWriter(), string.Empty);
     }

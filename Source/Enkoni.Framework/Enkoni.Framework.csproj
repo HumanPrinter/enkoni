@@ -55,6 +55,7 @@
     <Compile Include="BusinessRuleSpecification.cs" />
     <Compile Include="AsyncResult.cs" />
     <Compile Include="FixedDateTimeProvider.cs" />
+    <Compile Include="Guard.cs" />
     <Compile Include="OffsetDateTimeProvider.cs" />
     <Compile Include="DateTimeProvider.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

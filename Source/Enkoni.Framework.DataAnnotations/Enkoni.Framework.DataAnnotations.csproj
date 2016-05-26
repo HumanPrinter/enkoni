@@ -126,6 +126,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Enkoni.Framework\Enkoni.Framework.csproj">
+      <Project>{849ba8ba-a061-4278-85bd-90910680462e}</Project>
+      <Name>Enkoni.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\MSBuildExtensions\Common\Common.Targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

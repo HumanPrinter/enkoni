@@ -53,9 +53,7 @@ namespace Enkoni.Framework {
     /// <exception cref="ArgumentNullException">The info parameter is <see langword="null"/>.</exception>
     protected ConfigurationException(SerializationInfo info, StreamingContext context)
       : base(info, context) {
-      if(info == null) {
-        throw new ArgumentNullException("info");
-      }
+      Guard.ArgumentIsNotNull(info, nameof(info));
 
       this.ConfigurationParameter = info.GetString("ConfigurationParameter");
     }
@@ -73,9 +71,7 @@ namespace Enkoni.Framework {
     /// <exception cref="ArgumentNullException">The info parameter is <see langword="null"/>.</exception>
     [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
     public override void GetObjectData(SerializationInfo info, StreamingContext context) {
-      if(info == null) {
-        throw new ArgumentNullException("info");
-      }
+      Guard.ArgumentIsNotNull(info, nameof(info));
 
       base.GetObjectData(info, context);
 

@@ -11,10 +11,8 @@ namespace Enkoni.Framework {
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="arguments">The arguments that must be used by the business rule.</param>
     internal BusinessRuleSpecification(string ruleName, params object[] arguments) {
-      if(string.IsNullOrEmpty(ruleName)) {
-        throw new ArgumentException("Specify a valid rulename", "ruleName");
-      }
-
+      Guard.ArgumentIsNotNullOrEmpty(ruleName, nameof(ruleName), "Specify a valid rule name");
+      
       this.RuleName = ruleName;
       this.RuleArguments = new ReadOnlyCollection<object>(arguments);
     }

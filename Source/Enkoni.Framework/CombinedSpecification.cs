@@ -9,13 +9,8 @@ namespace Enkoni.Framework {
     /// <param name="leftOperand">The left operand of the combination.</param>
     /// <param name="rightOperand">The right operand of the combination.</param>
     protected CombinedSpecification(ISpecification<T> leftOperand, ISpecification<T> rightOperand) {
-      if(leftOperand == null) {
-        throw new ArgumentNullException("leftOperand");
-      }
-
-      if(rightOperand == null) {
-        throw new ArgumentNullException("rightOperand");
-      }
+      Guard.ArgumentIsNotNull(leftOperand, nameof(leftOperand));
+      Guard.ArgumentIsNotNull(rightOperand, nameof(rightOperand));
 
       leftOperand.MaximumResultsUpdated += this.HandleMaximumResultsUpdated;
       rightOperand.MaximumResultsUpdated += this.HandleMaximumResultsUpdated;

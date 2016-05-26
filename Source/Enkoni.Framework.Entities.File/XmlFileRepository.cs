@@ -97,7 +97,7 @@ namespace Enkoni.Framework.Entities {
       Type type = typeof(TEntity);
       Type[] baseTypes = type.GetBaseClasses();
 
-      /* Get the properties of the types and determine which properties they have in common (those will be overriden properties) */
+      /* Get the properties of the types and determine which properties they have in common (those will be overridden properties) */
       PropertyInfo[] propertiesOfEntity = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
       PropertyInfo[] propertiesOfBaseTypes = baseTypes.SelectMany(t => t.GetProperties(BindingFlags.Instance | BindingFlags.Public)).ToArray();
       IEnumerable<PropertyInfo> overriddenProperties = propertiesOfEntity.Intersect(propertiesOfBaseTypes, propertiesOfEntity.CreateEqualityComparer(p => p.Name));

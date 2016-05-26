@@ -21,9 +21,7 @@ namespace Enkoni.Framework.Xml {
     /// <param name="resourceNamespace">The namespace of the embedded resources.</param>
     /// <exception cref="ArgumentNullException"><paramref name="resourceAssembly"/> is <see langword="null"/>.</exception>
     public XmlResourceResolver(Assembly resourceAssembly, string resourceNamespace) {
-      if(resourceAssembly == null) {
-        throw new ArgumentNullException("resourceAssembly");
-      }
+      Guard.ArgumentIsNotNull(resourceAssembly, nameof(resourceAssembly));
 
       this.resourceAssembly = resourceAssembly;
       this.resourceNamespace = string.IsNullOrEmpty(resourceNamespace) ? string.Empty : string.Format(CultureInfo.InvariantCulture, "{0}.", resourceNamespace);

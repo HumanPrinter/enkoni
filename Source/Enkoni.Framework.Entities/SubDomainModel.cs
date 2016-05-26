@@ -46,9 +46,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
     public IList<T> FindEntities(string[] includePaths) {
-      if(includePaths == null) {
-        throw new ArgumentNullException("includePaths");
-      }
+      Guard.ArgumentIsNotNull(includePaths, nameof(includePaths));
 
       if(includePaths.Length == 0 || includePaths.Any(path => string.IsNullOrEmpty(path))) {
         throw new ArgumentException("The include paths cannot be empty ans cannot contain empty or null values.", "includePaths");
@@ -63,23 +61,19 @@ namespace Enkoni.Framework.Entities {
     /// <param name="searchSpecification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
     public IList<T> FindEntities(ISpecification<T> searchSpecification) {
-      if(searchSpecification == null) {
-        throw new ArgumentNullException("searchSpecification");
-      }
-
+      Guard.ArgumentIsNotNull(searchSpecification, nameof(searchSpecification));
+      
       return this.FindEntitiesCore(searchSpecification);
     }
 
     /// <summary>Finds all the entities that match the specified expression.</summary>
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     public IList<T> FindEntities(Expression<Func<T, bool>> searchExpression) {
-      if(searchExpression == null) {
-        throw new ArgumentNullException("searchExpression");
-      }
-
+      Guard.ArgumentIsNotNull(searchExpression, nameof(searchExpression));
+      
       return this.FindEntitiesCore(Specification.Lambda(searchExpression));
     }
 
@@ -87,16 +81,11 @@ namespace Enkoni.Framework.Entities {
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <returns>The found entities or an empty list if there were no results.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     public IList<T> FindEntities(Expression<Func<T, bool>> searchExpression, string[] includePaths) {
-      if(searchExpression == null) {
-        throw new ArgumentNullException("searchExpression");
-      }
-
-      if(includePaths == null) {
-        throw new ArgumentNullException("includePaths");
-      }
+      Guard.ArgumentIsNotNull(searchExpression, nameof(searchExpression));
+      Guard.ArgumentIsNotNull(includePaths, nameof(includePaths));
 
       if(includePaths.Length == 0 || includePaths.Any(path => string.IsNullOrEmpty(path))) {
         throw new ArgumentException("The include paths cannot be empty ans cannot contain empty or null values.", "includePaths");
@@ -111,22 +100,18 @@ namespace Enkoni.Framework.Entities {
     /// <param name="searchSpecification">The specification that describes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     public T FindEntity(ISpecification<T> searchSpecification) {
-      if(searchSpecification == null) {
-        throw new ArgumentNullException("searchSpecification");
-      }
-
+      Guard.ArgumentIsNotNull(searchSpecification, nameof(searchSpecification));
+      
       return this.FindEntityCore(searchSpecification);
     }
 
     /// <summary>Finds one entities that matches the specified expression.</summary>
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     public T FindEntity(Expression<Func<T, bool>> searchExpression) {
-      if(searchExpression == null) {
-        throw new ArgumentNullException("searchExpression");
-      }
+      Guard.ArgumentIsNotNull(searchExpression, nameof(searchExpression));
 
       return this.FindEntityCore(Specification.Lambda(searchExpression));
     }
@@ -135,16 +120,11 @@ namespace Enkoni.Framework.Entities {
     /// <param name="searchExpression">The expression that describes the query that must be performed.</param>
     /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
-    /// <remarks>This method has no support for orderby specifications and/or maximum result specifications. Use the overload version that takes a 
+    /// <remarks>This method has no support for order by specifications and/or maximum result specifications. Use the overload version that takes a 
     /// <see cref="ISpecification{T}"/> if more detailed control is required.</remarks>
     public T FindEntity(Expression<Func<T, bool>> searchExpression, string[] includePaths) {
-      if(searchExpression == null) {
-        throw new ArgumentNullException("searchExpression");
-      }
-
-      if(includePaths == null) {
-        throw new ArgumentNullException("includePaths");
-      }
+      Guard.ArgumentIsNotNull(searchExpression, nameof(searchExpression));
+      Guard.ArgumentIsNotNull(includePaths, nameof(includePaths));
 
       if(includePaths.Length == 0 || includePaths.Any(path => string.IsNullOrEmpty(path))) {
         throw new ArgumentException("The include paths cannot be empty ans cannot contain empty or null values.", "includePaths");
@@ -168,9 +148,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <returns>The found entity or <see langword="null"/> if there was no result.</returns>
     public T FindEntityById(int entityId, string[] includePaths) {
-      if(includePaths == null) {
-        throw new ArgumentNullException("includePaths");
-      }
+      Guard.ArgumentIsNotNull(includePaths, nameof(includePaths));
 
       if(includePaths.Length == 0 || includePaths.Any(path => string.IsNullOrEmpty(path))) {
         throw new ArgumentException("The include paths cannot be empty ans cannot contain empty or null values.", "includePaths");
@@ -186,9 +164,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="entity">The entity that must be validated.</param>
     /// <returns>The results of the validation.</returns>
     public ICollection<ValidationResult> ValidateEntity(T entity) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
+      Guard.ArgumentIsNotNull(entity, nameof(entity));
 
       return this.ValidateEntityCore(entity);
     }
@@ -199,9 +175,7 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ValidationException">The entity is invalid.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T AddEntity(T entity) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
+      Guard.ArgumentIsNotNull(entity, nameof(entity));
 
       return this.AddEntityCore(entity);
     }
@@ -213,9 +187,7 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ValidationException">The entity is invalid.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T UpdateEntity(int originalEntityId, T updatedEntity) {
-      if(updatedEntity == null) {
-        throw new ArgumentNullException("updatedEntity");
-      }
+      Guard.ArgumentIsNotNull(updatedEntity, nameof(updatedEntity));
 
       T existingEntity = this.FindEntityById(originalEntityId);
       if(existingEntity == null) {

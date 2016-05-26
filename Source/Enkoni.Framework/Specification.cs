@@ -177,10 +177,8 @@ namespace Enkoni.Framework {
     /// <summary>Sets the include path that must be considered when using the specification.</summary>
     /// <param name="includePath">The dot-separated list of related objects to return in the query results.</param>
     public void Include(string includePath) {
-      if(string.IsNullOrEmpty(includePath)) {
-        throw new ArgumentException("Specified path cannot be null or empty", "includePath");
-      }
-
+      Guard.ArgumentIsNotNullOrEmpty(includePath, nameof(includePath), "Specified path cannot be null or empty");
+      
       if(this.includePathUpdated != null) {
         this.includePathUpdated(this, new EventArgs<string>(includePath));
       }
@@ -243,10 +241,8 @@ namespace Enkoni.Framework {
     /// <param name="specification">The specification that must be combined.</param>
     /// <returns>The combined specification.</returns>
     public virtual ISpecification<T> And(ISpecification<T> specification) {
-      if(specification is BusinessRuleSpecification<T>) {
-        throw new InvalidOperationException("A BusinessRuleSpecification cannot be combined with other specifications.");
-      }
-
+      Guard.ArgumentIsNotOfType<BusinessRuleSpecification<T>>(specification, nameof(specification), "A BusinessRuleSpecification cannot be combined with other specifications.");
+      
       return new AndSpecification<T>(this, specification);
     }
 
@@ -254,9 +250,7 @@ namespace Enkoni.Framework {
     /// <param name="specification">The specification that must be combined.</param>
     /// <returns>The combined specification.</returns>
     public virtual ISpecification<T> Or(ISpecification<T> specification) {
-      if(specification is BusinessRuleSpecification<T>) {
-        throw new InvalidOperationException("A BusinessRuleSpecification cannot be combined with other specifications.");
-      }
+      Guard.ArgumentIsNotOfType<BusinessRuleSpecification<T>>(specification, nameof(specification), "A BusinessRuleSpecification cannot be combined with other specifications.");
 
       return new OrSpecification<T>(this, specification);
     }
@@ -267,10 +261,8 @@ namespace Enkoni.Framework {
     /// <returns>The expression that was created using this specification.</returns>
     /// <exception cref="ArgumentNullException">Parameter is <see langword="null"/>.</exception>
     public Expression<Func<T, bool>> Visit(ISpecificationVisitor<T> visitor) {
-      if(visitor == null) {
-        throw new ArgumentNullException("visitor", "The visitor-parameter is mandatory");
-      }
-
+      Guard.ArgumentIsNotNull(visitor, nameof(visitor), "The visitor-parameter is mandatory");
+      
       return this.VisitCore(visitor);
     }
     #endregion
@@ -280,10 +272,8 @@ namespace Enkoni.Framework {
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleMaximumResultsUpdated(object sender, EventArgs<int> args) {
-      if(args == null) {
-        throw new ArgumentNullException("args");
-      }
-
+      Guard.ArgumentIsNotNull(args, nameof(args));
+      
       this.SetMaximumResults(args.EventValue);
     }
 
@@ -291,10 +281,8 @@ namespace Enkoni.Framework {
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleOrderByRulesUpdated(object sender, SortSpecificationsEventArgs<T> args) {
-      if(args == null) {
-        throw new ArgumentNullException("args");
-      }
-
+      Guard.ArgumentIsNotNull(args, nameof(args));
+      
       this.OrderBy(args.EventValue);
     }
 
@@ -302,10 +290,8 @@ namespace Enkoni.Framework {
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleIncludePathUpdated(object sender, EventArgs<string> args) {
-      if(args == null) {
-        throw new ArgumentNullException("args");
-      }
-
+      Guard.ArgumentIsNotNull(args, nameof(args));
+      
       this.Include(args.EventValue);
     }
     #endregion
