@@ -9,17 +9,20 @@ using System.Xml.Serialization;
 using Enkoni.Framework.Linq;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class extends the abstract <see cref="FileRepository{TEntity}"/> class and implements the functionality to read and write from or 
+  /// <summary>This class extends the abstract <see cref="FileRepository{TEntity}"/> class and implements the functionality to read and write from or
   /// to an XML-file.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
   public class XmlFileRepository<TEntity> : FileRepository<TEntity>
     where TEntity : class, IEntity<TEntity>, new() {
     #region Instance variables
+
     /// <summary>The instance that is used to (de)serialize the entities.</summary>
     private XmlSerializer serializer;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="XmlFileRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
     /// <param name="dataSourceInfo">The data source information that must be used to access the source file.</param>
@@ -28,9 +31,11 @@ namespace Enkoni.Framework.Entities {
       XmlAttributeOverrides overrides = ConstructAttributeOverrides();
       this.serializer = new XmlSerializer(typeof(List<TEntity>), overrides);
     }
+
     #endregion
 
     #region FileRepository<T> overrides
+
     /// <summary>Reads all the available records from the source file.</summary>
     /// <param name="sourceFile">Information about the file that must be read.</param>
     /// <param name="dataSourceInfo">Optional information about the data source.</param>
@@ -84,10 +89,12 @@ namespace Enkoni.Framework.Entities {
         }
       }
     }
+
     #endregion
 
     #region Private helper methods
-    /// <summary>Constructs an instance of the <see cref="XmlAttributeOverrides"/> class that is used to instruct an <see cref="XmlSerializer"/> how to (de)serialize 
+
+    /// <summary>Constructs an instance of the <see cref="XmlAttributeOverrides"/> class that is used to instruct an <see cref="XmlSerializer"/> how to (de)serialize
     /// an entity.</summary>
     /// <returns>The constructed instance.</returns>
     private static XmlAttributeOverrides ConstructAttributeOverrides() {
@@ -108,12 +115,14 @@ namespace Enkoni.Framework.Entities {
         XmlAttributes xmlAttributes = new XmlAttributes(new CustomAttributeProvider(propertyOfEntity));
         overrides.Add(propertyOfBaseType.DeclaringType, propertyOfEntity.Name, xmlAttributes);
       }
-      
+
       return overrides;
     }
+
     #endregion
 
     #region Private classes
+
     /// <summary>Implements a custom attribute provider that is used to construct an <see cref="XmlAttributes"/> instance.</summary>
     private class CustomAttributeProvider : ICustomAttributeProvider {
       /// <summary>The PropertyInfo that describes the property whose attributes must be retrieved.</summary>
@@ -125,7 +134,7 @@ namespace Enkoni.Framework.Entities {
         this.propertyInfo = propertyInfo;
       }
 
-      /// <summary>Returns an array of all of the custom attributes defined on this member, excluding named attributes, or an empty array if there 
+      /// <summary>Returns an array of all of the custom attributes defined on this member, excluding named attributes, or an empty array if there
       /// are no custom attributes.</summary>
       /// <param name="inherit">When true, look up the hierarchy chain for the inherited custom attribute.</param>
       /// <returns>An array of Objects representing custom attributes, or an empty array.</returns>
@@ -133,7 +142,7 @@ namespace Enkoni.Framework.Entities {
         return this.propertyInfo.GetCustomAttributes(inherit);
       }
 
-      /// <summary>Returns an array of custom attributes defined on this member, identified by type, or an empty array if there are no custom 
+      /// <summary>Returns an array of custom attributes defined on this member, identified by type, or an empty array if there are no custom
       /// attributes of that type.</summary>
       /// <param name="attributeType">The type of the custom attributes.</param>
       /// <param name="inherit">When true, look up the hierarchy chain for the inherited custom attribute.</param>
@@ -150,6 +159,7 @@ namespace Enkoni.Framework.Entities {
         return this.propertyInfo.IsDefined(attributeType, inherit);
       }
     }
+
     #endregion
   }
 }

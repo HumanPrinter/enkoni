@@ -15,11 +15,14 @@ namespace Enkoni.Framework.Entities {
   /// <typeparam name="T">The type of entity that is managed by the repository.</typeparam>
   public abstract class Repository<T> : ISpecificationVisitor<T>, IDisposable where T : class {
     #region Instance variables
+
     /// <summary>Indicates if the type of entity implements the ICloneable interface.</summary>
     private bool typeImplementsICloneable;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="Repository{T}"/> class.</summary>
     protected Repository() {
       this.typeImplementsICloneable = typeof(T).GetInterfaces().Contains(typeof(ICloneable));
@@ -33,7 +36,7 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Initializes a new instance of the <see cref="Repository{T}"/> class.</summary>
     /// <param name="dataSourceInfo">The data source information that must be used to access the data source.</param>
-    /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> specifies that data source items must be cloned, but 
+    /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> specifies that data source items must be cloned, but
     /// <typeparamref name="T"/> does not implement <see cref="ICloneable"/>.</exception>
     protected Repository(DataSourceInfo dataSourceInfo)
       : this() {
@@ -43,17 +46,21 @@ namespace Enkoni.Framework.Entities {
         throw new InvalidOperationException("Cannot clone data source items because the type does not implement ICloneable.");
       }
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the instance that must be used to validate the entities before adding or updating them in the repository.</summary>
     public EntityValidator<T> Validator { get; set; }
 
     /// <summary>Gets a value indicating whether entities retrieved from the data source must be cloned or not.</summary>
     public bool CloneDataSourceItems { get; private set; }
+
     #endregion
 
     #region ISpecificationVisitor implementation
+
     /// <summary>Creates an AND-expression using the two specified specifications.</summary>
     /// <param name="leftOperand">The left operand of the combination.</param>
     /// <param name="rightOperand">The right operand of the combination.</param>
@@ -95,16 +102,18 @@ namespace Enkoni.Framework.Entities {
       return this.CreateLikeExpressionCore(field, pattern);
     }
 
-    /// <summary>Creates a lambda-expression using the custom specification. This method is executed when a specification-type is used that is not 
+    /// <summary>Creates a lambda-expression using the custom specification. This method is executed when a specification-type is used that is not
     /// part of the default specification system.</summary>
     /// <param name="specification">The custom specification.</param>
     /// <returns>The created expression.</returns>
     Expression<Func<T, bool>> ISpecificationVisitor<T>.CreateCustomExpression(ISpecification<T> specification) {
       return this.CreateCustomExpressionCore(specification);
     }
+
     #endregion
 
     #region CRUD methods
+
     /// <summary>Saves all the changes to the underlying persistency.</summary>
     public void SaveChanges() {
       this.SaveChanges(null);
@@ -225,7 +234,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The entity with the most recent values.</returns>
     public T UpdateEntity(T entity, DataSourceInfo dataSourceInfo) {
       Guard.ArgumentIsNotNull(entity, nameof(entity));
-      
+
       if(this.Validator != null) {
         try {
           this.Validator.PerformValidation(entity, true);
@@ -257,7 +266,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The entities with the most recent values.</returns>
     public IEnumerable<T> UpdateEntities(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
       Guard.ArgumentIsNotNullOrEmpty(entities, nameof(entities), "Cannot update the repository with an empty collection");
-      
+
       if(this.Validator != null) {
         try {
           foreach(T entity in entities) {
@@ -285,7 +294,7 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     public void DeleteEntity(T entity, DataSourceInfo dataSourceInfo) {
       Guard.ArgumentIsNotNull(entity, nameof(entity));
-      
+
       this.DeleteEntityCore(entity, dataSourceInfo);
     }
 
@@ -307,9 +316,11 @@ namespace Enkoni.Framework.Entities {
 
       this.DeleteEntitiesCore(entities, dataSourceInfo);
     }
+
     #endregion
 
     #region Execute methods
+
     /// <summary>Executes an action in the repository as specified by <paramref name="specification"/>.</summary>
     /// <param name="specification">The specification that indicates the action that must be executed.</param>
     /// <returns>An object describing the result of the action.</returns>
@@ -332,9 +343,11 @@ namespace Enkoni.Framework.Entities {
       Expression<Func<T, bool>> expression = specification.Visit(this);
       return this.ExecuteCore(expression.Compile(), specification.SortRules, specification.MaximumResults, dataSourceInfo);
     }
+
     #endregion
 
     #region FindAll methods
+
     /// <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
     /// <returns>All the available entities.</returns>
     public IEnumerable<T> FindAll() {
@@ -471,9 +484,11 @@ namespace Enkoni.Framework.Entities {
       Expression<Func<T, bool>> expression = specification.Visit(this);
       return this.FindAllCore(expression, specification.SortRules, specification.MaximumResults, specification.IncludePaths.ToArray(), dataSourceInfo);
     }
+
     #endregion
 
     #region FindSingle methods
+
     /// <summary>Finds a single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <returns>The found entity.</returns>
@@ -647,14 +662,16 @@ namespace Enkoni.Framework.Entities {
       Expression<Func<T, bool>> expression = specification.Visit(this);
       return this.FindSingleCore(expression, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
     }
+
     #endregion
 
     #region FindFirst methods
+
     /// <summary>Finds the first entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression) {
       return this.FindFirst(expression, (string)null, (DataSourceInfo)null);
@@ -665,7 +682,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="includePath">The dot-separated list of related objects to return in the query results.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string includePath) {
       return this.FindFirst(expression, includePath, (DataSourceInfo)null);
@@ -676,7 +693,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="includePaths">The dot-separated lists of related objects to return in the query results.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string[] includePaths) {
       return this.FindFirst(expression, includePaths, (DataSourceInfo)null);
@@ -687,7 +704,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, DataSourceInfo dataSourceInfo) {
       return this.FindFirst(expression, (string)null, dataSourceInfo);
@@ -699,11 +716,11 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string includePath, DataSourceInfo dataSourceInfo) {
       Guard.ArgumentIsNotNull(expression, nameof(expression));
-      
+
       return this.FindFirst(expression, string.IsNullOrEmpty(includePath) ? (string[])null : new string[] { includePath }, dataSourceInfo);
     }
 
@@ -713,11 +730,11 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string[] includePaths, DataSourceInfo dataSourceInfo) {
       Guard.ArgumentIsNotNull(expression, nameof(expression));
-      
+
       return this.FindFirstCore(expression, null, includePaths, dataSourceInfo);
     }
 
@@ -726,7 +743,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, T defaultValue) {
       return this.FindFirst(expression, defaultValue, null);
@@ -738,7 +755,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string includePath, T defaultValue) {
       return this.FindFirst(expression, includePath, defaultValue, null);
@@ -750,7 +767,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="defaultValue">The value that will be returned when no match was found.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string[] includePaths, T defaultValue) {
       return this.FindFirst(expression, includePaths, defaultValue, null);
@@ -762,7 +779,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, T defaultValue, DataSourceInfo dataSourceInfo) {
       return this.FindFirst(expression, (string)null, defaultValue, dataSourceInfo);
@@ -775,7 +792,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string includePath, T defaultValue, DataSourceInfo dataSourceInfo) {
       return this.FindFirst(expression, string.IsNullOrEmpty(includePath) ? (string[])null : new string[] { includePath }, defaultValue, dataSourceInfo);
@@ -788,11 +805,11 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
-    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
+    /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required,
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string[] includePaths, T defaultValue, DataSourceInfo dataSourceInfo) {
       Guard.ArgumentIsNotNull(expression, nameof(expression));
-      
+
       return this.FindFirstCore(expression, null, includePaths, dataSourceInfo, defaultValue);
     }
 
@@ -847,9 +864,11 @@ namespace Enkoni.Framework.Entities {
       Expression<Func<T, bool>> expression = specification.Visit(this);
       return this.FindFirstCore(expression, specification.SortRules, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
     }
+
     #endregion
 
     #region Dispose methods
+
     /// <summary>Disposes any resources held by this instance.</summary>
     public void Dispose() {
       this.DisposeManagedResources();
@@ -859,9 +878,11 @@ namespace Enkoni.Framework.Entities {
     protected virtual void DisposeManagedResources() {
       /* By default there is nothing to dispose */
     }
+
     #endregion
 
     #region Extensibility CRUD methods
+
     /// <summary>Saves all the changes to the underlying persistency.</summary>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected abstract void SaveChangesCore(DataSourceInfo dataSourceInfo);
@@ -927,9 +948,11 @@ namespace Enkoni.Framework.Entities {
         this.DeleteEntityCore(entity, dataSourceInfo);
       }
     }
+
     #endregion
 
     #region Extensibility FindAll methods
+
     /// <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>All the available entities.</returns>
@@ -994,9 +1017,11 @@ namespace Enkoni.Framework.Entities {
       int maximumResults, string[] includePaths, DataSourceInfo dataSourceInfo) {
       return Enumerable.Empty<T>();
     }
+
     #endregion
 
     #region Extensibility FindSingle methods
+
     /// <summary>Finds a single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
@@ -1054,9 +1079,11 @@ namespace Enkoni.Framework.Entities {
     protected virtual T FindSingleCore(Func<T, bool> expression, string[] includePaths, DataSourceInfo dataSourceInfo, T defaultValue) {
       return null;
     }
+
     #endregion
 
     #region Extensibility FindFirst methods
+
     /// <summary>Finds the first single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
@@ -1122,9 +1149,11 @@ namespace Enkoni.Framework.Entities {
     protected virtual T FindFirstCore(Func<T, bool> expression, SortSpecifications<T> sortRules, string[] includePaths, DataSourceInfo dataSourceInfo, T defaultValue) {
       return null;
     }
+
     #endregion
 
     #region Extensibility CreateExpression methods
+
     /// <summary>Creates an AND-expression using the two specified specifications.</summary>
     /// <param name="leftOperand">The left operand of the combination.</param>
     /// <param name="rightOperand">The right operand of the combination.</param>
@@ -1179,17 +1208,19 @@ namespace Enkoni.Framework.Entities {
       return regexExpression;
     }
 
-    /// <summary>Creates a lambda-expression using the custom specification. This method is executed when a specification-type is used that is not 
+    /// <summary>Creates a lambda-expression using the custom specification. This method is executed when a specification-type is used that is not
     /// part of the default specification system.</summary>
     /// <param name="specification">The custom specification.</param>
     /// <returns>The created expression.</returns>
     protected virtual Expression<Func<T, bool>> CreateCustomExpressionCore(ISpecification<T> specification) {
       throw new NotSupportedException("Specification-type {" + specification.GetType() + "} is not supported");
     }
+
     #endregion
 
     #region Extensibility Execute methods
-    /// <summary>Executes a business rule that yields to a single result. By default, this method throws a <see cref="NotSupportedException"/>. 
+
+    /// <summary>Executes a business rule that yields to a single result. By default, this method throws a <see cref="NotSupportedException"/>.
     /// Override this method to deal with special business rules.</summary>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="ruleArguments">The arguments that were passed.</param>
@@ -1199,7 +1230,7 @@ namespace Enkoni.Framework.Entities {
       throw new NotSupportedException("This repository does not support business rules.");
     }
 
-    /// <summary>Executes a business rule that yields to multiple results. By default, this method throws a <see cref="NotSupportedException"/>. 
+    /// <summary>Executes a business rule that yields to multiple results. By default, this method throws a <see cref="NotSupportedException"/>.
     /// Override this method to deal with special business rules.</summary>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="ruleArguments">The arguments that were passed.</param>
@@ -1209,7 +1240,7 @@ namespace Enkoni.Framework.Entities {
       throw new NotSupportedException("This repository does not support business rules.");
     }
 
-    /// <summary>Executes a business rule that yields to a custom result. By default, this method throws a <see cref="NotSupportedException"/>. 
+    /// <summary>Executes a business rule that yields to a custom result. By default, this method throws a <see cref="NotSupportedException"/>.
     /// Override this method to deal with special business rules.</summary>
     /// <param name="ruleName">The name of the rule that must be executed.</param>
     /// <param name="ruleArguments">The arguments that were passed.</param>
@@ -1219,7 +1250,7 @@ namespace Enkoni.Framework.Entities {
       throw new NotSupportedException("This repository does not support business rules.");
     }
 
-    /// <summary>Executes an expression. By default, the expression is passed to the <see cref="FindAllCore(Func{T,bool}, SortSpecifications{T}, int, string[], DataSourceInfo)"/> 
+    /// <summary>Executes an expression. By default, the expression is passed to the <see cref="FindAllCore(Func{T,bool}, SortSpecifications{T}, int, string[], DataSourceInfo)"/>
     /// method.</summary>
     /// <param name="expression">The expression to which the entities must match.</param>
     /// <param name="sortRules">The specification of the sort rules that must be applied. Use <see langword="null"/> to ignore the ordering.</param>
@@ -1230,14 +1261,16 @@ namespace Enkoni.Framework.Entities {
       this.FindAllCore(expression, sortRules, maximumResults, null, dataSourceInfo);
       return null;
     }
+
     #endregion
 
     #region Protected helper methods
-    /// <summary>Selects the flag that indicates if any entity that originates from the data source must be cloned or not. If 
+
+    /// <summary>Selects the flag that indicates if any entity that originates from the data source must be cloned or not. If
     /// <paramref name="dataSourceInfo"/> contains a valid flag, it is used; otherwise the value of <see cref="CloneDataSourceItems"/> is used.
     /// </summary>
     /// <param name="dataSourceInfo">Any information regarding the data source.</param>
-    /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> indicates that entities must be cloned, but 
+    /// <exception cref="InvalidOperationException"><paramref name="dataSourceInfo"/> indicates that entities must be cloned, but
     /// <typeparamref name="T"/> does not implement <see cref="ICloneable"/>.</exception>
     /// <returns><see langword="true"/> if entities must be cloned; <see langword="false"/> otherwise.</returns>
     protected bool SelectCloneDataSourceItems(DataSourceInfo dataSourceInfo) {
@@ -1254,6 +1287,7 @@ namespace Enkoni.Framework.Entities {
         return this.CloneDataSourceItems;
       }
     }
+
     #endregion
   }
 }

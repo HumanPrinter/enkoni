@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 
 namespace Enkoni.Framework.Entities {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   internal static class Extensions {
     #region IEntity extensions
+
     /// <summary>Returns a copy or clone of the instance.</summary>
     /// <typeparam name="TEntity">The actual type of the instance that will be copied.</typeparam>
     /// <param name="instance">The instance that will be copied or cloned.</param>
@@ -26,6 +27,7 @@ namespace Enkoni.Framework.Entities {
         return copyOfEntity;
       }
     }
+
     #endregion
   }
 }

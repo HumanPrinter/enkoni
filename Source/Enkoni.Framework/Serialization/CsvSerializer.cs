@@ -9,9 +9,10 @@ namespace Enkoni.Framework.Serialization {
   /// <typeparam name="T">Type of the object that has to be serialized.</typeparam>
   public class CsvSerializer<T> : Serializer<T> where T : new() {
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="CsvSerializer{T}"/> class.</summary>
     /// <exception cref="InvalidTypeParameterException">The specified type-parameter cannot be serialized using this serializer.</exception>
-    /// <exception cref="InvalidOperationException">The specified type-parameter contains illegal metadata that prevents it from being 
+    /// <exception cref="InvalidOperationException">The specified type-parameter contains illegal metadata that prevents it from being
     /// (de)serialized.</exception>
     public CsvSerializer()
       : base() {
@@ -23,9 +24,11 @@ namespace Enkoni.Framework.Serialization {
       this.Separator = transformer.Separator;
       this.Transformer = transformer;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the mappings of the column names. The dictionary uses the column index as key and column name as value.</summary>
     protected Dictionary<int, string> ColumnNameMappings { get; private set; }
 
@@ -37,10 +40,12 @@ namespace Enkoni.Framework.Serialization {
 
     /// <summary>Gets or sets the separator-string.</summary>
     protected string Separator { get; set; }
+
     #endregion
 
     #region Protected methods
-    /// <summary>Serializes a collection of items by transforming each item using the <see cref="Serializer{T}.Transformer"/> property and writing the 
+
+    /// <summary>Serializes a collection of items by transforming each item using the <see cref="Serializer{T}.Transformer"/> property and writing the
     /// transformed item to the <paramref name="stream"/>. Each item will be separated using the new line character(s) of the current environment.
     /// </summary>
     /// <param name="objects">The objects that must be serialized.</param>
@@ -50,7 +55,7 @@ namespace Enkoni.Framework.Serialization {
     protected override int Serialize(IEnumerable<T> objects, Encoding encoding, Stream stream) {
       Guard.ArgumentIsNotNull(encoding, nameof(encoding));
       Guard.ArgumentIsNotNull(stream, nameof(stream));
-      
+
       int writeCount = 0;
       if(this.EmitHeader) {
         StringBuilder headerBuilder = new StringBuilder();
@@ -90,7 +95,7 @@ namespace Enkoni.Framework.Serialization {
     /// <returns>The collection of deserialized objects.</returns>
     protected override ICollection<T> Deserialize(StreamReader reader) {
       Guard.ArgumentIsNotNull(reader, nameof(reader));
-      
+
       if(this.IgnoreHeaderOnRead) {
         /* Discard the first line */
         reader.ReadLine();
@@ -98,6 +103,7 @@ namespace Enkoni.Framework.Serialization {
 
       return base.Deserialize(reader);
     }
+
     #endregion
   }
 }

@@ -9,11 +9,14 @@ namespace Enkoni.Framework.ServiceModel {
   /// <remarks>The implementation is based on the code of Microsoft (<see href="http://msdn.microsoft.com/en-us/library/ff647820.aspx"/>).</remarks>
   public class SchemaValidationBehavior : IEndpointBehavior {
     #region Instance variables
+
     /// <summary>The set of schemas that are used for the validation of received messages.</summary>
     private readonly XmlSchemaSet schemaSet;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="SchemaValidationBehavior"/> class.</summary>
     /// <param name="enabled">Indicates whether or not the behavior is enabled.</param>
     /// <param name="schemaSet">Defines the schemas that must be used.</param>
@@ -21,14 +24,18 @@ namespace Enkoni.Framework.ServiceModel {
       this.Enabled = enabled;
       this.schemaSet = schemaSet;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets a value indicating whether the behavior is enabled or not.</summary>
     public bool Enabled { get; set; }
+
     #endregion
 
     #region IEnpointBehavior-implementations
+
     /// <summary>Implements a modification or extension of the service across an endpoint.</summary>
     /// <param name="endpoint">The endpoint that exposes the contract.</param>
     /// <param name="endpointDispatcher">The endpoint dispatcher to be modified or extended.</param>
@@ -67,15 +74,18 @@ namespace Enkoni.Framework.ServiceModel {
     public void Validate(ServiceEndpoint endpoint) {
       /* Nothing to do here */
     }
+
     #endregion
 
     #region Protected extension points
+
     /// <summary>Returns a new instance of the <see cref="SchemaValidationMessageInspector"/> class or a subclass.</summary>
     /// <param name="schemas">The schemas that must be used.</param>
     /// <returns>The created instance.</returns>
     protected virtual SchemaValidationMessageInspector CreateMessageInspector(XmlSchemaSet schemas) {
       return new SchemaValidationMessageInspector(schemas);
     }
+
     #endregion
   }
 }

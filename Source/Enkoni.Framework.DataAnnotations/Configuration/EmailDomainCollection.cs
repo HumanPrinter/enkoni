@@ -6,12 +6,15 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
   /// that must be validated by the <see cref="EmailAttribute"/>.</summary>
   public class EmailDomainCollection : ConfigurationElementCollection {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="EmailDomainCollection"/> class.</summary>
     public EmailDomainCollection() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the type of the <see cref="ConfigurationElementCollection"/>.</summary>
     public override ConfigurationElementCollectionType CollectionType {
       get {
@@ -29,7 +32,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
     /// <returns>The specified property, attribute, or child element.</returns>
     public EmailDomainConfigElement this[int index] {
       get {
-        return (EmailDomainConfigElement)this.BaseGet(index); 
+        return (EmailDomainConfigElement)this.BaseGet(index);
       }
 
       set {
@@ -47,9 +50,11 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
     public new EmailDomainConfigElement this[string pattern] {
       get { return (EmailDomainConfigElement)this.BaseGet(pattern); }
     }
+
     #endregion
 
     #region Protected methods
+
     /// <summary>Creates a new <see cref="ConfigurationElement"/>.</summary>
     /// <returns>A new <see cref="ConfigurationElement"/>.</returns>
     protected override ConfigurationElement CreateNewElement() {
@@ -66,6 +71,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
       EmailDomainConfigElement configElement = element as EmailDomainConfigElement;
       return configElement.Pattern ?? string.Empty;
     }
+
     #endregion
   }
 }

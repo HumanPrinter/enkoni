@@ -47,3 +47,7 @@
 [assembly: SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Scope = "member", Target = "Enkoni.Framework.UI.Mvvm.Messenger.#.cctor()", Justification = "This instance is not supposed to be disposed before the application ends.")]
 
 [assembly: SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Scope = "member", Target = "Enkoni.Framework.UI.UIDispatcher.#Dispatcher", Justification = "The type Dispatcher is in fact immutable")]
+
+[assembly: SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter must not span multiple lines", Scope = "member", Target = "~F:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandProperty", Justification = "In this case, readability is still fine")]
+[assembly: SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter must not span multiple lines", Scope = "member", Target = "~F:Enkoni.Framework.UI.Mvvm.EventToCommand.CommandParameterProperty", Justification = "In this case, readability is still fine")]
+[assembly: SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter must not span multiple lines", Scope = "member", Target = "~F:Enkoni.Framework.UI.Mvvm.EventToCommand.BindCanExecuteToIsEnabledProperty", Justification = "In this case, readability is still fine")]

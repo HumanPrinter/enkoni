@@ -18,7 +18,7 @@ namespace Enkoni.Framework.Testing {
         HttpContext.Current.Session.Clear();
       }
       else {
-        /* These values are purely to satisfy the constructors of the HttpContext related objects. They don't have to represent a real-life 
+        /* These values are purely to satisfy the constructors of the HttpContext related objects. They don't have to represent a real-life
          * web-application.*/
         string appVirtualDir = "/";
         string appPhysicalDir = @"d:\projects\Web\";

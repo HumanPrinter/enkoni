@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-// General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the 
+// General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the
 // information associated with an assembly.
 [assembly: AssemblyCompany("Oscar Brouwer")]
 [assembly: AssemblyProduct("Multi-purposes framework")]
@@ -11,7 +11,7 @@
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
-//      Minor Version 
+//      Minor Version
 //      Build Number
 //      Revision
 //

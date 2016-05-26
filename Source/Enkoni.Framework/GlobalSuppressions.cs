@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member", Target = "Enkoni.Framework.Collections.Extensions.#IndexOf`1(System.Collections.Generic.List`1<!!0>,!!0,System.Int32,System.Collections.Generic.IEqualityComparer`1<!!0>)", Justification = "The method provides an 'overload' for a List-method")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1002:DoNotExposeGenericLists", Scope = "member", Target = "Enkoni.Framework.Collections.Extensions.#IndexOf`1(System.Collections.Generic.List`1<!!0>,!!0,System.Int32,System.Int32,System.Collections.Generic.IEqualityComparer`1<!!0>)", Justification = "The method provides an 'overload' for a List-method")]

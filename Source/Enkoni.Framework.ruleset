@@ -6,4 +6,22 @@
     <Rule Id="CA1303" Action="None" />
     <Rule Id="CA1816" Action="None" />
   </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA1000" Action="None" />
+    <Rule Id="SA1005" Action="None" />
+    <Rule Id="SA1116" Action="None" />
+    <Rule Id="SA1117" Action="None" />
+    <Rule Id="SA1124" Action="None" />
+    <Rule Id="SA1127" Action="None" />
+    <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1305" Action="Warning" />
+    <Rule Id="SA1412" Action="Warning" />
+    <Rule Id="SA1500" Action="None" />
+    <Rule Id="SA1501" Action="None" />
+    <Rule Id="SA1515" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1634" Action="None" />
+    <Rule Id="SA1635" Action="None" />
+    <Rule Id="SA1640" Action="None" />
+  </Rules>
 </RuleSet>

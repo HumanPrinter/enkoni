@@ -5,6 +5,7 @@ namespace Enkoni.Framework {
   /// <typeparam name="T">The type of the value that is passed with the event.</typeparam>
   public class PropertyChangedEventArgs<T> : PropertyChangedEventArgs {
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="PropertyChangedEventArgs{T}"/> class.</summary>
     /// <param name="propertyName">The name of the property that changed.</param>
     /// <param name="oldValue">The old (previous) value of the property.</param>
@@ -14,14 +15,17 @@ namespace Enkoni.Framework {
       this.OldValue = oldValue;
       this.NewValue = newValue;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the old (previous) value of the property.</summary>
     public T OldValue { get; private set; }
 
     /// <summary>Gets the new (current) value of the property.</summary>
     public T NewValue { get; private set; }
+
     #endregion
   }
 }

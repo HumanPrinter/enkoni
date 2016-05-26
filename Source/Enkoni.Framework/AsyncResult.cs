@@ -6,6 +6,7 @@ namespace Enkoni.Framework {
   /// <typeparam name="T">The type that is returned by the asynchronous operation.</typeparam>
   public class AsyncResult<T> : IAsyncResult {
     #region Private constants
+
     /// <summary>Indicates that the operation is pending.</summary>
     private const int PendingState = 0;
 
@@ -14,9 +15,11 @@ namespace Enkoni.Framework {
 
     /// <summary>Indicates that the operation has completed asynchronously.</summary>
     private const int CompletedAsynchronouslyState = 2;
+
     #endregion
 
     #region Private instance variables
+
     /// <summary>The callback that is called when the operation completes.</summary>
     private readonly AsyncCallback asyncCallback;
 
@@ -34,21 +37,25 @@ namespace Enkoni.Framework {
 
     /// <summary>The actual result that was returned by the asynchronous method.</summary>
     private T operationResult;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="AsyncResult{T}"/> class.</summary>
     /// <param name="asyncCallback">The callback that is executed when the operation completes. Leave <see langword="null"/> if not used.</param>
-    /// <param name="state">A user-defined object that qualifies or contains information about an asynchronous operation. Leave 
+    /// <param name="state">A user-defined object that qualifies or contains information about an asynchronous operation. Leave
     /// <see langword="null"/> if not used.</param>
     public AsyncResult(AsyncCallback asyncCallback, object state) {
       this.asyncCallback = asyncCallback;
       this.asyncState = state;
       this.currentState = AsyncResult<T>.PendingState;
     }
+
     #endregion
 
     #region IAsyncResult Properties
+
     /// <summary>Gets a value indicating whether the asynchronous operation has completed.</summary>
     public bool IsCompleted {
       get {
@@ -89,15 +96,17 @@ namespace Enkoni.Framework {
         return this.asyncWaitHandle;
       }
     }
+
     #endregion
 
     #region Methods
+
     /// <summary>Sets the status of the asynchronous call to completed.</summary>
     /// <param name="result">The result that returned by the asynchronous operation.</param>
-    /// <param name="exception">The <see cref="Exception"/> that was thrown by the executed method. If no pending Exception was thrown, pass a <see langword="null"/> 
+    /// <param name="exception">The <see cref="Exception"/> that was thrown by the executed method. If no pending Exception was thrown, pass a <see langword="null"/>
     /// reference.</param>
     /// <param name="completedSynchronously"><see langword="true"/> if the asynchronous operation completed synchronously; otherwise, <see langword="false"/>.</param>
-    /// <remarks>If the synchronous completion of the call is detected in the <see cref="AsyncCallback"/> delegate, it is probable that the thread that initiated the 
+    /// <remarks>If the synchronous completion of the call is detected in the <see cref="AsyncCallback"/> delegate, it is probable that the thread that initiated the
     /// asynchronous operation is the current thread.<br/>
     /// <br/>
     /// <b>Notes to Implementers:</b><br/>
@@ -151,6 +160,7 @@ namespace Enkoni.Framework {
         return this.operationResult;
       }
     }
+
     #endregion
   }
 }

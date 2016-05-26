@@ -17,7 +17,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="source">The entity that contains the desired values.</param>
     public virtual void CopyFrom(T source) {
       Guard.ArgumentIsNotNull(source, nameof(source));
-      
+
       Type entityType = typeof(T);
       TypeMap existingMap = Mapper.FindTypeMapFor(entityType, entityType);
       if(existingMap != null) {

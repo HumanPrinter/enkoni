@@ -6,22 +6,29 @@ namespace Enkoni.Framework.Entities {
   /// <typeparam name="T">The type of object that is stored.</typeparam>
   public abstract class MemoryStore<T> where T : class {
     #region Static variables
+
     /// <summary>A lock that controls access to the storage.</summary>
     private static ReaderWriterLockSlim storageLock = new ReaderWriterLockSlim();
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="MemoryStore{T}"/> class.</summary>
     protected MemoryStore() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the storage that holds the saved instances.</summary>
     public abstract IList<T> Storage { get; }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Enters the read lock to synchronize read-access to the <see cref="Storage"/>.</summary>
     public void EnterReadLock() {
       this.EnterReadLockCore();
@@ -41,9 +48,11 @@ namespace Enkoni.Framework.Entities {
     public void ExitWriteLock() {
       this.ExitWriteLockCore();
     }
+
     #endregion
 
     #region Protected extensibility methods
+
     /// <summary>Enters the read lock to synchronize read-access to the <see cref="Storage"/>.</summary>
     protected virtual void EnterReadLockCore() {
       storageLock.EnterReadLock();
@@ -67,6 +76,7 @@ namespace Enkoni.Framework.Entities {
         storageLock.ExitWriteLock();
       }
     }
+
     #endregion
   }
 }

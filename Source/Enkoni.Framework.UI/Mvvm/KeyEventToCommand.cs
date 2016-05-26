@@ -6,17 +6,22 @@ namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>Derived class from EventToCommand to map key events to a command.</summary>
   public class KeyEventToCommand : EventToCommand {
     #region Instance variables
+
     /// <summary>The collection of associated keys.</summary>
     private List<Key> associatedKeys = new List<Key>();
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="KeyEventToCommand"/> class.</summary>
     public KeyEventToCommand() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the associated keys.</summary>
     public string AssociatedKeys {
       get { 
@@ -36,14 +41,16 @@ namespace Enkoni.Framework.UI.Mvvm {
       }
     }
 
-    /// <summary>Gets or sets a value indicating whether the <see cref="System.Windows.RoutedEventArgs.Handled"/> property must set to <see langword="true"/> after execution 
+    /// <summary>Gets or sets a value indicating whether the <see cref="System.Windows.RoutedEventArgs.Handled"/> property must set to <see langword="true"/> after execution
     /// of the command.</summary>
     public bool MarkEventAsHandled { get; set; }
+
     #endregion
 
     #region Private methods
+
     /// <summary>Executes the trigger.
-    /// <para>To access the EventArgs of the fired event, use a <see cref="RelayCommand{EventArgs}"/> and leave the CommandParameter and 
+    /// <para>To access the EventArgs of the fired event, use a <see cref="RelayCommand{EventArgs}"/> and leave the CommandParameter and
     /// CommandParameterValue empty.</para></summary>
     /// <param name="parameter">The EventArgs of the fired event.</param>
     protected override void Invoke(object parameter) {
@@ -62,6 +69,7 @@ namespace Enkoni.Framework.UI.Mvvm {
         args.Handled = true;
       }
     }
+
     #endregion
   }
 }

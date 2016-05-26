@@ -6,6 +6,7 @@ namespace Enkoni.Framework {
   [AttributeUsage(AttributeTargets.All)]
   public sealed class LocalizedDescriptionAttribute : DescriptionAttribute {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="LocalizedDescriptionAttribute"/> class.</summary>
     /// <param name="resourceKey">The key with which the description must be retrieved from the resources.</param>
     public LocalizedDescriptionAttribute(string resourceKey)
@@ -22,9 +23,11 @@ namespace Enkoni.Framework {
       this.ResourceType = resourceType;
       this.DefaultDescription = null;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the key with which the description must be retrieved from the resources.</summary>
     public string ResourceKey { get; private set; }
 
@@ -36,6 +39,7 @@ namespace Enkoni.Framework {
       get { return this.DescriptionValue; }
       set { this.DescriptionValue = value; }
     }
+
     #endregion
   }
 }

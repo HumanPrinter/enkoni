@@ -12,6 +12,7 @@ namespace Enkoni.Framework.UI.Mvvm {
   [Serializable]
   public abstract class ViewModel : INotifyPropertyChanged, IDataErrorInfo {
     #region Instance variables
+
     /// <summary>Gets a value indicating whether the control is in design mode (running in Blend or Visual Studio).</summary>
 #if SILVERLIGHT
     public static readonly bool IsInDesignMode = DesignerProperties.IsInDesignTool;
@@ -27,24 +28,30 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     /// <summary>The multicast delegate that is invoked when a property changes.</summary>
     private PropertyChangedEventHandler propertyChangedHandler;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="ViewModel"/> class.</summary>
     protected ViewModel() {
     }
+
     #endregion
 
     #region Events
+
     /// <summary>Occurs when a property value changes.</summary>
     public event PropertyChangedEventHandler PropertyChanged {
       add { this.propertyChangedHandler += value; }
       remove { this.propertyChangedHandler -= value; }
     }
+
     #endregion
 
     #region Properties
-    /// <summary>Gets or sets an instance of a <see cref="IMessenger" /> used to send messages to other objects. If <see langword="null"/>, this 
+
+    /// <summary>Gets or sets an instance of a <see cref="IMessenger" /> used to send messages to other objects. If <see langword="null"/>, this
     /// class will attempt to broadcast using the Messenger's default instance.</summary>
     public IMessenger Messenger {
       get { return this.messenger ?? Enkoni.Framework.UI.Mvvm.Messenger.Default; }
@@ -74,9 +81,11 @@ namespace Enkoni.Framework.UI.Mvvm {
         return string.Empty;
       }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Determines whether the specified property contains a valid value.</summary>
     /// <typeparam name="TViewModel">The type of view model whose property is validated.</typeparam>
     /// <typeparam name="TProperty">The type of property that is validated.</typeparam>
@@ -102,16 +111,18 @@ namespace Enkoni.Framework.UI.Mvvm {
     public bool IsEachPropertyValid() {
       return this.validationRules.Keys.All(property => string.IsNullOrEmpty(((IDataErrorInfo)this)[property]));
     }
+
     #endregion
 
     #region Protected methods
+
     /// <summary>Adds a validation rule for a property.</summary>
     /// <typeparam name="T">The type of the property.</typeparam>
     /// <param name="property">The property that is validated by the rule.</param>
     /// <param name="rule">The rule. (The parameter added to the function is the name of the property).</param>
     protected void AddValidationRule<T>(Expression<Func<T>> property, Func<string> rule) {
       Guard.ArgumentIsNotNull(property, nameof(property));
-      
+
       MemberExpression expression = property.Body as MemberExpression;
       if(expression == null) {
         throw new ArgumentException("The property must contain a MemberExpression", nameof(property));
@@ -220,7 +231,7 @@ namespace Enkoni.Framework.UI.Mvvm {
       this.propertyChangedHandler.Fire(this, new PropertyChangedEventArgs(string.Empty));
     }
 
-    /// <summary>Sends a <see cref="PropertyChangedMessage{T}"/> using either the instance of the Messenger that was passed to this class 
+    /// <summary>Sends a <see cref="PropertyChangedMessage{T}"/> using either the instance of the Messenger that was passed to this class
     /// (if available) or the Messenger's default instance.</summary>
     /// <typeparam name="T">The type of the property that changed.</typeparam>
     /// <param name="property">The name of the property that changed.</param>
@@ -236,7 +247,7 @@ namespace Enkoni.Framework.UI.Mvvm {
       }
     }
 
-    /// <summary>Sends a <see cref="PropertyChangedMessage{T}"/> using either the instance of the Messenger that was passed to this class 
+    /// <summary>Sends a <see cref="PropertyChangedMessage{T}"/> using either the instance of the Messenger that was passed to this class
     /// (if available) or the Messenger's default instance.</summary>
     /// <typeparam name="T">The type of the property that changed.</typeparam>
     /// <param name="property">The name of the property that changed.</param>
@@ -250,10 +261,12 @@ namespace Enkoni.Framework.UI.Mvvm {
       this.VerifyProperty(property);
       this.Messenger.Send(new PropertyChangedMessage<T>(this, property, oldValue, newValue));
     }
+
     #endregion
 
     #region Private methods
-    /// <summary>Warns the developer if this object does not have a public property with the specified name. This method does not exist in a 
+
+    /// <summary>Warns the developer if this object does not have a public property with the specified name. This method does not exist in a
     /// Release build.</summary>
     /// <param name="property">The name of property.</param>
     [Conditional("DEBUG")]
@@ -266,6 +279,7 @@ namespace Enkoni.Framework.UI.Mvvm {
 
       throw new ArgumentException("Property not found", property);
     }
+
     #endregion
   }
 }

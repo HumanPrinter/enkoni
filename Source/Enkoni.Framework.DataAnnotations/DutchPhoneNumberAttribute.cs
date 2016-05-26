@@ -12,16 +12,16 @@ using Enkoni.Framework.DataAnnotations.Properties;
 using Enkoni.Framework.Validation.RegularExpressions;
 
 namespace Enkoni.Framework.DataAnnotations {
-  /// <summary>Performs validation on <see cref="String"/> instances by checking if they contain valid Dutch phone numbers.</summary>
-  /// <remarks>This validator can be configured through code or through the configuration file. When the validator is configured to include the category 
+  /// <summary>Performs validation on <see cref="string"/> instances by checking if they contain valid Dutch phone numbers.</summary>
+  /// <remarks>This validator can be configured through code or through the configuration file. When the validator is configured to include the category
   /// <see cref="PhoneNumberCategories.Regular"/> (which is the default setting), all area codes that are valid according to the Dutch 'numbering plan
   /// for phone and ISDN services' that was published at November 12th 2013 (<a href="http://wetten.overheid.nl/BWBR0010198/geldigheidsdatum_13-11-2013">link</a>).
   /// <br/>
   /// To override the validated area codes, two approaches can be used.<br/>
   /// <h3>Code</h3>
-  /// By setting the <see cref="IncludeAreaCodes"/> and/or <see cref="ExcludeAreaCodes"/> properties, the collection of valid area codes can be 
-  /// manipulated. To specify multiple area codes, separate the area codes with a semi colon (';'). When setting the <see cref="IncludeAreaCodes"/> 
-  /// property, the default list of valid area codes will be ignored and only the specified area codes will be considered valid. Eg. when setting 
+  /// By setting the <see cref="IncludeAreaCodes"/> and/or <see cref="ExcludeAreaCodes"/> properties, the collection of valid area codes can be
+  /// manipulated. To specify multiple area codes, separate the area codes with a semi colon (';'). When setting the <see cref="IncludeAreaCodes"/>
+  /// property, the default list of valid area codes will be ignored and only the specified area codes will be considered valid. Eg. when setting
   /// <see cref="IncludeAreaCodes"/> to <c>"010;020;030"</c>, only phone numbers with those area codes will be considered valid.<br/>
   /// <br/>
   /// <h3>Configuration</h3>
@@ -55,8 +55,8 @@ namespace Enkoni.Framework.DataAnnotations {
   /// </Enkoni.DataAnnotations>
   /// ]]>
   /// </code>
-  /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one 
-  /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified 
+  /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one
+  /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified
   /// or whose name is not explicitly configured.</para>
   /// <code>
   /// <![CDATA[
@@ -95,16 +95,21 @@ namespace Enkoni.Framework.DataAnnotations {
     Inherited = false)]
   public sealed class DutchPhoneNumberAttribute : ValidationAttribute, IClientValidatable {
     #region Constants
+
     /// <summary>Defines the default name for the validator.</summary>
     internal const string DefaultName = "00661f4a-faa2-452f-8fd9-af6c776bfc49";
+
     #endregion
 
     #region Variables
+
     /// <summary>Holds the name of the configuration section that must be used.</summary>
     private static string configurationSectionName;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberAttribute"/> class.</summary>
     public DutchPhoneNumberAttribute()
       : this(DefaultName) {
@@ -140,9 +145,11 @@ namespace Enkoni.Framework.DataAnnotations {
 
       this.LoadConfiguration();
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the name of the configuration section that is used to preconfigure the validator. The default value is set to <see cref="ValidationSection.DefaultSectionName"/>.
     /// </summary>
     public static string ConfigurationSectionName {
@@ -156,7 +163,7 @@ namespace Enkoni.Framework.DataAnnotations {
     /// <summary>Gets or sets the categories of phone numbers that must be considered valid.</summary>
     public PhoneNumberCategories Categories { get; set; }
 
-    /// <summary>Gets or sets a value indicating whether the international dialing prefix and country calling code (eg. 0031 or +31) code is allowed 
+    /// <summary>Gets or sets a value indicating whether the international dialing prefix and country calling code (eg. 0031 or +31) code is allowed
     /// in the phone number. Defaults to <see langword="true"/>.</summary>
     public bool AllowCountryCallingCode { get; set; }
 
@@ -175,9 +182,11 @@ namespace Enkoni.Framework.DataAnnotations {
     private static Dictionary<string, ConfiguredValuesContainer> ConfiguredValues {
       get { return ConfiguredValuesSingletonContainer.ConfiguredValues; }
     }
+
     #endregion
 
     #region ValidationAttribute overrides
+
     /// <summary>Determines whether the specified value of the object is valid.</summary>
     /// <param name="value">The value of the object to validate.</param>
     /// <returns><see langword="true"/> if the specified value is valid; otherwise, <see langword="false"/>.</returns>
@@ -214,16 +223,18 @@ namespace Enkoni.Framework.DataAnnotations {
 
       return isValid;
     }
+
     #endregion
 
     #region IClientValidatable implementation
+
     /// <summary>Returns client validation rules for IBAN validation.</summary>
     /// <param name="metadata">The model metadata.</param>
     /// <param name="context">The controller context.</param>
     /// <returns>The client validation rules that apply to this validator.</returns>
     public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context) {
       string name = metadata == null ? string.Empty : metadata.GetDisplayName();
-      
+
       List<string> patterns = new List<string>();
       if((this.Categories & PhoneNumberCategories.Regular) == PhoneNumberCategories.Regular) {
         string pattern = ConstructRegularNumberRegex(this.AllowCountryCallingCode, this.AllowCarrierPreselect, this.IncludeAreaCodes, this.ExcludeAreaCodes).ToString();
@@ -261,9 +272,11 @@ namespace Enkoni.Framework.DataAnnotations {
         yield return new ModelClientValidationRegexRule(this.FormatErrorMessage(name), completePattern);
       }
     }
+
     #endregion
 
     #region Private helper methods
+
     /// <summary>Validates whether the input is a valid Dutch service phone number.</summary>
     /// <param name="input">The string that must be validated.</param>
     /// <returns><see langword="true"/> is the input is valid; otherwise, <see langword="false"/>.</returns>
@@ -410,9 +423,11 @@ namespace Enkoni.Framework.DataAnnotations {
         }
       }
     }
+
     #endregion
 
     #region Private classes
+
     /// <summary>Holds the values that were set through the configuration.</summary>
     private class ConfiguredValuesContainer {
       /// <summary>Gets or sets a value indicating whether the setting for 'AllowCountryCallingCode' was set to <see langword="true"/>.</summary>
@@ -423,7 +438,7 @@ namespace Enkoni.Framework.DataAnnotations {
 
       /// <summary>Gets or sets a value indicating whether the collection of area codes were overridden through configuration.</summary>
       public bool AreaCodesOverridden { get; set; }
-      
+
       /// <summary>Gets or sets the configured collection of area codes.</summary>
       public string AreaCodes { get; set; }
     }
@@ -435,9 +450,9 @@ namespace Enkoni.Framework.DataAnnotations {
       internal static readonly Dictionary<string, ConfiguredValuesContainer> ConfiguredValues = ReadConfiguration(ConfigurationSectionName);
 
       /// <summary>Initializes static members of the <see cref="ConfiguredValuesSingletonContainer"/> class.</summary>
-      /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C# 
+      /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C#
       /// compiler from marking this type as <c>beforefieldinit</c> which is required in order to get the laziness behavior that is intended.</remarks>
-      static ConfiguredValuesSingletonContainer() { 
+      static ConfiguredValuesSingletonContainer() {
       }
 
       /// <summary>Prevents a default instance of the <see cref="ConfiguredValuesSingletonContainer"/> class from being created.</summary>
@@ -445,7 +460,7 @@ namespace Enkoni.Framework.DataAnnotations {
       }
 
       /// <summary>Reads the configuration and sets the configured values.</summary>
-      /// <param name="sectionName">The name of the config section that must be read. Use <see langword="null"/> or <see cref="String.Empty"/> to use the default section name.</param>
+      /// <param name="sectionName">The name of the config section that must be read. Use <see langword="null"/> or <see cref="string.Empty"/> to use the default section name.</param>
       /// <returns>The values that were read from the configuration or <see langword="null"/> if there was no configuration.</returns>
       private static Dictionary<string, ConfiguredValuesContainer> ReadConfiguration(string sectionName) {
         if(string.IsNullOrEmpty(sectionName)) {
@@ -481,6 +496,7 @@ namespace Enkoni.Framework.DataAnnotations {
         return configuredValues;
       }
     }
+
     #endregion
   }
 }

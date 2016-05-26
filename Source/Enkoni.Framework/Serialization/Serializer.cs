@@ -10,6 +10,7 @@ namespace Enkoni.Framework.Serialization {
   /// <typeparam name="T">Type of the object that has to be serialized.</typeparam>
   public abstract class Serializer<T> where T : new() {
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="Serializer{T}"/> class.</summary>
     protected Serializer() {
       this.DefaultEncoding = Encoding.UTF8;
@@ -21,17 +22,21 @@ namespace Enkoni.Framework.Serialization {
       : this() {
       this.Transformer = transformer;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the default encoding that will be used when no encoding is specified.</summary>
     public Encoding DefaultEncoding { get; protected set; }
 
     /// <summary>Gets or sets the transformer that transforms single objects into a specific format.</summary>
     protected Transformer<T> Transformer { get; set; }
+
     #endregion
 
     #region Public asynchronous methods
+
     /// <summary>Begins to serialize the objects to the specified file using a default encoding.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="filePath">The name of the output file.</param>
@@ -84,7 +89,7 @@ namespace Enkoni.Framework.Serialization {
       return result;
     }
 
-    /// <summary>Waits for the pending asynchronous serialize operation to complete. If an exception was thrown during the execution of the 
+    /// <summary>Waits for the pending asynchronous serialize operation to complete. If an exception was thrown during the execution of the
     /// asynchronous operation, it is rethrown when invoking this method.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
     /// <returns>The number of bytes that have been written to the file or stream.</returns>
@@ -150,7 +155,7 @@ namespace Enkoni.Framework.Serialization {
       return result;
     }
 
-    /// <summary>Waits for the pending asynchronous deserialize operation to complete. If an exception was thrown during the execution of the 
+    /// <summary>Waits for the pending asynchronous deserialize operation to complete. If an exception was thrown during the execution of the
     /// asynchronous operation, it is rethrown when invoking this method.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
     /// <returns>The items that were deserialized from the file or stream.</returns>
@@ -167,9 +172,11 @@ namespace Enkoni.Framework.Serialization {
       ICollection<T> operationresult = result.EndInvoke();
       return operationresult;
     }
+
     #endregion
 
     #region Public synchronous methods
+
     /// <summary>Serializes a list of objects to a file using a default encoding.</summary>
     /// <param name="objects">The collection of objects that must be serialized.</param>
     /// <param name="filePath">The name of the output file.</param>
@@ -191,13 +198,10 @@ namespace Enkoni.Framework.Serialization {
       /* Validate the parameters */
       Guard.ArgumentIsNotNull(objects, nameof(objects), "The parameter cannot be null.");
       Guard.ArgumentIsNotNull(filePath, nameof(filePath), "The parameter cannot be null.");
-      
-      /* The check for null and empty can be combined into one test, but this approach allows for more fine-grained 
-       * exception management. */
-      /* Although we already know that the string isn't 'null', the IsNullOrEmpty performs better than an Equals */
+
       Guard.ArgumentIsNotNullOrEmpty(filePath.Trim(), nameof(filePath), "The file path cannot be null or empty.");
       Guard.ArgumentIsValidPath(filePath, nameof(filePath), "The file path contains illegal characters.");
-      
+
       int byteCount = -1;
       using(StreamWriter fileWriter = new StreamWriter(filePath, false, encoding)) {
         /* Write an empty string to the stream. This enforces the output of the encoding-bytes for the fileheader */
@@ -256,7 +260,7 @@ namespace Enkoni.Framework.Serialization {
       Guard.ArgumentIsNotNullOrEmpty(filePath?.Trim(), nameof(filePath), "The parameter cannot be null or empty");
       Guard.ArgumentIsNotNull(encoding, nameof(encoding), "The parameter cannot be null");
       Guard.ArgumentIsValidPath(filePath, nameof(filePath), "The file path contains illegal characters");
-      
+
       /* Deserialize the data */
       ICollection<T> result = null;
       using(StreamReader fileReader = new StreamReader(filePath, encoding)) {
@@ -281,7 +285,7 @@ namespace Enkoni.Framework.Serialization {
       /* Validate the parameters */
       Guard.ArgumentIsNotNull(encoding, nameof(encoding), "The parameter cannot be null");
       Guard.ArgumentIsNotNull(stream, nameof(stream), "The parameter cannot be null");
-      
+
       if(!stream.CanRead) {
         throw new ArgumentException("The specified stream is not readable", nameof(stream));
       }
@@ -291,10 +295,12 @@ namespace Enkoni.Framework.Serialization {
         return this.Deserialize(reader);
       }
     }
+
     #endregion
 
     #region Protected methods
-    /// <summary>Serializes a collection of items by transforming each item using the <see cref="Transformer"/> property and writing the 
+
+    /// <summary>Serializes a collection of items by transforming each item using the <see cref="Transformer"/> property and writing the
     /// transformed item to the <paramref name="stream"/>. Each item will be separated using the new line character(s) of the current environment.
     /// </summary>
     /// <param name="objects">The objects that must be serialized.</param>
@@ -341,16 +347,18 @@ namespace Enkoni.Framework.Serialization {
 
       return objList;
     }
+
     #endregion
 
     #region Private methods
-    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},string,Encoding)"/> method in a separate thread. This is used to support 
+
+    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},string,Encoding)"/> method in a separate thread. This is used to support
     /// asynchronous operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void SerializeToFileHelper(object propertyContainer) {
       Guard.ArgumentIsOfType<SerializeToFilePropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type SerializeToFilePropertyContainer");
       SerializeToFilePropertyContainer container = propertyContainer as SerializeToFilePropertyContainer;
-      
+
       try {
         int result = this.Serialize(container.Objects, container.FilePath, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);
@@ -361,13 +369,13 @@ namespace Enkoni.Framework.Serialization {
       }
     }
 
-    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},Stream,Encoding)"/> method in a separate thread. This is used to support 
+    /// <summary>Executes the <see cref="Serialize(IEnumerable{T},Stream,Encoding)"/> method in a separate thread. This is used to support
     /// asynchronous operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void SerializeToStreamHelper(object propertyContainer) {
       Guard.ArgumentIsOfType<SerializeToStreamPropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type SerializeToStreamPropertyContainer");
       SerializeToStreamPropertyContainer container = propertyContainer as SerializeToStreamPropertyContainer;
-      
+
       try {
         int result = this.Serialize(container.Objects, container.Stream, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);
@@ -378,13 +386,13 @@ namespace Enkoni.Framework.Serialization {
       }
     }
 
-    /// <summary>Executes the <see cref="Deserialize(string,Encoding)"/> method in a separate thread. This is used to support asynchronous 
+    /// <summary>Executes the <see cref="Deserialize(string,Encoding)"/> method in a separate thread. This is used to support asynchronous
     /// operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void DeserializeToFileHelper(object propertyContainer) {
       Guard.ArgumentIsOfType<DeserializeFromFilePropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type DeserializeFromFilePropertyContainer");
       DeserializeFromFilePropertyContainer container = propertyContainer as DeserializeFromFilePropertyContainer;
-      
+
       try {
         ICollection<T> result = this.Deserialize(container.FilePath, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);
@@ -395,13 +403,13 @@ namespace Enkoni.Framework.Serialization {
       }
     }
 
-    /// <summary>Executes the <see cref="Deserialize(Stream,Encoding)"/> method in a separate thread. This is used to support asynchronous 
+    /// <summary>Executes the <see cref="Deserialize(Stream,Encoding)"/> method in a separate thread. This is used to support asynchronous
     /// operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void DeserializeToStreamHelper(object propertyContainer) {
       Guard.ArgumentIsOfType<DeserializeFromStreamPropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type DeserializeFromStreamPropertyContainer");
       DeserializeFromStreamPropertyContainer container = propertyContainer as DeserializeFromStreamPropertyContainer;
-      
+
       try {
         ICollection<T> result = this.Deserialize(container.Stream, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);
@@ -411,9 +419,11 @@ namespace Enkoni.Framework.Serialization {
         container.AsyncResult.SetAsCompleted(null, ex, false);
       }
     }
+
     #endregion
 
     #region Private classes
+
     /// <summary>Defines a base container that holds the properties that are required during the serialization of objects.</summary>
     private class SerializePropertyContainer {
       /// <summary>Gets or sets the objects that must be serialized.</summary>

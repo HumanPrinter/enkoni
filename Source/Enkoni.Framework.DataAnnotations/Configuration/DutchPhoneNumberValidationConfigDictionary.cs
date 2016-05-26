@@ -3,22 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Enkoni.Framework.DataAnnotations.Configuration {
-  /// <summary>Defines a custom dictionary that holds the <see cref="DutchPhoneNumberValidationConfigElement"/> that were read from the configuration 
+  /// <summary>Defines a custom dictionary that holds the <see cref="DutchPhoneNumberValidationConfigElement"/> that were read from the configuration
   /// file.</summary>
   public class DutchPhoneNumberValidationConfigDictionary : IDictionary<string, DutchPhoneNumberValidationConfigElement> {
     #region Instance variables
+
     /// <summary>The actual storage.</summary>
     private Dictionary<string, DutchPhoneNumberValidationConfigElement> storage;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberValidationConfigDictionary"/> class.</summary>
     public DutchPhoneNumberValidationConfigDictionary() {
       this.storage = new Dictionary<string, DutchPhoneNumberValidationConfigElement>();
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets an <see cref="ICollection{T}"/> containing the keys of the <see cref="IDictionary{TKey,TValue}"/>.</summary>
     public ICollection<string> Keys {
       get { return this.storage.Keys; }
@@ -60,9 +65,11 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
         this.storage[key] = value;
       }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Adds an element with the provided key and value to the <see cref="IDictionary{TKey,TValue}"/>.</summary>
     /// <param name="key">The object to use as the key of the element to add.</param>
     /// <param name="value">The object to use as the value of the element to add.</param>
@@ -87,7 +94,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
 
     /// <summary>Determines whether the <see cref="IDictionary{TKey,TValue}"/> contains an element with the specified key.</summary>
     /// <param name="key">The key to locate in the <see cref="IDictionary{TKey,TValue}"/>.</param>
-    /// <returns><see langword="true"/> if the <see cref="IDictionary{TKey,TValue}"/> contains an element with the key; otherwise, 
+    /// <returns><see langword="true"/> if the <see cref="IDictionary{TKey,TValue}"/> contains an element with the key; otherwise,
     /// <see langword="false"/>.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="key"/> is <see langword="null"/>.</exception>
     public bool ContainsKey(string key) {
@@ -96,7 +103,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
 
     /// <summary>Removes the element with the specified key from the <see cref="IDictionary{TKey,TValue}"/>.</summary>
     /// <param name="key">The key of the element to remove.</param>
-    /// <returns><see langword="true"/> if the element is successfully removed; otherwise, <see langword="false"/>. This method also returns 
+    /// <returns><see langword="true"/> if the element is successfully removed; otherwise, <see langword="false"/>. This method also returns
     /// <see langword="false"/> if <paramref name="key"/> was not found in the original <see cref="IDictionary{TKey,TValue}"/>.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="key"/> is <see langword="null"/>.</exception>
     public bool Remove(string key) {
@@ -105,7 +112,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
 
     /// <summary>Removes the first occurrence of a specific object from the <see cref="ICollection{T}"/>.</summary>
     /// <param name="item">The object to remove from the <see cref="ICollection{T}"/>.</param>.
-    /// <returns><see langword="true"/> if item was successfully removed from the <see cref="ICollection{T}"/>; otherwise, <see langword="false"/>. 
+    /// <returns><see langword="true"/> if item was successfully removed from the <see cref="ICollection{T}"/>; otherwise, <see langword="false"/>.
     /// This method also returns <see langword="false"/> if item is not found in the original <see cref="ICollection{T}"/>.</returns>
     public bool Remove(KeyValuePair<string, DutchPhoneNumberValidationConfigElement> item) {
       return ((IDictionary<string, DutchPhoneNumberValidationConfigElement>)this.storage).Remove(item);
@@ -113,9 +120,9 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
 
     /// <summary>Gets the value associated with the specified key.</summary>
     /// <param name="key">The key whose value to get.</param>
-    /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value 
+    /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value
     /// for the type of the value parameter. This parameter is passed uninitialized.</param>
-    /// <returns><see langword="true"/> if the object that implements <see cref="IDictionary{TKey,TValue}"/> contains an element with the specified 
+    /// <returns><see langword="true"/> if the object that implements <see cref="IDictionary{TKey,TValue}"/> contains an element with the specified
     /// key; otherwise, <see langword="false"/>.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="key"/> is <see langword="null"/>.</exception>
     public bool TryGetValue(string key, out DutchPhoneNumberValidationConfigElement value) {
@@ -127,7 +134,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
       this.storage.Clear();
     }
 
-    /// <summary>Copies the elements of the <see cref="ICollection{T}"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/> 
+    /// <summary>Copies the elements of the <see cref="ICollection{T}"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/>
     /// index.</summary>
     /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="ICollection{T}"/>.
     /// The <see cref="Array"/> must have zero-based indexing.</param>
@@ -151,6 +158,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
     IEnumerator IEnumerable.GetEnumerator() {
       return this.GetEnumerator();
     }
+
     #endregion
   }
 }

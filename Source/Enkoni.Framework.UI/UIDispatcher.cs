@@ -6,12 +6,15 @@ namespace Enkoni.Framework.UI {
   /// <summary>Provides services for managing the queue of work items for the UI thread.</summary>
   public static class UIDispatcher {
     #region Static constants
+
     /// <summary>The actual UI Dispatcher.</summary>
     public static readonly Dispatcher Dispatcher = Application.Current.Dispatcher;
+
     #endregion
 
     #region Public Methods
-    /// <summary>Executes an action on the UI thread. If this method is called from the UI thread, the action is executed immediately. If the method 
+
+    /// <summary>Executes an action on the UI thread. If this method is called from the UI thread, the action is executed immediately. If the method
     /// is called from another thread, the action will be enqueued on the UI thread's dispatcher and executed asynchronously.</summary>
     /// <param name="action">The action that is to be executed.</param>
     public static void BeginInvoke(Action action) {
@@ -26,6 +29,7 @@ namespace Enkoni.Framework.UI {
         Dispatcher.BeginInvoke(action);
       }
     }
+
     #endregion
   }
 }

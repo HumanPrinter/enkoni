@@ -7,10 +7,11 @@ namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>This <see cref="TriggerAction{T}" /> can be used to bind any event on any <see cref="FrameworkElement"/> to an <see cref="ICommand" />.
   /// Typically, this element is used in XAML to connect the attached element to a command located in a ViewModel. This trigger can only be attached
   /// to a <see cref="FrameworkElement"/> or a class deriving from <see cref="FrameworkElement"/>.
-  /// <para>To access the EventArgs of the fired event, use a <see cref="RelayCommand{EventArgs}"/> and leave the <see cref="CommandParameter"/> and 
+  /// <para>To access the EventArgs of the fired event, use a <see cref="RelayCommand{EventArgs}"/> and leave the <see cref="CommandParameter"/> and
   /// <see cref="CommandParameterValue"/> empty.</para></summary>
   public class EventToCommand : TriggerAction<FrameworkElement> {
     #region Dependency properties
+
     /// <summary>Identifies the <see cref="Command" /> dependency property.</summary>
     public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(EventToCommand),
         new PropertyMetadata(null, (s, e) => {
@@ -55,20 +56,25 @@ namespace Enkoni.Framework.UI.Mvvm {
     #endregion
 
     #region Instance variables
+
     /// <summary>Indicates if the CanExecute must be evaluated by the object.</summary>
     private bool? bindCanExecuteToIsEnabled;
 
     /// <summary>The parameter that will be passed to the command.</summary>
     private object commandParameter;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="EventToCommand"/> class.</summary>
     public EventToCommand() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the <see cref="ICommand"/> that this trigger is bound to. This is a DependencyProperty.</summary>
     public ICommand Command {
       get {
@@ -92,8 +98,8 @@ namespace Enkoni.Framework.UI.Mvvm {
       }
     }
 
-    /// <summary>Gets or sets an object that will be passed to the <see cref="Command" /> attached to this trigger. This property is here for 
-    /// compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the <see cref="CommandParameter" /> 
+    /// <summary>Gets or sets an object that will be passed to the <see cref="Command" /> attached to this trigger. This property is here for
+    /// compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the <see cref="CommandParameter" />
     /// property.</summary>
     public object CommandParameterValue {
       get {
@@ -106,13 +112,13 @@ namespace Enkoni.Framework.UI.Mvvm {
       }
     }
 
-    /// <summary>Gets or sets a value indicating whether the EventArgs passed to the event handler will be forwarded to the 
+    /// <summary>Gets or sets a value indicating whether the EventArgs passed to the event handler will be forwarded to the
     /// <see cref="ICommand.Execute"/> method, when the event is fired (if the bound ICommand accepts an argument of type EventArgs).
     /// <para>For example, use a <see cref="RelayCommand{MouseEventArgs}"/> to get the arguments of a MouseMove event.</para></summary>
     public bool PassEventArgsToCommand { get; set; }
 
-    /// <summary>Gets or sets a value indicating whether the attached element must be disabled when the <see cref="Command" /> property's 
-    /// CanExecuteChanged event fires. If this property is true, and the command's CanExecute method returns false, the element will be disabled. If 
+    /// <summary>Gets or sets a value indicating whether the attached element must be disabled when the <see cref="Command" /> property's
+    /// CanExecuteChanged event fires. If this property is true, and the command's CanExecute method returns false, the element will be disabled. If
     /// this property is false, the element will not be disabled when the command's CanExecute method changes. This is a DependencyProperty.</summary>
     public bool BindCanExecuteToIsEnabled {
       get {
@@ -124,9 +130,9 @@ namespace Enkoni.Framework.UI.Mvvm {
       }
     }
 
-    /// <summary>Gets or sets a value indicating whether the attached element must be disabled when the <see cref="Command" /> property's 
-    /// CanExecuteChanged event fires. If this property is true, and the command's CanExecute  method returns false, the element will be disabled. 
-    /// This property is here for compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the 
+    /// <summary>Gets or sets a value indicating whether the attached element must be disabled when the <see cref="Command" /> property's
+    /// CanExecuteChanged event fires. If this property is true, and the command's CanExecute  method returns false, the element will be disabled.
+    /// This property is here for compatibility with the Silverlight version. This is NOT a DependencyProperty. For data binding, use the
     /// <see cref="BindCanExecuteToIsEnabled" /> property.</summary>
     public bool BindCanExecuteToIsEnabledValue {
       get {
@@ -138,16 +144,20 @@ namespace Enkoni.Framework.UI.Mvvm {
         this.ValidateAssociatedObjectEnabled();
       }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Provides a simple way to invoke this trigger programmatically without any EventArgs.</summary>
     public void Invoke() {
       this.Invoke(null);
     }
+
     #endregion
 
     #region Protected methods
+
     /// <summary>Called when a FrameworkElement/Control is attached.</summary>
     protected override void OnAttached() {
       base.OnAttached();
@@ -155,7 +165,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     }
 
     /// <summary>Executes the trigger.
-    /// <para>To access the EventArgs of the fired event, use a <see cref="RelayCommand{EventArgs}"/> and leave the <see cref="CommandParameter"/> and 
+    /// <para>To access the EventArgs of the fired event, use a <see cref="RelayCommand{EventArgs}"/> and leave the <see cref="CommandParameter"/> and
     /// <see cref="CommandParameterValue"/> empty.</para></summary>
     /// <param name="parameter">The EventArgs of the fired event.</param>
     protected override void Invoke(object parameter) {
@@ -174,9 +184,11 @@ namespace Enkoni.Framework.UI.Mvvm {
         command.Execute(commandParameterVal);
       }
     }
+
     #endregion
 
     #region Private methods
+
     /// <summary>This method is here for compatibility with the Silverlight version.</summary>
     /// <returns>The FrameworkElement/Control to which this trigger is attached.</returns>
     #if !SILVERLIGHT
@@ -210,15 +222,18 @@ namespace Enkoni.Framework.UI.Mvvm {
         element.IsEnabled = command.CanExecute(this.CommandParameterValue);
       }
     }
+
     #endregion
 
     #region Private Event Handling
+
     /// <summary>Called when the outcome of the CanExecute changed.</summary>
     /// <param name="sender">The sender.</param>
     /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
     private void OnCommandCanExecuteChanged(object sender, EventArgs e) {
       this.ValidateAssociatedObjectEnabled();
     }
+
     #endregion
   }
 }

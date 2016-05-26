@@ -4,8 +4,9 @@ namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>Message for showing a View.</summary>
   /// <typeparam name="T">The type of view model that must be used by the view.</typeparam>
   [Serializable]
-  public class ViewDialogMessage<T> : Message, IViewDialogMessage where T : class/*ViewModel*/ {
+  public class ViewDialogMessage<T> : Message, IViewDialogMessage where T : class {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="ViewDialogMessage{T}"/> class.</summary>
     public ViewDialogMessage()
       : this(null) {
@@ -16,9 +17,11 @@ namespace Enkoni.Framework.UI.Mvvm {
     public ViewDialogMessage(object sender)
       : base(sender) {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the ViewModel source for the View.</summary>
     public T ViewModel { get; set; }
 
@@ -30,6 +33,7 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     /// <summary>Gets or sets the callback called when a ViewModelDialog is closed.</summary>
     public Action<bool?> Callback { get; set; }
+
     #endregion
   }
 }

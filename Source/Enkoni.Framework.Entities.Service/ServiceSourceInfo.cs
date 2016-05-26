@@ -3,11 +3,12 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class can be used by the <see cref="ServiceRepository{TEntity}"/> or any of its descendants to retrieve valuable information 
-  /// about the service that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the 
+  /// <summary>This class can be used by the <see cref="ServiceRepository{TEntity}"/> or any of its descendants to retrieve valuable information
+  /// about the service that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the
   /// ServiceRepository.</summary>
   public class ServiceSourceInfo : DataSourceInfo {
     #region Public constants
+
     /// <summary>Defines the key that is used to store and retrieve the endpoint configuration.</summary>
     public const string EndpointConfigurationNameKey = "EndpointConfigurationName";
 
@@ -16,9 +17,11 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>Defines the key that is used to store and retrieve the binding that is used to communicate with the service.</summary>
     public const string BindingKey = "Binding";
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using default values.</summary>
     public ServiceSourceInfo()
       : base() {
@@ -38,7 +41,7 @@ namespace Enkoni.Framework.Entities {
       this.EndpointConfigurationName = endpointConfigurationName;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service
     /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
@@ -46,7 +49,7 @@ namespace Enkoni.Framework.Entities {
       : this(endpointConfigurationName, remoteAddress, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service
     /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
@@ -57,7 +60,7 @@ namespace Enkoni.Framework.Entities {
       this.RemoteAddress = remoteAddress;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service
     /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
@@ -65,7 +68,7 @@ namespace Enkoni.Framework.Entities {
       : this(endpointConfigurationName, remoteAddress, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified endpoint configuration name and service
     /// address.</summary>
     /// <param name="endpointConfigurationName">The name of the endpoint configuration in the application's config file.</param>
     /// <param name="remoteAddress">The address of the remote service.</param>
@@ -93,7 +96,7 @@ namespace Enkoni.Framework.Entities {
       this.RemoteAddress = remoteAddress;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified default values. If the default values do 
+    /// <summary>Initializes a new instance of the <see cref="ServiceSourceInfo"/> class using the specified default values. If the default values do
     /// not specify any of the supported properties, the default values will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     public ServiceSourceInfo(Dictionary<string, object> defaultValues)
@@ -119,9 +122,11 @@ namespace Enkoni.Framework.Entities {
         this.Binding = null;
       }
     }
+
     #endregion
 
     #region Public properties
+
     /// <summary>Gets or sets the name of the endpoint configuration in the application config file.</summary>
     public string EndpointConfigurationName {
       get { return (string)this[EndpointConfigurationNameKey]; }
@@ -139,9 +144,11 @@ namespace Enkoni.Framework.Entities {
       get { return (Binding)this[BindingKey]; }
       set { this[BindingKey] = value; }
     }
+
     #endregion
 
     #region Public static methods
+
     /// <summary>Determines if the endpoint configuration is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
@@ -198,9 +205,11 @@ namespace Enkoni.Framework.Entities {
         return null;
       }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Determines if the endpoint configuration name is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
     public bool IsEndpointConfigurationNameSpecified() {
@@ -218,6 +227,7 @@ namespace Enkoni.Framework.Entities {
     public bool IsBindingSpecified() {
       return this.IsValueSpecified(BindingKey);
     }
+
     #endregion
   }
 }

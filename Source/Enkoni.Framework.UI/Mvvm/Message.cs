@@ -6,6 +6,7 @@ namespace Enkoni.Framework.UI.Mvvm {
   [Serializable]
   public class Message : IMessage {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="Message"/> class.</summary>
     public Message()
       : this(null) {
@@ -16,14 +17,18 @@ namespace Enkoni.Framework.UI.Mvvm {
     public Message(object sender) {
       this.Sender = sender;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the message's sender.</summary>
     public object Sender { get; protected set; }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Searches for the Window that owns the sender.</summary>
     /// <returns>The window that owns the sender.</returns>
     public Window GetWindow() {
@@ -39,6 +44,7 @@ namespace Enkoni.Framework.UI.Mvvm {
 
       return Application.Current.MainWindow;
     }
+
     #endregion
   }
 }

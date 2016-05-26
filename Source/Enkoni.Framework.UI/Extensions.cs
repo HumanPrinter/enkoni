@@ -8,9 +8,10 @@ namespace Enkoni.Framework.UI.Mvvm {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {
     #region Event extensions
-    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will 
+
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will
     /// return when all the event handlers have finished. <br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
@@ -20,7 +21,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     }
 
     /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
@@ -30,7 +31,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     }
 
     /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
@@ -38,9 +39,11 @@ namespace Enkoni.Framework.UI.Mvvm {
     public static void FireAsync(this PropertyChangedEventHandler handler, object sender, PropertyChangedEventArgs e) {
       UnsafeFireAsync(handler, sender, e);
     }
+
     #endregion
 
     #region Helper methods
+
     /// <summary>Invokes a delegate. If required, the call is transferred to the appropriate thread.</summary>
     /// <param name="del">The delegate that must be invoked.</param>
     /// <param name="args">The arguments that must be passed to the delegate.</param>
@@ -123,6 +126,7 @@ namespace Enkoni.Framework.UI.Mvvm {
         asyncFire.BeginInvoke(sink, args, cleanUp, null);
       }
     }
+
     #endregion
   }
 }
