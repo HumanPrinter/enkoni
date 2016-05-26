@@ -83,17 +83,15 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="property">The property that must be evaluated.</param>
     /// <returns><see langword="true"/> if the specified property is valid; otherwise, <see langword="false"/>.</returns>
     public bool IsPropertyValid<TViewModel, TProperty>(Expression<Func<TViewModel, TProperty>> property) {
-      if(property == null) {
-        throw new ArgumentNullException("property");
-      }
+      Guard.ArgumentIsNotNull(property, nameof(property));
 
       MemberExpression expression = property.Body as MemberExpression;
       if(expression == null) {
-        throw new ArgumentException("The property must contain a MemberExpression", "property");
+        throw new ArgumentException("The property must contain a MemberExpression", nameof(property));
       }
 
       if(!(expression.Member is PropertyInfo)) {
-        throw new ArgumentException("The expression must refer to a property", "property");
+        throw new ArgumentException("The expression must refer to a property", nameof(property));
       }
 
       return string.IsNullOrEmpty(((IDataErrorInfo)this)[expression.Member.Name]);
@@ -112,18 +110,14 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="property">The property that is validated by the rule.</param>
     /// <param name="rule">The rule. (The parameter added to the function is the name of the property).</param>
     protected void AddValidationRule<T>(Expression<Func<T>> property, Func<string> rule) {
-      if(property == null) {
-        throw new ArgumentNullException("property");
-      }
-
+      Guard.ArgumentIsNotNull(property, nameof(property));
+      
       MemberExpression expression = property.Body as MemberExpression;
       if(expression == null) {
-        throw new ArgumentException("The property must contain a MemberExpression", "property");
+        throw new ArgumentException("The property must contain a MemberExpression", nameof(property));
       }
 
-      if(!(expression.Member is PropertyInfo)) {
-        throw new ArgumentException("The expression must refer to a property", "property");
-      }
+      Guard.ArgumentIsOfType<PropertyInfo>(true, expression.Member, nameof(property), "The expression must refer to a property");
 
       List<Func<string>> rules;
       if(!this.validationRules.TryGetValue(expression.Member.Name, out rules)) {
@@ -143,18 +137,14 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="property">The property that is validated by the rule.</param>
     /// <param name="rule">The rule that must be removed.</param>
     protected void RemoveValidationRule<T>(Expression<Func<T>> property, Func<string> rule) {
-      if(property == null) {
-        throw new ArgumentNullException("property");
-      }
+      Guard.ArgumentIsNotNull(property, nameof(property));
 
       MemberExpression expression = property.Body as MemberExpression;
       if(expression == null) {
-        throw new ArgumentException("The property must contain a MemberExpression", "property");
+        throw new ArgumentException("The property must contain a MemberExpression", nameof(property));
       }
 
-      if(!(expression.Member is PropertyInfo)) {
-        throw new ArgumentException("The expression must refer to a property", "property");
-      }
+      Guard.ArgumentIsOfType<PropertyInfo>(true, expression.Member, nameof(property), "The expression must refer to a property");
 
       lock(this.validationRules) {
         List<Func<string>> rules;
@@ -169,18 +159,14 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="property">The property that is checked.</param>
     /// <returns><see langword="true"/> if the specified property is valid; otherwise <see langword="false"/>.</returns>
     protected bool IsPropertyValid<T>(Expression<Func<T>> property) {
-      if(property == null) {
-        throw new ArgumentNullException("property");
-      }
+      Guard.ArgumentIsNotNull(property, nameof(property));
 
       MemberExpression expression = property.Body as MemberExpression;
       if(expression == null) {
-        throw new ArgumentException("The property must contain a MemberExpression", "property");
+        throw new ArgumentException("The property must contain a MemberExpression", nameof(property));
       }
 
-      if(!(expression.Member is PropertyInfo)) {
-        throw new ArgumentException("The expression must refer to a property", "property");
-      }
+      Guard.ArgumentIsOfType<PropertyInfo>(true, expression.Member, nameof(property), "The expression must refer to a property");
 
       return string.IsNullOrEmpty(((IDataErrorInfo)this)[expression.Member.Name]);
     }
@@ -189,18 +175,14 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <typeparam name="T">The type of the property.</typeparam>
     /// <param name="property">The property expression.</param>
     protected void RaisePropertyChanged<T>(Expression<Func<T>> property) {
-      if(property == null) {
-        throw new ArgumentNullException("property");
-      }
+      Guard.ArgumentIsNotNull(property, nameof(property));
 
       MemberExpression expression = property.Body as MemberExpression;
       if(expression == null) {
-        throw new ArgumentException("The property must contain a MemberExpression", "property");
+        throw new ArgumentException("The property must contain a MemberExpression", nameof(property));
       }
 
-      if(!(expression.Member is PropertyInfo)) {
-        throw new ArgumentException("The expression must refer to a property", "property");
-      }
+      Guard.ArgumentIsOfType<PropertyInfo>(true, expression.Member, nameof(property), "The expression must refer to a property");
 
       this.RaisePropertyChanged(expression.Member.Name);
     }
@@ -211,18 +193,14 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="oldValue">The old value.</param>
     /// <param name="newValue">The new value.</param>
     protected void RaisePropertyChanged<T>(Expression<Func<T>> property, T oldValue, T newValue) {
-      if(property == null) {
-        throw new ArgumentNullException("property");
-      }
+      Guard.ArgumentIsNotNull(property, nameof(property));
 
       MemberExpression expression = property.Body as MemberExpression;
       if(expression == null) {
-        throw new ArgumentException("The property must contain a MemberExpression", "property");
+        throw new ArgumentException("The property must contain a MemberExpression", nameof(property));
       }
 
-      if(!(expression.Member is PropertyInfo)) {
-        throw new ArgumentException("The expression must refer to a property", "property");
-      }
+      Guard.ArgumentIsOfType<PropertyInfo>(true, expression.Member, nameof(property), "The expression must refer to a property");
 
       string name = expression.Member.Name;
       this.RaisePropertyChanged(name);
@@ -249,9 +227,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="oldValue">The value of the property before it changed.</param>
     /// <param name="newValue">The value of the property after it changed.</param>
     protected void SendPropertyChangedMessage<T>(Expression<Func<T>> property, T oldValue, T newValue) {
-      if(property == null) {
-        throw new ArgumentNullException("property");
-      }
+      Guard.ArgumentIsNotNull(property, nameof(property));
 
       MemberExpression expression = property.Body as MemberExpression;
 

@@ -32,12 +32,9 @@ namespace Enkoni.Framework.Collections {
     /// <returns>A hash code for the specified object.</returns>
     /// <exception cref="ArgumentNullException">The type of obj is a reference type and obj is null.</exception>
     public int GetHashCode(T obj) {
-      if(obj == null) {
-        throw new ArgumentNullException("obj");
-      }
-      else {
-        return obj.GetHashCode();
-      }
+      Guard.ArgumentIsNotNull(obj, nameof(obj));
+
+      return obj.GetHashCode();
     }
     #endregion
   }

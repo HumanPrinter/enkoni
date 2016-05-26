@@ -189,25 +189,15 @@ namespace Enkoni.Framework.Serialization {
     /// <exception cref="ArgumentException">The file path is empty or contains illegal characters.</exception>
     public int Serialize(IEnumerable<T> objects, string filePath, Encoding encoding) {
       /* Validate the parameters */
-      if(objects == null) {
-        throw new ArgumentNullException("objects", "The parameter cannot be null.");
-      }
-
-      if(filePath == null) {
-        throw new ArgumentNullException("filePath", "The parameter cannot be null.");
-      }
-
+      Guard.ArgumentIsNotNull(objects, nameof(objects), "The parameter cannot be null.");
+      Guard.ArgumentIsNotNull(filePath, nameof(filePath), "The parameter cannot be null.");
+      
       /* The check for null and empty can be combined into one test, but this approach allows for more fine-grained 
        * exception management. */
       /* Although we already know that the string isn't 'null', the IsNullOrEmpty performs better than an Equals */
-      if(string.IsNullOrEmpty(filePath.Trim())) {
-        throw new ArgumentException("The filePath cannot be empty cannot be null.", "filePath");
-      }
-
-      if(filePath.Intersect(Path.GetInvalidPathChars()).Count() > 0) {
-        throw new ArgumentException("The filepath contains illegal characters.", "filePath");
-      }
-
+      Guard.ArgumentIsNotNullOrEmpty(filePath.Trim(), nameof(filePath), "The file path cannot be null or empty.");
+      Guard.ArgumentIsValidPath(filePath, nameof(filePath), "The file path contains illegal characters.");
+      
       int byteCount = -1;
       using(StreamWriter fileWriter = new StreamWriter(filePath, false, encoding)) {
         /* Write an empty string to the stream. This enforces the output of the encoding-bytes for the fileheader */
@@ -239,17 +229,9 @@ namespace Enkoni.Framework.Serialization {
     /// <exception cref="ArgumentException">The stream is read-only.</exception>
     public int Serialize(IEnumerable<T> objects, Stream stream, Encoding encoding) {
       /* Validate the parameters */
-      if(objects == null) {
-        throw new ArgumentNullException("objects", "The parameter cannot be null.");
-      }
-
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding", "The parameter cannot be null.");
-      }
-
-      if(stream == null) {
-        throw new ArgumentNullException("stream", "The parameter cannot be null.");
-      }
+      Guard.ArgumentIsNotNull(objects, nameof(objects), "The parameter cannot be null.");
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding), "The parameter cannot be null.");
+      Guard.ArgumentIsNotNull(stream, nameof(stream), "The parameter cannot be null.");
 
       if(!stream.CanWrite) {
         throw new ArgumentException("Specified stream is not writable.", "stream");
@@ -270,26 +252,11 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="encoding">The encoding that must be used to deserialize the data.</param>
     /// <returns>List with objects.</returns>
     public ICollection<T> Deserialize(string filePath, Encoding encoding) {
-      /* Validate the parameters */
-      if(filePath == null) {
-        throw new ArgumentNullException("filePath", "The parameter cannot be null.");
-      }
-
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding", "The parameter cannot be null.");
-      }
-
-      /* The check for null and empty can be combined into one test, but this approach allows for more fine-grained 
-       * exception management. */
-      /* Although we already know that the string isn't 'null', the IsNullOrEmpty performs better than an Equals */
-      if(string.IsNullOrEmpty(filePath.Trim())) {
-        throw new ArgumentException("The filepath cannot be empty cannot be null.", "filePath");
-      }
-
-      if(filePath.Intersect(Path.GetInvalidPathChars()).Count() > 0) {
-        throw new ArgumentException("The filepath contains illegal characters.", "filePath");
-      }
-
+            /* Validate the parameters */
+      Guard.ArgumentIsNotNullOrEmpty(filePath?.Trim(), nameof(filePath), "The parameter cannot be null or empty");
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding), "The parameter cannot be null");
+      Guard.ArgumentIsValidPath(filePath, nameof(filePath), "The file path contains illegal characters");
+      
       /* Deserialize the data */
       ICollection<T> result = null;
       using(StreamReader fileReader = new StreamReader(filePath, encoding)) {
@@ -312,16 +279,11 @@ namespace Enkoni.Framework.Serialization {
     /// <returns>List with objects.</returns>
     public ICollection<T> Deserialize(Stream stream, Encoding encoding) {
       /* Validate the parameters */
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding", "The parameter cannot be null.");
-      }
-
-      if(stream == null) {
-        throw new ArgumentNullException("stream", "The parameter cannot be null.");
-      }
-
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding), "The parameter cannot be null");
+      Guard.ArgumentIsNotNull(stream, nameof(stream), "The parameter cannot be null");
+      
       if(!stream.CanRead) {
-        throw new ArgumentException("The specified stream is not readable.", "stream");
+        throw new ArgumentException("The specified stream is not readable", nameof(stream));
       }
 
       /* Deserialize the data */
@@ -367,9 +329,7 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="reader">The object that gives access to the underlying stream.</param>
     /// <returns>The collection of deserialized objects.</returns>
     protected virtual ICollection<T> Deserialize(StreamReader reader) {
-      if(reader == null) {
-        throw new ArgumentNullException("reader");
-      }
+      Guard.ArgumentIsNotNull(reader, nameof(reader));
 
       ICollection<T> objList = new List<T>();
 
@@ -388,11 +348,9 @@ namespace Enkoni.Framework.Serialization {
     /// asynchronous operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void SerializeToFileHelper(object propertyContainer) {
+      Guard.ArgumentIsOfType<SerializeToFilePropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type SerializeToFilePropertyContainer");
       SerializeToFilePropertyContainer container = propertyContainer as SerializeToFilePropertyContainer;
-      if(container == null) {
-        throw new ArgumentException("The specified object was not of the expected type SerializeToFilePropertyContainer", "propertyContainer");
-      }
-
+      
       try {
         int result = this.Serialize(container.Objects, container.FilePath, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);
@@ -407,11 +365,9 @@ namespace Enkoni.Framework.Serialization {
     /// asynchronous operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void SerializeToStreamHelper(object propertyContainer) {
+      Guard.ArgumentIsOfType<SerializeToStreamPropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type SerializeToStreamPropertyContainer");
       SerializeToStreamPropertyContainer container = propertyContainer as SerializeToStreamPropertyContainer;
-      if(container == null) {
-        throw new ArgumentException("The specified object was not of the expected type SerializeToStreamPropertyContainer", "propertyContainer");
-      }
-
+      
       try {
         int result = this.Serialize(container.Objects, container.Stream, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);
@@ -426,11 +382,9 @@ namespace Enkoni.Framework.Serialization {
     /// operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void DeserializeToFileHelper(object propertyContainer) {
+      Guard.ArgumentIsOfType<DeserializeFromFilePropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type DeserializeFromFilePropertyContainer");
       DeserializeFromFilePropertyContainer container = propertyContainer as DeserializeFromFilePropertyContainer;
-      if(container == null) {
-        throw new ArgumentException("The specified object was not of the expected type DeserializeToFilePropertyContainer", "propertyContainer");
-      }
-
+      
       try {
         ICollection<T> result = this.Deserialize(container.FilePath, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);
@@ -445,11 +399,9 @@ namespace Enkoni.Framework.Serialization {
     /// operations.</summary>
     /// <param name="propertyContainer">The object that holds properties that are required for the asynchronous operation.</param>
     private void DeserializeToStreamHelper(object propertyContainer) {
+      Guard.ArgumentIsOfType<DeserializeFromStreamPropertyContainer>(propertyContainer, nameof(propertyContainer), "The specified object was not of the expected type DeserializeFromStreamPropertyContainer");
       DeserializeFromStreamPropertyContainer container = propertyContainer as DeserializeFromStreamPropertyContainer;
-      if(container == null) {
-        throw new ArgumentException("The specified object was not of the expected type DeserializeToStreamPropertyContainer", "propertyContainer");
-      }
-
+      
       try {
         ICollection<T> result = this.Deserialize(container.Stream, container.Encoding);
         container.AsyncResult.SetAsCompleted(result, null, false);

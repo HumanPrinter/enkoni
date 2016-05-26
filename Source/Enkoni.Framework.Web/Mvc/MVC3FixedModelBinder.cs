@@ -27,13 +27,8 @@ namespace Enkoni.Framework.Web.Mvc {
     /// <param name="propertyBinder">An object that provides a way to bind the property.</param>
     /// <returns>An object that represents the property value.</returns>
     protected override object GetPropertyValue(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor, IModelBinder propertyBinder) {
-      if(propertyDescriptor == null) {
-        throw new ArgumentNullException("propertyDescriptor");
-      }
-
-      if(bindingContext == null) {
-        throw new ArgumentNullException("bindingContext");
-      }
+      Guard.ArgumentIsNotNull(propertyDescriptor, nameof(propertyDescriptor));
+      Guard.ArgumentIsNotNull(bindingContext, nameof(bindingContext));
 
       Type propertyType = propertyDescriptor.PropertyType;
 

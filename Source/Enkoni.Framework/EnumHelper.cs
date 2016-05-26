@@ -73,10 +73,8 @@ namespace Enkoni.Framework {
     /// <see cref="CultureInfo.CurrentUICulture"/> property.</param>
     /// <returns>The string representation of the enum value.</returns>
     public static string ToString(Enum enumValue, ResourceManager resources, CultureInfo culture) {
-      if(enumValue == null) {
-        throw new ArgumentNullException("enumValue");
-      }
-
+      Guard.ArgumentIsNotNull(enumValue, nameof(enumValue));
+      
       Type enumType = enumValue.GetType();
       if(!enumType.IsEnum) {
         throw new ArgumentException("The parameter must be an enum.", "enumValue");
@@ -129,7 +127,7 @@ namespace Enkoni.Framework {
     /// <returns>The enum value with the flag bit set.</returns>
     public static T SetFlag<T>(T enumValue, T flag) where T : struct {
       if(!typeof(T).IsEnum) {
-        throw new ArgumentException("The parameter must be an enum.", "enumValue");
+        throw new ArgumentException("The parameter must be an enum.", nameof(enumValue));
       }
 
       long newEnum =
@@ -144,7 +142,7 @@ namespace Enkoni.Framework {
     /// <returns>The enum value with the flag bit removed.</returns>
     public static T UnsetFlag<T>(T enumValue, T flag) where T : struct {
       if(!typeof(T).IsEnum) {
-        throw new ArgumentException("The parameter must be an enum.", "enumValue");
+        throw new ArgumentException("The parameter must be an enum.", nameof(enumValue));
       }
 
       long newEnum =
@@ -159,7 +157,7 @@ namespace Enkoni.Framework {
     /// <returns>The enum value with the flag bit toggled.</returns>
     public static T ToggleFlag<T>(T enumValue, T flag) where T : struct {
       if(!typeof(T).IsEnum) {
-        throw new ArgumentException("The parameter must be an enum.", "enumValue");
+        throw new ArgumentException("The parameter must be an enum.", nameof(enumValue));
       }
 
       long newEnum =

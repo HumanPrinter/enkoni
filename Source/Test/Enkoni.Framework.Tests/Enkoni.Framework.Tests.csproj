@@ -57,6 +57,7 @@
     <Compile Include="DateTimeProviderTest.cs" />
     <Compile Include="StopwatchTest.cs" />
     <Compile Include="DoubleExtensionTest.cs" />
+    <Compile Include="GuardTest.cs" />
     <Compile Include="TypeExtensionTest.Dummies.cs" />
     <Compile Include="Properties\AlternateResources.Designer.cs">
       <AutoGen>True</AutoGen>

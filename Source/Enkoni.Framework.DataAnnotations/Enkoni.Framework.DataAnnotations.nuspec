@@ -13,6 +13,9 @@
     <releaseNotes><![CDATA[Empty input values are now accepted by the validators. In order to reject empty input values, combine the attributes with the default
 RequiredAttribute.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
+    <dependencies>
+      <dependency id="Enkoni" version="2.8.0" />
+    </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
       <frameworkAssembly assemblyName="System.Numerics" targetFramework=".NETFramework4.0" />

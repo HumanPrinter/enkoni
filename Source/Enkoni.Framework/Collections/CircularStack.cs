@@ -63,9 +63,7 @@ namespace Enkoni.Framework.Collections {
     /// <exception cref="ArgumentOutOfRangeException">The maximum size is not set to a valid value.</exception>
     /// <exception cref="ArgumentException">The specified collection exceeds the specified maximum size.</exception>
     public CircularStack(IEnumerable<T> collection, int maximumSize) {
-      if(collection == null) {
-        throw new ArgumentNullException("collection", "collection is null.");
-      }
+      Guard.ArgumentIsNotNull(collection, nameof(collection), "collection is null.");
 
       if(maximumSize != -1 && maximumSize <= 0) {
         throw new ArgumentOutOfRangeException("maximumSize", maximumSize, "Only positive integers or '-1' are allowed as valid input.");
@@ -150,14 +148,9 @@ namespace Enkoni.Framework.Collections {
     /// -or- The number of elements in the source <see cref="ICollection"/> is greater than the available space from index to the end of the 
     /// destination array.</exception>
     void ICollection.CopyTo(Array array, int index) {
-      if(array == null) {
-        throw new ArgumentNullException("array", "The destination array cannot be null.");
-      }
-
-      if(index < 0) {
-        throw new ArgumentOutOfRangeException("index", index, "index cannot be less than zero.");
-      }
-
+      Guard.ArgumentIsNotNull(array, nameof(array), "The destination array cannot be null");
+      Guard.ArgumentIsGreaterOrEqualThan(0, index, nameof(index), "index cannot be less than zero");
+      
       if(array.Rank > 1) {
         throw new ArgumentException("Multi-dimensional arrays are not supported.");
       }
@@ -200,18 +193,10 @@ namespace Enkoni.Framework.Collections {
     /// -or- The number of elements in the source <see cref="CircularStack{T}"/> is greater than the available space from 
     /// <paramref name="arrayIndex"/> to the end of the destination array.</exception>
     public void CopyTo(T[] array, int arrayIndex) {
-      if(array == null) {
-        throw new ArgumentNullException("array", "The destination array cannot be null.");
-      }
-
-      if(arrayIndex < 0) {
-        throw new ArgumentOutOfRangeException("arrayIndex", arrayIndex, "arrayIndex cannot be less than zero.");
-      }
-
-      if(arrayIndex >= array.Length) {
-        throw new ArgumentException("The arrayIndex matches or exceeds the length of the array.");
-      }
-
+      Guard.ArgumentIsNotNull(array, nameof(array), "The destination array cannot be null");
+      Guard.ArgumentIsGreaterOrEqualThan(0, arrayIndex, nameof(arrayIndex), "The index cannot be less than zero");
+      Guard.ArgumentIsLowerThan(array.Length, arrayIndex, nameof(arrayIndex), "The index matches or exceeds the length of the array");
+      
       if(this.Count > array.Length - arrayIndex) {
         throw new ArgumentException("Not enoughspace in the destination array.");
       }

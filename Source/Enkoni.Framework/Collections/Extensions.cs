@@ -15,13 +15,8 @@ namespace Enkoni.Framework.Collections {
     /// This method also returns false if item is not found in the original <see cref="ICollection{T}"/>.</returns>
     /// <exception cref="ArgumentNullException">One or more parameters are null.</exception>
     public static bool Remove<T>(this ICollection<T> source, T item, IEqualityComparer<T> comparer) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(comparer == null) {
-        throw new ArgumentNullException("comparer");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsNotNull(comparer, nameof(comparer));
 
       if(source.Any(t => comparer.Equals(t, item))) {
         return source.Remove(source.First(t => comparer.Equals(t, item)));
@@ -40,9 +35,7 @@ namespace Enkoni.Framework.Collections {
     /// <param name="comparer">The comparer that must be used to find the appropriate item in the list.</param>
     /// <returns>The index of <paramref name="item"/> if found in the list; otherwise, -1.</returns>
     public static int IndexOf<T>(this IList<T> source, T item, IEqualityComparer<T> comparer) {
-      if(comparer == null) {
-        throw new ArgumentNullException("comparer");
-      }
+      Guard.ArgumentIsNotNull(comparer, nameof(comparer));
 
       var itemIndexes = source.Select((t, i) => new { Item = t, Index = i });
       if(itemIndexes.Any(a => comparer.Equals(a.Item, item))) {
@@ -67,10 +60,8 @@ namespace Enkoni.Framework.Collections {
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> is outside the range of valid indexes for the <see cref="List{T}"/>.
     /// </exception>
     public static int IndexOf<T>(this List<T> source, T item, int index, IEqualityComparer<T> comparer) {
-      if(comparer == null) {
-        throw new ArgumentNullException("comparer");
-      }
-
+      Guard.ArgumentIsNotNull(comparer, nameof(comparer));
+      
       if(index < 0 || (index > 0 && index >= source.Count())) {
         throw new ArgumentOutOfRangeException("index", index, "Index is out of range");
       }
@@ -101,20 +92,12 @@ namespace Enkoni.Framework.Collections {
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> and <paramref name="count"/> do not specify a valid section in the 
     /// <see cref="List{T}"/>.</exception>
     public static int IndexOf<T>(this List<T> source, T item, int index, int count, IEqualityComparer<T> comparer) {
-      if(comparer == null) {
-        throw new ArgumentNullException("comparer");
-      }
-
-      if(index < 0 || (index > 0 && index >= source.Count())) {
-        throw new ArgumentOutOfRangeException("index", index, "Index is out of range");
-      }
-
-      if(count < 0) {
-        throw new ArgumentOutOfRangeException("count", count, "Count cannot be less than zero.");
-      }
+      Guard.ArgumentIsNotNull(comparer, nameof(comparer));
+      Guard.ArgumentIsBetween(0, source.Count - 1, index, nameof(index), "Index is out of range");
+      Guard.ArgumentIsGreaterOrEqualThan(0, count, nameof(count), "Count cannot be less then zero");
 
       if(index + count > source.Count()) {
-        throw new ArgumentOutOfRangeException("count", count, "Collection does not contain enough items.");
+        throw new ArgumentOutOfRangeException(nameof(count), count, "Collection does not contain enough items.");
       }
 
       var itemIndexes = source.Skip(index).Take(count).Select((t, i) => new { Item = t, Index = i });

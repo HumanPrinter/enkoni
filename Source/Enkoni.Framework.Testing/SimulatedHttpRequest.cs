@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Web.Hosting;
 
 namespace Enkoni.Framework.Testing {
@@ -17,9 +16,7 @@ namespace Enkoni.Framework.Testing {
     /// <param name="host">The host of the application.</param>
     public SimulatedHttpRequest(string appVirtualDir, string appPhysicalDir, string page, string query, TextWriter output, string host)
       : base(appVirtualDir, appPhysicalDir, page, query, output) {
-      if(string.IsNullOrEmpty(host)) {
-        throw new ArgumentNullException("host", "Host cannot be null nor empty.");
-      }
+      Guard.ArgumentIsNotNullOrEmpty(host, nameof(host), "Host cannot be null nor empty.");
 
       this.host = host;
     }

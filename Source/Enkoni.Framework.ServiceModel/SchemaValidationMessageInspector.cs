@@ -73,7 +73,7 @@ namespace Enkoni.Framework.ServiceModel {
     #endregion
 
     #region Protected extension methods
-    /// <summary>When overriden executes some logic before starting the validation.</summary>
+    /// <summary>When overridden executes some logic before starting the validation.</summary>
     /// <param name="receivedMessage">The request message.</param>
     /// <param name="channel">The incoming channel.</param>
     /// <param name="instanceContext">The current service instance.</param>
@@ -91,7 +91,7 @@ namespace Enkoni.Framework.ServiceModel {
       traceSource.Flush();
     }
 
-    /// <summary>When overriden executes some logic after the validation was completed successfully.</summary>
+    /// <summary>When overridden executes some logic after the validation was completed successfully.</summary>
     /// <param name="receivedMessage">The request message.</param>
     /// <param name="channel">The incoming channel.</param>
     /// <param name="instanceContext">The current service instance.</param>

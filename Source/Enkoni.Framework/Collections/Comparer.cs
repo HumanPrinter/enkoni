@@ -33,9 +33,7 @@ namespace Enkoni.Framework.Collections {
     /// chain of hierarchy.</param>
     /// <param name="order">The ordering direction that must be used.</param>
     public Comparer(string fieldName, SortOrder order) {
-      if(string.IsNullOrEmpty(fieldName)) {
-        throw new ArgumentException("The fieldName cannot be null or empty", "fieldName");
-      }
+      Guard.ArgumentIsNotNullOrEmpty(fieldName, nameof(fieldName), "The fieldName cannot be null or empty");
 
       this.fieldName = fieldName;
       this.order = order;
@@ -50,13 +48,8 @@ namespace Enkoni.Framework.Collections {
     /// is greater than <b>y</b>, a value greater than zero is returned.<br/>
     /// If the sort-order was set to <see cref="SortOrder.Descending"/>, the results are inverted.</returns>
     public int Compare(T x, T y) {
-      if(x == null) {
-        throw new ArgumentNullException("x");
-      }
-
-      if(y == null) {
-        throw new ArgumentNullException("y");
-      }
+      Guard.ArgumentIsNotNull(x, nameof(x));
+      Guard.ArgumentIsNotNull(y, nameof(y));
 
       if(this.compareDelegate == null) {
         /* Split the fieldname into the individual parts */

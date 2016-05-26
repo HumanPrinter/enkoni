@@ -158,9 +158,7 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T AddEntity(T entity, DataSourceInfo dataSourceInfo) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
+      Guard.ArgumentIsNotNull(entity, nameof(entity));
 
       if(this.Validator != null) {
         try {
@@ -192,13 +190,7 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
     /// <returns>The entities with the most recent values.</returns>
     public IEnumerable<T> AddEntities(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
-      if(entities == null) {
-        throw new ArgumentNullException("entities");
-      }
-
-      if(entities.Count() == 0) {
-        throw new ArgumentException("Cannot add an empty collection to the repository", "entities");
-      }
+      Guard.ArgumentIsNotNullOrEmpty(entities, nameof(entities), "Cannot add an empty collection to the repository");
 
       if(this.Validator != null) {
         try {
@@ -232,10 +224,8 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ValidationException">If <paramref name="entity"/> contains invalid values.</exception>
     /// <returns>The entity with the most recent values.</returns>
     public T UpdateEntity(T entity, DataSourceInfo dataSourceInfo) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
-
+      Guard.ArgumentIsNotNull(entity, nameof(entity));
+      
       if(this.Validator != null) {
         try {
           this.Validator.PerformValidation(entity, true);
@@ -266,14 +256,8 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ValidationException">If one or more of the entities contains invalid values.</exception>
     /// <returns>The entities with the most recent values.</returns>
     public IEnumerable<T> UpdateEntities(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
-      if(entities == null) {
-        throw new ArgumentNullException("entities");
-      }
-
-      if(entities.Count() == 0) {
-        throw new ArgumentException("Cannot update the repository with an empty collection", "entities");
-      }
-
+      Guard.ArgumentIsNotNullOrEmpty(entities, nameof(entities), "Cannot update the repository with an empty collection");
+      
       if(this.Validator != null) {
         try {
           foreach(T entity in entities) {
@@ -300,10 +284,8 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <exception cref="ArgumentNullException">If <paramref name="entity"/> is <see langword="null"/>.</exception>
     public void DeleteEntity(T entity, DataSourceInfo dataSourceInfo) {
-      if(entity == null) {
-        throw new ArgumentNullException("entity");
-      }
-
+      Guard.ArgumentIsNotNull(entity, nameof(entity));
+      
       this.DeleteEntityCore(entity, dataSourceInfo);
     }
 
@@ -321,13 +303,7 @@ namespace Enkoni.Framework.Entities {
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">If <paramref name="entities"/> is empty.</exception>
     public void DeleteEntities(IEnumerable<T> entities, DataSourceInfo dataSourceInfo) {
-      if(entities == null) {
-        throw new ArgumentNullException("entities");
-      }
-
-      if(entities.Count() == 0) {
-        throw new ArgumentException("Cannot remove an empty collection from the repository", "entities");
-      }
+      Guard.ArgumentIsNotNullOrEmpty(entities, nameof(entities), "Cannot remove an empty collection from the repository");
 
       this.DeleteEntitiesCore(entities, dataSourceInfo);
     }
@@ -346,9 +322,7 @@ namespace Enkoni.Framework.Entities {
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>An object describing the result of the action.</returns>
     public object Execute(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
-      if(specification == null) {
-        throw new ArgumentNullException("specification");
-      }
+      Guard.ArgumentIsNotNull(specification, nameof(specification));
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
@@ -468,9 +442,7 @@ namespace Enkoni.Framework.Entities {
     /// <remarks>This method is added for convenience. It does not support the specification of sort rules or maximum results. When that level
     /// of control is required, use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public IEnumerable<T> FindAll(Expression<Func<T, bool>> expression, string[] includePaths, DataSourceInfo dataSourceInfo) {
-      if(expression == null) {
-        throw new ArgumentNullException("expression");
-      }
+      Guard.ArgumentIsNotNull(expression, nameof(expression));
 
       return this.FindAllCore(expression, null, -1, includePaths, dataSourceInfo);
     }
@@ -489,9 +461,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The entities that match the specification.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public IEnumerable<T> FindAll(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
-      if(specification == null) {
-        throw new ArgumentNullException("specification");
-      }
+      Guard.ArgumentIsNotNull(specification, nameof(specification));
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
@@ -546,9 +516,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
     public T FindSingle(Expression<Func<T, bool>> expression, string includePath, DataSourceInfo dataSourceInfo) {
-      if(expression == null) {
-        throw new ArgumentNullException("expression");
-      }
+      Guard.ArgumentIsNotNull(expression, nameof(expression));
 
       return this.FindSingle(expression, string.IsNullOrEmpty(includePath) ? (string[])null : new string[] { includePath }, dataSourceInfo);
     }
@@ -560,9 +528,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
     public T FindSingle(Expression<Func<T, bool>> expression, string[] includePaths, DataSourceInfo dataSourceInfo) {
-      if(expression == null) {
-        throw new ArgumentNullException("expression");
-      }
+      Guard.ArgumentIsNotNull(expression, nameof(expression));
 
       return this.FindSingleCore(expression, includePaths, dataSourceInfo);
     }
@@ -625,9 +591,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="expression"/> is <see langword="null"/>.</exception>
     public T FindSingle(Expression<Func<T, bool>> expression, string[] includePaths, T defaultValue, DataSourceInfo dataSourceInfo) {
-      if(expression == null) {
-        throw new ArgumentNullException("expression");
-      }
+      Guard.ArgumentIsNotNull(expression, nameof(expression));
 
       return this.FindSingleCore(expression, includePaths, dataSourceInfo, defaultValue);
     }
@@ -646,9 +610,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindSingle(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
-      if(specification == null) {
-        throw new ArgumentNullException("specification");
-      }
+      Guard.ArgumentIsNotNull(specification, nameof(specification));
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
@@ -675,9 +637,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindSingle(ISpecification<T> specification, T defaultValue, DataSourceInfo dataSourceInfo) {
-      if(specification == null) {
-        throw new ArgumentNullException("specification");
-      }
+      Guard.ArgumentIsNotNull(specification, nameof(specification));
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
@@ -742,10 +702,8 @@ namespace Enkoni.Framework.Entities {
     /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string includePath, DataSourceInfo dataSourceInfo) {
-      if(expression == null) {
-        throw new ArgumentNullException("expression");
-      }
-
+      Guard.ArgumentIsNotNull(expression, nameof(expression));
+      
       return this.FindFirst(expression, string.IsNullOrEmpty(includePath) ? (string[])null : new string[] { includePath }, dataSourceInfo);
     }
 
@@ -758,10 +716,8 @@ namespace Enkoni.Framework.Entities {
     /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string[] includePaths, DataSourceInfo dataSourceInfo) {
-      if(expression == null) {
-        throw new ArgumentNullException("expression");
-      }
-
+      Guard.ArgumentIsNotNull(expression, nameof(expression));
+      
       return this.FindFirstCore(expression, null, includePaths, dataSourceInfo);
     }
 
@@ -835,10 +791,8 @@ namespace Enkoni.Framework.Entities {
     /// <remarks>This method is added for convenience. It does not support the specification of sort rules. When that level of control is required, 
     /// use the overloads that take an <see cref="ISpecification{T}"/> parameter.</remarks>
     public T FindFirst(Expression<Func<T, bool>> expression, string[] includePaths, T defaultValue, DataSourceInfo dataSourceInfo) {
-      if(expression == null) {
-        throw new ArgumentNullException("expression");
-      }
-
+      Guard.ArgumentIsNotNull(expression, nameof(expression));
+      
       return this.FindFirstCore(expression, null, includePaths, dataSourceInfo, defaultValue);
     }
 
@@ -856,9 +810,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindFirst(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
-      if(specification == null) {
-        throw new ArgumentNullException("specification");
-      }
+      Guard.ArgumentIsNotNull(specification, nameof(specification));
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {
@@ -885,9 +837,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="specification"/> is <see langword="null"/>.</exception>
     public T FindFirst(ISpecification<T> specification, T defaultValue, DataSourceInfo dataSourceInfo) {
-      if(specification == null) {
-        throw new ArgumentNullException("specification");
-      }
+      Guard.ArgumentIsNotNull(specification, nameof(specification));
 
       BusinessRuleSpecification<T> businessRule = specification as BusinessRuleSpecification<T>;
       if(businessRule != null) {

@@ -49,50 +49,6 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
     }
     #endregion
 
-    #region Public methods
-    ///// <summary>Gets the index of the specified element.</summary>
-    ///// <param name="element">The element of which the index must be returned.</param>
-    ///// <returns>The index of the element.</returns>
-    //public int IndexOf(EmailDomainConfigElement element) {
-    //  return this.BaseIndexOf(element);
-    //}
-
-    ///// <summary>Adds an element to the collection.</summary>
-    ///// <param name="element">The element that must be added.</param>
-    //public void Add(EmailDomainConfigElement element) {
-    //  this.BaseAdd(element);
-    //}
-
-    ///// <summary>Removes an element from the collection.</summary>
-    ///// <param name="element">The element that must be removed.</param>
-    //public void Remove(EmailDomainConfigElement element) {
-    //  if(element == null) {
-    //    return;
-    //  }
-
-    //  if(this.BaseIndexOf(element) >= 0) {
-    //    this.BaseRemove(element.Pattern);
-    //  }
-    //}
-
-    ///// <summary>Removes an element from the collection.</summary>
-    ///// <param name="areaCode">The key of the element that must be removed.</param>
-    //public void Remove(string areaCode) {
-    //  this.BaseRemove(areaCode);
-    //}
-
-    ///// <summary>Removes an element from the collection.</summary>
-    ///// <param name="index">The index of the element that must be removed.</param>
-    //public void RemoveAt(int index) {
-    //  this.BaseRemoveAt(index);
-    //}
-
-    ///// <summary>Clears the collection.</summary>
-    //public void Clear() {
-    //  this.BaseClear();
-    //}
-    #endregion
-
     #region Protected methods
     /// <summary>Creates a new <see cref="ConfigurationElement"/>.</summary>
     /// <returns>A new <see cref="ConfigurationElement"/>.</returns>
@@ -104,15 +60,10 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
     /// <param name="element">The <see cref="ConfigurationElement"/> to return the key for.</param>
     /// <returns>An <see langword="object"/> that acts as the key for the specified <see cref="ConfigurationElement"/>.</returns>
     protected override object GetElementKey(ConfigurationElement element) {
-      if(element == null) {
-        throw new ArgumentNullException("element");
-      }
+      Guard.ArgumentIsNotNull(element, nameof(element));
+      Guard.ArgumentIsOfType<EmailDomainConfigElement>(element, nameof(element), "The supplied parameter is not of the expected type EnvironmentConfigurationElement");
 
       EmailDomainConfigElement configElement = element as EmailDomainConfigElement;
-      if(configElement == null) {
-        throw new ArgumentException("The supplied parameter is not of the expected type EnvironmentConfigurationElement");
-      }
-
       return configElement.Pattern ?? string.Empty;
     }
     #endregion

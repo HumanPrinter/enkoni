@@ -16,9 +16,7 @@ namespace Enkoni.Framework.Collections {
     /// <summary>Initializes a new instance of the <see cref="LambdaEqualityComparer{T, TField}"/> class.</summary>
     /// <param name="field">The function that gives access to the field that must be used in the comparison.</param>
     public LambdaEqualityComparer(Func<T, TField> field) {
-      if(field == null) {
-        throw new ArgumentNullException("field");
-      }
+      Guard.ArgumentIsNotNull(field, nameof(field));
 
       this.fieldFunction = field;
     }
@@ -56,17 +54,14 @@ namespace Enkoni.Framework.Collections {
     /// <returns>A hash code for the specified object.</returns>
     /// <exception cref="ArgumentNullException">The type of obj is a reference type and obj is null.</exception>
     public int GetHashCode(T obj) {
-      if(obj == null) {
-        throw new ArgumentNullException("obj");
+      Guard.ArgumentIsNotNull(obj, nameof(obj));
+      
+      TField fieldOfObj = this.fieldFunction(obj);
+      if(fieldOfObj == null) {
+        return -1;
       }
       else {
-        TField fieldOfObj = this.fieldFunction(obj);
-        if(fieldOfObj == null) {
-          return -1;
-        }
-        else {
-          return fieldOfObj.GetHashCode();
-        }
+        return fieldOfObj.GetHashCode();
       }
     }
     #endregion

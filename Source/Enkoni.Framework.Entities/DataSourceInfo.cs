@@ -37,10 +37,8 @@ namespace Enkoni.Framework.Entities {
     /// <param name="defaultValues">The default values that must be loaded.</param>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
     public DataSourceInfo(Dictionary<string, object> defaultValues) {
-      if(defaultValues == null) {
-        throw new ArgumentNullException("defaultValues");
-      }
-
+      Guard.ArgumentIsNotNull(defaultValues, nameof(defaultValues));
+      
       /* Add all the specified default values to the source information. */
       foreach(KeyValuePair<string, object> defaultValue in defaultValues) {
         this[defaultValue.Key] = defaultValue.Value;

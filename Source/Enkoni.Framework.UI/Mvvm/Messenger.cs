@@ -139,13 +139,8 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// that recipient.</param>
     public void Register<TMessage>(object recipient, Action<TMessage> action, bool includeDerivedMessages, object token) 
       where TMessage : IMessage {
-      if(recipient == null) {
-        throw new ArgumentNullException("recipient");
-      }
-
-      if(action == null) {
-        throw new ArgumentNullException("action");
-      }
+      Guard.ArgumentIsNotNull(recipient, nameof(recipient));
+      Guard.ArgumentIsNotNull(action, nameof(action));
 
       /* Select the correct collection */
       Dictionary<Type, List<IRecipient>> dictionary = includeDerivedMessages ? this.derivedRecipients : this.recipients;
@@ -195,10 +190,8 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="action">The action that must be unregistered for the recipient and for the message type <typeparamref name="TMessage"/>.</param>
     /// <param name="token">The token for which the recipient must be unregistered.</param>
     public void Deregister<TMessage>(object recipient, Action<TMessage> action, object token) where TMessage : IMessage {
-      if(recipient == null) {
-        throw new ArgumentNullException("recipient");
-      }
-
+      Guard.ArgumentIsNotNull(recipient, nameof(recipient));
+      
       Type key = typeof(TMessage);
       for(int i = 0; i < 2; i++) {
         Dictionary<Type, List<IRecipient>> dictionary = i == 0 ? this.derivedRecipients : this.recipients;
@@ -247,9 +240,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// different token) will not get the message. Similarly, messages sent without any token, or with a different token, will not be delivered to 
     /// that recipient.</param>
     public void Send<TMessage>(TMessage message, object token) where TMessage : IMessage {
-      if(message == null) {
-        throw new ArgumentNullException("message");
-      }
+      Guard.ArgumentIsNotNull(message, nameof(message));
 
       Type type = message.GetType();
       List<IRecipient> list;

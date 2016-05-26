@@ -23,9 +23,7 @@ namespace Enkoni.Framework.Web.Mvc {
     /// <param name="provider">The <see cref="IFormatProvider"/> that will be used to convert the <see langword="decimal"/> values.</param>
     /// <exception cref="ArgumentNullException"><paramref name="provider"/> is <see langword="null"/>.</exception>
     public DecimalModelBinder(IFormatProvider provider) {
-      if(provider == null) {
-        throw new ArgumentNullException("provider");
-      }
+      Guard.ArgumentIsNotNull(provider, nameof(provider));
 
       this.formatProvider = provider;
     }
@@ -37,10 +35,8 @@ namespace Enkoni.Framework.Web.Mvc {
     /// <param name="bindingContext">The context for the model binder.</param>
     /// <returns>The converted decimal value.</returns>
     public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) {
-      if(bindingContext == null) {
-        throw new ArgumentNullException("bindingContext");
-      }
-
+      Guard.ArgumentIsNotNull(bindingContext, nameof(bindingContext));
+ 
       /* Retrieve the value information from the received data */
       ValueProviderResult providerValue = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
       ModelState modelState = new ModelState { Value = providerValue };

@@ -14,7 +14,7 @@
 has been removed. By default, logging is now done through the .NET tracing functionality.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.5.0" />
+      <dependency id="Enkoni" version="2.7.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

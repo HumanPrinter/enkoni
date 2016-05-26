@@ -28,13 +28,8 @@ namespace Enkoni.Framework {
     /// <param name="sortExpression">The expression that is used for the sorting.</param>
     /// <param name="sortDirection">The direction of the sorting.</param>
     internal SortSpecification(Expression<Func<T, TKey>> sortExpression, SortOrder sortDirection) {
-      if(sortExpression == null) {
-        throw new ArgumentNullException("sortExpression", "The sort-expression is mandatory.");
-      }
-
-      if(!Enum.IsDefined(typeof(SortOrder), sortDirection)) {
-        throw new ArgumentException("The specified SortOrder is undefined", "sortDirection");
-      }
+      Guard.ArgumentIsNotNull(sortExpression, nameof(sortExpression), "The sort-expression is mandatory.");
+      Guard.ArgumentIsValidEnum(typeof(SortOrder), sortDirection, nameof(sortDirection), "The specified sort order is undefined");
 
       this.sortExpression = sortExpression;
       this.sortDirection = sortDirection;
@@ -46,10 +41,8 @@ namespace Enkoni.Framework {
     /// <param name="query">The sequence that must be sorted.</param>
     /// <returns>The sorted sequence.</returns>
     public IOrderedQueryable<T> OrderBy(IQueryable<T> query) {
-      if(query == null) {
-        throw new ArgumentNullException("query");
-      }
-
+      Guard.ArgumentIsNotNull(query, nameof(query));
+      
       if(this.sortDirection == SortOrder.Ascending) {
         return query.OrderBy(this.sortExpression);
       }
@@ -62,10 +55,8 @@ namespace Enkoni.Framework {
     /// <param name="query">The sequence that must be sorted.</param>
     /// <returns>The sorted sequence.</returns>
     public IOrderedEnumerable<T> OrderBy(IEnumerable<T> query) {
-      if(query == null) {
-        throw new ArgumentNullException("query");
-      }
-
+      Guard.ArgumentIsNotNull(query, nameof(query));
+      
       if(this.sortDirection == SortOrder.Ascending) {
         return query.OrderBy(this.sortExpression.Compile());
       }
@@ -78,10 +69,8 @@ namespace Enkoni.Framework {
     /// <param name="query">The sequence that must be sorted.</param>
     /// <returns>The sorted sequence.</returns>
     public IOrderedQueryable<T> ThenBy(IOrderedQueryable<T> query) {
-      if(query == null) {
-        throw new ArgumentNullException("query");
-      }
-
+      Guard.ArgumentIsNotNull(query, nameof(query));
+      
       if(this.sortDirection == SortOrder.Ascending) {
         return query.ThenBy(this.sortExpression);
       }
@@ -94,9 +83,7 @@ namespace Enkoni.Framework {
     /// <param name="query">The sequence that must be sorted.</param>
     /// <returns>The sorted sequence.</returns>
     public IOrderedEnumerable<T> ThenBy(IOrderedEnumerable<T> query) {
-      if(query == null) {
-        throw new ArgumentNullException("query");
-      }
+      Guard.ArgumentIsNotNull(query, nameof(query));
 
       if(this.sortDirection == SortOrder.Ascending) {
         return query.ThenBy(this.sortExpression.Compile());

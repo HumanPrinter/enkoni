@@ -13,7 +13,7 @@
     <releaseNotes><![CDATA[Added overloads to the FileRepository class for the retrieve methods that take an extra string parameter to specify include paths.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.6.0" />
+      <dependency id="Enkoni" version="2.7.0" />
       <dependency id="Enkoni.Entities" version="3.3.0" />
     </dependencies>
     <frameworkAssemblies>

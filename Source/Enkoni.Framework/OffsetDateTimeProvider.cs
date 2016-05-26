@@ -14,7 +14,7 @@ namespace Enkoni.Framework {
     /// <exception cref="ArgumentOutOfRangeException">The sum of the current date and time and <paramref name="offset"/> results in a value that is less than <see cref="DateTime.MinValue"/> or 
     /// greater than <see cref="DateTime.MaxValue"/>.</exception>
     public OffsetDateTimeProvider(TimeSpan offset) {
-      if(offset < TimeSpan.Zero && DateTime.Now.Ticks + offset.Ticks < DateTime.MinValue.Ticks) {
+      if (offset < TimeSpan.Zero && DateTime.Now.Ticks + offset.Ticks < DateTime.MinValue.Ticks) {
         throw new ArgumentOutOfRangeException("offset", offset, "The specified offset would result in a DateTime that cannot be displayed.");
       }
       else if(offset > TimeSpan.Zero && (DateTime.Now.Ticks + offset.Ticks > DateTime.MaxValue.Ticks || DateTime.Now.Ticks + offset.Ticks < offset.Ticks)) {

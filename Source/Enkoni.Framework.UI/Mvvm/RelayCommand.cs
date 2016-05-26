@@ -32,9 +32,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="canExecute">The function that will be used to determine if the command can be executed.</param>
     /// <exception cref="ArgumentNullException"><paramref name="action"/> is <see langword="null"/>.</exception>
     public RelayCommand(Action action, Func<bool> canExecute) {
-      if(action == null) {
-        throw new ArgumentNullException("action");
-      }
+      Guard.ArgumentIsNotNull(action, nameof(action));
 
       this.action = action;
       this.canExecute = canExecute;
@@ -107,9 +105,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     /// <param name="canExecute">The function that will be used to determine if the command can be executed.</param>
     /// <exception cref="ArgumentNullException"><paramref name="action"/> is <see langword="null"/>.</exception>
     public RelayCommand(Action<T> action, Func<T, bool> canExecute) {
-      if(action == null) {
-        throw new ArgumentNullException("action");
-      }
+      Guard.ArgumentIsNotNull(action, nameof(action));
 
       this.action = action;
       this.canExecute = canExecute;

@@ -621,10 +621,10 @@ namespace Enkoni.Framework.Tests {
       /* Test the CopyTo functionality when passing a index outside the range of the array */
       try {
         testSubject.CopyTo(testArray, 5);
-        Assert.Fail("CopyTo(T[], int) did not throw an System.ArgumentException");
+        Assert.Fail("CopyTo(T[], int) did not throw an System.ArgumentOutOfRangeException");
       }
-      catch(ArgumentException ex) {
-        Assert.AreEqual(typeof(ArgumentException), ex.GetType());
+      catch(ArgumentOutOfRangeException ex) {
+        Assert.AreEqual("arrayIndex", ex.ParamName);
       }
 
       /* Test the CopyTo functionality when passing an array that is too small */
