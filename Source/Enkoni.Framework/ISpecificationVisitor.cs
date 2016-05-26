@@ -34,7 +34,7 @@ namespace Enkoni.Framework {
     /// <returns>The created expression.</returns>
     Expression<Func<T, bool>> CreateOrExpression(ISpecification<T> leftOperand, ISpecification<T> rightOperand);
 
-    /// <summary>Creates an expression using the custom specification. This method is executed when a specification-type is used that is not part of 
+    /// <summary>Creates an expression using the custom specification. This method is executed when a specification-type is used that is not part of
     /// the default specification system.</summary>
     /// <param name="specification">The custom specification.</param>
     /// <returns>The created expression.</returns>

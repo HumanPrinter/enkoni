@@ -4,12 +4,15 @@ namespace Enkoni.Framework {
   /// <summary>A provider that can be used to retrieve the current date and time in a way that can be influenced using dependency injection.</summary>
   public class DateTimeProvider {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="DateTimeProvider"/> class.</summary>
     public DateTimeProvider() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the largest possible value of <see cref="DateTime"/>.</summary>
     public virtual DateTime MaxValue {
       get { return DateTime.MaxValue; }
@@ -34,6 +37,7 @@ namespace Enkoni.Framework {
     public virtual DateTime UtcNow {
       get { return DateTime.UtcNow; }
     }
+
     #endregion
   }
 }

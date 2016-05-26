@@ -7,8 +7,10 @@ namespace Enkoni.Framework {
     /// <summary>Contains methods that can be used for parameter checking.</summary>
   public static class Guard {
     #region Constants
+
     /// <summary>The collection of invalid path characters.</summary>
     private static readonly char[] InvalidPathChars = Path.GetInvalidPathChars();
+
     #endregion
 
     /// <summary>Throws <see cref="ArgumentNullException"/> if the given argument is <see langword="null"/>.</summary>
@@ -18,7 +20,7 @@ namespace Enkoni.Framework {
     public static void ArgumentIsNotNull(object argumentValue, string argumentName) {
       ArgumentIsNotNull(argumentValue, argumentName, null);
     }
-    
+
     /// <summary>Throws <see cref="ArgumentNullException"/> if the given argument is <see langword="null"/>.</summary>
     /// <param name="argumentValue">Argument value to test.</param>
     /// <param name="argumentName">Name of the argument being tested.</param>
@@ -138,7 +140,7 @@ namespace Enkoni.Framework {
       if(argumentValue.CompareTo((T)lowerValue) < 0) {
         ThrowArgumentOutOfRangeException(argumentName, argumentValue, message);
       }
-      
+
       if(argumentValue.CompareTo((T)higherValue) > 0) {
         ThrowArgumentOutOfRangeException(argumentName, argumentValue, message);
       }
@@ -230,6 +232,7 @@ namespace Enkoni.Framework {
     }
 
     #region Private static helper methods
+
     /// <summary>Throws an <see cref="ArgumentNullException"/>.</summary>
     /// <param name="argumentName">The name of the argument whose value is <see langword="null"/>.</param>
     /// <param name="message">The message for the exception.</param>
@@ -241,7 +244,7 @@ namespace Enkoni.Framework {
         throw new ArgumentNullException(argumentName, message);
       }
     }
-    
+
     /// <summary>Throws an <see cref="ArgumentException"/>.</summary>
     /// <param name="argumentName">The name of the argument whose value is invalid.</param>
     /// <param name="message">The message for the exception.</param>
@@ -256,6 +259,7 @@ namespace Enkoni.Framework {
     private static void ThrowArgumentOutOfRangeException(string argumentName, object argumentValue, string message) {
       throw new ArgumentOutOfRangeException(argumentName, argumentValue, message);
     }
+
     #endregion
   }
 }

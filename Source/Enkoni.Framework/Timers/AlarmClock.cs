@@ -7,11 +7,14 @@ namespace Enkoni.Framework.Timers {
   /// <summary>Implements a class that is capable of triggering an event at a specific time of day.</summary>
   public class AlarmClock : IDisposable {
     #region Constants
+
     /// <summary>Defines the number of milliseconds for each 24-hour period.</summary>
     private const int NumberOfMillisecondsPerDay = 86400000;
+
     #endregion
 
     #region Instance variables
+
     /// <summary>The timer that does the actual work.</summary>
     private Timer timer;
 
@@ -29,9 +32,11 @@ namespace Enkoni.Framework.Timers {
 
     /// <summary>The object that provides the current date and time.</summary>
     private DateTimeProvider dateTimeProvider;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
     public AlarmClock()
       : this((object)null) {
@@ -45,7 +50,7 @@ namespace Enkoni.Framework.Timers {
 
     /// <summary>Initializes a new instance of the <see cref="AlarmClock"/> class.</summary>
     /// <param name="state">An object containing information to be used by the callback method, or <see langword="null"/>.</param>
-    public AlarmClock(object state) 
+    public AlarmClock(object state)
         : this(state, new DateTimeProvider()) {
     }
 
@@ -80,17 +85,21 @@ namespace Enkoni.Framework.Timers {
       : this(state, dateTimeProvider) {
       this.alarmTime = alarmTime;
     }
+
     #endregion
 
     #region Events
+
     /// <summary>Occurs when the alarm time has been reached.</summary>
     public event EventHandler<EventArgs<object>> OnAlarm {
       add { this.onAlarmHandler += value; }
       remove { this.onAlarmHandler -= value; }
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the alarm time for the alarm clock in the local time zone.</summary>
     public TimeSpan AlarmTime {
       get {
@@ -103,8 +112,7 @@ namespace Enkoni.Framework.Timers {
       }
     }
 
-    /// <summary>Gets or sets a value indicating whether the Alarm Clock must set off an alarm each time the alarm time is reached or just once.
-    /// </summary>
+    /// <summary>Gets or sets a value indicating whether the Alarm Clock must set off an alarm each time the alarm time is reached or just once.</summary>
     public bool Repeat {
       get {
         return this.repeat;
@@ -115,9 +123,11 @@ namespace Enkoni.Framework.Timers {
         this.AdjustTimer(this, null);
       }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Starts the alarm clock.</summary>
     /// <exception cref="InvalidOperationException">When this instance is already disposed.</exception>
     public void Start() {
@@ -154,9 +164,11 @@ namespace Enkoni.Framework.Timers {
       this.timer.Change(Timeout.Infinite, Timeout.Infinite);
       this.isActive = false;
     }
+
     #endregion
 
     #region IDisposable implementation
+
     /// <summary>Disposes any resources held by this instance.</summary>
     public void Dispose() {
       this.DisposeManagedResources();
@@ -171,9 +183,11 @@ namespace Enkoni.Framework.Timers {
         this.timer = null;
       }
     }
+
     #endregion
 
     #region Private methods
+
     /// <summary>Adjusts the internal timer after the system time has changed or the properties of this class were changed.</summary>
     /// <param name="sender">The object that triggered the event.</param>
     /// <param name="e">Any arguments that may have been passed with the event.</param>
@@ -191,6 +205,7 @@ namespace Enkoni.Framework.Timers {
         this.isActive = false;
       }
     }
+
     #endregion
   }
 }
