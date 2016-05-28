@@ -5,6 +5,7 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// that must be validated by the <see cref="EmailValidator"/>.</summary>
   public class EmailDomainConfigElement : ConfigurationElement {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="EmailDomainConfigElement"/> class.</summary>
     public EmailDomainConfigElement() {
     }
@@ -14,9 +15,11 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     public EmailDomainConfigElement(string pattern) {
       this.Pattern = pattern;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the pattern that is set through this element.</summary>
     [ConfigurationProperty("pattern", IsKey = true, IsRequired = true, DefaultValue = "")]
     //[RegexStringValidator(@"^\d{1,4}$")]
@@ -24,6 +27,7 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
       get { return (string)this["pattern"]; }
       set { this["pattern"] = value; }
     }
+
     #endregion
   }
 }

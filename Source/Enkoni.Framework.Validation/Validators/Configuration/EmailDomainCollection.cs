@@ -6,12 +6,15 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// that must be validated by the <see cref="EmailValidator"/>.</summary>
   public class EmailDomainCollection : ConfigurationElementCollection {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="EmailDomainCollection"/> class.</summary>
     public EmailDomainCollection() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the type of the <see cref="ConfigurationElementCollection"/>.</summary>
     public override ConfigurationElementCollectionType CollectionType {
       get {
@@ -29,7 +32,7 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     /// <returns>The specified property, attribute, or child element.</returns>
     public EmailDomainConfigElement this[int index] {
       get {
-        return (EmailDomainConfigElement)this.BaseGet(index); 
+        return (EmailDomainConfigElement)this.BaseGet(index);
       }
 
       set {
@@ -47,53 +50,11 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     public new EmailDomainConfigElement this[string pattern] {
       get { return (EmailDomainConfigElement)this.BaseGet(pattern); }
     }
-    #endregion
 
-    #region Public methods
-    ///// <summary>Gets the index of the specified element.</summary>
-    ///// <param name="element">The element of which the index must be returned.</param>
-    ///// <returns>The index of the element.</returns>
-    //public int IndexOf(EmailDomainConfigElement element) {
-    //  return this.BaseIndexOf(element);
-    //}
-
-    ///// <summary>Adds an element to the collection.</summary>
-    ///// <param name="element">The element that must be added.</param>
-    //public void Add(EmailDomainConfigElement element) {
-    //  this.BaseAdd(element);
-    //}
-
-    ///// <summary>Removes an element from the collection.</summary>
-    ///// <param name="element">The element that must be removed.</param>
-    //public void Remove(EmailDomainConfigElement element) {
-    //  if(element == null) {
-    //    return;
-    //  }
-
-    //  if(this.BaseIndexOf(element) >= 0) {
-    //    this.BaseRemove(element.Pattern);
-    //  }
-    //}
-
-    ///// <summary>Removes an element from the collection.</summary>
-    ///// <param name="areaCode">The key of the element that must be removed.</param>
-    //public void Remove(string areaCode) {
-    //  this.BaseRemove(areaCode);
-    //}
-
-    ///// <summary>Removes an element from the collection.</summary>
-    ///// <param name="index">The index of the element that must be removed.</param>
-    //public void RemoveAt(int index) {
-    //  this.BaseRemoveAt(index);
-    //}
-
-    ///// <summary>Clears the collection.</summary>
-    //public void Clear() {
-    //  this.BaseClear();
-    //}
     #endregion
 
     #region Protected methods
+
     /// <summary>Creates a new <see cref="ConfigurationElement"/>.</summary>
     /// <returns>A new <see cref="ConfigurationElement"/>.</returns>
     protected override ConfigurationElement CreateNewElement() {
@@ -115,6 +76,7 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
 
       return configElement.Pattern ?? string.Empty;
     }
+
     #endregion
   }
 }

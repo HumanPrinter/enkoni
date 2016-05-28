@@ -7,11 +7,14 @@ namespace Enkoni.Framework.Web.Mvc {
   /// for binding decimal values that do not contain a decimal point.</summary>
   public class DecimalModelBinder : IModelBinder {
     #region Instance variables
+
     /// <summary>The format provider that is used to convert the decimals.</summary>
     private readonly IFormatProvider formatProvider;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="DecimalModelBinder"/> class that will use a default culture invariant formatting to
     /// convert the <see langword="decimal"/> values.</summary>
     public DecimalModelBinder()
@@ -27,16 +30,18 @@ namespace Enkoni.Framework.Web.Mvc {
 
       this.formatProvider = provider;
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Binds a received decimal value to the view model.</summary>
     /// <param name="controllerContext">An instance that encapsulates information about the HTTP request.</param>
     /// <param name="bindingContext">The context for the model binder.</param>
     /// <returns>The converted decimal value.</returns>
     public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) {
       Guard.ArgumentIsNotNull(bindingContext, nameof(bindingContext));
- 
+
       /* Retrieve the value information from the received data */
       ValueProviderResult providerValue = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
       ModelState modelState = new ModelState { Value = providerValue };
@@ -51,6 +56,7 @@ namespace Enkoni.Framework.Web.Mvc {
       bindingContext.ModelState.Add(bindingContext.ModelName, modelState);
       return actualValue;
     }
+
     #endregion
   }
 }

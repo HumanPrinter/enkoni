@@ -18,3 +18,5 @@
 [assembly: SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Scope = "member", Target = "Enkoni.Framework.Entities.FileSourceInfo.#DefaultSourceFileEncoding", Justification = "The type Encoding is immutable")]
 
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "FileRepository", Scope = "member", Target = "Enkoni.Framework.Entities.FileRepository`1.#.ctor(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The spelling here is fine")]
+
+[assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1200:Using directives must be placed correctly", Scope = "namespace", Target = "~N:Enkoni.Framework.Entities", Justification = "Required to fix name collision with System.Threading.Timer")]

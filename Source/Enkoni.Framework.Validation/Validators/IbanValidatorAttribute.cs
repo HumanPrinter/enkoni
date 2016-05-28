@@ -9,12 +9,15 @@ namespace Enkoni.Framework.Validation.Validators {
     Inherited = false)]
   public sealed class IbanValidatorAttribute : ValueValidatorAttribute {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="IbanValidatorAttribute"/> class.</summary>
     public IbanValidatorAttribute() {
     }
+
     #endregion
 
     #region ValueValidatorAttribute overrides
+
     /// <summary>Creates the <see cref="DutchPhoneNumberValidator"/> described by the configuration object.</summary>
     /// <param name="targetType">The type of object that will be validated by the validator.</param>
     /// <returns>The created Validator.</returns>
@@ -22,6 +25,7 @@ namespace Enkoni.Framework.Validation.Validators {
       IbanValidator validator = new IbanValidator(this.MessageTemplate, this.Tag, this.Negated);
       return validator;
     }
+
     #endregion
   }
 }

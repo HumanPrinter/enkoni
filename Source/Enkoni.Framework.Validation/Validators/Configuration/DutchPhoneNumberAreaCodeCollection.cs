@@ -5,12 +5,15 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// codes that must be validated by the <see cref="DutchPhoneNumberValidator"/>.</summary>
   public class DutchPhoneNumberAreaCodeCollection : ConfigurationElementCollection {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberAreaCodeCollection"/> class.</summary>
     public DutchPhoneNumberAreaCodeCollection() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the type of the <see cref="ConfigurationElementCollection"/>.</summary>
     public override ConfigurationElementCollectionType CollectionType {
       get {
@@ -22,8 +25,8 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     /// <param name="index">The index of the <see cref="DutchPhoneNumberAreaCodeConfigElement"/> to access.</param>
     /// <returns>The specified property, attribute, or child element.</returns>
     public DutchPhoneNumberAreaCodeConfigElement this[int index] {
-      get { 
-        return (DutchPhoneNumberAreaCodeConfigElement)this.BaseGet(index); 
+      get {
+        return (DutchPhoneNumberAreaCodeConfigElement)this.BaseGet(index);
       }
 
       set {
@@ -41,9 +44,11 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     public new DutchPhoneNumberAreaCodeConfigElement this[string areaCode] {
       get { return (DutchPhoneNumberAreaCodeConfigElement)this.BaseGet(areaCode); }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Gets the index of the specified element.</summary>
     /// <param name="element">The element of which the index must be returned.</param>
     /// <returns>The index of the element.</returns>
@@ -85,9 +90,11 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     public void Clear() {
       this.BaseClear();
     }
+
     #endregion
 
     #region Protected methods
+
     /// <summary>Creates a new <see cref="ConfigurationElement"/>.</summary>
     /// <returns>A new <see cref="ConfigurationElement"/>.</returns>
     protected override ConfigurationElement CreateNewElement() {
@@ -104,8 +111,9 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
     /// <summary>Adds a configuration element to the collection.</summary>
     /// <param name="element">The element to add.</param>
     protected override void BaseAdd(ConfigurationElement element) {
-      base.BaseAdd(element, false);
+      this.BaseAdd(element, false);
     }
+
     #endregion
   }
 }

@@ -5,35 +5,44 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// <summary>Defines the configuration section that can be used to configure the Enkoni validators.</summary>
   public class ValidatorsSection : ConfigurationSection {
     #region Constants
+
     /// <summary>The default name for the ConfigurationSection in the config file.</summary>
     public const string DefaultSectionName = "Enkoni.Validators";
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="ValidatorsSection"/> class.</summary>
     public ValidatorsSection() {
       this.DutchPhoneNumberValidators = new DutchPhoneNumberValidatorConfigDictionary();
       this.EmailValidators = new EmailValidatorConfigDictionary();
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the configurations for the <see cref="DutchPhoneNumberValidator"/>s that were specified in the configuration file.</summary>
     public DutchPhoneNumberValidatorConfigDictionary DutchPhoneNumberValidators { get; private set; }
 
     /// <summary>Gets the configurations for the <see cref="EmailValidator"/>s that were specified in the configuration file.</summary>
     public EmailValidatorConfigDictionary EmailValidators { get; private set; }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Gets a value indicating whether the <see cref="ConfigurationElement"/> object is read-only.</summary>
     /// <returns><see langword="false"/> as the configuration in this section can not be modified from code.</returns>
     public override bool IsReadOnly() {
       return true;
     }
+
     #endregion
 
     #region Protected methods
+
     /// <summary>Reads XML from the configuration file.</summary>
     /// <param name="reader">The <see cref="XmlReader"/> that reads from the configuration file.</param>
     /// <param name="serializeCollectionKey"><see langword="true"/> to serialize only the collection key properties; otherwise, <see langword="false"/>.</param>
@@ -65,6 +74,7 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
         }
       }
     }
+
     #endregion
   }
 }

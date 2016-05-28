@@ -24,8 +24,8 @@ namespace Enkoni.Framework.UI.Mvvm {
 
     /// <summary>Gets or sets the associated keys.</summary>
     public string AssociatedKeys {
-      get { 
-        return string.Join(" ", this.associatedKeys); 
+      get {
+        return string.Join(" ", this.associatedKeys);
       }
 
       set {

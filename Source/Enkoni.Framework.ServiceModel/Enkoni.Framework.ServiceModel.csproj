@@ -67,6 +67,9 @@
     <None Include="..\Enkoni.Framework.snk">
       <Link>Enkoni.Framework.snk</Link>
     </None>
+    <AdditionalFiles Include="..\stylecop.json">
+      <Link>stylecop.json</Link>
+    </AdditionalFiles>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,5 +106,4 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\MSBuildExtensions\Common\Common.Targets" />
 </Project>

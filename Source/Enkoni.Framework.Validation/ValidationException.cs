@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using System.Security.Permissions;
 
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 
@@ -9,6 +8,7 @@ namespace Enkoni.Framework.Validation {
   [Serializable]
   public class ValidationException : Exception {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="ValidationException"/> class.</summary>
     public ValidationException()
       : base() {
@@ -30,7 +30,7 @@ namespace Enkoni.Framework.Validation {
 
     /// <summary>Initializes a new instance of the <see cref="ValidationException"/> class.</summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
-    /// <param name="innerException">The exception that is the cause of the current exception, or a <see langword="null"/> reference (Nothing in 
+    /// <param name="innerException">The exception that is the cause of the current exception, or a <see langword="null"/> reference (Nothing in
     /// Visual Basic) if no inner exception is specified.</param>
     public ValidationException(string message, Exception innerException)
       : this(message, null, innerException) {
@@ -39,7 +39,7 @@ namespace Enkoni.Framework.Validation {
     /// <summary>Initializes a new instance of the <see cref="ValidationException"/> class.</summary>
     /// <param name="message">The error message that explains the reason for the exception.</param>
     /// <param name="validationResults">The results of the validation.</param>
-    /// <param name="innerException">The exception that is the cause of the current exception, or a <see langword="null"/> reference (Nothing in 
+    /// <param name="innerException">The exception that is the cause of the current exception, or a <see langword="null"/> reference (Nothing in
     /// Visual Basic) if no inner exception is specified.</param>
     public ValidationException(string message, ValidationResults validationResults, Exception innerException)
       : base(message, innerException) {
@@ -57,14 +57,18 @@ namespace Enkoni.Framework.Validation {
 
       this.ValidationResults = info.GetValue("ValidationResults", typeof(ValidationResults)) as ValidationResults;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the results of the validation.</summary>
     public ValidationResults ValidationResults { get; private set; }
+
     #endregion
 
     #region Methods
+
     /// <summary>Sets the <paramref name="info"/> with information about the exception.</summary>
     /// <param name="info">The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
     /// <param name="context">The <see cref="StreamingContext"/> that contains contextual information about the source or destination.</param>
@@ -77,6 +81,7 @@ namespace Enkoni.Framework.Validation {
 
       info.AddValue("ValidationResults", this.ValidationResults);
     }
+
     #endregion
   }
 }
