@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-using Enkoni.Framework.DataAnnotations;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.DataAnnotations.Tests {
@@ -19,7 +17,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("OnlyThis")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Basic() {
       TestDummy_Basic_OverrideAll dummy = new TestDummy_Basic_OverrideAll { MailAddress = this.TestContext.DataRow["MailAddress"].ToString() };
@@ -41,7 +39,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Basic_AllowComments() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Basic, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
@@ -56,7 +54,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
 
     public void EmailAttribute_Basic_AllowIPAddresses() {
@@ -71,7 +69,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "BasicEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Basic_RequireTopLevelDomain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
@@ -84,7 +82,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Extended() {
       TestDummy_Extended_OverrideAll dummy = new TestDummy_Extended_OverrideAll { MailAddress = this.TestContext.DataRow["MailAddress"].ToString() };
@@ -106,7 +104,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Extended_AllowComments() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Extended, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
@@ -121,7 +119,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Extended_AllowIPAddresses() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
@@ -135,7 +133,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "ExtendedEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Extended_RequireTopLevelDomain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
@@ -148,7 +146,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Complete() {
       TestDummy_Complete_OverrideAll dummy = new TestDummy_Complete_OverrideAll { MailAddress = this.TestContext.DataRow["MailAddress"].ToString() };
@@ -170,7 +168,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Complete_AllowComments() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Complete, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
@@ -185,7 +183,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Complete_AllowIPAddresses() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
@@ -199,7 +197,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="EmailAttribute"/> class.</summary>
-    [TestMethod, TestCategory("LocalOnly")]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "CompleteEmail", DataAccessMethod.Sequential)]
     public void EmailAttribute_Complete_RequireTopLevelDomain() {
       EmailAttribute testSubject = new EmailAttribute { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };

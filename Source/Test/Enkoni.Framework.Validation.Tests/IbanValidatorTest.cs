@@ -2,7 +2,6 @@
 
 using Enkoni.Framework.Validation.Validators;
 
-using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
