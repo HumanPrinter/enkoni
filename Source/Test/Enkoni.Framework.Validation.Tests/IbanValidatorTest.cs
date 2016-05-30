@@ -18,7 +18,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanValidator"/> class.</summary>
-    [TestMethod]
+    [TestMethod, TestCategory("TroubleMaker")]
     [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
     public void IbanValidator_Validator() {
       IbanValidator testSubject = new IbanValidator("message {0}", "tag", false);
@@ -33,7 +33,7 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="IbanValidatorAttribute"/> class.</summary>
-    [TestMethod]
+    [TestMethod, TestCategory("TroubleMaker")]
     public void IbanValidator_Attribute() {
       TestDummy dummy = new TestDummy { AccountNumber = "NL80INGB0007321304" };
 
