@@ -15,6 +15,8 @@
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.XmlFileRepository`1.#WriteAllRecordsToFile(System.IO.FileInfo,Enkoni.Framework.Entities.DataSourceInfo,System.Collections.Generic.IEnumerable`1<!0>)", Justification = "Validation is done by the baseclass")]
 [assembly: SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Scope = "member", Target = "Enkoni.Framework.Entities.FileRepository`1.#ApplyIdentifiers(System.Collections.Generic.IEnumerable`1<!0>,System.Int32)", Justification = "The parameter is validated by the Guard-class")]
 
+[assembly: SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "removeResult", Scope = "member", Target = "Enkoni.Framework.Entities.FileRepository`1.#AddEntitiesCore(System.Collections.Generic.IEnumerable`1<!0>,Enkoni.Framework.Entities.DataSourceInfo)", Justification = "Variable is used in Debug-mode")]
+
 [assembly: SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Scope = "member", Target = "Enkoni.Framework.Entities.FileSourceInfo.#DefaultSourceFileEncoding", Justification = "The type Encoding is immutable")]
 
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "FileRepository", Scope = "member", Target = "Enkoni.Framework.Entities.FileRepository`1.#.ctor(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The spelling here is fine")]

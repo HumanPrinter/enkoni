@@ -94,5 +94,7 @@
 
 [assembly: SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Scope = "member", Target = "Enkoni.Framework.Entities.MemoryRepository`1.#SaveChangesCore(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "The code is well documented and therefore fine.")]
 
+[assembly: SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "removeResult", Scope = "member", Target = "Enkoni.Framework.Entities.MemoryRepository`1.#AddEntitiesCore(System.Collections.Generic.IEnumerable`1<!0>,Enkoni.Framework.Entities.DataSourceInfo)", Justification = "Variable is used in Debug-mode")]
+
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "ICloneable", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#.ctor(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "ICloneable is a default .NET type")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "ICloneable", Scope = "member", Target = "Enkoni.Framework.Entities.Repository`1.#SelectCloneDataSourceItems(Enkoni.Framework.Entities.DataSourceInfo)", Justification = "ICloneable is a default .NET type")]
