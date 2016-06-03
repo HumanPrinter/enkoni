@@ -133,25 +133,10 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\BasicEmail.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Tables\ExtendedEmail.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
-    <Build Include="dbo\Tables\CompleteEmail.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <None Include="PopulateMobilePhoneNumber.sql" />
     <None Include="PopulateServicePhoneNumber.sql" />
     <None Include="PopulateOtherPhoneNumber.sql" />
     <None Include="PopulateDefaultPhoneNumber.sql" />
-    <None Include="PopulateBasicEmail.sql" />
-    <None Include="PopulateExtendedEmail.sql" />
-    <None Include="PopulateCompleteEmail.sql" />
     <None Include="PopulateIbanAccountNumber.sql" />
   </ItemGroup>
   <ItemGroup>

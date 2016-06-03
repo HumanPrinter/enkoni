@@ -481,8 +481,7 @@ namespace Enkoni.Framework.Entities {
         return this.ExecuteBusinessRuleWithMultipleResults(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
-      Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindAllCore(expression, specification.SortRules, specification.MaximumResults, specification.IncludePaths.ToArray(), dataSourceInfo);
+      return this.FindAllCore(specification, dataSourceInfo);
     }
 
     #endregion
@@ -632,8 +631,7 @@ namespace Enkoni.Framework.Entities {
         return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
-      Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindSingleCore(expression, specification.IncludePaths.ToArray(), dataSourceInfo);
+      return this.FindSingleCore(specification, dataSourceInfo);
     }
 
     /// <summary>Finds a single entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
@@ -659,8 +657,7 @@ namespace Enkoni.Framework.Entities {
         return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
-      Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindSingleCore(expression, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
+      return this.FindSingleCore(specification, defaultValue, dataSourceInfo);
     }
 
     #endregion
@@ -834,8 +831,7 @@ namespace Enkoni.Framework.Entities {
         return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
-      Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePaths.ToArray(), dataSourceInfo);
+      return this.FindFirstCore(specification, dataSourceInfo);
     }
 
     /// <summary>Finds the first entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
@@ -861,8 +857,7 @@ namespace Enkoni.Framework.Entities {
         return this.ExecuteBusinessRuleWithSingleResult(businessRule.RuleName, businessRule.RuleArguments, dataSourceInfo);
       }
 
-      Expression<Func<T, bool>> expression = specification.Visit(this);
-      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
+      return this.FindFirstCore(specification, defaultValue, dataSourceInfo);
     }
 
     #endregion
@@ -953,12 +948,21 @@ namespace Enkoni.Framework.Entities {
 
     #region Extensibility FindAll methods
 
+    /// <summary>Finds all the available entities that match the specification.</summary>
+    /// <param name="specification">The specification to which the entities must match.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The entities that match the specification.</returns>
+    protected virtual IEnumerable<T> FindAllCore(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
+      Expression<Func<T, bool>> expression = specification.Visit(this);
+      return this.FindAllCore(expression, specification.SortRules, specification.MaximumResults, specification.IncludePaths.ToArray(), dataSourceInfo);
+    }
+
     /// <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     /// <returns>All the available entities.</returns>
     [Obsolete("Use the overload that takes an 'IncludePaths' instead.")]
     protected virtual IEnumerable<T> FindAllCore(DataSourceInfo dataSourceInfo) {
-      return this.FindAllCore(null, dataSourceInfo);
+      return this.FindAllCore((string[])null, dataSourceInfo);
     }
 
     /// <summary>Finds all the entities of type <typeparamref name="T"/>.</summary>
@@ -1022,6 +1026,25 @@ namespace Enkoni.Framework.Entities {
 
     #region Extensibility FindSingle methods
 
+    /// <summary>Finds a single entity that matches the specification.</summary>
+    /// <param name="specification">The specification to which the entity must match.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity.</returns>
+    protected virtual T FindSingleCore(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
+      Expression<Func<T, bool>> expression = specification.Visit(this);
+      return this.FindSingleCore(expression, specification.IncludePaths.ToArray(), dataSourceInfo);
+    }
+
+    /// <summary>Finds a single entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
+    /// <param name="specification">The specification to which the entity must match.</param>
+    /// <param name="defaultValue">The value that will be returned when no match was found.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+    protected virtual T FindSingleCore(ISpecification<T> specification, T defaultValue, DataSourceInfo dataSourceInfo) {
+      Expression<Func<T, bool>> expression = specification.Visit(this);
+      return this.FindSingleCore(expression, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
+    }
+
     /// <summary>Finds a single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
@@ -1083,6 +1106,25 @@ namespace Enkoni.Framework.Entities {
     #endregion
 
     #region Extensibility FindFirst methods
+
+    /// <summary>Finds the first entity that matches the specification.</summary>
+    /// <param name="specification">The specification to which the entity must match.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity.</returns>
+    protected virtual T FindFirstCore(ISpecification<T> specification, DataSourceInfo dataSourceInfo) {
+      Expression<Func<T, bool>> expression = specification.Visit(this);
+      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePaths.ToArray(), dataSourceInfo);
+    }
+
+    /// <summary>Finds the first entity that matches the specification. If no result was found, the specified default-value is returned.</summary>
+    /// <param name="specification">The specification to which the entity must match.</param>
+    /// <param name="defaultValue">The value that will be returned when no match was found.</param>
+    /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
+    /// <returns>The found entity or <paramref name="defaultValue"/> if there was no result.</returns>
+    protected virtual T FindFirstCore(ISpecification<T> specification, T defaultValue, DataSourceInfo dataSourceInfo) {
+      Expression<Func<T, bool>> expression = specification.Visit(this);
+      return this.FindFirstCore(expression, specification.SortRules, specification.IncludePaths.ToArray(), dataSourceInfo, defaultValue);
+    }
 
     /// <summary>Finds the first single entity that matches the expression.</summary>
     /// <param name="expression">The expression to which the entity must match.</param>

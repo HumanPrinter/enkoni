@@ -16,8 +16,4 @@ Post-Deployment Script Template
 :r .\PopulateOtherPhoneNumber.sql
 :r .\PopulateDefaultPhoneNumber.sql
 
-:r .\PopulateBasicEmail.sql
-:r .\PopulateExtendedEmail.sql
-:r .\PopulateCompleteEmail.sql
-
 :r .\PopulateIbanAccountNumber.sql
