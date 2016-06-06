@@ -87,8 +87,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Testing.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.DataAnnotations.Client", "Enkoni.Framework.DataAnnotations.Client\Enkoni.Framework.DataAnnotations.Client.csproj", "{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Enkoni.Framework.DataAnnotations.Tests.Database", "Test\Enkoni.Framework.DataAnnotations.Tests.Database\Enkoni.Framework.DataAnnotations.Tests.Database.sqlproj", "{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB}"
-EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Enkoni.Framework.Validation.Tests.Database", "Test\Enkoni.Framework.Validation.Tests.Database\Enkoni.Framework.Validation.Tests.Database.sqlproj", "{EDB537D4-0D88-492E-9F6A-3A6AAC9D11B5}"
 EndProject
 Global
@@ -205,12 +203,6 @@ Global
 		{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{EDB537D4-0D88-492E-9F6A-3A6AAC9D11B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDB537D4-0D88-492E-9F6A-3A6AAC9D11B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDB537D4-0D88-492E-9F6A-3A6AAC9D11B5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -236,7 +228,6 @@ Global
 		{026371D2-B13C-43C4-A84D-73278DB15C2F} = {27909F13-6E89-440B-832A-513838262B98}
 		{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
-		{C16ED4D2-E085-43FF-9E6B-C84BD01AF0FB} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{EDB537D4-0D88-492E-9F6A-3A6AAC9D11B5} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

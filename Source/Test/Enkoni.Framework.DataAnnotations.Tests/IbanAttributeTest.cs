@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Enkoni.Framework.DataAnnotations.Tests {
   /// <summary>Tests the functionality of the <see cref="IbanAttribute"/> class.</summary>
   [TestClass]
-  [DeploymentItem("Enkoni.Framework.DataAnnotations.Tests.Database.dacpac")]
+  [DeploymentItem(@"TestData\IbanAccountNumber.xml")]
   public class IbanAttributeTest {
     #region Properties
     /// <summary>Gets or sets the context that gives access to the input data for the test cases.</summary>
@@ -17,7 +17,7 @@ namespace Enkoni.Framework.DataAnnotations.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanAttribute"/> class.</summary>
     [TestMethod]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\IbanAccountNumber.xml", "row", DataAccessMethod.Sequential)]
     public void IbanAttribute_Attribute() {
       TestDummy dummy = new TestDummy { AccountNumber = this.TestContext.DataRow["AccountNumber"].ToString() };
       ValidationContext validationContext = new ValidationContext(dummy, null, null);

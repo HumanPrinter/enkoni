@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<testsuite>
+  <row>
+    <PhoneNumber>0800 1254</PhoneNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>0800-5142</PhoneNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>0800-0254871</PhoneNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>0800 0254</PhoneNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>08001254426</PhoneNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>0900-8188</PhoneNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>09068288427</PhoneNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>0909</PhoneNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>09098142</PhoneNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <PhoneNumber>09098142889</PhoneNumber>
+    <IsValid>False</IsValid>
+  </row>
+</testsuite>
