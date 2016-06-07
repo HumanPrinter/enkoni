@@ -9,7 +9,7 @@ using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
 namespace Enkoni.Framework.Validation.Tests {
   /// <summary>Tests the functionality of the <see cref="IbanValidator"/> and <see cref="IbanValidatorAttribute"/> classes.</summary>
   [TestClass]
-  [DeploymentItem("Enkoni.Framework.Validation.Tests.Database.dacpac")]
+  [DeploymentItem(@"TestData\IbanAccountNumber.xml")]
   public class IbanValidatorTest {
     #region Properties
     /// <summary>Gets or sets the context that gives access to the input data for the test cases.</summary>
@@ -18,8 +18,8 @@ namespace Enkoni.Framework.Validation.Tests {
 
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="IbanValidator"/> class.</summary>
-    [TestMethod, TestCategory("TroubleMaker")]
-    [DataSource("System.Data.SqlClient", TestInitializer.ConnectionString, "IbanAccountNumber", DataAccessMethod.Sequential)]
+    [TestMethod]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\IbanAccountNumber.xml", "row", DataAccessMethod.Sequential)]
     public void IbanValidator_Validator() {
       IbanValidator testSubject = new IbanValidator("message {0}", "tag", false);
       string input = this.TestContext.DataRow["AccountNumber"].ToString();
@@ -33,7 +33,7 @@ namespace Enkoni.Framework.Validation.Tests {
     }
 
     /// <summary>Tests the functionality of the <see cref="IbanValidatorAttribute"/> class.</summary>
-    [TestMethod, TestCategory("TroubleMaker")]
+    [TestMethod]
     public void IbanValidator_Attribute() {
       TestDummy dummy = new TestDummy { AccountNumber = "NL80INGB0007321304" };
 
