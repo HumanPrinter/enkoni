@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.ServiceModel</id>
-    <version>2.3.0</version>
+    <version>2.4.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,11 +10,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[The dependency with the Enkoni.Framework.Logging project (and thereby the dependency with the Enterprise Library Logging Application Block)
-has been removed. By default, logging is now done through the .NET tracing functionality.]]></releaseNotes>
+    <releaseNotes><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.7.0" />
+      <dependency id="Enkoni" version="2.8.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

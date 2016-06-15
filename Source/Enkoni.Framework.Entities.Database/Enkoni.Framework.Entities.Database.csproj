@@ -65,6 +65,7 @@
     <AdditionalFiles Include="..\stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>
+    <None Include="Enkoni.Framework.Entities.Database.nuspec" />
     <None Include="packages.config" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>

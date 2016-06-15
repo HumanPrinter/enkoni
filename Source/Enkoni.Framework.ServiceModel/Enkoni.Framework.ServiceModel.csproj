@@ -70,6 +70,7 @@
     <AdditionalFiles Include="..\stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>
+    <None Include="Enkoni.Framework.ServiceModel.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
