@@ -75,6 +75,7 @@
     <AdditionalFiles Include="..\stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>
+    <None Include="Enkoni.Framework.DataAnnotations.nuspec" />
     <None Include="packages.config" />
     <None Include="Settings.StyleCop">
       <SubType>Designer</SubType>

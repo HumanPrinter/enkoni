@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.DataAnnotations.Client</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,8 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Empty input values are now accepted by the validators. In order to reject empty input values, combine the attributes with the default
-RequiredAttribute.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added client side validation for the IbanAttribute and DutchPhoneNumberAttribute.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2015. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Enkoni.DataAnnotations" version="1.1.0" />
