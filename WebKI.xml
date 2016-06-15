@@ -2,8 +2,8 @@
 <HelpKI>
   <HelpKINode Title="ActualType method" Url="html/b37b68ff-90e4-0651-498a-fd2186d8da7d.htm" />
   <HelpKINode Title="Add method">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Add Method " Url="html/02a0d776-9f24-59d8-0053-d75970bfa860.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Add Method " Url="html/34fdcf17-8438-9539-434a-c6b048086f8b.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Add Method " Url="html/02a0d776-9f24-59d8-0053-d75970bfa860.htm" />
     <HelpKINode Title="DutchPhoneNumberValidationConfigDictionary.Add Method " Url="html/876efe0e-f770-e74b-4df6-b077e57279c5.htm" />
     <HelpKINode Title="DutchPhoneNumberValidatorConfigDictionary.Add Method " Url="html/7b4c1746-7798-8250-9c5e-5c965d1adef9.htm" />
     <HelpKINode Title="EmailValidationConfigDictionary.Add Method " Url="html/552e05f7-46cd-0925-4bf1-d6a6f7196346.htm" />
@@ -102,6 +102,22 @@
     <HelpKINode Title="DutchPhoneNumberValidationConfigElement.AreaCodes Property " Url="html/429f0d7a-c13c-a29e-fee2-048dd15cd6ba.htm" />
     <HelpKINode Title="DutchPhoneNumberValidatorConfigElement.AreaCodes Property " Url="html/d38f4839-2677-ffe0-4d22-2bb1c9be0c2f.htm" />
   </HelpKINode>
+  <HelpKINode Title="ArgumentIsBetween(Of T) method" Url="html/818c92db-bb1c-63b2-3c55-ef35215543fb.htm" />
+  <HelpKINode Title="ArgumentIsBetween&lt;T&gt; method" Url="html/818c92db-bb1c-63b2-3c55-ef35215543fb.htm" />
+  <HelpKINode Title="ArgumentIsGreaterOrEqualThan(Of T) method" Url="html/c8fe5316-7a16-c0be-3313-8a4318285d3a.htm" />
+  <HelpKINode Title="ArgumentIsGreaterOrEqualThan&lt;T&gt; method" Url="html/c8fe5316-7a16-c0be-3313-8a4318285d3a.htm" />
+  <HelpKINode Title="ArgumentIsGreaterThan(Of T) method" Url="html/3be3473a-42d9-eb0f-6fdd-b98d82405964.htm" />
+  <HelpKINode Title="ArgumentIsGreaterThan&lt;T&gt; method" Url="html/3be3473a-42d9-eb0f-6fdd-b98d82405964.htm" />
+  <HelpKINode Title="ArgumentIsLowerOrEqualThan(Of T) method" Url="html/c62fe16f-b453-f71b-7cb6-a066cdd0384f.htm" />
+  <HelpKINode Title="ArgumentIsLowerOrEqualThan&lt;T&gt; method" Url="html/c62fe16f-b453-f71b-7cb6-a066cdd0384f.htm" />
+  <HelpKINode Title="ArgumentIsLowerThan(Of T) method" Url="html/33b6b387-1361-811b-3ad1-dc229b4b3a2d.htm" />
+  <HelpKINode Title="ArgumentIsLowerThan&lt;T&gt; method" Url="html/33b6b387-1361-811b-3ad1-dc229b4b3a2d.htm" />
+  <HelpKINode Title="ArgumentIsNotNull method" Url="html/fdbf9b5b-c7d7-4c4e-bb82-6b2e88f64bc9.htm" />
+  <HelpKINode Title="ArgumentIsNotNullOrEmpty method" Url="html/f3489ca2-f8fa-3cb8-0bf6-81d02aded333.htm" />
+  <HelpKINode Title="ArgumentIsNotOfType method" Url="html/f2d1156b-9e36-2150-413b-f43e50f6f7c5.htm" />
+  <HelpKINode Title="ArgumentIsOfType method" Url="html/52b740eb-defd-7399-9fcf-f252102760d6.htm" />
+  <HelpKINode Title="ArgumentIsValidEnum method" Url="html/1cb8ee2c-2687-e76c-769b-ec7dea0a6071.htm" />
+  <HelpKINode Title="ArgumentIsValidPath method" Url="html/795c4f7a-3e1e-6823-08cc-5c3df1923ce9.htm" />
   <HelpKINode Title="Ascending enumeration member" Url="html/9738c419-e367-ab21-e8b7-b5e808c020b7.htm" />
   <HelpKINode Title="AssociatedKeys property" Url="html/47a0c510-af79-bcd7-3ac1-d4b96dc70eaa.htm" />
   <HelpKINode Title="AsyncResult(Of T) class">
@@ -371,8 +387,8 @@
   <HelpKINode Title="CollectionType property">
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CollectionType Property " Url="html/142648b2-9756-3455-595b-7575107d7335.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CollectionType Property " Url="html/19324db2-1ac7-e8b5-614c-5cfe67daac96.htm" />
-    <HelpKINode Title="EmailDomainCollection.CollectionType Property " Url="html/6319ea11-0b11-6c58-95db-4e84f5c3f76e.htm" />
     <HelpKINode Title="EmailDomainCollection.CollectionType Property " Url="html/16f8a759-155f-006e-e4b4-2c1d527a0ae6.htm" />
+    <HelpKINode Title="EmailDomainCollection.CollectionType Property " Url="html/6319ea11-0b11-6c58-95db-4e84f5c3f76e.htm" />
   </HelpKINode>
   <HelpKINode Title="ColumnNameMappings property">
     <HelpKINode Title="CsvSerializer(T).ColumnNameMappings Property " Url="html/bd6d0155-d9bc-1688-5a21-208e33274694.htm" />
@@ -523,8 +539,8 @@
   <HelpKINode Title="CreateNewElement method">
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CreateNewElement Method " Url="html/9e2ddd4c-53f5-af59-3ba8-2945070ec333.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CreateNewElement Method " Url="html/d56e8905-6b1d-79f8-f495-a25c39bc688f.htm" />
-    <HelpKINode Title="EmailDomainCollection.CreateNewElement Method " Url="html/b21d607f-cc12-a4a6-2e50-284f2b990bf5.htm" />
     <HelpKINode Title="EmailDomainCollection.CreateNewElement Method " Url="html/917b93d9-cd44-3860-e493-f29a9a63cb4e.htm" />
+    <HelpKINode Title="EmailDomainCollection.CreateNewElement Method " Url="html/b21d607f-cc12-a4a6-2e50-284f2b990bf5.htm" />
   </HelpKINode>
   <HelpKINode Title="CreateNotExpression method" Url="html/ec60a392-1048-844b-63cc-0ab2dbf5863e.htm" />
   <HelpKINode Title="CreateNotExpressionCore method" Url="html/93101b42-64cd-5607-193c-42f3406d7317.htm" />
@@ -763,8 +779,8 @@
   <HelpKINode Title="DecimalModelBinder.BindModel method" Url="html/eaefacd0-3d6e-8b5e-46b6-346e1ce652ea.htm" />
   <HelpKINode Title="DecimalModelBinder.DecimalModelBinder constructor" Url="html/25298e15-0286-d176-ed0c-39282131b2cd.htm" />
   <HelpKINode Title="Default enumeration member">
-    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/e1f5f9ac-e8c6-00ca-68fe-0f9501b793f3.htm" />
     <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/2e923ab7-db31-f990-201c-2e2332094ab6.htm" />
+    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/e1f5f9ac-e8c6-00ca-68fe-0f9501b793f3.htm" />
   </HelpKINode>
   <HelpKINode Title="Default property" Url="html/b8bda0e8-2a51-9982-8a93-1bf2f5fbb2d4.htm" />
   <HelpKINode Title="DefaultChangeCompleteTimeout field" Url="html/147b3a1c-bef0-40e6-031b-f0b6c5778496.htm" />
@@ -907,24 +923,24 @@
     <HelpKINode Title="constructor" Url="html/12c33ddb-dac0-cee6-f465-f99fb5911f82.htm" />
     <HelpKINode Title="methods" Url="html/2e3b61a0-a688-ce00-0248-c6ece64003f1.htm" />
     <HelpKINode Title="methods" Url="html/c4d1e2cc-0dad-b4bd-0598-9016b779f8fc.htm" />
-    <HelpKINode Title="properties" Url="html/97156f23-21ae-dbb4-789d-afff6e95e91e.htm" />
     <HelpKINode Title="properties" Url="html/15e6ed2d-bebe-e456-eaeb-63f906e08b6d.htm" />
+    <HelpKINode Title="properties" Url="html/97156f23-21ae-dbb4-789d-afff6e95e91e.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Add method">
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Add Method " Url="html/02a0d776-9f24-59d8-0053-d75970bfa860.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Add Method " Url="html/34fdcf17-8438-9539-434a-c6b048086f8b.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.BaseAdd method">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.BaseAdd Method " Url="html/5c7c0939-a462-4788-5fa3-ff2a1ff60564.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.BaseAdd Method " Url="html/a98ad660-32b5-eb0e-0ae1-060ae87f7cb6.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.BaseAdd Method " Url="html/5c7c0939-a462-4788-5fa3-ff2a1ff60564.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Clear method">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Clear Method " Url="html/b4687965-e80d-b916-a5c4-45f067198de9.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Clear Method " Url="html/4b20b1e4-81ea-8e0c-89a8-4d4f4d131946.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Clear Method " Url="html/b4687965-e80d-b916-a5c4-45f067198de9.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CollectionType property">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CollectionType Property " Url="html/19324db2-1ac7-e8b5-614c-5cfe67daac96.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CollectionType Property " Url="html/142648b2-9756-3455-595b-7575107d7335.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CollectionType Property " Url="html/19324db2-1ac7-e8b5-614c-5cfe67daac96.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CreateNewElement method">
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.CreateNewElement Method " Url="html/d56e8905-6b1d-79f8-f495-a25c39bc688f.htm" />
@@ -935,8 +951,8 @@
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection Constructor " Url="html/12c33ddb-dac0-cee6-f465-f99fb5911f82.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.GetElementKey method">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.GetElementKey Method " Url="html/44ad2639-4e32-d3c6-456a-1f0a548ab125.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.GetElementKey Method " Url="html/fe68aec7-9bc1-7571-9c4f-d64bdf1d3ad5.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.GetElementKey Method " Url="html/44ad2639-4e32-d3c6-456a-1f0a548ab125.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.IndexOf method">
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.IndexOf Method " Url="html/ebef1183-a6f9-fe5e-8a01-96b43397912c.htm" />
@@ -947,12 +963,12 @@
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Item Property " Url="html/4b115efd-47ea-2d0d-41be-81f3794e140c.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Remove method">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Remove Method " Url="html/82e96052-ae0c-30d8-839c-2eb746e54519.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Remove Method " Url="html/f0a98968-9b83-07d7-3474-dadd58ff5173.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Remove Method " Url="html/82e96052-ae0c-30d8-839c-2eb746e54519.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.RemoveAt method">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.RemoveAt Method " Url="html/ef440eac-49b4-b957-2e82-3118f4b4d8f6.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.RemoveAt Method " Url="html/273f6c36-d7bb-4325-1211-60d565727bb2.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.RemoveAt Method " Url="html/ef440eac-49b4-b957-2e82-3118f4b4d8f6.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeConfigElement class">
     <HelpKINode Title="DutchPhoneNumberAreaCodeConfigElement Class" Url="html/1b007ab1-23bb-f904-7d2e-7e21f71353d0.htm" />
@@ -971,8 +987,8 @@
     <HelpKINode Title="DutchPhoneNumberAreaCodeConfigElement.AreaCode Property " Url="html/c6b2eda3-2a98-ffcc-b42e-d6c77becdc82.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAreaCodeConfigElement.DutchPhoneNumberAreaCodeConfigElement constructor">
-    <HelpKINode Title="DutchPhoneNumberAreaCodeConfigElement Constructor " Url="html/e2f395d6-918e-c644-da3d-892f612b075a.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeConfigElement Constructor " Url="html/bd7b013f-3593-3b42-5dbf-25e5c9d95e42.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeConfigElement Constructor " Url="html/e2f395d6-918e-c644-da3d-892f612b075a.htm" />
   </HelpKINode>
   <HelpKINode Title="DutchPhoneNumberAttribute class">
     <HelpKINode Title="DutchPhoneNumberAttribute Class" Url="html/86ce465d-4973-5b55-76f1-c0d1491bf38f.htm" />
@@ -987,6 +1003,7 @@
   <HelpKINode Title="DutchPhoneNumberAttribute.ConfigurationSectionName property" Url="html/0e288317-5b25-1700-6966-7ca46eebbf1a.htm" />
   <HelpKINode Title="DutchPhoneNumberAttribute.DutchPhoneNumberAttribute constructor" Url="html/8f35f89b-e353-6f74-78a9-341ea34fe586.htm" />
   <HelpKINode Title="DutchPhoneNumberAttribute.ExcludeAreaCodes property" Url="html/b7fa611e-bad9-8a03-9a59-01960ae591d3.htm" />
+  <HelpKINode Title="DutchPhoneNumberAttribute.GetClientValidationRules method" Url="html/b1ab5d86-f09e-bcf7-deaa-0634ad4a6790.htm" />
   <HelpKINode Title="DutchPhoneNumberAttribute.IncludeAreaCodes property" Url="html/e5c37b21-e398-d7c8-de7a-c0a3cf4bdef8.htm" />
   <HelpKINode Title="DutchPhoneNumberAttribute.IsValid method" Url="html/46ae2540-0e42-2598-41e9-7d3e938ba8ed.htm" />
   <HelpKINode Title="DutchPhoneNumberAttribute.Name property" Url="html/d1b617e8-58fa-13c1-83a7-758589de3db8.htm" />
@@ -1123,24 +1140,24 @@
     <HelpKINode Title="EmailCategory Enumeration" Url="html/d3d86f59-3f84-a190-df9b-c2ab5cee0b7f.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainCollection class">
-    <HelpKINode Title="EmailDomainCollection Class" Url="html/c91f691f-a7d2-2b64-63dc-0d890bd997a8.htm" />
     <HelpKINode Title="EmailDomainCollection Class" Url="html/081f0369-9c08-7dcb-a831-54e7dd00cb2f.htm" />
-    <HelpKINode Title="about EmailDomainCollection class" Url="html/c91f691f-a7d2-2b64-63dc-0d890bd997a8.htm" />
+    <HelpKINode Title="EmailDomainCollection Class" Url="html/c91f691f-a7d2-2b64-63dc-0d890bd997a8.htm" />
     <HelpKINode Title="about EmailDomainCollection class" Url="html/081f0369-9c08-7dcb-a831-54e7dd00cb2f.htm" />
-    <HelpKINode Title="constructor" Url="html/fcaa2f2a-89f7-7431-ec28-350be6db496e.htm" />
+    <HelpKINode Title="about EmailDomainCollection class" Url="html/c91f691f-a7d2-2b64-63dc-0d890bd997a8.htm" />
     <HelpKINode Title="constructor" Url="html/8991fbf9-c45c-8884-f058-f532f106ed17.htm" />
-    <HelpKINode Title="methods" Url="html/6e4fb8b6-f3d9-a3f2-39fc-c66a58011527.htm" />
+    <HelpKINode Title="constructor" Url="html/fcaa2f2a-89f7-7431-ec28-350be6db496e.htm" />
     <HelpKINode Title="methods" Url="html/69ab0e6d-0c75-f741-2c10-c4d23d690f44.htm" />
-    <HelpKINode Title="properties" Url="html/8766f58e-9d24-9a35-5032-d35ea7f4a78d.htm" />
+    <HelpKINode Title="methods" Url="html/6e4fb8b6-f3d9-a3f2-39fc-c66a58011527.htm" />
     <HelpKINode Title="properties" Url="html/0cf6ba31-aa51-fdb9-8d29-bd688f48d5ac.htm" />
+    <HelpKINode Title="properties" Url="html/8766f58e-9d24-9a35-5032-d35ea7f4a78d.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainCollection.CollectionType property">
     <HelpKINode Title="EmailDomainCollection.CollectionType Property " Url="html/6319ea11-0b11-6c58-95db-4e84f5c3f76e.htm" />
     <HelpKINode Title="EmailDomainCollection.CollectionType Property " Url="html/16f8a759-155f-006e-e4b4-2c1d527a0ae6.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainCollection.CreateNewElement method">
-    <HelpKINode Title="EmailDomainCollection.CreateNewElement Method " Url="html/b21d607f-cc12-a4a6-2e50-284f2b990bf5.htm" />
     <HelpKINode Title="EmailDomainCollection.CreateNewElement Method " Url="html/917b93d9-cd44-3860-e493-f29a9a63cb4e.htm" />
+    <HelpKINode Title="EmailDomainCollection.CreateNewElement Method " Url="html/b21d607f-cc12-a4a6-2e50-284f2b990bf5.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainCollection.ElementName property">
     <HelpKINode Title="EmailDomainCollection.ElementName Property " Url="html/4de67e3f-dfa2-840f-0f44-9bc90fcce6fa.htm" />
@@ -1155,24 +1172,24 @@
     <HelpKINode Title="EmailDomainCollection.GetElementKey Method " Url="html/7cbb17fe-dc25-eb13-1d68-bf286ed2d876.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainCollection.Item property">
-    <HelpKINode Title="EmailDomainCollection.Item Property " Url="html/7cdcbdc6-c31f-d960-aa6d-744a0e910d44.htm" />
     <HelpKINode Title="EmailDomainCollection.Item Property " Url="html/49e7b4ac-aafc-07d9-4e8b-4440185d69b7.htm" />
+    <HelpKINode Title="EmailDomainCollection.Item Property " Url="html/7cdcbdc6-c31f-d960-aa6d-744a0e910d44.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainConfigElement class">
     <HelpKINode Title="EmailDomainConfigElement Class" Url="html/e04b04b4-a254-99ef-1d02-b8d583ff96fa.htm" />
     <HelpKINode Title="EmailDomainConfigElement Class" Url="html/4cdf916b-32e0-91b2-398c-ff181e19f5e8.htm" />
-    <HelpKINode Title="about EmailDomainConfigElement class" Url="html/e04b04b4-a254-99ef-1d02-b8d583ff96fa.htm" />
     <HelpKINode Title="about EmailDomainConfigElement class" Url="html/4cdf916b-32e0-91b2-398c-ff181e19f5e8.htm" />
-    <HelpKINode Title="constructor" Url="html/0892ec6e-528c-bf3f-6a62-0b3cc715fe8c.htm" />
+    <HelpKINode Title="about EmailDomainConfigElement class" Url="html/e04b04b4-a254-99ef-1d02-b8d583ff96fa.htm" />
     <HelpKINode Title="constructor" Url="html/7ee5bbd7-fbe7-5e96-9e68-61995619b3db.htm" />
-    <HelpKINode Title="methods" Url="html/222ec26b-6378-3b91-4ab6-28482c3364da.htm" />
+    <HelpKINode Title="constructor" Url="html/0892ec6e-528c-bf3f-6a62-0b3cc715fe8c.htm" />
     <HelpKINode Title="methods" Url="html/c5a5c504-c29a-a974-5e8e-d917bfe6e359.htm" />
-    <HelpKINode Title="properties" Url="html/8084e021-52cc-7b36-5cbf-31e7b0ae926f.htm" />
+    <HelpKINode Title="methods" Url="html/222ec26b-6378-3b91-4ab6-28482c3364da.htm" />
     <HelpKINode Title="properties" Url="html/0b048650-b3e4-fc42-6da0-53d100ebbdc5.htm" />
+    <HelpKINode Title="properties" Url="html/8084e021-52cc-7b36-5cbf-31e7b0ae926f.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainConfigElement.EmailDomainConfigElement constructor">
-    <HelpKINode Title="EmailDomainConfigElement Constructor " Url="html/0892ec6e-528c-bf3f-6a62-0b3cc715fe8c.htm" />
     <HelpKINode Title="EmailDomainConfigElement Constructor " Url="html/7ee5bbd7-fbe7-5e96-9e68-61995619b3db.htm" />
+    <HelpKINode Title="EmailDomainConfigElement Constructor " Url="html/0892ec6e-528c-bf3f-6a62-0b3cc715fe8c.htm" />
   </HelpKINode>
   <HelpKINode Title="EmailDomainConfigElement.Pattern property">
     <HelpKINode Title="EmailDomainConfigElement.Pattern Property " Url="html/d968ae5d-f2c7-316c-b846-7cadd9ce6422.htm" />
@@ -1290,8 +1307,8 @@
     <HelpKINode Title="ValidatorsSection.EmailValidators Property " Url="html/c58be754-4205-eb6d-a394-25d999fd7c33.htm" />
   </HelpKINode>
   <HelpKINode Title="Emergency enumeration member">
-    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/e1f5f9ac-e8c6-00ca-68fe-0f9501b793f3.htm" />
     <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/2e923ab7-db31-f990-201c-2e2332094ab6.htm" />
+    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/e1f5f9ac-e8c6-00ca-68fe-0f9501b793f3.htm" />
   </HelpKINode>
   <HelpKINode Title="EmitHeader property">
     <HelpKINode Title="CsvSerializer(T).EmitHeader Property " Url="html/c7c4a8d7-d3f4-7997-106b-b79df6e0a3ee.htm" />
@@ -1420,6 +1437,7 @@
   <HelpKINode Title="Enkoni.Framework.EventArgs&lt;T&gt; class" Url="html/773aef51-a786-7283-2828-f4ecf79a8d7b.htm" />
   <HelpKINode Title="Enkoni.Framework.Extensions class" Url="html/911e2aa9-b6ee-6560-605d-949848bf8b9f.htm" />
   <HelpKINode Title="Enkoni.Framework.FixedDateTimeProvider class" Url="html/66f2edf0-a02f-2ac3-f2d8-2daa1859ee05.htm" />
+  <HelpKINode Title="Enkoni.Framework.Guard class" Url="html/1b62e93f-534d-5389-adb2-1b191feeb907.htm" />
   <HelpKINode Title="Enkoni.Framework.InvalidTypeParameterException class" Url="html/7acdf387-70ca-14e7-a412-79d67252ef9d.htm" />
   <HelpKINode Title="Enkoni.Framework.ISpecification(Of T) interface" Url="html/4395d29f-40d4-3515-14dc-a5d8b8a46251.htm" />
   <HelpKINode Title="Enkoni.Framework.ISpecification&lt;T&gt; interface" Url="html/4395d29f-40d4-3515-14dc-a5d8b8a46251.htm" />
@@ -1668,20 +1686,20 @@
   </HelpKINode>
   <HelpKINode Title="Extensions class">
     <HelpKINode Title="Extensions Class" Url="html/9c50fa00-fb0b-6f1d-2ea7-dade5c4be335.htm" />
-    <HelpKINode Title="Extensions Class" Url="html/ad3bd954-93bc-fed0-9840-98b8289be05e.htm" />
-    <HelpKINode Title="Extensions Class" Url="html/e17c2156-7a4d-86fd-bb0f-8540908e481e.htm" />
     <HelpKINode Title="Extensions Class" Url="html/911e2aa9-b6ee-6560-605d-949848bf8b9f.htm" />
+    <HelpKINode Title="Extensions Class" Url="html/e17c2156-7a4d-86fd-bb0f-8540908e481e.htm" />
+    <HelpKINode Title="Extensions Class" Url="html/ad3bd954-93bc-fed0-9840-98b8289be05e.htm" />
     <HelpKINode Title="Extensions Class" Url="html/a697f154-f906-afe0-8a05-ccdb420c8278.htm" />
+    <HelpKINode Title="about Extensions class" Url="html/e17c2156-7a4d-86fd-bb0f-8540908e481e.htm" />
     <HelpKINode Title="about Extensions class" Url="html/ad3bd954-93bc-fed0-9840-98b8289be05e.htm" />
+    <HelpKINode Title="about Extensions class" Url="html/911e2aa9-b6ee-6560-605d-949848bf8b9f.htm" />
     <HelpKINode Title="about Extensions class" Url="html/9c50fa00-fb0b-6f1d-2ea7-dade5c4be335.htm" />
     <HelpKINode Title="about Extensions class" Url="html/a697f154-f906-afe0-8a05-ccdb420c8278.htm" />
-    <HelpKINode Title="about Extensions class" Url="html/911e2aa9-b6ee-6560-605d-949848bf8b9f.htm" />
-    <HelpKINode Title="about Extensions class" Url="html/e17c2156-7a4d-86fd-bb0f-8540908e481e.htm" />
-    <HelpKINode Title="methods" Url="html/49dd70aa-7331-0524-84cb-9ebf5b483980.htm" />
     <HelpKINode Title="methods" Url="html/809b45f1-1d7d-9142-07b0-265b51e27462.htm" />
+    <HelpKINode Title="methods" Url="html/49dd70aa-7331-0524-84cb-9ebf5b483980.htm" />
+    <HelpKINode Title="methods" Url="html/47efe0f1-7efc-a0c3-b9fb-95d65ba58de9.htm" />
     <HelpKINode Title="methods" Url="html/bc5f756d-346c-5b48-5815-e98f8bdb4642.htm" />
     <HelpKINode Title="methods" Url="html/1b7d079a-5a5c-1bba-b063-d7a439dff652.htm" />
-    <HelpKINode Title="methods" Url="html/47efe0f1-7efc-a0c3-b9fb-95d65ba58de9.htm" />
   </HelpKINode>
   <HelpKINode Title="Extensions.ActualType method" Url="html/b37b68ff-90e4-0651-498a-fd2186d8da7d.htm" />
   <HelpKINode Title="Extensions.Between method" Url="html/d5eb7629-6400-bad9-b432-12188a1b7d24.htm" />
@@ -1706,8 +1724,8 @@
     <HelpKINode Title="Extensions.FireAsync Method " Url="html/5a5dd379-cedb-454a-ad80-71766e34bd0d.htm" />
   </HelpKINode>
   <HelpKINode Title="Extensions.FireInParallel method">
-    <HelpKINode Title="Extensions.FireInParallel Method " Url="html/269a7ce2-11cd-3630-1d92-9f02a934ea9e.htm" />
     <HelpKINode Title="Extensions.FireInParallel Method " Url="html/b256ad2c-6a54-85be-9839-52d747653281.htm" />
+    <HelpKINode Title="Extensions.FireInParallel Method " Url="html/269a7ce2-11cd-3630-1d92-9f02a934ea9e.htm" />
   </HelpKINode>
   <HelpKINode Title="Extensions.FirstOrDefault method" Url="html/d5aefc04-a7c5-011d-5587-67cc35c373ab.htm" />
   <HelpKINode Title="Extensions.ForEach(Of T) method" Url="html/b06fe45e-0020-8712-0d8d-cb6dc52b6b5c.htm" />
@@ -1883,8 +1901,8 @@
     <HelpKINode Title="ShallowDatabaseRepository(TEntity).FindSingleCore Method " Url="html/0ecd8fd4-c342-b286-6cde-1ff844cc7579.htm" />
   </HelpKINode>
   <HelpKINode Title="Fire method">
-    <HelpKINode Title="Extensions.Fire Method " Url="html/47df79f7-4d5e-c7c4-0c47-c4ddcb179437.htm" />
     <HelpKINode Title="Extensions.Fire Method " Url="html/f3304114-51af-d38f-4821-c39a96864350.htm" />
+    <HelpKINode Title="Extensions.Fire Method " Url="html/47df79f7-4d5e-c7c4-0c47-c4ddcb179437.htm" />
   </HelpKINode>
   <HelpKINode Title="FireAsync method">
     <HelpKINode Title="Extensions.FireAsync Method " Url="html/e374d111-201a-bfb3-fc06-9cca08611f42.htm" />
@@ -1922,12 +1940,16 @@
   </HelpKINode>
   <HelpKINode Title="GetBaseClasses method" Url="html/e3ef09fa-d9df-e736-1ee2-12c9eee39399.htm" />
   <HelpKINode Title="GetBaseTypes method" Url="html/428fd8c4-4374-ab4f-c5ce-b36d6bbc4101.htm" />
+  <HelpKINode Title="GetClientValidationRules method">
+    <HelpKINode Title="DutchPhoneNumberAttribute.GetClientValidationRules Method " Url="html/b1ab5d86-f09e-bcf7-deaa-0634ad4a6790.htm" />
+    <HelpKINode Title="IbanAttribute.GetClientValidationRules Method " Url="html/331315f0-bcc1-bdd7-771d-2ff52d97daf8.htm" />
+  </HelpKINode>
   <HelpKINode Title="GetDerivedTypes method" Url="html/d414c53d-32aa-26e1-2dea-98b9a8936e10.htm" />
   <HelpKINode Title="GetElementKey method">
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.GetElementKey Method " Url="html/fe68aec7-9bc1-7571-9c4f-d64bdf1d3ad5.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.GetElementKey Method " Url="html/44ad2639-4e32-d3c6-456a-1f0a548ab125.htm" />
-    <HelpKINode Title="EmailDomainCollection.GetElementKey Method " Url="html/7cbb17fe-dc25-eb13-1d68-bf286ed2d876.htm" />
     <HelpKINode Title="EmailDomainCollection.GetElementKey Method " Url="html/ac660c2a-247d-9570-e4e2-4573905f467b.htm" />
+    <HelpKINode Title="EmailDomainCollection.GetElementKey Method " Url="html/7cbb17fe-dc25-eb13-1d68-bf286ed2d876.htm" />
   </HelpKINode>
   <HelpKINode Title="GetEntity method" Url="html/8012feea-f73a-a933-d552-f32c20f897c9.htm" />
   <HelpKINode Title="GetEnumerator method">
@@ -1958,6 +1980,27 @@
     <HelpKINode Title="IMessage.GetWindow Method " Url="html/d1ca2bb9-38fc-bd4a-0cad-238fbe9e501c.htm" />
     <HelpKINode Title="Message.GetWindow Method " Url="html/5cb41e44-4bb6-f5d9-bdab-9c9567399c73.htm" />
   </HelpKINode>
+  <HelpKINode Title="Guard class">
+    <HelpKINode Title="Guard Class" Url="html/1b62e93f-534d-5389-adb2-1b191feeb907.htm" />
+    <HelpKINode Title="about Guard class" Url="html/1b62e93f-534d-5389-adb2-1b191feeb907.htm" />
+    <HelpKINode Title="methods" Url="html/e754d833-8a73-24b8-cfe9-3c6a49696159.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Guard.ArgumentIsBetween(Of T) method" Url="html/818c92db-bb1c-63b2-3c55-ef35215543fb.htm" />
+  <HelpKINode Title="Guard.ArgumentIsBetween&lt;T&gt; method" Url="html/818c92db-bb1c-63b2-3c55-ef35215543fb.htm" />
+  <HelpKINode Title="Guard.ArgumentIsGreaterOrEqualThan(Of T) method" Url="html/c8fe5316-7a16-c0be-3313-8a4318285d3a.htm" />
+  <HelpKINode Title="Guard.ArgumentIsGreaterOrEqualThan&lt;T&gt; method" Url="html/c8fe5316-7a16-c0be-3313-8a4318285d3a.htm" />
+  <HelpKINode Title="Guard.ArgumentIsGreaterThan(Of T) method" Url="html/3be3473a-42d9-eb0f-6fdd-b98d82405964.htm" />
+  <HelpKINode Title="Guard.ArgumentIsGreaterThan&lt;T&gt; method" Url="html/3be3473a-42d9-eb0f-6fdd-b98d82405964.htm" />
+  <HelpKINode Title="Guard.ArgumentIsLowerOrEqualThan(Of T) method" Url="html/c62fe16f-b453-f71b-7cb6-a066cdd0384f.htm" />
+  <HelpKINode Title="Guard.ArgumentIsLowerOrEqualThan&lt;T&gt; method" Url="html/c62fe16f-b453-f71b-7cb6-a066cdd0384f.htm" />
+  <HelpKINode Title="Guard.ArgumentIsLowerThan(Of T) method" Url="html/33b6b387-1361-811b-3ad1-dc229b4b3a2d.htm" />
+  <HelpKINode Title="Guard.ArgumentIsLowerThan&lt;T&gt; method" Url="html/33b6b387-1361-811b-3ad1-dc229b4b3a2d.htm" />
+  <HelpKINode Title="Guard.ArgumentIsNotNull method" Url="html/fdbf9b5b-c7d7-4c4e-bb82-6b2e88f64bc9.htm" />
+  <HelpKINode Title="Guard.ArgumentIsNotNullOrEmpty method" Url="html/f3489ca2-f8fa-3cb8-0bf6-81d02aded333.htm" />
+  <HelpKINode Title="Guard.ArgumentIsNotOfType method" Url="html/f2d1156b-9e36-2150-413b-f43e50f6f7c5.htm" />
+  <HelpKINode Title="Guard.ArgumentIsOfType method" Url="html/52b740eb-defd-7399-9fcf-f252102760d6.htm" />
+  <HelpKINode Title="Guard.ArgumentIsValidEnum method" Url="html/1cb8ee2c-2687-e76c-769b-ec7dea0a6071.htm" />
+  <HelpKINode Title="Guard.ArgumentIsValidPath method" Url="html/795c4f7a-3e1e-6823-08cc-5c3df1923ce9.htm" />
   <HelpKINode Title="HandleIncludePathUpdated method" Url="html/63772637-50f3-8890-f6ea-8a9c4d00e6d6.htm" />
   <HelpKINode Title="HandleMaximumResultsUpdated method" Url="html/f7123c2f-b41a-b89e-94b5-e779e0bb6bb5.htm" />
   <HelpKINode Title="HandleOrderByRulesUpdated method" Url="html/0ca75562-cb68-0572-90d8-461253fdc120.htm" />
@@ -1992,6 +2035,7 @@
     <HelpKINode Title="methods" Url="html/e808232c-9119-6514-d6a9-6c476f3b93ef.htm" />
     <HelpKINode Title="properties" Url="html/546d25d0-0e63-e51b-843e-4e270e3b747a.htm" />
   </HelpKINode>
+  <HelpKINode Title="IbanAttribute.GetClientValidationRules method" Url="html/331315f0-bcc1-bdd7-771d-2ff52d97daf8.htm" />
   <HelpKINode Title="IbanAttribute.IbanAttribute constructor" Url="html/402d66e8-e859-7b8a-06e5-30217fdcb365.htm" />
   <HelpKINode Title="IbanAttribute.IsValid method" Url="html/68972d33-1117-f8ee-3dbf-b7464d1e28ca.htm" />
   <HelpKINode Title="IbanValidator class">
@@ -2288,8 +2332,8 @@
   <HelpKINode Title="IsValueSpecified method" Url="html/d0495da6-d586-c0e3-31e1-ca5c403301a7.htm" />
   <HelpKINode Title="Item property">
     <HelpKINode Title="DataSourceInfo.Item Property " Url="html/0ca20c16-3531-5bd9-f5ab-a388adc2f500.htm" />
-    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Item Property " Url="html/f16ae493-07be-20f8-cbb4-d3aa16f73c9b.htm" />
     <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Item Property " Url="html/4b115efd-47ea-2d0d-41be-81f3794e140c.htm" />
+    <HelpKINode Title="DutchPhoneNumberAreaCodeCollection.Item Property " Url="html/f16ae493-07be-20f8-cbb4-d3aa16f73c9b.htm" />
     <HelpKINode Title="DutchPhoneNumberValidationConfigDictionary.Item Property " Url="html/68fe2640-957a-c100-b043-b364524d7907.htm" />
     <HelpKINode Title="DutchPhoneNumberValidatorConfigDictionary.Item Property " Url="html/9dfbdfc6-14d8-3dea-7c56-0a23a54cd206.htm" />
     <HelpKINode Title="EmailDomainCollection.Item Property " Url="html/7cdcbdc6-c31f-d960-aa6d-744a0e910d44.htm" />
@@ -2665,15 +2709,15 @@
     <HelpKINode Title="Specification(T).OrderByDescending(TKey) Method " Url="html/d3bad512-d8a0-558c-9801-9fa4297be96b.htm" />
   </HelpKINode>
   <HelpKINode Title="Other enumeration member">
-    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/2e923ab7-db31-f990-201c-2e2332094ab6.htm" />
     <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/e1f5f9ac-e8c6-00ca-68fe-0f9501b793f3.htm" />
+    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/2e923ab7-db31-f990-201c-2e2332094ab6.htm" />
   </HelpKINode>
   <HelpKINode Title="ParentDomainModel property" Url="html/31700095-02fd-4da5-6596-65472e448c46.htm" />
   <HelpKINode Title="Partition method" Url="html/fc8bc6aa-8abf-2351-92cc-3c9150fed9d0.htm" />
   <HelpKINode Title="PassEventArgsToCommand property" Url="html/256394a3-07e8-10c0-cc5b-ac32d2a2a2f6.htm" />
   <HelpKINode Title="Pattern property">
-    <HelpKINode Title="EmailDomainConfigElement.Pattern Property " Url="html/d968ae5d-f2c7-316c-b846-7cadd9ce6422.htm" />
     <HelpKINode Title="EmailDomainConfigElement.Pattern Property " Url="html/4fdf4420-73bd-2e2c-3558-2f1df0509be7.htm" />
+    <HelpKINode Title="EmailDomainConfigElement.Pattern Property " Url="html/d968ae5d-f2c7-316c-b846-7cadd9ce6422.htm" />
   </HelpKINode>
   <HelpKINode Title="Pause method">
     <HelpKINode Title="IWorkflow.Pause Method " Url="html/f04c89ec-443e-d0b2-e1ff-5378d901b15f.htm" />
@@ -2690,8 +2734,8 @@
   <HelpKINode Title="PersistencyExists method" Url="html/bbb3f74b-69a6-2695-e840-7320f89e8f80.htm" />
   <HelpKINode Title="PersistencyExistsCore method" Url="html/0da0b22e-2bbc-512e-2884-4c734a8df4e6.htm" />
   <HelpKINode Title="PhoneNumberCategories enumeration">
-    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/2e923ab7-db31-f990-201c-2e2332094ab6.htm" />
     <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/e1f5f9ac-e8c6-00ca-68fe-0f9501b793f3.htm" />
+    <HelpKINode Title="PhoneNumberCategories Enumeration" Url="html/2e923ab7-db31-f990-201c-2e2332094ab6.htm" />
   </HelpKINode>
   <HelpKINode Title="Pop method" Url="html/43a2f833-4c0e-e052-c78b-f16b2f673886.htm" />
   <HelpKINode Title="PopCore method" Url="html/493fd699-2383-2d49-95bd-5a27648c3761.htm" />
