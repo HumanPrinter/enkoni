@@ -14,19 +14,24 @@ namespace Enkoni.Framework.ServiceModel {
   /// <summary>Implements a message inspector that inspects a received message.</summary>
   public class SchemaValidationMessageInspector : IDispatchMessageInspector {
     #region Instance variables
+
     /// <summary>The schemas that are used to validate the messages.</summary>
     private readonly XmlSchemaSet schemas;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="SchemaValidationMessageInspector"/> class.</summary>
     /// <param name="schemas">The schemas that are to be used.</param>
     public SchemaValidationMessageInspector(XmlSchemaSet schemas) {
       this.schemas = schemas;
     }
+
     #endregion
 
     #region IDispatchMessageInspector implementation
+
     /// <summary>Called after an inbound message has been received but before the message is dispatched to the intended operation.</summary>
     /// <param name="request">The request message.</param>
     /// <param name="channel">The incoming channel.</param>
@@ -36,7 +41,7 @@ namespace Enkoni.Framework.ServiceModel {
       if(request == null) {
         return null;
       }
-      
+
       /* Create a buffer in order to make it possible to work with copies of the message */
       MessageBuffer buffer = request.CreateBufferedCopy(int.MaxValue);
 
@@ -70,10 +75,12 @@ namespace Enkoni.Framework.ServiceModel {
     public void BeforeSendReply(ref Message reply, object correlationState) {
       /* Nothing to do */
     }
+
     #endregion
 
     #region Protected extension methods
-    /// <summary>When overriden executes some logic before starting the validation.</summary>
+
+    /// <summary>When overridden executes some logic before starting the validation.</summary>
     /// <param name="receivedMessage">The request message.</param>
     /// <param name="channel">The incoming channel.</param>
     /// <param name="instanceContext">The current service instance.</param>
@@ -91,15 +98,17 @@ namespace Enkoni.Framework.ServiceModel {
       traceSource.Flush();
     }
 
-    /// <summary>When overriden executes some logic after the validation was completed successfully.</summary>
+    /// <summary>When overridden executes some logic after the validation was completed successfully.</summary>
     /// <param name="receivedMessage">The request message.</param>
     /// <param name="channel">The incoming channel.</param>
     /// <param name="instanceContext">The current service instance.</param>
     protected virtual void OnValidationSuccess(Message receivedMessage, IClientChannel channel, InstanceContext instanceContext) {
     }
+
     #endregion
 
     #region Private methods
+
     /// <summary>Validates the message using the supplied XSD-schemas.</summary>
     /// <param name="message">The message that is to be validated.</param>
     /// <exception cref="XmlSchemaValidationException">The body of the message does not comply with the schema.</exception>
@@ -130,6 +139,7 @@ namespace Enkoni.Framework.ServiceModel {
         }
       }
     }
+
     #endregion
   }
 }

@@ -14,11 +14,11 @@ using Enkoni.Framework.Validation.RegularExpressions;
 namespace Enkoni.Framework.DataAnnotations {
   /// <summary>Attribute to specify e-mail validation on a property, method or field.</summary>
   /// <remarks>This validator can be configured through code or through the configuration file. By default all domains and /or IP addresses are considered valid
-  /// as long as their syntax is correct (note that IP addresses will only be considered valid if <see cref="AllowIPAddresses"/> is set to <see langword="true"/>). 
+  /// as long as their syntax is correct (note that IP addresses will only be considered valid if <see cref="AllowIPAddresses"/> is set to <see langword="true"/>).
   /// <br/>
   /// To specifically include or exclude domains or IP addresses, two approaches can be used.<br/>
   /// <h3>Code</h3>
-  /// By setting the <see cref="IncludeDomains"/> and/or <see cref="ExcludeDomains"/> properties, the white and black list of valid domains or IP addresses can be 
+  /// By setting the <see cref="IncludeDomains"/> and/or <see cref="ExcludeDomains"/> properties, the white and black list of valid domains or IP addresses can be
   /// manipulated. To specify multiple domains, separate the domains with a semi colon (';'). When setting both the <see cref="IncludeDomains"/>  and the
   /// <see cref="ExcludeDomains"/> properties, the values in <see cref="ExcludeDomains"/> takes precedence over the values in <see cref="IncludeDomains"/>.<br/>
   /// <br/>
@@ -55,8 +55,8 @@ namespace Enkoni.Framework.DataAnnotations {
   /// </Enkoni.DataAnnotations>
   /// ]]>
   /// </code>
-  /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one 
-  /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified 
+  /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one
+  /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified
   /// or whose name is not explicitly configured.</para>
   /// <code>
   /// <![CDATA[
@@ -78,16 +78,21 @@ namespace Enkoni.Framework.DataAnnotations {
     Inherited = false)]
   public sealed class EmailAttribute : ValidationAttribute {
     #region Constants
+
     /// <summary>Defines the default name for the validator.</summary>
     internal const string DefaultName = "00661f4a-faa2-452f-8fd9-af6c776bfc49";
+
     #endregion
 
     #region Instance variables
+
     /// <summary>Holds the name of the configuration section that must be used.</summary>
     private static string configurationSectionName;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="EmailAttribute"/> class.</summary>
     public EmailAttribute()
       : this(DefaultName) {
@@ -121,9 +126,11 @@ namespace Enkoni.Framework.DataAnnotations {
 
       this.LoadConfiguration();
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the name of the configuration section that is used to preconfigure the validator. The default value is set to <see cref="ValidationSection.DefaultSectionName"/>.
     /// </summary>
     public static string ConfigurationSectionName {
@@ -156,9 +163,11 @@ namespace Enkoni.Framework.DataAnnotations {
     private static Dictionary<string, ConfiguredValuesContainer> ConfiguredValues {
       get { return ConfiguredValuesSingletonContainer.ConfiguredValues; }
     }
+
     #endregion
 
     #region ValidationAttribute overrides
+
     /// <summary>Determines whether the specified value of the object is valid.</summary>
     /// <param name="value">The value of the object to validate.</param>
     /// <returns><see langword="true"/> if the specified value is valid; otherwise, <see langword="false"/>.</returns>
@@ -190,9 +199,11 @@ namespace Enkoni.Framework.DataAnnotations {
       isValid = ValidateMailAddress(valueToValidate, localPartRegex, this.AllowComments, this.AllowIPAddresses, this.RequireTopLevelDomain, this.IncludeDomains, this.ExcludeDomains);
       return isValid;
     }
+
     #endregion
 
     #region Private helper methods
+
     /// <summary>Validates whether the input is a valid e-mail address.</summary>
     /// <param name="input">The string that must be validated.</param>
     /// <param name="localPartRegex">The regular expression that must be used to validate the local part of the e-mail address.</param>
@@ -419,9 +430,11 @@ namespace Enkoni.Framework.DataAnnotations {
         }
       }
     }
+
     #endregion
 
     #region Private classes
+
     /// <summary>Holds the values that were set through the configuration.</summary>
     private class ConfiguredValuesContainer {
       /// <summary>Gets or sets a value indicating whether the setting for 'AllowComments' was set to <see langword="true"/>.</summary>
@@ -447,7 +460,7 @@ namespace Enkoni.Framework.DataAnnotations {
       internal static readonly Dictionary<string, ConfiguredValuesContainer> ConfiguredValues = ReadConfiguration(ConfigurationSectionName);
 
       /// <summary>Initializes static members of the <see cref="ConfiguredValuesSingletonContainer"/> class.</summary>
-      /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C# 
+      /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C#
       /// compiler from marking this type as <c>beforefieldinit</c> which is required in order to get the laziness behavior that is intended.</remarks>
       static ConfiguredValuesSingletonContainer() {
       }
@@ -457,7 +470,7 @@ namespace Enkoni.Framework.DataAnnotations {
       }
 
       /// <summary>Reads the configuration and sets the configured values.</summary>
-      /// <param name="sectionName">The name of the config section that must be read. Use <see langword="null"/> or <see cref="String.Empty"/> to use the default section name.</param>
+      /// <param name="sectionName">The name of the config section that must be read. Use <see langword="null"/> or <see cref="string.Empty"/> to use the default section name.</param>
       /// <returns>The values that were read from the configuration or <see langword="null"/> if there was no configuration.</returns>
       private static Dictionary<string, ConfiguredValuesContainer> ReadConfiguration(string sectionName) {
         if(string.IsNullOrEmpty(sectionName)) {
@@ -496,6 +509,7 @@ namespace Enkoni.Framework.DataAnnotations {
         return configuredValues;
       }
     }
+
     #endregion
   }
 }

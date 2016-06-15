@@ -8,20 +8,25 @@ namespace Enkoni.Framework.Logging {
   /// this class can be retrieved through the <see cref="LogManager"/> class.</summary>
   public sealed class Logger {
     #region Private instance variables
+
     /// <summary>The actual logger. When set to null, no logging will be performed.</summary>
     private LogWriter logWriter;
+
     #endregion
 
     #region Public constructors
+
     /// <summary>Initializes a new instance of the <see cref="Logger"/> class using the specified <see cref="LogWriter"/>.</summary>
     /// <param name="logWriter">The actual logger that mist be used. Use <see langword="null"/> to disable logging.</param>
     public Logger(LogWriter logWriter) {
       this.logWriter = logWriter;
     }
+
     #endregion
 
     #region General Log-methods
-    /// <summary>Logs the specified <see cref="LogEntry"/> using the pre-configured logger. If <paramref name="logEntry"/> is <see langword="null"/> 
+
+    /// <summary>Logs the specified <see cref="LogEntry"/> using the pre-configured logger. If <paramref name="logEntry"/> is <see langword="null"/>
     /// or there is no pre-configured logger, nothing will be logged.</summary>
     /// <param name="logEntry">The entry containing all the information that must be logged.</param>
     public void Log(LogEntry logEntry) {
@@ -66,9 +71,11 @@ namespace Enkoni.Framework.Logging {
 
       this.Log(logEntry);
     }
+
     #endregion
 
     #region Info Log-methods
+
     /// <summary>Logs an informational message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
     /// The log message will get the severity <see cref="TraceEventType.Information"/>.</summary>
     /// <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
@@ -92,9 +99,11 @@ namespace Enkoni.Framework.Logging {
     public void Info(string message, string category, int priority) {
       this.Log(message, TraceEventType.Information, category, priority, null, -1, Guid.Empty, null);
     }
+
     #endregion
 
     #region Verbose Log-methods
+
     /// <summary>Logs a verbose message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
     /// The log message will get the severity <see cref="TraceEventType.Verbose"/>.</summary>
     /// <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
@@ -118,9 +127,11 @@ namespace Enkoni.Framework.Logging {
     public void Verbose(string message, string category, int priority) {
       this.Log(message, TraceEventType.Verbose, category, priority, null, -1, Guid.Empty, null);
     }
+
     #endregion
 
     #region Warning Log-methods
+
     /// <summary>Logs a warning using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
     /// The log message will get the severity <see cref="TraceEventType.Warning"/>.</summary>
     /// <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
@@ -196,9 +207,11 @@ namespace Enkoni.Framework.Logging {
         this.Log(logEntry);
       }
     }
+
     #endregion
 
     #region Error Log-methods
+
     /// <summary>Logs an error using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
     /// The log message will get the severity <see cref="TraceEventType.Error"/>.</summary>
     /// <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
@@ -274,9 +287,11 @@ namespace Enkoni.Framework.Logging {
         this.Log(logEntry);
       }
     }
+
     #endregion
 
     #region Citical Log-methods
+
     /// <summary>Logs a critical message using the pre-configured logger. If there is no pre-configured logger, nothing will be logged.<br/>
     /// The log message will get the severity <see cref="TraceEventType.Critical"/>.</summary>
     /// <param name="message">The message that must be logged. When this value is empty, nothing will be logged.</param>
@@ -352,6 +367,7 @@ namespace Enkoni.Framework.Logging {
         this.Log(logEntry);
       }
     }
+
     #endregion
   }
 }

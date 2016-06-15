@@ -6,10 +6,12 @@ namespace Enkoni.Framework.Entities {
   /// <typeparam name="TEntity">The type of entity that must be compared.</typeparam>
   public class EntityEqualityComparer<TEntity> : LambdaEqualityComparer<TEntity, int> where TEntity : IEntity<TEntity> {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="EntityEqualityComparer{TEntity}"/> class.</summary>
     public EntityEqualityComparer()
       : base(t => t.RecordId) {
     }
+
     #endregion
   }
 }

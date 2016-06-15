@@ -7,25 +7,32 @@ namespace Enkoni.Framework.Entities {
   /// <typeparam name="T">The type of object that is stored.</typeparam>
   public class HttpSessionMemoryStore<T> : MemoryStore<T> where T : class {
     #region Static variables
+
     /// <summary>The key that is used to retrieve the storage-collection from the HttpSession.</summary>
     private const string StorageKey = "HttpSessionMemoryStoreStorage";
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="HttpSessionMemoryStore{T}"/> class.</summary>
     public HttpSessionMemoryStore()
       : base() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the storage that holds the saved instances.</summary>
     public override IList<T> Storage {
       get { return RetrieveStorage(); }
     }
+
     #endregion
 
     #region Private static helper methods
+
     /// <summary>Retrieves the storage from the current session. If there is no storage available yet, a new one is created.</summary>
     /// <returns>The storage that is stored in the session.</returns>
     private static IList<T> RetrieveStorage() {
@@ -43,6 +50,7 @@ namespace Enkoni.Framework.Entities {
         return HttpContext.Current.Session[StorageKey] as List<T>;
       }
     }
+
     #endregion
   }
 }

@@ -6,6 +6,7 @@ namespace Enkoni.Framework.Serialization {
   [AttributeUsage(AttributeTargets.Class)]
   public sealed class CsvRecordAttribute : Attribute {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="CsvRecordAttribute"/> class using a default separator.</summary>
     public CsvRecordAttribute()
       : this(",") {
@@ -22,9 +23,11 @@ namespace Enkoni.Framework.Serialization {
     public CsvRecordAttribute(string separator) {
       this.Separator = separator;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the separator string. Defaults to ",".</summary>
     public string Separator { get; private set; }
 
@@ -39,6 +42,7 @@ namespace Enkoni.Framework.Serialization {
     /// <summary>Gets or sets the name of the culture that must be used to parse the field values.</summary>
     [DefaultValue(null)]
     public string CultureName { get; set; }
+
     #endregion
   }
 }

@@ -15,9 +15,10 @@ using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace Enkoni.Framework.Validation.Validators {
-  /// <summary>Performs validation on <see cref="String"/> instances by checking if they contain a valid IBAN account number.</summary>
+  /// <summary>Performs validation on <see cref="string"/> instances by checking if they contain a valid IBAN account number.</summary>
   public class IbanValidator : ValueValidator<string> {
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="IbanValidator"/> class.</summary>
     /// <param name="messageTemplate">The template to use when logging validation results, or null we the default message template is to be used.</param>
     /// <param name="tag">The tag to set when logging validation results, or null.</param>
@@ -25,9 +26,11 @@ namespace Enkoni.Framework.Validation.Validators {
     public IbanValidator(string messageTemplate, string tag, bool negated)
       : base(messageTemplate, tag, negated) {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the Default Message Template when the validator is non negated.</summary>
     protected override string DefaultNonNegatedMessageTemplate {
       get { return "Value '{0}' is not a valid IBAN account number"; }
@@ -37,9 +40,11 @@ namespace Enkoni.Framework.Validation.Validators {
     protected override string DefaultNegatedMessageTemplate {
       get { return "Value '{0}' is a valid IBAN account number"; }
     }
+
     #endregion
 
     #region Validator overrides
+
     /// <summary>Implements the validation logic for the receiver.</summary>
     /// <param name="objectToValidate">The object to validate.</param>
     /// <param name="currentTarget">The object on the behalf of which the validation is performed.</param>
@@ -48,7 +53,7 @@ namespace Enkoni.Framework.Validation.Validators {
     protected override void DoValidate(string objectToValidate, object currentTarget, string key, ValidationResults validationResults) {
       /* First, check if the account number has a value. */
       if(string.IsNullOrEmpty(objectToValidate)) {
-        if(!this.Negated) {
+        if(this.Negated) {
           this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
         }
 
@@ -80,9 +85,11 @@ namespace Enkoni.Framework.Validation.Validators {
         this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
       }
     }
+
     #endregion
 
     #region Private helper methods
+
     /// <summary>Converts a string into a numeric value by substituting the 'A' to 'Z' characters whit there numeric equivalents where 'A' equals '10',
     /// 'B' equals '11' etcetera.</summary>
     /// <param name="text">The value that must be converted.</param>
@@ -101,6 +108,7 @@ namespace Enkoni.Framework.Validation.Validators {
 
       return BigInteger.Parse(result.ToString(), CultureInfo.InvariantCulture);
     }
+
     #endregion
   }
 }

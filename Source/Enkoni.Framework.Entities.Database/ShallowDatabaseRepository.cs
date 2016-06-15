@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class extends the <see cref="DatabaseRepository{TEntity}"/> class and implements some of the functionality using the Entity 
+  /// <summary>This class extends the <see cref="DatabaseRepository{TEntity}"/> class and implements some of the functionality using the Entity
   /// Framework. The repository can be used for types that only need to be created, but not saved or retrieved as this is done by the parent-type's
   /// repository.</summary>
   /// <typeparam name="TEntity">The type of the entity that is handled by this repository.</typeparam>
   public class ShallowDatabaseRepository<TEntity> : DatabaseRepository<TEntity>
     where TEntity : class, IEntity<TEntity>, new() {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="ShallowDatabaseRepository{TEntity}"/> class using the specified
     /// <see cref="DataSourceInfo"/>.</summary>
     /// <param name="dataSourceInfo">The data source information that must be used to access the database.</param>
     public ShallowDatabaseRepository(DataSourceInfo dataSourceInfo)
       : base(dataSourceInfo) {
     }
+
     #endregion
 
     #region ShallowDatabaseRepository overrides
+
     /// <summary>Since addition of entities will be handled by the parent entity's repository, nothing is done here.</summary>
     /// <param name="entity">The entity that is to be added.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
@@ -88,6 +91,7 @@ namespace Enkoni.Framework.Entities {
     protected override TEntity FindSingleCore(Func<TEntity, bool> expression, string[] includePaths, DataSourceInfo dataSourceInfo, TEntity defaultValue) {
       throw new NotSupportedException("This repository cannot be used to retrieve entities.");
     }
+
     #endregion
   }
 }

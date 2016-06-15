@@ -15,6 +15,7 @@ namespace Enkoni.Framework.Entities {
   public class MemoryRepository<TEntity> : Repository<TEntity>
     where TEntity : class, IEntity<TEntity>, new() {
     #region Instance variables
+
     /// <summary>The collection of entities that are to be added to the data source. </summary>
     private List<TEntity> additionCache;
 
@@ -26,9 +27,11 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>A lock that controls access to the temporary storage.</summary>
     private ReaderWriterLockSlim temporaryStorageLock = new ReaderWriterLockSlim();
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="MemoryRepository{TEntity}"/> class using the specified <see cref="DataSourceInfo"/>.
     /// </summary>
     /// <param name="dataSourceInfo">The data source information that must be used to access the data source.</param>
@@ -47,14 +50,18 @@ namespace Enkoni.Framework.Entities {
         throw new InvalidOperationException("The memory store is mandatory.");
       }
     }
+
     #endregion
 
     #region Protected properties
+
     /// <summary>Gets the memory store that is used to access the memory storage.</summary>
     protected MemoryStore<TEntity> MemoryStore { get; private set; }
+
     #endregion
 
     #region Repository<T> overrides
+
     /// <summary>Resets the repository by undoing any unsaved changes.</summary>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage.</param>
     protected override void ResetCore(DataSourceInfo dataSourceInfo) {
@@ -288,8 +295,8 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the 
-    /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the entity is 
+    /// <summary>Adds a collection of new entities to the repository. They are added to the addition cache until it is saved using the
+    /// <see cref="Repository{T}.SaveChanges()"/> method. A temporary (negative) RecordID is assigned to the entities. This will be reset when the entity is
     /// saved.</summary>
     /// <param name="entities">The entities that must be added.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
@@ -426,7 +433,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache 
+    /// <summary>Removes a collection of entities from the repository. Depending on the status of each entity, it is removed from the addition-cache
     /// or it is added to the deletion-cache until it is saved using the <see cref="Repository{T}.SaveChanges()"/> method.</summary>
     /// <param name="entities">The entities that must be removed.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
@@ -558,7 +565,7 @@ namespace Enkoni.Framework.Entities {
               this.updateCache.Add(repositoryEntity);
             }
 
-            /* Return an instance of TEntity that reflects the changes, but is disconnected from the instance that is stored in the cache 
+            /* Return an instance of TEntity that reflects the changes, but is disconnected from the instance that is stored in the cache
                * (to avoid unwanted updates from outside the repository) */
             if(this.SelectCloneDataSourceItems(dataSourceInfo)) {
               return ((ICloneable)repositoryEntity).Clone() as TEntity;
@@ -581,7 +588,7 @@ namespace Enkoni.Framework.Entities {
       }
     }
 
-    /// <summary>Updates a collection of entities in the repository. Depending on the status of each entity, it is updated in the addition-cache or 
+    /// <summary>Updates a collection of entities in the repository. Depending on the status of each entity, it is updated in the addition-cache or
     /// it is added to the update-cache.</summary>
     /// <param name="entities">The entities that contain the updated values.</param>
     /// <param name="dataSourceInfo">Information about the data source that may not have been set at an earlier stage. This parameter is not used.
@@ -681,9 +688,11 @@ namespace Enkoni.Framework.Entities {
         }
       }
     }
+
     #endregion
 
     #region Dispose methods
+
     /// <summary>Disposes all the managed resources that are held by this instance.</summary>
     protected override void DisposeManagedResources() {
       try {
@@ -693,9 +702,11 @@ namespace Enkoni.Framework.Entities {
         base.DisposeManagedResources();
       }
     }
+
     #endregion
 
     #region Protected helper methods
+
     /// <summary>Applies new identifiers to the entities starting with identifier '1'.</summary>
     /// <param name="entities">The entities to which the identifiers must be applied.</param>
     protected virtual void ApplyIdentifiers(IEnumerable<TEntity> entities) {
@@ -714,10 +725,12 @@ namespace Enkoni.Framework.Entities {
         entity.RecordId = startIdentifier++;
       }
     }
+
     #endregion
 
     #region Private helper methods
-    /// <summary>Selects the MemoryStore that must be used. If the specified DataSourceInfo contains a valid MemoryStore, it is used; otherwise the 
+
+    /// <summary>Selects the MemoryStore that must be used. If the specified DataSourceInfo contains a valid MemoryStore, it is used; otherwise the
     /// value of the property 'MemoryStore' is used.</summary>
     /// <param name="dataSourceInfo">Any information regarding the data store that is used as data source.</param>
     /// <returns>The MemoryStore that must be used.</returns>
@@ -749,6 +762,7 @@ namespace Enkoni.Framework.Entities {
 
       return totalCache.OrderBy(t => t.RecordId);
     }
+
     #endregion
   }
 }

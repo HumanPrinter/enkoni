@@ -11,6 +11,7 @@ namespace Enkoni.Framework.Collections {
   [DebuggerDisplay("Count = {Count}")]
   public class CircularStack<T> : IEnumerable<T>, ICollection, IEnumerable {
     #region Instance variables
+
     /// <summary>The actual storage that contains the 'stack' items. The virtual index of each item is used as key.</summary>
     private Dictionary<int, T> storage;
 
@@ -19,9 +20,11 @@ namespace Enkoni.Framework.Collections {
 
     /// <summary>The version that is used to determine if the stack is modified.</summary>
     private int version;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="CircularStack{T}"/> class using an unlimited maximum size and the default capacity.
     /// </summary>
     public CircularStack()
@@ -29,7 +32,7 @@ namespace Enkoni.Framework.Collections {
     }
 
     /// <summary>Initializes a new instance of the <see cref="CircularStack{T}"/> class using a maximum size.</summary>
-    /// <param name="maximumSize">The number of items this stack can contain at most. Once this number has been reached, the oldest elements will be 
+    /// <param name="maximumSize">The number of items this stack can contain at most. Once this number has been reached, the oldest elements will be
     /// overwritten. Use <c>-1</c> to use an unlimited maximum size.</param>
     /// <exception cref="ArgumentOutOfRangeException">The maximum size is not set to a valid value.</exception>
     public CircularStack(int maximumSize) {
@@ -57,15 +60,13 @@ namespace Enkoni.Framework.Collections {
     /// <summary>Initializes a new instance of the <see cref="CircularStack{T}"/> class that contains elements copied from the specified collection
     /// and has a maximum size.</summary>
     /// <param name="collection">The collection whose elements are copied to the new stack.</param>
-    /// <param name="maximumSize">The number of items this stack can contain at most. Once this number has been reached, the oldest elements will be 
+    /// <param name="maximumSize">The number of items this stack can contain at most. Once this number has been reached, the oldest elements will be
     /// overwritten. Use <c>-1</c> to use an unlimited maximum size.</param>
     /// <exception cref="ArgumentNullException">The specified collection is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The maximum size is not set to a valid value.</exception>
     /// <exception cref="ArgumentException">The specified collection exceeds the specified maximum size.</exception>
     public CircularStack(IEnumerable<T> collection, int maximumSize) {
-      if(collection == null) {
-        throw new ArgumentNullException("collection", "collection is null.");
-      }
+      Guard.ArgumentIsNotNull(collection, nameof(collection), "collection is null.");
 
       if(maximumSize != -1 && maximumSize <= 0) {
         throw new ArgumentOutOfRangeException("maximumSize", maximumSize, "Only positive integers or '-1' are allowed as valid input.");
@@ -79,9 +80,11 @@ namespace Enkoni.Framework.Collections {
       this.storage = collection.Select((item, index) => new { Index = index, Item = item }).ToDictionary(a => a.Index, a => a.Item);
       this.currentIndex = this.storage.Count - 1;
     }
+
     #endregion
 
     #region Explicit implementation of ICollection properties
+
     /// <summary>Gets a value indicating whether access to the <see cref="ICollection"/> is synchronized (thread safe).</summary>
     bool ICollection.IsSynchronized {
       get { return this.IsSynchronized; }
@@ -91,9 +94,11 @@ namespace Enkoni.Framework.Collections {
     object ICollection.SyncRoot {
       get { return this.SyncRoot; }
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the number of elements actually contained in the <see cref="CircularStack{T}"/>.</summary>
     public int Count {
       get {
@@ -119,44 +124,45 @@ namespace Enkoni.Framework.Collections {
     protected virtual object SyncRoot {
       get { return this; }
     }
+
     #endregion
 
     #region Explicit implementation of IEnumerable<T> methods
+
     /// <summary>Returns an enumerator that iterates through the collection.</summary>
     /// <returns>A <see cref="IEnumerator{T}"/> that can be used to iterate through the collection.</returns>
     IEnumerator<T> IEnumerable<T>.GetEnumerator() {
       return this.GetEnumerator();
     }
+
     #endregion
 
     #region Explicit implementation of IEnumerable methods
+
     /// <summary>Returns an enumerator that iterates through a collection.</summary>
     /// <returns>An <see cref="IEnumerator"/> object that can be used to iterate through the collection.</returns>
     IEnumerator IEnumerable.GetEnumerator() {
       return this.GetEnumerator();
     }
+
     #endregion
 
     #region Explicit implementation of ICollection methods
+
     /// <summary>Copies the elements of the <see cref="ICollection"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/> index.
     /// </summary>
-    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="ICollection"/>. 
+    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="ICollection"/>.
     /// The <see cref="Array"/> must have zero-based indexing.</param>
     /// <param name="index">The zero-based index in <paramref name="array"/> at which copying begins.</param>
     /// <exception cref="ArgumentNullException"><paramref name="array"/> is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> is less than zero.</exception>
     /// <exception cref="ArgumentException"><paramref name="array"/> is multidimensional.<br/>
     /// -or- <paramref name="index"/> is equal to or greater than the length of <paramref name="array"/>.<br/>
-    /// -or- The number of elements in the source <see cref="ICollection"/> is greater than the available space from index to the end of the 
+    /// -or- The number of elements in the source <see cref="ICollection"/> is greater than the available space from index to the end of the
     /// destination array.</exception>
     void ICollection.CopyTo(Array array, int index) {
-      if(array == null) {
-        throw new ArgumentNullException("array", "The destination array cannot be null.");
-      }
-
-      if(index < 0) {
-        throw new ArgumentOutOfRangeException("index", index, "index cannot be less than zero.");
-      }
+      Guard.ArgumentIsNotNull(array, nameof(array), "The destination array cannot be null");
+      Guard.ArgumentIsGreaterOrEqualThan(0, index, nameof(index), "index cannot be less than zero");
 
       if(array.Rank > 1) {
         throw new ArgumentException("Multi-dimensional arrays are not supported.");
@@ -172,9 +178,11 @@ namespace Enkoni.Framework.Collections {
 
       this.CopyTo(array, index);
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Removes all objects from the <see cref="CircularStack{T}"/>.</summary>
     public void Clear() {
       this.ClearCore();
@@ -191,26 +199,18 @@ namespace Enkoni.Framework.Collections {
 
     /// <summary>Copies the <see cref="CircularStack{T}"/> to an existing one-dimensional <see cref="Array"/>, starting at the specified array index.
     /// </summary>
-    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from 
+    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from
     /// <see cref="CircularStack{T}"/>. The <see cref="Array"/> must have zero-based indexing.</param>
     /// <param name="arrayIndex">The zero-based index in <paramref name="array"/> at which copying begins.</param>
     /// <exception cref="ArgumentNullException"><paramref name="array"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="arrayIndex"/> is less than zero.</exception>
     /// <exception cref="ArgumentException"><paramref name="arrayIndex"/> is equal to or greater than the length of array.<br/>
-    /// -or- The number of elements in the source <see cref="CircularStack{T}"/> is greater than the available space from 
+    /// -or- The number of elements in the source <see cref="CircularStack{T}"/> is greater than the available space from
     /// <paramref name="arrayIndex"/> to the end of the destination array.</exception>
     public void CopyTo(T[] array, int arrayIndex) {
-      if(array == null) {
-        throw new ArgumentNullException("array", "The destination array cannot be null.");
-      }
-
-      if(arrayIndex < 0) {
-        throw new ArgumentOutOfRangeException("arrayIndex", arrayIndex, "arrayIndex cannot be less than zero.");
-      }
-
-      if(arrayIndex >= array.Length) {
-        throw new ArgumentException("The arrayIndex matches or exceeds the length of the array.");
-      }
+      Guard.ArgumentIsNotNull(array, nameof(array), "The destination array cannot be null");
+      Guard.ArgumentIsGreaterOrEqualThan(0, arrayIndex, nameof(arrayIndex), "The index cannot be less than zero");
+      Guard.ArgumentIsLowerThan(array.Length, arrayIndex, nameof(arrayIndex), "The index matches or exceeds the length of the array");
 
       if(this.Count > array.Length - arrayIndex) {
         throw new ArgumentException("Not enoughspace in the destination array.");
@@ -264,14 +264,16 @@ namespace Enkoni.Framework.Collections {
       return this.ToArrayCore();
     }
 
-    /// <summary>Sets the capacity to the actual number of elements in the <see cref="CircularStack{T}"/>, if that number is less than 90 percent of 
+    /// <summary>Sets the capacity to the actual number of elements in the <see cref="CircularStack{T}"/>, if that number is less than 90 percent of
     /// current capacity.</summary>
     public void TrimExcess() {
       this.TrimExcessCore();
     }
+
     #endregion
 
     #region Extensibility methods
+
     /// <summary>Removes all objects from the <see cref="CircularStack{T}"/>.</summary>
     protected virtual void ClearCore() {
       this.storage.Clear();
@@ -289,7 +291,7 @@ namespace Enkoni.Framework.Collections {
 
     /// <summary>Copies the <see cref="CircularStack{T}"/> to an existing one-dimensional <see cref="Array"/>, starting at the specified array index.
     /// </summary>
-    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from 
+    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from
     /// <see cref="CircularStack{T}"/>. The <see cref="Array"/> must have zero-based indexing.</param>
     /// <param name="arrayIndex">The zero-based index in <paramref name="array"/> at which copying begins.</param>
     protected virtual void CopyToCore(T[] array, int arrayIndex) {
@@ -397,7 +399,7 @@ namespace Enkoni.Framework.Collections {
       return createdArray;
     }
 
-    /// <summary>Sets the capacity to the actual number of elements in the <see cref="CircularStack{T}"/>, if that number is less than 90 percent of 
+    /// <summary>Sets the capacity to the actual number of elements in the <see cref="CircularStack{T}"/>, if that number is less than 90 percent of
     /// current capacity.</summary>
     protected virtual void TrimExcessCore() {
       /* Because a dictionary is used, there never is any excess */
@@ -405,7 +407,7 @@ namespace Enkoni.Framework.Collections {
 
     /// <summary>Copies the elements of the <see cref="ICollection"/> to an <see cref="Array"/>, starting at a particular <see cref="Array"/> index.
     /// </summary>
-    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="ICollection"/>. 
+    /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="ICollection"/>.
     /// The <see cref="Array"/> must have zero-based indexing.</param>
     /// <param name="index">The zero-based index in <paramref name="array"/> at which copying begins.</param>
     protected virtual void CopyTo(Array array, int index) {
@@ -419,12 +421,15 @@ namespace Enkoni.Framework.Collections {
         array.SetValue(stackAsArray[stackIndex], stackIndex + index);
       }
     }
+
     #endregion
 
     #region Structs
+
     /// <summary>Enumerates the elements of a <see cref="CircularStack{T}"/>.</summary>
     public struct Enumerator : IEnumerator<T>, IEnumerator, IDisposable {
       #region Private members
+
       /// <summary>The collection that is enumerated.</summary>
       private CircularStack<T> enumeratorSource;
 
@@ -439,9 +444,11 @@ namespace Enkoni.Framework.Collections {
 
       /// <summary>Indicates if the enumerator has already enumerated over the first item.</summary>
       private bool isPassedFirstItem;
+
       #endregion
 
       #region Constructors
+
       /// <summary>Initializes a new instance of the <see cref="Enumerator"/> struct.</summary>
       /// <param name="enumeratorSource">The collection that must be enumerated.</param>
       internal Enumerator(CircularStack<T> enumeratorSource) {
@@ -452,11 +459,13 @@ namespace Enkoni.Framework.Collections {
         this.stackVersion = enumeratorSource.version;
         this.isPassedFirstItem = false;
       }
+
       #endregion
 
       #region Properties
+
       /// <summary>Gets the element at the current position of the enumerator.</summary>
-      /// <exception cref="InvalidOperationException">The enumerator is positioned before the first element of the collection or after the last 
+      /// <exception cref="InvalidOperationException">The enumerator is positioned before the first element of the collection or after the last
       /// element.</exception>
       public T Current {
         get {
@@ -480,20 +489,24 @@ namespace Enkoni.Framework.Collections {
           return this.enumeratorSource.storage[this.enumeratorIndex];
         }
       }
+
       #endregion
 
       #region Explicit implementation of IEnumerator properties
+
       /// <summary>Gets the current element in the collection.</summary>
-      /// <exception cref="InvalidOperationException">The enumerator is positioned before the first element of the collection or after the last 
+      /// <exception cref="InvalidOperationException">The enumerator is positioned before the first element of the collection or after the last
       /// element.</exception>
       object IEnumerator.Current {
         get { return this.Current; }
       }
+
       #endregion
 
       #region Methods
+
       /// <summary>Advances the enumerator to the next element of the <see cref="CircularStack{T}"/>.</summary>
-      /// <returns><see langword="true"/> if the enumerator was successfully advanced to the next element; <see langword="false"/> if the enumerator 
+      /// <returns><see langword="true"/> if the enumerator was successfully advanced to the next element; <see langword="false"/> if the enumerator
       /// has passed the end of the collection.</returns>
       /// <exception cref="InvalidOperationException">The collection was modified after the enumerator was created.</exception>
       public bool MoveNext() {
@@ -552,9 +565,11 @@ namespace Enkoni.Framework.Collections {
       public void Dispose() {
         /* There is nothing to dispose */
       }
+
       #endregion
 
       #region Explicit implementation of IEnumerator methods
+
       /// <summary>Sets the enumerator to its initial position, which is before the first element in the collection.</summary>
       void IEnumerator.Reset() {
         this.enumeratorIndex = -1;
@@ -562,14 +577,16 @@ namespace Enkoni.Framework.Collections {
       }
 
       /// <summary>Advances the enumerator to the next element of the collection.</summary>
-      /// <returns><see langword="true"/> if the enumerator was successfully advanced to the next element; <see langword="false"/> if the enumerator 
+      /// <returns><see langword="true"/> if the enumerator was successfully advanced to the next element; <see langword="false"/> if the enumerator
       /// has passed the end of the collection.</returns>
       /// <exception cref="InvalidOperationException">The collection was modified after the enumerator was created.</exception>
       bool IEnumerator.MoveNext() {
         return this.MoveNext();
       }
+
       #endregion
     }
+
     #endregion
   }
 }

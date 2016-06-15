@@ -4,22 +4,25 @@ namespace Enkoni.Framework {
   /// <summary>Represents a process or workflow that executes a defined task or set of tasks.</summary>
   public interface IWorkflow {
     #region Properties
-    /// <summary>Gets a value indicating whether the workflow is able to pause and continue its internal processes. By default, a <b>Workflow</b> 
+
+    /// <summary>Gets a value indicating whether the workflow is able to pause and continue its internal processes. By default, a <b>Workflow</b>
     /// cannot be paused or continued.</summary>
     bool CanPauseAndContinue { get; }
 
     /// <summary>Gets the current <see cref="WorkflowState"/> of the workflow.</summary>
     WorkflowState State { get; }
+
     #endregion
 
     #region Workflow Synchronous Methods
+
     /// <summary>Tries to start the workflow. It blocks until the workflow is started.</summary>
     /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when the workflow is in the state
     /// <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be started.</exception>
     void Start();
 
     /// <summary>Tries to stop the workflow. It blocks until the workflow is stopped.</summary>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when the workflow is in the state 
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be stopped. Only when the workflow is in the state
     /// <see cref="WorkflowState.Started"/>, <see cref="WorkflowState.Pausing"/> or <see cref="WorkflowState.Continued"/>, it can be stopped.</exception>
     void Stop();
 
@@ -36,9 +39,11 @@ namespace Enkoni.Framework {
     /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
     /// <seealso cref="CanPauseAndContinue"/>
     void Continue();
+
     #endregion
 
     #region Workflow Asynchronous Methods
+
     /// <summary>Begins to start the workflow.</summary>
     /// <param name="callback">The method to be called when the asynchronous start operation is completed.</param>
     /// <param name="state">A user-provided object that distinguishes this particular asynchronous start request from other requests.</param>
@@ -47,7 +52,7 @@ namespace Enkoni.Framework {
 
     /// <summary>Waits for the pending asynchronous start to complete.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when the workflow is in the state 
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be started. Only when the workflow is in the state
     /// <see cref="WorkflowState.Init"/> or <see cref="WorkflowState.Stopped"/>, it can be started.</exception>
     void EndStart(IAsyncResult asyncResult);
 
@@ -72,7 +77,7 @@ namespace Enkoni.Framework {
     /// <summary>Waits for the pending asynchronous pause to complete.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and resuming.</exception>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when the workflow is in the state 
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be paused. Only when the workflow is in the state
     /// <see cref="WorkflowState.Started"/> or <see cref="WorkflowState.Continued"/>, it can be paused.</exception>
     /// <seealso cref="CanPauseAndContinue"/>
     void EndPause(IAsyncResult asyncResult);
@@ -86,10 +91,11 @@ namespace Enkoni.Framework {
     /// <summary>Waits for the pending asynchronous continue to complete.</summary>
     /// <param name="asyncResult">The reference to the pending asynchronous request to wait for.</param>
     /// <exception cref="NotSupportedException">The workflow does not support pausing and continuing.</exception>
-    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when the workflow is in the 
+    /// <exception cref="InvalidOperationException">The workflow is not in a state in which it can be continued. Only when the workflow is in the
     /// state <see cref="WorkflowState.Paused"/>, it can be continued.</exception>
     /// <seealso cref="CanPauseAndContinue"/>
     void EndContinue(IAsyncResult asyncResult);
+
     #endregion
   }
 }

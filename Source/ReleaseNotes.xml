@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
+    <release version ="1.2.10.0" releasedate="2016-06-09">
+      <projects>
+        <project name="Enkoni.Framework" version="2.8.0">
+          <updates>
+            <update date="2016-06-09" type="addition">
+              <summary><![CDATA[Added a new Guard-class that can be used to validate parameters.]]></summary>
+              <comment><![CDATA[Added a new Guard-class that can be used to validate parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities" version="3.6.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.Database" version="2.5.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Entities.File" version="3.4.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Validation" version="2.2.1.1">
+          <updates>
+            <update date="2016-04-22" type="bugfix">
+              <summary><![CDATA[Fixed a bug in IbanValidator where an empty string would be incorrectly validated.]]></summary>
+              <comment><![CDATA[Fixed a bug in IbanValidator where an empty string would be incorrectly validated.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.ServiceModel" version="2.4.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Testing" version="1.1.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.UI" version="1.1.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.Web" version="1.2.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.DataAnnotations" version="1.1.0">
+          <updates>
+            <update date="2016-06-09" type="change">
+              <summary><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></summary>
+              <comment><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.DataAnnotations.Client" version="1.1.0">
+          <updates>
+            <update date="2016-06-09" type="addition">
+              <summary><![CDATA[Added client side validation for the IbanAttribute and DutchPhoneNumberAttribute.]]></summary>
+              <comment><![CDATA[Added client side validation for the IbanAttribute and DutchPhoneNumberAttribute.]]></comment>
+            </update>
+          </updates>
+        </project>
+      </projects>
+    </release>
     <release version="1.2.9.0" releasedate="2015-09-19">
       <projects>
         <project name="Enkoni.Framework" version="2.7.0">

@@ -6,6 +6,7 @@ namespace Enkoni.Framework.UI.Mvvm {
   [Serializable]
   public class PropertyChangedMessage<T> : Message, IPropertyChangedMessage {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="PropertyChangedMessage{T}"/> class.</summary>
     /// <param name="propertyName">The name of the property that changed.</param>
     /// <param name="oldValue">The old value of the property.</param>
@@ -25,9 +26,11 @@ namespace Enkoni.Framework.UI.Mvvm {
       this.OldValue = oldValue;
       this.NewValue = newValue;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the name of the property.</summary>
     public string PropertyName { get; protected set; }
 
@@ -46,6 +49,7 @@ namespace Enkoni.Framework.UI.Mvvm {
     object IPropertyChangedMessage.NewValue {
       get { return this.NewValue; }
     }
+
     #endregion
   }
 }

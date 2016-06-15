@@ -9,6 +9,7 @@ namespace Enkoni.Framework.Logging {
   /// which is part of the Microsoft Enterprise Library.</summary>
   public static class LogManager {
     #region Public static methods
+
     /// <summary>Creates a new instance of <see cref="Logger"/> which can be used to send log messages to the Logging Application Block.</summary>
     /// <returns>The created <see cref="Logger"/>.</returns>
     public static Logger CreateLogger() {
@@ -16,6 +17,7 @@ namespace Enkoni.Framework.Logging {
       LogWriter logWriter = writers.FirstOrDefault();
       return new Logger(logWriter);
     }
+
     #endregion
   }
 }

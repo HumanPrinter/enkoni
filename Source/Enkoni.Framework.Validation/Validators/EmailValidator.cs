@@ -13,13 +13,13 @@ using Microsoft.Practices.EnterpriseLibrary.Validation;
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace Enkoni.Framework.Validation.Validators {
-  /// <summary>Performs validation on <see cref="String"/> instances by checking if they contain valid e-mail addresses.</summary>
+  /// <summary>Performs validation on <see cref="string"/> instances by checking if they contain valid e-mail addresses.</summary>
   /// <remarks>This validator can be configured through code or through the configuration file. By default all domains and /or IP addresses are considered valid
-  /// as long as their syntax is correct (note that IP addresses will only be considered valid if <see cref="AllowIPAddresses"/> is set to <see langword="true"/>). 
+  /// as long as their syntax is correct (note that IP addresses will only be considered valid if <see cref="AllowIPAddresses"/> is set to <see langword="true"/>).
   /// <br/>
   /// To specifically include or exclude domains or IP addresses, two approaches can be used.<br/>
   /// <h3>Code</h3>
-  /// By setting the <see cref="IncludeDomains"/> and/or <see cref="ExcludeDomains"/> properties, the white and black list of valid domains or IP addresses can be 
+  /// By setting the <see cref="IncludeDomains"/> and/or <see cref="ExcludeDomains"/> properties, the white and black list of valid domains or IP addresses can be
   /// manipulated. To specify multiple domains, separate the domains with a semi colon (';'). When setting both the <see cref="IncludeDomains"/>  and the
   /// <see cref="ExcludeDomains"/> properties, the values in <see cref="ExcludeDomains"/> takes precedence over the values in <see cref="IncludeDomains"/>.<br/>
   /// <br/>
@@ -56,8 +56,8 @@ namespace Enkoni.Framework.Validation.Validators {
   /// </Enkoni.Validators>
   /// ]]>
   /// </code>
-  /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one 
-  /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified 
+  /// <para>It is also possible to specify multiple configurations for different instances of validators by specifying the name attribute. At most one
+  /// nameless validator can be specified in the configuration. The nameless configuration will be used by validators that do not have a name specified
   /// or whose name is not explicitly configured.</para>
   /// <code>
   /// <![CDATA[
@@ -77,16 +77,21 @@ namespace Enkoni.Framework.Validation.Validators {
   /// </remarks>
   public class EmailValidator : ValueValidator<string> {
     #region Constants
+
     /// <summary>Defines the default name for the validator.</summary>
     internal const string DefaultName = "00661f4a-faa2-452f-8fd9-af6c776bfc49";
+
     #endregion
 
     #region Variables
+
     /// <summary>Holds the name of the configuration section that must be used.</summary>
     private static string configurationSectionName;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="EmailValidator"/> class.</summary>
     /// <param name="messageTemplate">The template to use when logging validation results, or null we the default message template is to be used.</param>
     /// <param name="tag">The tag to set when logging validation results, or null.</param>
@@ -123,9 +128,11 @@ namespace Enkoni.Framework.Validation.Validators {
         }
       }
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the name of the configuration section that is used to preconfigure the validator. The default value is set to <see cref="ValidatorsSection.DefaultSectionName"/>.
     /// </summary>
     public static string ConfigurationSectionName {
@@ -168,9 +175,11 @@ namespace Enkoni.Framework.Validation.Validators {
     private static Dictionary<string, ConfiguredValuesContainer> ConfiguredValues {
       get { return ConfiguredValuesSingletonContainer.ConfiguredValues; }
     }
+
     #endregion
 
     #region Validator overrides
+
     /// <summary>Implements the validation logic for the receiver.</summary>
     /// <param name="objectToValidate">The object to validate.</param>
     /// <param name="currentTarget">The object on the behalf of which the validation is performed.</param>
@@ -205,9 +214,11 @@ namespace Enkoni.Framework.Validation.Validators {
         this.LogValidationResult(validationResults, this.GetMessage(objectToValidate, key), currentTarget, key);
       }
     }
+
     #endregion
 
     #region Private helper methods
+
     /// <summary>Validates whether the input is a valid e-mail address.</summary>
     /// <param name="input">The string that must be validated.</param>
     /// <param name="localPartRegex">The regular expression that must be used to validate the local part of the e-mail address.</param>
@@ -413,9 +424,11 @@ namespace Enkoni.Framework.Validation.Validators {
       IPAddress dummy;
       return !IPAddress.TryParse(fullDomain, out dummy);
     }
+
     #endregion
 
     #region Private classes
+
     /// <summary>Holds the values that were set through the configuration.</summary>
     private class ConfiguredValuesContainer {
       /// <summary>Gets or sets a value indicating whether the setting for 'AllowComments' was set to <see langword="true"/>.</summary>
@@ -426,7 +439,7 @@ namespace Enkoni.Framework.Validation.Validators {
 
       /// <summary>Gets or sets a value indicating whether the setting for 'RequireTopLevelDomain' was set to <see langword="true"/>.</summary>
       public bool RequireTopLevelDomain { get; set; }
-      
+
       /// <summary>Gets or sets the configured collection of white listed domains.</summary>
       public string IncludeDomains { get; set; }
 
@@ -441,9 +454,9 @@ namespace Enkoni.Framework.Validation.Validators {
       internal static readonly Dictionary<string, ConfiguredValuesContainer> ConfiguredValues = ReadConfiguration(EmailValidator.ConfigurationSectionName);
 
       /// <summary>Initializes static members of the <see cref="ConfiguredValuesSingletonContainer"/> class.</summary>
-      /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C# 
+      /// <remarks>Even though this constructor does nothing by itself (it has an empty body), declaring this static constructor prevents the C#
       /// compiler from marking this type as <c>beforefieldinit</c> which is required in order to get the laziness behavior that is intended.</remarks>
-      static ConfiguredValuesSingletonContainer() { 
+      static ConfiguredValuesSingletonContainer() {
       }
 
       /// <summary>Prevents a default instance of the <see cref="ConfiguredValuesSingletonContainer"/> class from being created.</summary>
@@ -451,7 +464,7 @@ namespace Enkoni.Framework.Validation.Validators {
       }
 
       /// <summary>Reads the configuration and sets the configured values.</summary>
-      /// <param name="sectionName">The name of the config section that must be read. Use <see langword="null"/> or <see cref="String.Empty"/> to use the default section name.</param>
+      /// <param name="sectionName">The name of the config section that must be read. Use <see langword="null"/> or <see cref="string.Empty"/> to use the default section name.</param>
       /// <returns>The values that were read from the configuration or <see langword="null"/> if there was no configuration.</returns>
       private static Dictionary<string, ConfiguredValuesContainer> ReadConfiguration(string sectionName) {
         if(string.IsNullOrEmpty(sectionName)) {
@@ -483,13 +496,14 @@ namespace Enkoni.Framework.Validation.Validators {
 
           valuesContainer.IncludeDomains = string.Join(";", configuredIncludeDomains.ToArray());
           valuesContainer.ExcludeDomains = string.Join(";", configuredExcludeDomains.ToArray());
-            
+
           configuredValues.Add(validatorConfig.Name, valuesContainer);
         }
 
         return configuredValues;
       }
     }
+
     #endregion
   }
 }

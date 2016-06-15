@@ -5,12 +5,15 @@ namespace Enkoni.Framework.Entities {
   [Obsolete("This class will be removed in a future version of this framework. The recommended way of retrieving SubDomainModels is using the standard IoC techniques")]
   public abstract class DomainModel {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="DomainModel"/> class.</summary>
     protected DomainModel() {
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Determines if the underlying persistency already exists.</summary>
     /// <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
     public bool PersistencyExists() {
@@ -37,9 +40,11 @@ namespace Enkoni.Framework.Entities {
     public SubDomainModel<T> GetSubDomain<T>() where T : IEntity<T> {
       return this.GetSubDomainCore<T>();
     }
+
     #endregion
 
     #region Extensibility methods
+
     /// <summary>Determines if the underlying persistency already exists.</summary>
     /// <returns><see langword="true"/> if the persistency exists; <see langword="false"/> otherwise.</returns>
     protected abstract bool PersistencyExistsCore();
@@ -54,6 +59,7 @@ namespace Enkoni.Framework.Entities {
     /// <typeparam name="T">The type for which the sub domain must be returned.</typeparam>
     /// <returns>The appropriate SubDomainModel.</returns>
     protected abstract SubDomainModel<T> GetSubDomainCore<T>() where T : IEntity<T>;
+
     #endregion
   }
 }

@@ -9,6 +9,7 @@ namespace Enkoni.Framework.Validation.Validators {
     Inherited = false)]
   public sealed class EmailValidatorAttribute : ValueValidatorAttribute {
     #region Instance variables
+
     /// <summary>The actual configured value for the allowComments flag.</summary>
     private bool? allowComments;
 
@@ -29,17 +30,21 @@ namespace Enkoni.Framework.Validation.Validators {
 
     /// <summary>Indicates whether the value for ExcludeDomains was set explicitly.</summary>
     private bool excludeDomainsSetExplicitly;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="EmailValidatorAttribute"/> class.</summary>
     public EmailValidatorAttribute() {
       this.Name = EmailValidator.DefaultName;
       this.Category = EmailCategory.Basic;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the categories of phone numbers that must be considered valid.</summary>
     public EmailCategory Category { get; set; }
 
@@ -66,14 +71,14 @@ namespace Enkoni.Framework.Validation.Validators {
 
     /// <summary>Gets or sets the semicolon separated domains that are white listed.</summary>
     public string IncludeDomains {
-      get { 
-        return this.includeDomains; 
+      get {
+        return this.includeDomains;
       }
 
       set {
         this.includeDomains = value;
         this.includeDomainsSetExplicitly = true;
-      } 
+      }
     }
 
     /// <summary>Gets or sets the semicolon separated domains that are black listed.</summary>
@@ -87,14 +92,16 @@ namespace Enkoni.Framework.Validation.Validators {
         this.excludeDomainsSetExplicitly = true;
       }
     }
+
     #endregion
 
     #region ValueValidatorAttribute overrides
+
     /// <summary>Creates the <see cref="DutchPhoneNumberValidator"/> described by the configuration object.</summary>
     /// <param name="targetType">The type of object that will be validated by the validator.</param>
     /// <returns>The created Validator.</returns>
     protected override Validator DoCreateValidator(Type targetType) {
-      EmailValidator validator = new EmailValidator(this.Name, this.MessageTemplate, this.Tag, this.Negated) { 
+      EmailValidator validator = new EmailValidator(this.Name, this.MessageTemplate, this.Tag, this.Negated) {
         Category = this.Category
       };
 
@@ -120,6 +127,7 @@ namespace Enkoni.Framework.Validation.Validators {
 
       return validator;
     }
+
     #endregion
   }
 }

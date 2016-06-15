@@ -8,31 +8,34 @@ namespace Enkoni.Framework.Xml {
   /// <summary>Implements a xml resolver that is capable of resolving xml namespaces from embedded resources.</summary>
   public class XmlResourceResolver : XmlUrlResolver {
     #region Instance variables
+
     /// <summary>The assembly that contains the embedded resources.</summary>
     private Assembly resourceAssembly;
 
     /// <summary>The namespace of the embedded resources.</summary>
     private string resourceNamespace;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="XmlResourceResolver"/> class.</summary>
     /// <param name="resourceAssembly">The assembly from which the embedded resources must be retrieved.</param>
     /// <param name="resourceNamespace">The namespace of the embedded resources.</param>
     /// <exception cref="ArgumentNullException"><paramref name="resourceAssembly"/> is <see langword="null"/>.</exception>
     public XmlResourceResolver(Assembly resourceAssembly, string resourceNamespace) {
-      if(resourceAssembly == null) {
-        throw new ArgumentNullException("resourceAssembly");
-      }
+      Guard.ArgumentIsNotNull(resourceAssembly, nameof(resourceAssembly));
 
       this.resourceAssembly = resourceAssembly;
       this.resourceNamespace = string.IsNullOrEmpty(resourceNamespace) ? string.Empty : string.Format(CultureInfo.InvariantCulture, "{0}.", resourceNamespace);
     }
+
     #endregion
 
     #region XmlUrlResolver-overrides
+
     /// <summary>Maps a URI to an object containing the actual resource.</summary>
-    /// <param name="absoluteUri">The URI returned from <see cref="XmlResolver.ResolveUri(Uri, String)"/>.</param>
+    /// <param name="absoluteUri">The URI returned from <see cref="XmlResolver.ResolveUri(Uri, string)"/>.</param>
     /// <param name="role">The current implementation does not use this parameter when resolving URIs. This is provided for future extensibility purposes. For example, this can
     /// be mapped to the xlink: role and used as an implementation specific argument in other scenarios.</param>
     /// <param name="ofObjectToReturn">The type of object to return. The current implementation only returns <see cref="Stream"/> objects.</param>
@@ -53,6 +56,7 @@ namespace Enkoni.Framework.Xml {
         return base.GetEntity(absoluteUri, role, ofObjectToReturn);
       }
     }
+
     #endregion
   }
 }

@@ -2,7 +2,6 @@
 
 using Enkoni.Framework.Validation.Validators;
 
-using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using EntLib = Microsoft.Practices.EnterpriseLibrary.Validation;
@@ -11,6 +10,9 @@ namespace Enkoni.Framework.Validation.Tests {
   /// <summary>Tests the functionality of the <see cref="EmailValidator"/> and <see cref="EmailValidatorAttribute"/> classes.
   /// </summary>
   [TestClass]
+  [DeploymentItem(@"TestData\BasicEmail.xml")]
+  [DeploymentItem(@"TestData\ExtendedEmail.xml")]
+  [DeploymentItem(@"TestData\CompleteEmail.xml")]
   public class EmailValidatorTest {
     #region Properties
     /// <summary>Gets or sets the context that gives access to the input data for the test cases.</summary>
@@ -20,8 +22,7 @@ namespace Enkoni.Framework.Validation.Tests {
     #region TestCases
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Basic")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Basic\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\BasicEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -36,8 +37,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Basic_AllowComments")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Basic_AllowComments\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\BasicEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic_AllowComments() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -54,8 +54,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Basic_AllowIPAddresses")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Basic_AllowIPAddresses\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\BasicEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic_AllowIPAddresses() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -71,8 +70,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Basic_RequireTLD")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Basic_RequireTLD\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "BasicEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\BasicEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Basic_RequireTopLevelDomain() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Basic, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -88,8 +86,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Extended")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Extended\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\ExtendedEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -104,8 +101,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Extended_AllowComments")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Extended_AllowComments\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\ExtendedEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended_AllowComments() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -121,8 +117,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Extended_AllowIPAddresses")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Extended_AllowIPAddresses\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\ExtendedEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended_AllowIPAddresses() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -138,8 +133,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Extended_RequireTLD")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Extended_RequireTLD\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "ExtendedEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\ExtendedEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Extended_RequireTopLevelDomain() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Extended, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -155,8 +149,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Complete")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Complete\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\CompleteEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -171,8 +164,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Complete_AllowComments")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Complete_AllowComments\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\CompleteEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete_AllowComments() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = false, AllowIPAddresses = true, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -188,8 +180,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Complete_AllowIPAddresses")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Complete_AllowIPAddresses\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\CompleteEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete_AllowIPAddresses() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = false, RequireTopLevelDomain = false, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();
@@ -205,8 +196,7 @@ namespace Enkoni.Framework.Validation.Tests {
 
     /// <summary>Tests the functionality of the <see cref="EmailValidator"/> class.</summary>
     [TestMethod]
-    [DeploymentItem(@"TestData\ValidationTestData.mdf", @"EmailValidatorTest\Complete_RequireTLD")]
-    [DataSource("System.Data.SqlClient", @"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|EmailValidatorTest\Complete_RequireTLD\ValidationTestData.mdf;Integrated Security=True;Connect Timeout=30", "CompleteEmail", DataAccessMethod.Sequential)]
+    [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\CompleteEmail.xml", "row", DataAccessMethod.Sequential)]
     public void EmailValidator_Complete_RequireTopLevelDomain() {
       EmailValidator testSubject = new EmailValidator("message {0}", "tag", false) { Category = EmailCategory.Complete, AllowComments = true, AllowIPAddresses = true, RequireTopLevelDomain = true, IncludeDomains = null, ExcludeDomains = null };
       string input = this.TestContext.DataRow["MailAddress"].ToString();

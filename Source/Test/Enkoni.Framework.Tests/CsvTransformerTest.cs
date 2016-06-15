@@ -13,6 +13,14 @@ namespace Enkoni.Framework.Tests {
     #region FromString testcases
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
     [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = false)]
+    public void CsvTransformer_FromStringWithNullArgument_ArgumentNullExceptionIsThrown() {
+      Transformer<TestDummyWithIntProperties> testSubject = new CsvTransformer<TestDummyWithIntProperties>();
+      testSubject.FromString(null);
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Transformer{T}.FromString(string)"/> method.</summary>
+    [TestMethod]
     public void CsvTransformer_FromStringOnTypeWithInt32Properties_AllFieldsAreDeserialized() {
       Transformer<TestDummyWithIntProperties> testSubject = new CsvTransformer<TestDummyWithIntProperties>();
 
@@ -64,7 +72,6 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(true, result.ColumnI);
       Assert.AreEqual(true, result.ColumnJ);
       Assert.AreEqual(true, result.ColumnK);
-
 
       inputValue = "True,1,\"False\",\"N\",,,\"\",,A,A,A";
       result = testSubject.FromString(inputValue);
@@ -458,6 +465,14 @@ namespace Enkoni.Framework.Tests {
     #endregion
 
     #region ToString testcases
+    /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException), AllowDerivedTypes = false)]
+    public void CsvTransformer_ToStringWithNullArgument_ArgumentNullExceptionIsThrown() {
+      Transformer<TestDummyWithIntProperties> testSubject = new CsvTransformer<TestDummyWithIntProperties>();
+      testSubject.ToString(null);
+    }
+
     /// <summary>Tests the functionality of the <see cref="Transformer{T}.ToString(T)"/> method.</summary>
     [TestMethod]
     public void CsvTransformer_ToStringOnTypeWithInt32Properties_AllFieldsAreSerialized() {

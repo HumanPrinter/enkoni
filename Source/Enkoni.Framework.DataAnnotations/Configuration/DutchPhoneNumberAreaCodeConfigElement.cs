@@ -5,6 +5,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
   /// that must be validated by the <see cref="DutchPhoneNumberAttribute"/>.</summary>
   public class DutchPhoneNumberAreaCodeConfigElement : ConfigurationElement {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="DutchPhoneNumberAreaCodeConfigElement"/> class.</summary>
     public DutchPhoneNumberAreaCodeConfigElement() {
     }
@@ -14,9 +15,11 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
     public DutchPhoneNumberAreaCodeConfigElement(string areaCode) {
       this.AreaCode = areaCode;
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the area code that is set through this element.</summary>
     [ConfigurationProperty("areaCode", IsKey = true, IsRequired = true, DefaultValue = "000")]
     [RegexStringValidator(@"^\d{1,4}$")]
@@ -24,6 +27,7 @@ namespace Enkoni.Framework.DataAnnotations.Configuration {
       get { return (string)this["areaCode"]; }
       set { this["areaCode"] = value; }
     }
+
     #endregion
   }
 }

@@ -11,19 +11,14 @@ namespace Enkoni.Framework.Testing {
     /// <param name="application">The name of the application that requires the session. Any name will do.</param>
     /// <exception cref="ArgumentNullException"><paramref name="host"/> or <paramref name="application"/> is <see langword="null"/> or empty.</exception>
     public static void SetHttpContextWithSimulatedRequest(string host, string application) {
-      if(string.IsNullOrEmpty(host)) {
-        throw new ArgumentNullException("host", "Specify a valid host");
-      }
-
-      if(string.IsNullOrEmpty(application)) {
-        throw new ArgumentNullException("application", "Specify a valid application");
-      }
+      Guard.ArgumentIsNotNullOrEmpty(host, nameof(host), "Specify a valid host");
+      Guard.ArgumentIsNotNullOrEmpty(application, nameof(application), "Specify a valid application");
 
       if(HttpContext.Current != null) {
         HttpContext.Current.Session.Clear();
       }
       else {
-        /* These values are purely to satisfy the constructors of the HttpContext related objects. They don't have to represent a real-life 
+        /* These values are purely to satisfy the constructors of the HttpContext related objects. They don't have to represent a real-life
          * web-application.*/
         string appVirtualDir = "/";
         string appPhysicalDir = @"d:\projects\Web\";

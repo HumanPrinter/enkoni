@@ -9,25 +9,30 @@ using System.Xml.Schema;
 using Enkoni.Framework.Xml;
 
 namespace Enkoni.Framework.ServiceModel {
-  /// <summary>Implements a behavior extension element with which a <see cref="SchemaValidationBehavior"/> can be connected to an endpoint through 
+  /// <summary>Implements a behavior extension element with which a <see cref="SchemaValidationBehavior"/> can be connected to an endpoint through
   /// configuration.</summary>
   /// <remarks>The implementation is based on the code of Microsoft (<see href="http://msdn.microsoft.com/en-us/library/ff647820.aspx"/>).</remarks>
   public class SchemaValidationBehaviorExtensionElement : BehaviorExtensionElement {
     #region Constants
+
     /// <summary>Defines the name of the 'enabled'-configuration attribute.</summary>
     private const string EnabledAttributeName = "enabled";
 
     /// <summary>Defines the name of the 'schema'-configuration attribute.</summary>
     private const string SchemaFileAttributeName = "schema";
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="SchemaValidationBehaviorExtensionElement"/> class.</summary>
     public SchemaValidationBehaviorExtensionElement() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets a value indicating whether the behavior must be enabled or not.</summary>
     [ConfigurationProperty(EnabledAttributeName, DefaultValue = true, IsRequired = false)]
     public bool Enabled {
@@ -46,9 +51,11 @@ namespace Enkoni.Framework.ServiceModel {
     public override Type BehaviorType {
       get { return typeof(SchemaValidationBehavior); }
     }
+
     #endregion
 
     #region BehaviorExtensionElement-overrides
+
     /// <summary>Creates a new instance of the behavior.</summary>
     /// <returns>The created behavior.</returns>
     protected override object CreateBehavior() {
@@ -104,9 +111,11 @@ namespace Enkoni.Framework.ServiceModel {
 
       return this.CreateBehavior(this.Enabled, schemaSet);
     }
+
     #endregion
 
     #region Protected extention points
+
     /// <summary>Returns a new instance of the <see cref="SchemaValidationBehavior"/> class or a subclass.</summary>
     /// <param name="enabled">Indicates whether or not the behavior is enabled.</param>
     /// <param name="schemas">Defines the schemas that must be used.</param>
@@ -114,6 +123,7 @@ namespace Enkoni.Framework.ServiceModel {
     protected virtual SchemaValidationBehavior CreateBehavior(bool enabled, XmlSchemaSet schemas) {
       return new SchemaValidationBehavior(enabled, schemas);
     }
+
     #endregion
   }
 }

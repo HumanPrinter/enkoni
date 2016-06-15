@@ -16,9 +16,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Copies the values from <paramref name="source"/> into this instance.</summary>
     /// <param name="source">The entity that contains the desired values.</param>
     public virtual void CopyFrom(T source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       Type entityType = typeof(T);
       TypeMap existingMap = Mapper.FindTypeMapFor(entityType, entityType);

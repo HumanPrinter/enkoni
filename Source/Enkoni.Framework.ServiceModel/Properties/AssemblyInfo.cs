@@ -3,13 +3,13 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the 
+// General Information about an assembly is controlled through the following set of attributes. Change these attribute values to modify the
 // information associated with an assembly.
 [assembly: AssemblyTitle("Enkoni.Framework.ServiceModel")]
 [assembly: AssemblyDescription("Contains a number of helper-classes that can be utilized in combination with WCF services and proxies.")]
 [assembly: AssemblyConfiguration("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible to COM components.  If you need to access a type in this assembly from 
+// Setting ComVisible to false makes the types in this assembly not visible to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 

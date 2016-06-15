@@ -7,18 +7,23 @@ namespace Enkoni.Framework {
   /// <typeparam name="T">The type of object that must be sorted.</typeparam>
   public class SortSpecifications<T> {
     #region Private instance variables
+
     /// <summary>The collection of sort specifications.</summary>
     private List<ISortSpecification<T>> sortingSpecifications;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="SortSpecifications{T}"/> class.</summary>
     public SortSpecifications() {
       this.sortingSpecifications = new List<ISortSpecification<T>>();
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Sorts a sequence according to the specifications that are held by this instance.</summary>
     /// <param name="query">The sequence that must be sorted.</param>
     /// <returns>The sorted sequence.</returns>
@@ -44,15 +49,15 @@ namespace Enkoni.Framework {
       query = orderedQuery;
       return query;
     }
+
     #endregion
 
     #region Internal methods
+
     /// <summary>Adds a new sort specification to the collection.</summary>
     /// <param name="sortSpecification">The sort specification that must be added.</param>
     internal void Add(ISortSpecification<T> sortSpecification) {
-      if(sortSpecification == null) {
-        throw new ArgumentNullException("sortSpecification", "The ISortSpecification is mandatory");
-      }
+      Guard.ArgumentIsNotNull(sortSpecification, nameof(sortSpecification), "The sort specification is mandatory");
 
       this.sortingSpecifications.Add(sortSpecification);
     }
@@ -60,9 +65,7 @@ namespace Enkoni.Framework {
     /// <summary>Adds a new collection of sort specifications to the collection.</summary>
     /// <param name="sortSpecifications">The sort specifications that must be added.</param>
     internal void AddRange(SortSpecifications<T> sortSpecifications) {
-      if(sortSpecifications == null) {
-        throw new ArgumentNullException("sortSpecifications", "The SortSpecifications is mandatory");
-      }
+      Guard.ArgumentIsNotNull(sortSpecifications, nameof(sortSpecifications), "The sort specifications are mandatory");
 
       this.sortingSpecifications.AddRange(sortSpecifications.sortingSpecifications);
     }
@@ -71,6 +74,7 @@ namespace Enkoni.Framework {
     internal void Clear() {
       this.sortingSpecifications.Clear();
     }
+
     #endregion
   }
 }

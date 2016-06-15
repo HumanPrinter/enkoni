@@ -9,6 +9,7 @@ namespace Enkoni.Framework.Timers {
   /// <summary>This class is a wrapper around the <see cref="NetStopwatch"/> class and adds support for recording lap times.</summary>
   public class Stopwatch {
     #region Instance variables
+
     /// <summary>The instance that does the actual work.</summary>
     private NetStopwatch internalStopwatch = new NetStopwatch();
 
@@ -17,15 +18,19 @@ namespace Enkoni.Framework.Timers {
 
     /// <summary>Holds the current state of the stopwatch.</summary>
     private WorkflowState state = WorkflowState.Init;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="Stopwatch"/> class.</summary>
     public Stopwatch() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the lap times of each completed lap.</summary>
     public ReadOnlyCollection<TimeSpan> LapTimes {
       get { return new ReadOnlyCollection<TimeSpan>(this.lapTimes); }
@@ -42,10 +47,12 @@ namespace Enkoni.Framework.Timers {
         }
       }
     }
+
     #endregion
 
     #region Public methods
-    /// <summary>Starts or resumes the stopwatch. If the stopwatch was paused before, the current lap will be resumed; otherwise, a new lap is 
+
+    /// <summary>Starts or resumes the stopwatch. If the stopwatch was paused before, the current lap will be resumed; otherwise, a new lap is
     /// started.</summary>
     public void Start() {
       this.internalStopwatch.Start();
@@ -68,7 +75,7 @@ namespace Enkoni.Framework.Timers {
     }
 
     /// <summary>Resumes the stopwatch.</summary>
-    /// <remarks><see cref="Resume()"/> and <see cref="Start()"/> provide the same functionality. The <see cref="Resume()"/> method has been added to 
+    /// <remarks><see cref="Resume()"/> and <see cref="Start()"/> provide the same functionality. The <see cref="Resume()"/> method has been added to
     /// make working with the <see cref="Stopwatch"/> class more intuitive.</remarks>
     public void Resume() {
       this.internalStopwatch.Start();
@@ -90,6 +97,7 @@ namespace Enkoni.Framework.Timers {
       this.lapTimes.Add(lapTime);
       return lapTime;
     }
+
     #endregion
   }
 }

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<testsuite>
+  <row>
+    <AccountNumber>NL80INGB0007321304</AccountNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <AccountNumber>NL70INGB0007321304</AccountNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <AccountNumber>nl80INGB0007321304</AccountNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <AccountNumber>NL80ingb0007321304</AccountNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <AccountNumber>NL80INGB007321304</AccountNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <AccountNumber>NL80INGB00007321304</AccountNumber>
+    <IsValid>False</IsValid>
+  </row>
+  <row>
+    <AccountNumber></AccountNumber>
+    <IsValid>True</IsValid>
+  </row>
+  <row>
+    <AccountNumber>NLD80ING0007321304</AccountNumber>
+    <IsValid>False</IsValid>
+  </row>
+</testsuite>

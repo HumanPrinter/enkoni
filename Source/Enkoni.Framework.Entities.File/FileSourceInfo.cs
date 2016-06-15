@@ -3,37 +3,36 @@ using System.IO;
 using System.Text;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class can be used by the <see cref="FileRepository{TEntity}"/> or any of its descendants to retrieve valuable information about 
+  /// <summary>This class can be used by the <see cref="FileRepository{TEntity}"/> or any of its descendants to retrieve valuable information about
   /// the file that is to be used. This class is added for improved usability of the DataSourceInfo in combination with the FileRepository.</summary>
   public class FileSourceInfo : DataSourceInfo {
     #region Public constants
+
     /// <summary>Defines the key that is used to store and retrieve the FileInfo that points to the desired file.</summary>
     public const string SourceFileInfoKey = "SourceFileInfo";
 
     /// <summary>Defines the key that is used to store and retrieve the boolean that indicates whether or not to monitor the source file.</summary>
     public const string MonitorSourceFileKey = "MonitorSourceFile";
 
-    /// <summary>Defines the key that is used to store and retrieve the numeric value that is used to determine if a change in the source file is 
-    /// finished.</summary>
+    /// <summary>Defines the key that is used to store and retrieve the numeric value that is used to determine if a change in the source file is finished.</summary>
     public const string ChangeCompleteTimeoutKey = "ChangeCompleteTimeout";
 
     /// <summary>Defines the key that is used to store and retrieve the encoding of the source file.</summary>
     public const string SourceFileEncodingKey = "SourceFileEncoding";
 
-    /// <summary>The default value for the <see cref="MonitorSourceFile"/> that will be used when no custom value has been 
-    /// specified.</summary>
+    /// <summary>The default value for the <see cref="MonitorSourceFile"/> that will be used when no custom value has been specified.</summary>
     public const bool DefaultMonitorSourceFile = true;
 
-    /// <summary>The default value for the <see cref="ChangeCompleteTimeout"/> that will be used when no custom value has 
-    /// been specified.</summary>
+    /// <summary>The default value for the <see cref="ChangeCompleteTimeout"/> that will be used when no custom value has been specified.</summary>
     public const int DefaultChangeCompleteTimeout = 3000;
 
-    /// <summary>The default value for the <see cref="SourceFileEncoding"/> that will be used when no custom value has been
-    /// specified.</summary>
+    /// <summary>The default value for the <see cref="SourceFileEncoding"/> that will be used when no custom value has been specified.</summary>
     public static readonly Encoding DefaultSourceFileEncoding = Encoding.UTF8;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using default values for the properties.</summary>
     public FileSourceInfo()
       : this((FileInfo)null, DefaultMonitorSourceFile, FileSourceInfo.DefaultChangeCompleteTimeout, FileSourceInfo.DefaultSourceFileEncoding,
@@ -71,7 +70,7 @@ namespace Enkoni.Framework.Entities {
       : this(sourceFileInfo, DefaultMonitorSourceFile, FileSourceInfo.DefaultChangeCompleteTimeout, sourceFileEncoding, cloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>,
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
     /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
     /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
@@ -81,7 +80,7 @@ namespace Enkoni.Framework.Entities {
       DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>,
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
     /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
     /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
@@ -91,7 +90,7 @@ namespace Enkoni.Framework.Entities {
       : this(sourceFileInfo, monitorSourceFile, changeCompleteTimeout, FileSourceInfo.DefaultSourceFileEncoding, cloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>,
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
     /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
     /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
@@ -101,7 +100,7 @@ namespace Enkoni.Framework.Entities {
       : this(sourceFileInfo, monitorSourceFile, changeCompleteTimeout, sourceFileEncoding, DataSourceInfo.DefaultCloneDataSourceItems) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>, 
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified <see cref="FileInfo"/>,
     /// <see langword="bool"/> and <see langword="int"/> values.</summary>
     /// <param name="sourceFileInfo">The file information about the file that is used as data source.</param>
     /// <param name="monitorSourceFile">Indicates if the monitor that watches the source file must be started.</param>
@@ -117,7 +116,7 @@ namespace Enkoni.Framework.Entities {
       this.SourceFileEncoding = sourceFileEncoding;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified default values. If the default values do 
+    /// <summary>Initializes a new instance of the <see cref="FileSourceInfo"/> class using the specified default values. If the default values do
     /// not specify supported properties using the correct key and/or type, the default values will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     public FileSourceInfo(Dictionary<string, object> defaultValues)
@@ -143,9 +142,11 @@ namespace Enkoni.Framework.Entities {
         this.SourceFileEncoding = DefaultSourceFileEncoding;
       }
     }
+
     #endregion
 
     #region Public properties
+
     /// <summary>Gets or sets the FileInfo that points to the file that is used as data source.</summary>
     public FileInfo SourceFileInfo {
       get { return (FileInfo)this[SourceFileInfoKey]; }
@@ -169,9 +170,11 @@ namespace Enkoni.Framework.Entities {
       get { return (Encoding)this[SourceFileEncodingKey]; }
       set { this[SourceFileEncodingKey] = value; }
     }
+
     #endregion
 
     #region Public static methods
+
     /// <summary>Determines if the source FileInfo is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the FileInfo is defined; <see langword="false"/> otherwise.</returns>
@@ -247,9 +250,11 @@ namespace Enkoni.Framework.Entities {
         return DefaultSourceFileEncoding;
       }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Determines if the source FileInfo is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the FileInfo is defined; <see langword="false"/> otherwise.</returns>
     public bool IsSourceFileInfoSpecified() {
@@ -273,6 +278,7 @@ namespace Enkoni.Framework.Entities {
     public bool IsSourceFileEncodingSpecified() {
       return this.IsValueSpecified(SourceFileEncodingKey);
     }
+
     #endregion
   }
 }

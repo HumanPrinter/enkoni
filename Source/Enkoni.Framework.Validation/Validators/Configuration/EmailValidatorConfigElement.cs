@@ -7,12 +7,15 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
   /// <summary>Defines the configuration element that can be used to configure the <see cref="EmailValidator"/>.</summary>
   public class EmailValidatorConfigElement : ConfigurationElement {
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="EmailValidatorConfigElement"/> class.</summary>
     public EmailValidatorConfigElement() {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets or sets the name of the validator.</summary>
     [ConfigurationProperty("name", IsKey = true, IsRequired = false, DefaultValue = EmailValidator.DefaultName)]
     public string Name {
@@ -43,7 +46,7 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
 
     /// <summary>Gets the collection of domains that are white listed.</summary>
     [ConfigurationProperty("includeDomains", IsRequired = false, IsDefaultCollection = false)]
-    public EmailDomainCollection IncludeDomains { 
+    public EmailDomainCollection IncludeDomains {
       get {
         return this["includeDomains"] as EmailDomainCollection;
       }
@@ -56,16 +59,19 @@ namespace Enkoni.Framework.Validation.Validators.Configuration {
         return this["excludeDomains"] as EmailDomainCollection;
       }
     }
+
     #endregion
 
     #region Internal methods
+
     /// <summary>Reads XML from the configuration file.</summary>
     /// <param name="reader">The <see cref="XmlReader"/> that reads from the configuration file.</param>
-    /// <param name="serializeCollectionKey"><see langword="true"/> to serialize only the collection key properties; otherwise, 
+    /// <param name="serializeCollectionKey"><see langword="true"/> to serialize only the collection key properties; otherwise,
     /// <see langword="false"/>.</param>
     internal void ReadFromConfig(XmlReader reader, bool serializeCollectionKey) {
       this.DeserializeElement(reader, serializeCollectionKey);
     }
+
     #endregion
   }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -13,11 +13,14 @@ namespace Enkoni.Framework {
   /// <summary>This class contains some all-purpose extension-methods.</summary>
   public static class Extensions {
     #region Private static variables
+
     /// <summary>Caches types and there derived types for performance reasons.</summary>
     private static Dictionary<Type, Type[]> typeCache = new Dictionary<Type, Type[]>();
+
     #endregion
 
     #region ICloneable extensions
+
     /// <summary>Returns a strong-typed clone of the instance.</summary>
     /// <typeparam name="T">The actual type of the instance that will be cloned.</typeparam>
     /// <param name="instance">The instance on which the clone-method will be invoked.</param>
@@ -30,12 +33,14 @@ namespace Enkoni.Framework {
         return (T)instance.Clone();
       }
     }
+
     #endregion
 
     #region Event extensions
-    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will return when all 
+
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will return when all
     /// the event handlers have finished. <br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically propagate the call 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically propagate the call
     /// the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
@@ -44,9 +49,9 @@ namespace Enkoni.Framework {
       UnsafeFire(handler, sender, e);
     }
 
-    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will 
+    /// <summary>Fires an event in a sequential way. An event handler needs to finish before the next event handler will be called. This method will
     /// return when all the event handlers have finished. <br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
@@ -57,7 +62,7 @@ namespace Enkoni.Framework {
     }
 
     /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
@@ -67,7 +72,7 @@ namespace Enkoni.Framework {
     }
 
     /// <summary>Fires an event in a parallel way. This method will return when all the event handlers have finished.<br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
@@ -78,7 +83,7 @@ namespace Enkoni.Framework {
     }
 
     /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <param name="handler">The multicast delegate that must be executed.</param>
     /// <param name="sender">The object that triggered the event.</param>
@@ -88,7 +93,7 @@ namespace Enkoni.Framework {
     }
 
     /// <summary>Fires an event in an asynchronous way. When this method returns, the event handlers may still be running.<br/>
-    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically 
+    /// This method will automatically check if there are any event handlers subscribed to <paramref name="handler"/> and it will automatically
     /// propagate the call the the appropriate thread.</summary>
     /// <typeparam name="T">The type of event args that is passed with the event.</typeparam>
     /// <param name="handler">The multicast delegate that must be executed.</param>
@@ -97,9 +102,11 @@ namespace Enkoni.Framework {
     public static void FireAsync<T>(this EventHandler<T> handler, object sender, T e) where T : EventArgs {
       UnsafeFireAsync(handler, sender, e);
     }
+
     #endregion
 
     #region String extensions
+
     /// <summary>Capitalizes the first letter of each word assuming that words are separated by a single space.</summary>
     /// <param name="source">The string that must be capitalized.</param>
     /// <returns>The capitalized string. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
@@ -133,9 +140,7 @@ namespace Enkoni.Framework {
     /// <returns>The capitalized string. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
     /// modifications.</returns>
     public static string Capitalize(this string source, bool keepExistingCapitals, CultureInfo culture) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       if(string.IsNullOrEmpty(source.Trim())) {
         return source;
@@ -151,10 +156,12 @@ namespace Enkoni.Framework {
           continue;
         }
 
-        words[wordIndex] = new string(new char[] { words[wordIndex].First() }).ToUpper(culture)  /* Capitalize the first character */
+        words[wordIndex] = new string(new char[] { words[wordIndex].First() }).ToUpper(culture) /* Capitalize the first character */
             + (keepExistingCapitals
-              ? new string(words[wordIndex].Skip(1).ToArray())                                   /* Keep the remaining characters as they are */
-              : new string(words[wordIndex].Skip(1).ToArray()).ToLower(culture));                /* Lower the remaining characters */
+              /* Keep the remaining characters as they are */
+              ? new string(words[wordIndex].Skip(1).ToArray())
+              /* Lower the remaining characters */
+              : new string(words[wordIndex].Skip(1).ToArray()).ToLower(culture));
       }
 
       return string.Join(" ", words);
@@ -193,11 +200,9 @@ namespace Enkoni.Framework {
     /// <returns>The capitalized sentence. If <paramref name="source"/> is empty, <paramref name="source"/> is returned without
     /// modifications.</returns>
     public static string CapitalizeSentence(this string source, bool keepExistingCapitals, CultureInfo culture) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
-      if(string.IsNullOrEmpty(source.Trim())) {
+      if (string.IsNullOrEmpty(source.Trim())) {
         return source;
       }
 
@@ -216,16 +221,21 @@ namespace Enkoni.Framework {
           continue;
         }
 
-        words[wordIndex] = 
-          firstWordFound 
+        words[wordIndex] =
+          firstWordFound
           ? (keepExistingCapitals
-            ? words[wordIndex]                                                      /* Keep the remaining words as they are */
-            : words[wordIndex].ToLower(culture))                                    /* Lower the remaining characters of the remaining words*/
-          : new string(new char[] { words[wordIndex].First() }).ToUpper(culture)    /* Capitalize the first character of the first word */
+            /* Keep the remaining words as they are */
+            ? words[wordIndex]
+            /* Lower the remaining characters of the remaining words*/
+            : words[wordIndex].ToLower(culture))
+          /* Capitalize the first character of the first word */
+          : new string(new char[] { words[wordIndex].First() }).ToUpper(culture)
             + (keepExistingCapitals
-              ? new string(words[wordIndex].Skip(1).ToArray())                      /* Keep the remaining characters of the first word as they are */
-              : new string(words[wordIndex].Skip(1).ToArray()).ToLower(culture));   /* Lower the remaining characters of the first word*/
-        
+              /* Keep the remaining characters of the first word as they are */
+              ? new string(words[wordIndex].Skip(1).ToArray())
+              /* Lower the remaining characters of the first word*/
+              : new string(words[wordIndex].Skip(1).ToArray()).ToLower(culture));
+
         firstWordFound = true;
       }
 
@@ -238,9 +248,7 @@ namespace Enkoni.Framework {
     /// <param name="maxLength">The maximum length of the returned string.</param>
     /// <returns>The string value truncated to the specified length or the original string if the length is already less then or equal to the maximum length.</returns>
     public static string Truncate(this string source, int maxLength) {
-      if(maxLength < 0) {
-        throw new ArgumentOutOfRangeException("maxLength", maxLength, "The maximum length cannot be negative");
-      }
+      Guard.ArgumentIsGreaterOrEqualThan(0, maxLength, nameof(maxLength), "The maximum length cannot be negative");
 
       if(string.IsNullOrEmpty(source)) {
         return source;
@@ -249,15 +257,17 @@ namespace Enkoni.Framework {
         return source.Length <= maxLength ? source : source.Substring(0, maxLength);
       }
     }
+
     #endregion
 
     #region Double extensions
+
     /// <summary>Returns a value indicating whether both values represent the same value.</summary>
     /// <param name="source">The first value to compare.</param>
     /// <param name="obj">The second value to compare.</param>
-    /// <param name="comparisonFactor">The factor that must be taken into account. If <paramref name="compareOption"/> is set to 
+    /// <param name="comparisonFactor">The factor that must be taken into account. If <paramref name="compareOption"/> is set to
     /// <see cref="DoubleCompareOption.Margin"/>, the comparison factor will be treated as an absolute margin. If <paramref name="compareOption"/> is
-    /// set to <see cref="DoubleCompareOption.SignificantDigits"/> the comparison factor will be treated as the number of digits that must be 
+    /// set to <see cref="DoubleCompareOption.SignificantDigits"/> the comparison factor will be treated as the number of digits that must be
     /// examined will comparing. Note that the comparison factor in that case will be truncated to an integer.</param>
     /// <param name="compareOption">Defines the method that must be used to compare the double values.</param>
     /// <returns><see langword="true"/> if the two values are equal; otherwise, <see langword="false"/>.</returns>
@@ -265,36 +275,38 @@ namespace Enkoni.Framework {
       return new DoubleEqualityComparer(comparisonFactor, compareOption).Equals(source, obj);
     }
 
-    /// <summary>Compares the two values and returns an integer that indicates whether the first value is less than, equal to, or greater than the 
+    /// <summary>Compares the two values and returns an integer that indicates whether the first value is less than, equal to, or greater than the
     /// second value.</summary>
     /// <param name="source">The first value to compare.</param>
     /// <param name="value">The second value to compare.</param>
-    /// <param name="comparisonFactor">The factor that must be taken into account. If <paramref name="compareOption"/> is set to 
+    /// <param name="comparisonFactor">The factor that must be taken into account. If <paramref name="compareOption"/> is set to
     /// <see cref="DoubleCompareOption.Margin"/>, the comparison factor will be treated as an absolute margin. If <paramref name="compareOption"/> is
-    /// set to <see cref="DoubleCompareOption.SignificantDigits"/> the comparison factor will be treated as the number of digits that must be 
+    /// set to <see cref="DoubleCompareOption.SignificantDigits"/> the comparison factor will be treated as the number of digits that must be
     /// examined will comparing. Note that the comparison factor in that case will be truncated to an integer.</param>
     /// <param name="compareOption">Defines the method that must be used to compare the double values.</param>
     /// <returns>A signed number indicating the relative values of the two numbers. <br />
     /// Return Value Description <br/>
-    /// Less than zero: <paramref name="source"/> is less than <paramref name="value"/> -or- <paramref name="source"/> is not a number 
-    /// (<see cref="Double.NaN"/>) and value is a number.<br/>
-    /// Zero: <paramref name="source"/> is equal to <paramref name="value"/> -or- Both <paramref name="source"/> and <paramref name="value"/> are 
-    /// not a number (<see cref="Double.NaN"/>), <see cref="Double.PositiveInfinity"/>, or <see cref="Double.NegativeInfinity"/>.<br/>
-    /// Greater than zero: <paramref name="source"/> is greater than <paramref name="value"/> -or- <paramref name="source"/> is a number and 
-    /// <paramref name="value"/> is not a number (<see cref="Double.NaN"/>).</returns>
+    /// Less than zero: <paramref name="source"/> is less than <paramref name="value"/> -or- <paramref name="source"/> is not a number
+    /// (<see cref="double.NaN"/>) and value is a number.<br/>
+    /// Zero: <paramref name="source"/> is equal to <paramref name="value"/> -or- Both <paramref name="source"/> and <paramref name="value"/> are
+    /// not a number (<see cref="double.NaN"/>), <see cref="double.PositiveInfinity"/>, or <see cref="double.NegativeInfinity"/>.<br/>
+    /// Greater than zero: <paramref name="source"/> is greater than <paramref name="value"/> -or- <paramref name="source"/> is a number and
+    /// <paramref name="value"/> is not a number (<see cref="double.NaN"/>).</returns>
     public static int CompareTo(this double source, double value, double comparisonFactor, DoubleCompareOption compareOption) {
       return new DoubleComparer(comparisonFactor, compareOption).Compare(source, value);
     }
+
     #endregion
 
     #region DateTime extensions
+
     /// <summary>Determines the week number of the given <see cref="DateTime"/> value using the ISO 8601 specification.</summary>
     /// <param name="source">The date time of which the week number must be determined.</param>
     /// <returns>The determined week number.</returns>
     public static int GetWeekNumber(this DateTime source) {
-      /* This implementation is inspired on the article written by Shawn Steele which is available on 
+      /* This implementation is inspired on the article written by Shawn Steele which is available on
        * http://blogs.msdn.com/b/shawnste/archive/2006/01/24/517178.aspx */
-      /* This implementation is slightly more complicated than simply calling GetWeekOfYear() on Calendar, because the default implementation is not 
+      /* This implementation is slightly more complicated than simply calling GetWeekOfYear() on Calendar, because the default implementation is not
        * entirely ISO 8601 compliant (even though the documentation says it is). */
 
       /* Since this method calculates the weeknumber in accordance with the ISO 8601 specification, which is culture independant, the calendar of the
@@ -313,12 +325,12 @@ namespace Enkoni.Framework {
       /* Now the GetWeekOfYear method can be used and it will return the correct value in accordance with the ISO 8601 specification. */
       return calendar.GetWeekOfYear(source, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
     }
-    
+
     /// <summary>Determines whether or not a <see cref="DateTime"/> value is between to specified <see cref="DateTime"/> boundaries.</summary>
     /// <param name="source">The date time that must be tested.</param>
     /// <param name="lowerLimit">The lower bound (exclusive) of the equation.</param>
     /// <param name="upperLimit">The upper bound (exclusive) of the equation.</param>
-    /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>; 
+    /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>;
     /// otherwise, <see langword="false"/>.</returns>
     public static bool Between(this DateTime source, DateTime? lowerLimit, DateTime? upperLimit) {
       return (lowerLimit.HasValue ? source > lowerLimit : true) && (upperLimit.HasValue ? source < upperLimit : true);
@@ -328,7 +340,7 @@ namespace Enkoni.Framework {
     /// <param name="source">The date time that must be tested.</param>
     /// <param name="lowerLimit">The lower bound (exclusive) of the equation.</param>
     /// <param name="upperLimit">The upper bound (exclusive) of the equation.</param>
-    /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>; 
+    /// <returns><see langword="true"/> if <paramref name="source"/> is greater than <paramref name="lowerLimit"/> and smaller than <paramref name="upperLimit"/>;
     /// otherwise, <see langword="false"/>.</returns>
     public static bool Between(this DateTime? source, DateTime? lowerLimit, DateTime? upperLimit) {
       if(source.HasValue) {
@@ -338,18 +350,18 @@ namespace Enkoni.Framework {
         return !lowerLimit.HasValue;
       }
     }
+
     #endregion
 
     #region Type extensions
+
     /// <summary>Determines if the specified type actually a nullable type.</summary>
     /// <param name="source">The type that is investigated.</param>
     /// <returns><see langword="true"/> is <paramref name="source"/> denotes a nullable type, <see langword="false"/>
     /// otherwise.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
     public static bool IsNullable(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       return source.IsGenericType && source.GetGenericTypeDefinition() == typeof(Nullable<>);
     }
@@ -357,13 +369,11 @@ namespace Enkoni.Framework {
     /// <summary>Returns the actual type of <paramref name="source"/>. If <paramref name="source"/> denotes a nullable type,
     /// the underlying type is returned. Otherwise, <paramref name="source"/> is returned.</summary>
     /// <param name="source">The type that is investigated.</param>
-    /// <returns>The underlying type if <paramref name="source"/> is nullable or <paramref name="source"/> if it is not 
+    /// <returns>The underlying type if <paramref name="source"/> is nullable or <paramref name="source"/> if it is not
     /// nullable.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
     public static Type ActualType(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       if(source.IsNullable()) {
         NullableConverter converter = new NullableConverter(source);
@@ -378,9 +388,7 @@ namespace Enkoni.Framework {
     /// <param name="source">The <see cref="Type"/> whose base classes must be retrieved.</param>
     /// <returns>The base classes that are extended or inherited by the current <see cref="Type"/>.</returns>
     public static Type[] GetBaseClasses(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       List<Type> baseTypes = new List<Type>();
 
@@ -401,9 +409,7 @@ namespace Enkoni.Framework {
     /// <param name="source">The <see cref="Type"/> whose base types must be retrieved.</param>
     /// <returns>The base types that are extended, implemented or inherited by the current <see cref="Type"/>.</returns>
     public static Type[] GetBaseTypes(this Type source) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       Type[] interfaces = source.GetInterfaces();
       Type[] baseClasses = source.GetBaseClasses();
@@ -428,18 +434,13 @@ namespace Enkoni.Framework {
     /// <returns><see langword="true"/> if <paramref name="source"/> implements <paramref name="baseType"/>;
     /// <see langword="false"/> otherwise.</returns>
     public static bool Implements(this Type source, Type baseType) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
-
-      if(baseType == null) {
-        throw new ArgumentNullException("baseType");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
+      Guard.ArgumentIsNotNull(baseType, nameof(baseType));
 
       return source.Equals(baseType) || source.GetBaseTypes().Contains(baseType, new TypeEqualityComparer());
     }
 
-    /// <summary>Gets the types that derive from <paramref name="source"/> and are available in the loaded assemblies. If this type has been evaluated 
+    /// <summary>Gets the types that derive from <paramref name="source"/> and are available in the loaded assemblies. If this type has been evaluated
     /// before, the previous results are returned regardless of any assembly load or unload event.</summary>
     /// <param name="source">The instance that must be evaluated.</param>
     /// <returns>The detected types that derive from <paramref name="source"/>.</returns>
@@ -452,15 +453,15 @@ namespace Enkoni.Framework {
     /// <param name="forceRescan">Forces to ignore the previous scan-results and rescan the loaded assemblies.</param>
     /// <returns>The detected types that derive from <paramref name="source"/>.</returns>
     public static Type[] GetDerivedTypes(this Type source, bool forceRescan) {
-      if(source == null) {
-        throw new ArgumentNullException("source");
-      }
+      Guard.ArgumentIsNotNull(source, nameof(source));
 
       return Find(source, forceRescan);
     }
+
     #endregion
 
     #region Helper methods
+
     /// <summary>Invokes a delegate. If required, the call is transferred to the appropriate thread.</summary>
     /// <param name="del">The delegate that must be invoked.</param>
     /// <param name="args">The arguments that must be passed to the delegate.</param>
@@ -604,18 +605,23 @@ namespace Enkoni.Framework {
 
       return result;
     }
+
     #endregion
 
     #region Private classes
+
     /// <summary>Provides the functionality to compare two <see cref="Type"/> instances.</summary>
     private class TypeEqualityComparer : IEqualityComparer<Type> {
       #region Constructors
+
       /// <summary>Initializes a new instance of the <see cref="TypeEqualityComparer"/> class.</summary>
       public TypeEqualityComparer() {
       }
+
       #endregion
 
       #region IEqualityComparer implementation
+
       /// <summary>Determines if the specified instances are equal.</summary>
       /// <param name="x">The left operand.</param>
       /// <param name="y">The right operand.</param>
@@ -642,13 +648,15 @@ namespace Enkoni.Framework {
 
       /// <summary>Returns the hash code for the given instance.</summary>
       /// <param name="obj">The instance whose hash code must be returned.</param>
-      /// <returns>The hash code of <paramref name="obj"/> or zero if <paramref name="obj"/> is 
+      /// <returns>The hash code of <paramref name="obj"/> or zero if <paramref name="obj"/> is
       /// <see langword="null"/>.</returns>
       public int GetHashCode(Type obj) {
         return obj == null ? 0 : obj.GetHashCode();
       }
+
       #endregion
     }
+
     #endregion
   }
 }

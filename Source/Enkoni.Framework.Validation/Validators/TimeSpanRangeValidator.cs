@@ -6,9 +6,10 @@ namespace Enkoni.Framework.Validation.Validators {
   /// <summary>Performs validation on TimeSpan instances by comparing them to the specified boundaries.</summary>
   public class TimeSpanRangeValidator : RangeValidator<TimeSpan> {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidator"/> class with an upper bound constraint.</summary>
     /// <param name="upperBound">The upper bound.</param>
-    /// <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be 
+    /// <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be
     /// <see cref="RangeBoundaryType.Inclusive"/>.</remarks>
     public TimeSpanRangeValidator(TimeSpan upperBound)
       : base(upperBound) {
@@ -17,7 +18,7 @@ namespace Enkoni.Framework.Validation.Validators {
     /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidator"/> class with an upper bound constraint.</summary>
     /// <param name="upperBound">The upper bound.</param>
     /// <param name="negated">True if the validator must negate the result of the validation.</param>
-    /// <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be 
+    /// <remarks>No lower bound constraints will be checked by this instance, and the upper bound check will be
     /// <see cref="RangeBoundaryType.Inclusive"/>.</remarks>
     public TimeSpanRangeValidator(TimeSpan upperBound, bool negated)
       : base(upperBound, negated) {
@@ -60,7 +61,7 @@ namespace Enkoni.Framework.Validation.Validators {
       : base(lowerBound, lowerBoundType, upperBound, upperBoundType, negated) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidator"/> class with fully specified bound constraints and a message 
+    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidator"/> class with fully specified bound constraints and a message
     /// template.</summary>
     /// <param name="lowerBound">The lower bound.</param>
     /// <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
@@ -72,7 +73,7 @@ namespace Enkoni.Framework.Validation.Validators {
       : base(lowerBound, lowerBoundType, upperBound, upperBoundType, messageTemplate) {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidator"/> class with fully specified bound constraints and a message 
+    /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidator"/> class with fully specified bound constraints and a message
     /// template.</summary>
     /// <param name="lowerBound">The lower bound.</param>
     /// <param name="lowerBoundType">The indication of how to perform the lower bound check.</param>
@@ -84,6 +85,7 @@ namespace Enkoni.Framework.Validation.Validators {
       string messageTemplate, bool negated)
       : base(lowerBound, lowerBoundType, upperBound, upperBoundType, messageTemplate, negated) {
     }
+
     #endregion
   }
 }

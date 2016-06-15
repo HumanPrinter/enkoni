@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
 
 using Enkoni.Framework.Validation.RegularExpressions;
 
@@ -11,8 +13,9 @@ namespace Enkoni.Framework.DataAnnotations {
   /// <summary>Attribute to specify IBAN account number validation on a property, method or field.</summary>
   [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true,
     Inherited = false)]
-  public sealed class IbanAttribute : ValidationAttribute {
+  public sealed class IbanAttribute : ValidationAttribute, IClientValidatable {
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="IbanAttribute"/> class.</summary>
     public IbanAttribute() {
     }
@@ -29,9 +32,11 @@ namespace Enkoni.Framework.DataAnnotations {
     public IbanAttribute(Func<string> errorMessageAccessor)
       : base(errorMessageAccessor) {
     }
+
     #endregion
 
     #region ValidationAttribute overrides
+
     /// <summary>Determines whether the specified value of the object is valid.</summary>
     /// <param name="value">The value of the object to validate.</param>
     /// <returns><see langword="true"/> if the specified value is valid; otherwise, <see langword="false"/>.</returns>
@@ -59,9 +64,24 @@ namespace Enkoni.Framework.DataAnnotations {
 
       return isValid;
     }
+
+    #endregion
+
+    #region IClientValidatable implementation
+
+    /// <summary>Returns client validation rules for IBAN validation.</summary>
+    /// <param name="metadata">The model metadata.</param>
+    /// <param name="context">The controller context.</param>
+    /// <returns>The client validation rules that apply to this validator.</returns>
+    public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context) {
+      string name = metadata == null ? string.Empty : metadata.GetDisplayName();
+      yield return new ModelClientValidationRule { ErrorMessage = this.FormatErrorMessage(name), ValidationType = "iban" };
+    }
+
     #endregion
 
     #region Private helper methods
+
     /// <summary>Converts a string into a numeric value by substituting the 'A' to 'Z' characters whit there numeric equivalents where 'A' equals '10',
     /// 'B' equals '11' etcetera.</summary>
     /// <param name="text">The value that must be converted.</param>
@@ -80,6 +100,7 @@ namespace Enkoni.Framework.DataAnnotations {
 
       return BigInteger.Parse(result.ToString(), CultureInfo.InvariantCulture);
     }
+
     #endregion
   }
 }

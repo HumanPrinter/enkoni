@@ -17,7 +17,7 @@ namespace Enkoni.Framework.Testing.Tests {
 
     /// <summary>Tests the functionality of the <see cref="SimulatedHttpRequest(string, string, string, string, TextWriter, string)"/> constructor.</summary>
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(ArgumentException))]
     public void HttpContextHelper_SetHttpContextWithSimulatedRequestWithEmptyHost_ExceptionIsThrown() {
       HttpContextHelper.SetHttpContextWithSimulatedRequest(string.Empty, "application");
     }
@@ -31,7 +31,7 @@ namespace Enkoni.Framework.Testing.Tests {
 
     /// <summary>Tests the functionality of the <see cref="SimulatedHttpRequest(string, string, string, string, TextWriter, string)"/> constructor.</summary>
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
+    [ExpectedException(typeof(ArgumentException))]
     public void HttpContextHelper_SetHttpContextWithSimulatedRequestWithEmptyApplication_ExceptionIsThrown() {
       HttpContextHelper.SetHttpContextWithSimulatedRequest("myserver", string.Empty);
     }

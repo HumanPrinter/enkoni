@@ -2,10 +2,11 @@
 using System.Data.Entity;
 
 namespace Enkoni.Framework.Entities {
-  /// <summary>This class can be used by the <see cref="DatabaseRepository{TEntity}"/> to retrieve valuable information about the database that is to 
+  /// <summary>This class can be used by the <see cref="DatabaseRepository{TEntity}"/> to retrieve valuable information about the database that is to
   /// be used. This class is added for improved usability of the DataSourceInfo in combination with the DatabaseRepository.</summary>
   public class DatabaseSourceInfo : DataSourceInfo {
     #region Public constants
+
     /// <summary>Defines the key that is used to store and retrieve the <see cref="DbContext"/>.</summary>
     public const string DbContextKey = "DbContext";
 
@@ -14,10 +15,12 @@ namespace Enkoni.Framework.Entities {
 
     /// <summary>The default value for the <see cref="SaveGraph"/> that will be used when no custom value has been specified.</summary>
     public const bool DefaultSaveGraph = true;
+
     #endregion
 
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using a default value of <see langword="null"/> for the 
+
+    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using a default value of <see langword="null"/> for the
     /// <see cref="DbContext"/>.</summary>
     public DatabaseSourceInfo()
       : this((DbContext)null) {
@@ -49,7 +52,7 @@ namespace Enkoni.Framework.Entities {
       this.SaveGraph = saveGraph;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified default values. If the default values 
+    /// <summary>Initializes a new instance of the <see cref="DatabaseSourceInfo"/> class using the specified default values. If the default values
     /// do not specify the <see cref="DbContext"/> using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     public DatabaseSourceInfo(Dictionary<string, object> defaultValues)
@@ -65,9 +68,11 @@ namespace Enkoni.Framework.Entities {
         this.SaveGraph = DefaultSaveGraph;
       }
     }
+
     #endregion
 
     #region Public properties
+
     /// <summary>Gets or sets the <see cref="DbContext"/> that is to be used by the DatabaseRepository.</summary>
     public DbContext DbContext {
       get { return (DbContext)this[DbContextKey]; }
@@ -79,9 +84,11 @@ namespace Enkoni.Framework.Entities {
       get { return (bool)this[SaveGraphKey]; }
       set { this[SaveGraphKey] = value; }
     }
+
     #endregion
 
     #region Public static methods
+
     /// <summary>Determines if the <see cref="DbContext"/> is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the <see cref="DbContext"/> is defined; <see langword="false"/> otherwise.</returns>
@@ -119,9 +126,11 @@ namespace Enkoni.Framework.Entities {
         return DatabaseSourceInfo.DefaultSaveGraph;
       }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Determines if the <see cref="DbContext"/> is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the <see cref="DbContext"/> is defined; <see langword="false"/> otherwise.</returns>
     public bool IsDbContextSpecified() {
@@ -133,6 +142,7 @@ namespace Enkoni.Framework.Entities {
     public bool IsSaveGraphSpecified() {
       return this.IsValueSpecified(SaveGraphKey);
     }
+
     #endregion
   }
 }

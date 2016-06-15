@@ -5,10 +5,11 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace Enkoni.Framework {
-  /// <summary>This class contains static members that would normally be part of the <see cref="Specification{T}"/> class, but since that class is 
+  /// <summary>This class contains static members that would normally be part of the <see cref="Specification{T}"/> class, but since that class is
   /// generic the static members are placed in this non-generic counterpart to avoid possible confusion about the use of the methods.</summary>
   public static class Specification {
     #region Public static method
+
     /// <summary>Creates a specification that will return all available objects.</summary>
     /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
     /// <returns>A specification that will return all available objects.</returns>
@@ -31,8 +32,8 @@ namespace Enkoni.Framework {
       return new LambdaSpecification<T>(expression);
     }
 
-    /// <summary>Creates a specification that will return the objects for which the specified field matches the specified pattern. The pattern 
-    /// supports two types of wildcards. The '*' wildcard matches any character (zero or more times) and the '?' wildcard matches exactly one 
+    /// <summary>Creates a specification that will return the objects for which the specified field matches the specified pattern. The pattern
+    /// supports two types of wildcards. The '*' wildcard matches any character (zero or more times) and the '?' wildcard matches exactly one
     /// character.</summary>
     /// <typeparam name="T">The type of object that is ultimately selected by the specification.</typeparam>
     /// <param name="field">The field that must match the expression.</param>
@@ -66,6 +67,7 @@ namespace Enkoni.Framework {
     public static ISpecification<T> BusinessRule<T>(string ruleName, params object[] ruleArguments) {
       return new BusinessRuleSpecification<T>(ruleName, ruleArguments);
     }
+
     #endregion
   }
 
@@ -75,6 +77,7 @@ namespace Enkoni.Framework {
       Justification = "Since the static class is merely a container for the static members of the non-static class, they can be in the same file")]
   public abstract class Specification<T> : ISpecification<T> {
     #region Private event-delegates
+
     /// <summary>The delegate that holds the references to the various event handlers. Normally, there will be at most one handler.</summary>
     private EventHandler<EventArgs<int>> maxResultsUpdated;
 
@@ -92,17 +95,21 @@ namespace Enkoni.Framework {
 
     /// <summary>Indicates if there is a change-event pending.</summary>
     private bool includePathChangePending;
+
     #endregion
 
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="Specification{T}"/> class.</summary>
     protected Specification() {
       this.MaximumResults = -1;
       this.IncludePaths = Enumerable.Empty<string>();
     }
+
     #endregion
 
     #region Public events
+
     /// <summary>Occurs when the maximum number of records has changed.</summary>
     public event EventHandler<EventArgs<int>> MaximumResultsUpdated {
       add {
@@ -148,9 +155,11 @@ namespace Enkoni.Framework {
         this.includePathUpdated -= value;
       }
     }
+
     #endregion
 
     #region Public properties
+
     /// <summary>Gets the maximum number of records that must be retrieved using this specification.</summary>
     public int MaximumResults { get; private set; }
 
@@ -159,9 +168,11 @@ namespace Enkoni.Framework {
 
     /// <summary>Gets the dot-separated lists of related objects to return in the query results.</summary>
     public IEnumerable<string> IncludePaths { get; private set; }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Sets the maximum number of records that must be retrieved using the specification.</summary>
     /// <param name="maximum">The maximum number. A value of '-1' means 'retrieve all'.</param>
     public void SetMaximumResults(int maximum) {
@@ -177,9 +188,7 @@ namespace Enkoni.Framework {
     /// <summary>Sets the include path that must be considered when using the specification.</summary>
     /// <param name="includePath">The dot-separated list of related objects to return in the query results.</param>
     public void Include(string includePath) {
-      if(string.IsNullOrEmpty(includePath)) {
-        throw new ArgumentException("Specified path cannot be null or empty", "includePath");
-      }
+      Guard.ArgumentIsNotNullOrEmpty(includePath, nameof(includePath), "Specified path cannot be null or empty");
 
       if(this.includePathUpdated != null) {
         this.includePathUpdated(this, new EventArgs<string>(includePath));
@@ -243,9 +252,7 @@ namespace Enkoni.Framework {
     /// <param name="specification">The specification that must be combined.</param>
     /// <returns>The combined specification.</returns>
     public virtual ISpecification<T> And(ISpecification<T> specification) {
-      if(specification is BusinessRuleSpecification<T>) {
-        throw new InvalidOperationException("A BusinessRuleSpecification cannot be combined with other specifications.");
-      }
+      Guard.ArgumentIsNotOfType<BusinessRuleSpecification<T>>(specification, nameof(specification), "A BusinessRuleSpecification cannot be combined with other specifications.");
 
       return new AndSpecification<T>(this, specification);
     }
@@ -254,35 +261,31 @@ namespace Enkoni.Framework {
     /// <param name="specification">The specification that must be combined.</param>
     /// <returns>The combined specification.</returns>
     public virtual ISpecification<T> Or(ISpecification<T> specification) {
-      if(specification is BusinessRuleSpecification<T>) {
-        throw new InvalidOperationException("A BusinessRuleSpecification cannot be combined with other specifications.");
-      }
+      Guard.ArgumentIsNotOfType<BusinessRuleSpecification<T>>(specification, nameof(specification), "A BusinessRuleSpecification cannot be combined with other specifications.");
 
       return new OrSpecification<T>(this, specification);
     }
 
-    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can 
+    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can
     /// be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
     /// <exception cref="ArgumentNullException">Parameter is <see langword="null"/>.</exception>
     public Expression<Func<T, bool>> Visit(ISpecificationVisitor<T> visitor) {
-      if(visitor == null) {
-        throw new ArgumentNullException("visitor", "The visitor-parameter is mandatory");
-      }
+      Guard.ArgumentIsNotNull(visitor, nameof(visitor), "The visitor-parameter is mandatory");
 
       return this.VisitCore(visitor);
     }
+
     #endregion
 
     #region Protected eventhandlers
+
     /// <summary>Handles the occurrence of a changed maximum for the number of records that must be retrieved.</summary>
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleMaximumResultsUpdated(object sender, EventArgs<int> args) {
-      if(args == null) {
-        throw new ArgumentNullException("args");
-      }
+      Guard.ArgumentIsNotNull(args, nameof(args));
 
       this.SetMaximumResults(args.EventValue);
     }
@@ -291,9 +294,7 @@ namespace Enkoni.Framework {
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleOrderByRulesUpdated(object sender, SortSpecificationsEventArgs<T> args) {
-      if(args == null) {
-        throw new ArgumentNullException("args");
-      }
+      Guard.ArgumentIsNotNull(args, nameof(args));
 
       this.OrderBy(args.EventValue);
     }
@@ -302,20 +303,21 @@ namespace Enkoni.Framework {
     /// <param name="sender">The object that raised the event.</param>
     /// <param name="args">Some additional information regarding the event.</param>
     protected void HandleIncludePathUpdated(object sender, EventArgs<string> args) {
-      if(args == null) {
-        throw new ArgumentNullException("args");
-      }
+      Guard.ArgumentIsNotNull(args, nameof(args));
 
       this.Include(args.EventValue);
     }
+
     #endregion
 
     #region Extendibility methods
-    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can 
+
+    /// <summary>Visits the specification and lets <paramref name="visitor"/> convert the contents of the specification into an expression that can
     /// be used to perform the actual filtering/selection.</summary>
     /// <param name="visitor">The instance that will perform the conversion.</param>
     /// <returns>The expression that was created using this specification.</returns>
     protected abstract Expression<Func<T, bool>> VisitCore(ISpecificationVisitor<T> visitor);
+
     #endregion
   }
 }

@@ -2,25 +2,26 @@
 using System.Text;
 
 namespace Enkoni.Framework.Serialization {
-  /// <summary>Represents a transformer that transforms an instance of <typeparamref name="T"/> into a byte array or string 
+  /// <summary>Represents a transformer that transforms an instance of <typeparamref name="T"/> into a byte array or string
   /// and vice versa.</summary>
   /// <typeparam name="T">The type that must be transformed.</typeparam>
   public abstract class Transformer<T> {
     #region Constructor
+
     /// <summary>Initializes a new instance of the <see cref="Transformer{T}"/> class.</summary>
     protected Transformer() {
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Transforms <paramref name="instance"/> into a string.</summary>
     /// <param name="instance">The instance that must be transformed.</param>
     /// <returns>The string that contains the transformed instance.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="instance"/> is <see langword="null"/>.</exception>
     public string ToString(T instance) {
-      if(instance == null) {
-        throw new ArgumentNullException("instance");
-      }
+      Guard.ArgumentIsNotNull(instance, nameof(instance));
 
       return this.ToStringCore(instance);
     }
@@ -32,13 +33,8 @@ namespace Enkoni.Framework.Serialization {
     /// <exception cref="ArgumentNullException"><paramref name="instance"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="encoding"/> is <see langword="null"/>.</exception>
     public byte[] ToBytes(T instance, Encoding encoding) {
-      if(instance == null) {
-        throw new ArgumentNullException("instance");
-      }
-
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding");
-      }
+      Guard.ArgumentIsNotNull(instance, nameof(instance));
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding));
 
       return this.ToBytesCore(instance, encoding);
     }
@@ -55,28 +51,14 @@ namespace Enkoni.Framework.Serialization {
     /// <exception cref="ArgumentNullException"><paramref name="bytes"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="encoding"/> is <see langword="null"/>.</exception>
     public int ToBytes(T instance, Encoding encoding, byte[] bytes, int offset) {
-      if(instance == null) {
-        throw new ArgumentNullException("instance");
-      }
+      Guard.ArgumentIsNotNull(instance, nameof(instance));
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding));
+      Guard.ArgumentIsNotNull(bytes, nameof(bytes));
+      Guard.ArgumentIsGreaterOrEqualThan(0, offset, nameof(offset), "The offset cannot be negative");
+      Guard.ArgumentIsLowerThan(bytes.Length, offset, nameof(offset), "The offset must be within the bounds of the array");
 
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding");
-      }
-
-      if(bytes == null) {
-        throw new ArgumentNullException("bytes");
-      }
-
-      if(bytes.Length == 0) {
+      if (bytes.Length == 0) {
         throw new ArgumentException("Cannot transform an instance of type " + typeof(T) + " into an empty array", "bytes");
-      }
-
-      if(offset < 0) {
-        throw new ArgumentOutOfRangeException("offset", offset, "The offset cannot be negative");
-      }
-
-      if(offset >= bytes.Length) {
-        throw new ArgumentOutOfRangeException("offset", offset, "The offset must be within the bounds of the array");
       }
 
       return this.ToBytesCore(instance, encoding, bytes, offset);
@@ -87,9 +69,7 @@ namespace Enkoni.Framework.Serialization {
     /// <returns>The transformed instance.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="input"/> is <see langword="null"/>.</exception>
     public T FromString(string input) {
-      if(input == null) {
-        throw new ArgumentNullException("input");
-      }
+      Guard.ArgumentIsNotNull(input, nameof(input));
 
       return this.FromStringCore(input);
     }
@@ -100,15 +80,10 @@ namespace Enkoni.Framework.Serialization {
     /// <returns>The transformed instance.</returns>
     /// <exception cref="ArgumentNullException"><paramref name="bytes"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentNullException"><paramref name="encoding"/> is <see langword="null"/>.</exception>
-    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="ArgumentException">The byte array has a length of zero.</exception>
     public T FromBytes(byte[] bytes, Encoding encoding) {
-      if(bytes == null) {
-        throw new ArgumentNullException("bytes");
-      }
-
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding");
-      }
+      Guard.ArgumentIsNotNull(bytes, nameof(bytes));
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding));
 
       if(bytes.Length == 0) {
         throw new ArgumentException("Cannot transform an instance of type " + typeof(T) + " into an empty array", "bytes");
@@ -131,24 +106,13 @@ namespace Enkoni.Framework.Serialization {
     /// </exception>
     /// <exception cref="ArgumentException">The byte array has a length of zero.</exception>
     public T FromBytes(byte[] bytes, int offset, int length, Encoding encoding) {
-      if(bytes == null) {
-        throw new ArgumentNullException("bytes");
-      }
+      Guard.ArgumentIsNotNull(bytes, nameof(bytes));
+      Guard.ArgumentIsNotNull(encoding, nameof(encoding));
+      Guard.ArgumentIsGreaterOrEqualThan(0, offset, nameof(offset), "The offset cannot be negative.");
+      Guard.ArgumentIsGreaterThan(0, length, nameof(length), "The offset must be greater then zero.");
 
-      if(encoding == null) {
-        throw new ArgumentNullException("encoding");
-      }
-
-      if(bytes.Length == 0) {
+      if (bytes.Length == 0) {
         throw new ArgumentException("The byte array cannot be empty", "bytes");
-      }
-
-      if(offset < 0) {
-        throw new ArgumentOutOfRangeException("offset", offset, "The offset cannot be negative.");
-      }
-
-      if(length <= 0) {
-        throw new ArgumentOutOfRangeException("length", length, "The offset must be greater then zero.");
       }
 
       if(offset + length >= bytes.Length) {
@@ -160,6 +124,7 @@ namespace Enkoni.Framework.Serialization {
     #endregion
 
     #region Protected extension methods
+
     /// <summary>Transforms <paramref name="instance"/> into a string.</summary>
     /// <param name="instance">The instance that must be transformed.</param>
     /// <returns>The string that contains the transformed instance.</returns>
@@ -197,6 +162,7 @@ namespace Enkoni.Framework.Serialization {
     /// <param name="encoding">The encoding that must be used to transform the bytes.</param>
     /// <returns>The transformed instance.</returns>
     protected abstract T FromBytesCore(byte[] bytes, Encoding encoding);
+
     #endregion
   }
 }

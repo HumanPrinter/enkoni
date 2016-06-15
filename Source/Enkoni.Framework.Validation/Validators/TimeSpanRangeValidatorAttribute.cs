@@ -10,6 +10,7 @@ namespace Enkoni.Framework.Validation.Validators {
     Inherited = false)]
   public sealed class TimeSpanRangeValidatorAttribute : ValueValidatorAttribute {
     #region Instance variables
+
     /// <summary>The lower bound.</summary>
     private TimeSpan lowerBound;
 
@@ -21,9 +22,11 @@ namespace Enkoni.Framework.Validation.Validators {
 
     /// <summary>The type of the upper bound.</summary>
     private RangeBoundaryType upperBoundType;
+
     #endregion
 
     #region Constructors
+
     /// <summary>Initializes a new instance of the <see cref="TimeSpanRangeValidatorAttribute"/> class with lower and upper bounds, and bound types.
     /// </summary>
     /// <param name="lowerBound">The lower bound.</param>
@@ -49,9 +52,11 @@ namespace Enkoni.Framework.Validation.Validators {
       RangeBoundaryType upperBoundType)
       : this(TimeSpan.Parse(lowerBound, CultureInfo.InvariantCulture), lowerBoundType, TimeSpan.Parse(upperBound, CultureInfo.InvariantCulture), upperBoundType) {
     }
+
     #endregion
 
     #region Properties
+
     /// <summary>Gets the lower bound of the range validator.</summary>
     public TimeSpan LowerBound {
       get { return this.lowerBound; }
@@ -71,9 +76,11 @@ namespace Enkoni.Framework.Validation.Validators {
     public RangeBoundaryType UpperBoundType {
       get { return this.upperBoundType; }
     }
+
     #endregion
 
     #region ValueValidatorAttribute overrides
+
     /// <summary>Creates the <see cref="TimeSpanRangeValidator"/> described by the configuration object.</summary>
     /// <param name="targetType">The type of object that will be validated by the validator.</param>
     /// <returns>The created Validator.</returns>
@@ -81,6 +88,7 @@ namespace Enkoni.Framework.Validation.Validators {
       return new TimeSpanRangeValidator(this.lowerBound, this.lowerBoundType, this.upperBound, this.upperBoundType,
         this.MessageTemplate, this.Negated);
     }
+
     #endregion
   }
 }

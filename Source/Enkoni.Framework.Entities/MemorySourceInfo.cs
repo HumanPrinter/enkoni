@@ -6,11 +6,14 @@ namespace Enkoni.Framework.Entities {
   /// generic the static members are placed in this non-generic counterpart to avoid possible confusion about the use of the methods.</summary>
   public static class MemorySourceInfo {
     #region Public constants
+
     /// <summary>Defines the key that is used to store and retrieve the MemoryStore.</summary>
     public const string MemoryStoreKey = "MemoryStore";
+
     #endregion
 
     #region Public static methods
+
     /// <summary>Determines if the MemoryStore is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
@@ -31,17 +34,19 @@ namespace Enkoni.Framework.Entities {
         return null;
       }
     }
+
     #endregion
   }
 
-  /// <summary>This class can be used by the <see cref="MemoryRepository{TEntity}"/> to retrieve valuable information about the data store that is to 
+  /// <summary>This class can be used by the <see cref="MemoryRepository{TEntity}"/> to retrieve valuable information about the data store that is to
   /// be used. This class is added for improved usability of the <see cref="DataSourceInfo"/> in combination with the MemoryRepository.</summary>
   /// <typeparam name="T">The type of object that is stored in memory.</typeparam>
   [SuppressMessage("Microsoft.StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass",
       Justification = "Since the static class is merely a container for the static members of the non-static class, they can be in the same file")]
   public class MemorySourceInfo<T> : DataSourceInfo where T : class {
     #region Constructors
-    /// <summary>Initializes a new instance of the <see cref="MemorySourceInfo{T}"/> class using a default value of <see langword="null"/> for the 
+
+    /// <summary>Initializes a new instance of the <see cref="MemorySourceInfo{T}"/> class using a default value of <see langword="null"/> for the
     /// MemoryStore.</summary>
     public MemorySourceInfo()
       : this((MemoryStore<T>)null) {
@@ -62,7 +67,7 @@ namespace Enkoni.Framework.Entities {
       this.MemoryStore = memoryStore;
     }
 
-    /// <summary>Initializes a new instance of the <see cref="MemorySourceInfo{T}"/> class using the specified default values. If the default values 
+    /// <summary>Initializes a new instance of the <see cref="MemorySourceInfo{T}"/> class using the specified default values. If the default values
     /// do not specify the MemoryStore using the correct key and/or type, the value <see langword="null"/> will be used.</summary>
     /// <param name="defaultValues">The default values that are to be used.</param>
     [SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1101:PrefixLocalCallsWithThis",
@@ -75,9 +80,11 @@ namespace Enkoni.Framework.Entities {
         this.MemoryStore = null;
       }
     }
+
     #endregion
 
     #region Public properties
+
     /// <summary>Gets or sets the MemoryStore that is to be used by the MemoryRepository.</summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1101:PrefixLocalCallsWithThis",
       Justification = "StyleCop doesn't correctly recognizes this construction, but using 'this' to reference MemorySourceInfo is not possible")]
@@ -85,9 +92,11 @@ namespace Enkoni.Framework.Entities {
       get { return (MemoryStore<T>)this[MemorySourceInfo.MemoryStoreKey]; }
       set { this[MemorySourceInfo.MemoryStoreKey] = value; }
     }
+
     #endregion
 
     #region Public methods
+
     /// <summary>Determines if the MemoryStore is specified in the source information.</summary>
     /// <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
     [SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1101:PrefixLocalCallsWithThis",
@@ -95,6 +104,7 @@ namespace Enkoni.Framework.Entities {
     public bool IsMemoryStoreSpecified() {
       return this.IsValueSpecified(MemorySourceInfo.MemoryStoreKey);
     }
+
     #endregion
   }
 }
