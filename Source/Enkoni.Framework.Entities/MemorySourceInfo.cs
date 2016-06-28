@@ -17,7 +17,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the MemoryStore is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the MemoryStore is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsMemoryStoreSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsMemoryStoreSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(MemoryStoreKey);
     }
 

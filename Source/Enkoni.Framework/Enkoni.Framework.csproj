@@ -99,6 +99,7 @@
     <Compile Include="Serialization\CsvSerializer.cs" />
     <Compile Include="LambdaSpecification.cs" />
     <Compile Include="Serialization\Transformer.cs" />
+    <Compile Include="ValidatedNotNullAttribute.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="Xml\XmlResourceResolver.cs" />
   </ItemGroup>

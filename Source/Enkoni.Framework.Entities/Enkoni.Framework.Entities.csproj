@@ -65,6 +65,7 @@
     <Compile Include="Repository.cs" />
     <Compile Include="ISubDomainModel.cs" />
     <Compile Include="SubDomainModel.cs" />
+    <Compile Include="ValidatedNotNullAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Enkoni.Framework.snk">

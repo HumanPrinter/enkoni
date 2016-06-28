@@ -178,7 +178,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the source FileInfo is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the FileInfo is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsSourceFileInfoSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsSourceFileInfoSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(SourceFileInfoKey);
     }
 
@@ -197,7 +197,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the monitor-flag is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsMonitorSourceFileSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsMonitorSourceFileSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(MonitorSourceFileKey);
     }
 
@@ -216,7 +216,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the change complete timeout is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsChangeCompleteTimeoutSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsChangeCompleteTimeoutSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(ChangeCompleteTimeoutKey);
     }
 
@@ -235,7 +235,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the source file's encoding is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsSourceFileEncodingSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsSourceFileEncodingSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(SourceFileEncodingKey);
     }
 

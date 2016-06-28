@@ -17,7 +17,7 @@ namespace Enkoni.Framework {
     /// <param name="argumentValue">Argument value to test.</param>
     /// <param name="argumentName">Name of the argument being tested.</param>
     /// <exception cref="ArgumentNullException"> If tested value if <see langword="null"/>.</exception>
-    public static void ArgumentIsNotNull(object argumentValue, string argumentName) {
+    public static void ArgumentIsNotNull([ValidatedNotNull]object argumentValue, string argumentName) {
       ArgumentIsNotNull(argumentValue, argumentName, null);
     }
 
@@ -27,7 +27,7 @@ namespace Enkoni.Framework {
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentNullException"> If tested value if <see langword="null"/>.</exception>
     /// <remarks>If <paramref name="message" /> equals <see langword="null"/> or an empty string, the message will not be passed to the exception.</remarks>
-    public static void ArgumentIsNotNull(object argumentValue, string argumentName, string message) {
+    public static void ArgumentIsNotNull([ValidatedNotNull]object argumentValue, string argumentName, string message) {
       if(argumentValue == null) {
         ThrowArgumentNullException(argumentName, message);
       }
@@ -39,9 +39,10 @@ namespace Enkoni.Framework {
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="argumentValue"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">Thrown if the string is empty.</exception>
-    public static void ArgumentIsNotNullOrEmpty(string argumentValue, string argumentName, string message) {
+    public static void ArgumentIsNotNullOrEmpty([ValidatedNotNull]string argumentValue, string argumentName, string message) {
       if(argumentValue == null) {
         ThrowArgumentNullException(argumentName, message);
+        return;
       }
 
       if(argumentValue.Length == 0) {
@@ -56,7 +57,7 @@ namespace Enkoni.Framework {
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="argumentValue"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">Thrown if the string is empty.</exception>
-    public static void ArgumentIsNotNullOrEmpty<T>(IEnumerable<T> argumentValue, string argumentName, string message) {
+    public static void ArgumentIsNotNullOrEmpty<T>([ValidatedNotNull]IEnumerable<T> argumentValue, string argumentName, string message) {
       if(argumentValue == null) {
         ThrowArgumentNullException(argumentName, message);
       }

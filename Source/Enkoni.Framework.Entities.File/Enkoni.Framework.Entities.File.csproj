@@ -49,6 +49,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="ValidatedNotNullAttribute.cs" />
     <Compile Include="XmlFileRepository.cs" />
     <Compile Include="CsvFileRepository.cs" />
     <Compile Include="FileSourceInfo.cs" />

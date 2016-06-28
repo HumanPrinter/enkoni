@@ -41,7 +41,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Initializes a new instance of the <see cref="DataSourceInfo"/> class using the specified values.</summary>
     /// <param name="defaultValues">The default values that must be loaded.</param>
     /// <exception cref="ArgumentNullException">The parameter is null.</exception>
-    public DataSourceInfo(Dictionary<string, object> defaultValues) {
+    public DataSourceInfo([ValidatedNotNull]Dictionary<string, object> defaultValues) {
       Guard.ArgumentIsNotNull(defaultValues, nameof(defaultValues));
 
       /* Add all the specified default values to the source information. */
@@ -81,7 +81,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the 'clone data source items'-flag is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the flag is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsCloneDataSourceItemsSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsCloneDataSourceItemsSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(CloneDataSourceItemsKey);
     }
 

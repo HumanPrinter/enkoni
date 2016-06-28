@@ -92,7 +92,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the <see cref="DbContext"/> is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the <see cref="DbContext"/> is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsDbContextSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsDbContextSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(DbContextKey);
     }
 
@@ -111,7 +111,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the <see cref="SaveGraph"/> is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the <see cref="SaveGraph"/> is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsSaveGraphSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsSaveGraphSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(SaveGraphKey);
     }
 

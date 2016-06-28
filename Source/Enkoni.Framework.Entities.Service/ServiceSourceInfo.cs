@@ -152,7 +152,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the endpoint configuration is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsEndpointConfigurationNameSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsEndpointConfigurationNameSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(EndpointConfigurationNameKey);
     }
 
@@ -171,7 +171,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the remote address is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsRemoteAddressSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsRemoteAddressSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(RemoteAddressKey);
     }
 
@@ -190,7 +190,7 @@ namespace Enkoni.Framework.Entities {
     /// <summary>Determines if the binding is specified in the source information.</summary>
     /// <param name="dataSourceInfo">The data source information that is queried.</param>
     /// <returns><see langword="true"/> if the value is defined; <see langword="false"/> otherwise.</returns>
-    public static bool IsBindingSpecified(DataSourceInfo dataSourceInfo) {
+    public static bool IsBindingSpecified([ValidatedNotNull]DataSourceInfo dataSourceInfo) {
       return dataSourceInfo != null && dataSourceInfo.IsValueSpecified(BindingKey);
     }
 
