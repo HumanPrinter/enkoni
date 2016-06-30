@@ -97,6 +97,7 @@ namespace Enkoni.Framework.Collections {
     /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> and <paramref name="count"/> do not specify a valid section in the
     /// <see cref="List{T}"/>.</exception>
     public static int IndexOf<T>(this List<T> source, T item, int index, int count, IEqualityComparer<T> comparer) {
+      Guard.ArgumentIsNotNull(source, nameof(source));
       Guard.ArgumentIsNotNull(comparer, nameof(comparer));
       Guard.ArgumentIsBetween(0, source.Count - 1, index, nameof(index), "Index is out of range");
       Guard.ArgumentIsGreaterOrEqualThan(0, count, nameof(count), "Count cannot be less then zero");
