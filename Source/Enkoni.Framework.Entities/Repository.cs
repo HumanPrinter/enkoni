@@ -1019,7 +1019,7 @@ namespace Enkoni.Framework.Entities {
     /// <returns>The entities that match the specified expression.</returns>
     protected virtual IEnumerable<T> FindAllCore(Func<T, bool> expression, SortSpecifications<T> sortRules,
       int maximumResults, string[] includePaths, DataSourceInfo dataSourceInfo) {
-      return Enumerable.Empty<T>();
+      return System.Linq.Enumerable.Empty<T>();
     }
 
     #endregion

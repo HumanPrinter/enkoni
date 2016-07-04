@@ -13,7 +13,7 @@ namespace Enkoni.Framework.Tests {
   public class LinqExtensionTest {
     #region SingleOrDefault test-cases
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     public void LinqExtensions_SingleOrDefaultOnIEnumerable_MatchingPredicate_MatchingRecordIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -31,7 +31,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     public void LinqExtensions_SingleOrDefaultOnIEnumerable_NotMatchingPredicate_DefaultIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -49,7 +49,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     public void LinqExtensions_SingleOrDefaultOnIEnumerable_EmptySource_DefaultIsReturned() {
       IEnumerable<TestDummy> collection = new List<TestDummy>();
@@ -61,7 +61,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_SingleOrDefaultOnIEnumerable_NullSource_ExceptionIsThrown() {
@@ -72,7 +72,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_SingleOrDefaultOnIEnumerable_NullPredicate_ExceptionIsThrown() {
@@ -83,7 +83,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     public void LinqExtensions_SingleOrDefaultOnIQueryable_MatchingPredicate_MatchingRecordIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -101,7 +101,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     public void LinqExtensions_SingleOrDefaultOnIQueryable_NotMatchingPredicate_DefaultIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -119,7 +119,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     public void LinqExtensions_SingleOrDefaultOnIQueryable_EmptySource_DefaultIsReturned() {
       IQueryable<TestDummy> collection = new List<TestDummy>().AsQueryable();
@@ -131,7 +131,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_SingleOrDefaultOnIQueryable_NullSource_ExceptionIsThrown() {
@@ -142,7 +142,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.SingleOrDefault{T}(IEnumerable{T}, System.Func{T, bool}, T)"/> extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_SingleOrDefaultOnIQueryable_NullPredicate_ExceptionIsThrown() {
@@ -154,7 +154,7 @@ namespace Enkoni.Framework.Tests {
     #endregion
 
     #region ElementAtOrDefault test-cases
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_ElementAtOrDefault_ValidIndex_ItemAtIndexIsReturned() {
@@ -172,7 +172,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyB, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_ElementAtOrDefault_InvalidIndex_DefaultIsReturned() {
@@ -190,7 +190,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -201,7 +201,7 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.ElementAtOrDefault(5, defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.ElementAtOrDefault{T}(IEnumerable{T}, int, T)"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -220,8 +220,8 @@ namespace Enkoni.Framework.Tests {
     #endregion
 
     #region FirstOrDefault test-cases
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIEnumerable_NoPredicate_FirstItemIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -238,8 +238,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyA, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIEnumerable_EmptySource_DefaultIsReturned() {
       IEnumerable<TestDummy> collection = new List<TestDummy>();
@@ -250,8 +250,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIEnumerable_MatchingPredicate_MatchingItemIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -268,8 +268,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyB, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIEnumerable_NotMatchingPredicate_DefaultIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -286,8 +286,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_FirstOrDefaultOnIEnumerable_NullSource_ExceptionIsTrown() {
@@ -297,8 +297,8 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.FirstOrDefault(td => td.TextValue == "DummyG", defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_FirstOrDefaultOnIEnumerable_NoPredicateNullSource_ExceptionIsTrown() {
@@ -308,8 +308,8 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.FirstOrDefault(defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_FirstOrDefaultOnIEnumerable_NullPredicate_ExceptionIsTrown() {
@@ -319,7 +319,7 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.FirstOrDefault(null, defaultDummy);
     }
     
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIQueryable_NoPredicate_FirstItemIsReturned() {
@@ -337,7 +337,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyA, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIQueryable_EmptySource_DefaultIsReturned() {
@@ -349,7 +349,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIQueryable_MatchingPredicate_MatchingItemIsReturned() {
@@ -367,7 +367,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyB, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_FirstOrDefaultOnIQueryable_NotMatchingPredicate_DefaultIsReturned() {
@@ -385,7 +385,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -396,7 +396,7 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.FirstOrDefault(td => td.TextValue == "DummyG", defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.FirstOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -409,8 +409,8 @@ namespace Enkoni.Framework.Tests {
     #endregion
 
     #region LastOrDefault test-cases
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIEnumerable_NoPredicate_FirstItemIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -427,8 +427,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyE, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIEnumerable_EmptySource_DefaultIsReturned() {
       IEnumerable<TestDummy> collection = new List<TestDummy>();
@@ -439,8 +439,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIEnumerable_MatchingPredicate_MatchingItemIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -457,8 +457,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyB, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIEnumerable_NotMatchingPredicate_DefaultIsReturned() {
       TestDummy dummyA = new TestDummy { TextValue = "DummyA" };
@@ -475,8 +475,8 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_LastOrDefaultOnIEnumerable_NullSource_ExceptionIsTrown() {
@@ -486,8 +486,8 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.LastOrDefault(td => td.TextValue == "DummyG", defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_LastOrDefaultOnIEnumerable_NoPredicateNullSource_ExceptionIsTrown() {
@@ -497,8 +497,8 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.LastOrDefault(defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, T)"/> and 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
     public void LinqExtensions_LastOrDefaultOnIEnumerable_NullPredicate_ExceptionIsTrown() {
@@ -508,7 +508,7 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.LastOrDefault(null, defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIQueryable_NoPredicate_FirstItemIsReturned() {
@@ -526,7 +526,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyE, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIQueryable_EmptySource_DefaultIsReturned() {
@@ -538,7 +538,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIQueryable_MatchingPredicate_MatchingItemIsReturned() {
@@ -556,7 +556,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(dummyB, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     public void LinqExtensions_LastOrDefaultOnIQueryable_NotMatchingPredicate_DefaultIsReturned() {
@@ -574,7 +574,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsTrue(object.ReferenceEquals(defaultDummy, result));
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -585,7 +585,7 @@ namespace Enkoni.Framework.Tests {
       TestDummy result = collection.LastOrDefault(td => td.TextValue == "DummyG", defaultDummy);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.LastOrDefault{T}(IEnumerable{T}, System.Func{T,bool}, T)"/> 
     /// extension methods.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -598,7 +598,7 @@ namespace Enkoni.Framework.Tests {
     #endregion
 
     #region ForEach test-cases
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ForEach{T}(IEnumerable{T}, System.Action{T})"/> extension 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.ForEach{T}(IEnumerable{T}, System.Action{T})"/> extension 
     /// method.</summary>
     [TestMethod]
     public void LinqExtensions_ForEach_ActionIsExecutedOnAllItems() {
@@ -621,7 +621,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(6, dummyE.NumericValue);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ForEach{T}(IEnumerable{T}, System.Action{T})"/> extension 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.ForEach{T}(IEnumerable{T}, System.Action{T})"/> extension 
     /// method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -631,7 +631,7 @@ namespace Enkoni.Framework.Tests {
       collection.ForEach(td => td.NumericValue += 1);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Extensions.ForEach{T}(IEnumerable{T}, System.Action{T})"/> extension 
+    /// <summary>Tests the functionality of the <see cref="Enkoni.Framework.Linq.Enumerable.ForEach{T}(IEnumerable{T}, System.Action{T})"/> extension 
     /// method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -650,7 +650,7 @@ namespace Enkoni.Framework.Tests {
 
     #region CreateEqualityComparer test-cases
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.CreateEqualityComparer{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.CreateEqualityComparer{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_CreateEqualityComparer_ConcreteType_ComparerIsCreated() {
@@ -672,7 +672,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.CreateEqualityComparer{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.CreateEqualityComparer{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_CreateEqualityComparer_AnonymousType_ComparerIsCreated() {
@@ -698,7 +698,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.CreateEqualityComparer{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.CreateEqualityComparer{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -711,7 +711,7 @@ namespace Enkoni.Framework.Tests {
 
     #region Distinct test-cases
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Distinct_EmtyCollectionConcreteType_CollectionIsFiltered() {
@@ -728,7 +728,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Distinct_EmtyCollectionAnonymousType_CollectionIsFiltered() {
@@ -746,7 +746,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Distinct_FilledCollectionConcreteType_CollectionIsFiltered() {
@@ -772,7 +772,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Distinct_FilledCollectionAnonymousType_CollectionIsFiltered() {
@@ -799,7 +799,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -814,7 +814,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Distinct{T,TField}(IEnumerable{T}, System.Func{T,TField})"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -831,7 +831,7 @@ namespace Enkoni.Framework.Tests {
 
     #region Partition test-cases
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_EmtyCollectionConcreteType_CollectionIsPartitioned() {
@@ -848,7 +848,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_EmtyCollectionAnonymousType_CollectionIsPartitioned() {
@@ -866,7 +866,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_CollectionWithOneConcreteTypeInstance_CollectionIsPartitioned() {
@@ -889,7 +889,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_CollectionWithOneAnonymousTypeInstance_CollectionIsPartitioned() {
@@ -913,7 +913,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_CollectionWithMultipleConcreteTypeInstancesAdjacent_CollectionIsPartitioned() {
@@ -952,7 +952,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_CollectionWithMultipleAnonymousTypeInstancesAdjacent_CollectionIsPartitioned() {
@@ -992,7 +992,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_CollectionWithMultipleConcreteTypeInstancesNotAdjacent_CollectionIsPartitioned() {
@@ -1033,7 +1033,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     public void LinqExtensions_Partition_CollectionWithMultipleAnonymousTypeInstancesNotAdjacent_CollectionIsPartitioned() {
@@ -1075,7 +1075,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -1090,7 +1090,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]
@@ -1105,7 +1105,7 @@ namespace Enkoni.Framework.Tests {
     }
 
     /// <summary>Tests the functionality of the 
-    /// <see cref="Enkoni.Framework.Linq.Extensions.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
+    /// <see cref="Enkoni.Framework.Linq.Enumerable.Partition{TKey,TSource}(IEnumerable{TSource}, System.Func{TSource,TKey})"/> 
     /// extension method.</summary>
     [TestMethod]
     [ExpectedException(typeof(ArgumentNullException))]

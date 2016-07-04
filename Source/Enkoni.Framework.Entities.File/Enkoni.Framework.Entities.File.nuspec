@@ -13,8 +13,9 @@
     <releaseNotes><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.8.0" />
-      <dependency id="Enkoni.Entities" version="3.6.0" />
+      <dependency id="Enkoni" version="3.0.0" />
+      <dependency id="Enkoni.Entities" version="3.7.0" />
+      <dependency id="Enkoni.Serialization" version="1.0.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />

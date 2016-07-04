@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>CompareTo</Word>
+      <Word>Continuable</Word>
+      <Word>Csv</Word>
+      <Word>Enkoni</Word>
+      <Word>Pausable</Word>
+      <Word>Startable</Word>
+      <Word>Validators</Word>
+      <Word>BusinessRuleSpecification</Word>
+      <Word>flag</Word>
+      <Word>IEnumerable</Word>
+      <Word>IQueryable</Word>
+    </Recognized>
+    <Compound>
+      <Term CompoundAlternate="CompareTo">Compareto</Term>
+    </Compound>
+  </Words>
+</Dictionary>

@@ -68,7 +68,6 @@
     </AdditionalFiles>
     <None Include="Enkoni.Framework.Entities.Database.nuspec" />
     <None Include="packages.config" />
-    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
@@ -77,6 +76,10 @@
     <ProjectReference Include="..\Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj">
       <Project>{26D1BDC7-B2E8-4351-AD6B-5441F292320A}</Project>
       <Name>Enkoni.Framework.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enkoni.Framework.Specifications\Enkoni.Framework.Specifications.csproj">
+      <Project>{00051683-1eea-459a-ac2d-de1ae5db9ad3}</Project>
+      <Name>Enkoni.Framework.Specifications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enkoni.Framework\Enkoni.Framework.csproj">
       <Project>{849BA8BA-A061-4278-85BD-90910680462E}</Project>

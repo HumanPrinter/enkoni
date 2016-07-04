@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema elementFormDefault="qualified" targetNamespace="http://unittests.defriesland.nl/child/2014/09" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <xsd:complexType name="ChildElement">
+    <xsd:sequence>
+      <xsd:element name="FirstElement" type="xsd:string" />
+      <xsd:element name="SecondElement" type="xsd:boolean" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

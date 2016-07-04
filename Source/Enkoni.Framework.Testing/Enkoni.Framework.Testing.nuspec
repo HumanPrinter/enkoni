@@ -11,10 +11,10 @@
     <description>$description$</description>
     <summary>$description$</summary>
     <releaseNotes><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></releaseNotes>
-    <dependencies>
-      <dependency id="Enkoni" version="2.8.0" />
-    </dependencies>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
+    <dependencies>
+      <dependency id="Enkoni" version="3.0.0" />
+    </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
       <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework3.5" />

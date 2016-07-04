@@ -77,9 +77,6 @@
     </AdditionalFiles>
     <None Include="Enkoni.Framework.DataAnnotations.nuspec" />
     <None Include="packages.config" />
-    <None Include="Settings.StyleCop">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />

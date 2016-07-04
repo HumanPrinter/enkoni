@@ -13,8 +13,8 @@
     <releaseNotes><![CDATA[Updated the AssemblyInformationalVersion. No API changes]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.2.0.1" />
-      <dependency id="Enkoni.Entities" version="3.0.0.1" />
+      <dependency id="Enkoni" version="3.0.0" />
+      <dependency id="Enkoni.Entities" version="3.7.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
