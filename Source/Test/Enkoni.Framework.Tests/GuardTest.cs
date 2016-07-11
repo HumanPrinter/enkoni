@@ -58,6 +58,13 @@ namespace Enkoni.Framework.Tests {
       Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument), "ExpectedMessage");
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmpty_NoNullNoEmptyStringWithoutMessage_ArgumentDoesNotThrowException() {
+      string testArgument = "someInput";
+      Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string, string)"/> method.</summary>
     [TestMethod]
     public void ArgumentIsNotNullOrEmpty_NullStringArgument_ThrowsArgumentNullException() {
@@ -69,6 +76,20 @@ namespace Enkoni.Framework.Tests {
       catch(ArgumentNullException exception) {
         Assert.AreEqual("testArgument", exception.ParamName);
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmpty_NullStringArgumentWithoutMessage_ThrowsArgumentNullException() {
+      string testArgument = null;
+      try {
+        Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentNullException was expected");
+      }
+      catch(ArgumentNullException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.IsNotNull(exception.Message);
       }
     }
 
@@ -85,6 +106,22 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(typeof(ArgumentException), exception.GetType());
         Assert.AreEqual("testArgument", exception.ParamName);
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmpty_EmptyStringArgumentWithMessage_ThrowsArgumentException() {
+      string testArgument = string.Empty;
+      try {
+        Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Value cannot be empty." + Environment.NewLine);
       }
     }
 
