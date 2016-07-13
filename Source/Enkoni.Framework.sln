@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF418619-7942-4E44-A625-192FEA532693}"
 	ProjectSection(SolutionItems) = preProject
@@ -95,6 +95,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Timers", "Enkoni.Framework.Timers\Enkoni.Framework.Timers.csproj", "{E1CE7353-466B-41BA-8622-689EE60F954F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Timers.Tests", "Test\Enkoni.Framework.Timers.Tests\Enkoni.Framework.Timers.Tests.csproj", "{BC60417E-22E7-4DA0-871E-02DB24190E4F}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Enkoni.Framework.Core", "Enkoni.Framework\Enkoni.Framework.Core.xproj", "{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -230,6 +232,10 @@ Global
 		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,9 +257,6 @@ Global
 		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{6AD4C7D5-05BC-4ED2-AB0D-0ABDB2070C7C} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{BC60417E-22E7-4DA0-871E-02DB24190E4F} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35;packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Enkoni.Framework.vsmdi
