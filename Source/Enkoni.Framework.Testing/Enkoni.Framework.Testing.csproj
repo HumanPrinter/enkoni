@@ -45,6 +45,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="ComparableAssert.cs" />
     <Compile Include="CollectionAssert.cs" />
     <Compile Include="ExceptionAssert.cs" />
     <Compile Include="GlobalSuppressions.cs" />

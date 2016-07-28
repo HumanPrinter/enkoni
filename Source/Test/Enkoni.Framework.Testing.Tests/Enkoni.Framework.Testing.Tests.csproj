@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ComparableAssertTest.cs" />
     <Compile Include="ExceptionAssertTest.cs" />
     <Compile Include="HttpContextHelperTest.cs" />
     <Compile Include="CollectionAssertTest.cs" />
