@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Testing {
@@ -9,7 +10,7 @@ namespace Enkoni.Framework.Testing {
     /// <param name="action">The action that should throw an exception of type <typeparamref name="TException"/>.</param>
     /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
     public static void Throws<TException>(Action action) where TException : Exception {
-      Throws<TException>(action, $"Exception of type {typeof(TException).Name} was not thrown.");
+      Throws<TException>(action, string.Format(CultureInfo.InvariantCulture, "Exception of type {0} was not thrown.", typeof(TException).Name));
     }
 
     /// <summary>Checks if the exception of type <typeparamref name="TException"/> was thrown.</summary>
@@ -25,24 +26,25 @@ namespace Enkoni.Framework.Testing {
     /// <typeparam name="TException">The type of the exception that should be thrown.</typeparam>
     /// <param name="action">The action that should throw an exception of type <typeparamref name="TException"/>.</param>
     /// <param name="message">The message that should be used when no exception was thrown.</param>
-    /// <param name="allowDervivedTypes">Specifies wether derived types of the exception are allowed.</param>
+    /// <param name="allowDerivedTypes">Specifies whether derived types of the exception are allowed.</param>
     /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
-    public static void Throws<TException>(Action action, string message, bool allowDervivedTypes) where TException : Exception {
+    public static void Throws<TException>(Action action, string message, bool allowDerivedTypes) where TException : Exception {
       Guard.ArgumentIsNotNull(action, nameof(action));
       Guard.ArgumentIsNotNullOrEmpty(message, nameof(message), "Value cannot be empty.");
 
       try {
         action();
-        Assert.Fail(message);
+        throw new AssertFailedException(message);
       }
-      catch (TException exception) {
-        Type type = exception.GetType();
-        if (!allowDervivedTypes && type != typeof(TException)) {
-            Assert.Fail($"Exception of type {typeof(TException).Name} was not thrown an exception of type {type.Name} was thrown.");
+      catch(AssertFailedException) {
+      }
+      catch(TException exception) {
+        if(!allowDerivedTypes && exception.GetType() != typeof(TException)) {
+          throw new AssertFailedException(message, exception);
         }
       }
-      catch (Exception) {
-        throw;
+      catch(Exception exception) {
+        throw new AssertFailedException(message, exception);
       }
     }
   }
