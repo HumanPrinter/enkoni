@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF418619-7942-4E44-A625-192FEA532693}"
 	ProjectSection(SolutionItems) = preProject
@@ -57,6 +57,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CA8AB7FC-D23A-4461-88CA-657C417AD4E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Entities.Tests", "Test\Enkoni.Framework.Entities.Tests\Enkoni.Framework.Entities.Tests.csproj", "{AC6B8CF0-972F-4F08-AA20-6490D18955F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B} = {355B5D99-7FB2-4E6A-9113-488479F24A5B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.ServiceModel.Tests", "Test\Enkoni.Framework.ServiceModel.Tests\Enkoni.Framework.ServiceModel.Tests.csproj", "{D881FA92-4FE1-43FF-B412-FD48BC1BDD78}"
 EndProject
@@ -85,6 +88,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Testing.Tests", "Test\Enkoni.Framework.Testing.Tests\Enkoni.Framework.Testing.Tests.csproj", "{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.DataAnnotations.Client", "Enkoni.Framework.DataAnnotations.Client\Enkoni.Framework.DataAnnotations.Client.csproj", "{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Enkoni.Framework.Entities.Tests.Database", "Test\Enkoni.Framework.Entities.Tests.Database\Enkoni.Framework.Entities.Tests.Database.sqlproj", "{355B5D99-7FB2-4E6A-9113-488479F24A5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,6 +205,12 @@ Global
 		{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -219,6 +230,7 @@ Global
 		{026371D2-B13C-43C4-A84D-73278DB15C2F} = {27909F13-6E89-440B-832A-513838262B98}
 		{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{355B5D99-7FB2-4E6A-9113-488479F24A5B} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Logging.5.0.505.1\lib\NET35;packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
