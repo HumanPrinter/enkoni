@@ -9,7 +9,7 @@ namespace Enkoni.Framework.Testing {
     /// <param name="action">The action that should throw an exception of type <typeparamref name="TException"/>.</param>
     /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
     public static void Throws<TException>(Action action) where TException : Exception {
-      Throws<TException>(action, $"Exception of type {typeof(TException).Name} was not thrown.");
+      Throws<TException>(action, false);
     }
 
     /// <summary>Checks if the exception of type <typeparamref name="TException"/> was thrown.</summary>
@@ -19,6 +19,15 @@ namespace Enkoni.Framework.Testing {
     /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
     public static void Throws<TException>(Action action, string message) where TException : Exception {
       Throws<TException>(action, message, false);
+    }
+
+    /// <summary>Checks if the exception of type <typeparamref name="TException"/> was thrown.</summary>
+    /// <typeparam name="TException">The type of the exception that should be thrown.</typeparam>
+    /// <param name="action">The action that should throw an exception of type <typeparamref name="TException"/>.</param>
+    /// <param name="allowDervivedTypes">Specifies wether derived types of the exception are allowed.</param>
+    /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
+    public static void Throws<TException>(Action action, bool allowDervivedTypes) where TException : Exception {
+      Throws<TException>(action, $"Exception of type {typeof(TException).Name} was not thrown.", allowDervivedTypes);
     }
 
     /// <summary>Checks if the exception of type <typeparamref name="TException"/> was thrown.</summary>
@@ -38,7 +47,7 @@ namespace Enkoni.Framework.Testing {
       catch (TException exception) {
         Type type = exception.GetType();
         if (!allowDervivedTypes && type != typeof(TException)) {
-            Assert.Fail($"Exception of type {typeof(TException).Name} was not thrown an exception of type {type.Name} was thrown.");
+          Assert.Fail($"Exception of type {typeof(TException).Name} was not thrown an exception of type {type.Name} was thrown.");
         }
       }
       catch (Exception) {
