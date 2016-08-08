@@ -7,6 +7,7 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <iconUrl>http://www.oscarbrouwer.nl/images/enkoni.png</iconUrl>
+    <projectUrl>https://github.com/HumanPrinter/enkoni</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>

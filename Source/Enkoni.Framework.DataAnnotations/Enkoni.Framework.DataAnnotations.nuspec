@@ -8,6 +8,7 @@
     <owners>$author$</owners>
     <iconUrl>http://www.oscarbrouwer.nl/images/enkoni.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/HumanPrinter/enkoni</projectUrl>
     <description>$description$</description>
     <summary>$description$</summary>
     <releaseNotes><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></releaseNotes>
