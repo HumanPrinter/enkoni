@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -36,6 +37,22 @@ namespace Enkoni.Framework {
     /// <summary>Throws an exception if the tested string argument is <see langword="null"/> or the empty string.</summary>
     /// <param name="argumentValue">Argument value to check.</param>
     /// <param name="argumentName">Name of argument being checked.</param>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="argumentValue"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown if the string is empty.</exception>
+    public static void ArgumentIsNotNullOrEmpty([ValidatedNotNull]string argumentValue, string argumentName) {
+      if(argumentValue == null) {
+        ThrowArgumentNullException(argumentName, null);
+        return;
+      }
+
+      if(argumentValue.Length == 0) {
+        ThrowArgumentException(argumentName, Properties.Resources.GuardValueCannotBeEmpty);
+      }
+    }
+
+    /// <summary>Throws an exception if the tested string argument is <see langword="null"/> or the empty string.</summary>
+    /// <param name="argumentValue">Argument value to check.</param>
+    /// <param name="argumentName">Name of argument being checked.</param>
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="argumentValue"/> is <see langword="null"/>.</exception>
     /// <exception cref="ArgumentException">Thrown if the string is empty.</exception>
@@ -47,6 +64,22 @@ namespace Enkoni.Framework {
 
       if(argumentValue.Length == 0) {
         ThrowArgumentException(argumentName, message);
+      }
+    }
+
+    /// <summary>Throws an exception if the tested collection is <see langword="null"/> or contains no elements.</summary>
+    /// <typeparam name="T">The type of elements in the collection.</typeparam>
+    /// <param name="argumentValue">Argument value to check.</param>
+    /// <param name="argumentName">Name of argument being checked.</param>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="argumentValue"/> is <see langword="null"/>.</exception>
+    /// <exception cref="ArgumentException">Thrown if the string is empty.</exception>
+    public static void ArgumentIsNotNullOrEmpty<T>([ValidatedNotNull]IEnumerable<T> argumentValue, string argumentName) {
+      if(argumentValue == null) {
+        ThrowArgumentNullException(argumentName, null);
+      }
+
+      if(argumentValue.Count() == 0) {
+        ThrowArgumentException(argumentName, Properties.Resources.GuardValueCannotBeEmpty);
       }
     }
 
@@ -72,6 +105,18 @@ namespace Enkoni.Framework {
     /// <param name="lowerValue">The lower value accepted as valid.</param>
     /// <param name="argumentValue">The argument value to test.</param>
     /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
+    /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
+    /// To test for <see langword="null"/> values, use the <see cref="Guard.ArgumentIsNotNull(object, string)"/> method.</remarks>
+    public static void ArgumentIsGreaterOrEqualThan<T>(T lowerValue, T argumentValue, string argumentName) where T : struct, IComparable {
+      ArgumentIsGreaterOrEqualThan(lowerValue, argumentValue, argumentName, string.Format(CultureInfo.InvariantCulture, Properties.Resources.GuardArgumentMustBeGreaterThanOrEqualTo, lowerValue));
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is less than <paramref name="lowerValue"/>.</summary>
+    /// <typeparam name="T">A type that implements <see cref="IComparable"/>.</typeparam>
+    /// <param name="lowerValue">The lower value accepted as valid.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
     /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
@@ -80,6 +125,18 @@ namespace Enkoni.Framework {
       if(argumentValue.CompareTo((T)lowerValue) < 0) {
         ThrowArgumentOutOfRangeException(argumentName, argumentValue, message);
       }
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is less than or equal to <paramref name="lowerValue"/>.</summary>
+    /// <typeparam name="T">A type that implements <see cref="IComparable"/>.</typeparam>
+    /// <param name="lowerValue">The lower value accepted as valid.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
+    /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
+    /// To test for <see langword="null"/> values, use the <see cref="Guard.ArgumentIsNotNull(object, string)"/> method.</remarks>
+    public static void ArgumentIsGreaterThan<T>(T lowerValue, T argumentValue, string argumentName) where T : struct, IComparable {
+      ArgumentIsGreaterThan(lowerValue, argumentValue, argumentName, string.Format(CultureInfo.InvariantCulture, Properties.Resources.GuardArgumentMustBeGreaterThan, lowerValue));
     }
 
     /// <summary>Throws an exception if <paramref name="argumentValue"/> is less than or equal to <paramref name="lowerValue"/>.</summary>
@@ -102,6 +159,18 @@ namespace Enkoni.Framework {
     /// <param name="higherValue">The higher value accepted as valid.</param>
     /// <param name="argumentValue">The argument value to test.</param>
     /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
+    /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
+    /// To test for <see langword="null"/> values, use the <see cref="Guard.ArgumentIsNotNull(object, string)"/> method.</remarks>
+    public static void ArgumentIsLowerOrEqualThan<T>(T higherValue, T argumentValue, string argumentName) where T : struct, IComparable {
+      ArgumentIsLowerOrEqualThan(higherValue, argumentValue, argumentName, string.Format(CultureInfo.InvariantCulture, Properties.Resources.GuardArgumentMustBeLowerThanOrEqualTo, higherValue));
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is greater than <paramref name="higherValue"/>.</summary>
+    /// <typeparam name="T">A type that implements <see cref="IComparable"/>.</typeparam>
+    /// <param name="higherValue">The higher value accepted as valid.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
     /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
@@ -117,6 +186,18 @@ namespace Enkoni.Framework {
     /// <param name="higherValue">The higher value accepted as valid.</param>
     /// <param name="argumentValue">The argument value to test.</param>
     /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
+    /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
+    /// To test for <see langword="null"/> values, use the <see cref="Guard.ArgumentIsNotNull(object, string)"/> method.</remarks>
+    public static void ArgumentIsLowerThan<T>(T higherValue, T argumentValue, string argumentName) where T : struct, IComparable {
+      ArgumentIsLowerThan(higherValue, argumentValue, argumentName, string.Format(CultureInfo.InvariantCulture, Properties.Resources.GuardArgumentMustBeLowerThan, higherValue));
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is greater than or equal to <paramref name="higherValue"/>.</summary>
+    /// <typeparam name="T">A type that implements <see cref="IComparable"/>.</typeparam>
+    /// <param name="higherValue">The higher value accepted as valid.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
     /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
@@ -125,6 +206,19 @@ namespace Enkoni.Framework {
       if(argumentValue.CompareTo((T)higherValue) >= 0) {
         ThrowArgumentOutOfRangeException(argumentName, argumentValue, message);
       }
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is less than <paramref name="lowerValue"/> or greater than <paramref name="higherValue"/>.</summary>
+    /// <typeparam name="T">A type that implements <see cref="IComparable"/>.</typeparam>
+    /// <param name="lowerValue">The lower value accepted as valid.</param>
+    /// <param name="higherValue">The higher value accepted as valid.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Validation error.</exception>
+    /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
+    /// To test for <see langword="null"/> values, use the <see cref="Guard.ArgumentIsNotNull(object, string)"/> method.</remarks>
+    public static void ArgumentIsBetween<T>(T lowerValue, T higherValue, T argumentValue, string argumentName) where T : struct, IComparable {
+      ArgumentIsBetween(lowerValue, higherValue, argumentValue, argumentName, string.Format(CultureInfo.InvariantCulture, Properties.Resources.GuardArgumentMustBeBetween, lowerValue, higherValue));
     }
 
     /// <summary>Throws an exception if <paramref name="argumentValue"/> is less than <paramref name="lowerValue"/> or greater than <paramref name="higherValue"/>.</summary>
@@ -151,6 +245,15 @@ namespace Enkoni.Framework {
     /// <param name="enumType">The type of enum.</param>
     /// <param name="argumentValue">The argument value to test.</param>
     /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentException">Validation error.</exception>
+    public static void ArgumentIsValidEnum(Type enumType, object argumentValue, string argumentName) {
+      ArgumentIsValidEnum(enumType, argumentValue, argumentName, Properties.Resources.GuardArgumentMustBeValidEnum);
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is not a member of enum type <paramref name="enumType"/>.</summary>
+    /// <param name="enumType">The type of enum.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentException">Validation error.</exception>
     public static void ArgumentIsValidEnum(Type enumType, object argumentValue, string argumentName, string message) {
@@ -165,10 +268,31 @@ namespace Enkoni.Framework {
     /// <typeparam name="T">The type that is expected.</typeparam>
     /// <param name="argumentValue">The argument value to test.</param>
     /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentException">Validation error.</exception>
+    public static void ArgumentIsOfType<T>(object argumentValue, string argumentName) {
+      ArgumentIsOfType<T>(argumentValue, argumentName, Properties.Resources.GuardArgumentMustBeOfType);
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is not of type <typeparamref name="T"/>.</summary>
+    /// <typeparam name="T">The type that is expected.</typeparam>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentException">Validation error.</exception>
     public static void ArgumentIsOfType<T>(object argumentValue, string argumentName, string message) {
       ArgumentIsOfType<T>(false, argumentValue, argumentName, message);
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is not of type <typeparamref name="T"/> or a subtype of <typeparamref name="T"/>.</summary>
+    /// <typeparam name="T">The type that is expected.</typeparam>
+    /// <param name="allowDerivedTypes">Indicates if derived types are also allowed.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentException">Validation error.</exception>
+    /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
+    /// To test for <see langword="null"/> values, use the <see cref="Guard.ArgumentIsNotNull(object, string)"/> method.</remarks>
+    public static void ArgumentIsOfType<T>(bool allowDerivedTypes, object argumentValue, string argumentName) {
+      ArgumentIsOfType<T>(allowDerivedTypes, argumentValue, argumentName, Properties.Resources.GuardArgumentMustBeOfType);
     }
 
     /// <summary>Throws an exception if <paramref name="argumentValue"/> is not of type <typeparamref name="T"/> or a subtype of <typeparamref name="T"/>.</summary>
@@ -195,10 +319,31 @@ namespace Enkoni.Framework {
     /// <typeparam name="T">The type that is expected.</typeparam>
     /// <param name="argumentValue">The argument value to test.</param>
     /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentException">Validation error.</exception>
+    public static void ArgumentIsNotOfType<T>(object argumentValue, string argumentName) {
+      ArgumentIsNotOfType<T>(argumentValue, argumentName, Properties.Resources.GuardArgumentMustNotBeOfType);
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is of type <typeparamref name="T"/>.</summary>
+    /// <typeparam name="T">The type that is expected.</typeparam>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
     /// <param name="message">The message that will be passed to the exception.</param>
     /// <exception cref="ArgumentException">Validation error.</exception>
     public static void ArgumentIsNotOfType<T>(object argumentValue, string argumentName, string message) {
       ArgumentIsNotOfType<T>(false, argumentValue, argumentName, message);
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> is of type <typeparamref name="T"/> or a subtype of <typeparamref name="T"/>.</summary>
+    /// <typeparam name="T">The type that is not expected.</typeparam>
+    /// <param name="disallowDerivedTypes">Indicates if derived types are also not allowed.</param>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentException">Validation error.</exception>
+    /// <remarks>This method will not test for <see langword="null"/> values. When <paramref name="argumentValue"/> equals <see langword="null"/>, this method will break.
+    /// To test for <see langword="null"/> values, use the <see cref="Guard.ArgumentIsNotNull(object, string)"/> method.</remarks>
+    public static void ArgumentIsNotOfType<T>(bool disallowDerivedTypes, object argumentValue, string argumentName) {
+      ArgumentIsNotOfType<T>(disallowDerivedTypes, argumentValue, argumentName, Properties.Resources.GuardArgumentMustNotBeOfType);
     }
 
     /// <summary>Throws an exception if <paramref name="argumentValue"/> is of type <typeparamref name="T"/> or a subtype of <typeparamref name="T"/>.</summary>
@@ -219,6 +364,14 @@ namespace Enkoni.Framework {
       else if(argumentValue is T) {
         ThrowArgumentException(argumentName, message);
       }
+    }
+
+    /// <summary>Throws an exception if <paramref name="argumentValue"/> does not denote a valid path.</summary>
+    /// <param name="argumentValue">The argument value to test.</param>
+    /// <param name="argumentName">Name of the argument.</param>
+    /// <exception cref="ArgumentException">Validation error.</exception>
+    public static void ArgumentIsValidPath(string argumentValue, string argumentName) {
+      ArgumentIsValidPath(argumentValue, argumentName, Properties.Resources.GuardArgumentMustBeValidPath);
     }
 
     /// <summary>Throws an exception if <paramref name="argumentValue"/> does not denote a valid path.</summary>

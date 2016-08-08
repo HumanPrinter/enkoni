@@ -132,6 +132,36 @@
   <data name="FormatExceptionInvalidTypeValue" xml:space="preserve">
     <value>{0} is not a valid value for {1}.</value>
   </data>
+  <data name="GuardArgumentMustBeBetween" xml:space="preserve">
+    <value>Argument must be between {0} and {1}</value>
+  </data>
+  <data name="GuardArgumentMustBeGreaterThan" xml:space="preserve">
+    <value>Argument must be greater than {0}</value>
+  </data>
+  <data name="GuardArgumentMustBeGreaterThanOrEqualTo" xml:space="preserve">
+    <value>Argument must be greater than or equal to {0}</value>
+  </data>
+  <data name="GuardArgumentMustBeLowerThan" xml:space="preserve">
+    <value>Argument must be lower than {0}</value>
+  </data>
+  <data name="GuardArgumentMustBeLowerThanOrEqualTo" xml:space="preserve">
+    <value>Argument must be lower than or equal to {0}</value>
+  </data>
+  <data name="GuardArgumentMustBeOfType" xml:space="preserve">
+    <value>Argument is not of the expected type</value>
+  </data>
+  <data name="GuardArgumentMustBeValidEnum" xml:space="preserve">
+    <value>Argument must be a valid enum value</value>
+  </data>
+  <data name="GuardArgumentMustBeValidPath" xml:space="preserve">
+    <value>Argument must be a valid path</value>
+  </data>
+  <data name="GuardArgumentMustNotBeOfType" xml:space="preserve">
+    <value>Argument has an illegal type</value>
+  </data>
+  <data name="GuardValueCannotBeEmpty" xml:space="preserve">
+    <value>Argument cannot be empty</value>
+  </data>
   <data name="InvalidOperationExceptionInvalidFormatString" xml:space="preserve">
     <value>{0} is not a valid format string.</value>
   </data>
