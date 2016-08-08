@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -45,10 +43,15 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="ComparableAssert.cs" />
+    <Compile Include="CollectionAssert.cs" />
+    <Compile Include="ExceptionAssert.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HttpContextHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="SimulatedHttpRequest.cs" />
+    <Compile Include="StringAssert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Enkoni.Framework.snk">
@@ -66,6 +69,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Web" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enkoni.Framework\Enkoni.Framework.csproj">

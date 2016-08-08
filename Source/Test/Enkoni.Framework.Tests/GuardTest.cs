@@ -51,6 +51,42 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmptyWithDefaultMessage_NoNullNoEmptyString_ArgumentDoesNotThrowException() {
+      string testArgument = "someInput";
+      Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmptyWithDefaultMessage_NullStringArgument_ThrowsArgumentNullException() {
+      string testArgument = null;
+      try {
+        Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentNullException was expected");
+      }
+      catch(ArgumentNullException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmptyWithDefaultMessage_EmptyStringArgument_ThrowsArgumentException() {
+      string testArgument = string.Empty;
+      try {
+        Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument cannot be empty" + Environment.NewLine);
+      }
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty(string, string, string)"/> method.</summary>
     [TestMethod]
     public void ArgumentIsNotNullOrEmpty_NoNullNoEmptyString_ArgumentDoesNotThrowException() {
@@ -85,6 +121,42 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(typeof(ArgumentException), exception.GetType());
         Assert.AreEqual("testArgument", exception.ParamName);
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty{T}(IEnumerable{T}, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmptyWithDefaultMessage_NoNullNoEmptyCollectionArgument_DoesNotThrowException() {
+      IEnumerable<string> testArgument = new List<string> { "someInput" };
+      Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty{T}(IEnumerable{T}, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmptyWithDefaultMessage_NullCollectionArgument_ThrowsArgumentNullException() {
+      IEnumerable<string> testArgument = null;
+      try {
+        Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentNullException was expected");
+      }
+      catch(ArgumentNullException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotNullOrEmpty{T}(IEnumerable{T}, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotNullOrEmptyWithDefaultMessage_EmptyCollectionArgument_ThrowsArgumentException() {
+      IEnumerable<string> testArgument = Enumerable.Empty<string>();
+      try {
+        Guard.ArgumentIsNotNullOrEmpty(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument cannot be empty" + Environment.NewLine);
       }
     }
 
@@ -125,6 +197,35 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsGreaterOrEqualThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsGreaterOrEqualThanWithDefaultMessage_ArgumentGreaterThanThreshold_DoesNotThrowArgumentException() {
+      int testArgument = 42;
+      Guard.ArgumentIsGreaterOrEqualThan(40, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsGreaterOrEqualThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsGreaterOrEqualThanWithDefaultMessage_ArgumentEqualToThreshold_DoesNotThrowArgumentException() {
+      int testArgument = 42;
+      Guard.ArgumentIsGreaterOrEqualThan(42, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsGreaterOrEqualThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsGreaterOrEqualThanWithDefaultMessage_ArgumentSmallerThanThreshold_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 42;
+      try {
+        Guard.ArgumentIsGreaterOrEqualThan(44, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be greater than or equal to 44" + Environment.NewLine);
+      }
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsGreaterOrEqualThan{T}(T, T, string, string)"/> method.</summary>
     [TestMethod]
     public void ArgumentIsGreaterOrEqualThan_ArgumentGreaterThanThreshold_DoesNotThrowArgumentException() {
@@ -151,6 +252,43 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual("testArgument", exception.ParamName);
         Assert.AreEqual(testArgument, exception.ActualValue);
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsGreaterThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsGreaterThanWithDefaultMessage_ArgumentGreaterThanThreshold_DoesNotThrowArgumentException() {
+      int testArgument = 42;
+      Guard.ArgumentIsGreaterThan(40, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsGreaterThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsGreaterThanWithDefaultMessage_ArgumentEqualToThreshold_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 42;
+      try {
+        Guard.ArgumentIsGreaterThan(42, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be greater than 42" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsGreaterThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsGreaterThanWithDefaultMessage_ArgumentSmallerThanThreshold_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 42;
+      try {
+        Guard.ArgumentIsGreaterOrEqualThan(44, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be greater than or equal to 44" + Environment.NewLine);
       }
     }
 
@@ -191,8 +329,37 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerOrEqualThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsLowerOrEqualThanWithDefaultMessage_ArgumentLowerThanThreshold_DoesNotThrowArgumentException() {
+      int testArgument = 42;
+      Guard.ArgumentIsLowerOrEqualThan(44, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerOrEqualThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsLowerOrEqualThanWithDefaultMessage_ArgumentEqualToThreshold_DoesNotThrowArgumentException() {
+      int testArgument = 42;
+      Guard.ArgumentIsLowerOrEqualThan(42, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerOrEqualThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsLowerOrEqualThanWithDefaultMessage_ArgumentBiggerThanThreshold_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 42;
+      try {
+        Guard.ArgumentIsLowerOrEqualThan(40, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be lower than or equal to 40" + Environment.NewLine);
+      }
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerOrEqualThan{T}(T, T, string, string)"/> method.</summary>
-        [TestMethod]
+    [TestMethod]
     public void ArgumentIsLowerOrEqualThan_ArgumentLowerThanThreshold_DoesNotThrowArgumentException() {
       int testArgument = 42;
       Guard.ArgumentIsLowerOrEqualThan(44, testArgument, nameof(testArgument), "ExpectedMessage");
@@ -220,11 +387,48 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsLowerThanWithDefaultMessage_ArgumentLowerThanThreshold_DoesNotThrowArgumentException() {
+      int testArgument = 42;
+      Guard.ArgumentIsLowerThan(44, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsLowerThanWithDefaultMessage_ArgumentEqualToThreshold_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 42;
+      try {
+        Guard.ArgumentIsLowerThan(42, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be lower than 42" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerThan{T}(T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsLowerThanWithDefaultMessage_ArgumentBiggerThanThreshold_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 42;
+      try {
+        Guard.ArgumentIsLowerThan(40, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be lower than 40" + Environment.NewLine);
+      }
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerThan{T}(T, T, string, string)"/> method.</summary>
     [TestMethod]
     public void ArgumentIsLowerThan_ArgumentLowerThanThreshold_DoesNotThrowArgumentException() {
       int testArgument = 42;
-      Guard.ArgumentIsLowerOrEqualThan(44, testArgument, nameof(testArgument), "ExpectedMessage");
+      Guard.ArgumentIsLowerThan(44, testArgument, nameof(testArgument), "ExpectedMessage");
     }
 
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsLowerThan{T}(T, T, string, string)"/> method.</summary>
@@ -247,13 +451,64 @@ namespace Enkoni.Framework.Tests {
     public void ArgumentIsLowerThan_ArgumentBiggerThanThreshold_ThrowsArgumentOutOfRangeException() {
       int testArgument = 42;
       try {
-        Guard.ArgumentIsLowerOrEqualThan(40, testArgument, nameof(testArgument), "ExpectedMessage");
+        Guard.ArgumentIsLowerThan(40, testArgument, nameof(testArgument), "ExpectedMessage");
         Assert.Fail("An ArgumentOutOfRangeException was expected");
       }
       catch(ArgumentOutOfRangeException exception) {
         Assert.AreEqual("testArgument", exception.ParamName);
         Assert.AreEqual(testArgument, exception.ActualValue);
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsBetween{T}(T, T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsBetweenWithDefaultMessage_ArgumentBetweenBoundaries_DoesNotThrowArgumentException() {
+      int testArgument = 42;
+      Guard.ArgumentIsBetween(40, 44, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsBetween{T}(T, T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsBetweenWithDefaultMessage_ArgumentEqualToLowerBoundary_DoesNotThrowArgumentException() {
+      int testArgument = 40;
+      Guard.ArgumentIsBetween(40, 44, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsBetween{T}(T, T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsBetweenWithDefaultMessage_ArgumentEqualToUpperBoundary_DoesNotThrowArgumentException() {
+      int testArgument = 44;
+      Guard.ArgumentIsBetween(40, 44, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsBetween{T}(T, T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsBetweenWithDefaultMessage_ArgumentLowerThanLowerBoundary_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 38;
+      try {
+        Guard.ArgumentIsBetween(40, 44, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be between 40 and 44" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsBetween{T}(T, T, T, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsBetweenWithDefaultMessage_ArgumentGreaterThanUpperBoundary_ThrowsArgumentOutOfRangeException() {
+      int testArgument = 48;
+      try {
+        Guard.ArgumentIsBetween(40, 44, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentOutOfRangeException was expected");
+      }
+      catch(ArgumentOutOfRangeException exception) {
+        Assert.AreEqual("testArgument", exception.ParamName);
+        Assert.AreEqual(testArgument, exception.ActualValue);
+        StringAssert.StartsWith(exception.Message, "Argument must be between 40 and 44" + Environment.NewLine);
       }
     }
 
@@ -308,6 +563,36 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidEnum(Type, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidEnumWithDefaultMessage_ArgumentIsValidEnum_DoesNotThrowArgumentException() {
+      TestEnum testArgument = TestEnum.EnumValueB;
+      Guard.ArgumentIsValidEnum(typeof(TestEnum), testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidEnum(Type, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidEnumWithDefaultMessage_ArgumentAsIntIsValidEnum_DoesNotThrowArgumentException() {
+      int testArgument = 2;
+      Guard.ArgumentIsValidEnum(typeof(TestEnum), testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidEnum(Type, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidEnumWithDefaultMessage_ArgumentIsNotValidEnum_ThrowsArgumentException() {
+      int testArgument = 3;
+      try {
+        Guard.ArgumentIsValidEnum(typeof(TestEnum), testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument must be a valid enum value" + Environment.NewLine);
+      }
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidEnum(Type, object, string, string)"/> method.</summary>
     [TestMethod]
     public void ArgumentIsValidEnum_ArgumentIsValidEnum_DoesNotThrowArgumentException() {
@@ -335,6 +620,45 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(typeof(ArgumentException), exception.GetType());
         Assert.AreEqual("testArgument", exception.ParamName);
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsOfType{T}(object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsOfTypeWithDefaultMessage_ArgumentIsOfExpectedType_DoesNotThrowArgumentException() {
+      object testArgument = new TestDummy();
+      Guard.ArgumentIsOfType<TestDummy>(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsOfType{T}(object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsOfTypeWithDefaultMessage_ArgumentIsNotOfExpectedType_ThrowsArgumentException() {
+      object testArgument = new OtherTestDummy();
+      try {
+        Guard.ArgumentIsOfType<TestDummy>(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument is not of the expected type" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsOfType{T}(object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsOfTypeWithDefaultMessage_ArgumentIsSubtypeOfExpectedType_ThrowsArgumentException() {
+      object testArgument = new SubTestDummy();
+      try {
+        Guard.ArgumentIsOfType<TestDummy>(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument is not of the expected type" + Environment.NewLine);
       }
     }
 
@@ -377,6 +701,36 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsOfType{T}(bool, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsOfTypeWithDefaultMessage_ArgumentIsOfExpectedTypeAllowDerivedTypes_DoesNotThrowArgumentException() {
+      object testArgument = new TestDummy();
+      Guard.ArgumentIsOfType<TestDummy>(true, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsOfType{T}(bool, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsOfTypeWithDefaultMessage_ArgumentIsSubtypeOfExpectedTypeAllowDerivedTypes_DoesNotThrowArgumentException() {
+      object testArgument = new SubTestDummy();
+      Guard.ArgumentIsOfType<TestDummy>(true, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsOfType{T}(bool, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsOfTypeWithDefaultMessage_ArgumentIsNotOfExpectedTypeAllowDerivedTypes_ThrowsArgumentException() {
+      object testArgument = new OtherTestDummy();
+      try {
+        Guard.ArgumentIsOfType<TestDummy>(true, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument is not of the expected type" + Environment.NewLine);
+      }
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsOfType{T}(bool, object, string, string)"/> method.</summary>
     [TestMethod]
     public void ArgumentIsOfType_ArgumentIsOfExpectedTypeAllowDerivedTypes_DoesNotThrowArgumentException() {
@@ -407,6 +761,36 @@ namespace Enkoni.Framework.Tests {
       }
     }
 
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotOfTypeWithDefaultMessage_ArgumentIsNotOfExpectedType_DoesNotThrowArgumentException() {
+      object testArgument = new OtherTestDummy();
+      Guard.ArgumentIsNotOfType<TestDummy>(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotOfTypeWithDefaultMessage_ArgumentIsOfExpectedType_ThrowsArgumentException() {
+      object testArgument = new TestDummy();
+      try {
+        Guard.ArgumentIsNotOfType<TestDummy>(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument has an illegal type" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotOfTypeWithDefaultMessage_ArgumentIsSubtypeOfExpectedType_DoesNotThrowArgumentException() {
+      object testArgument = new OtherTestDummy();
+      Guard.ArgumentIsNotOfType<TestDummy>(testArgument, nameof(testArgument));
+    }
+
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(object, string, string)"/> method.</summary>
     [TestMethod]
     public void ArgumentIsNotOfType_ArgumentIsNotOfExpectedType_DoesNotThrowArgumentException() {
@@ -435,6 +819,45 @@ namespace Enkoni.Framework.Tests {
     public void ArgumentIsNotOfType_ArgumentIsSubtypeOfExpectedType_DoesNotThrowArgumentException() {
       object testArgument = new OtherTestDummy();
       Guard.ArgumentIsNotOfType<TestDummy>(testArgument, nameof(testArgument), "ExpectedMessage");
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(bool, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotOfTypeWithDefaultMessage_ArgumentIsNotOfExpectedTypeDisallowDerivedTypes_DoesNotThrowArgumentException() {
+      object testArgument = new OtherTestDummy();
+      Guard.ArgumentIsNotOfType<TestDummy>(true, testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(bool, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotOfTypeWithDefaultMessage_ArgumentIsOfExpectedTypeDisallowDerivedTypes_ThrowsArgumentException() {
+      object testArgument = new TestDummy();
+      try {
+        Guard.ArgumentIsNotOfType<TestDummy>(true, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument has an illegal type" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(bool, object, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsNotOfTypeWithDefaultMessage_ArgumentIsSubtypeOfExpectedTypeDisallowDerivedTypes_ThrowsArgumentException() {
+      object testArgument = new SubTestDummy();
+      try {
+        Guard.ArgumentIsNotOfType<TestDummy>(true, testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument has an illegal type" + Environment.NewLine);
+      }
     }
 
     /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsNotOfType{T}(bool, object, string, string)"/> method.</summary>
@@ -473,6 +896,50 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(typeof(ArgumentException), exception.GetType());
         Assert.AreEqual("testArgument", exception.ParamName);
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
+      }
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidPath(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidPathWithDefaultMessage_ArgumentIsValidAbsoluteFilePath_DoesNotThrowException() {
+      string testArgument = "C:\\somewhere\\somethere\\here.txt";
+      Guard.ArgumentIsValidPath(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidPath(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidPathWithDefaultMessage_ArgumentIsValidRelativeFilePath_DoesNotThrowException() {
+      string testArgument = "..\\somethere\\here.txt";
+      Guard.ArgumentIsValidPath(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidPath(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidPathWithDefaultMessage_ArgumentIsValidAbsoluteDirectoryPath_DoesNotThrowException() {
+      string testArgument = "C:\\somewhere\\somethere\\here\\";
+      Guard.ArgumentIsValidPath(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidPath(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidPathWithDefaultMessage_ArgumentIsValidRelativeDirectoryPath_DoesNotThrowException() {
+      string testArgument = "..\\somethere\\here\\";
+      Guard.ArgumentIsValidPath(testArgument, nameof(testArgument));
+    }
+
+    /// <summary>Tests the functionality of the <see cref="Guard.ArgumentIsValidPath(string, string)"/> method.</summary>
+    [TestMethod]
+    public void ArgumentIsValidPathWithDefaultMessage_ArgumentIsInvalidPath_ThrowsArgumentException() {
+      try {
+        string testArgument = "C:\\somewhere\\s>omethere\\here.txt";
+        Guard.ArgumentIsValidPath(testArgument, nameof(testArgument));
+        Assert.Fail("An ArgumentException was expected");
+      }
+      catch(ArgumentException exception) {
+        /* Make sure it not some derived exceptioin type */
+        Assert.AreEqual(typeof(ArgumentException), exception.GetType());
+        Assert.AreEqual("testArgument", exception.ParamName);
+        StringAssert.StartsWith(exception.Message, "Argument must be a valid path" + Environment.NewLine);
       }
     }
 
@@ -519,7 +986,6 @@ namespace Enkoni.Framework.Tests {
         StringAssert.StartsWith(exception.Message, "ExpectedMessage" + Environment.NewLine);
       }
     }
-  
     #region Private helper types
     private enum TestEnum {
       EnumValueA = 1,
