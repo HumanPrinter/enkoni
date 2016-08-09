@@ -81,6 +81,7 @@ Source/Test/Enkoni.Framework.Entities.Tests/*.Cache
 Source/Test/Enkoni.Framework.Entities.Tests/bin/
 Source/Test/Enkoni.Framework.Entities.Tests/obj/
 Source/Test/Enkoni.Framework.Entities.Tests.Database/*.dbmdl
+Source/Test/Enkoni.Framework.Entities.Tests.Database/*.jfm
 Source/Test/Enkoni.Framework.Entities.Tests.Database/*.user
 Source/Test/Enkoni.Framework.Entities.Tests.Database/bin/
 Source/Test/Enkoni.Framework.Entities.Tests.Database/Import Schema Logs/
