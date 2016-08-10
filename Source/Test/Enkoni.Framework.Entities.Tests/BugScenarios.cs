@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Entities.Tests {
   /// <summary>Contains test cases that replay discovered bug scenarios to ensure a bug doesn't re-appear in a future release.</summary>
-  [TestClass]
+  //[TestClass]
   [DeploymentItem(@"Enkoni.Framework.Entities.Tests.Database.dacpac")]
   [DeploymentItem(@"EntityFramework.SqlServer.dll")]
   [DeploymentItem(@"EntityFramework.SqlServerCompact.dll")]
