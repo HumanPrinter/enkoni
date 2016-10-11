@@ -2,7 +2,7 @@
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
     <release version="1.3.0.0" releasedate="yyyy-MM-dd">
-      <remark>Release is prepared for feature Net-Core_support</remark>
+      <remark>Splitted the Enkoni.Framework-project in preparation for feature Net-Core support</remark>
       <projects>
         <project name="Enkoni.Framework" version="3.0.0">
           <updates>
@@ -25,6 +25,14 @@
               <summary><![CDATA[Reorganized the extension methods.]]></summary>
               <comment><![CDATA[The various extention methods have now been divided into dedicated classes. The internal workings of the methods have not changed and as long as the
               methods are invoked as extension methods, the change should not be noticable.]]></comment>
+            </update>
+          </updates>
+        </project>
+        <project name="Enkoni.Framework.DataAnnotations" version="1.1.1">
+          <updates>
+            <update date="2016-10-11" type="bugfix">
+              <summary><![CDATA[Repaired a bug which caused an invalid reference in the NuGet-package.]]></summary>
+              <comment><![CDATA[Repaired a bug which caused an invalid reference in the NuGet-package.]]></comment>
             </update>
           </updates>
         </project>

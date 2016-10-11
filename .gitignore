@@ -92,6 +92,13 @@ Source/Test/Enkoni.Framework.Entities.Tests/*.user
 Source/Test/Enkoni.Framework.Entities.Tests/*.Cache
 Source/Test/Enkoni.Framework.Entities.Tests/bin/
 Source/Test/Enkoni.Framework.Entities.Tests/obj/
+Source/Test/Enkoni.Framework.Entities.Tests.Database/*.user
+Source/Test/Enkoni.Framework.Entities.Tests.Database/*.Cache
+Source/Test/Enkoni.Framework.Entities.Tests.Database/*.dbmdl
+Source/Test/Enkoni.Framework.Entities.Tests.Database/*.jfm
+Source/Test/Enkoni.Framework.Entities.Tests.Database/bin/
+Source/Test/Enkoni.Framework.Entities.Tests.Database/Import Schema Logs/
+Source/Test/Enkoni.Framework.Entities.Tests.Database/obj/
 Source/Test/Enkoni.Framework.Logging.Tests/*.user
 Source/Test/Enkoni.Framework.Logging.Tests/*.Cache
 Source/Test/Enkoni.Framework.Logging.Tests/bin/

@@ -32,11 +32,11 @@
       <xs:enumeration value="Enkoni.Framework.Entities.File" />
       <xs:enumeration value="Enkoni.Framework.Entities.Service" />
       <xs:enumeration value="Enkoni.Framework.Logging" />
-	  <xs:enumeration value="Enkoni.Framework.Serialization" />
+	    <xs:enumeration value="Enkoni.Framework.Serialization" />
       <xs:enumeration value="Enkoni.Framework.ServiceModel" />
-	  <xs:enumeration value="Enkoni.Framework.Specifications" />
+	    <xs:enumeration value="Enkoni.Framework.Specifications" />
       <xs:enumeration value="Enkoni.Framework.Testing" />
-	  <xs:enumeration value="Enkoni.Framework.Timers" />
+	    <xs:enumeration value="Enkoni.Framework.Timers" />
       <xs:enumeration value="Enkoni.Framework.UI" />
       <xs:enumeration value="Enkoni.Framework.Validation" />
       <xs:enumeration value="Enkoni.Framework.Web" />

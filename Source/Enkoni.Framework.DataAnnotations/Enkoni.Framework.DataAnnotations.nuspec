@@ -21,6 +21,6 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\libraries\Enkoni.Framework.Validation.RegularExpressions.dll" target="lib\net40-client" />
+    <file src="..\libraries\Enkoni.Framework.Validation.RegularExpressions.dll" target="lib\net40" />
   </files>
 </package>

@@ -96,8 +96,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Timers", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Timers.Tests", "Test\Enkoni.Framework.Timers.Tests\Enkoni.Framework.Timers.Tests.csproj", "{BC60417E-22E7-4DA0-871E-02DB24190E4F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Enkoni.Framework.Core", "Enkoni.Framework\Enkoni.Framework.Core.xproj", "{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -232,10 +230,6 @@ Global
 		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5C9C2D0-7C85-494D-9A3A-694BA08D05B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
