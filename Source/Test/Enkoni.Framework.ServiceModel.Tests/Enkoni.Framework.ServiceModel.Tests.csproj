@@ -49,15 +49,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\SolutionInfo.cs">
-      <Link>Properties\SolutionInfo.cs</Link>
-    </Compile>
     <Compile Include="ITestService.cs" />
     <Compile Include="SchemaValidationBehaviorExtensionElementTest.cs" />
     <Compile Include="SchemaValidationIntegrationTest.cs" />
     <Compile Include="SchemaValidationMessageInspectorTest.cs" />
     <Compile Include="SchemaValidationBehaviorTest.cs" />
-    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataContract.cs" />
     <Compile Include="SchemaValidationBehaviorExtensionElementTestWrapper.cs" />

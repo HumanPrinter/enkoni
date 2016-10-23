@@ -15,7 +15,8 @@
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />
-      <dependency id="Enkoni" version="2.8.0" />
+      <dependency id="Enkoni" version="3.0.0" />
+      <dependency id="Enkoni.Specifications" version="1.0.0" />
       <dependency id="AutoMapper" version="3.3.0" />
     </dependencies>
     <frameworkAssemblies>

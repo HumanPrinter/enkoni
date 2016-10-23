@@ -127,7 +127,6 @@
     <Compile Include="TestDummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityValidatorTest.cs" />
-    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="CustomMappedTestDummyConfiguration.cs" />
     <Compile Include="TestDummyConfiguration.cs" />
     <Compile Include="TestSubDomainModel.cs" />
@@ -145,6 +144,14 @@
     <ProjectReference Include="..\..\Enkoni.Framework.Entities\Enkoni.Framework.Entities.csproj">
       <Project>{26D1BDC7-B2E8-4351-AD6B-5441F292320A}</Project>
       <Name>Enkoni.Framework.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Enkoni.Framework.Serialization\Enkoni.Framework.Serialization.csproj">
+      <Project>{4dca607f-4060-42db-80bb-6fc493332ed9}</Project>
+      <Name>Enkoni.Framework.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Enkoni.Framework.Specifications\Enkoni.Framework.Specifications.csproj">
+      <Project>{00051683-1eea-459a-ac2d-de1ae5db9ad3}</Project>
+      <Name>Enkoni.Framework.Specifications</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Enkoni.Framework.Testing\Enkoni.Framework.Testing.csproj">
       <Project>{D674CCFA-3D37-4BE7-AED7-C11EE72C0E92}</Project>

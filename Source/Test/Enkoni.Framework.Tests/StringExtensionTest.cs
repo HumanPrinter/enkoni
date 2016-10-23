@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Enkoni.Framework.Tests {
   /// <summary>This class defines the testcases that test the functionality of the extension methods for the string-class.</summary>
   [TestClass]
   public class StringExtensionTest {
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeNoCultureKeepCapitals() {
       Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
@@ -29,7 +30,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeMultipleSpacesNoCultureKeepCapitals()
     {
@@ -52,7 +53,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeStartWithSpacesNoCultureKeepCapitals()
     {
@@ -75,7 +76,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeEndWithSpacesNoCultureKeepCapitals()
     {
@@ -98,7 +99,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSingleCharacterNoCultureKeepCapitals()
     {
@@ -121,7 +122,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeNoCultureResetCapitals() {
       Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
@@ -143,7 +144,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeMultipleSpacesNoCultureResetCapitals()
     {
@@ -166,7 +167,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeStartWithSpacesNoCultureResetCapitals()
     {
@@ -189,7 +190,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeEndWithSpacesNoCultureResetCapitals()
     {
@@ -212,7 +213,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, bool, CultureInfo)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string, bool, CultureInfo)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeWithCultureKeepCapitals() {
       /* Set the current culture so a different value to make sure that the testsubject uses the CultureInfo parameter */
@@ -237,7 +238,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Capitalize(string, CultureInfo)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Capitalize(string, CultureInfo)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeWithCultureResetCapitals() {
       /* Set the current culture so a different value to make sure that the testsubject uses the CultureInfo parameter */
@@ -262,7 +263,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceNoCultureKeepCapitals() {
       Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
@@ -284,7 +285,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceMultipleSpacesNoCultureKeepCapitals()
     {
@@ -307,7 +308,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceStartWithSpacesNoCultureKeepCapitals()
     {
@@ -330,7 +331,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceEndWithSpacesNoCultureKeepCapitals()
     {
@@ -353,7 +354,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string, bool)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceSingleCharacterNoCultureKeepCapitals()
     {
@@ -376,7 +377,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceNoCultureResetCapitals() {
       Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
@@ -398,7 +399,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceSingleCharacterNoCultureResetCapitals()
     {
@@ -421,7 +422,7 @@ namespace Enkoni.Framework.Tests {
         Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, bool, CultureInfo)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string, bool, CultureInfo)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceWithCultureKeepCapitals() {
       /* Set the current culture so a different value to make sure that the testsubject uses the CultureInfo parameter */
@@ -446,7 +447,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.CapitalizeSentence(string, CultureInfo)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.CapitalizeSentence(string, CultureInfo)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_CapitalizeSentenceWithCultureResetCapitals() {
       /* Set the current culture so a different value to make sure that the testsubject uses the CultureInfo parameter */
@@ -471,7 +472,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Truncate(string, int)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_Truncate_NullValueReturnsNullValue() {
       string inputValue = null;
@@ -480,7 +481,7 @@ namespace Enkoni.Framework.Tests {
       Assert.IsNull(result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Truncate(string, int)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_Truncate_EmptyStringReturnsEmptyString() {
       string inputValue = string.Empty;
@@ -489,14 +490,14 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Truncate(string, int)"/> extension method.</summary>
     [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void StringExtensions_Truncate_NegativeMaxLengthThrowsError() {
       string inputValue = "Hello world";
       string result = inputValue.Truncate(-2);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Truncate(string, int)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_Truncate_ZeroMaxLengthReturnsEmptyString() {
       string inputValue = "Hello world";
@@ -505,7 +506,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual(string.Empty, result);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Truncate(string, int)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_Truncate_StringLessThenMaxLengthReturnsOriginalString() {
       string inputValue = "Hello world";
@@ -514,7 +515,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual("Hello world", result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Truncate(string, int)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_Truncate_StringEqualToMaxLengthReturnsOriginalString() {
       string inputValue = "Hello world";
@@ -523,7 +524,7 @@ namespace Enkoni.Framework.Tests {
       Assert.AreEqual("Hello world", result, false);
     }
 
-    /// <summary>Tests the functionality of the <see cref="Extensions.Truncate(string, int)"/> extension method.</summary>
+    /// <summary>Tests the functionality of the <see cref="StringExtensions.Truncate(string, int)"/> extension method.</summary>
     [TestMethod]
     public void StringExtensions_Truncate_StringMoreThenMaxLengthReturnsTruncatedString() {
       string inputValue = "Hello world";

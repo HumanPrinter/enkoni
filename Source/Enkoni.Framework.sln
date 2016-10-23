@@ -90,6 +90,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.DataAnnotations.Client", "Enkoni.Framework.DataAnnotations.Client\Enkoni.Framework.DataAnnotations.Client.csproj", "{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Enkoni.Framework.Entities.Tests.Database", "Test\Enkoni.Framework.Entities.Tests.Database\Enkoni.Framework.Entities.Tests.Database.sqlproj", "{355B5D99-7FB2-4E6A-9113-488479F24A5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Specifications", "Enkoni.Framework.Specifications\Enkoni.Framework.Specifications.csproj", "{00051683-1EEA-459A-AC2D-DE1AE5DB9AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Serialization", "Enkoni.Framework.Serialization\Enkoni.Framework.Serialization.csproj", "{4DCA607F-4060-42DB-80BB-6FC493332ED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Serialization.Tests", "Test\Enkoni.Framework.Serialization.Tests\Enkoni.Framework.Serialization.Tests.csproj", "{6AD4C7D5-05BC-4ED2-AB0D-0ABDB2070C7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Timers", "Enkoni.Framework.Timers\Enkoni.Framework.Timers.csproj", "{E1CE7353-466B-41BA-8622-689EE60F954F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Timers.Tests", "Test\Enkoni.Framework.Timers.Tests\Enkoni.Framework.Timers.Tests.csproj", "{BC60417E-22E7-4DA0-871E-02DB24190E4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -211,6 +220,26 @@ Global
 		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{355B5D99-7FB2-4E6A-9113-488479F24A5B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{00051683-1EEA-459A-AC2D-DE1AE5DB9AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00051683-1EEA-459A-AC2D-DE1AE5DB9AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00051683-1EEA-459A-AC2D-DE1AE5DB9AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00051683-1EEA-459A-AC2D-DE1AE5DB9AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DCA607F-4060-42DB-80BB-6FC493332ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DCA607F-4060-42DB-80BB-6FC493332ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DCA607F-4060-42DB-80BB-6FC493332ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DCA607F-4060-42DB-80BB-6FC493332ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD4C7D5-05BC-4ED2-AB0D-0ABDB2070C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD4C7D5-05BC-4ED2-AB0D-0ABDB2070C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD4C7D5-05BC-4ED2-AB0D-0ABDB2070C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD4C7D5-05BC-4ED2-AB0D-0ABDB2070C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1CE7353-466B-41BA-8622-689EE60F954F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1CE7353-466B-41BA-8622-689EE60F954F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1CE7353-466B-41BA-8622-689EE60F954F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1CE7353-466B-41BA-8622-689EE60F954F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC60417E-22E7-4DA0-871E-02DB24190E4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -231,6 +260,8 @@ Global
 		{4CC8DAA2-6F48-410C-92E4-7245D60ABC0D} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{10267045-A0A2-402E-9CA9-9F5F4BEA5DD0} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 		{355B5D99-7FB2-4E6A-9113-488479F24A5B} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{6AD4C7D5-05BC-4ED2-AB0D-0ABDB2070C7C} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
+		{BC60417E-22E7-4DA0-871E-02DB24190E4F} = {CA8AB7FC-D23A-4461-88CA-657C417AD4E8}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Enkoni.Framework.vsmdi

@@ -76,14 +76,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\SolutionInfo.cs">
-      <Link>Properties\SolutionInfo.cs</Link>
-    </Compile>
     <Compile Include="EmailValidatorTest.cs" />
     <Compile Include="IbanValidatorTest.cs" />
     <Compile Include="ValidatorConfigurationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="DutchPhoneNumberValidatorTest.cs" />
     <Compile Include="TimeSpanRangeValidatorTest.cs" />
   </ItemGroup>
