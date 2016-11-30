@@ -90,6 +90,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.DataAnnotations.Client", "Enkoni.Framework.DataAnnotations.Client\Enkoni.Framework.DataAnnotations.Client.csproj", "{28789A6D-B3EB-4661-BAA4-569D7ABE7BDB}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Enkoni.Framework.Entities.Tests.Database", "Test\Enkoni.Framework.Entities.Tests.Database\Enkoni.Framework.Entities.Tests.Database.sqlproj", "{355B5D99-7FB2-4E6A-9113-488479F24A5B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Specifications", "Enkoni.Framework.Specifications\Enkoni.Framework.Specifications.csproj", "{00051683-1EEA-459A-AC2D-DE1AE5DB9AD3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enkoni.Framework.Serialization", "Enkoni.Framework.Serialization\Enkoni.Framework.Serialization.csproj", "{4DCA607F-4060-42DB-80BB-6FC493332ED9}"
