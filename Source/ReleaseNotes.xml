@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <enkoni xmlns="http://www.oscarbrouwer.nl/enkoni/2012/09">
   <releases>
-    <release version="1.3.0.0" releasedate="yyyy-MM-dd">
+    <release version="1.3.0.0" releasedate="2016-12-04">
       <remark>Splitted the Enkoni.Framework-project in preparation for feature Net-Core support</remark>
       <projects>
         <project name="Enkoni.Framework" version="3.0.0">

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni</id>
-    <version>2.10.0</version>
+    <version>3.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,7 +11,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added additional overloads to the Guard class that use a default message.]]></releaseNotes>
+    <releaseNotes><![CDATA[The Specification classes have been moved to their own assembly called Enkoni.Framework.Specifications.
+Please use the Enkoni.Specifications NuGet-package from now on.
+The Serialization classes have been moved to their own assembly called Enkoni.Framework.Serialization.
+Please use the Enkoni.Serialization NuGet-package from now on.
+The Timer classes have been moved to their own assembly called Enkoni.Framework.Timers.
+Please use the Enkoni.Timers NuGet-package from now on.
+The various extention methods have now been divided into dedicated classes. The internal workings of the methods have not changed and as long as the
+methods are invoked as extension methods, the change should not be noticable.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />

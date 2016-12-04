@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Timers</id>
-    <version>2.9.0</version>
+    <version>1.0.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added the ValidatedNotNullAttribute to the Guard methods to avoid CS1062 warnings when using the Guard class to validate parameters.]]></releaseNotes>
+    <releaseNotes><![CDATA[Created a ne package that contains the timer logic that used to be part of the main Enkoni project. The internal workings have not changed.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2016. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Enkoni" version="3.0.0" />

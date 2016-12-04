@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities</id>
-    <version>3.6.0</version>
+    <version>3.7.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added a reference to the new Enkoni.Specifications package.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
     <dependencies>
       <dependency id="LinqKit" version="1.0" />

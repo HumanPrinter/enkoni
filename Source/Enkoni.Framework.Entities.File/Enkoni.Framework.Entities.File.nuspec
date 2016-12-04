@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Entities.File</id>
-    <version>3.4.0</version>
+    <version>3.5.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></releaseNotes>
+    <releaseNotes><![CDATA[Added a reference to the new Enkoni.Specifications and Enkoni.Serialization packages.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Enkoni" version="3.0.0" />

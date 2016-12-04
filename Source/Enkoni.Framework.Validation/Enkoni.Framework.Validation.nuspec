@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Validation</id>
-    <version>2.2.1.1</version>
+    <version>2.3.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Fixed a bug in IbanValidator where an empty string would be incorrectly validated.]]></releaseNotes>
+    <releaseNotes><![CDATA[Changed the assembly GUID to make it unique.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="EnterpriseLibrary.Validation" version="5.0.505.0" />
