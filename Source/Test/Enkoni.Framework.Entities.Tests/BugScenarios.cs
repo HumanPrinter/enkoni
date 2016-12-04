@@ -27,7 +27,7 @@ namespace Enkoni.Framework.Entities.Tests {
 
     /// <summary>Replays the bug described in bug 12. Querying entities by RecordID causes an entity framework exception.</summary>
     /// <seealso href="https://humanprinter.visualstudio.com/DefaultCollection/Enkoni.Framework/_workitems/edit/12"/>
-    [TestMethod]
+    //[TestMethod]
     public void Bug01_QueryById() {
       Database.SetInitializer<DatabaseRepositoryTestContext>(null);
       DbContext context = new DatabaseRepositoryTestContext("BugScenarios");

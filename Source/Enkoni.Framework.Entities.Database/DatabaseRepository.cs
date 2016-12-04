@@ -848,7 +848,7 @@ namespace Enkoni.Framework.Entities {
       }
       else {
         IEnumerable<TEntity> resultList = newlyAddedEntities.Concat(updatedEntities);
-        Linq.Extensions.ForEach(resultList, entity => entities.Single(e => e.RecordId == entity.RecordId).CopyFrom(entity));
+        Linq.Enumerable.ForEach(resultList, entity => entities.Single(e => e.RecordId == entity.RecordId).CopyFrom(entity));
         return entities;
       }
     }
@@ -968,7 +968,7 @@ namespace Enkoni.Framework.Entities {
         return addedEntities.Concat(updatedEntities).Select(entity => ((ICloneable)entity).Clone() as TEntity).ToList();
       }
       else {
-        Linq.Extensions.ForEach(handledEntities, kvp => kvp.Key.CopyFrom(kvp.Value));
+        Linq.Enumerable.ForEach(handledEntities, kvp => kvp.Key.CopyFrom(kvp.Value));
         return entities;
       }
     }

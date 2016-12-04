@@ -79,9 +79,6 @@
     </None>
     <None Include="Enkoni.Framework.Validation.nuspec" />
     <None Include="packages.config" />
-    <None Include="Settings.StyleCop">
-      <SubType>Designer</SubType>
-    </None>
     <AdditionalFiles Include="..\stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>

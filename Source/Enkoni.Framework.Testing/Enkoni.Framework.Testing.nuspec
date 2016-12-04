@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Testing</id>
-    <version>1.2.0</version>
+    <version>1.1.0</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,11 +11,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Added additional Assert-classes and methods that can aid in unit tests.]]></releaseNotes>
-    <dependencies>
-      <dependency id="Enkoni" version="2.10.0" />
-    </dependencies>
+    <releaseNotes><![CDATA[Changed the assembly GUID to make it unique.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
+    <dependencies>
+      <dependency id="Enkoni" version="3.0.0" />
+    </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework3.5" />
       <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework3.5" />

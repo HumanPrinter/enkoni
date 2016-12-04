@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FormatExceptionInvalidBooleanValue" xml:space="preserve">
-    <value>{0} is not a valid value for Boolean.</value>
-  </data>
-  <data name="FormatExceptionInvalidCharValue" xml:space="preserve">
-    <value>{0} is not a valid value for Char.</value>
-  </data>
-  <data name="FormatExceptionInvalidDateTimeValue" xml:space="preserve">
-    <value>{0} is not a valid value for DateTime.</value>
-  </data>
-  <data name="FormatExceptionInvalidFormatting" xml:space="preserve">
-    <value>{0} is not correctly formatted.</value>
-  </data>
-  <data name="FormatExceptionInvalidTypeValue" xml:space="preserve">
-    <value>{0} is not a valid value for {1}.</value>
-  </data>
   <data name="GuardArgumentMustBeBetween" xml:space="preserve">
     <value>Argument must be between {0} and {1}</value>
   </data>
@@ -161,8 +146,5 @@
   </data>
   <data name="GuardValueCannotBeEmpty" xml:space="preserve">
     <value>Argument cannot be empty</value>
-  </data>
-  <data name="InvalidOperationExceptionInvalidFormatString" xml:space="preserve">
-    <value>{0} is not a valid format string.</value>
   </data>
 </root>

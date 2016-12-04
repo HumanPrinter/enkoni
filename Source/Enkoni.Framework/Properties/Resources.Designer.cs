@@ -61,51 +61,6 @@ namespace Enkoni.Framework.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not a valid value for Boolean..
-        /// </summary>
-        internal static string FormatExceptionInvalidBooleanValue {
-            get {
-                return ResourceManager.GetString("FormatExceptionInvalidBooleanValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not a valid value for Char..
-        /// </summary>
-        internal static string FormatExceptionInvalidCharValue {
-            get {
-                return ResourceManager.GetString("FormatExceptionInvalidCharValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not a valid value for DateTime..
-        /// </summary>
-        internal static string FormatExceptionInvalidDateTimeValue {
-            get {
-                return ResourceManager.GetString("FormatExceptionInvalidDateTimeValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not correctly formatted..
-        /// </summary>
-        internal static string FormatExceptionInvalidFormatting {
-            get {
-                return ResourceManager.GetString("FormatExceptionInvalidFormatting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not a valid value for {1}..
-        /// </summary>
-        internal static string FormatExceptionInvalidTypeValue {
-            get {
-                return ResourceManager.GetString("FormatExceptionInvalidTypeValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Argument must be between {0} and {1}.
         /// </summary>
         internal static string GuardArgumentMustBeBetween {
@@ -192,15 +147,6 @@ namespace Enkoni.Framework.Properties {
         internal static string GuardValueCannotBeEmpty {
             get {
                 return ResourceManager.GetString("GuardValueCannotBeEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not a valid format string..
-        /// </summary>
-        internal static string InvalidOperationExceptionInvalidFormatString {
-            get {
-                return ResourceManager.GetString("InvalidOperationExceptionInvalidFormatString", resourceCulture);
             }
         }
     }

@@ -18,3 +18,6 @@ using System.Runtime.InteropServices;
 [assembly: Guid("20bbf369-7691-4134-a23b-3175be5cd8ef")]
 
 [assembly: CLSCompliant(true)]
+
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

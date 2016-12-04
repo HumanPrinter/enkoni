@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.DataAnnotations</id>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,10 +11,10 @@
     <projectUrl>https://github.com/HumanPrinter/enkoni</projectUrl>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.]]></releaseNotes>
+    <releaseNotes><![CDATA[Repaired a bug which caused an invalid reference in the NuGet-package.]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2014. All rights reserved.</copyright>
     <dependencies>
-      <dependency id="Enkoni" version="2.8.0" />
+      <dependency id="Enkoni" version="3.0.0" />
     </dependencies>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework=".NETFramework4.0" />
@@ -22,6 +22,6 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\libraries\Enkoni.Framework.Validation.RegularExpressions.dll" target="lib\net40-client" />
+    <file src="..\libraries\Enkoni.Framework.Validation.RegularExpressions.dll" target="lib\net40" />
   </files>
 </package>

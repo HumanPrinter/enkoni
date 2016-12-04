@@ -46,16 +46,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\SolutionInfo.cs">
-      <Link>Properties\SolutionInfo.cs</Link>
-    </Compile>
     <Compile Include="EventArgsTest.cs" />
     <Compile Include="PropertyChangedEventArgsTest.cs" />
-    <Compile Include="CsvTransformerTest.cs" />
     <Compile Include="FixedDateTimeProviderTest.cs" />
     <Compile Include="OffsetDateTimeProviderTest.cs" />
     <Compile Include="DateTimeProviderTest.cs" />
-    <Compile Include="StopwatchTest.cs" />
     <Compile Include="DoubleExtensionTest.cs" />
     <Compile Include="GuardTest.cs" />
     <Compile Include="TypeExtensionTest.Dummies.cs" />
@@ -76,9 +71,7 @@
     <Compile Include="TypeExtensionTest.cs" />
     <Compile Include="DateTimeExtensionTest.cs" />
     <Compile Include="ReferenceEqualityComparerTest.cs" />
-    <Compile Include="CsvSerializerTest.cs" />
     <Compile Include="LinqExtensionTest.cs" />
-    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="StringExtensionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LambdaEqualityComparerTest.cs" />
@@ -95,33 +88,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestData\CsvTestInputFileWithHeaderUTF8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFileNoHeaderASCII.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFileNoHeaderUTF8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFilePartialNoHeaderASCII.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFilePartialNoHeaderUTF8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFilePartialWithHeaderASCII.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFilePartialWithHeaderUTF8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFileWithHeaderASCII.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestOutputFileWithHeaderUTF8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <EmbeddedResource Include="TestData\EmbeddedChildSchema.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -134,17 +100,6 @@
     </EmbeddedResource>
     <None Include="TestData\ParentSchemaWithFileBasedChild.xsd">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestData\CsvTestInputFileNoHeaderASCII.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestInputFileNoHeaderUTF8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\CsvTestInputFileWithHeaderASCII.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

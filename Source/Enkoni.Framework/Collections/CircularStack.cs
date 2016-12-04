@@ -7,8 +7,8 @@ using System.Linq;
 namespace Enkoni.Framework.Collections {
   /// <summary>Represents a fixed size last-in-first-out (LIFO) collection of instances of the same arbitrary type that uses a circular collection as internal storage.</summary>
   /// <typeparam name="T">Specifies the type of elements in the stack.</typeparam>
-  [Serializable]
   [DebuggerDisplay("Count = {Count}")]
+  [Serializable]
   public class CircularStack<T> : IEnumerable<T>, ICollection, IEnumerable {
     #region Instance variables
 

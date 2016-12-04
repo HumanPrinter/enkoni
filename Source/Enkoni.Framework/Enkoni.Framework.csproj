@@ -50,57 +50,43 @@
     <Compile Include="Collections\Comparer.cs" />
     <Compile Include="Collections\Extensions.cs" />
     <Compile Include="ConfigurationException.cs" />
-    <Compile Include="CombinedSpecification.cs" />
-    <Compile Include="AndSpecification.cs" />
-    <Compile Include="BusinessRuleSpecification.cs" />
     <Compile Include="AsyncResult.cs" />
-    <Compile Include="FixedDateTimeProvider.cs" />
-    <Compile Include="Guard.cs" />
-    <Compile Include="OffsetDateTimeProvider.cs" />
-    <Compile Include="DateTimeProvider.cs" />
+    <Compile Include="Cloneable.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="EventHandlerExtensions.cs" />
+    <Compile Include="Linq\Enumerable.cs" />
+    <Compile Include="Linq\Queryable.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StringExtensions.cs" />
+    <Compile Include="Workflow.cs" />
+    <Compile Include="WorkflowState.cs" />
+    <Compile Include="FixedDateTimeProvider.cs" />
+    <Compile Include="Guard.cs" />
+    <Compile Include="OffsetDateTimeProvider.cs" />
+    <Compile Include="DateTimeProvider.cs" />
     <Compile Include="PropertyChangedEventArgs.cs" />
-    <Compile Include="Timers\AlarmClock.cs" />
-    <Compile Include="Timers\Stopwatch.cs" />
+    <Compile Include="SortOrder.cs" />
     <Compile Include="Collections\DoubleEqualityComparer.cs" />
     <Compile Include="Collections\DoubleComparer.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="LocalizedDescriptionAttribute.cs" />
     <Compile Include="Collections\ReferenceEqualityComparer.cs" />
-    <Compile Include="Serialization\Serializer.cs" />
-    <Compile Include="Serialization\CsvTransformer.cs" />
-    <Compile Include="SortSpecificationsEventArgs.cs" />
-    <Compile Include="SortSpecifications.cs" />
-    <Compile Include="SortSpecification.cs" />
-    <Compile Include="ISortSpecification.cs" />
-    <Compile Include="Enumerations.cs" />
-    <Compile Include="ISpecificationVisitor.cs" />
-    <Compile Include="LikeSpecification.cs" />
-    <Compile Include="NotSpecification.cs" />
-    <Compile Include="OrSpecification.cs" />
-    <Compile Include="Specification.cs" />
+    <Compile Include="DoubleCompareOption.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InvalidTypeParameterException.cs" />
-    <Compile Include="ISpecification.cs" />
     <Compile Include="IWorkflow.cs" />
     <Compile Include="Collections\LambdaEqualityComparer.cs" />
-    <Compile Include="Linq\Extensions.cs" />
+    <Compile Include="Linq\ExpressionExtensions.cs" />
     <Compile Include="NotSupportedTypeParameterException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersionInfo.cs" />
-    <Compile Include="Serialization\CsvColumnAttribute.cs" />
-    <Compile Include="Serialization\CsvRecordAttribute.cs" />
-    <Compile Include="Serialization\CsvSerializer.cs" />
-    <Compile Include="LambdaSpecification.cs" />
-    <Compile Include="Serialization\Transformer.cs" />
     <Compile Include="ValidatedNotNullAttribute.cs" />
-    <Compile Include="Workflow.cs" />
     <Compile Include="Xml\XmlResourceResolver.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +98,6 @@
     </AdditionalFiles>
     <None Include="Enkoni.Framework.nuspec" />
     <None Include="packages.config" />
-    <None Include="Settings.StyleCop">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
@@ -125,16 +108,15 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.nl-NL.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

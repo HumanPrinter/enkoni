@@ -33,10 +33,6 @@
     <DocumentationFile>bin\Release\Enkoni.Framework.Tests.Addition.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\SolutionInfo.cs">
-      <Link>Properties\SolutionInfo.cs</Link>
-    </Compile>
-    <Compile Include="Properties\AssemblyVersionInfo.cs" />
     <Compile Include="TypeExtensionTest.Dummies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
