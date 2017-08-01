@@ -37,6 +37,7 @@ namespace Enkoni.Framework.Testing {
         throw new AssertFailedException(message);
       }
       catch(AssertFailedException) {
+        throw;
       }
       catch(TException exception) {
         if(!allowDerivedTypes && exception.GetType() != typeof(TException)) {
