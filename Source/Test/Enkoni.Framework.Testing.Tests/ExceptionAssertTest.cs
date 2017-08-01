@@ -82,8 +82,12 @@ namespace Enkoni.Framework.Testing.Tests
     public void ExceptionAssert_Throws_NoExceptionIsThrown_AssertFails() {
       try {
         ExceptionAssert.Throws<InvalidOperationException>(() => { });
+        Assert.Fail("No exception was thrown");
       }
-      catch(AssertFailedException ex) {
+      catch (AssertFailedException ex) when (ex.Message.EndsWith("No exception was thrown")) {
+        throw;
+      }
+      catch (AssertFailedException ex) {
         Assert.IsNull(ex.InnerException);
       }
     }
