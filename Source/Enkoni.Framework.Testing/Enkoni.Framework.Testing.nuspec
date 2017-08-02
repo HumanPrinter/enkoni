@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Enkoni.Testing</id>
-    <version>1.1.0</version>
+    <version>1.2.1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <summary>$description$</summary>
-    <releaseNotes><![CDATA[Changed the assembly GUID to make it unique.]]></releaseNotes>
+    <releaseNotes><![CDATA[Solved a bug in the ExceptionAssert where an Assert whould incorrectly succeed when no exception was thrown]]></releaseNotes>
     <copyright>Copyright (c) Oscar Brouwer 2012. All rights reserved.</copyright>
     <dependencies>
       <dependency id="Enkoni" version="3.0.0" />
