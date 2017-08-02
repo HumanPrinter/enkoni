@@ -8,18 +8,20 @@ namespace Enkoni.Framework.Testing {
     /// <summary>Checks if the exception of type <typeparamref name="TException"/> was thrown.</summary>
     /// <typeparam name="TException">The type of the exception that should be thrown.</typeparam>
     /// <param name="action">The action that should throw an exception of type <typeparamref name="TException"/>.</param>
+    /// <returns>The <typeparamref name="TException"/> that was thrown, or null.</returns>
     /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
-    public static void Throws<TException>(Action action) where TException : Exception {
-      Throws<TException>(action, string.Format(CultureInfo.InvariantCulture, "Exception of type {0} was not thrown.", typeof(TException).Name));
+    public static TException Throws<TException>(Action action) where TException : Exception {
+      return Throws<TException>(action, string.Format(CultureInfo.InvariantCulture, "Exception of type {0} was not thrown.", typeof(TException).Name));
     }
 
     /// <summary>Checks if the exception of type <typeparamref name="TException"/> was thrown.</summary>
     /// <typeparam name="TException">The type of the exception that should be thrown.</typeparam>
     /// <param name="action">The action that should throw an exception of type <typeparamref name="TException"/>.</param>
     /// <param name="message">The message that should be used when no exception was thrown.</param>
+    /// <returns>The <typeparamref name="TException"/> that was thrown, or null.</returns>
     /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
-    public static void Throws<TException>(Action action, string message) where TException : Exception {
-      Throws<TException>(action, message, false);
+    public static TException Throws<TException>(Action action, string message) where TException : Exception {
+      return Throws<TException>(action, message, false);
     }
 
     /// <summary>Checks if the exception of type <typeparamref name="TException"/> was thrown.</summary>
@@ -27,8 +29,9 @@ namespace Enkoni.Framework.Testing {
     /// <param name="action">The action that should throw an exception of type <typeparamref name="TException"/>.</param>
     /// <param name="message">The message that should be used when no exception was thrown.</param>
     /// <param name="allowDerivedTypes">Specifies whether derived types of the exception are allowed.</param>
+    /// <returns>The <typeparamref name="TException"/> that was thrown, or null.</returns>
     /// <exception cref="Exception">An exception that does not inherit from <typeparamref name="TException"/></exception>
-    public static void Throws<TException>(Action action, string message, bool allowDerivedTypes) where TException : Exception {
+    public static TException Throws<TException>(Action action, string message, bool allowDerivedTypes) where TException : Exception {
       Guard.ArgumentIsNotNull(action, nameof(action));
       Guard.ArgumentIsNotNullOrEmpty(message, nameof(message), "Value cannot be empty.");
 
@@ -43,10 +46,14 @@ namespace Enkoni.Framework.Testing {
         if(!allowDerivedTypes && exception.GetType() != typeof(TException)) {
           throw new AssertFailedException(message, exception);
         }
+
+        return exception;
       }
       catch(Exception exception) {
         throw new AssertFailedException(message, exception);
       }
+
+      return null;
     }
   }
 }

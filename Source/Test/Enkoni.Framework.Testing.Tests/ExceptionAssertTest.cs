@@ -59,9 +59,11 @@ namespace Enkoni.Framework.Testing.Tests
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action)"/> method.</summary>
     [TestMethod]
     public void ExceptionAssert_Throws_ExpectedExceptionIsThrown_AssertDoesNotFail() {
-      ExceptionAssert.Throws<InvalidOperationException>(() => {
-        throw new InvalidOperationException();
+      InvalidOperationException exception = ExceptionAssert.Throws<InvalidOperationException>(() => {
+        throw new InvalidOperationException("ExceptionMessage");
       });
+      Assert.IsNotNull(exception);
+      Assert.AreEqual("ExceptionMessage", exception.Message);
     }
 
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action)"/> method.</summary>
@@ -108,9 +110,11 @@ namespace Enkoni.Framework.Testing.Tests
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action, string)"/> method.</summary>
     [TestMethod]
     public void ExceptionAssert_ThrowsWithMessage_ExpectedExceptionIsThrown_AssertDoesNotFail() {
-      ExceptionAssert.Throws<InvalidOperationException>(() => {
-        throw new InvalidOperationException();
+      InvalidOperationException exception = ExceptionAssert.Throws<InvalidOperationException>(() => {
+        throw new InvalidOperationException("ExceptionMessage");
       }, "AssertMessage");
+      Assert.IsNotNull(exception);
+      Assert.AreEqual("ExceptionMessage", exception.Message);
     }
 
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action, string)"/> method.</summary>
@@ -156,9 +160,11 @@ namespace Enkoni.Framework.Testing.Tests
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action, string, bool)"/> method.</summary>
     [TestMethod]
     public void ExceptionAssert_ThrowsWithMessageAndBool_DoNotAllowDerivedTypes_ExpectedExceptionIsThrown_AssertDoesNotFail() {
-      ExceptionAssert.Throws<InvalidOperationException>(() => {
-        throw new InvalidOperationException();
+      InvalidOperationException exception = ExceptionAssert.Throws<InvalidOperationException>(() => {
+        throw new InvalidOperationException("ExceptionMessage");
       }, "AssertMessage", false);
+      Assert.IsNotNull(exception);
+      Assert.AreEqual("ExceptionMessage", exception.Message);
     }
 
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action, string, bool)"/> method.</summary>
@@ -204,9 +210,11 @@ namespace Enkoni.Framework.Testing.Tests
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action, string, bool)"/> method.</summary>
     [TestMethod]
     public void ExceptionAssert_ThrowsWithMessageAndBool_AllowDerivedTypes_ExpectedExceptionIsThrown_AssertDoesNotFail() {
-      ExceptionAssert.Throws<InvalidOperationException>(() => {
-        throw new InvalidOperationException();
+      InvalidOperationException exception = ExceptionAssert.Throws<InvalidOperationException>(() => {
+        throw new InvalidOperationException("ExceptionMessage");
       }, "AssertMessage", true);
+      Assert.IsNotNull(exception);
+      Assert.AreEqual("ExceptionMessage", exception.Message);
     }
 
     /// <summary>Tests the functionality of the <see cref="Throws{TException}(Action, string, bool)"/> method.</summary>
