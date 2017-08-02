@@ -1,0 +1,1025 @@
+﻿###################################################
+# Release Notes for Enkoni.Framework assemblies   #
+# Author is Oscar Brouwer unless stated otherwise #
+# Legend:                                         #
+# [*]: Change                                     #
+# [+]: Addition                                   #
+# [!]: Bugfix                                     #
+# [-]: Removal                                    #
+###################################################
+
+Version 1.3.0.1
+  Enkoni.Framework.Testing (1.2.1)
+  [!] Solved a bug in the ExceptionAssert class
+      Date:    2017-08-01
+      Comment: Solved a bug in the ExceptionAssert where an Assert whould incorrectly succeed when no exception was thrown
+
+Version 1.3.0.0
+  Enkoni.Framework (3.0.0)
+  [-] Removed the Specification classes.
+      Date:    2016-07-01
+      Comment: The Specification classes have been moved to their own assembly called Enkoni.Framework.Specifications. 
+              Please use the Enkoni.Specifications NuGet-package from now on.
+
+  [-] Removed the Serialization classes.
+      Date:    2016-07-01
+      Comment: The Serialization classes have been moved to their own assembly called Enkoni.Framework.Serialization. 
+              Please use the Enkoni.Serialization NuGet-package from now on.
+
+  [-] Removed the Timer classes.
+      Date:    2016-07-01
+      Comment: The Timer classes have been moved to their own assembly called Enkoni.Framework.Timers. 
+              Please use the Enkoni.Timers NuGet-package from now on.
+
+  [*] Reorganized the extension methods.
+      Date:    2016-07-01
+      Comment: The various extention methods have now been divided into dedicated classes. The internal workings of the methods have not changed and as long as the
+              methods are invoked as extension methods, the change should not be noticable.
+
+  Enkoni.Framework.DataAnnotations (1.1.1)
+  [!] Repaired a bug which caused an invalid reference in the NuGet-package.
+      Date:    2016-10-11
+      Comment: Repaired a bug which caused an invalid reference in the NuGet-package.
+
+  Enkoni.Framework.Entities (3.7.0)
+  [*] Added a reference to the new Enkoni.Specifications package.
+      Date:    2016-07-01
+      Comment: Added a reference to the new Enkoni.Specifications package.
+
+  Enkoni.Framework.Entities.Database (2.6.0)
+  [*] Made some internal changes as a result of changes in Enkoni.Framework.
+      Date:    2016-07-01
+      Comment: Made some internal changes as a result of changes in Enkoni.Framework.
+
+  Enkoni.Framework.Entities.File (3.5.0)
+  [*] Added a reference to the new Enkoni.Specifications and Enkoni.Serialization packages.
+      Date:    2016-07-01
+      Comment: Added a reference to the new Enkoni.Specifications and Enkoni.Serialization packages.
+
+  Enkoni.Framework.Entities.Service (3.1.0)
+  [*] Changed the assembly GUID to make it unique.
+      Date:    2016-07-01
+      Comment: Changed the assembly GUID to make it unique.
+
+  Enkoni.Framework.Serialization (1.0.0)
+  [+] Created new package.
+      Date:    2016-07-01
+      Comment: Created a ne package that contains the serialization logic that used to be part of the main Enkoni project. The internal workings have not changed.
+
+  Enkoni.Framework.Specifications (1.0.0)
+  [+] Created new package.
+      Date:    2016-07-01
+      Comment: Created a ne package that contains the specifications logic that used to be part of the main Enkoni project. The internal workings have not changed.
+
+  Enkoni.Framework.Testing (1.1.0)
+  [*] Changed the assembly GUID to make it unique.
+      Date:    2016-07-01
+      Comment: Changed the assembly GUID to make it unique.
+
+  Enkoni.Framework.Timers (1.0.0)
+  [+] Created new package.
+      Date:    2016-07-01
+      Comment: Created a ne package that contains the timer logic that used to be part of the main Enkoni project. The internal workings have not changed.
+
+  Enkoni.Framework.Validation (2.3.0)
+  [*] Changed the assembly GUID to make it unique.
+      Date:    2016-07-01
+      Comment: Changed the assembly GUID to make it unique.
+
+Version 1.2.12.0
+  Enkoni.Framework (2.10.0)
+  [+] Added additional overloads to the Guard class that use a default message.
+      Date:    2016-08-10
+      Comment: Added additional overloads to the Guard class that use a default message.
+
+  Enkoni.Framework.Testing (1.2.0)
+  [+] Added additional Assert-classes and methods that can aid in unit tests.
+      Date:    2016-08-10
+      Comment: Added additional Assert-classes and methods that can aid in unit tests.
+
+Version 1.2.11.0
+  Enkoni.Framework (2.9.0)
+  [*] Added the ValidatedNotNullAttribute to the Guard methods to avoid CS1062 warnings when using the Guard class to validate parameters.
+      Date:    2016-06-30
+      Comment: Added the ValidatedNotNullAttribute to the Guard methods to avoid CS1062 warnings when using the Guard class to validate parameters.
+
+Version 1.2.10.0
+  Enkoni.Framework (2.8.0)
+  [+] Added a new Guard-class that can be used to validate parameters.
+      Date:    2016-06-09
+      Comment: Added a new Guard-class that can be used to validate parameters.
+
+  Enkoni.Framework.DataAnnotations (1.1.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+  Enkoni.Framework.DataAnnotations.Client (1.1.0)
+  [+] Added client side validation for the IbanAttribute and DutchPhoneNumberAttribute.
+      Date:    2016-06-09
+      Comment: Added client side validation for the IbanAttribute and DutchPhoneNumberAttribute.
+
+  Enkoni.Framework.Entities (3.6.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+  Enkoni.Framework.Entities.Database (2.5.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+  Enkoni.Framework.Entities.File (3.4.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+  Enkoni.Framework.ServiceModel (2.4.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+  Enkoni.Framework.Testing (1.1.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+  Enkoni.Framework.UI (1.1.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+  Enkoni.Framework.Validation (2.2.1.1)
+  [!] Fixed a bug in IbanValidator where an empty string would be incorrectly validated.
+      Date:    2016-04-22
+      Comment: Fixed a bug in IbanValidator where an empty string would be incorrectly validated.
+
+  Enkoni.Framework.Web (1.2.0)
+  [*] Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+      Date:    2016-06-09
+      Comment: Methods now use the new Guard-class from Enkoni.Framework to validate the parameters.
+
+Version 1.2.9.0
+  Enkoni.Framework (2.7.0)
+  [+] Added a new Partition method that groups a collection into partions
+      Date:    2015-09-11
+      Comment: Added a new extension method called Partition that partions a collection based on a specified key.
+
+  [*] Added support for a string-separator for the CSV serialization functionality
+      Date:    2015-08-13
+      Comment: The CsvRecordAttribute now also supports string separators (in addition to char-separators) for more complex CSV scenarios.
+
+  Enkoni.Framework.Entities (3.5.0)
+  [+] Added the new InstanceMemoryStore class
+      Date:    2015-08-11
+      Comment: Added a new InstanceMemoryStore class that can be used when a memory backing store is required but static behavior is not desired.
+
+Version 1.2.8.1
+  Enkoni.Framework.Entities.Database (2.4.1)
+  [!] Fixed a bug related to updating graphs
+      Date:    2015-04-17
+      Comment: 
+                Fixed a bug that ocurred when updating a graph where a related entity was deleted and another related entity was updated. The changes to the
+                updated enityt whould be lost after saving the deletion. This has now been fixed.
+              
+
+Version 1.2.8.0
+  Enkoni.Framework.Entities (3.4.0)
+  [+] Added the new ISubDomainModel<T> interface.
+      Date:    2015-04-13
+      Comment: 
+                Added the new ISubDomainModel<T> interface which makes it easier to initialize an instance of the SubDomainModel using dependency injection.
+              
+
+  [*] Marked the DomainModel class as obsolete.
+      Date:    2015-04-11
+      Comment: The DomainModel class has been marked as obsolete. Checking and creating the persistency layer is not part of the responsibility of the 
+                framework. Also, creating instances of the SubDomainModel classes shuld be done using IoC-techniques.
+              
+
+  Enkoni.Framework.Entities.Database (2.4.0)
+  [*] The DatabaseRepository now supports updating entire graphs
+      Date:    2015-04-11
+      Comment: When updating an entity, the database repository now updates the entire graph provided the subtypes also implement the IEntity<T>
+                interface. To disable this behavior set the new SaveGraph property in the DatabaseSourceInfo class to false.
+
+Version 1.2.7.0
+  Enkoni.Framework (2.6.0)
+  [*] Added the IncludePaths to the Specification{T} class.
+      Date:    2015-04-04
+      Comment: Added a new property IncludePaths to the Specification{T} class which can be used to specify specific includes (primarily used for database 
+               interaction).
+
+  Enkoni.Framework.Entities (3.3.0)
+  [*] Added overloads that take an extra string parameter to specify include paths.
+      Date:    2015-04-04
+      Comment: Added overloads to the SubDomainModel and Repository classes for the retrieve methods that take an extra string parameter to specify 
+               include paths.
+
+  Enkoni.Framework.Entities.Database (2.3.0)
+  [*] Added overloads that take an extra string parameter to specify include paths.
+      Date:    2015-04-04
+      Comment: Added overloads to the DatabaseRepository class for the retrieve methods that take an extra string parameter to specify include paths.
+
+  Enkoni.Framework.Entities.File (3.3.0)
+  [*] Added overloads that take an extra string parameter to specify include paths.
+      Date:    2015-04-04
+      Comment: Added overloads to the FileRepository class for the retrieve methods that take an extra string parameter to specify include paths.
+
+Version 1.2.6.0
+  Enkoni.Framework (2.5.0)
+  [+] Added the class PropertyChangedEventArgs<T>.
+      Date:    2015-02-09
+      Comment: Added a new class PropertyChangedEventArgs<T> which extends the default PropertyChangedEventArgs-class and can be used to pass the old and 
+               new value of the changed property with the event.
+
+  Enkoni.Framework.Entities (3.2.0)
+  [*] Added overloads for the find-methods that take an expression directly.
+      Date:    2015-02-07
+      Comment: Added overloads for the find-methods that take an expression directly in order to make it even easier to use the repositories.
+
+  [+] Added the base class Entity<TEntity> to provide a base implementation for entities.
+      Date:    2015-02-01
+      Comment: Added a new base class Entity<TEntity> which implements IEntity<TEntity> to provide a default implementation for the CopyFrom-method.
+
+  [*] Improved the behavior of the MemoryRepository class.
+      Date:    2015-02-01
+      Comment: Improved the behavior of the MemoryRepository class. It now better detects any changes that were made in entities from outside the repository 
+               and prevents them from being stored.
+
+  Enkoni.Framework.Entities.Database (2.2.0)
+  [*] Improved the behavior of the DatabaseRepository class.
+      Date:    2015-02-01
+      Comment: Improved the behavior of the DatabaseRepository class. It now better detects any changes that were made in entities from outside the repository 
+               and prevents them from being stored.
+
+  Enkoni.Framework.Entities.File (3.2.0)
+  [*] Improved the behavior of the FileRepository class.
+      Date:    2015-02-01
+      Comment: Improved the behavior of the FileRepository class. It now better detects any changes that were made in entities from outside the repository 
+               and prevents them from being stored.
+
+  Enkoni.Framework.Logging (1.3.0)
+  [*] The Logger can now directly be initialised.
+      Date:    2015-02-03
+      Comment: An instance of the Logger-class can now be directly initialised.
+
+  Enkoni.Framework.ServiceModel (2.3.0)
+  [*] Removed the dependency with the Enkoni.Framework.Logging project.
+      Date:    2015-02-06
+      Comment: The dependency with the Enkoni.Framework.Logging project (and thereby the dependency with the Enterprise Library Logging Application Block)
+               has been removed. By default, logging is now done through the .NET tracing functionality.
+
+Version 1.2.5.0
+  Enkoni.Framework (2.4.0)
+  [+] Added a new XmlResourceResolver class
+      Date:    2014-12-27
+      Comment: Added a new XmlResourceResolver class that can be used to resolve xml schemas from embedded resources.
+
+  [+] Added new DateTimeProvider classes
+      Date:    2014-12-27
+      Comment: Added a DateTimeProvider, OffsetDateTimeProvider and FixedDateTimeProvider class that can be used to determine the current time and
+               or date with support for dependency injection.
+
+  [+] Added a new Between extension method
+      Date:    2014-10-16
+      Comment: Added a new Between extension method that can be used to determine if a DateTime value is between to other DateTime values.
+
+  [+] Added a new Truncate extension method
+      Date:    2014-10-16
+      Comment: Added a new Truncate extension method that can be used to truncate a string to a maximum length even if the string is shorter.
+
+  Enkoni.Framework.ServiceModel (2.2.0)
+  [*] Improved the SchemaValidationBehavior class
+      Date:    2014-12-27
+      Comment: Integrated the new XmlResourceResolver and added some extension points.
+
+Version 1.2.4.1
+  Enkoni.Framework (2.3.1)
+  [!] Fixed a bug in the Capitalize and CapitalizeSentence extension methods
+      Date:    2014-06-19
+      Comment: Fixed a bug in the Capitalize and CapitalizeSentence extension methods that caused the methods to break when 
+               the input value either starts or ends with spaces or contains adjacent spaces.
+
+Version 1.2.4.0
+  Enkoni.Framework (2.3.0)
+  [+] Added a new CapitalizeSentence extension method
+      Date:    2014-04-30
+      Comment: Added a new CapitalizeSentence extension method that can be used to capitalize the first word in a sentence and
+               change the remaining words to lower case.
+
+  Enkoni.Framework.DataAnnotations (1.0.1)
+  [*] Changed the behavior of the validations in case of an empty input value
+      Date:    2014-03-18
+      Comment: Empty input values are now accepted by the validators. In order to reject empty input values, combine the attributes with the default 
+               RequiredAttribute.
+
+  Enkoni.Framework.Entities (3.1.0)
+  [*] Added a new Execute method to the Repository class
+      Date:    2014-04-06
+      Comment: Added a new Execute method to the Repository class that can be used to execute custom actions that don't have to return one or more entities.
+
+  [*] Added a new Reset method to the Repository class
+      Date:    2014-03-23
+      Comment: Added a new Reset method to the Repository class which can be used to revert any changes made to the repository.
+
+  [*] Removed the dependency with the Enkoni.Framework.Validation-project and the Validation application block of the Microsoft Enterprise Library
+      Date:    2014-03-22
+      Comment: The EntityValidator now relies on System.ComponentModel.DataAnnotations for the validation
+
+  [!] Fixed a bug in the SubDomainModel class in the UpdateEntity method
+      Date:    2014-03-21
+      Comment: A bug in the UpdateEntity method of the SubDomainModel class prevented the abstract method UpdateEntityCore from being called in case the updated 
+               entity and the database entity where the same reference.
+
+  Enkoni.Framework.Entities.Database (2.1.0)
+  [*] Updated the reference to EntityFramework to version 6.1.0
+      Date:    2014-03-30
+      Comment: The project now references EntityFramework 6.1.0 (old version was 5.0).
+
+  [*] Implemented the new Reset method of the Repository base class
+      Date:    2014-03-23
+      Comment: The DatabaseRepository implements the new Reset method which reverts any unsaved changes to the repository.
+
+  Enkoni.Framework.Entities.File (3.1.0)
+  [*] Implemented the new Reset method of the Repository base class
+      Date:    2014-03-23
+      Comment: The FileRepository implements the new Reset method which reverts any unsaved changes to the repository.
+
+Version 1.2.3.0
+  Enkoni.Framework.DataAnnotations (1.0.0.0)
+  [+] Added the Enkoni.Framework.DataAnnotations-project
+      Date:    2014-03-16
+      Comment: Added the Enkoni.Framework.DataAnnotations-project which holds extensions to the DataAnnotations subsystem of Microsoft .Net.
+               It basically is a copy of the existing Enkoni.Framework.Validation-project but without the dependency with the obsolete Validation Application 
+               Block of the Microsoft Enterprise Library.
+
+  Enkoni.Framework.Validation (2.2.1.0)
+  [!] Fixed a small bug that was left unfixed in the previous release with regards to the configuration logic of the DutchPhoneNumberValidator
+      Date:    2014-03-16
+      Comment: A small bug in the configuration logic of the DutchPhoneNumberValidator was overlokked in the previous release. This has been fixed now.
+
+Version 1.2.2.0
+  Enkoni.Framework.Entities.Database (2.0.1.0)
+  [!] Fixed a bug when selecting an entity by ID
+      Date:    2014-03-14
+      Comment: Bug 12: When selecting an entity by its RecordId, an exception is thrown by Entity Framework. This has been fixed.
+
+  Enkoni.Framework.Validation (2.2.0.0)
+  [!] Fixed a bug in the configuration logic when used in a web application
+      Date:    2014-03-14
+      Comment: Bug 14: When used in a web application the EmailValidator and DutchPhoneNumberValidator throws an exception because 
+               no exe-configuration file can be found. This has been fixed.
+
+  [*] Added the 'RequireTopLevelDomain' property to the EmailValidator
+      Date:    2014-03-14
+      Comment: The EmailValidator class now contains a new property called 'RequireTopLevelDomain' to indicate if an e-mail address
+               must contain a top level domain in order to be valid
+
+Version 1.2.1.0
+  Enkoni.Framework (2.2.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities (3.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Database (2.0.0.4)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.File (3.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Service (3.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Logging (1.2.0.6)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.ServiceModel (2.1.0.3)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Testing (1.0.0.7)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.UI (1.0.0.6)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Validation (2.1.0.0)
+  [+] Added the EmailValidator class
+      Date:    2014-01-17
+      Comment: 
+                Added a new validator that is able to check if a string value represents a valid e-mail address. The validator can be 
+                instantiated directly or through an attribute and can be configured in code and in configuration.
+              
+
+  Enkoni.Framework.Web (1.1.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2014-01-17
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+Version 1.2.0.0
+  Enkoni.Framework (2.2.0.0)
+  [+] Added support for a custom 'null' string to the CsvSerializer
+      Date:    2013-11-03
+      Comment: 
+                Added support for a custom 'null' string to the CsvSerializer. This allows for more flexibility when (de)serializing
+              objects to and from CSV format.
+              
+
+  Enkoni.Framework.Entities (3.0.0.0)
+  [*] Upgraded to the .NET 4 framework
+      Date:    2013-11-23
+      Comment: The project now references the .NET 4 framework.
+
+  Enkoni.Framework.Entities.Database (2.0.0.3)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-23
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.File (3.0.0.0)
+  [*] Upgraded to the .NET 4 framework
+      Date:    2013-11-23
+      Comment: The project now references the .NET 4 framework.
+
+  Enkoni.Framework.Entities.Service (3.0.0.0)
+  [*] Upgraded to the .NET 4 framework
+      Date:    2013-11-23
+      Comment: The project now references the .NET 4 framework.
+
+  Enkoni.Framework.Logging (1.2.0.5)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-23
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.ServiceModel (2.1.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-23
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Testing (1.0.0.6)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-23
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.UI (1.0.0.5)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-23
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Validation (2.0.0.0)
+  [*] Upgraded to the .NET 4 framework
+      Date:    2013-11-23
+      Comment: The project now references the .NET 4 framework.
+
+  [+] Added the IbanValidator class
+      Date:    2013-11-23
+      Comment: 
+                Added a new validator that is able to check if a string value represents a valid IBAN account number.
+              
+
+  [+] Added the DutchPhoneNumberValidator class
+      Date:    2013-11-18
+      Comment: 
+                Added a new validator that is able to check if a string value represents a valid Dutch phone number. The validator can be 
+                instantiated directly or through an attribute and can be configured in code and in configuration.
+              
+
+  Enkoni.Framework.Web (1.1.0.0)
+  [+] Added the new Mvc3FixedModelBinder to the project
+      Date:    2013-11-03
+      Comment: Added the new Mvc3FixedModelBinder which extends Microsoft's DefaultModelBinder and fixes 
+              a bug related to binding enum-values.
+
+Version 1.1.2.0
+  Enkoni.Framework (2.1.0.0)
+  [+] Added the Enkoni.Framework.Linq.Extensions.Distinct extension method.
+      Date:    2013-09-27
+      Comment: 
+                Added the Enkoni.Framework.Linq.Distinct extension method that can be used to return unique items
+                from a IEnumerable<T> by comparing a specified field.
+              
+
+  [*] Added support for more formats to the CsvSerializer
+      Date:    2013-07-14
+      Comment: 
+                The CsvSerializer now support more formats when (de)serializing classes.
+              
+
+  [*] Added support to (de)serialize decimal and Enum values using the CsvSerializer
+      Date:    2013-07-08
+      Comment: 
+                The CsvSerializer class now supports (de)serialization of properties of type decimal and Enum.
+              
+
+  Enkoni.Framework.Entities (2.0.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Database (2.0.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.File (2.0.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Service (2.0.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Logging (1.2.0.4)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.ServiceModel (2.1.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Testing (1.0.0.5)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.UI (1.0.0.4)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Validation (1.2.0.4)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Web (1.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-11-01
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+Version 1.1.1.0
+  Enkoni.Framework (2.0.1.0)
+  [!] Fix a bug in the StopWatch class and improved pause and resume functionality
+      Date:    2013-04-24
+      Comment: 
+                Fixed a bug in the StopWatch-class that resulted in a laptime not being added to the collection of laptimes when the StopWatch
+                was stopped. In addition, the StopWatch now has improved pausing and resuming functionality.
+              
+
+  Enkoni.Framework.Entities (2.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-05-24
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Database (2.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-05-24
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.File (2.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-05-24
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Service (2.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-05-24
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Logging (1.2.0.3)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-07-04
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.ServiceModel (2.1.0.0)
+  [*] Changed the SafeClose-extension method to work on more WCF-related types.
+      Date:    2013-04-24
+      Comment: The SafeClose-extension method now works on objects of type ICommunicationObject which allows for a broader use of the 
+              functionality.
+
+  Enkoni.Framework.Testing (1.0.0.4)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-07-04
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.UI (1.0.0.3)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-07-04
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Validation (1.2.0.3)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2013-07-04
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Web (1.0.0.0)
+  [+] Added the Enkoni.Framework.Web project
+      Date:    2013-05-24
+      Comment: Added the Enkoni.Framework.Web project which contains classes that can be used within Web projects (WebForms and MVC).
+
+Version 1.1.0.0
+  Enkoni.Framework (2.0.0.0)
+  [*] Reorganized some classes
+      Date:    2012-11-24
+      Comment: 
+                Reorganized some collection-related classes into a new namespace calles Enkoni.Framework.Collections. This is a breaking change
+                but will add some more flexibility for the future.
+              
+
+  [+] Added new timer related classes.
+      Date:    2012-11-23
+      Comment: 
+                - Added a new Stopwatch class that wraps the default .NET Stopwatch class and adds the ability to record lap times.
+                 - Added a new AlarmClock class is capable of triggering an event at a specific time of day.
+              
+
+  [+] Added new functionality to compare double-values in a more confinient way.
+      Date:    2012-11-23
+      Comment: 
+                - Added new extension methods for System.Double to make it easier to compare double-values by looking only at the 
+                   significant digits or a specified margin.
+                 - Added the new DoubleComparer and DoubleEqualityComparer classes to make it easier to compare double-values by looking only at the 
+                   significant digits or a specified margin.
+              
+
+  [*] Added new properties to the Workflow-class to determine if the workflow can be started, stopped, paused or continued.
+      Date:    2012-11-18
+      Comment: 
+                Added four new properties to the Workflow-class (CanStart, CanStop, CanPause, CanContinue) that can be used to 
+                 determine if the workflow is in a state in which it can be started, stopped, paused or continued.
+
+  Enkoni.Framework.Entities (2.0.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.
+      Date:    2012-11-28
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (2.0.0.0).
+
+  Enkoni.Framework.Entities.Database (2.0.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities.
+      Date:    2012-10-05
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (2.0.0.0).
+
+  Enkoni.Framework.Entities.File (2.0.0.0)
+  [-] Removed the obsolete CsvFileSourceInfo class
+      Date:    2012-11-24
+      Comment: 
+                Removed the obsolete CsvFileSourceInfo. Since this class was marked obsolete over a year ago and there is also
+                 a breaking change scheduled for the Enkoni.Framework project, this seemes like a good moment to remove this class.
+              
+
+  Enkoni.Framework.Entities.Service (2.0.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities.
+      Date:    2012-10-05
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (2.0.0.0).
+
+  Enkoni.Framework.Logging (1.2.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.ServiceModel (2.0.0.0)
+  [-] Removed the FlatWsdlBehavior classes
+      Date:    2012-11-26
+      Comment: 
+                - Removed the FlatWsdlBehaviorExtensionElement and FlatWsdlBehaviorAttribute classes. The functionality did not always
+                 behave as expected. Since .Net 4.5 has build-in support for generating a single WSDL file, this functionality is no longer required 
+                 and therefore it was removed from this framework. When using .NET 4.5, it is recommended to use the new ?singlewsdl quierystring.
+                 When using an earlier version of .NET, it is recommended to use the single WSDL functionality provided by the WCFExtras-library
+                 which can be found at http://wcfextras.codeplex.com.
+              
+
+  [-] Removed the DisposableServiceBehaviorAttribute class
+      Date:    2012-11-26
+      Comment: 
+                - New understanding of the WCF framework and more extensive unit testing learned that the disposable service behavior has 
+                 been quite useless from the beginning. If the service implementation needs disposing, use a bindingtype and behavior that supports 
+                 sessions. That way, the .NET ecosystem will automatically call the Dispose method upon session ending or channel faulting.
+              
+
+  [+] Added the SchemaValidationBehavior class
+      Date:    2012-11-18
+      Comment: 
+                - Added the SchemaValidationMessageInspector and SchemaValidationBehaviorExtensionElement classes that can be used to 
+                 validate sent and received messages against an XML schema.
+              
+
+  Enkoni.Framework.Testing (1.0.0.3)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.UI (1.0.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Validation (1.2.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+Version 1.0.6.0
+  Enkoni.Framework (1.3.0.0)
+  [!] Fixed a bug in the EnumHelper.ToString() method
+      Date:    2012-10-05
+      Comment: 
+                Fixed a bug in the EnumHelper.ToString() method that could cause an exception if no resource was specified in combination 
+                 with the LocalizedDescriptionAttribute.
+              
+
+  [*] Added support for the EnumMemberAttribute in the EnumHelper.ToString() method
+      Date:    2012-10-05
+      Comment: 
+                The EnumHelper.ToString() now also supports the EnumMemberAttribute when trying to transform an enum to a string.
+              
+
+  Enkoni.Framework.Entities (1.4.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Database (1.5.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.File (1.3.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Entities.Service (1.3.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Logging (1.2.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.ServiceModel (1.2.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Testing (1.0.0.2)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.UI (1.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.Validation (1.2.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-10-05
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+Version 1.0.5.0
+  Enkoni.Framework (1.2.0.0)
+  [+] Added new classes and methods
+      Date:    2012-03-17
+      Comment: - Added the LocalizedDescriptionAttribute-class that can be used to define a localizable description for a type or member.
+               - Added the EnumHelper class that contains methods that help when dealing with enums.
+               - Added additional extension methods for the Type class.
+
+  Enkoni.Framework.Entities (1.4.0.0)
+  [*] Updated the reference to Unity to 2.1.505.2
+      Date:    2012-08-28
+      Comment: Updated the reference to Unity 2.1.505.2
+
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+
+  Enkoni.Framework.Entities.Database (1.5.0.0)
+  [*] Updated the reference to EntityFramework to 5.0.0
+      Date:    2012-03-18
+      Comment: The project now uses version 5.0.0 of the EntityFramework. There are no API changes.
+
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+
+  Enkoni.Framework.Entities.File (1.3.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+
+  Enkoni.Framework.Entities.Service (1.3.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework
+      Date:    2012-03-17
+      Comment: The project has been rebuild to link against the new Enkoni.Framework library (1.2.0.0)
+
+  Enkoni.Framework.Logging (1.2.0.0)
+  [*] Updated the reference to Unity 2.1.505.2
+      Date:    2012-08-28
+      Comment: Updated the reference to Unity 2.1.505.2
+
+  Enkoni.Framework.ServiceModel (1.2.0.0)
+  [+] Added the FlatWsdlBehavior class
+      Date:    2012-08-28
+      Comment: - Added the FlatWsdlBehaviorAttribute and FlatWsdlBehaviorExtensionElement classes that can be used to produce a 
+                 flattend WSL-document.
+
+  Enkoni.Framework.Testing (1.0.0.1)
+  [*] Updated the AssemblyInformationalVersion. No API changes
+      Date:    2012-08-28
+      Comment: Updated the AssemblyInformationalVersion. No API changes
+
+  Enkoni.Framework.UI (1.0.0.0)
+  [+] Added the Enkoni.Framework.UI project
+      Date:    2012-07-31
+      Comment: Added the Enkoni.Framework.UI project which contains classes that can be used within UI projects (WinForms and WPF).
+
+  Enkoni.Framework.Validation (1.2.0.0)
+  [*] Updated the reference to Unity to 2.1.505.2
+      Date:    2012-08-28
+      Comment: Updated the reference to Unity to 2.1.505.2
+
+Version 1.0.4.1
+  Enkoni.Framework.Entities.Database (1.4.1.0)
+  [*] Updated the reference to EntityFramework to 4.2.0.0
+      Date:    2011-11-05
+      Comment: The project now uses version 4.2 of the EntityFramework. There are no API changes.
+
+Version 1.0.4.0
+  Enkoni.Framework (1.1.0.0)
+  [+] Added the Serializer<T>, Transformer<T> and CsvTransformer<T> classes.
+      Date:    2011-08-26
+      Comment: Added three classes that aid in (de)serializing objects. Also the existing CsvSerializer class has been updated to make use of these 
+               new classes. By using this new architecture, the serialization classes are more flexible for future extensions and other developments.
+
+  [+] Added support for asynchronous operations to the Serializer class.
+      Date:    2011-08-26
+      Comment: Added support for asynchronous (de)serialization.
+
+  [+] Added the CircularStack<T> class.
+      Date:    2011-07-31
+      Comment: Added the CircularStack<T> class that can be used as a normal stack except that is will overwrite the oldest value 
+               once a preset maximum has been reached.
+
+  [+] Added the Enkoni.Framework.Linq.Extensions.CreateEqualityComparer extension method.
+      Date:    2011-07-01
+      Comment: Added the Enkoni.Framework.Linq.CreateEqualityComparer extension method that can be used to create an
+               IEqualityComparer using the signature of an IEnumerable<T>. This method is particular usefull for collections
+               of anonymous types.
+
+  [!] Fixed an issue with the Enkoni.Framework.Linq.Extensions.Capitalize() methods.
+      Date:    2011-06-26
+      Comment: The Enkoni.Framework.Linq.Extensions.Capitalize methods caused an InvalidOperationException when called with 
+               an empty (not null) string. This has now been fixed.
+
+  Enkoni.Framework.Entities (1.3.0.0)
+  [*] Improved overall performance and stability of the MemoryRepository class.
+      Date:    2011-08-26
+      Comment: The MemoryRepository class has been rewritten to improve the performance and stability of the implementation.
+
+  [+] Added an extra flag called 'clone data source items' to the DataSourceInfo class.
+      Date:    2011-08-09
+      Comment: The DataSourceInfo class can now specify wheter or not an entity that originates from a datasource, must be cloned before it is 
+               returned or not.
+
+  [+] Added the ability to add, update and delete a collection of entities in the repository.
+      Date:    2011-08-01
+      Comment: The Repository class now has the ability to add, update or delete a collection of entities in the repository. It provides a default
+               implementation which can be overwritten in specific implementations of the repository.
+
+  Enkoni.Framework.Entities.Database (1.4.0.0)
+  [*] Improved overall performance and stability of the DatabaseRepository class.
+      Date:    2011-08-08
+      Comment: The DatabaseRepository class has been rewritten to improve the performance and stability of the implementation. It also supports 
+               transactions now.
+
+  Enkoni.Framework.Entities.File (1.2.0.0)
+  [*] Improved overall performance and stability of the FileRepository class.
+      Date:    2011-08-09
+      Comment: The FileRepository class has been rewritten to improve the performance and stability of the implementation.
+
+  [+] Added support for Encoding to the FileSourceInfo class.
+      Date:    2011-08-06
+      Comment: The FileSourceInfo class can now also specify the encoding of a file that is handled by one of the repositories.
+
+  [*] Marked the CsvFileSourceInfo obsolete.
+      Date:    2011-08-06
+      Comment: Since the FileSourceInfo class now has build-in support to specify the required file encoding, the CsvFileSourceInfo class no longer 
+               has any added value. Therefore, the class is marked obsolete. This type may be completely removed in a future release.
+
+  [*] XmlFileRepository now supports different file encodings.
+      Date:    2011-08-06
+      Comment: It is now possible to specify a specific file encoding for the XML-file that is used by the XmlFileRepository.
+
+  Enkoni.Framework.Entities.Service (1.2.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities.
+      Date:    2011-08-27
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (1.3.0.0).
+
+Version 1.0.3.0
+  Enkoni.Framework.Entities (1.2.0.0)
+  [*] Updated the reference to EnterpriseLibrary.Validation to 5.0.505.0.
+      Date:    2011-06-08
+      Comment: The project now references the EnterpriseLibrary libraries through the NuGet system.
+
+  Enkoni.Framework.Entities.Database (1.3.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities.
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (1.2.0.0).
+
+  Enkoni.Framework.Entities.File (1.1.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities.
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (1.2.0.0).
+
+  Enkoni.Framework.Entities.Service (1.1.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Entities.
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Entities library (1.2.0.0).
+
+  Enkoni.Framework.Logging (1.1.0.0)
+  [*] Updated the reference to EnterpriseLibrary.Logging to 5.0.505.0.
+      Date:    2011-06-08
+      Comment: The project now references the EnterpriseLibrary libraries through the NuGet system.
+
+  Enkoni.Framework.ServiceModel (1.1.0.0)
+  [*] Refreshed build as a result of version increment of Enkoni.Framework.Logging.
+      Date:    2011-06-08
+      Comment: The project has been rebuild to link against the new Enkoni.Framework.Logging library (1.1.0.0).
+
+  Enkoni.Framework.Validation (1.1.0.0)
+  [*] Updated the reference to EnterpriseLibrary.Validation to 5.0.505.0
+      Date:    2011-06-08
+      Comment: The project now references the EnterpriseLibrary libraries through the NuGet system. There are no API changes.
+
+Version 1.0.2.0
+  Enkoni.Framework.Entities.Database (1.2.0.0)
+  [*] Updated the reference to EntityFramework.dll to version 4.1 Final (4.1.0.0).
+      Date:    2011-04-04
+      Comment: The project now uses version 4.1 Final of the EntityFramework. There are no API changes.
+
+Version 1.0.1.0
+  Enkoni.Framework (1.0.1.0)
+  [*] Fixed a bug in the CsvSerializer.
+      Date:    2011-03-03
+      Comment: Fixed a bug that in specific circumstances caused an exception when serializing an object using explicit formatting.
+
+  Enkoni.Framework.Entities (1.1.0.0)
+  [*] Added a virtual FindEntityByIdCore method to the abstract SubDomainModel class.
+      Date:    2011-04-04
+      Comment: The default implementation of the FindEntityById method of SubDomainModel does not work with some datasources (like SQL Server 2008).
+                 Therefore, a protected virtual method called FindEntityByIdCore method has been added. By default this method works just as the previous releases. Override
+                 this method in case you experience some unexpected problems with your datasource.
+
+  Enkoni.Framework.Entities.Database (1.1.0.0)
+  [*] Updated the reference to EntityFramework.dll to version 4.1RC.
+      Date:    2011-04-04
+      Comment: The project now uses version 4.1RC of the EntityFramework. There are no API changes.
+
+Version 1.0.0.0
+  Enkoni.Framework (1.0.0.0)
+  [+] Added an extension method for the DateTime struct.
+      Date:    2011-02-27
+      Comment: Added an extension method which can be used to determine the weeknumber of any given date in accordance with the ISO 8601 
+               specification.
+
+  Enkoni.Framework.Entities (1.0.0.0)
+  [*] Splitted the Enkoni.Framework.Entities project into four seperate projects.
+      Date:    2011-02-24
+      Comment: Splitted the Enkoni.Framework.Entities into four seperate projects. Enkoni.Framework.Entities contains the general data-access classes,
+                     Enkoni.Framework.Entities.Database contains the classes use a database as datasource for the data-access, 
+                     Enkoni.Framework.Entities.File contains classes that use a file as datasource for the data-access,
+                     Enkoni.Framework.Entities.Service contains classes that use a WCF service as datasource for the data-access.
+                     By splitting these classes into seperate projects, developers no longer need to include WCF-related libraries when they only want to
+                     use a database or include database-related libraries when they only want to use a filebased datasource. The memory-based data-access 
+                     classes are still a part of the Enkoni.Framework.Entities project since they don't require any additional and/or memory-specific 
+                     libraries nor is it to be expected that they will need to in the future.
+
+  Enkoni.Framework.Logging (1.0.0.0)
+  [*] Added the Enkoni.Framework.Logging project.
+      Date:    2011-02-23
+      Comment: Added the Enkoni.Framework.Logging project which contains classes that can be used to emit logmessages using the Logging Application
+                     Block which is part of the Microsoft Enterprise Library.
+
